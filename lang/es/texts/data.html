@@ -14,7 +14,9 @@ con la comunidad de Open Food Facts.</p>
 
 <h2>Exportación de datos de Open Food Facts</h2>
 
-<p>Los volcados de bases de datos y las exportaciones se generan todas las noches.</p>
+<p>Los volcados de bases de datos y las exportaciones se generan todas las noches. La base de datos es muy grande, así que puedes encontrar 
+  <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">diferentes maneras de usar los datos</a>, 
+  dependiendo del tipo de exportación.</p>
 
 <p>La información sobre los diferentes campos para el volcado de MongoDB y las exportaciones de CSV está disponible en <a href="https://static.openfoodfacts.org/data/data-fields.txt">https://world.openfoodfacts.org/data/data-fields.txt</a></p>
 
@@ -32,13 +34,26 @@ con la comunidad de Open Food Facts.</p>
  <dd><a href="https://static.openfoodfacts.org/data/md5sum">https://static.openfoodfacts.org/data/md5sum</a></dd>
 </dl>
 
-<h4>Exportar Delta</h4>
+<h4>Delta Export</h4>
 
 <p>Las exportaciones deltas diarias son proporcionadas para los 14 días previos. La lista de archivos delta disponibles se puede encontrar en <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.
  Cada línea representa un archivo que está disponible en <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.
  El nombre del archivo contiene una marca de tiempo UNIX del primer y último cambio que contiene el archivo JSON, por lo que los archivos delta pueden ser importados (después de la extracción) con <code>mongoimport</code> en orden alfabético.</p>
 <p>Tenga en cuenta que debido a la naturaleza de <code>mongoexport</code> , los archivos delta no pueden informarle sobre productos eliminados. Para borrar
  productos eliminados de su base de datos, deberá importar el volcado completo de MongoDB.</p>
+
+
+<h3>Exportar datos en formato CSV</h3>
+
+<p>Toda la base de datos también está disponible en <a href="https://jsonlines.org/">formato JSONL</a> (a veces llamado LDJSON o NDJSON) donde cada línea es un objeto JSON. 
+  Representa los mismos datos que la exportación de MongoDB. El archivo está comprimido con gzip.</p>
+
+<dl>
+ <dt>Enlace</dt>
+ <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-products.jsonl.gz">https://static.openfoodfacts.org/data/openfoodfacts-products.jsonl.gz</a>
+ </dd>
+</dl>
+
 
 <h3>Exportar datos en formato CSV</h3>
 
@@ -69,7 +84,7 @@ con la comunidad de Open Food Facts.</p>
 
 <p>Cambiamos la API con el tiempo, pero tenemos cuidado de mantener la compatibilidad con versiones anteriores. Díganos si la usa, para que podamos informarle sobre posibles cambios.</p>
 
-<p>URL para leer los datos de un producto: https://world.openfoodfacts.org/api/v0/product<i>[barcode]</i>.json</p>
+<p>Ejemplo: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
 <p>Ejemplo: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
@@ -93,6 +108,28 @@ La aplicación permite a los usuarios escanear el código de barras de los produ
 <h2>Wrappers y SDKs</h2>
 <p>Probablemente tengamos un contenedor para su lenguaje de programación favorito. Si lo hacemos, puedes utilizarlo y mejorarlo. Si no, puedes ayudar a crearlo.</p>
 <p>Le permitirán consumir datos, así como a sus usuarios contribuir con nuevos datos</p>
+
+<h3>Principios generales</h3>
+<ul>
+<li>Cordoba: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (antigua aplicación oficial de Open Food Facts)</a></li>
+<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
+<li>También puede implementar el flujo completo para que obtengan inmediatamente el resultado con un esfuerzo de tu parte.</li>
+</ul>
+
+<h3>Si tus usuarios no esperan un resultado inmediatamente (por ejemplo, aplicaciones de inventario)</h3>
+<ul>
+<li>Envíe fotos (frente/nutrición/ingredientes): de la manera más fácil posible para sus usuarios</li>
+<li>El Robotoff de IA Open Food Facts generará algunos datos derivados de las fotos</li>
+<li>Con el tiempo, otras aplicaciones, y la comunidad Open Food Facts llenarán las espacios vacíos de datos</li>
+</ul>
+
+<h3>Si tus usuarios esperan un resultado inmediatamente (por ejemplo, aplicaciones de nutrición)</h3>
+<ul>
+<li>Enviar datos nutricionales + categoría &gt; así obtienes Nutri-Score</li>
+<li>Enviar ingredientes &gt; para obtener el grupo NOVA (sobre ultraprocesamiento de alimentos), aditivos, alérgenos, ingredientes normalizados, vegano, vegetariano&hellip;</li>
+<li>Enviar categoría + etiquetas &gt; pronto obtendrás el Eco-Score (sobre impacto ambiental)</li>
+</ul>
+
 <ul>
 <li>Cordoba: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (antigua aplicación oficial de Open Food Facts)</a></li>
 <li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
