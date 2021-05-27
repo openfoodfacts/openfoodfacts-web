@@ -14,7 +14,9 @@ Open Food Facts -yhteisölle.</p>
 
 <h2>Open Food Facts -tietojen viennit</h2>
 
-<p>Tietokantavedokset ja -viennit luodaan öisin.</p>
+<p>Tietokantavedokset ja -viennit luodaan öisin. The database is very big, so you can find 
+  <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">different ways to use the data</a>, 
+  depending on the export flavor.</p>
 
 <p>Tietoa MongoDB-vedoksen ja CSV-vientien eri kentistä on saatavilla osoitteesta <a href="https://static.openfoodfacts.org/data/data-fields.txt">https://world.openfoodfacts.org/data/data-fields.txt</a></p>
 
@@ -42,7 +44,20 @@ Open Food Facts -yhteisölle.</p>
 <p>Huomioi, että <code>mongoexport</code>-komennon luonteen takia muutostiedostot eivät voi kertoa poistetuista tuotteista. Poistaaksesi
  poistetut tuotteet tietokannastasi sinun täytyy tuoda täysi MongoDB-vedos.</p>
 
+
 <h3>Tietojen CSV-vienti</h3>
+
+<p>The whole database is also available in <a href="https://jsonlines.org/">JSONL format</a> (sometimes called LDJSON or NDJSON) where each line is a JSON object. 
+  It represents the same data as the MongoDB export. The file is compressed with gzip.</p>
+
+<dl>
+ <dt>Linkki</dt>
+ <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-products.jsonl.gz">https://static.openfoodfacts.org/data/openfoodfacts-products.jsonl.gz</a>
+ </dd>
+</dl>
+
+
+<h3>Tietojen RDF-vienti</h3>
 
 <p>Tiedot kaikille tuotteille tai osalle tuotteista voi ladata CSV-muodossa (luettavissa OpenOfficella, Excelillä ja monella muulla ohjelmistolla)
  <a href="https://world.openfoodfacts.org/cgi/search.pl">tarkennetun haun lomakkeella</a>.</p>
@@ -71,7 +86,7 @@ Open Food Facts -yhteisölle.</p>
 
 <p>Muutamme API:a ajan myötä, mutta huolehdimme yhteensopivuudesta vanhojen versioiden kanssa. Kerro meille, jos käytät sitä, jotta voimme kertoa sinulle mahdollisista muutoksista.</p>
 
-<p>URL-osoite tuotteen tietojen lukemiseen: https://world.openfoodfacts.org/api/v0/product/<i>[viivakoodi]</i>.json</p>
+<p>Esimerkki: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
 <p>Esimerkki: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
@@ -80,7 +95,7 @@ Parempaa dokumentaatiota kehitetään, jossa on käyttötapauksia tuotteen näyt
 <a href="https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro">Löydät sen tästä linkistä</a>.
 <p>Voit käyttää API:a tuotannossa, kunhan 1 API-kutsu = 1 oikea viivakoodin lukeminen käyttäjältä.
 Kaikki yritykset kaapia tietokantaa API:a käyttämällä estetään erittäin todennäköisesti, sillä päivittäiset viennit ovat saatavilla tältä samaiselta sivulta.</p>
-<p>HTTP-otsikon lähettäminen API-kutsusi kanssa on myös hyvä tapa, jolla voimme ottaa yhteyttä, jos ongelmia ilmenee.</p>
+<p>Jos olet epävarma jostakin, tai sinulla on kysymyksiä (hölmöjä kysymyksiä ei ole), voit esittää kysymyksesi Slackissä :-)</p>
 <p>Jos olet epävarma jostakin, tai sinulla on kysymyksiä (hölmöjä kysymyksiä ei ole), voit esittää kysymyksesi Slackissä :-)</p>
 
 <h2>Android ja IPhone mobiilisovellukset</h2>
@@ -88,16 +103,38 @@ Kaikki yritykset kaapia tietokantaa API:a käyttämällä estetään erittäin t
 <p>Koodi Open Food Facts -mobiilisovellukselle on saatavilla GitHubista (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> ja <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
 Sovelluksen avulla käyttäjät voivat lukea tuotteiden viivakoodeja, katsella tuotetietoja, ja ottaa ja lähettää kuvia ja tietoja puuttuvista tuotteista.</p>
 
-<p>iOS-sovellus on kehitetty Swift-kielellä.</p>
+<p>Android-sovellus on kehitetty Java-kielellä.</p>
 <p>Android-sovellus on kehitetty Java-kielellä.</p>
 <p>Voit uudelleen käyttää koodia (se on avointa lähdekoodia), ja auttaa meitä parantamaan sitä, kaikille, koko planeetalla.
 
 <h2>Kääreet ja SDK</h2>
 <p>Meillä on todennäköisesti kääre lempiohjelmointikielellesi. Jos on, voit käyttää ja parantaa sitä. Jos ei ole, voit auttaa luomaan sen.</p>
-<p>Niiden avulla voit käyttää tietoja, sekä antaa käyttäjillesi mahdollisuuden lähettää uusia tietoja</p>
+<p>Voit <a href="https://slack.openfoodfacts.org">liittyä Open Food Facts Slack -keskusteluryhmään, joka on ensisijainen tapa kysyä kysymyksiä ja keskustella API:sta</a>.</p>
+
+<h3>General principles</h3>
+<ul>
+<li>You can look for information about products, including many useful computed values.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
+<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
+</ul>
+
+<h3>If your users do not expect a result immediately (e.g. Inventory apps)</h3>
+<ul>
+<li>Send photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>The Open Food Facts AI Robotoff will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
+</ul>
+
+<h3>If your users expect a result immediately (e.g. Nutrition apps)</h3>
+<ul>
+<li>Send nutrition facts + category &gt; get Nutri-Score</li>
+<li>Send ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Send category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
+</ul>
+
 <ul>
 <li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (vanha virallinen Open Food Facts -sovellus)</a></li>
-<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
+<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a> - <a href="https://pub.dev/packages/openfoodfacts">Package on pub.dev</a></li>
 <li>Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a></li>
 <li>Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a></li>
 <li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a></li>

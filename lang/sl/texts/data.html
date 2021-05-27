@@ -6,14 +6,16 @@ Posamezne vsebine zbirke podatkov so na voljo pod licenco <a href="https://opend
 Slike izdelkov so na voljo pod licenco <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en"> Creative Commons Attribution ShareAlike </a>.
 Vsebujejo lahko grafične elemente, za katere veljajo avtorske ali druge pravice, ki jih je v nekaterih primerih mogoče reproducirati (pravice iz kotacije ali poštena uporaba).</p>
 
-<p>Prosimo, preberite <a href="https://world.openfoodfacts.org/terms-of-use">Pogoji uporabe in ponovne uporabe</a> pred ponovno uporabo podatkov.</p> 
+<p>Prosimo, preberite <a href="https://world.openfoodfacts.org/terms-of-use">Pogoji uporabe in ponovne uporabe</a> pred ponovno uporabo podatkov.</p>
 
 
 <p>Zelo nas zanima, za kaj se uporabljajo podatki o Open Food Facts. Ni obveza, vendar bi bili zelo veselili, če nam lahko <a href="mailto:contact@openfoodfacts.org">sporočite o ponovni uporabi,</a> da jih bomo lahko delili v skupnosti Open Food Facts.</p>
 
 <h2>Izvoz podatkov Open Food Facts</h2>
 
-<p>Odlagališča baz podatkov in izvoz se ustvarjajo ponoči.</p>
+<p>Odlagališča baz podatkov in izvoz se ustvarjajo ponoči. The database is very big, so you can find 
+  <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">different ways to use the data</a>, 
+  depending on the export flavor.</p>
 
 <p>Informacije o različnih poljih za izvoz MongoDB in CSV so na voljo na 
 <a href="https://static.openfoodfacts.org/data/data-fields.txt">https://world.openfoodfacts.org/data/data-fields.txt</a></p>
@@ -41,24 +43,36 @@ Vsebujejo lahko grafične elemente, za katere veljajo avtorske ali druge pravice
  be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
 <p>Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
  deleted products from your database, you will need to import the full MongoDB dump.</p>
- 
+
+
 <h3>Izvoz podatkov CSV</h3>
 
-<p>Podatke za vse izdelke ali nekatere izdelke lahko prenesete v obliki CSV (berljivo z OpenOffice, Excelom in številnimi drugimi programi)
- prek obrazca <a href="https://world.openfoodfacts.org/cgi/search.pl"> za napredno iskanje </a>.</p>
- 
+<p>The whole database is also available in <a href="https://jsonlines.org/">JSONL format</a> (sometimes called LDJSON or NDJSON) where each line is a JSON object. 
+  Predstavlja enake podatke kot izvoz MongoDB. Datoteka je stisnjena z gzip.</p>
+
+<dl>
+ <dt>Povezava</dt>
+ <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-products.jsonl.gz">https://static.openfoodfacts.org/data/openfoodfacts-products.jsonl.gz</a>
+ </dd>
+</dl>
+
+
+<h3>Izvoz podatkov RDF</h3>
+
+<p>Kodiranje datotek je Unicode UTF-8. Znak, ki ločuje polja, je &lt;tab&gt; (tabeliranje).</p>
+
 <dl>
  <dt>Povezava</dt>
  <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a></dd>
 </dl>
 
-<p>Kodiranje datotek je Unicode UTF-8. Znak, ki ločuje polja, je &lt;tab&gt; (tabeliranje).</p>
+<p>Kodiranje datoteke je Unicode UTF-8. Znak, ki ločuje polja, je &lt;tab&gt; (tab).</p>
 
 
 
 <h3>Izvoz podatkov RDF</h3>
 
-<p>Podatkovna baza je na voljo tudi v RDF formatu. <a href="https://fr.blog.openfoodfacts.org/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
+<p>Baza podatkov je na voljo tudi v formatu RDF. <a href="https://fr.blog.openfoodfacts.org/news/des-donnees-libres-et-liees-export-rdf-des-donnees">objava v francoščini</a>.</p>
 
 <dl>
  <dt>Povezava</dt>
@@ -71,11 +85,11 @@ Vsebujejo lahko grafične elemente, za katere veljajo avtorske ali druge pravice
 
 <p>We change the API over-time but we are careful to keep backwards compatibility. Povejte nam, če ga uporabljate, da vam bomo lahko povedali o morebitnih spremembah.</p>
 
-<p>URL za branje podatkov za izdelek: https://world.openfoodfacts.org/api/v0/product/<i>[barcode]</i>.json</p>
+<p>Primer: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
 <p>Primer: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
-Further documentation is <a href="https://wiki.openfoodfacts.org/API">available on the Wiki</a>. (Important note: the page is divided into subpages for READ and WRITE). 
+Dodatna dokumentacija je <a href="https://wiki.openfoodfacts.org/API">na voljo na Wiki</a>. (Important note: the page is divided into subpages for READ and WRITE).
 A better documentation is being developped, with uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, NOVA groups and additives.
 <a href="https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro">You can access it here</a>.
 <p>You are very welcome to use the API for production cases, as long as 1 API call = 1 real scan by a user.
@@ -88,13 +102,35 @@ Any attempt to scrape the database using the API will very likely be blocked, as
 <p>Koda za mobilno aplikacijo Open Food Facts je na voljo v GitHubu (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> in <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
 Aplikacija uporabnikom omogoča skeniranje črtne kode izdelkov, ogled informacij o izdelkih ter fotografiranje in pošiljanje slik in podatkov za manjkajoče izdelke.</p>
 
-<p>Aplikacija za iOS je razvita v Swiftu.</p>
+<p>Aplikacija za Android je razvita v Javi.</p>
 <p>Aplikacija za Android je razvita v Javi.</p>
 <p>You are welcome to reuse the code (it's open source) and help us improve it, for everyone, on all the planet.
 
 <h2>Ovojnice in paketi SDK</h2>
-<p>Verjetno imamo ovitek za vaš najljubši programski jezik. Če ga imamo, ga lahko uporabite in izboljšate. Če ne, ga pomagate ustvariti.</p>
+<p>Verjetno imamo ovoj za vaš najljubši programski jezik. Če ga imamo, ga lahko uporabite in izboljšate. Če ga ni, nam ga lahko pomagate ustvariti.</p>
 <p>They will let you consume data, as well as let your users contribute new data</p>
+
+<h3>General principles</h3>
+<ul>
+<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (stara uradna aplikacija Open Food Facts)</a></li>
+<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
+<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
+</ul>
+
+<h3>If your users do not expect a result immediately (e.g. Inventory apps)</h3>
+<ul>
+<li>Send photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>The Open Food Facts AI Robotoff will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
+</ul>
+
+<h3>If your users expect a result immediately (e.g. Nutrition apps)</h3>
+<ul>
+<li>Send nutrition facts + category &gt; get Nutri-Score</li>
+<li>Send ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Send category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
+</ul>
+
 <ul>
 <li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (stara uradna aplikacija Open Food Facts)</a></li>
 <li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
