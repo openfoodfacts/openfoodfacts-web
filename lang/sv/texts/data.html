@@ -6,14 +6,16 @@ The individual contents of the database are available under the <a href="https:/
 Products images are available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>.
 They may contain graphical elements subject to copyright or other rights, that may in some cases be reproduced (quotation rights or fair use).</p>
 
-<p>Var god läs <a href="https://world.openfoodfacts.org/terms-of-use">Villkor för användning och återanvändnin </a> innan du använder data.</p> 
+<p>Var god läs <a href="https://world.openfoodfacts.org/terms-of-use">Villkor för användning och återanvändnin </a> innan du använder data.</p>
 
 
 <p>Vi är mycket intresserade av att lära oss vad Open Food Facts-data används för. Det är inte obligatoriskt, men vi skulle uppskatta det mycket om du <a href="mailto:contact@openfoodfacts.org">berättar om dina återanvändningar</a> så att vi kan dela dem med Open Food Facts-communityn.</p>
 
 <h2>Open Food Facts data exports</h2>
 
-<p>Database dumps and exports are generated nightly.</p>
+<p>Database dumps and exports are generated nightly. The database is very big, so you can find 
+  <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">different ways to use the data</a>, 
+  depending on the export flavor.</p>
 
 <p>Information on the different fields for the MongoDB dump and CSV exports is available at <a href="https://static.openfoodfacts.org/data/data-fields.txt">https://world.openfoodfacts.org/data/data-fields.txt</a></p>
 
@@ -40,12 +42,25 @@ They may contain graphical elements subject to copyright or other rights, that m
  be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
 <p>Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
  deleted products from your database, you will need to import the full MongoDB dump.</p>
- 
+
+
+<h3>JSONL data export</h3>
+
+<p>The whole database is also available in <a href="https://jsonlines.org/">JSONL format</a> (sometimes called LDJSON or NDJSON) where each line is a JSON object. 
+  It represents the same data as the MongoDB export. Filen komprimeras med gzip.</p>
+
+<dl>
+ <dt>Länk</dt>
+ <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-products.jsonl.gz">https://static.openfoodfacts.org/data/openfoodfacts-products.jsonl.gz</a>
+ </dd>
+</dl>
+
+
 <h3>CSV Data Export</h3>
 
 <p>Data for all products, or some of the products, can be downloaded in CSV format (readable with OpenOffice, Excel and many other software)
  through the <a href="https://world.openfoodfacts.org/cgi/search.pl">advanced search form</a>.</p>
- 
+
 <dl>
  <dt>Länk</dt>
  <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a></dd>
@@ -70,11 +85,11 @@ They may contain graphical elements subject to copyright or other rights, that m
 
 <p>We change the API over-time but we are careful to keep backwards compatibility. Please tell us if you use it, so that we can tell you about potential changes.</p>
 
-<p>URL to read data for a product: https://world.openfoodfacts.org/api/v0/product/<i>[barcode]</i>.json</p>
+<p>URL to read data for a product: https://world.openfoodfacts.org/api/v0/product/<em>[barcode]</em>.json</p>
 
 <p>Example: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
-Further documentation is <a href="https://wiki.openfoodfacts.org/API">available on the Wiki</a>. (Important note: the page is divided into subpages for READ and WRITE). 
+Further documentation is <a href="https://wiki.openfoodfacts.org/API">available on the Wiki</a>. (Important note: the page is divided into subpages for READ and WRITE).
 A better documentation is being developped, with uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, NOVA groups and additives.
 <a href="https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro">Du kan komma åt det här</a>.
 <p>You are very welcome to use the API for production cases, as long as 1 API call = 1 real scan by a user.
@@ -87,13 +102,35 @@ Any attempt to scrape the database using the API will very likely be blocked, as
 <p>The code for the Open Food Facts mobile app is available on GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
 The app allows users to scan the barcode of products, to view the product information, and to take and send pictures and data for missing products.</p>
 
-<p>Appen för iOS är utvecklad i Swift.</p>
+<p>Appen för Android är utvecklad i Java.</p>
 <p>Appen för Android är utvecklad i Java.</p>
 <p>You are welcome to reuse the code (it's open source) and help us improve it, for everyone, on all the planet.
 
 <h2>Wrappers and SDKs</h2>
 <p>We probably have a wrapper for your favorite programming language. Om vi har det kan du använda det och förbättra det. Om inte kan du hjälpa till att skapa det.</p>
 <p>They will let you consume data, as well as let your users contribute new data</p>
+
+<h3>Allmänna principer</h3>
+<ul>
+<li>You can look for information about products, including many useful computed values.</li>
+<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
+<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
+</ul>
+
+<h3>If your users do not expect a result immediately (e.g. Inventory apps)</h3>
+<ul>
+<li>Send photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>The Open Food Facts AI Robotoff will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
+</ul>
+
+<h3>If your users expect a result immediately (e.g. Nutrition apps)</h3>
+<ul>
+<li>Send nutrition facts + category &gt; get Nutri-Score</li>
+<li>Send ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Send category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
+</ul>
+
 <ul>
 <li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (old Open Food Facts official app)</a></li>
 <li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
