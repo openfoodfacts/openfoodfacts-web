@@ -6,7 +6,7 @@
 
 <h1>Guide pour les producteurs</h1>
 
-<p>Ce guide explique pourquoi et comment les producteurs peuvent directement intégrer des photos et des données de leurs produits dans la base de données Open Food Facts.</p>
+<p>Ce guide explique pourquoi et comment les producteurs peuvent directement intégrer des photos et des données de produit dans la base de données Open Food Facts en utilisant notre plateforme.</p>
 
 <ul>
 <li><a href="#introduction">Introduction</a></li>
@@ -150,9 +150,11 @@ Pour faciliter et accélérer l'importation de données, nous avons défini un f
 
 <h4 id="format_des_donnees">Format des données</h4>
 
-<p>Les données doivent être fournies dans un tableau au format CSV, avec une tabulation comme séparateur de champs et un encodage de caractères UTF-8.</p>
+<p>Les données doivent être fournies dans un tableau au format XLS (ou au format CSV, avec tabulation comme caractère séparateur de champ) et l'encodage UTF-8.</p>
 <p>La première ligne contient les noms de champs et chacun des produits occupe l'une des lignes suivantes. L'ordre des champs n'a pas d'importance et il n'est pas nécessaire que toutes les colonnes soient présentes.</p>
 <p>Certains champs sont obligatoires et d'autres sont facultatifs. Nous vous encourageons à remplir autant de champs que possible afin que les données puissent être utilisées par le plus d'applications possible. En cas de doute, ou si vous avez des données pour lesquelles il n'existe pas encore de champs dans la base de données Open Food Facts, vous pouvez nous contacter pour que nous ajoutions des champs afin de les faire correspondre au mieux.</p>
+	
+Si vous n'avez pas encore de fichier avec vos données produit,<a href="">nous fournissons un modèle vide que vous pouvez utiliser</a>.
 
   <h5 id="champs_obligatoires">Champs obligatoires</h5>
 
@@ -208,113 +210,10 @@ Pour faciliter et accélérer l'importation de données, nous avons défini un f
     <li>portion_size : quantité d'une portion, spécifiez l'unité</li>
   </ul>
 
-<p>Des valeurs nutritionnelles peuvent également être indiquées pour les produits préparés (avec de l'eau, du lait, etc.) Ajoutez alors "_prepared" au nom du champ. Par exemple, energy_prepared_100g.</p>
+<p>Des valeurs nutritionnelles peuvent également être indiquées pour les produits préparés (avec de l'eau, du lait, etc.) Ajoutez alors "_prepared" au nom du champ. Ajoutez alors "_prepared" au nom du champ. Par exemple, energy_prepared_100g.</p>
 <p>Il est également possible d'indiquer les valeurs d'autres nutriments :</p>
 
-<ul>
-  <!-- Do not translate nutrient field names -->
-  
-<li>energy-from-fat_100g</li>
-<li>butyric-acid_100g</li>
-<li>caproic-acid_100g</li>
-<li>caprylic-acid_100g</li>
-<li>capric-acid_100g</li>
-<li>lauric-acid_100g</li>
-<li>myristic-acid_100g</li>
-<li>palmitic-acid_100g</li>
-<li>stearic-acid_100g</li>
-<li>arachidic-acid_100g</li>
-<li>behenic-acid_100g</li>
-<li>lignoceric-acid_100g</li>
-<li>cerotic-acid_100g</li>
-<li>montanic-acid_100g</li>
-<li>melissic-acid_100g</li>
-<li>monounsaturated-fat_100g</li>
-<li>polyunsaturated-fat_100g</li>
-<li>omega-3-fat_100g</li>
-<li>alpha-linolenic-acid_100g</li>
-<li>eicosapentaenoic-acid_100g</li>
-<li>docosahexaenoic-acid_100g</li>
-<li>omega-6-fat_100g</li>
-<li>linoleic-acid_100g</li>
-<li>arachidonic-acid_100g</li>
-<li>gamma-linolenic-acid_100g</li>
-<li>dihomo-gamma-linolenic-acid_100g</li>
-<li>omega-9-fat_100g</li>
-<li>oleic-acid_100g</li>
-<li>elaidic-acid_100g</li>
-<li>gondoic-acid_100g</li>
-<li>mead-acid_100g</li>
-<li>erucic-acid_100g</li>
-<li>nervonic-acid_100g</li>
-<li>trans-fat_100g</li>
-<li>cholesterol_100g</li>
-
-<li>sucrose_100g</li>
-<li>glucose_100g</li>
-<li>fructose_100g</li>
-<li>lactose_100g</li>
-<li>maltose_100g</li>
-<li>maltodextrins_100g</li>
-<li>starch_100g</li>
-<li>polyols_100g</li>
-
-<li>casein_100g</li>
-<li>serum-proteins_100g</li>
-<li>nucleotides_100g</li>
-
-<li>sodium_100g - dans le cas où salt_100g reste vide</li>
-<li>alcohol_100g</li>
-
-<li>vitamin-a_100g</li>
-<li>beta-carotene_100g</li>
-<li>vitamin-d_100g</li>
-<li>vitamin-e_100g</li>
-<li>vitamin-k_100g</li>
-<li>vitamin-c_100g</li>
-<li>vitamin-b1_100g</li>
-<li>vitamin-b2_100g</li>
-<li>vitamin-pp_100g</li>
-<li>vitamin-b6_100g</li>
-<li>vitamin-b9_100g</li>
-<li>folates_100g</li>
-<li>vitamin-b12_100g</li>
-<li>biotin_100g</li>
-<li>pantothenic-acid_100g</li>
-
-<li>silica_100g</li>
-<li>bicarbonate_100g</li>
-<li>potassium_100g</li>
-<li>chloride_100g</li>
-<li>calcium_100g</li>
-<li>phosphorus_100g</li>
-<li>iron_100g</li>
-<li>magnesium_100g</li>
-<li>zinc_100g</li>
-<li>copper_100g</li>
-<li>manganese_100g</li>
-<li>fluoride_100g</li>
-<li>selenium_100g</li>
-<li>chromium_100g</li>
-<li>molybdenum_100g</li>
-<li>iodine_100g</li>
-<li>caffeine_100g</li>
-<li>taurine_100g</li>
-
-<li>ph_100g</li>
-<li>collagen-meat-protein-ratio_100g</li>
-<li>cocoa_100g</li>
-<li>chlorophyl_100g</li>
-<li>carbon-footprint_100g</li>
-<li>glycemic-index_100g</li>
-<li>water-hardness_100g</li>
-<li>choline_100g</li>
-<li>phylloquinone_100g</li>
-<li>beta-glucan_100g</li>
-<li>inositol_100g</li>
-<li>carnitine_100g</li>
-  <!-- Do not translate nutrient field names -->
-</ul>
+[[nutrients-list.html]]
 
 <h4 id="envoi_des_photos_et_des_donnees">Envoi de photos et de données</h4>
 <p>Si le nombre de produits est relativement faible (moins de 1 000 produits) et que les mises à jour sont peu fréquentes (par exemple tous les 6 mois), il est possible de nous envoyer les photos et le fichier CSV par n'importe quel moyen (par exemple par mail pour le fichier CSV et WeTransfer, Google Drive, DropBox etc. pour les photos).</p>
