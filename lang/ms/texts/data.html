@@ -80,27 +80,28 @@ diimport (setelah pengekstrakan) dengan <code> mongoimport </code> dalam tertib 
 
 <p>Satu API JSON juga tersedia untuk membaca data sesebuah produk. API ini khususnya digunakan dalam aplikasi mudah alih Open Food Facts untuk iPhone dan Android.</p>
 
-<p>Kami telah mengubah API dari masa-ke-semasa tetapi kami berhati-hati bagi keserasian yang terdahulu. Sila beritahu kami jika anda telah menggunakannya, supaya kami dapat memberitahu anda berkenaan perubahan-perubahan yang ada.</p>
+<p>We improve the API over-time but we are careful to keep backwards compatibility. Sila beritahu kami jika anda telah menggunakannya, supaya kami dapat memberitahu anda berkenaan perubahan-perubahan yang ada.</p>
 
 <p>URL to read data for a product: https://world.openfoodfacts.org/api/v0/product/<em>[barcode]</em>.json</p>
 
 <p>Contoh: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
-Dokumentasi lanjutan <a href="https://wiki.openfoodfacts.org/API"> tersedia dalam Wiki </a>. (Perhatian penting: halaman telah dibahagikan kepada beberapa sub-halaman untuk BACA dan TULIS).
-Satu dokumentasi yang lebih baik sedang dibangunkan, dengan menggunakan kes-kes untuk memaparkan satu produk, dan membolehkan pengguna anda menambahkan data yang diperlukan untuk mendapatkan Nutri-Score, kumpulan NOVA dan bahan tambahan.
-<a href="https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro"> Anda boleh mencapainya di sini </a>.
+Further documentation is <a href="https://openfoodfacts.github.io/api-documentation/">available here</a>.
+It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, NOVA groups and additives, and Eco-Score.
+
 <p>Anda sangat dialu-alukan menggunakan API untuk tujuan-tujuan pengeluaran, asalkan 1 panggilan API = 1 imbasan sebenar oleh seorang pengguna.
 Sebarang percubaan untuk mengikis pangkalan data menggunakan API berkemungkinan akan disekat, kerana eksport harian penuh tersedia dalam halaman ini.</p>
 <p>Dan juga, penghantaran satu tajuk HTTP dengan panggilan API anda adalah cara yang baik untuk kita berhubung, jika ada masalah.</p>
-<p>Sekiranya anda tidak pasti berkenaan apa-apa yang ada di sini, atau mempunyai sebarang pertanyaan (bukan pertanyaan bodoh), silalah bertanya di Slack :-)</p>
+<p>If you are unsure about anything, or have any question (there is no silly question), feel free to ask it on the #api channel on Slack :-)</p>
 
 <h2>Apl Android dan iPhone</h2>
 
 <p>Kod untuk apl mudah alih Open Food Facts telah tersedia di GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp"> Android </a> dan <a href="https://github.com/openfoodfacts/openfoodfacts-ios"> iOS </a>).
-Apl ini membolehkan para pengguna mengimbas barkod produk, melihat maklumat produk, dan mengambil serta menghantar gambar dan data bagi produk yang tiada.</p>
+The app allows users to scan the barcode of products, to view the product information, and to take and submit pictures and data for missing products.</p>
 
 <p>Apl untuk iOS dibangunkan dengan Swift.</p>
-<p>Aplikasi untuk Android dibangunkan dengan Java.</p>
+<p>The app for Android is developed in Kotlin.</p>
+<p>We also have an on-going Dart/Flutter effort.</p>
 <p>Anda dialu-alukan untuk mengguna-semula kod (ia sumber terbuka) dan bantu kami menambahbaiknya, untuk semua orang, di planet ini.
 
 <h2>Pembalut dan SDK</h2>
@@ -109,23 +110,23 @@ Apl ini membolehkan para pengguna mengimbas barkod produk, melihat maklumat prod
 
 <h3>General principles</h3>
 <ul>
-<li>You can look for information about products, including many useful computed values.</li>
+<li>Anda boleh mencari maklumat mengenai produk, termasuklah banyak nilai-nilai terhitung yang berguna.</li>
 <li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
 <li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
 </ul>
 
 <h3>If your users do not expect a result immediately (e.g. Inventory apps)</h3>
 <ul>
-<li>Send photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
 <li>The Open Food Facts AI Robotoff will generate some derived data from the photos</li>
 <li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
 </ul>
 
 <h3>If your users expect a result immediately (e.g. Nutrition apps)</h3>
 <ul>
-<li>Send nutrition facts + category &gt; get Nutri-Score</li>
-<li>Send ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
-<li>Send category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
+<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
+<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
 <ul>
