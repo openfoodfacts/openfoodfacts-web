@@ -1,1 +1,13 @@
-grep -L "open beauty facts" lang/opff/*/texts/index.html
+name: Check for Project mixups
+on: push
+
+jobs:
+  build:
+    name: Check for Project mixups
+    runs-on: ubuntu-latest
+    steps:
+    # The checkout step
+    - uses: actions/checkout@master
+    - name: grep mixes
+      run: |
+          grep -L "open beauty facts" lang/opff/*/texts/index.html
