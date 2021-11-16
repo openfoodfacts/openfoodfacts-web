@@ -1,0 +1,535 @@
+
+<style>
+* {
+  font-family: helvetica, arial, sans-serif;
+}
+
+#wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100vh;
+    background-repeat: no-repeat; 
+  /*     background-size: cover; 
+background-size: contain;
+    background-image:url(https://world.openfoodfacts.org/illustrations/smoothie/frame.png); */
+}
+
+#inner {
+width: 400px;
+  position: relative;
+  /*padding-top: 630px;*/
+padding-top: 150px;
+}
+
+#main {
+  transform-origin: 0px 0px;
+  /*  transform: matrix3d(0.231248, 0.0673843, 0, -0.000248726, -0.254517, 0.31858, 0, -0.000120353, 0, 0, 1, 0, 178.5, 11, 0, 1); */
+  background: #fff;
+  height: 662px;
+  width: 375px;
+  display: block;
+  position: absolute;
+  top: -1px;
+  left: -2px;
+  -webkit-overflow-scrolling: touch;
+  background: #222;
+}
+
+.box {
+  padding: 0px 0px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 400px;
+  margin: 0px auto;
+  border: 2px solid black;
+  box-shadow: 0 0 5px 0;
+  background: #eee;
+}
+.box img {
+  margin: 0 auto;
+  display: block;
+}
+.box h3 {
+  margin: 0;
+  font-size: 40px;
+  color: #459;
+}
+
+.main-inner {
+  height: 100%;
+  width: 100%;
+  padding: 0 0 0 0;
+  margin: 0;
+  overflow: scroll;
+  box-sizing: border-box;
+}
+
+.header {
+  box-sizing: border-box;
+  padding: 0px 0px;
+  background: #459;
+  color: white;
+  position: absolute;
+  width: 100%;
+  top: -2px;
+  left: 0;
+}
+.header h1 {
+  font-size: 20px;
+}
+
+.tags-container {
+  margin: 20px 0;
+}
+
+.pill {
+  background: #297;
+  margin: 4px;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+
+
+
+.filter-white {
+filter: invert(99%) sepia(11%) saturate(302%) hue-rotate(96deg) brightness(114%) contrast(100%);
+}
+</style>
+
+<style>
+:root {
+  --spacing: 1rem;
+  --imgWidth: 100px;
+  --imgHeight: 100px;
+}
+
+.card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+border-radius: 10px;
+}
+.card:hover, .card:focus {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  transform: translateY(-5px);
+}
+.card:active {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: translateY(-2px);
+}
+
+
+
+.card-grid {
+  display: grid;
+/*   grid-gap: calc(var(--spacing) * 3.75);
+  grid-template-columns: repeat(3, 140px); */
+/*   grid-auto-rows: var(--imgHeight);*/
+  grid-auto-flow: dense;
+}
+
+.card {
+  display: block;
+  /*  width: 8rem;*/
+    width: 100%;
+  min-height: 8rem;
+  background: white;
+  padding: 1rem;
+  transition: all 250ms;
+  font-size: 0.9rem;
+}
+.card .title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem;
+}
+
+#main_column {
+background-repeat: no-repeat;
+background-image: url(https://world.openfoodfacts.org/illustrations/smoothie/frame.png);
+background-size: contain;
+}
+
+
+.image-hover-text-container 
+{
+  position: relative;
+  display: inline-block;
+
+  width: auto;
+  height: auto;
+  transition: all 0.2s linear;
+}
+
+.image-hover-image 
+{
+ display: block;
+}
+/* Make the image round */
+.image-hover-image img
+{
+  border-radius: 50%;
+
+  height: 100px;
+}
+
+
+
+.image-hover-text 
+{
+  position: absolute;
+  top: 0;
+  width: 100%;  
+  height: 100%;
+  margin: 0 auto;
+  opacity: 0;
+  cursor: default;
+  transition: opacity 0.2s linear;
+}
+.image-hover-text:hover 
+{
+  opacity: 1;
+}
+
+
+.image-hover-text-bubble 
+{
+  position: relative;
+  box-sizing: border-box;
+  top: 0; left: 0; right: 100%;
+  height: 100px;
+  text-align: center;
+  background: rgba(218, 211, 211, 0.9);
+  border: 1px solid #848484;
+  border-radius: 50%;
+  margin: 0 auto;
+  padding: 25% 8px 5px 8px;
+  overflow: hidden;
+  font-size: 17px;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.image-hover-text .image-hover-text-title
+{
+  font-size: 25px;
+  display: block;
+}
+
+</style>
+
+<script>
+// Computes the matrix3d that maps src points to dst.
+function computeTransform(src, dst) {
+  // src and dst should have length 4 each
+  var count = 4;
+  var a = []; // (2*count) x 8 matrix
+  var b = []; // (2*count) vector
+
+  for (var i = 0; i < 2 * count; ++i) {if (window.CP.shouldStopExecution(0)) break;
+    a.push([0, 0, 0, 0, 0, 0, 0, 0]);
+    b.push(0);
+  }window.CP.exitedLoop(0);
+
+  for (var i = 0; i < count; ++i) {if (window.CP.shouldStopExecution(1)) break;
+    var j = i + count;
+    a[i][0] = a[j][3] = src[i][0];
+    a[i][1] = a[j][4] = src[i][1];
+    a[i][2] = a[j][5] = 1;
+    a[i][3] = a[i][4] = a[i][5] = a[j][0] = a[j][1] = a[j][2] = 0;
+    a[i][6] = -src[i][0] * dst[i][0];
+    a[i][7] = -src[i][1] * dst[i][0];
+    a[j][6] = -src[i][0] * dst[i][1];
+    a[j][7] = -src[i][1] * dst[i][1];
+    b[i] = dst[i][0];
+    b[j] = dst[i][1];
+  }window.CP.exitedLoop(1);
+
+  var x = numeric.solve(a, b);
+  // matrix3d is homogenous coords in column major!
+  // the z coordinate is unused
+  var m = [
+  x[0],
+  x[3],
+  0,
+  x[6],
+  x[1],
+  x[4],
+  0,
+  x[7],
+  0,
+  0,
+  1,
+  0,
+  x[2],
+  x[5],
+  0,
+  1];
+
+  var transform = "matrix3d(";
+  for (var i = 0; i < m.length - 1; ++i) {if (window.CP.shouldStopExecution(2)) break;
+    transform += m[i] + ",";
+  }window.CP.exitedLoop(2);
+  transform += m[15] + ")";
+  return transform;
+}
+
+// Collect the four corners by user clicking in the corners:
+
+var dst = [];
+document.getElementById("frame").addEventListener("mousedown", function (evt) {
+  var box = evt.target.getBoundingClientRect();
+  var point = [evt.clientX - box.left, evt.clientY - box.top];
+  dst.push(point);
+
+  if (dst.length == 4) {
+    var img = document.getElementById("img");
+    var w = img.width,
+    h = img.height;
+    var transform = computeTransform(
+    [
+    [0, 0],
+    [w, 0],
+    [w, h],
+    [0, h]],
+
+    dst);
+
+    document.getElementById("photo").style.visibility = "visible";
+    document.getElementById("transform").style.transformOrigin = "0 0";
+    document.getElementById("transform").style.transform = transform;
+  }
+});
+</script>
+
+
+
+<div class="row text-center">
+<div class="medium-8 columns">
+
+
+<div id="container" style="
+    text-align: left;
+    color: white;
+">
+<img src="https://world.openfoodfacts.org/images/favicon/safari-pinned-tab.svg" style="height: 95px;padding: 0px;" class="filter-white">
+<h3 style="
+    color: white;
+">Open Food Facts - 
+
+    Your personal food assistant</h3>
+</div>
+
+
+</div>
+<div class="medium-4 columns">
+<a href="https://apps.apple.com/app/open-food-facts/id588797948">
+	<img src="https://static.openfoodfacts.org/images/misc/appstore/black/appstore_US.svg" alt="Available on the App Store" width="120" height="40">
+</a>
+
+<a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&amp;hl=en">
+	<img src="https://static.openfoodfacts.org/images/misc/google-play-badge-svg-master/img/en_get.svg" alt="Available on Google Play" width="102" height="40">
+</a>
+</div>
+</div>
+
+<div class="row text-center">
+   <div class="medium-4 columns">
+<div class="card-grid"><div class="card"><img src="https://static.openfoodfacts.org/images/attributes/nutriscore-c.svg" alt="Available on the App Store" width="120" height="40"> <h2>Health</h2> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae aliquet mi, vel feugiat erat. Duis vestibulum fringilla commodo. 
+
+Vestibulum mi ligula, ornare vitae ex sit amet, sagittis congue orci. Morbi ornare dui eget dui auctor, quis condimentum tellus mattis. 
+<button>Display</button>
+</div></div><br>
+<div class="card-grid"><a class="card"> <img src="https://static.openfoodfacts.org/images/attributes/ecoscore-c.svg" alt="Available on the App Store" width="120" height="40"><h2>Environment</h2>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae aliquet mi, vel feugiat erat. Duis vestibulum fringilla commodo. 
+
+Vestibulum mi ligula, ornare vitae ex sit amet, sagittis congue orci. Morbi ornare dui eget dui auctor, quis condimentum tellus mattis. 
+<button>Display</button>
+</a></div></div>
+   <div class="medium-4 columns">
+
+
+<div id="wrapper" class="container">
+  <div id="inner">
+    <div id="frame">
+      <img src="https://world.openfoodfacts.org/illustrations/frame.svg" width="500" />
+    </div>
+    <div id="main" style="position: absolute;    top: 201px;left: 3%;">
+     <!-- <div class="header">
+        <h1>Smoothie</h1>
+      </div>-->
+      <div class="main-inner">
+        <div class="box">
+        <!--  <h3>Great Galloping Geese</h3>
+          <p>Thanks to numeric js for solving the transform angles for me.</p>
+          <img src="https://place-hold.it/320x200" />-->
+	<img src="https://world.openfoodfacts.org/illustrations/smoothie_scroll.png" alt="" style="width:100%;">
+
+          <div class="tags-container">
+            <span class="pill">Duck</span>
+            <span class="pill">Duck</span>
+            <span class="pill">Quack</span>
+          </div>
+        </div>
+        <div class="box">
+          <h3>Hot Humperdinck Hogwash</h3>
+          <p>These ducks have gone and eatten all the rice cakes!</p>
+          <img src="https://place-hold.it/320x150" />
+        </div>
+        <div class="box">
+          <h3>Last Leaping Leamur</h3>
+          <p>Monkeys got nothing on a leamur</p>
+          <img src="https://place-hold.it/320x125" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+   <div class="medium-4 columns"><div class="card-grid"><div class="card"> 
+<div class="image-hover-text-container">
+  <div class="image-hover-image">
+<img src="https://world.openfoodfacts.org/illustrations/smoothie/cereals.png" alt="" style="">
+  </div>
+  <div class="image-hover-text">
+    <div class="image-hover-text-bubble">
+      <span class="image-hover-text-title">Cereals</span>
+      Contains gluten.
+    </div>
+  </div>
+</div>
+
+<div class="image-hover-text-container">
+  <div class="image-hover-image">
+<img src="https://world.openfoodfacts.org/illustrations/smoothie/ham.png" alt="" style="">
+  </div>
+  <div class="image-hover-text">
+    <div class="image-hover-text-bubble">
+      <span class="image-hover-text-title">Ham</span>
+      Not vegetarian.
+    </div>
+  </div>
+</div>
+
+<div class="image-hover-text-container">
+  <div class="image-hover-image">
+<img src="https://world.openfoodfacts.org/illustrations/smoothie/oat.png" alt="" style="">
+  </div>
+  <div class="image-hover-text">
+    <div class="image-hover-text-bubble">
+      <span class="image-hover-text-title">Oat</span>
+      Contains gluten.
+    </div>
+  </div>
+</div>
+
+<div class="image-hover-text-container">
+  <div class="image-hover-image">
+<img src="https://world.openfoodfacts.org/illustrations/smoothie/rice-cakes.png" alt="" style="">
+  </div>
+  <div class="image-hover-text">
+    <div class="image-hover-text-bubble">
+      <span class="image-hover-text-title">Rice cakes</span>
+     -
+    </div>
+  </div>
+</div>
+
+<div class="image-hover-text-container">
+  <div class="image-hover-image">
+<img src="https://world.openfoodfacts.org/illustrations/smoothie/lasagne.png" alt="" style="">
+  </div>
+  <div class="image-hover-text">
+    <div class="image-hover-text-bubble">
+      <span class="image-hover-text-title">Lasagne</span>
+      Not vegan. High impact.
+    </div>
+  </div>
+</div>
+
+<div class="image-hover-text-container">
+  <div class="image-hover-image">
+<img src="https://world.openfoodfacts.org/illustrations/smoothie/nutella.png" alt="" style="">
+  </div>
+  <div class="image-hover-text">
+    <div class="image-hover-text-bubble">
+      <span class="image-hover-text-title">Nutella</span>
+      Contains sugar.
+    </div>
+  </div>
+</div>
+
+<div class="image-hover-text-container">
+  <div class="image-hover-image">
+<img src="https://world.openfoodfacts.org/illustrations/smoothie/orange-juice.png" alt="" style="">
+  </div>
+  <div class="image-hover-text">
+    <div class="image-hover-text-bubble">
+      <span class="image-hover-text-title">Orange juice</span>
+      Contains sugar.
+    </div>
+  </div>
+</div>
+
+<div class="image-hover-text-container">
+  <div class="image-hover-image">
+    <img src="https://world.openfoodfacts.org/illustrations/smoothie/soda.png" alt="" style="">
+  </div>
+  <div class="image-hover-text">
+    <div class="image-hover-text-bubble">
+      <span class="image-hover-text-title">Soda</span>
+      Contains sugar.
+    </div>
+  </div>
+</div>
+
+	
+</div></div><br><div class="card-grid"><a class="card">
+<div class="image-hover-text-container">
+  <div class="image-hover-image">
+    <img src="https://world.openfoodfacts.org/illustrations/smoothie/edna.png" alt="" style="">
+  </div>
+  <div class="image-hover-text">
+    <div class="image-hover-text-bubble">
+      <span class="image-hover-text-title">Soda</span>
+      I need to reduce salt and sugar.
+    </div>
+  </div>
+</div>
+
+<div class="image-hover-text-container">
+  <div class="image-hover-image">
+    <img src="https://world.openfoodfacts.org/illustrations/smoothie/john.png" alt="" style="">
+  </div>
+  <div class="image-hover-text">
+    <div class="image-hover-text-bubble">
+      <span class="image-hover-text-title">John</span>
+      I want to avoid products that have a large environment impact.
+    </div>
+  </div>
+</div>
+
+<div class="image-hover-text-container">
+  <div class="image-hover-image">
+    <img src="https://world.openfoodfacts.org/illustrations/smoothie/jane.png" alt="" style="">
+  </div>
+  <div class="image-hover-text">
+    <div class="image-hover-text-bubble">
+      <span class="image-hover-text-title">Jane</span>
+      I am gluten intolerant.
+    </div>
+  </div>
+</div>
+
+
+ </a></div></div>
+</div>
+
+
+<!--       frame_phone.png  	  nutella-partial-match.png			     
+frame.png  nutella-match.png		nutella-very-poor-match.png  -->
+
