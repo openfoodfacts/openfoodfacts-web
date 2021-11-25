@@ -1,0 +1,33 @@
+name: Preprod Deployment CI
+
+on:
+  push:
+    branches:
+      - main
+      - deploy-*
+    tags: 
+      - v*.*.*
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout git repository
+      uses: appleboy/ssh-action@1d1b21ca96111b1eb4c03c21c14ebb971d2200f6  # v0.1.4
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        proxy_host: ${{ secrets.PROXY_HOST }}
+        proxy_username: ${{ secrets.USERNAME }}
+        proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script_stop: false
+        script: |
+          # Clone Git repository if not already there
+          [ ! -d '${{ matrix.env }}' ] && git clone --depth 1 https://github.com/${{ github.repository }} off-web-net --no-single-branch  2>&1
+          # Go to repository directory
+          cd off-web-net
+          # Fetch newest commits (in case it wasn't freshly cloned)
+          git fetch --depth 1
+          # Checkout current commit SHA
+          git checkout -qf ${{ github.sha }}
