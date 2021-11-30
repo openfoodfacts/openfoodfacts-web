@@ -8,6 +8,8 @@ create a /html/images/texts/ directory in openfoodfacts-web so that we can put t
 
 That way for deployment, we can just copy /lang and /html to /srv/off/ and it will work.
 
+On docker see [openfoodfacts-server:docs/how-to-guides/using-pages-from-openfoodfacts-web.md](https://github.com/openfoodfacts/openfoodfacts-server/blob/main/docs/how-to-guides/using-pages-from-openfoodfacts-web.md)
+
 And that's it, that would be already be enough of a big change for a first step. Then we can have a look at what we have in /html/ to see what we should move, one by one.
 
 ## Help translate
