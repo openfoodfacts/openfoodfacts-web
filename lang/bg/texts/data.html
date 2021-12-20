@@ -26,7 +26,7 @@ with the Open Food Facts community.</p>
 <p>Data for all products is available in a MongoDB database dump.</p>
 
 <dl>
- <dt>Link</dt>
+ <dt>Линк</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz</a></dd>
  <dt>sha256sum</dt>
  <dd><a href="https://static.openfoodfacts.org/data/sha256sum">https://static.openfoodfacts.org/data/sha256sum</a></dd>
@@ -38,7 +38,7 @@ with the Open Food Facts community.</p>
 
 <p>Daily delta exports are provided for the previous 14 days. The list of currently available delta files can be found at
  <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.
- Each line represents a file that is available at <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.
+ Всеки ред представлява файл, който е достъпен на адрес <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.
  The filename contains UNIX timestamp of the first and the last change contained in the JSON file, so that the delta files can
  be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
 <p>Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
@@ -48,35 +48,35 @@ with the Open Food Facts community.</p>
 <h3>JSONL data export</h3>
 
 <p>The whole database is also available in <a href="https://jsonlines.org/">JSONL format</a> (sometimes called LDJSON or NDJSON) where each line is a JSON object. 
-  It represents the same data as the MongoDB export. The file is compressed with gzip.</p>
+  It represents the same data as the MongoDB export. Файлът се компресира с gzip.</p>
 
 <dl>
- <dt>Link</dt>
+ <dt>Линк</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-products.jsonl.gz">https://static.openfoodfacts.org/data/openfoodfacts-products.jsonl.gz</a>
  </dd>
 </dl>
 
 
-<h3>CSV Data Export</h3>
+<h3>Експорт на CSV данни</h3>
 
 <p>Data for all products, or some of the products, can be downloaded in CSV format (readable with OpenOffice, Excel and many other software)
  through the <a href="https://world.openfoodfacts.org/cgi/search.pl">advanced search form</a>.</p>
 
 <dl>
- <dt>Link</dt>
+ <dt>Линк</dt>
  <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a></dd>
 </dl>
 
-<p>The file encoding is Unicode UTF-8. The character that separates fields is &lt;tab&gt; (tabulation).</p>
+<p>The file encoding is Unicode UTF-8. Знакът, който разделя полетата, е &lt;tab&gt; (таблица).</p>
 
 
 
-<h3>RDF Data Export</h3>
+<h3>Експорт на RDF данни</h3>
 
 <p>The database is also available in the RDF format. <a href="https://fr.blog.openfoodfacts.org/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
 
 <dl>
- <dt>Link</dt>
+ <dt>Линк</dt>
  <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf</a></dd>
 </dl>
 
@@ -84,35 +84,35 @@ with the Open Food Facts community.</p>
 
 <p>A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android.</p>
 
-<p>We improve the API over-time but we are careful to keep backwards compatibility. Please tell us if you use it, so that we can tell you about potential changes.</p>
+<p>Подобряваме API с течение на времето, но внимаваме да запазим обратната съвместимост. Моля, кажи ни дали го използваш, за да можем да ти кажем за потенциални промени.</p>
 
 <p>URL to read data for a product: https://world.openfoodfacts.org/api/v0/product/<em>[barcode]</em>.json</p>
 
 <p>Example: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
-Further documentation is <a href="https://openfoodfacts.github.io/api-documentation/">available here</a>.
-It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, NOVA groups and additives, and Eco-Score.
+Допълнителна документация е <a href="https://openfoodfacts.github.io/api-documentation/">налична тук</a>.
+It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
 
 <p>You are very welcome to use the API for production cases, as long as 1 API call = 1 real scan by a user.
 Any attempt to scrape the database using the API will very likely be blocked, as full daily exports are available on this very page.</p>
 <p>Also, sending an HTTP header with your API call is a good way we can get in touch, should any issue arise.</p>
-<p>If you are unsure about anything, or have any question (there is no silly question), feel free to ask it on the #api channel on Slack :-)</p>
+<p>Ако не си сигурен за нещо или имаш някакъв въпрос (няма глупав въпрос), не се колебай да го зададеш в канала #api в Slack :-)</p>
 
-<h2>Android and iPhone mobile app</h2>
+<h2>Приложение за Android и iPhone</h2>
 
 <p>The code for the Open Food Facts mobile app is available on GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
 The app allows users to scan the barcode of products, to view the product information, and to take and submit pictures and data for missing products.</p>
 
 <p>The app for iOS is developed in Swift.</p>
-<p>The app for Android is developed in Kotlin.</p>
+<p>Приложението за Android е разработено в Kotlin.</p>
 <p>We also have an on-going Dart/Flutter effort.</p>
 <p>You are welcome to reuse the code (it's open source) and help us improve it, for everyone, on all the planet.
 
 <h2>Wrappers and SDKs</h2>
-<p>We probably have a wrapper for your favorite programming language. If we do, you can use it and improve it. If we don't, you can help create it.</p>
+<p>We probably have a wrapper for your favorite programming language. Ако го направим, можеш да го използваш и подобриш. Ако не го направим, можеш да помогнеш за създаването му.</p>
 <p>They will let you consume data, as well as let your users contribute new data</p>
 
-<h3>General principles</h3>
+<h3>Основни принципи</h3>
 <ul>
 <li>You can search for information about products, including many useful computed values.</li>
 <li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
@@ -122,8 +122,8 @@ The app allows users to scan the barcode of products, to view the product inform
 <h3>If your users do not expect a result immediately (e.g. Inventory apps)</h3>
 <ul>
 <li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
-<li>The Open Food Facts AI Robotoff will generate some derived data from the photos</li>
-<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
+<li>Open Food Facts AI Robotoff ще генерира някои извлечени данни от снимките</li>
+<li>С времето, други приложения и общността на Open Food Facts ще запълнят пропуските в данните</li>
 </ul>
 
 <h3>If your users expect a result immediately (e.g. Nutrition apps)</h3>
@@ -149,10 +149,10 @@ The app allows users to scan the barcode of products, to view the product inform
 <h2>Discussing data, API and exports</h2>
 <p>You can <a href="https://slack.openfoodfacts.org">join the Open Food Facts Slack chatroom which is the preferred way to ask questions and discuss the API</a>.</p>
 
-<p>You can also join the mailing list to discuss the API and exports, tell us about your re-uses, and be notified when improvements or changes are made to the API. Send an empty e-mail to
-<a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a> to subscribe.</p>
+<p>You can also join the mailing list to discuss the API and exports, tell us about your re-uses, and be notified when improvements or changes are made to the API. Изпрати празен имейл на
+<a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a> за да се абонираш.</p>
 
 
 <h2>За контакти</h2>
 
-<p>For any question regarding the data, you can contact us at <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>
+<p>За всякакви въпроси относно данните, можеш да се свържеш с нас на <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>
