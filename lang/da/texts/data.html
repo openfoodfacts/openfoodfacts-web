@@ -83,27 +83,28 @@ med Open Food Facts-fællesskabet.</p>
 
 <p>En JSON API er også tilgængelig til læsning af et produkts data. Denne API bruges især i Open Food Facts mobil-appen (Android og iPhone).</p>
 
-<p>API 'en modificeres over tid, men bagudkompatibilitet tilstræbes bevaret. Fortæl os, hvis du bruger den, så vi kan fortælle dig om potentielle ændringer.</p>
+<p>API'en forbedres over tid, men bagudkompatibilitet tilstræbes bevaret. Fortæl os, hvis du bruger den, så vi kan fortælle dig om potentielle ændringer.</p>
 
 <p>Eksempel: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
 <p>Eks.: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
-Yderligere dokumentation er <a href="https://wiki.openfoodfacts.org/API">tilgængelig på Wiki'en</a>. (Vigtigt notat: Siden er opdelt i undersider til LÆSNING og SKRIVNING).
-En bedre dokumentation er under udvikling med produktvisnings brugseksempler og mulighed for lade dine brugere tilføje de for Nutri-Score beregning, NOVA-gruppering og additivoplistning nødvendige data.
-<a href="https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro">Du kan tilgå den hér</a>.
+Yderligere dokumentation er <a href="https://openfoodfacts.github.io/api-documentation/">tilgængelig hér</a>.
+Dokumentationen indeholder produktvisningscases, og lader dine brugere tilføje de nødvendige data for at se Nutri-Score, NOVA-klassificering, tilsætningsstoffer og Øko-Score.
+
 <p>Du er meget velkommen til at bruge API'en til produktionssager, så længe 1 API-kald = 1 reel skanning fra en bruger.
 Ethvert forsøg på "scrap" af databasen vha. API'en blokeres sandsynligvis, da fuld daglig eksport er tilgængelig fra netop denne side.</p>
 <p>Hvis du er usikker på noget eller har spørgsmål (der findes ingen fjollede spørgsmål), er du velkommen til at stille dem på Slack :-)</p>
-<p>Er du usikker på noget, eller har du et spørgsmål (dumme spørgsmål eksisterer ikke), er du velkommen til at stille det på Slack :-)</p>
+<p>I tvivlstilfælde (dumme spørgsmål findes ikke) er du velkommen til at spørge i #api-kanalen på Slack :-)</p>
 
 <h2>Android- og iPhone-app</h2>
 
 <p>Koden til Open Food Facts-apperne er tilgængelig via GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> og <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
-Apperne giver brugerne mulighed for at skanne produktstregkoder, se produktoplysninger samt tage og sende fotos og data for manglende produkter.</p>
+The app allows users to scan the barcode of products, to view the product information, and to take and submit pictures and data for missing products.</p>
 
 <p>Android-appen er udviklet i Java.</p>
-<p>Android-appen er udviklet i Java.</p>
+<p>Android-appen er udviklet i Kotlin.</p>
+<p>Der er også en løbende Dart/Flutter-bestræbelse.</p>
 <p>Du er velkommen til at genbruge kildekoderne (de er open-source) og hjælpe os med at forbedre dem for alle på hele planeten.
 
 <h2>Wrappers og SDK'er</h2>
@@ -112,23 +113,23 @@ Apperne giver brugerne mulighed for at skanne produktstregkoder, se produktoplys
 
 <h3>Generelle principper</h3>
 <ul>
-<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (gamle, officielle Open Food Facts-app)</a></li>
+<li>Du kan søge efter produktoplysninger, herunder mange nyttige beregnede værdier.</li>
 <li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
 <li>Det komplette flow kan også implementeres, så resultatet, med en vis indsats på deres side, får straks.</li>
 </ul>
 
 <h3>Hvis dine brugere ikke forventer et resultat med det samme (f.eks. lager-apps)</h3>
 <ul>
-<li>Send fotos (forside/ernæring/ingredienser): Den mest smertefri ting for dine brugere</li>
+<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
 <li>Open Food Facts AI Robotoff genererer nogle afledte data fra fotoene</li>
 <li>Over tid vil andre apps og Open Food Facts-fællesskabet udfylde datahullerne</li>
 </ul>
 
 <h3>Forventer dine brugere et resultat straks (f.eks. ernærings-apps)</h3>
 <ul>
-<li>Indsend ernæringsfakta + kategori &gt; få Nutri-Score</li>
-<li>Indsend ingredienser &gt; hent NOVA-gruppen (ultraforarbejdning af fødevarer), tilsætningsstoffer, allergener, normaliserede ingredienser, veganer, vegetar&hellip;</li>
-<li>Indsend kategori + etiketter &gt; få snart Øko-Score (miljøpåvirkning)</li>
+<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
+<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
 <ul>

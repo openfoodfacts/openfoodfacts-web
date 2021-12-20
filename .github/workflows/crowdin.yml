@@ -10,8 +10,10 @@ jobs:
     name: Synchronize with crowdin
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: crowdin action
-      uses: crowdin/github-action@1.4.1
+      uses: crowdin/github-action@1.4.4
       with:
         upload_translations: false # default is false
         # Use this option to upload translations for a single specified language
@@ -55,7 +57,7 @@ jobs:
         # Option to specify a path to user-specific credentials, without / at the beginning
         # identity: # optional
         # Option to specify a path to the configuration file, without / at the beginning
-        # config: # optional
+        config: crowdin.yml # optional
         # Option to preview the list of managed files
         # dryrun_action: # default is false
         # Numerical ID of the project
