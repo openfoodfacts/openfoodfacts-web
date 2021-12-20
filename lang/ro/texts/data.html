@@ -1,29 +1,29 @@
 
 <h1>Date</h1>
 
-<p>The Open Food Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
-The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/>
-Products images are available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>.
-They may contain graphical elements subject to copyright or other rights, that may in some cases be reproduced (quotation rights or fair use).</p>
+<p>Baza de date Open Food Facts este disponibilă sub <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
+Conținutul individual al bazei de date este disponibil sub <a href="https://opendatacommons.org/licenses/dbcl/1.0/">conținutul bazei de date</a>.<br/>
+Imaginile produselor sunt disponibile sub <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike</a>.
+Acestea pot conține elemente grafice supuse dreptului de autor sau altor drepturi, care în unele cazuri pot fi reproduse (drepturi de citare sau utilizare loială).</p>
 
-<p>Please read <a href="https://world.openfoodfacts.org/terms-of-use">Terms and conditions of use and re-use</a> before re-using the data.</p>
-
-
-<p>We are very interested in learning what the Open Food Facts data is used for. It is not mandatory, but we would very much appreciate it if you <a href="mailto:contact@openfoodfacts.org">tell us about your re-uses</a> so that we can share them
-with the Open Food Facts community.</p>
-
-<h2>Open Food Facts data exports</h2>
-
-<p>Database dumps and exports are generated nightly. The database is very big, so you can find 
-  <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">different ways to use the data</a>, 
-  depending on the export flavor.</p>
-
-<p>Information on the different fields for the MongoDB dump and CSV exports is available at <a href="https://static.openfoodfacts.org/data/data-fields.txt">https://world.openfoodfacts.org/data/data-fields.txt</a></p>
+<p>Vă rugăm să citiți <a href="https://world.openfoodfacts.org/terms-of-use">Termeni și condiții de utilizare și reutilizați</a> înainte de a reutiliza datele.</p>
 
 
-<h3>MongoDB dump</h3>
+<p>Suntem foarte interesați să aflăm pentru ce sunt folosite datele Open Food Facts. Nu este obligatoriu, dar am aprecia foarte mult dacă <a href="mailto:contact@openfoodfacts.org">ne spui despre reutilizările tale</a> astfel încât să le putem distribui
+comunității Open Food Facts.</p>
 
-<p>Data for all products is available in a MongoDB database dump.</p>
+<h2>Export de date Open Food Facts</h2>
+
+<p>Exporturile pentru baza de date sunt generate noaptea. Baza de date este foarte mare, așa că puteți găsi 
+  <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">moduri diferite de a utiliza datele</a>, 
+  în funcție de aroma de export.</p>
+
+<p>Informații despre diferitele câmpuri pentru dump-ul MongoDB și exporturile CSV sunt disponibile la <a href="https://static.openfoodfacts.org/data/data-fields.txt">https://world.openfoodfacts.org/data/data-fields.txt</a></p>
+
+
+<h3>Dump MongoDB</h3>
+
+<p>Datele pentru toate produsele sunt disponibile într-un dump al bazei de date MongoDB.</p>
 
 <dl>
  <dt>Link</dt>
@@ -34,21 +34,21 @@ with the Open Food Facts community.</p>
  <dd><a href="https://static.openfoodfacts.org/data/md5sum">https://static.openfoodfacts.org/data/md5sum</a></dd>
 </dl>
 
-<h4>Delta Export</h4>
+<h4>Export Delta</h4>
 
-<p>Daily delta exports are provided for the previous 14 days. The list of currently available delta files can be found at
+<p>Exporturile zilnice delta sunt furnizate pentru ultimele 14 zile. Lista fișierelor delta disponibile în prezent poate fi găsită la
  <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.
- Each line represents a file that is available at <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.
- The filename contains UNIX timestamp of the first and the last change contained in the JSON file, so that the delta files can
- be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
-<p>Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump.</p>
+ Fiecare linie reprezintă un fișier care este disponibil la <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.
+ Numele fișierului conține marcajul temporal al UNIX pentru prima și ultima modificare conținută în fișierul JSON, astfel încât fișierele delta să poată fi
+ importate (după extracție) cu <code>mongoimport</code> în ordine alfabetică.</p>
+<p>Vă rugăm să rețineți că, din cauza naturii <code>mongoexport</code>, fișierele delta nu vă pot spune despre produsele șterse. Pentru a elimina
+ produse șterse din baza de date, va trebui să importați dump-ul complet MongoDB.</p>
 
 
-<h3>JSONL data export</h3>
+<h3>Export date JSONL</h3>
 
-<p>The whole database is also available in <a href="https://jsonlines.org/">JSONL format</a> (sometimes called LDJSON or NDJSON) where each line is a JSON object. 
-  It represents the same data as the MongoDB export. The file is compressed with gzip.</p>
+<p>Întreaga bază de date este de asemenea disponibilă în <a href="https://jsonlines.org/">format JSONL</a> (numit uneori LDJSON sau NDJSON) unde fiecare linie este un obiect JSON. 
+  Aceasta reprezintă aceleași date ca și exportul de MongoDB. Fişierul este comprimat cu gzip.</p>
 
 <dl>
  <dt>Link</dt>
@@ -57,84 +57,85 @@ with the Open Food Facts community.</p>
 </dl>
 
 
-<h3>CSV Data Export</h3>
+<h3>Export date CSV</h3>
 
-<p>Data for all products, or some of the products, can be downloaded in CSV format (readable with OpenOffice, Excel and many other software)
- through the <a href="https://world.openfoodfacts.org/cgi/search.pl">advanced search form</a>.</p>
+<p>Datele pentru toate produsele, sau unele dintre produsele, pot fi descărcate în format CSV ( care poate fi citit cu OpenOffice, Excel și multe alte software -uri)
+ prin <a href="https://world.openfoodfacts.org/cgi/search.pl">formularul de căutare avansată</a>.</p>
 
 <dl>
  <dt>Link</dt>
  <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a></dd>
 </dl>
 
-<p>The file encoding is Unicode UTF-8. The character that separates fields is &lt;tab&gt; (tabulation).</p>
+<p>Codificarea fișierelor este Unicode UTF-8. Caracterul care separă câmpurile este &lt;tab&gt; (tabulare).</p>
 
 
 
-<h3>RDF Data Export</h3>
+<h3>Export de date RDF</h3>
 
-<p>The database is also available in the RDF format. <a href="https://fr.blog.openfoodfacts.org/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
+<p>Baza de date este, de asemenea, disponibilă în formatul RDF. <a href="https://fr.blog.openfoodfacts.org/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
 
 <dl>
  <dt>Link</dt>
  <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf</a></dd>
 </dl>
 
-<h2>Live JSON API</h2>
+<h2>API JSON live</h2>
 
-<p>A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android.</p>
+<p>Un API JSON este, de asemenea, disponibil pentru a citi datele unui produs. Acest API este utilizat în special în aplicația mobilă Open Food Facts pentru iPhone și Android.</p>
 
-<p>We change the API over-time but we are careful to keep backwards compatibility. Please tell us if you use it, so that we can tell you about potential changes.</p>
+<p>Îmbunătățim API-ul cu orele exagerate, dar suntem atenți să păstrăm compatibilitatea înapoi. Vă rugăm să ne spuneți dacă îl utilizați, astfel încât să vă putem spune despre eventualele modificări.</p>
 
-<p>URL to read data for a product: https://world.openfoodfacts.org/api/v0/product/<em>[barcode]</em>.json</p>
+<p>URL pentru a citi datele unui produs: https://world.openfoodfacts.org/api/v0/product/<em>[barcode]</em>.json</p>
 
-<p>Example: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
+<p>Exemplu: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
-Further documentation is <a href="https://wiki.openfoodfacts.org/API">available on the Wiki</a>. (Important note: the page is divided into subpages for READ and WRITE).
-A better documentation is being developped, with uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, NOVA groups and additives.
-<a href="https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro">You can access it here</a>.
-<p>You are very welcome to use the API for production cases, as long as 1 API call = 1 real scan by a user.
-Any attempt to scrape the database using the API will very likely be blocked, as full daily exports are available on this very page.</p>
-<p>Also, sending an HTTP header with your API call is a good way we can get in touch, should any issue arise.</p>
-<p>If you are unsure about anything, or have any question (there is no silly question), feel free to ask it on Slack :-)</p>
+Mai multă documentație este <a href="https://openfoodfacts.github.io/api-documentation/">disponibilă aici</a>.
+Conține cazuri de utilizare pentru afișarea unui produs și permite utilizatorilor să adauge datele necesare pentru a obține Nutri-Score, clasificarea NOVA, aditivi și Eco-Score.
 
-<h2>Android and iPhone mobile app</h2>
+<p>Sunteți binevenit să utilizați API-ul pentru cazurile de producție, atâta timp cât 1 apel API = 1 scanare reală de către un utilizator.
+Orice încercare de a răzui baza de date folosind API-ul va fi foarte probabil blocată, deoarece exporturile zilnice complete sunt disponibile chiar pe această pagină.</p>
+<p>De asemenea, trimiterea unui antet HTTP cu apelul dvs. API este o modalitate bună prin care putem contacta, în cazul în care apare orice problemă.</p>
+<p>Dacă nu sunteți sigur de ceva sau aveți întrebări (nu există nicio întrebare prostească), nu ezitați să o întrebați pe canalul #api de pe Slack :-)</p>
 
-<p>The code for the Open Food Facts mobile app is available on GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
-The app allows users to scan the barcode of products, to view the product information, and to take and send pictures and data for missing products.</p>
+<h2>Aplicație mobilă pentru Android și iPhone</h2>
 
-<p>The app for iOS is developed in Swift.</p>
-<p>The app for Android is developed in Java.</p>
-<p>You are welcome to reuse the code (it's open source) and help us improve it, for everyone, on all the planet.
+<p>Codul pentru aplicația mobilă Open Food Facts este disponibil pe GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> și <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
+Aplicația permite utilizatorilor să scaneze codul de bare al produselor, să vadă informațiile despre produs și să facă și să trimită fotografii și date pentru produsele lipsă.</p>
 
-<h2>Wrappers and SDKs</h2>
-<p>We probably have a wrapper for your favorite programming language. If we do, you can use it and improve it. If we don't, you can help create it.</p>
-<p>They will let you consume data, as well as let your users contribute new data</p>
+<p>Aplicația pentru iOS este dezvoltată în Swift.</p>
+<p>Aplicația pentru Android este dezvoltată în Kotlin.</p>
+<p>Avem, de asemenea, un efort în desfășurare Dart/Flutter.</p>
+<p>Sunteți bineveniți să reutilizați codul (este open source) și să ne ajutați să îl îmbunătățim pentru toată lumea, pe întreaga planetă.
 
-<h3>General principles</h3>
+<h2>Ambalaje şi SDK-uri</h2>
+<p>Probabil că avem un pachet pentru limbajul tău de programare preferat. Dacă o facem, îl puteți folosi și îmbunătăți. Dacă nu o facem, puteți ajuta la crearea acestuia.</p>
+<p>Vă vor permite să consumați date, precum și utilizatorii să contribuie cu date noi</p>
+
+<h3>Principii generale</h3>
 <ul>
-<li>You can look for information about products, including many useful computed values.</li>
-<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
-<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
+<li>Puteți căuta informații despre produse, inclusiv multe valori calculate utile.</li>
+<li>Dacă nu puteți obține informații despre un anumit produs, puteți determina utilizatorul să trimită fotografii și date, care vor fi apoi procesate de Open Food Facts AI și de colaboratori pentru a obține rezultatul calculat pe care doriți să le arătați.</li>
+<li>De asemenea, puteți implementa fluxul complet, astfel încât aceștia să obțină imediat rezultatul cu un efort de partea lor.</li>
 </ul>
 
-<h3>If your users do not expect a result immediately (e.g. Inventory apps)</h3>
+<h3>Dacă utilizatorii dvs. nu se așteaptă la un rezultat imediat (de exemplu, aplicații de inventar)</h3>
 <ul>
-<li>Send photos (front/nutrition/ingredients): most painless thing for your users</li>
-<li>The Open Food Facts AI Robotoff will generate some derived data from the photos</li>
-<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
+<li>Trimiteți fotografii (față/nutriție/ingrediente): cel mai nedureros lucru pentru utilizatorii dvs</li>
+<li>Open Food Facts AI Robotoff va genera date derivate din fotografii</li>
+<li>În timp, alte aplicații și comunitatea Open Food Facts vor umple golurile de date</li>
 </ul>
 
-<h3>If your users expect a result immediately (e.g. Nutrition apps)</h3>
+<h3>Dacă utilizatorii dvs. se așteaptă la un rezultat imediat (de exemplu, aplicații de nutriție)</h3>
 <ul>
-<li>Send nutrition facts + category &gt; get Nutri-Score</li>
-<li>Send ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
-<li>Send category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
+<li>Trimiteți informații nutriționale + categoria &gt; obține Nutri-Score</li>
+<li>Trimite ingrediente &gt; obține grupul NOVA (despre ultraprocesarea alimentelor), aditivi, alergeni, ingrediente normalizate, vegan, vegetarian&hellip;</li>
+<li>Trimiteți categoria + etichete &gt; obțineți în curând Scorul Eco (despre impactul asupra mediului)</li>
 </ul>
 
 <ul>
-<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (old Open Food Facts official app)</a></li>
-<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
+<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (vechea aplicație oficială Open Food Facts)</a></li>
+<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">Pachetul GitHub</a> - <a href="https://pub.dev/packages/openfoodfacts">pe pub.dev</a></li>
 <li>Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a></li>
 <li>Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a></li>
 <li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a></li>
@@ -145,13 +146,13 @@ The app allows users to scan the barcode of products, to view the product inform
 <li>Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a></li>
 </ul>
 
-<h2>Discussing data, API and exports</h2>
-<p>You can <a href="https://slack.openfoodfacts.org">join the Open Food Facts Slack chatroom which is the preferred way to ask questions and discuss the API</a>.</p>
+<h2>Discutând date, API și exporturi</h2>
+<p>Puteți <a href="https://slack.openfoodfacts.org">să vă alăturați sălilor de discuții Open Food Facts Slack care este modul preferat de a pune întrebări și de a discuta API</a>.</p>
 
-<p>You can also join the mailing list to discuss the API and exports, tell us about your re-uses, and be notified when improvements or changes are made to the API. Send an empty e-mail to
-<a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a> to subscribe.</p>
+<p>De asemenea, vă puteți alătura listei de corespondență pentru a discuta despre API și exporturi, să ne spuneți despre reutilizările dvs. și să fiți notificat când se fac îmbunătățiri sau modificări la API. Trimiteți un e-mail gol la
+<a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a> pentru a vă abona.</p>
 
 
 <h2>Contact</h2>
 
-<p>For any question regarding the data, you can contact us at <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>
+<p>Pentru orice întrebare legată de date, ne puteți contacta la <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>
