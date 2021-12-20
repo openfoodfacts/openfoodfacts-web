@@ -79,27 +79,28 @@ con la comunità Open Food Facts.</p>
 
 <p>Un API JSON è anche disponibile per leggere i dati per un prodotto. Questa API è in particolare usata nell'app mobile di Open Food Facts per iPhone ed Android.</p>
 
-<p>Modifichiamo l'API nel tempo, ma stiamo attenti a mantenere la compatibilità con le versioni precedenti. Per favore, dicci se lo usi, così che possiamo dirti di potenziali cambiamenti.</p>
+<p>Miglioriamo l'API nel tempo ma siamo cauti nel mantenere la retrocompatibilità. Per favore, dicci se lo usi, così che possiamo dirti di potenziali cambiamenti.</p>
 
 <p>Esempio: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
 <p>URL per leggere i dati per un prodotto: https://world.openfoodfacts.org/api/v0/product/<i>[barcode]</i>.json</p>
 
-Ulteriore documentazione è <a href="https://wiki.openfoodfacts.org/API">disponibile sulla Wiki</a>. (Nota importante: la pagina è divisa in sottopagine per READ e WRITE).
-Una migliore documentazione è in fase di sviluppo, con casi d'uso per mostrare un prodotto e consentire agli utenti di aggiungere i dati richiesti per ottenere il Nutri-Score, i gruppi NOVA e gli additivi.
-<a href="https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro">Puoi accedervi qui</a>.
+Ulteriore documentazione è <a href="https://openfoodfacts.github.io/api-documentation/">disponibile qui</a>.
+Contiene i casi d'uso per mostrare un prodotto e consentire agli utenti di aggiungere i dati necessari per ottenere il Nutri-Score, la classificazione NOVA, gli additivi e l'Eco-Score.
+
 <p>Sei benvenuto all'uso dell'API per i casi di produzione, finché 1 chiamata dell'API equivale ad una scansione reale da un utente.
 Ogni tentativo di raschiare il database usando l'API sarà molto probabilmente bloccata, poiché le esportazioni giornaliere complete sono disponibili su questa pagina.</p>
 <p>Inoltre, inviare un'intestazione HTTP con la tua chiamata dell'API è un buon modo in cui possiamo metterci in contatto, dovesse sorgere qualsiasi problema.</p>
-<p>Se sei insicuro di qualcosa, o hai qualche domanda (non ci sono domande stupide), sentiti libero di chiedere su Slack :-)</p>
+<p>Se sei insicuro su qualsiasi cosa, o hai qualche domanda (non esistono domande sciocche), sentiti libero di farle sul canale #api su Slack :-)</p>
 
 <h2>App mobile Android ed iPhone</h2>
 
 <p>Il codice per l'app mobile di Open Food Facts è disponibile su GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> e <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
-L'app consente agli utenti di scansionare il codice a barre per i prodotti, di visualizzare le informazioni del prodotto e di scattare ed inviare immagini e dati per i prodotti mancanti.</p>
+L'app consente agli utenti di scansionare il codice a barre dei prodotti, per visualizzarne le informazioni e scattare e inviare immagini e dati per i prodotti mancanti.</p>
 
 <p>L'app per iOS è disponibile in Swift.</p>
-<p>L'app per Android è disponibile in Java.</p>
+<p>L'app per Android è sviluppata in Kotlin.</p>
+<p>Abbiamo anche uno sforzo continuativo di Dart/Flutter.</p>
 <p>Sei il benvenuto per riutilizzare il codice (è open source) ed aiutarci a migliorarla, per tutti, su tutto il pianeta.
 
 <h2>Wrapper e SDK</h2>
@@ -108,23 +109,23 @@ L'app consente agli utenti di scansionare il codice a barre per i prodotti, di v
 
 <h3>Principi generali</h3>
 <ul>
-<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (la vecchia app ufficiale di Open Food Facts)</a></li>
+<li>Puoi cercare le informazioni sui prodotti, inclusi molti utili valori calcolati.</li>
 <li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
 <li>È inoltre possibile implementare il flusso completo in modo che ottengano immediatamente il risultato con un certo sforzo da parte loro.</li>
 </ul>
 
 <h3>Se i tuoi utenti non si aspettano un risultato immediato (ad es. app per l'inventario)</h3>
 <ul>
-<li>Invia foto (parte anteriore/alimentazione/ingredienti): ciò di più indolore per i tuoi utenti</li>
+<li>Invia foto (parte anteriore/nutrienti/ingredienti): la cosa più indolore per i tuoi utenti</li>
 <li>L' Open Food Facts AI Robotoff genererà alcuni dati derivati dalle foto</li>
 <li>Col tempo, altre app e la community di Open Food Facts colmeranno le lacune di dati</li>
 </ul>
 
 <h3>Se i tuoi utenti si aspettano un risultato immediato (ad es. app sull'alimentazione)</h3>
 <ul>
-<li>Invia dati nutrizionali + categoria e ottieni il Nutri-Score</li>
-<li>Invia ingredienti &gt; ottieni il gruppo NOVA (sull'ultra lavorazione degli alimenti), additivi, allergeni, ingredienti normalizzati, vegani, vegetariani &hellip;</li>
-<li>Invia categoria + etichette &gt; ottieni presto l'Eco-Store (sull'impatto ambientale)</li>
+<li>Invia i valori nutrizionali e la categoria > ottieni il Nutri-Score</li>
+<li>Invia gli ingredienti > ottieni il gruppo NOVA (sull'ultra trasformazione alimentare), additivi, allergeni, ingredienti normalizzati, vegani, vegetariani&hellip;</li>
+<li>Invia la categoria e le etichette > ottieni presto l'Eco-Score (sull'impatto ambientale)</li>
 </ul>
 
 <ul>
