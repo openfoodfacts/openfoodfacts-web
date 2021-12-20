@@ -1,0 +1,166 @@
+<div id="main_column" class="XXLarge-11 xlarge-10 wide-9 medium-8 columns" style="padding-top: 1REM; height: 4313px;" data-equalizer-watch="">
+
+<!-- Hand column content - how used to remove left column and center glad On Some pages -->
+
+<h1>Nutri-Scor nutrițional și grade de culori</h1>
+
+<h2>Un sistem de grade de la A la E pentru a simplifica etichetarea nutrițională</h2>
+
+<p>În raportul „Propuneri pentru un nou impuls pentru politica franceză de nutriție a sănătății publice în cadrul Strategiei Naționale de Sănătate” (<a href="https://www.sante.gouv.fr/IMG/pdf/rapport_Hercberg_15_11_2013.pdf">pdf</a>),
+profesorul Serge Hercberg pledează pentru adoptarea unui sistem de note de la A la E privind fața alimentelor
+pentru a permite să comparați pur și simplu calitatea nutrițională a produselor.</p>
+
+<img src="https://static.openfoodfacts.org/images/misc/nutriscore-a.png">
+
+<p>Aceste accente de culoare sunt stabilite prin calcularea unui scor nutrițional care reflectă pentru prima parte a energiei, grăsimi saturate, zaharuri, sodiu (nivelurile ridicate sunt considerate nesănătoase), iar pentru a 2-a parte a proporției de fructe, legume și nuci, fibre. iar proteinele
+  (nivelurile ridicate sunt considerate bune pentru sănătate).</p>
+
+<p>Pentru a afla mai multe:</p>
+
+<ul>
+<li><a href="https://www.santepubliquefrance.fr/Sante-publique-France/Nutri-Score">Prezentarea oficială Nutri-Score</a> și <a href="https://www.santepubliquefrance.fr/Media/Files/NUTRISCORE/Questions_reponses_EN">Întrebări frecvente științifice și tehnice Nutri-Score</a> pe site-ul web al agenției naționale franceze de sănătate publică Santé Publique France.</li>
+<li><a href="https://www.youtube.com/watch?v=GAwTyEEHnOs">Un videoclip de 2 minute: Ce etichetare pentru produsele alimentare?</a></li>
+<li><a href="https://www.sfsp.fr/petitions/petition.php?cid=7">Petiție pentru o simplă, intuitivă și de înțeles prin toate etichetele nutriționale de pe partea din față a ambalajelor alimentare</a>
+</li>
+</ul>
+
+<h2>Scorul nutrițional pe Open Food Facts</h2>
+
+<p>Formula de calcul a scorului nutrițional, pragurile notelor și diferitele propuneri de tunsoare au fost transmise de echipa profesorului Hercberg. Această formulă a făcut obiectul unor studii și adaptări pentru piața franceză.</p>
+
+<p>Versiunea adoptată oficial și implementată pe Open Food Facts este cea din raportul
+<a href="/files/hcspa20150625_infoqualnutprodalim.pdf">AVIZ al Înaltului Consiliu pentru Sănătate Publică referitor la informațiile privind calitatea nutrițională a produselor alimentare publicat în 25 iunie 2015</a>.</p>
+
+<p>Cu toate acestea, am calculat scorul nutrițional pentru produsele vândute pe pământul francez și menționate în baza de date Open Food Facts,
+și am determinat notele corespunzătoare de la A la E. Acest lucru permite în special compararea scorului nutrițional și/sau notele diferitelor produse și studierea distribuției pentru fiecare categorie de produse.</p>
+
+<h2>Formula pentru a calcula scorul nutrițional</h2>
+
+<p>Punctele se acordă produselor în funcție de cantitatea de nutrienți pe care o conțin la 100 g.</p>
+
+<p>Se acordă puncte A pentru nutrienții considerați „răi” și punctele C pentru nutrienții „bune” și conținutul în fructe, legume și nuci.</p>
+
+<h3>Puncte A</h3>
+
+<p>Punctele A sunt suma punctelor pentru energie, grăsimi saturate, zaharuri și sodiu.</p>
+
+[[nutriscore/nutriscore-a-points-table.html
+
+<h3>Puncte C</h3>
+
+<p>Punctele C reprezintă suma punctelor pentru fructe, legume și fructe cu coajă lemnoasă pentru fibre și proteine.</p>
+
+[[nutriscore/nutriscore-c-points-table.html
+
+<p>Notă: cartofii, cartofii dulci, taro, manioca și tapioca nu sunt incluse în fructe, legume și nuci.</p>
+
+<h3>Calculul scorului nutrițional</h3>
+
+<ul>
+<li>Dacă A puncte &lt; 11 atunci scor = A puncte - C puncte</li>
+<li>Dacă A punctează ≥ 11
+<ul>
+<li>Dacă punctele pentru fructe, legume și nuci = 5, atunci scor = puncte A - puncte C</li>
+<li>Dacă punctele pentru fructe, legume și nuci sunt &lt; 5, atunci scor = A puncte - (puncte fibre + puncte pentru puncte fructe, legume și nuci)</li>
+</ul>
+
+</li>
+</ul>
+
+<h3>Adaptări pentru piața franceză</h3>
+
+<p>Formula scorului nutrițional indicată mai sus corespunde formulei
+  al Agenției pentru Standarde Alimentare (FSA) din Marea Britanie.</p>
+
+<p>Echipa profesorului Hercberg oferă adaptări pentru piața franceză care
+  sunt implementate pentru a calcula scorul pe Open Food Facts.</p>
+
+<h4>Adaptare pentru brânză</h4>
+
+<p>Pentru brânzeturi, punctele pentru proteine sunt scăzute din scor chiar dacă punctele A sunt ≥ 11.</p>
+
+<h4>Adaptare pentru grăsime</h4>
+
+<p>Pentru a ajuta la diferențierea grăsimilor (uleiuri, margarine, crème fraîche), toate având rate de
+  grăsimi saturate mai mari decât pragul maxim de 10 g,
+  o altă grilă care ia în considerare raportul acizilor grași saturați față de grăsimea totală este aplicat:</p>
+
+[[nutriscore/nutriscore-fat-adaptation-table.html
+
+<h4>Adaptări pentru fructe și legume</h4>
+
+<p>Nucile nu sunt luate în considerare pentru calcularea conținutului de fructe și legume.</p>
+
+<h4>Adaptări pentru băuturi</h4>
+
+<p>Atenție: scorul nutrițional pentru lapte și lapte vegetal se calculează cu formula generală și
+  nu cu formula pentru băuturi.</p>
+
+<p>Pragul de puncte pentru energie și pentru zaharuri se modifică pentru băuturi, iar punctele sunt dublate pentru fructe:</p>
+
+[[nutriscore/nutriscore-drinks-table.html
+
+<h2>Praguri de calificare Nutri-Score</h2>
+
+<p>Pragurile folosite pentru atribuirea notelor de la A la E sunt:</p> <p>
+</p><h3>Alimente solide:</h3>
+<ul>
+<li>A: până la -1</li>
+<li>B: de la 0 la 2</li>
+<li>C: de la 3 la 10</li>
+<li>D: de la 11 la 18</li>
+<li>E: 19 și mai mult</li>
+</ul>
+<h3>Băuturi:</h3>
+<p>Doar apa (minerala si de izvor, cu excluderea apelor aromate) este clasificata A.</p>
+
+<ul>
+<li>A: ape minerale și ape de izvor</li>
+<li>B: până la 1</li>
+<li>C: de la 2 la 5</li>
+<li>D: de la 6 la 9</li>
+<li>E: 10 și mai mult</li>
+</ul>
+
+<p><b>Avertisment: este posibil ca acest scor să nu se potrivească cu scorul recomandat:</b></p>
+
+<ul>
+<li>Conținutul de fibre nu este neapărat prezent în tabelul nutrițional. Când acesta din urmă nu este indicat, nicio
+pozitivă a fibrelor nu este luată în considerare. Încurajăm toți producătorii să indice
+  conținutul de fibre al produselor lor pe ambalajul acestora.</li>
+
+  <--end of current proofread -->
+<li>Punctele corespunzătoare nivelurilor din fructe și legume nu sunt luate în considerare pentru toate produsele. Conținutul de fructe, legume
+  nu se află într-adevăr pe ambalaj în tabelul nutrițional și va trebui să îl stabilim
+cu alte informații (cum ar fi cuvintele „conținut minim de fructe”, categoria de produse (de ex. dulcețurile conțin 50). % fructe) și/sau lista de ingrediente
+<ul>
+<li>A fost creat un nou câmp „Fructe, legume (minim)” pentru a înregistra valorile termenilor „conținut minim de fructe/legume” etc.</li>
+<li>În mod implicit, produsele din anumite categorii sunt considerate a avea un conținut minim de:
+<ul>
+<li>100%: <a href="https://world.openfoodfacts.org/category/fr:jus-de-fruits">suc</a></li>
+<li>90%: <a href="https://world.openfoodfacts.org/category/fr:compotes">fructe fierte</a></li>
+<li>85%: <a href="https://world.openfoodfacts.org/category/fr:legumes">legume</a></li>
+<li>50%: <a href="https://world.openfoodfacts.org/category/fr:confitures">gemuri</a></li>
+<li>alte categorii de definit</li>
+</ul>
+
+Pentru a calcula scorul nutrițional, este important să distingem nivelurile de peste 40%, 60% și 80%.
+</li>
+</ul>
+
+</li>
+
+<li>Pentru alimentele liofilizate (supe ambalate etc.), punctajul trebuie calculat pentru produsul reconstituit, nu pentru produsul crud, așa cum se întâmplă în prezent.</li>
+</ul>
+
+<p>Ne puteți ajuta să învățăm conținutul de fructe, legume și nuci. Pentru mai multe informații, consultați
+<a href="https://fr.wiki.openfoodfacts.org/Projet_de_loi_sur_l%27%C3%A9tiquetage_nutritionnel_:_on_s%27en_m%C3%AAle_%3F">proiectul Nutritional Labeling</a> pe wiki.</p>
+
+<p>Notă: tuberculii precum cartofii și cartofii dulci nu sunt considerați legume pentru a calcula scorul nutrițional.</p>
+<h2>Vă mulţumim</h2>
+<p>Mulțumim profesorul Serge Hercberg si Dr. Chantal Julia pentru ajutorul lor, iar datele pe care le - au
+noi comunicate pentru a calcula scorul nutrițional. Aceste date provin din munca
+<a href="http://www-smbh.univ-paris13.fr/recherche/laboratoires/69-equipe-de-recherche-en-epidemiologie-nutritionnelle-eren-umr-1153-inserm-u1125-inra-cnam-up13.html">în epidemiologie nutrițională (EREN)</a>
+a Universității Paris 13 / Spitalul Avicenne.</p>
+
+</div>
