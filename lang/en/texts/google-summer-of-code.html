@@ -26,7 +26,9 @@
 
 <h2>Areas where your help can make a big difference</h2>
 
-<p>Open Food Facts does many things like food products data acquisition and analysis on the backend, data visualization on the Open Food Facts website and mobile apps. This page presents the major systems and the technology they use, and the current challenges you could help us address during GSOC.</p>
+<p>Open Food Facts does many things like food products data acquisition and analysis on the backend, data visualization on the Open Food Facts website and mobile apps. This page presents the major systems and the technology we use, and the current challenges you could help us address during GSOC.</p>
+  
+  <p>You can get <a href="https://github.com/openfoodfacts">a full overview of our repositories on GitHub</a>, along with hierarchized lists of impactful things you can work on. Here's however our proposed selection of ideas.</p>
 
 <h3>&rarr; All new cross-platform Flutter app to reach an even broader user base</h3>
 
@@ -42,14 +44,19 @@
 
 <p><b>Key point:</b> We are starting from a clean state, which gives us the opportunity to design a perfect app from all perspectives: the right set of features, the most intuitive design, the best architecture choices, and the most effective development model. This will be a very exciting team effort!</p>
 
+    <h3>Offline mode for smooth_app</h3>
+<p>Our users often contribute or scan to the supermarket fund, and many places around the world do not have ideal or cheap connectivity. Beyond that, there&rsquo;s always a chance the server could be slow or unreachable.</p>
+<p>The purpose of this project, is to ensure the mobile application can work completely offline. This means that all products already scanned or opened must be completely available offline, to open instantly. The most popular products in the user's country should have a minimum of information available (or all if possible) offline, corresponding to the user's preferences. It must be possible to contribute offline (including adding new products, and uploading photos) without any slowdown, regardless of the connection speed.</p>
+<p>Technically, you will have to work inside the smoothie application, which is written in Flutter. The project should be split into different features to maximize chances that project efforts reaches main branch.</p>
+  
 <ul>
 <li><b>Github:</b> <a href="https://github.com/openfoodfacts/openfoodfacts-dart">openfoodfacts-dart</a> and <a href="https://github.com/openfoodfacts/smooth-app">smooth-app</a></li>
 <li><b>Technologies:</b> Flutter, Dart</li>
 <li><b>Slack channels:</b> #flutter #smoothie</li>
 </ul>
 
-<h3>&rarr; Robotoff</h3>
-
+  <h3>&rarr; Machine Learning (Robotoff)</h3>
+  
 <p>Robotoff is our system to extract valuable information out of the many images contributors send us. It uses a mix of classic techniques (such as regular expressions on the output of Google Cloud Vision OCR) and machine learning to generate “guesses” that it can apply automatically if it is confident about them, or ask users for a validation.</p>
 
 <ul>
@@ -57,10 +64,25 @@
 <li><b>Slack channel:</b> #robotoff
 </ul>
 
-<h3>&rarr; Machine Learning</h3>
-
 <p><b>Key point:</b> while the Open Food Facts data is a very interesting base to conduct research projects, our key goal is not only to research and train models, but to actually deploy working high precision models that make a difference. A good strategy could be to address first a subset of a problem with a solution that can be easily extended over time.</p>
 
+  <h2>Extracting nutritional information from images</h2>
+<p style="text-align: justify;">Nutritional information of products from OpenFoodFacts database is a cornerstone information. It is mandatory to compute the Nutri-Score, it helps users compare products between them.</p>
+<p style="text-align: justify;">Nutritional information is displayed on food packages. While it is easy for a user on a smartphone to take a photo of the nutritional information, it is tedious to insert them manually. We would like our machine learning driven agent <a href="https://github.com/openfoodfacts/robotoff/" target="_blank" rel="noopener">robotoff</a> to be able to gather this information from images. The accuracy is key here as this information is precise, and needs to be. In this area, better have less data, but have them right.There have been previous attempts to solve this problem but they are not operational.</p>
+<p style="text-align: justify;">The proposed algorithm may use OCR (we currently use google OCR) as part of the process. The eventual complexity lies in the layout analysis, as nutritional information is often presented as a table with multiple columns, row styles, etc. First step of the algorithm might be to extract a crop from the image containing only nutritional information (most users will take a global shot of the package).The applicant must not just concentrate on the research work, but also take care of the integration in robotoff, including eventual &ldquo;business&rdquo; rules to apply post extraction (on robotoff side only).</p>
+<p style="text-align: justify;">Technical stack is Python and Tensorflow (we use Tensorflow Serving), but other tools might be included in agreement with Open Food Facts team.</p>
+  
+  
+  <h3>Pushing Hunger Games (our annotation engine) to the next level</h3>
+  
+  <p><a href="https://hunger.openfoodfacts.org/" target="_blank" rel="noopener">Hunger games</a> is the name of an application helping Open Food Facts crowd sourced data to feed it&rsquo;s machine learning bot robotoff, and to apply insights found by robotoff that needs human validation.</p>
+<p>It is geared towards productive contributors who want to smash a lot of work by doing a single activity effectively for some minutes or more.</p>
+<p>Currently the Hunger game is very rough without much explanations and onboarding for new user and activities.</p>
+<p>The purpose of this project would be to upgrade hunger games by providing more help to the user. This means more auto-completion and validations, more help messages on activities (tracking if it was read). It should also propose to non logged-in users, to loggin, or create an account. Integrate with our gamification service while also parameterizing it, gives more stats to users, and enriches filters to help focus.</p>
+<p>Another objective would be to make it usable from a mobile device so that user can use a 10 minute time while waiting in a queue or commuting.Finally usability and performance improvements could be implemented to make contributions even more effective.</p>
+<p><a href="https://github.com/openfoodfacts/openfoodfacts-hungergames/" target="_blank" rel="noopener">Hunger games</a> application is written in Vue.js</p>
+  
+  
 <h3>&rarr; Open Food Facts database and backend</h3>
 
 <p>At the heart of Open Food Facts, we store all the product data in a MongoDB database and use a Perl backend for our website and our read and write API, used by more than 100 applications. The server also does a lot of analysis to extract and structure data from multilingual ingredients lists and to compute new insights such as the processing degree of food products and their impact on the environment.</p>
@@ -89,11 +111,17 @@
 
 <p>Making choices regarding food often depends on the food category considered. Some criteria are especially important when choosing a fish or a ready made meal. Showing and explaining those criteria in context (and whether the product meets them) when scanning a product would be very useful.</p>
 
-<p>The Food Knowledge graph would be a system to augment product data, based on a taxonomy of knowledge. This could either be implemented within the core of Open Food Facts, or as a separate service in a popular language of your choice (eg: Python, NodeJS…)</p>
+<p>The Food Knowledge graph is a system to augment product data, based on a taxonomy of knowledge. This is implemented within as a separate service in Python</p>
 
 <p><b>Our challenge:</b></p>
 
-<p>The Food Knowledge Graph is a new project, everything will need to be done: research use cases, define functional specs, establish technical specs, choose a database and a programming language, develop it, run it, document it, create an API etc.</p>
+<p>Bring Folksonomy Engine to the next level by integrating it within Product Opener (the engine of Open Food Facts), and implementing </p>
+  
+  <ul>
+<li><b>Github:</b> <a href="https://github.com/openfoodfacts/folksonomy_api"> Folksonomy Engine (Python/FastAPI)</a>
+<li><b>Technologies:</b> Python/li>
+<li><b>Slack channels:</b> #folksonomy_engine</li>
+</ul>
 
 <h3>&rarr; Open Lists</h3>
 
@@ -103,14 +131,16 @@
 
 <p>Open Lists is a new project, everything will need to be done: research use cases, define functional specs, establish technical specs, choose a database and a programming language, develop it, run it, document it, create an API etc.</p>
 
-<h2 style="text-align: justify;">Setup an external authentication service</h2>
+<h3 style="text-align: justify;">Setup an external authentication service</h3>
 <p style="text-align: justify;">Contributors of Open Food Facts have an account. Currently management of those accounts is directly implemented in ProductOpener. The systems lack some capabilities one would expect from a user friendly website or for user management, but it also lacks lots of capabilities for third party applications like OAuth would require.</p>
 <p style="text-align: justify;">We would like to change that to rely on an external service. However, as we really care for our user data, the service should be open source and hosted on our infrastructure.</p>
 <p style="text-align: justify;">This service should permits to handle authentication,&nbsp;</p>
 <p style="text-align: justify;">The mission consist in choosing such a service (eg. <a href="https://authentik.entrouvert.com/" target="_blank" rel="noopener">authentik</a>, <a href="https://www.keycloak.org/" target="_blank" rel="noopener">keycloak</a>, <a href="https://www.ory.sh/open-source" target="_blank" rel="noopener">ory</a>, etc. ). Deploy it (automating deployment), configure, integrate it and write documentation. You will also have to give a plan and scripts for users migration.</p>
 <p style="text-align: justify;">The integration part might be the most challenging part, as it should be transparent to users for simple workflow. First goal is to have authentication done through it and to provide OAuth for app developers.</p>
 <p style="text-align: justify;">The goal of this project is to have more features for users and app developers, while keeping product opener code less complex (separation of concerns). Also possibly have less maintenance, thanks to a complete product.</p>
-<h2 style="text-align: justify;">Build a taxonomy editor</h2>
+  
+  
+<h3 style="text-align: justify;">Build a taxonomy editor</h3>
 <p style="text-align: justify;">Taxonomies are at the heart of openfoodfacts in many aspects. It helps identify components (ingredients, labels, brands,&hellip;) and link them to useful properties, at the base of nutri-score, eco-score, allergens identification and some other properties.</p>
 <p style="text-align: justify;">Each taxonomy is a DAG (directed acyclic graph) where leaves have one or more parents. Currently the taxonomy is in a raw text file in our repository: <a href="https://github.com/openfoodfacts/openfoodfacts-server/tree/main/taxonomies" target="_blank" rel="noopener">https://github.com/openfoodfacts/openfoodfacts-server/tree/main/taxonomies</a>.</p>
 <p style="text-align: justify;">While effective for the application, this format is quite cumbersome to edit for contributors.</p>
@@ -125,7 +155,10 @@
 </ul>
 <p style="text-align: justify;">As a bonus, it would be really interesting to know the impact of a modification on the application. For that we could imagine simple API&rsquo;s (one for each taxonomy)&nbsp;on the openfoodfact application to visualize which products would be affected by a change. This feedback could be a really interesting tool to ensure no error is made (unexpected side effects)</p>
 <p style="text-align: justify;">On the technical side, you can choose freely, in accordance with your mentor, which technology to use, still the capacity for the contributors community to maintain it in the long run is an important criteria.</p>
-<h2 style="text-align: justify;">Autonomous taxonomy service</h2>
+  
+  
+  
+<h3 style="text-align: justify;">Autonomous taxonomy service</h3>
 <p style="text-align: justify;">Taxonomies are at the heart of openfoodfacts in many aspects. It helps identify components (ingredients, labels, brands,&hellip;) and link them to useful properties, at the base of nutri-score, eco-score, allergens identification and some other properties.</p>
 <p style="text-align: justify;">Each taxonomy is a DAG (directed acyclic graph) where leaves have one or more parents.</p>
 <p style="text-align: justify;">Currently each taxonomy is loaded in memory by the perl application and this takes quite a lot of memory. While most of the time the structure is processed the apposite module :<a href="https://github.com/openfoodfacts/openfoodfacts-server/blob/main/lib/ProductOpener/Packaging.pm" target="_blank" rel="noopener">&nbsp;Tags.pm</a> which offers a basic API. Still there are many places where the structure is used directly.</p>
@@ -135,7 +168,9 @@
 <p style="text-align: justify;">Create a service for taxonomy with a clean API, and implement usage of the API at least for the simplest usage cases (we can replace the old code progressively).</p>
 <p style="text-align: justify;">You can choose freely, in accordance with your mentor, which technology to use, still the capacity for the contributors community to maintain it in the long run is an important criteria.</p>
 <p style="text-align: justify;">Having this independant service will help improve scalability, performance, maintainability and may offer new opportunities for services around taxonomies.</p>
-<h2 style="text-align: justify;">Build an automatic rule editing engine</h2>
+  
+  
+<h3 style="text-align: justify;">Build an automatic rule editing engine</h3>
 <p style="text-align: justify;">Every day Open Food Facts receive a lot of data from different sources, but the main contribution comes from users using a smartphone and contributing photos, data, answers to simple questions, etc. While this is a really efficient way to get data, quality is an important challenge. We have contributors capable of observing data, finding anomalies and applying corrections.&nbsp;</p>
 <p style="text-align: justify;">For example, one might observe that if a yogurt has sugar in it, it must belong to the &ldquo;sweetened yogurt&rdquo; category (and not only to the yogurt category).</p>
 <p style="text-align: justify;">Many corrections can lead to massive edits, and there is a dedicated tool. But a correction might be immediately overwritten by a new contribution. This is discouraging for advanced contributors. This one shot modification process does not permit capitalizing on fixes.</p>
@@ -148,26 +183,16 @@
 <p style="text-align: justify;">You can choose freely, in accordance with your mentor, which technology to use, still the capacity for the contributors community to maintain it in the long run is an important criteria.</p>
 <p style="text-align: justify;">Optionally, gamification might be considered. We have a gamification service to collect achievements, and rule impact could be registered.</p>
 <p style="text-align: justify;">Optionally we could consider if the rule building service might also become, in the future, the service that applies rules to incoming edits.</p>
-<h2 style="text-align: justify;">Community federation portal and gamification</h2>
+  
+  
+<h3 style="text-align: justify;">Community federation portal and gamification</h3>
 <p style="text-align: justify;">Open Food Facts data is collected and curated by its community. As of today however, we lack tools to synchronize efforts in a simple and convenient way. We would also like efforts from contributors to be acknowledged and add as much fun as possible.</p>
 <p style="text-align: justify;">This project aims at building a simple website that could help track some area of interest by contributors. Areas of interest might be a combination of a geographical area with either a product type (product category) or a brand or a shop network, etc.</p>
 <p style="text-align: justify;">The site might propose to constitute an area of interest. For an area of interest, people should be able to &ldquo;subscribe&rdquo; to the group, maybe exchange messages (using existing tools, like the forum or a slack channel). The site should gather general metrics on the area of interest, as well as quality metrics (we already have quality facets). It should also propose an events stream. All these must be leverageable by users to contribute and help maintain data quality as well as completeness.</p>
 <p style="text-align: justify;">This should also be combined with the <a href="https://github.com/openfoodfacts/openfoodfacts-events" target="_blank" rel="noopener">openfoodfacts-events</a> service to build leaderboards for the area of interest.</p>
 <p style="text-align: justify;">This description is neither exhaustive nor should constraint the project. The applicant is free to take the approach he retains meaningful to achieve the objectives of engaging contributors with a benevolent mood, creating living communities and helping contributions to be effective.</p>
 <p style="text-align: justify;">Technical stack choice is free, but must be open source and validated by the Open Food Fact team. If some APIs needs to be added to openfoodfacts, it will be taken in charge by the Open Food Facts team. Upgrades to openfoodfacts-events should be considered part of this project.</p>
-<h2>Extracting nutritional information from images</h2>
-<p style="text-align: justify;">Nutritional information of products from OpenFoodFacts database is a cornerstone information. It is mandatory to compute the Nutri-Score, it helps users compare products between them.</p>
-<p style="text-align: justify;">Nutritional information is displayed on food packages. While it is easy for a user on a smartphone to take a photo of the nutritional information, it is tedious to insert them manually. We would like our machine learning driven agent <a href="https://github.com/openfoodfacts/robotoff/" target="_blank" rel="noopener">robotoff</a> to be able to gather this information from images. The accuracy is key here as this information is precise, and needs to be. In this area, better have less data, but have them right.There have been previous attempts to solve this problem but they are not operational.</p>
-<p style="text-align: justify;">The proposed algorithm may use OCR (we currently use google OCR) as part of the process. The eventual complexity lies in the layout analysis, as nutritional information is often presented as a table with multiple columns, row styles, etc. First step of the algorithm might be to extract a crop from the image containing only nutritional information (most users will take a global shot of the package).The applicant must not just concentrate on the research work, but also take care of the integration in robotoff, including eventual &ldquo;business&rdquo; rules to apply post extraction (on robotoff side only).</p>
-<p style="text-align: justify;">Technical stack is python and tensorflow (we use tensorflow serving), but other tools might be included in agreement with Open Food Facts team.</p>
-<h2>Pushing Hunger Games to the next level</h2>
-<p><a href="https://hunger.openfoodfacts.org/" target="_blank" rel="noopener">Hunger games</a> is the name of an application helping Open Food Facts crowd sourced data to feed it&rsquo;s machine learning bot robotoff, and to apply insights found by robotoff that needs human validation.</p>
-<p>It is geared towards productive contributors who want to smash a lot of work by doing a single activity effectively for some minutes or more.</p>
-<p>Currently the Hunger game is very rough without much explanations and onboarding for new user and activities.</p>
-<p>The purpose of this project would be to upgrade hunger games by providing more help to the user. This means more auto-completion and validations, more help messages on activities (tracking if it was read). It should also propose to non logged-in users, to loggin, or create an account. Integrate with our gamification service while also parameterizing it, gives more stats to users, and enriches filters to help focus.</p>
-<p>Another objective would be to make it usable from a mobile device so that user can use a 10 minute time while waiting in a queue or commuting.Finally usability and performance improvements could be implemented to make contributions even more effective.</p>
-<p><a href="https://github.com/openfoodfacts/openfoodfacts-hungergames/" target="_blank" rel="noopener">Hunger games</a> application is written in Vue.js</p>
-<h2>Offline mode for smooth_app</h2>
-<p style="text-align: justify;">Our users often contribute or scan to the supermarket fund, and many places around the world do not have ideal or cheap connectivity. Beyond that, there&rsquo;s always a chance the server could be slow or unreachable.</p>
-<p style="text-align: justify;">The purpose of this project, is to ensure the mobile application can work completely offline. This means that all products already scanned or opened must be completely available offline, to open instantly. The most popular products in the user's country should have a minimum of information available (or all if possible) offline, corresponding to the user's preferences. It must be possible to contribute offline (including adding new products, and uploading photos) without any slowdown, regardless of the connection speed.</p>
-<p style="text-align: justify;">Technically you will have to work inside the smoothie application, which is written in flutter. The project should be split into different features to maximize chances that project efforts reaches main branch.</p>
+
+  
+
+  
