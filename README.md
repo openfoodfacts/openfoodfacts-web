@@ -20,3 +20,5 @@ On docker see [openfoodfacts-server:docs/how-to-guides/using-pages-from-openfood
 
 And that's it, that would be already be enough of a big change for a first step. Then we can have a look at what we have in /html/ to see what we should move, one by one.
 
+## Tools
+Basic command generator  https://docs.google.com/spreadsheets/d/1WOBGwvPAnojJlCFJ54eq4FY9-tAkiPx39mgxlt9lnP4/edit#gid=525301263
