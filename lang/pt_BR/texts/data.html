@@ -38,7 +38,7 @@ com a comunidade do Open Food Facts.</p>
 <p>As exportações diárias de delta são fornecidas dos últimos 14 dias. A lista de ficheiros delta atualmente disponíveis pode ser encontrada em <a href="https://static.openfoodfacts.org/data/delta/index.txt"> https://static.openfoodfacts.org/data/delta/index.txt </a>.
  Cada linha representa um ficheiro que está disponível em <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.
  O nome do ficheiro contém o timestamp do UNIX da primeira e última alteração contida no ficheiro JSON, para que os ficheiros delta possam ser importados (após a extração) com <code>mongoimport</code> em ordem alfabética.</p>
-<p>Por favor, note que, devido à natureza do <code> mongoexport </code>, os ficheiros delta não podem informá-lo sobre produtos excluídos. Para remover produtos deletados do seu banco de dados, você precisará importar o dump completo do MongoDB.</p>
+<p>Por favor, note que, devido à natureza do <code> mongoexport </code>, os arquivos delta não podem informá-lo sobre produtos excluídos. Para remover produtos deletados do seu banco de dados, você precisará importar o dump completo do MongoDB.</p>
 
 
 <h3>Exportação de dados JSONL</h3>
@@ -79,28 +79,28 @@ com a comunidade do Open Food Facts.</p>
 
 <p>Uma API JSON também está disponível para ler os dados de um produto. Essa API é usada em particular no aplicativo móvel Open Food Facts para iPhone e Android.</p>
 
-<p>We improve the API over-time but we are careful to keep backwards compatibility. Por favor, diga-nos se você usá-lo, para que possamos informá-lo sobre possíveis mudanças.</p>
+<p>Nós melhoramos a API ao longo do tempo, mas tomamos cuidado em manter retro-compatibilidade. Por favor, diga-nos se você usá-lo, para que possamos informá-lo sobre possíveis mudanças.</p>
 
 <p>URL para ler os dados de um produto: https://world.openfoodfacts.org/api/v0/product/<em>[barcode]</em>.json</p>
 
 <p>Exemplo: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json"> https://world.openfoodfacts.org/api/v0/product/737628064502.json </a></p>
 
-Further documentation is <a href="https://openfoodfacts.github.io/api-documentation/">available here</a>.
-It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
+Uma documentação mais longa está <a href="https://openfoodfacts.github.io/api-documentation/">disponível aqui</a>.
+Ela contém casos de uso para exibir um produto, e permitimos nossos usuário adicionar dados para montar o Nutri-Score, a classificação NOVA, adivitos, e o Eco-Score.
 
 <p>Pode usar a API para casos de produção, desde que 1 chamada de API = 1 varredura real de um utilizador.
 Qualquer tentativa de raspar o banco de dados pela API provavelmente será bloqueada, pois as exportações completas diárias estão disponíveis nesta página.</p>
 <p>Além disso, o envio de um cabeçalho HTTP com sua chamada à API é uma boa maneira de entrar em contacto, caso ocorra algum problema.</p>
-<p>If you are unsure about anything, or have any question (there is no silly question), feel free to ask it on the #api channel on Slack :-)</p>
+<p>Se você não possui certeza sobre alguma coisa, ou possui alguma dúvida (não existe pergunta boba), sinta-se à vontade para perguntar no canal do Slack #api :-)</p>
 
 <h2>Aplicativo para aparelhos móveis Android e iPhone</h2>
 
 <p>O código para o app móvel Open Food Facts está disponível no GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> e <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
-The app allows users to scan the barcode of products, to view the product information, and to take and submit pictures and data for missing products.</p>
+O aplicativo permite aos usuários scanear códigos de barra dos produtos, para visualizar as informações nutricionais dos produtos, e para fotografar e enviar imagens e dados de produtos.</p>
 
-<p>O app para iOS é desenvolvido em Swift.</p>
-<p>The app for Android is developed in Kotlin.</p>
-<p>We also have an on-going Dart/Flutter effort.</p>
+<p>O aplicativo para iOS é desenvolvido em Swift.</p>
+<p>O aplicativo para Android é desenvolvido em Kotlin.</p>
+<p>Também temos um esforço em curso desenvolvendo um aplicativo em Dart/Flutter.</p>
 <p>Está convidado a reutilizar o código (é open source) e nos ajudar a melhorá-lo, para todos, no planeta inteiro.
 
 <h2>Wrappers e SDKs</h2>
@@ -109,23 +109,23 @@ The app allows users to scan the barcode of products, to view the product inform
 
 <h3>Princípios gerais</h3>
 <ul>
-<li>You can search for information about products, including many useful computed values.</li>
+<li>Você pode procurar por informações sobre produtos, incluindo muitos valores computados.</li>
 <li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
 <li>Pode também implementar o fluxo completo para que recebam imediatamente o resultado com algum esforço do seu lado.</li>
 </ul>
 
 <h3>Se os seus usuários não esperam resultados imediatamente (ex., apps de inventário)</h3>
 <ul>
-<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>Envie imagens (frente/tabela nutricional/ingredientes): sem dor para nossos usuários</li>
 <li>O Open Food Facts AI Robotoff irá gerar alguns dados derivados das fotos</li>
 <li>Ao longo do tempo, outros aplicativos, e a comunidade do Open Food Facts preencherão as lacunas de dados</li>
 </ul>
 
 <h3>Se os usuários esperam imediatamente um resultado (por exemplo, aplicativos de nutrição)</h3>
 <ul>
-<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
-<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
-<li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
+<li>Envie tabela nutricional + categoria &gt; receba Nutri-Score</li>
+<li>Envie ingredientes &gt; receba o grupo NOVA (sobre alimentos ultra-processados), aditivos, alérgenos, ingredientes normalizados, vegano, vegetariano&hellip;</li>
+<li>Envie categoria + rótulos &gt; em breve receba o Eco-Score (sobre o impacto ambiental)</li>
 </ul>
 
 <ul>
