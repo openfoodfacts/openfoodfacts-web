@@ -3,6 +3,7 @@
   <source media="(prefers-color-scheme: light)" srcset="https://static.openfoodfacts.org/images/logos/off-logo-horizontal-light.svg">
   <img height="100" src="https://static.openfoodfacts.org/images/logos/off-logo-horizontal-light.svg">
 </picture>
+
 # openfoodfacts-web
 
 This project contains static contents for [openfoodfacts product-opener project](https://github.com/openfoodfacts/openfoodfacts-server/).
