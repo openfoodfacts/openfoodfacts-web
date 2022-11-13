@@ -56,8 +56,9 @@ Sie könnten grafische Elemente enthalten, die dem Urheberrecht oder anderen Rec
 <p>Daten für alle Produkte oder einige der Produkte können im CSV-Format (lesbar mit OpenOffice, Excel und vielen anderen Programmen) über die <a href="https://world.openfoodfacts.org/cgi/search.pl">erweiterte Suchmaske</a> heruntergeladen werden.</p>
 
 <dl>
- <dt>Herunterladen</dt>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a></dd>
+ <dt>Links</dt>
+ <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a> (RohCSV)</dd>
+ <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (komprimiertes CSV im GZIP-Format)</dd>
 </dl>
 
 <p>Als Dateikodierung wird Unicode UTF-8 verwendet. Als Trennzeichen für die Felder wird &lt;tab&gt; (Tabellierung) verwendet.</p>
@@ -73,7 +74,7 @@ Sie könnten grafische Elemente enthalten, die dem Urheberrecht oder anderen Rec
  <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf</a></dd>
 </dl>
 
-<h2>Live-JSON-API</h2>
+<h2>Live JSON- und XML-API</h2>
 
 <p>Eine JSON-API ist ebenfalls verfügbar, um die Daten für ein Produkt auszulesen. Diese API wird insbesondere in der mobilen App „Open Food Facts” für iPhone und Android verwendet.</p>
 
@@ -82,9 +83,10 @@ Sie könnten grafische Elemente enthalten, die dem Urheberrecht oder anderen Rec
 <p>Beispiel: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
 <p>PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a></p>
-
-Weitere Dokumentation ist <a href="https://openfoodfacts.github.io/api-documentation/">hier verfügbar</a>.
-Es enthält Anwendungsfälle für die Anzeige eines Produkts und die Möglichkeit für Ihre Benutzer, die erforderlichen Daten hinzuzufügen, um den Nutri-Score, die NOVA-Klassifizierung, Zusatzstoffe und den Eco-Score zu erhalten.
+<p>Sie können das Ergebnis auch in XML erhalten, indem Sie <code>.xml</code> verwenden</p>
+<p>Beispiel: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.xml">https://world.openfoodfacts.org/api/v0/product/737628064502.xml</a></p>
+Weiterführende Dokumentation ist <a href="https://openfoodfacts.github.io/api-documentation/">hier</a> verfügbar.
+Sie enthält Anwendungsfälle für die Anzeige eines Produkts und die Möglichkeit für Ihre Benutzer, die erforderlichen Daten hinzuzufügen, um den Nutri-Score, die NOVA-Klassifizierung, Zusatzstoffe und den Eco-Score zu erhalten.
 
 <p>Sie können die API gerne für Produktionsabläufe verwenden, sofern 1 API-Aufruf = 1 realer Scan durch einen Benutzer entspricht.
 Jeder Versuch, die Datenbank auf diese Weise abzuschöpfen, wird sehr wahrscheinlich verhindert, da vollständige tägliche Exporte auf dieser Seite verfügbar sind.</p>
@@ -93,12 +95,12 @@ Jeder Versuch, die Datenbank auf diese Weise abzuschöpfen, wird sehr wahrschein
 
 <h2>Android- und iPhone-App für Mobilgeräte</h2>
 
-<p>Der Quellcode für die mobile App von Open Food Facts ist auf GitHub verfügbar (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> und <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
-Diese App ermöglicht es den Benutzern, den Barcode der Produkte zu scannen, um die Produktinformationen anzusehen sowie Bilder und Daten für fehlende Produkte zu machen und zu übermitteln.</p>
+<p>Der Code für die mobile Open Food Facts App ist auf GitHub verfügbar (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> und <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
+Die App ermöglicht es den Nutzern, den Strichcode von Produkten einzulesen, die Produktinformationen einzusehen und Fotos und Daten für fehlende Produkte aufzunehmen und zu übermitteln.</p>
 
-<p>Die App für Android wurde in Java entwickelt.</p>
-<p>Die App für Android wird in Kotlin entwickelt.</p>
-<p>Außerdem besteht ein laufendes Projekt für Dart/Flutter.</p>
+<p>Die klassische App für iOS wurde in Swift entwickelt.</p>
+<p>Die klassische App für Android wurde in Kotlin entwickelt.</p>
+<p>Die neue plattformübergreifende App ist eine Dart/Flutter App.</p>
 <p>Sie können den Quellcode (es ist Open Source) gerne wiederverwenden und uns helfen, ihn für alle auf der ganzen Welt zu verbessern.
 
 <h2>Wrappers und SDKs</h2>
@@ -141,9 +143,6 @@ Diese App ermöglicht es den Benutzern, den Barcode der Produkte zu scannen, um 
 
 <h2>Über Daten, API und Exportfunktionen diskutieren</h2>
 <p>Bei Fragen zu den Daten können Sie uns unter <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a> erreichen.</p>
-
-<p>Sie können sich auch der Mailingliste anschließen, um die API und das Exportieren zu besprechen, uns über Ihre Wiederverwendung zu informieren und benachrichtigt zu werden, wenn Verbesserungen oder Änderungen an der API vorgenommen wurden. Senden Sie zum Abonnieren eine leere E-Mail an
-<a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a>.</p>
 
 
 <h2>Kontakt</h2>
