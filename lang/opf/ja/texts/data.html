@@ -1,0 +1,129 @@
+
+<h1>データ</h1>
+
+<p>製品データと写真はOpen Food Facts のデータベースで公開されます。 <a href="https://opendatacommons.org/licenses/odbl/1.0/">データベースライセンスは</a>。データベースの個々のコンテンツは <a href="https://opendatacommons.org/licenses/dbcl/1.0/">データベースコンテンツライセンス</a> で利用でき、製品画像は <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">、Creative Commons Attribution ShareAlike licence</a>で利用できます。
+They may contain graphical elements subject to copyright or other rights, that may in some cases be reproduced (quotation rights or fair use).</p>
+
+<p>データを再利用する前に、 <a href="https://world.openproductsfacts.org/terms-of-use">利用規約</a> を読んで再利用してください。</p> 
+
+
+<p>私たちは、Open Products Facts データが何に使用されているかを知りたいと思っています。 必須ではありませんが、Open Food Facts コミュニティと共有できるように、再利用</a> について <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">ていただければ幸いです。</p>
+
+<h2>Open Products Facts データのエクスポート</h2>
+
+<p>Database dumps and exports are generated nightly.</p>
+
+<p>MongoDB ダンプおよび CSV エクスポートのさまざまなフィールドに関する情報は、 <a href="https://static.openproductsfacts.org/data/data-fields.txt">https://world.openproductsfacts.org/data/data-fields.txt</a>で入手できます。</p>
+
+<h3>MongoDB dump</h3>
+
+<p>Data for all products is available in a MongoDB database dump.</p>
+
+<dl>
+ <dt>Link</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/openproductsfacts-mongodbdump.tar.gz">https://static.openproductsfacts.org/data/openproductsfacts-mongodbdump.tar.gz</a></dd>
+ <dt>sha256sum</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/sha256sum">https://static.openproductsfacts.org/data/sha256sum</a></dd>
+ <dt>md5sum</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/md5sum">https://static.openproductsfacts.org/data/md5sum</a></dd>
+</dl>
+
+<h4>Delta Export</h4>
+
+<p>Daily delta exports are provided for the previous 14 days. 現在利用可能なデルタファイルのリストは
+ <a href="https://static.openproductsfacts.org/data/delta/index.txt">https://static.openproductsfacts.org/data/delta/index.txt</a> にあります。
+ 各行は、 <code>https://static.openproductsfacts.org/data/delta/{filename}</code>で利用可能なファイルを表します。
+ The filename contains UNIX timestamp of the first and the last change contained in the JSON file, so that the delta files can
+ be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
+<p>Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
+ deleted products from your database, you will need to import the full MongoDB dump.</p>
+ 
+<h3>CSV Data Export</h3>
+
+<p>すべての製品または一部の製品のデータは、CSV 形式 (OpenOffice、Excel、およびその他の多くのソフトウェアで読み取り可能)
+ で高度な検索フォーム <a href="https://world.openproductsfacts.org/cgi/search.pl">からダウンロードできます</a>。</p>
+ 
+<dl>
+ <dt>Link</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv">https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv</a></dd>
+</dl>
+
+<p>The file encoding is Unicode UTF-8. The character that separates fields is &lt;tab&gt; (tabulation).</p>
+
+
+
+<h3>RDF Data Export</h3>
+
+<p>The database is also available in the RDF format. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">フランス語でのアナウンス</a>.</p>
+
+<dl>
+ <dt>Link</dt>
+ <dd><a href="https://world.openproductsfacts.org/data/en.openproductsfacts.org.products.rdf">https://world.openproductsfacts.org/data/en.openproductsfacts.org.products.rdf</a></dd>
+</dl>
+
+<h2>Live JSON API</h2>
+
+<p>API は Open Food Facts のように 99% 動作するため、多くの SDK、Open Food Facts API とやり取りするコードは、エンドポイントを openfoodfacts.org から openproductsfacts.org に変更するだけで機能するはずです。 コードは 1 年以上更新されていないため、ナレッジ パネルなどの新しい API の多くはまだ利用できません。</p>
+
+<p>A JSON API is also available to read the data for a product. この API は、特に iPhone および Android 用の Open Products Facts モバイル アプリで使用されます。</p>
+
+<p>We change the API over-time but we are careful to keep backwards compatibility. Please tell us if you use it, so that we can tell you about potential changes.</p>
+
+<p>製品のデータを読み取る URL: https://world.openproductsfacts.org/api/v0/product/<i>[barcode]</i>.json</p>
+
+<p>例: <a href="https://world.openproductsfacts.org/api/v0/product/8710847992063.json">https://world.openproductsfacts.org/api/v0/product/8710847992063.json</a></p>
+<ul>
+<li>
+ <a href="https://wiki.openfoodfacts.org/API">API V1- Wiki</a> で入手可能な古いドキュメント (重要な注意: このページは、読み取り用と書き込み用のサブページに分かれています)。 
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/api-documentation/">API V2 - 包括的ですが、OpenAPI に準拠していません</a> - 製品を表示するためのユースケースが含まれており、ユーザーが Nutri-Score、NOVA 分類、添加物、および Eco-Score を取得するために必要なデータを追加できるようにします。
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2 - 新しい OpenAPI ドキュメント - 進行中の作業</a>
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V2 - 新しい OpenAPI ドキュメント - 進行中の作業</a>
+ </li>
+</ul>
+<p>You are very welcome to use the API for production cases, as long as 1 API call = 1 real scan by a user.
+Any attempt to scrape the database using the API will very likely be blocked, as full daily exports are available on this very page.</p>
+<p>Also, sending an HTTP header with your API call is a good way we can get in touch, should any issue arise.</p>
+<p>If you are unsure about anything, or have any question (there is no silly question), feel free to ask it on Slack :-)</p>
+
+<h2>AndroidとiPhoneのモバイルアプリ (必要に応じて!)</h2>
+
+<p>Open Products Facts モバイルアプリのコードは GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a>) で入手できます。 <b> <a href="https://github.com/openfoodfacts/smooth-app/discussions/1378">新しいFlutterコードを化粧品に適応させる手助けが必要です</a></b>
+アプリにより、ユーザーは製品のバーコードをスキャンできます。 をクリックして製品情報を表示し、不足している製品の写真やデータを送信します。</p>
+
+<p>Android 用アプリは Kotlin で開発されています。</p>
+<p>新しいクロスプラットフォーム アプリは Flutter/Dart で開発されています。</p>
+<p>You are welcome to reuse the code (it's open source) and help us improve it, for everyone, on all the planet.
+
+<h2>Wrappers and SDKs</h2>
+<p>We probably have a wrapper for your favorite programming language. そうすれば、それを使用して改善し、おそらく Open Products Facts のサポートを追加することができます。 If we don't, you can help create it.</p>
+<p>They will let you consume data, as well as let your users contribute new data</p>
+<ul>
+<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (旧 Open Products Facts 公式アプリ)</a></li>
+<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub (現時点では Open Food Facts のみ)</a></li>
+<li>Dart: <a href="https://github. com/openfoodfacts/openfoodfacts-dart">GitHub (現時点では Open Food Facts のみ)</a></li>
+<li>Dart: <a href="https://github. com/openfoodfacts/openfoodfacts-dart">GitHub (現時点では Open Food Facts のみ)</a></li>
+<li>Dart: <a href="https://github. com/openfoodfacts/openfoodfacts-dart">GitHub (現時点では Open Food Facts のみ)</a></li>
+<li>Dart: <a href="https://github. com/openfoodfacts/openfoodfacts-dart">GitHub (現時点では Open Food Facts のみ)</a></li>
+<li>Dart: <a href="https://github. com/openfoodfacts/openfoodfacts-dart">GitHub (現時点では Open Food Facts のみ)</a></li>
+<li>Dart: <a href="https://github. com/openfoodfacts/openfoodfacts-dart">GitHub (現時点では Open Food Facts のみ)</a></li>
+<li>Dart: <a href="https://github. com/openfoodfacts/openfoodfacts-dart">GitHub (現時点では Open Food Facts のみ)</a></li>
+<li>Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub (Open Food Facts only at the moment)</a></li>
+</ul>
+
+<h2>Discussing data, API and exports</h2>
+<p>You can <a href="https://slack.openfoodfacts.org">join the Open Products Facts Slack chatroom which is the preferred way to ask questions and discuss the API</a>.</p>
+<p><a href="https://github.com/openfoodfacts/api-documentation/discussions">API ドキュメンテーションリポジトリでスレッドを開くことができます</a>
+
+<!--
+<p>You can also join the mailing list to discuss the API and exports, tell us about your re-uses, and be notified when improvements or changes are made to the API. Send an empty e-mail to <a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a> to subscribe.</p>
+-->
+
+<h2>お問い合わせ</h2>
+
+<p>For any question regarding the data, you can contact us at <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>
