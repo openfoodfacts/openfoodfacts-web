@@ -1,5 +1,9 @@
-name: On push
+name: Tests run on push (Spellcheck and HTML5 validation)
 on: push
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   spellcheck:
