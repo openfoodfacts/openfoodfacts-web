@@ -1,28 +1,27 @@
 
 <h1>Dades</h1>
 
-<p>The Open Food Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
-The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/>
-Products images are available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>.
+<p>La base de dades d'Open Food Facts, està disponible sota la llicència <a href="https://opendatacommons.org/licenses/odbl/1.0/"> Llicéncia de base de dades oberta </a>. <br/>Els continguts individuals de la base de dades estan disponibles sota la <a href="https://opendatacommons.org/licenses/dbcl/1.0/">llicència de contingut de la base de dades</a>.<br/> 
+Les imatges dels productes estan disponibles sota la <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">llicència Creative Commons de reconeixement - compartir igual</a>.
 Poden contenir elements gràfics subjectes a drets d'autor o altres drets, que en alguns casos es poden reproduir (drets de cotització o ús raonable).</p>
 
-<p>Please read <a href="https://world.openfoodfacts.org/terms-of-use">Terms and conditions of use and re-use</a> before re-using the data.</p>
+<p>Si us plau, llegiu els <a href="https://world.openfoodfacts.org/terms-of-use">Termes i condicions d'ús i reutilització</a> abans de reutilitzar les dades.</p>
 
 
-<p>We are very interested in learning what the Open Food Facts data is used for. It is not mandatory, but we would very much appreciate it if you <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Food Facts community.</p>
+<p>Estem molt interessats a saber perquè s'utilitzen les dades d'Open Food Facts. It is not mandatory, but we would very much appreciate it if you <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Food Facts community.</p>
 
-<h2>Open Food Facts data exports</h2>
+<h2>Exportacions de dades d'Open Food Facts</h2>
 
-<p>Database dumps and exports are generated nightly. The database is very big, so you can find <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">different ways to use the data</a>, depending on the export flavor.</p>
+<p>Els abocaments de bases de dades i les exportacions es generen cada nit. The database is very big, so you can find <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">different ways to use the data</a>, depending on the export flavor.</p>
 
-<p>Information on the different fields for the MongoDB dump and CSV exports is available at <a href="https://static.openfoodfacts.org/data/data-fields.txt">https://world.openfoodfacts.org/data/data-fields.txt</a></p>
+<p>La informació sobre els diferents camps per a l'abocador de MongoDB i les exportacions CSV està disponible a <a href="https://static.openfoodfacts.org/data/data-fields.txt">https://world.openfoodfacts.org/data/data-fields.txt</a></p>
 
-<h3>MongoDB dump</h3>
+<h3>Abocador de MongoDB</h3>
 
-<p>Data for all products is available in a MongoDB database dump.</p>
+<p>Les dades de tots els productes estan disponibles en un bolcat de base de dades a MongoDB.</p>
 
 <dl>
- <dt>Link</dt>
+ <dt>Enllaç</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz</a></dd>
  <dt>sha256sum</dt>
  <dd><a href="https://static.openfoodfacts.org/data/sha256sum">https://static.openfoodfacts.org/data/sha256sum</a></dd>
@@ -30,33 +29,33 @@ Poden contenir elements gràfics subjectes a drets d'autor o altres drets, que e
  <dd><a href="https://static.openfoodfacts.org/data/md5sum">https://static.openfoodfacts.org/data/md5sum</a></dd>
 </dl>
 
-<h4>Delta Export</h4>
+<h4>Exportació Delta</h4>
 
-<p>Daily delta exports are provided for the previous 14 days. The list of currently available delta files can be found at
+<p>Les exportacions delta diàries es proporcionen durant els 14 dies anteriors. La llista dels fitxers delta disponibles actualment es pot trobar a
  <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.
- Each line represents a file that is available at <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.
- The filename contains UNIX timestamp of the first and the last change contained in the JSON file, so that the delta files can
- be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
-<p>Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump.</p>
+ Cada línia representa un fitxer que està disponible a <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.
+ El nom del fitxer conté la marca de temps UNIX del primer i de l'últim canvi continguts al fitxer JSON, de manera que els fitxers delta es
+ poden importar (després de l'extracció) amb <code>mongoimport</code> en ordre alfabètic.</p>
+<p>Tingueu en compte que a causa de la naturalesa de <code>mongoexport</code>, els fitxers delta no us poden informar sobre els productes suprimits. Per eliminar
+ productes suprimits de la vostra base de dades, haureu d'importar l'abocament complet de MongoDB.</p>
 
 
-<h3>JSONL data export</h3>
+<h3>Exportació de dades JSONL</h3>
 
-<p>The whole database is also available in <a href="https://jsonlines.org/">JSONL format</a> (sometimes called LDJSON or NDJSON) where each line is a JSON object. 
-  It represents the same data as the MongoDB export. The file is compressed with gzip.</p>
+<p>Tota la base de dades també està disponible en format <a href="https://jsonlines.org/">JSONL</a> (de vegades anomenat LDJSON o NDJSON) on cada línia és un objecte JSON. 
+  Representa les mateixes dades que l'exportació de MongoDB. El fitxer està comprimit amb gzip.</p>
 
 <dl>
- <dt>Link</dt>
+ <dt>Enllaç</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-products.jsonl.gz">https://static.openfoodfacts.org/data/openfoodfacts-products.jsonl.gz</a>
  </dd>
 </dl>
 
 
-<h3>CSV Data Export</h3>
+<h3>Exportació de dades CSV</h3>
 
-<p>Data for all products, or some of the products, can be downloaded in CSV format (readable with OpenOffice, Excel and many other software)
- through the <a href="https://world.openfoodfacts.org/cgi/search.pl">advanced search form</a>.</p>
+<p>Les dades de tots els productes, o d'alguns dels productes, es poden descarregar en format CSV (llegible amb OpenOffice, Excel i molts altres programaris)
+ a través del formulari de cerca avançada <a href="https://world.openfoodfacts.org/cgi/search.pl"></a>.</p>
 
 <dl>
  <dt>Links</dt>
@@ -64,7 +63,7 @@ Poden contenir elements gràfics subjectes a drets d'autor o altres drets, que e
  <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format)</dd>
 </dl>
 
-<p>The file encoding is Unicode UTF-8. The character that separates fields is &lt;tab&gt; (tabulation).</p>
+<p>La codificació del fitxer és Unicode UTF-8. The character that separates fields is &lt;tab&gt; (tabulation).</p>
 
 
 
@@ -73,15 +72,19 @@ Poden contenir elements gràfics subjectes a drets d'autor o altres drets, que e
 <p>The database is also available in the RDF format. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
 
 <dl>
- <dt>Link</dt>
+ <dt>Enllaç</dt>
  <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf</a></dd>
 </dl>
+
+<h3>Image Data Export</h3>
+
+<p>All images and OCR results can either be downloaded from our server or from AWS (through AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images.</p>
 
 <h2>Live JSON and XML API</h2>
 
 <p>A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android.</p>
 
-<p>Millorem l'API amb el pas del temps, però anem amb compte de mantenir la compatibilitat posterior. Please <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
+<p>We improve the API over-time but we are careful to keep backwards compatibility. Please <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
 
 <p>URL to read data for a product: https://world.openfoodfacts.org/api/v0/product/<em>[barcode]</em>.json</p>
 
