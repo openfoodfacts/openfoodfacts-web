@@ -5,22 +5,22 @@
 <h2>Scan the QR Code with your phone to install the app</h2>
 
 <div class="cell small-50 v-align-center" id="footer_scan" style="display:block">
-<div id="footer_install_the_app">
-									Installér appen!
-								</div>
-								Scan this <span id="everyday">QR-Code</span> with your <span id="foods">phone</span>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-<div id="qrcode"></div>
-
+<div id="footer_install_the_app">Installér appen!</div> Scan this <span id="everyday">QR-Code</span> with your <span id="foods">phone</span>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+	<div id="qrcode"></div>
 <script>
-var qrcode = new QRCode("qrcode", {
-  width: 200,
-  height: 200
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: "https://world.openfoodfacts.net/open-food-facts-mobile-app",
+	width: 128,
+	height: 128,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
 });
+</script>
 
-qrcode.make("https://world.openfoodfacts.net/open-food-facts-mobile-app");
-</script>						
+
+					
 </div>
 <!--
 <img src="https://raw.githubusercontent.com/openfoodfacts/openfoodfacts-server/lp-illustrations/html/images/illustrations/get-the-app-en.svg" alt="Scan the QR Code with your phone to install the app" width="409" height="127" />
