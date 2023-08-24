@@ -1,0 +1,132 @@
+
+<h1>Данни</h1>
+
+<p>Базата данни Open Products Facts е достъпна под <a href="https://opendatacommons.org/licenses/odbl/1.0/">Лиценз за Отворена База Данни</a>.<br/>
+Индивидуалното съдържание на базата данни е достъпно под <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Лиценз за съдържание на база данни</a>.<br/>
+Изображенията на продуктите са достъпни под лиценза <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike</a>.
+Те могат да съдържат графични елементи, обект на авторско право или други права, които в някои случаи могат да бъдат възпроизведени (право на цитиране или честна употреба).</p>
+
+<p>Моля, прочетете <a href="https://world.openproductsfacts.org/terms-of-use">Правила и условия за използване и повторно използване</a> преди да използвате повторно данните.</p> 
+
+
+<p>Ние сме много заинтересовани да научим за какво се използват данните на Open Products Facts. Не е задължително, но ще бъдем много благодарни, ако <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">ни кажете за вашите повторни употреби</a>, за да можем да ги споделим
+с общността на Open Products Facts.</p>
+
+<h2>Износ на данни от Open Products Facts</h2>
+
+<p>Копията и износите на базата данни се създават всяка вечер.</p>
+
+<p>Информация за различните полета за MongoDB dump и CSV износът е достъпна на <a href="https://static.openproductsfacts.org/data/data-fields.txt">https://world.openproductsfacts.org/data/data-fields.txt</a></p>
+
+<h3>Дъмп на MongoDB</h3>
+
+<p>Данните за всички продукти са налични в база данни на MongoDB.</p>
+
+<dl>
+ <dt>Връзка</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/openproductsfacts-mongodbdump.tar.gz">https://static.openproductsfacts.org/data/openproductsfacts-mongodbdump.tar.gz</a></dd>
+ <dt>sha256sum</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/sha256sum">https://static.openproductsfacts.org/data/sha256sum</a></dd>
+ <dt>md5sum</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/md5sum">https://static.openproductsfacts.org/data/md5sum</a></dd>
+</dl>
+
+<h4>Делта Износ</h4>
+
+<p>Предоставят се ежедневни делта износи за предходните 14 дни. Списъкът с наличните в момента делта файлове може да бъде намерен на
+ <a href="https://static.openproductsfacts.org/data/delta/index.txt">https://static.openproductsfacts.org/data/delta/index.txt</a>.
+ Всеки ред представлява файл, който е достъпен на <code>https://static.openproductsfacts.org/data/delta/{filename}</code>.
+ Името на файла съдържа UNIX времева маркировка на първата и последната промяна, съдържащи се в JSON файла, така че делта файловете могат
+ да бъдат внасяни (след извличане) с <code>mongoimport</code> по азбучен ред.</p>
+<p>Моля, обърнете внимание, че поради естеството на <code>mongoexport</code>, делта файловете не могат да ви кажат за изтрити продукти. За да премахнете
+ изтрити продукта от вашата база данни, ще трябва да внесете пълния дъмп на MongoDB.</p>
+ 
+<h3>Износ на CSV данни</h3>
+
+<p>Данните за всички продукти или някои от продуктите могат да бъдат изтеглени във формат CSV (четим с OpenOffice, Excel и много други софтуери)
+ чрез <a href="https://world.openproductsfacts.org/cgi/search.pl">формата за разширено търсене</a>.</p>
+ 
+<dl>
+ <dt>Връзка</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv">https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv</a></dd>
+</dl>
+
+<p>Кодирането на файла е Unicode UTF-8. Знакът, който разделя полетата, е &lt;tab&gt; (таблица).</p>
+
+
+
+<h3>Експорт на RDF данни</h3>
+
+<p>Базата данни е достъпна и в RDF формат. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">съобщение на френски</a>.</p>
+
+<dl>
+ <dt>Връзка</dt>
+ <dd><a href="https://world.openproductsfacts.org/data/en.openproductsfacts.org.products.rdf">https://world.openproductsfacts.org/data/en.openproductsfacts.org.products.rdf</a></dd>
+</dl>
+
+<h2>JSON API на живо</h2>
+
+<p>API се държи 99% като Open Food Facts, така че много от SDK, кодовете за взаимодействие с Open Food Facts API трябва да работят, като просто променят крайната точка от: openfoodfacts.org на openproductsfacts.org. Кодът не е актуализиран от повече от година, така че много от по-новите API като Knowledge Panels все още не са налични.</p>
+
+<p>Наличен е и JSON API за четене на данните за продукт. Този API се използва по-специално в мобилното приложение Open Products Facts за iPhone и Android.</p>
+
+<p>Променяме API с течение на времето, но внимаваме да поддържаме обратна съвместимост. Моля, кажи ни дали го използваш, за да можем да ти кажем за потенциални промени.</p>
+
+<p>URL за четене на данни за продукт: https://world.openproductsfacts.org/api/v0/product/<i>[barcode]</i>.json</p>
+
+<p>Пример: <a href="https://world.openproductsfacts.org/api/v0/product/8710847992063.json">https://world.openproductsfacts.org/api/v0/product/8710847992063.json</a></p>
+<ul>
+<li>
+ <a href="https://wiki.openfoodfacts.org/API">API V1- Стара документация, налична в Wiki</a> (Важна забележка: страницата е разделена на подстраници за ЧЕТЕНЕ и ПИСАНЕ). 
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Изчерпателен, но не съвместим с OpenAPI</a> - Съдържа случаи на използване за показване на продукт и позволява на вашите потребители да добавят данните, необходими за получаване на Nutri-Score, NOVA класификация, добавки и Eco-Score.
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2 - нова документация за OpenAPI - Работа в процес</a>
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V3 - нова документация на OpenAPI - Работа в процес</a>
+ </li>
+</ul>
+<p>Добре дошли сте да използвате API за производствени случаи, стига 1 API извикване да е = на 1 реално сканиране от потребител.
+Всеки опит за сканиране на базата данни с помощта на API много вероятно ще бъде блокиран, тъй като пълните ежедневни износи са достъпни точно на тази страница.</p>
+<p>Освен това изпращането на HTTP хедър с вашето API извикване е добър начин да се свържем, ако възникне някакъв проблем.</p>
+<p>Ако не сте сигурни в нещо или имате някакъв въпрос (няма глупав въпрос), не се колебайте да го зададете на Slack :-)</p>
+
+<h2>Мобилно приложение за Android и iPhone (необходима е помощ!)</h2>
+
+<p>Кодът за мобилното приложение Open Products Facts, което в момента е внедрено, е наличен в GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a>. <b>Нуждаем се <a href="https://github.com/openfoodfacts/smooth-app/discussions/1378">от помощ, за да адаптираме новия код на Flutter за козметика
+</a></b>Приложението позволява на потребителите да сканират баркода на продуктите, да преглеждат информацията за продукта и да правят и изпращат снимки и данни за липсващи продукти.</p>
+
+<p>Приложението за Android е разработено в Kotlin.</p>
+<p>Новото междуплатформено приложение е разработено във Flutter/Dart.</p>
+<p>Можеш да използваш повторно кода (той е с отворен код) и да ни помогнеш да го подобрим за всички, на цялата планета.
+
+<h2>Обвивки и SDK</h2>
+<p>Вероятно имаме обвивка за любимия ви език за програмиране. Ако го направим, можете да го използвате и да го подобрите и вероятно да добавите поддръжка на Open Products Facts към него. Ако не го направим, можеш да помогнеш за създаването му.</p>
+<p>Те ще ви позволят да консумирате данни, както и ще позволят на вашите потребители да предоставят нови данни</p>
+<ul>
+<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (старо официално приложение Open Products Facts)</a></li>
+<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub (отворени факти за храните само в момента)</a></li>
+<li>Еликсир: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub (отворени факти за храната само в момента)</a></li>
+<li>Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub (В момента само Отворени факти за храната)</a></li>
+<li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub (В момента само Отворени факти за храната)</a></li>
+<li>PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub (В момента само Отворени факти за храната)</a></li>
+<li>PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub (В момента само Отворени факти за храната)</a></li>
+<li>Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub (В момента само Отворени факти за храната)</a></li>
+<li>React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub (В момента само Отворени факти за храната)</a></li>
+<li>Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub (В момента само Отворени факти за храната)</a></li>
+</ul>
+
+<h2>Обсъждане на данни, API и износ</h2>
+<p>Можете <a href="https://slack.openfoodfacts.org">да се присъедините към Slack чат за Open Products Facts, който е предпочитаният начин да задавате въпроси и да обсъждате API</a>.</p>
+<p>Можете <a href="https://github.com/openfoodfacts/api-documentation/discussions">да отворите нишка в нашето хранилище на документация за API</a>
+
+<!--
+<p>You can also join the mailing list to discuss the API and exports, tell us about your re-uses, and be notified when improvements or changes are made to the API. Send an empty e-mail to <a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a> to subscribe.</p>
+-->
+
+<h2>За контакти</h2>
+
+<p>За всякакви въпроси относно данните, можеш да се свържеш с нас на <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>

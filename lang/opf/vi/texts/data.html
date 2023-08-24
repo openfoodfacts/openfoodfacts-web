@@ -1,0 +1,132 @@
+
+<h1>Dữ liệu</h1>
+
+<p>The Open Products Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
+The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/>
+Products images are available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>.
+Các dữ liệu có thể chứa các yếu tố đồ họa tuân theo bản quyền hoặc các quyền khác, trong một số trường hợp có thể là được sao chép lại (quyền trích dẫn hoặc sử dụng hợp pháp).</p>
+
+<p>Please read <a href="https://world.openproductsfacts.org/terms-of-use">Terms and conditions of use and re-use</a> before re-using the data.</p> 
+
+
+<p>We are very interested in learning what the Open Products Facts data is used for. It is not mandatory, but we would very much appreciate it if you <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them
+with the Open Products Facts community.</p>
+
+<h2>Open Products Facts data exports</h2>
+
+<p>Kết xuất và xuất cơ sở dữ liệu được tạo hàng đêm.</p>
+
+<p>Information on the different fields for the MongoDB dump and CSV exports is available at <a href="https://static.openproductsfacts.org/data/data-fields.txt">https://world.openproductsfacts.org/data/data-fields.txt</a></p>
+
+<h3>Kết xuất MongoDB</h3>
+
+<p>Dữ liệu cho tất cả các sản phẩm có sẵn trong kết xuất cơ sở dữ liệu MongoDB.</p>
+
+<dl>
+ <dt>Liên kết</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/openproductsfacts-mongodbdump.tar.gz">https://static.openproductsfacts.org/data/openproductsfacts-mongodbdump.tar.gz</a></dd>
+ <dt>sha256sum</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/sha256sum">https://static.openproductsfacts.org/data/sha256sum</a></dd>
+ <dt>md5sum</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/md5sum">https://static.openproductsfacts.org/data/md5sum</a></dd>
+</dl>
+
+<h4>Xuất dữ liệu kiểu Delta</h4>
+
+<p>Xuất dữ liệu delta hàng ngày được cung cấp cho dữ liễu trong vòng 14 ngày trước đó. The list of currently available delta files can be found at
+ <a href="https://static.openproductsfacts.org/data/delta/index.txt">https://static.openproductsfacts.org/data/delta/index.txt</a>.
+ Each line represents a file that is available at <code>https://static.openproductsfacts.org/data/delta/{filename}</code>.
+ Tên tệp chứa kí dấu thời gian UNIX của lần thay đổi đầu tiên và cuối cùng có trong tệp JSON, để các tệp delta
+ có thể được nhập (sau khi trích xuất) với <code>mongoimport</code> theo thứ tự bảng chữ cái.</p>
+<p>Xin lưu ý rằng do bản chất của <code>mongoexport</code>, các tệp delta không thể lưu trữ thông tin về các sản phẩm đã bị xóa. Để xóa
+ sản phẩm đã xóa khỏi cơ sở dữ liệu của bạn, bạn sẽ cần nhập liệu toàn bộ tệp MongoDB.</p>
+ 
+<h3>Xuất dữ liệu CSV</h3>
+
+<p>Data for all products, or some of the products, can be downloaded in CSV format (readable with OpenOffice, Excel and many other software)
+ through the <a href="https://world.openproductsfacts.org/cgi/search.pl">advanced search form</a>.</p>
+ 
+<dl>
+ <dt>Liên kết</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv">https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv</a></dd>
+</dl>
+
+<p>Tệp mã hóa dưới dạng Unicode UTF-8. Ký tự ngăn cách các trường là &lt;tab&gt; (lập bảng).</p>
+
+
+
+<h3>Xuất dữ liệu RDF</h3>
+
+<p>Cơ sở dữ liệu cũng có sẵn ở định dạng RDF. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
+
+<dl>
+ <dt>Liên kết</dt>
+ <dd><a href="https://world.openproductsfacts.org/data/en.openproductsfacts.org.products.rdf">https://world.openproductsfacts.org/data/en.openproductsfacts.org.products.rdf</a></dd>
+</dl>
+
+<h2>API JSON trực tiếp</h2>
+
+<p>The API behaves 99% like Open Food Facts, so many of the SDKs, codes to interact with the Open Food Facts API should work by merely changing the endpoint from: openfoodfacts.org to openproductsfacts.org. The code hasn't been updated in over a year, so many of the newer APIs like Knowledge Panels are not available yet.</p>
+
+<p>API JSON cũng có sẵn để đọc dữ liệu cho một sản phẩm. This API is in particular used in the Open Products Facts mobile app for iPhone and Android.</p>
+
+<p>Chúng tôi thay đổi API theo thời gian nhưng chúng tôi luôn cân nhắc cẩn thận để giữ khả năng tương thích. Vui lòng cho chúng tôi biết nếu bạn sử dụng nó, để chúng tôi có thể cho bạn biết về những thay đổi có thể xảy ra.</p>
+
+<p>URL to read data for a product: https://world.openproductsfacts.org/api/v0/product/<i>[barcode]</i>.json</p>
+
+<p>Example: <a href="https://world.openproductsfacts.org/api/v0/product/8710847992063.json">https://world.openproductsfacts.org/api/v0/product/8710847992063.json</a></p>
+<ul>
+<li>
+ <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Comprehensive but not OpenAPI compliant</a> - It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2 - new OpenAPI documentation - Work in Progress</a>
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V3 - new OpenAPI documentation - Work in Progress</a>
+ </li>
+</ul>
+<p>Chúng tôi rất hoan nghênh bạn sử dụng API cho các trường hợp sản xuất, miễn là 1 lần gọi API = 1 lần quét thực bởi người dùng.
+Bất kỳ nỗ lực nào để loại bỏ cơ sở dữ liệu bằng cách sử dụng API sẽ rất có thể bị chặn, vì các bản xuất hàng ngày đầy đủ luôn có sẵn trên chính trang này.</p>
+<p>Ngoài ra, gửi tiêu đề HTTP với lệnh gọi API của bạn là một cách tốt để chúng tôi có thể liên hệ, nếu có bất kỳ vấn đề nào phát sinh.</p>
+<p>Nếu bạn không chắc chắn về bất cứ điều gì hoặc có bất kỳ câu hỏi nào (không có câu hỏi ngoài lề), hãy hỏi nó trên Slack :-)</p>
+
+<h2>Android and iPhone mobile app (help needed!)</h2>
+
+<p>The code for the Open Products Facts mobile app currently deployed is available on GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a>. <b>We <a href="https://github.com/openfoodfacts/smooth-app/discussions/1378">need help to adapt the new Flutter code to cosmetics</a></b>
+The app allows users to scan the barcode of products, to view the product information, and to take and send pictures and data for missing products.</p>
+
+<p>The app for Android is developed in Kotlin.</p>
+<p>The new cross-platform app is developed in Flutter/Dart.</p>
+<p>Bạn có thể sử dụng lại mã (mã nguồn mở) và giúp chúng tôi cải thiện nó, cho mọi người, trên toàn cầu.
+
+<h2>Wrappers và SDKs</h2>
+<p>Chúng tôi có thể cung cấp wrapper cho ngôn ngữ lập trình yêu thích của bạn. Nếu chúng tôi làm như vậy, bạn có thể sử dụng và cải thiện nó, đồng thời có thể thêm hỗ trợ Open Products Facts cho nó. Nếu chúng tôi không thể cung cấp, bạn có thể giúp tạo mới.</p>
+<p>Chúng sẽ cho phép bạn sử dụng dữ liệu cũng như cho phép người dùng của bạn đóng góp dữ liệu mới</p>
+<ul>
+<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (ứng dụng chính thức Open Products Facts cũ)</a></li>
+<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub (Hiện tại chỉ có Open Food Facts)</a></li>
+<li>Tiên dược: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub (Hiện tại chỉ có Open Food Facts)</a></li>
+<li>Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub (Hiện tại chỉ có Open Food Facts)</a></li>
+<li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub (Hiện tại chỉ có Open Food Facts)</a></li>
+<li>PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub (Hiện tại chỉ có Open Food Facts)</a></li>
+<li>PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub (Hiện tại chỉ có Open Food Facts)</a></li>
+<li>Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub (Hiện tại chỉ có Open Food Facts)</a></li>
+<li>React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub (Hiện tại chỉ có Open Food Facts)</a></li>
+<li>Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub (Hiện tại chỉ có Open Food Facts)</a></li>
+</ul>
+
+<h2>Thảo luận về dữ liệu, API và xuất dữ liệu</h2>
+<p>Bạn có thể <a href="https://slack.openfoodfacts.org">tham gia phòng trò chuyện Open Products Facts Slack, đây là cách được khuyến khích để đặt câu hỏi và thảo luận về API</a>.</p>
+<p>You can <a href="https://github.com/openfoodfacts/api-documentation/discussions">open a thread on our API documentation repository</a>
+
+<!--
+<p>You can also join the mailing list to discuss the API and exports, tell us about your re-uses, and be notified when improvements or changes are made to the API. Send an empty e-mail to <a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a> to subscribe.</p>
+-->
+
+<h2>Liên hệ</h2>
+
+<p>Đối với bất kỳ câu hỏi nào liên quan đến dữ liệu, bạn có thể liên hệ với chúng tôi theo địa chỉ <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>

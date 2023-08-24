@@ -9,14 +9,13 @@
 <p>데이터를 다시 사용하기 전에 <a href="https://world.openfoodfacts.org/terms-of-use">이용 약관을 읽고</a> 다시 사용하십시오.</p>
 
 
-<p>우리는 Open Food Facts 데이터가 무엇에 사용되는지 배우는 것에 매우 관심이 있습니다. 의무사항은 아니지만, Open Food Facts 커뮤니티와 공유할 수 있도록 <a href="mailto:contact@openfoodfacts.org">재사용에 대해 알려주시면</a> 감사하겠습니다.</p>
+<p>우리는 Open Food Facts 데이터가 무엇에 사용되는지 배우는 것에 매우 관심이 있습니다. It is not mandatory, but we would very much appreciate it if you <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Food Facts community.</p>
 
 <h2>Open Food Facts 데이터 내보내기</h2>
 
-<p>데이터베이스 덤프 및 내보내기는 밤마다 생성됩니다. 데이터베이스가 매우 크기 때문에 내보내기 방식에 따라 <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">데이터를 사용하는 다양한 방법</a>을 찾을 수 있습니다.</p>
+<p>데이터베이스 덤프 및 내보내기는 밤마다 생성됩니다. The database is very big, so you can find <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">different ways to use the data</a>, depending on the export flavor.</p>
 
 <p>MongoDB 덤프 및 CSV 엑스포트의 다양한 분야에 대한 정보는 <a href="https://static.openfoodfacts.org/data/data-fields.txt">https://world.openfoodfacts.org/data/data-fields.txt</a>에서 확인할 수 있습니다.</p>
-
 
 <h3>MongoDB 덤프</h3>
 
@@ -52,7 +51,7 @@
 </dl>
 
 
-<h3>RDF 데이터 내보내기</h3>
+<h3>CSV 데이터 내보내기</h3>
 
 <p>모든 제품 또는 일부 제품에 대한 데이터는 <a href="https://world.openfoodfacts.org/cgi/search.pl">고급 검색 양식을 통해</a> CSV 형식(OpenOffice, Excel 및 기타 많은 소프트웨어로 읽을 수 있음)으로 다운로드할 수 있습니다.</p>
 
@@ -68,26 +67,43 @@
 
 <h3>RDF 데이터 내보내기</h3>
 
-<p>데이터베이스도 RDF 형식으로 이용할 수 있다. <a href="https://fr.blog.openfoodfacts.org/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
+<p>데이터베이스도 RDF 형식으로 이용할 수 있다. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
 
 <dl>
  <dt>링크</dt>
  <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf</a></dd>
 </dl>
 
+<h3>Image Data Export</h3>
+
+<p>All images and OCR results can either be downloaded from our server or from AWS (through AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images.</p>
+
 <h2>Live JSON and XML API</h2>
 
 <p>제품의 데이터를 읽는 데 JSON API를 사용할 수도 있습니다. 이 API는 특히 아이폰과 안드로이드용 오픈 푸드 팩트 모바일 앱에서 많이 쓰입니다.</p>
 
-<p>We improve the API over-time but we are careful to keep backwards compatibility. 잠재적 변경에 대해 알려줄 수 있도록 사용하는 경우 알려주십시오.</p>
+<p>We improve the API over-time but we are careful to keep backwards compatibility. Please <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
 
 <p>예시: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 
 <p>예시: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
 <p>You can also get the result in XML by using <code>.xml</code></p>
 <p>Example: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.xml">https://world.openfoodfacts.org/api/v0/product/737628064502.xml</a></p>
-Further documentation is <a href="https://openfoodfacts.github.io/api-documentation/">available here</a>.
-It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
+
+<ul>
+<li>
+ <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Comprehensive but not OpenAPI compliant</a> - It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2 - new OpenAPI documentation - Work in Progress</a>
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V3 - new OpenAPI documentation - Work in Progress</a>
+ </li>
+</ul>
 
 <p>사용자가 1 번의 API 호출 = 1 번의 실제 스캔을하는 한 프로덕션 사례에 API를 사용하는 것이 매우 좋습니다.
 이 페이지에서 매일 전체 내보내기를 사용할 수 있으므로 API를 사용하여 데이터베이스를 긁어 내려는 시도가 차단 될 가능성이 큽니다.</p>
@@ -134,16 +150,20 @@ The app allows users to scan the barcode of products, to view the product inform
 <li>PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a></li>
 <li>Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a></li>
 <li>Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a></li>
+<li>Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a></li>
+<li>Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a></li>
 <li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a></li>
 <li>PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub</a></li>
 <li>PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a></li>
 <li>Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub</a></li>
 <li>React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a></li>
 <li>Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a></li>
+<li>Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a></li>
 </ul>
 
 <h2>데이터, API 논의 및 내보내기</h2>
 <p><a href="https://slack.openfoodfacts.org">질문을 하고 API를 토론하는 데 선호되는 방법인  Open Food Facts  Slack 채팅방에 가입</a>할 수 있습니다.</p>
+<p>You can <a href="https://github.com/openfoodfacts/api-documentation/discussions">open a thread on our API documentation repository</a>
 
 
 <h2>문의</h2>

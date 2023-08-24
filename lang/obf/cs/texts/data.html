@@ -1,0 +1,132 @@
+
+<h1>Údaje</h1>
+
+<p>Databáze Open Beauty Facts je k dispozici pod <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
+Jednotlivé obsahy databáze jsou k dispozici pod <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Licencí na obsah databáze</a>.<br/>.
+Obrázky produktů jsou k dispozici pod <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">licencí Creative Commons Attribution ShareAlike</a>.
+Mohou obsahovat grafické prvky podléhající autorským právům nebo jiným právům, které mohou být v některých případech reprodukovány (práva na nabídky nebo fair use).</p>
+
+<p>Před opětovným použitím dat si prosím přečtěte <a href="https://world.openbeautyfacts.org/terms-of-use">Podmínky použití a opětovného použití</a>.</p> 
+
+<p>Velmi nás zajímá, k čemu jsou data Open Beauty Facts využívána. Není to povinné, ale velmi bychom ocenili, kdybyste nám <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">o svém opětovném</a>, abychom je mohli sdílet s komunitou Open Beauty Facts.</p>
+
+<h2>Exporty dat Open Beauty Facts</h2>
+
+<p>Výpisy a exporty databáze se generují každou noc.</p>
+
+<p>Informace o různých polích pro výpis MongoDB a exporty CSV jsou k dispozici na adrese <a href="https://static.openbeautyfacts.org/data/data-fields.txt">https://world.openbeautyfacts.org/data/data-fields.txt</a></p>
+
+
+<h3>Výpis MongoDB</h3>
+
+<p>Data pro všechny produkty jsou k dispozici ve výpisu databáze MongoDB.</p>
+
+<dl>
+ <dt>Odkaz</dt>
+ <dd><a href="https://static.openbeautyfacts.org/data/openbeautyfacts-mongodbdump.tar.gz">https://static.openbeautyfacts.org/data/openbeautyfacts-mongodbdump.tar.gz</a></dd>
+ <dt>sha256sum</dt>
+ <dd><a href="https://static.openbeautyfacts.org/data/sha256sum">https://static.openbeautyfacts.org/data/sha256sum</a></dd>
+ <dt>md5sum</dt>
+ <dd><a href="https://static.openbeautyfacts.org/data/md5sum">https://static.openbeautyfacts.org/data/md5sum</a></dd>
+</dl>
+
+<h4>Delta Export</h4>
+
+<p>Denní delta exporty jsou poskytovány za předchozích 14 dní. Seznam aktuálně dostupných delta souborů lze nalézt na
+ <a href="https://static.openbeautyfacts.org/data/delta/index.txt">https://static.openbeautyfacts.org/data/delta/index.txt</a>.
+ Každý řádek představuje soubor, který je k dispozici na <code>https://static.openbeautyfacts.org/data/delta/{filename}</code>.
+ Název souboru obsahuje UNIX časové razítko prvního a poslední změny obsažené v souboru JSON, aby delta soubory
+ mohly být importovány (po extrakci) pomocí <code>mongoimport</code> v abecedním pořadí.</p>
+<p>Vezměte prosím na vědomí, že vzhledem k povaze <code>mongoexport</code>vám delta soubory nemohou říci o smazaných produktech. Chcete-li odstranit odstraněné produkty z databáze, musíte importovat celý výpis MongoDB.</p>
+ 
+<h3>Export dat CSV</h3>
+
+<p>Data pro všechny produkty nebo některé produkty lze stáhnout ve formátu CSV (čitelný pomocí OpenOffice, Excel a mnoha dalších softwarů)
+ prostřednictvím <a href="https://world.openbeautyfacts.org/cgi/search.pl">formuláře pro pokročilé vyhledávání</a>.</p>
+ 
+<dl>
+ <dt>Odkaz</dt>
+ <dd><a href="https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv">https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv</a></dd>
+</dl>
+
+<p>Kódování souboru je Unicode UTF-8. Znak, který odděluje pole, je &lt;tab&gt; (tabulka).</p>
+
+
+
+<h3>Export dat RDF</h3>
+
+<p>Databáze je dostupná také ve formátu RDF. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">oznámení ve francouzštině</a>.</p>
+
+<dl>
+ <dt>Odkaz</dt>
+ <dd><a href="https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf">https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf</a></dd>
+</dl>
+
+<h2>Live JSON API</h2>
+
+API se chová z 99 % jako Open Food Facts, takže mnoho SDK, kódů pro interakci s Open Food Facts API by mělo fungovat pouze změnou koncového bodu z: openfoodfacts.org na openbeautyfacts.org. Kód nebyl aktualizován více než rok, takže mnoho novějších rozhraní API, jako jsou panely znalostí, ještě není k dispozici.
+
+<p>K dispozici je také JSON API pro čtení dat pro produkt. Toto API se používá zejména v mobilní aplikaci Open Beauty Facts pro iPhone a Android.</p>
+
+<p>Postupně měníme rozhraní API, ale dbáme na zachování zpětné kompatibility. Řekněte nám, zda ho používáte, abychom vám mohli sdělit o možných změnách.</p>
+
+<p>Adresa URL pro čtení dat pro produkt: https://world.openbeautyfacts.org/api/v0/product/<i>[barcode]</i>.json</p>
+
+
+
+<p>Příklad: <a href="https://world.openbeautyfacts.org/api/v0/product/3600550578041.json">https://world.openbeautyfacts.org/api/v0/product/3600550578041.json</a></p>
+<ul>
+<li>
+ <a href="https://wiki.openfoodfacts.org/API">API V1- Stará dokumentace dostupná na Wiki</a> (Důležitá poznámka: stránka je rozdělena na podstránky pro ČTENÍ a ZÁPIS). 
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/api-documentation/">API V2 – Komplexní, ale není kompatibilní s OpenAPI</a> – Obsahuje případy použití pro zobrazení produktu a umožňuje vašim uživatelům přidávat údaje potřebné k získání Nutri-Score, klasifikace NOVA, přísad a Eco-Score.
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2 - nová dokumentace OpenAPI - Work in Progress</a>
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V3 - nová dokumentace OpenAPI - Work in Progress</a>
+ </li>
+</ul>
+<p>Je velmi vítáno používat API pro produkční případy, pokud 1 volání API = 1 skutečné skenování uživatelem.
+Jakýkoli pokus o stažení databáze pomocí API bude velmi pravděpodobně zablokován, protože právě na této stránce jsou k dispozici úplné denní exporty.</p>
+<p>Také odeslání HTTP hlavičky s vaším voláním API je dobrý způsob, jak se s námi spojit, pokud by nastal nějaký problém.</p>
+<p>Pokud si s něčím nevíte rady, nebo máte nějaký dotaz (není to žádná hloupá otázka), klidně se zeptejte na Slacku :-)</p>
+
+<h2>Mobilní aplikace pro Android a iPhone (potřebujeme pomoc!)</h2>
+
+<p>Kód pro mobilní aplikaci Open Beauty Facts je k dispozici na GitHubu (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> a <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>). <b>Potřebujeme pomoc s přizpůsobením nového nativního iOS kódu kosmetice</b>
+Aplikace umožňuje uživatelům naskenovat čárový kód produktů, zobrazit informace o produktu a pořizovat a odesílat fotografie a údaje o chybějících produktech.</p>
+
+<p>Aplikace pro Android je vyvinuta v Kotlin.</p>
+<p>Nová aplikace pro různé platformy je vyvinuta ve Flutter/Dart.</p>
+<p>Můžete znovu použít kód (je to open source) a pomoci nám jej vylepšit, pro každého na celé planetě.
+
+<h2>Obaly a sady SDK</h2>
+<p>Pravděpodobně máme wrapper pro váš oblíbený programovací jazyk. Pokud ano, můžete jej použít a vylepšit a pravděpodobně k němu přidat podporu Open Beauty Facts. Pokud ne, můžete pomoci s jeho vytvořením.</p>
+<p>Umožní vám spotřebovávat data a také umožní vašim uživatelům přispívat novými daty</p>
+<ul>
+<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (stará oficiální aplikace Open Beauty Facts)</a></li>
+<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub (zatím pouze Open Food Facts)</a></li>
+<li>Elixír: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub (v současné době pouze Open Food Facts)</a></li>
+<li>Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub (v současné době pouze Open Food Facts)</a></li>
+<li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub (momentálně pouze Open Food Facts)</a></li>
+<li>PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub (v současné době pouze Open Food Facts)</a></li>
+<li>PHP (Laravel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub (v současné době pouze Open Food Facts)</a></li>
+<li>Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub (v současné době pouze Open Food Facts)</a></li>
+<li>React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub (v současné době pouze Open Food Facts)</a></li>
+<li>Ruby: <a href="https://github.com/openfoodfacts/openbeautyfacts-ruby">GitHub (kompatibilní s Open Beauty Facts)</a></li>
+</ul>
+
+<h2>Diskuse o datech, API a exportu</h2>
+<p>Můžete se <a href="https://slack.openfoodfacts.org">připojit k chatovací místnosti Open Beauty Facts Slack, což je preferovaný způsob, jak klást otázky a diskutovat o API</a>.</p>
+<p>Můžete <a href="https://github.com/openfoodfacts/api-documentation/discussions">otevřít vlákno v našem úložišti dokumentace API</a>
+<!--
+<p>You can also join the mailing list to discuss the API and exports, tell us about your re-uses, and be notified when improvements or changes are made to the API. Send an empty e-mail to
+<a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a> to subscribe.</p>
+-->
+
+<h2>Kontakt</h2>
+
+<p>V případě jakýchkoli dotazů ohledně údajů nás můžete kontaktovat na <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>

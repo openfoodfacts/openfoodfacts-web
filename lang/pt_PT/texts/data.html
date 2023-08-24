@@ -4,22 +4,18 @@
 <p>A base de dados do Open Food Facts está disponível sob a <a href="https://opendatacommons.org/licenses/odbl/1.0/">Licença Open Database</a>.<br/>
 Os conteúdos individuais da base de dados estão disponíveis sob a <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Licença Database Contents</a>.<br/>
 As imagens dos produtos estão disponíveis sob a <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Licença Creative Commons Atribuição-CompartilhaIgual</a>.
-Eles podem conter elementos gráficos sujeitos a direitos de autor ou outros direitos, que em alguns casos podem ser reproduzidos (direitos de citação ou fair use/uso razoável).</p>
+Estas podem conter elementos gráficos sujeitos a direitos de autor ou outros direitos, que em alguns casos podem ser reproduzidos (direitos de citação ou uso razoável/fair use).</p>
 
-<p>Por favor, leia os <a href="https://world.openfoodfacts.org/terms-of-use">Termos e condições de uso e reutilização</a> antes de reutilizar os dados.</p>
+<p>Por favor, leia os <a href="https://world-pt.openfoodfacts.org/termos-de-utilizacao">Termos e condições de uso e reutilização</a> antes de reutilizar os dados.</p>
 
 
-<p>Estamos muito interessados ​​em saber para que servem os dados do Open Food Facts. Não é obrigatório, mas gostaríamos muito que <a href="mailto:contact@openfoodfacts.org">nos dissesse como reutiliza os nossos dados</a> para que possamos partilhá-los
-com a comunidade do Open Food Facts.</p>
+<p>Estamos muito interessados ​​em saber para que servem os dados do Open Food Facts. Não é obrigatório, mas gostaríamos muito que <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">nos dissesse como reutiliza os nossos dados</a> para que possamos partilhá-los com a comunidade do Open Food Facts.</p>
 
 <h2>Exportação de dados abertos do Open Food Facts</h2>
 
-<p>São geradas todas as noites dumps e exportações da base de dados. A base de dados é muito grande, portanto poderá encontrar
-  <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">diferentes formas de usar os dados</a>, 
-  dependendo do tipo de exportação.</p>
+<p>São geradas todas as noites dumps e exportações da base de dados. A base de dados é muito grande, mas pode encontrar <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">várias formas diferentes de usar os dados</a>, dependendo do tipo de exportação.</p>
 
 <p>As informações sobre os diferentes campos para o dump do MongoDB e as exportações de CSV estão disponíveis em <a href="https://static.openfoodfacts.org/data/data-fields.txt">https://world.openfoodfacts.org/data/data-fields.txt </a></p>
-
 
 <h3>Dump MongoDB</h3>
 
@@ -39,12 +35,12 @@ com a comunidade do Open Food Facts.</p>
 <p>Estão disponíveis as exportações diárias de delta dos últimos 14 dias. A lista de ficheiros delta atualmente disponíveis pode ser encontrada em <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.
  Cada linha representa um ficheiro que está disponível em <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.
  O nome do ficheiro contém o timestamp do UNIX da primeira e última alteração contida no ficheiro JSON, para que os ficheiros delta possam ser importados (após a extração) com <code>mongoimport</code> por ordem alfabética.</p>
-<p>Por favor, note que, devido à natureza do <code>mongoexport</code>, os ficheiros delta não podem informá-lo sobre produtos eliminados. Para remover produtos eliminados da sua base de dados, terá de importar o dump completo do MongoDB.</p>
+<p>Por favor, note que, devido à natureza do <code>mongoexport</code>, os ficheiros delta não podem informá-lo sobre os produtos eliminados. Para remover produtos eliminados da sua base de dados, terá de importar o dump completo do MongoDB.</p>
 
 
 <h3>Exportação de dados JSONL</h3>
 
-<p>Toda a base de dados também está disponível no formato <a href="https://jsonlines.org/">JSONL</a> (por vezes chamado de LDJSON ou NDJSON), onde cada linha é um objeto JSON. 
+<p>Toda a base de dados está também disponível no formato <a href="https://jsonlines.org/">JSONL</a> (por vezes chamado de LDJSON ou NDJSON), onde cada linha é um objeto JSON. 
   Representa os mesmos dados que a exportação MongoDB. O ficheiro é comprimido com gzip.</p>
 
 <dl>
@@ -54,13 +50,14 @@ com a comunidade do Open Food Facts.</p>
 </dl>
 
 
-<h3>Exportação de dados RDF</h3>
+<h3>Exportação de dados CSV</h3>
 
-<p>Os dados de todos os produtos, ou alguns dos produtos, podem ser descarregados no formato CSV (legível com o OpenOffice, Excel e muitos outros programas) através do <a href="https://world.openfoodfacts.org/cgi/search.pl">formulário de pesquisa avançada</a>.</p>
+<p>Os dados de todos os produtos, ou alguns dos produtos, podem ser descarregados no formato CSV (legível com o OpenOffice, Excel e muitos outros programas) através do <a href="https://world-pt.openfoodfacts.org/cgi/search.pl">formulário de pesquisa avançada</a>.</p>
 
 <dl>
- <dt>Hiperligação</dt>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a></dd>
+ <dt>Hiperligações</dt>
+ <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a> (CSV em bruto)</dd>
+ <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (CSV comprimido no formato GZIP)</dd>
 </dl>
 
 <p>A codificação do ficheiro é Unicode UTF-8. O caractere que separa os campos é &lt;tab&gt; (tabulação).</p>
@@ -69,64 +66,82 @@ com a comunidade do Open Food Facts.</p>
 
 <h3>Exportação de dados RDF</h3>
 
-<p>A base de dados também está disponível no formato RDF. <a href="https://fr.blog.openfoodfacts.org/news/des-donnees-libres-et-liees-export-rdf-des-donnees">anúncio em francês</a>.</p>
+<p>A base de dados também está disponível no formato RDF. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">anúncio em francês</a>.</p>
 
 <dl>
  <dt>Hiperligação</dt>
  <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf</a></dd>
 </dl>
 
-<h2>API JSON ao vivo</h2>
+<h3>Exportação de imagens</h3>
+
+<p>Todas as imagens e resultados de OCR podem ser descarregados do nosso servidor ou da AWS (através do Programa de Dados Abertos AWS). Consulte a <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">nossa documentação</a> para saber mais sobre a transferência de imagens.</p>
+
+<h2>API JSON e XML ao vivo</h2>
 
 <p>Também está disponível uma API JSON para ler os dados de um produto. Essa API é usada em particular na aplicação móvel Open Food Facts para iPhone e Android.</p>
 
-<p>Melhoramos a API com o tempo, mas tomamos o cuidado de manter a compatibilidade com versões anteriores. Por favor, diga-nos se o utilizar, para que possamos informá-lo sobre possíveis alterações.</p>
+<p>Atualizamos a API periodicamente, mas garantimos a compatibilidade com versões anteriores. Por favor, <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">contacte-nos</a> se a utilizar, para o informarmos de eventuais alterações.</p>
 
 <p>URL para ler os dados de um produto: https://world.openfoodfacts.org/api/v0/product/<em>[barcode]</em>.json</p>
 
 <p>Exemplo: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
+<p>Também pode obter o resultado em XML utilizando <code>.xml</code></p>
+<p>Exemplo: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.xml">https://world.openfoodfacts.org/api/v0/produto/737628064502.xml</a></p>
 
-A documentação adicional está <a href="https://openfoodfacts.github.io/api-documentation/">disponível aqui</a>.
-Ele contém casos de utilização para mostrar um produto e permitir que os seus utilizadores adicionem os dados necessários para obter o Nutri-Score, grupos e aditivos NOVA e Eco-Score.
+<ul>
+<li>
+ <a href="https://wiki.openfoodfacts.org/API">API V1- Documentação antiga disponível na wiki</a> (nota importante: a página está dividida em subpáginas para READ e WRITE). 
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Abrangente, mas não compatível com OpenAPI</a> - Contém casos de utilização para mostrar um produto e permitir que seus utilizadores adicionem os dados necessários para obter o Nutri-Score, a classificação NOVA, os aditivos e o Eco-Score.
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2 - nova documentação OpenAPI - Trabalho a decorrer</a>
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V3 - nova documentação OpenAPI - Trabalho a decorrer</a>
+ </li>
+</ul>
 
 <p>Pode usar a API para casos de produção, desde que 1 chamada de API = 1 varredura real de um utilizador.
 Qualquer tentativa de sobrecarregar a base de dados pela API provavelmente será bloqueada, pois as exportações completas diárias estão disponíveis nesta página.</p>
 <p>Além disso, enviar um cabeçalho HTTP com a sua chamada de API é uma boa maneira de entrarmos em contacto, caso haja qualquer problema.</p>
-<p>Se não tiver certeza sobre alguma coisa ou tiver alguma dúvida (não existem perguntas absurdas), fique à vontade para perguntar no canal #api no Slack :-)</p>
+<p>Se tiver dúvidas sobre qualquer coisa, ou se tiver alguma pergunta (não há perguntas disparatadas), sinta-se à vontade para a fazer no canal #api no Slack :-)</p>
 
 <h2>Aplicação para aparelhos móveis Android e iPhone</h2>
 
-<p>O código para a aplicação móvel Open Food Facts está disponível no GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> e <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
-A aplicação permite que os utilizadores digitalizem o código de barras dos produtos, visualizem as informações dos produtos e tirem e enviem fotografias e dados dos produtos que faltam.</p>
+<p>O código da aplicação Open Food Facts para telemóveis está disponível no GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> e <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
+A aplicação permite ao utilizador ler o código de barras de produtos, visualizar as informações sobre produtos e tirar e enviar fotografias e dados de produtos em falta.</p>
 
 <p>A aplicação para iOS é desenvolvida no Swift.</p>
 <p>A aplicação para Android é desenvolvida em Kotlin.</p>
-<p>Também temos um esforço contínuo de Dart/Flutter.</p>
+<p>A nova aplicação multiplataforma é do tipo Dart/Flutter.</p>
 <p>Está convidado a reutilizar o código (é open source) e nos ajudar a melhorá-lo, para todos, no planeta inteiro.
 
 <h2>Wrappers e SDKs</h2>
 <p>Provavelmente temos um wrapper para sua linguagem de programação favorita. Se o fizermos, pode usá-lo e melhorá-lo. Se não o fizermos, pode ajudar a criá-lo.</p>
-<p>Permitiram que consuma dados, bem como que seus utilizadores contribuam com novos dados</p>
+<p>Permitem que consuma dados e que os utilizadores contribuam com novos dados</p>
 
 <h3>Princípios gerais</h3>
 <ul>
-<li>Pode pesquisar informações sobre produtos, incluindo muitos valores úteis calculados.</li>
+<li>Pode pesquisar informações sobre produtos, incluindo muitos valores calculados úteis.</li>
 <li>Se não puder obter informações sobre um produto específico, pode fazer com que seu utilizador envie fotografias e dados, que então serão processados pelo Open Food Facts AI e colaboradores para obter o resultado calculado que deseja mostrar.</li>
 <li>Pode também implementar o fluxo completo para que recebam imediatamente o resultado com algum esforço do seu lado.</li>
 </ul>
 
 <h3>Se os seus utilizadores não esperam resultados imediatamente (por ex. aplicações de inventário)</h3>
 <ul>
-<li>Envie fotografias (frente / nutrição / ingredientes): a coisa mais indolor para os seus utilizadores</li>
+<li>Envie fotografias (frente/nutrição/ingredientes): o mais fácil para os seus utilizadores</li>
 <li>O Open Food Facts AI Robotoff irá gerar alguns dados derivados das fotografias</li>
 <li>Ao longo do tempo as outras aplicações e a comunidade do Open Food Facts preencherão as lacunas de dados</li>
 </ul>
 
 <h3>Se os seus utilizadores esperam imediatamente um resultado (por exemplo, aplicações de nutrição)</h3>
 <ul>
-<li>Envie informações nutricionais + categoria &gt; obtenha o Nutri-Score</li>
-<li>Enviar ingredientes &gt; obter o grupo NOVA (sobre ultraprocessamento de alimentos), aditivos, alérgenos, ingredientes normalizados, vegano, vegetariano&hellip;</li>
-<li>Envie a categoria + rótulos &gt; obtenha logo o Eco-Score (sobre o impacto ambiental)</li>
+<li>Envie informações nutricionais + categoria &gt; obtém o Nutri-Score</li>
+<li>Envie os ingredientes &gt; obtém o grupo NOVA (sobre o ultraprocessamento de alimentos), aditivos, alérgenos, ingredientes normalizados, vegan, vegetariano&hellip;</li>
+<li>Envie a categoria + rótulos &gt; em breve obtém o Eco-Score (sobre o impacto ambiental)</li>
 </ul>
 
 <ul>
@@ -134,19 +149,20 @@ A aplicação permite que os utilizadores digitalizem o código de barras dos pr
 <li>PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a></li>
 <li>Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a></li>
 <li>Ir: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a></li>
+<li>Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a></li>
+<li>Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a></li>
 <li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a></li>
 <li>PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub</a></li>
 <li>PHP (Laravel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a></li>
 <li>Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub</a></li>
 <li>React Nativo: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a></li>
 <li>Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a></li>
+<li>Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a></li>
 </ul>
 
 <h2>Sobre dados, API e exportações</h2>
 <p>Pode <a href="https://slack.openfoodfacts.org">inscrever-se na sala de conversação do Slack Open Food Facts, que é a maneira fácil de fazer perguntas e falar sobre a API</a>.</p>
-
-<p>Também pode participar na lista de discussão para discutir a API e as exportações, informar sobre suas reutilizações e ser notificado quando forem feitas melhorias ou alterações na API. Envie um e-mail vazio para
-<a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a> para se inscrever.</p>
+<p>Pode <a href="https://github.com/openfoodfacts/api-documentation/discussions">abrir um tópico no nosso repositório de documentação da API</a>
 
 
 <h2>Contacto</h2>

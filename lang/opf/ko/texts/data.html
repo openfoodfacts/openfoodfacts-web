@@ -1,0 +1,130 @@
+
+<h1>데이터</h1>
+
+<p>The Open Products Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
+The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/>
+Products images are available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>.
+여기엔 저작권이나 다른 권리의 영향을 받는 그래픽 요소를 포함할 수 있으며, 경우에 따라 복제될 수 있습니다(인용 권리 또는 공정한 사용).</p>
+
+<p>Please read <a href="https://world.openproductsfacts.org/terms-of-use">Terms and conditions of use and re-use</a> before re-using the data.</p> 
+
+
+<p>We are very interested in learning what the Open Products Facts data is used for. It is not mandatory, but we would very much appreciate it if you <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them
+with the Open Products Facts community.</p>
+
+<h2>Open Products Facts data exports</h2>
+
+<p>데이터베이스 덤프 및 내보내기는 밤마다 생성됩니다.</p>
+
+<p>Information on the different fields for the MongoDB dump and CSV exports is available at <a href="https://static.openproductsfacts.org/data/data-fields.txt">https://world.openproductsfacts.org/data/data-fields.txt</a></p>
+
+<h3>MongoDB 덤프</h3>
+
+<p>모든 제품의 데이터는 MongoDB 데이터베이스 덤프에서 이용할 수 있습니다.</p>
+
+<dl>
+ <dt>링크</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/openproductsfacts-mongodbdump.tar.gz">https://static.openproductsfacts.org/data/openproductsfacts-mongodbdump.tar.gz</a></dd>
+ <dt>sha256sum</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/sha256sum">https://static.openproductsfacts.org/data/sha256sum</a></dd>
+ <dt>md5sum</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/md5sum">https://static.openproductsfacts.org/data/md5sum</a></dd>
+</dl>
+
+<h4>델타(Delta) 내보내기</h4>
+
+<p>지난 14 일 동안 매일 델타 내보내기가 제공되었습니다. The list of currently available delta files can be found at
+ <a href="https://static.openproductsfacts.org/data/delta/index.txt">https://static.openproductsfacts.org/data/delta/index.txt</a>.
+ Each line represents a file that is available at <code>https://static.openproductsfacts.org/data/delta/{filename}</code>.
+ 파일 이름에는 JSON 파일에 포함된 첫 번째 및 마지막 변경사항의 UNIX 타임스탬프가 포함되어 있어, 델타 파일을 알파벳 순서로 <code>mongoimport</code>로 불러올 수 있습니다(추출 후).</p>
+<p><code>mongoexport</code>의 특성상 델타 파일이 삭제된 제품에 대해 알려줄 수 없다는 점에 유의하십시오. 삭제된 제품을 데이터베이스에서 제거하려면 전체 MongoDB 덤프를 가져와야 합니다.</p>
+ 
+<h3>CSV 데이터 내보내기</h3>
+
+<p>Data for all products, or some of the products, can be downloaded in CSV format (readable with OpenOffice, Excel and many other software)
+ through the <a href="https://world.openproductsfacts.org/cgi/search.pl">advanced search form</a>.</p>
+ 
+<dl>
+ <dt>링크</dt>
+ <dd><a href="https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv">https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv</a></dd>
+</dl>
+
+<p>파일 인코딩은 유니코드 UTF-8입니다. 필드를 구분하는 문자는 &lt;tab&gt;(표)이다.</p>
+
+
+
+<h3>RDF 데이터 내보내기</h3>
+
+<p>데이터베이스도 RDF 형식으로 이용할 수 있다. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
+
+<dl>
+ <dt>링크</dt>
+ <dd><a href="https://world.openproductsfacts.org/data/en.openproductsfacts.org.products.rdf">https://world.openproductsfacts.org/data/en.openproductsfacts.org.products.rdf</a></dd>
+</dl>
+
+<h2>라이브 JSON API</h2>
+
+<p>The API behaves 99% like Open Food Facts, so many of the SDKs, codes to interact with the Open Food Facts API should work by merely changing the endpoint from: openfoodfacts.org to openproductsfacts.org. The code hasn't been updated in over a year, so many of the newer APIs like Knowledge Panels are not available yet.</p>
+
+<p>제품의 데이터를 읽는 데 JSON API를 사용할 수도 있습니다. This API is in particular used in the Open Products Facts mobile app for iPhone and Android.</p>
+
+<p>API를 시간 경과에 따라 변경하지만 이전 버전과의 호환성을 유지하기 위해 주의를 기울입니다. 잠재적 변경에 대해 알려줄 수 있도록 사용하는 경우 알려주십시오.</p>
+
+<p>URL to read data for a product: https://world.openproductsfacts.org/api/v0/product/<i>[barcode]</i>.json</p>
+
+<p>Example: <a href="https://world.openproductsfacts.org/api/v0/product/8710847992063.json">https://world.openproductsfacts.org/api/v0/product/8710847992063.json</a></p>
+<ul>
+<li>
+ <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Comprehensive but not OpenAPI compliant</a> - It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2 - new OpenAPI documentation - Work in Progress</a>
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V3 - new OpenAPI documentation - Work in Progress</a>
+ </li>
+</ul>
+<p>사용자가 1 번의 API 호출 = 1 번의 실제 스캔을하는 한 프로덕션 사례에 API를 사용하는 것이 매우 좋습니다.
+이 페이지에서 매일 전체 내보내기를 사용할 수 있으므로 API를 사용하여 데이터베이스를 긁어 내려는 시도가 차단 될 가능성이 큽니다.</p>
+<p>어떤 것에 대해 확신이 없거나 질문이 있다면(어리석은 질문은 없으니) Slack에 자유롭게 물어보십시오 :-)</p>
+<p>어떤 것에 대해 확신이 없거나 질문이 있다면(어리석은 질문은 없으니) Slack에 자유롭게 물어보십시오 :-)</p>
+
+<h2>Android and iPhone mobile app (help needed!)</h2>
+
+<p>The code for the Open Products Facts mobile app currently deployed is available on GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a>. <b>We <a href="https://github.com/openfoodfacts/smooth-app/discussions/1378">need help to adapt the new Flutter code to cosmetics</a></b>
+The app allows users to scan the barcode of products, to view the product information, and to take and send pictures and data for missing products.</p>
+
+<p>The app for Android is developed in Kotlin.</p>
+<p>The new cross-platform app is developed in Flutter/Dart.</p>
+<p>코드를 다시 사용하고(오픈 소스) 지구상의 모든 사람들을 위해 우리가 코드를 개선하도록 도와주십시오.
+
+<h2>Wrappers 및 SDKs</h2>
+<p>우리는 아마도 당신이 가장 좋아하는 프로그래밍 언어의 wrapper를 가지고 있을 것입니다. If we do, you can use it and improve it, and probably add Open Products Facts support to it. 그렇지 않은 경우 만들 수 있습니다.</p>
+<p><a href="https://slack.openfoodfacts.org">질문을 하고 API를 토론하는 데 선호되는 방법인  Open Food Facts  Slack 채팅방에 가입</a>할 수 있습니다.</p>
+<ul>
+<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (old Open Products Facts official app)</a></li>
+<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub (Open Food Facts only at the moment)</a></li>
+<li>Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub (Open Food Facts only at the moment)</a></li>
+<li>Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub (Open Food Facts only at the moment)</a></li>
+<li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub (Open Food Facts only at the moment)</a></li>
+<li>PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub (Open Food Facts only at the moment)</a></li>
+<li>PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub (Open Food Facts only at the moment)</a></li>
+<li>Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub (Open Food Facts only at the moment)</a></li>
+<li>React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub (Open Food Facts only at the moment)</a></li>
+<li>Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub (Open Food Facts only at the moment)</a></li>
+</ul>
+
+<h2>데이터, API 논의 및 내보내기</h2>
+<p>You can <a href="https://slack.openfoodfacts.org">join the Open Products Facts Slack chatroom which is the preferred way to ask questions and discuss the API</a>.</p>
+<p>You can <a href="https://github.com/openfoodfacts/api-documentation/discussions">open a thread on our API documentation repository</a>
+
+<!--
+<p>You can also join the mailing list to discuss the API and exports, tell us about your re-uses, and be notified when improvements or changes are made to the API. Send an empty e-mail to <a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a> to subscribe.</p>
+-->
+
+<h2>문의</h2>
+
+<p>데이터에 관한 문의 사항은 <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>로 문의하십시오.

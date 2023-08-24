@@ -7,6 +7,10 @@ on:
       - deploy-*
     tags: 
       - v*.*.*
+      
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -15,7 +19,7 @@ jobs:
     concurrency: off-net
     steps:
     - name: Checkout git repository
-      uses: appleboy/ssh-action@f9010ff7f1bbd7db1a0b4bab661437550cea20c0  # v0.1.4
+      uses: appleboy/ssh-action@v1.0.0 # v0.1.4
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}

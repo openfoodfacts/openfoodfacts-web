@@ -9,17 +9,13 @@ They may contain graphical elements subject to copyright or other rights, that m
 <p>Please read <a href="https://world.openfoodfacts.org/terms-of-use">Terms and conditions of use and re-use</a> before re-using the data.</p>
 
 
-<p>We are very interested in learning what the Open Food Facts data is used for. It is not mandatory, but we would very much appreciate it if you <a href="mailto:contact@openfoodfacts.org">tell us about your re-uses</a> so that we can share them
-with the Open Food Facts community.</p>
+<p>We are very interested in learning what the Open Food Facts data is used for. It is not mandatory, but we would very much appreciate it if you <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Food Facts community.</p>
 
 <h2>Open Food Facts data exports</h2>
 
-<p>Database dumps and exports are generated nightly. The database is very big, so you can find 
-  <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">different ways to use the data</a>, 
-  depending on the export flavor.</p>
+<p>Database dumps and exports are generated nightly. The database is very big, so you can find <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">different ways to use the data</a>, depending on the export flavor.</p>
 
 <p>Information on the different fields for the MongoDB dump and CSV exports is available at <a href="https://static.openfoodfacts.org/data/data-fields.txt">https://world.openfoodfacts.org/data/data-fields.txt</a></p>
-
 
 <h3>MongoDB dump</h3>
 
@@ -74,31 +70,48 @@ with the Open Food Facts community.</p>
 
 <h3>RDF Data Export</h3>
 
-<p>The database is also available in the RDF format. <a href="https://fr.blog.openfoodfacts.org/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
+<p>The database is also available in the RDF format. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
 
 <dl>
  <dt>Link</dt>
  <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf</a></dd>
 </dl>
 
+<h3>படத் தரவு ஏற்றுமதி</h3>
+
+<p>அனைத்து படங்கள் மற்றும் OCR முடிவுகள் எங்கள் சேவையகத்திலிருந்து அல்லது AWS இலிருந்து (AWS திறந்த தரவு நிரல்மூலம்) பதிவிறக்கம் செய்யப்படலாம். எமது படங்களைப் பதிவிறக்குவது எப்படி என்பதைப் பற்றி மேலும் அறிய</a> </0>பார்க்கவும்.</p>
+
 <h2>Live JSON and XML API</h2>
 
 <p>A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android.</p>
 
-<p>We improve the API over-time but we are careful to keep backwards compatibility. Please tell us if you use it, so that we can tell you about potential changes.</p>
+<p>காலப்போக்கில் API ஐ மேம்படுத்துகிறோம் ஆனால் பின்னோக்கி இணக்கத்தன்மையை வைத்திருப்பதில் கவனமாக இருக்கிறோம். <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">நீங்கள் பயன்படுத்தினால்</a> ஐத் தொடர்புகொள்ளவும், அதனால் சாத்தியமான மாற்றங்களைப் பற்றி நாங்கள் உங்களுக்குத் தெரிவிக்க முடியும்.</p>
 
 <p>URL to read data for a product: https://world.openfoodfacts.org/api/v0/product/<em>[barcode]</em>.json</p>
 
 <p>Example: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.json">https://world.openfoodfacts.org/api/v0/product/737628064502.json</a></p>
-<p>You can also get the result in XML by using <code>.xml</code></p>
-<p>Example: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.xml">https://world.openfoodfacts.org/api/v0/product/737628064502.xml</a></p>
-Further documentation is <a href="https://openfoodfacts.github.io/api-documentation/">available here</a>.
-It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
+<p><code>.xml</code>ஐப் பயன்படுத்தி XML இல் முடிவையும் பெறலாம்</p>
+<p>எடுத்துக்காட்டு: <a href="https://world.openfoodfacts.org/api/v0/product/737628064502.xml">https://world.openfoodfacts.org/api/v0/product/737628064502.xml</a></p>
+
+<ul>
+<li>
+ <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Comprehensive but not OpenAPI compliant</a> - It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2 - new OpenAPI documentation - Work in Progress</a>
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V3 - new OpenAPI documentation - Work in Progress</a>
+ </li>
+</ul>
 
 <p>You are very welcome to use the API for production cases, as long as 1 API call = 1 real scan by a user.
 Any attempt to scrape the database using the API will very likely be blocked, as full daily exports are available on this very page.</p>
 <p>Also, sending an HTTP header with your API call is a good way we can get in touch, should any issue arise.</p>
-<p>If you are unsure about anything, or have any question (there is no silly question), feel free to ask it on the #api channel on Slack :-)</p>
+<p>உங்களுக்கு ஏதேனும் சந்தேகம் இருந்தாலோ அல்லது ஏதேனும் கேள்விகள் இருந்தாலோ (எதுவும் முட்டாள்தனமான கேள்வி இல்லை), ஸ்லாக்கில் உள்ள #api சேனலில் கேட்கலாம் :-)</p>
 
 <h2>Android and iPhone mobile app</h2>
 
@@ -140,16 +153,20 @@ The app allows users to scan the barcode of products, to view the product inform
 <li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a> - <a href="https://pub.dev/packages/openfoodfacts">Package on pub.dev</a></li>
 <li>Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a></li>
 <li>Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a></li>
+<li>Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a></li>
+<li>Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a></li>
 <li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a></li>
 <li>PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub</a></li>
 <li>PHP (Laravel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a></li>
 <li>Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub</a></li>
 <li>React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a></li>
 <li>Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a></li>
+<li>Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a></li>
 </ul>
 
 <h2>Discussing data, API and exports</h2>
 <p>You can <a href="https://slack.openfoodfacts.org">join the Open Food Facts Slack chatroom which is the preferred way to ask questions and discuss the API</a>.</p>
+<p>You can <a href="https://github.com/openfoodfacts/api-documentation/discussions">open a thread on our API documentation repository</a>
 
 
 <h2>தொடர்புக்கு</h2>
