@@ -1,0 +1,35 @@
+name: Check Forbidden Strings in index.html
+
+on:
+  push:
+    paths:
+      - 'lang/**/texts/index.html'
+  pull_request:
+    paths:
+      - 'lang/**/texts/index.html'
+
+jobs:
+  check_strings:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install prerequisites
+        run: sudo apt-get install -y grep
+
+      - name: Check for forbidden strings
+        run: |
+          FORBIDDEN_STRINGS=("Open Pet Food Facts" "Open Beauty Facts" "Open Products Facts")
+          FILES=$(find ./lang/ -name 'index.html' -path '*/texts/*')
+          
+          for file in $FILES; do
+            for string in "${FORBIDDEN_STRINGS[@]}"; do
+              if grep -q "$string" "$file"; then
+                echo "Error: '$string' found in $file"
+                exit 1
+              fi
+            done
+          done
+          echo "No forbidden strings found."
