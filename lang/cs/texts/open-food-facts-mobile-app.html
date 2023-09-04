@@ -2,6 +2,30 @@
 
 <p>Chcete-li skenovat potravinářské produkty a získat jejich Nutri-Score, jejich Eco-Score, jejich úroveň zpracování se skupinou NOVA (Nova 4 jsou ultra-zpracované potraviny) a dešifrovat potravinářské přídatné látky, nainstalujte si bezplatnou aplikaci Open Food Facts!</p>
 
+<h2>Naskenujte QR kód pomocí telefonu pro instalaci aplikace</h2>
+
+<div class="cell small-50 v-align-center" id="footer_scan" style="display:block">
+<div id="footer_install_the_app">Nainstalujte aplikaci!</div> Naskenujte tento <span id="everyday">QR-Code</span> svým <span id="foods">telefonem</span>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+	<div id="qrcode"></div>
+<script>
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: "https://world.openfoodfacts.net/open-food-facts-mobile-app",
+	width: 128,
+	height: 128,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
+</script>
+
+
+					
+</div>
+<!--
+<img src="https://raw.githubusercontent.com/openfoodfacts/openfoodfacts-server/lp-illustrations/html/images/illustrations/get-the-app-en.svg" alt="Scan the QR Code with your phone to install the app" width="409" height="127" />
+-->
+<h2>Nainstalujte si aplikaci do telefonu</h2>
 <a href="https://apps.apple.com/app/open-food-facts/id588797948">
 <img src="https://static.openfoodfacts.org/images/misc/appstore/black/appstore_CZ.svg" alt="Dostupné na App Store" width="120" height="40" />
 </a>
@@ -10,7 +34,7 @@
 <img src="https://static.openfoodfacts.org/images/misc/google-play-badge-svg-master/img/cs_get.svg" alt="Dostupné na Google Play" width="102" height="40" />
 </a>
 
-<a href="https://www.microsoft.com/en-us/p/openfoodfacts/9nblggh0dkqr">
+<a href="https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG">
 <img src="https://static.openfoodfacts.org/images/misc/microsoft/Czech.svg" alt="K dispozici ve Windows Phone Store" width="109" height="40px" />
 </a>
 
@@ -26,13 +50,13 @@
 
 <div class="panel callout">
 <h2>Podívejte se na nejnovější funkce</h2>
-<p><b>Červen 2022:</b> <a href="https://blog.openfoodfacts.org/en/press-release-new-mobile-app">Kompletně přepracovaná aplikace pro Android a iPhone: více personalizovaná, pedagogická a více intuitivní</a></p>
-<p><b>Leden 2021:</b> Aplikace <a href="https://blog.openfoodfacts.org/fr/news/lancement-de-l-eco-score-la-note-environnementale-des-produits-alimentaires">získávají Eco-Score, zpočátku ve Francii (oznámení ve francouzštině)</a></p>
-<p><b>září 2020:</b> <a href="https://blog.openfoodfacts.org/fr/news/la-rentree-d-open-food-facts-en-6-actualites">Tmavý režim, umělá inteligence, detekce vegetariánství, veganství a palmového oleje a offline příspěvky (oznámení ve francouzštině)</a></p>
-<p><b>červen 2019:</b> <a href="https://blog.openfoodfacts.org/en/news/the-new-open-food-facts-app-to-better-decipher-labels-and-participate-in-the-common-good">Nové mobilní aplikace Open Food Facts pro iPhone a Android</a><br>
+<p><b>Červen 2022:</b> <a href="https://blog.openfoodfacts.org/en/press-release-new-mobile-app" alt="Press release for the new mobile app">Kompletně přepracovaná aplikace pro Android a iPhone: více personalizovaná, pedagogická a více intuitivní</a></p>
+<p><b>Leden 2021:</b> Aplikace <a href="https://blog.openfoodfacts.org/fr/news/lancement-de-l-eco-score-la-note-environnementale-des-produits-alimentaires" alt="Eco-Score announcement">získávají Eco-Score, zpočátku ve Francii (oznámení ve francouzštině)</a></p>
+<p><b>září 2020:</b> <a href="https://blog.openfoodfacts.org/fr/news/la-rentree-d-open-food-facts-en-6-actualites" alt="Blogpost about novelties in the app">Tmavý režim, umělá inteligence, detekce vegetariánství, veganství a palmového oleje a offline příspěvky (oznámení ve francouzštině)</a></p>
+<p><b>červen 2019:</b> <a href="https://blog.openfoodfacts.org/en/news/the-new-open-food-facts-app-to-better-decipher-labels-and-participate-in-the-common-good" alt="Blogpost about the new native mobile app">Nové mobilní aplikace Open Food Facts pro iPhone a Android</a><br>
 Nové funkce: nepřetržité skenování, offline režim, porovnání produktů, seznamy, neomezená historie a další!
 </p>
-<p><b>2012:</b> <a href="https://blog.openfoodfacts.org/fr/news/application-mobile-open-food-facts-pour-android">Spuštění mobilní aplikace Open Food Facts, úplně první aplikace pro společné skenování potravin.</a>
+<p><b>2012:</b> <a href="https://blog.openfoodfacts.org/fr/news/application-mobile-open-food-facts-pour-android" alt="Blogpost about the pioneering Open Food Facts mobile app">Spuštění mobilní aplikace Open Food Facts, úplně první aplikace pro společné skenování potravin.</a>
 </p>
 </div>
 <!-- TODO: Translate images to your language. Ask @teolemon for the SVG file-->
@@ -78,6 +102,7 @@ if (getMobileOperatingSystem() == "iOS") {
     window.location.href = "https://apps.apple.com/app/open-food-facts/id588797948";
     }
 if (getMobileOperatingSystem() == "Windows Phone") {
+    window.location.href = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
     }
 };
 DetectAndServe();
