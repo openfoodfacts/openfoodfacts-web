@@ -2,6 +2,30 @@
 
 <p>Para escanear productos alimenticios y obtener su Nutri-Score, su Eco-Score, su nivel de procesamiento con el grupo NOVA (los Nova 4 son alimentos ultraprocesados) y para descubrir sus aditivos alimentarios, ¡instala la aplicación gratuita Open Food Facts!</p>
 
+<h2>Escanea el código QR con tu teléfono para instalar la aplicación</h2>
+
+<div class="cell small-50 v-align-center" id="footer_scan" style="display:block">
+<div id="footer_install_the_app">¡Instala la aplicación!</div> Escanea este <span id="everyday">código QR</span> con tu <span id="foods">teléfono</span>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+	<div id="qrcode"></div>
+<script>
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: "https://world.openfoodfacts.net/open-food-facts-mobile-app",
+	width: 128,
+	height: 128,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
+</script>
+
+
+					
+</div>
+<!--
+<img src="https://raw.githubusercontent.com/openfoodfacts/openfoodfacts-server/lp-illustrations/html/images/illustrations/get-the-app-en.svg" alt="Scan the QR Code with your phone to install the app" width="409" height="127" />
+-->
+<h2>Instala la aplicación en tu aplicación</h2>
 <a href="https://apps.apple.com/es/app/open-food-facts/id588797948">
 <img src="https://static.openfoodfacts.org/images/misc/appstore/black/appstore_ES.svg" alt="Disponible en la App Store" width="120" height="40" />
 </a>
@@ -10,7 +34,7 @@
 <img src="https://static.openfoodfacts.org/images/misc/google-play-badge-svg-master/img/es_get.svg" alt="Disponible en Google Play" width="102" height="40" />
 </a>
 
-<a href="https://www.microsoft.com/es-us/p/openfoodfacts/9nblggh0dkqr">
+<a href="https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG">
 <img src="https://static.openfoodfacts.org/images/misc/microsoft/Spanish.svg" alt="Disponible en la Windows Phone Store" width="109" height="40px" />
 </a>
 
@@ -78,6 +102,7 @@ if (getMobileOperatingSystem() == "iOS") {
     window.location.href = "https://apps.apple.com/app/open-food-facts/id588797948";
     }
 if (getMobileOperatingSystem() == "Windows Phone") {
+    window.location.href = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
     }
 };
 DetectAndServe();
