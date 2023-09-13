@@ -1,5 +1,10 @@
 <style type="text/css">#install_the_app_block, .donation-banner-footer, .offdays-banner {display: none;} #main_column {padding-bottom: 0;}</style>
 <script>
+    // You can change the URLs to one that works in your language. If you are unsure, do not touch anything
+    const googlePlayURL = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en&utm_source=off&utm_campaign=app-landing-page&utm_medium=website";
+    const appleStoreURL = "https://apps.apple.com/app/open-food-facts/id588797948?utm_source=off&utm_campaign=app-landing-page&utm_medium=website";
+    const microsoftStoreURL = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG?utm_source=off&utm_campaign=app-landing-page&utm_medium=website";
+
     function getMobileOperatingSystem() {
       var userAgent = navigator.userAgent || navigator.vendor || window.opera;
     
@@ -18,22 +23,67 @@
         }
     
         return "unknown";
-    }</script>
+    }
 
-    <!-- You can change the URLs to one that works in your language. If you are unsure, do not touch anything -->
-    <script>
-    function DetectAndServe(){
+    // Function to extract UTM parameters from a URL
+    function extractUTMParameters(url) {
+        var utmParams = new URLSearchParams(url.search);
+        var utmParamObject = {};
+
+        for (var pair of utmParams.entries()) {
+            var paramName = pair[0];
+            var paramValue = pair[1];
+            if (paramName.startsWith('utm_')) {
+                utmParamObject[paramName] = paramValue;
+            }
+        }
+
+        return utmParamObject;
+    }
+
+    // Add UTM parameters extracted from current URL to `targetURL`
+    function addUTMParameters(targetURL) {
+        // Create URL objects for the current URL and target URL
+        var currentURLObject = new URL(window.location.href);
+        var targetURLObject = new URL(targetURL);
+
+        // Extract UTM parameters from the current URL
+        var utmParameters = extractUTMParameters(currentURLObject);
+        var targetUtmParameters = extractUTMParameters(targetURLObject);
+
+        if (utmParameters) {
+            // Delete existing UTM parameters of target URL 
+            for (var paramName in targetUtmParameters) {
+                if (targetUtmParameters.hasOwnProperty(paramName)) {
+                    targetURLObject.searchParams.delete(paramName);
+                }
+            }
+
+            // Add UTM parameters to the target URL
+            for (var paramName in utmParameters) {
+                if (utmParameters.hasOwnProperty(paramName)) {
+                    var paramValue = utmParameters[paramName];
+                    targetURLObject.searchParams.append(paramName, paramValue);
+                }
+            }
+        }
+        return targetURLObject.href;
+    }
+
+    // redirect to Google Play Store, Apple store, etc. if we detect
+    // specific User-Agent 
+    function redirectToStore() {
     if (getMobileOperatingSystem() == "Android") {
-        window.location.href = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en";
+        window.location.href = addUTMParameters(googlePlayURL);
         }
     if (getMobileOperatingSystem() == "iOS") {
-        window.location.href = "https://apps.apple.com/app/open-food-facts/id588797948";
+        window.location.href = addUTMParameters(appleStoreURL);
         }
     if (getMobileOperatingSystem() == "Windows Phone") {
-        window.location.href = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
+        window.location.href = addUTMParameters(microsoftStoreURL);
         }
     };
-    DetectAndServe();
+    redirectToStore();
 </script>
 <div id="app-landing-page">
     <div id="download-app-block" class="block block-blue">
@@ -46,14 +96,14 @@
                     <span class="highlight-label blue rotate-right">pianeta</span>
                 </h1>
                 <p>Il più grande database alimentare aperto al mondo a portata di mano!</p>
-                <a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=it" title="Open Food Facts su Google Play">
+                <a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en&utm_source=off&utm_campaign=app-landing-page&utm_medium=website" title="Open Food Facts su Google Play">
                 <img
                     src="/images/misc/playstore/img/en_get.svg"
                     alt="Disponibile su Google Play"
                     width="120"
                     height="40"
                 ></a>
-                <a href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts sull'App Store Apple">
+                <a href="https://apps.apple.com/app/open-food-facts/id588797948?utm_source=off&utm_campaign=app-landing-page&utm_medium=website" title="Open Food Facts sull'App Store Apple">
                 <img
                     src="/images/misc/appstore/black/appstore_IT.svg"
                     alt="Disponibile su App Store"
@@ -112,9 +162,9 @@
                     <span class="highlight-label dark-green rotate-right">salute</span>
                     al livello successivo
                 </h1>
-                <p class="paragraph-top-margin">Decipher various labels, learn about nutritional information and compute instantly the Nutri-Score of your product: a nutritional label which converts the nutritional value of food and beverages into an overall score. It is child's play!</p>
-                <p>The information will always be displayed according to your preferences.</p>
-                <a class="button round secondary small" href="/nutriscore">Read more about the Nutri-Score</a>
+                <p class="paragraph-top-margin">Decifra varie etichette, conosci le informazioni nutrizionali e calcola istantaneamente il Nutri-Score del tuo prodotto: un'etichetta nutrizionale che converte il valore nutrizionale di alimenti e bevande in un punteggio complessivo. È un gioco da ragazzi!</p>
+                <p>Le informazioni saranno sempre visualizzate in base alle tue preferenze.</p>
+                <a class="button round secondary small" href="/nutriscore">Ulteriori informazioni sul Nutri-Score</a>
             </div>
         </div>
     </div>
@@ -122,17 +172,17 @@
         <div class="row">
             <div class="small-12 medium-5 medium-offset-1 column">
                 <h1 class="title-2 emphasized-title">
-                    Scan almost any food to see it’s impact on the
-                    <span class="highlight-label blue rotate-right">planet</span>
+                    Scansiona quasi tutti gli alimenti per vedere il loro impatto sul
+                    <span class="highlight-label blue rotate-right">pianeta</span>
                 </h1>
-                <p class="paragraph-top-margin">Learn about the environmental impact of over 600 thousands food products with the Eco-Score.</p>
-                <p>Browse the knowledge panels to get information like the equivalent carbon footprint, the origin of ingredients, the possible threat of species during the manufacturing process.</p>
-                <a class="button round secondary small" href="/eco-score-the-environmental-impact-of-food-products">Read more about the Eco-Score</a>
+                <p class="paragraph-top-margin">Scopri l'impatto ambientale di oltre 600 mila prodotti alimentari con l'Eco-Score.</p>
+                <p>Sfoglia i pannelli informativi per ottenere informazioni come l'impronta di carbonio equivalente, l'origine degli ingredienti, la possibile minaccia delle specie durante il processo di produzione.</p>
+                <a class="button round secondary small" href="/eco-score-the-environmental-impact-of-food-products">Ulteriori informazioni sull'Eco-Score</a>
             </div>
             <div class="small-12 medium-6 end column">
                 <img
                     src="/images/illustrations/app-planet-pizza.svg"
-                    alt="A magnifier over a pizza and planet Earth"
+                    alt="Una lente d'ingrandimento sopra una pizza e il pianeta Terra"
                     style="max-height: 250px"
                     loading="lazy"
                 >
@@ -144,15 +194,15 @@
             <div class="small-12 medium-4 medium-offset-2 column">
                 <img
                     src="/images/misc/app-landing-page/join-the-food-revolution/join-the-food-revolution_en.svg"
-                    alt="Join the food revolution"
+                    alt="Unisciti alla rivoluzione alimentare"
                     style="max-height: 180px"
                     loading="lazy"
                 >
-                <p class="paragraph-top-margin">Along with more than 170,000 contributors worldwide!</p>
+                <p class="paragraph-top-margin">Insieme a più di 170.000 contributori in tutto il mondo!</p>
             </div>
             <div class="small-12 medium-4 end column">
                 <div class="testimonial-card">
-                    <p>“I love this app!! I use it almost everyday. It’s helping me a lot finding the right product for me!”</p>
+                    <p>“Adoro questa app!! La uso quasi ogni giorno. Mi sta aiutando molto a trovare il prodotto giusto per me!”</p>
                     <p>
                         <strong>Louise</strong>
                     </p>
@@ -161,14 +211,14 @@
                     <img
                         src="/images/misc/app-landing-page/store-review-rating.svg"
                         loading="lazy"
-                        alt="Rating on Google Play Store and Apple Store"
+                        alt="Valutazione su Google Play Store e Apple Store"
                     >
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="small-12 medium-7 medium-offset-5 column">
-                <a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=it" title="Open Food Facts su Google Play">
+                <a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en&utm_source=off&utm_campaign=app-landing-page&utm_medium=website" title="Open Food Facts su Google Play">
                 <img
                     src="/images/misc/playstore/img/en_get.svg"
                     loading="lazy"
@@ -176,23 +226,23 @@
                     width="120"
                     height="40"
                 ></a>
-                <a href="https://f-droid.org/packages/openfoodfacts.github.scrachx.openfood" title="Open Food Facts on F-Droid">
+                <a href="https://f-droid.org/packages/openfoodfacts.github.scrachx.openfood" title="Open Food Facts su F-Droid">
                 <img
                     src="/images/misc/f-droid/get-it-on-en.png"
                     loading="lazy"
-                    alt="Available on F-Droid"
+                    alt="Disponibile su F-Droid"
                     height="40"
                     width="120"
                 ></a>
-                <a href="https://github.com/openfoodfacts/smooth-app/releases/latest" title="Open Food Facts app on Github">
+                <a href="https://github.com/openfoodfacts/smooth-app/releases/latest" title="App Open Food Facts su Github">
                 <img
                     src="/images/misc/app-landing-page/download-apk/download-apk_en.svg"
                     loading="lazy"
-                    alt="Download the APK"
+                    alt="Scarica l'APK"
                     height="40"
                     width="120"
                 ></a>
-                <a href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts sull'App Store Apple">
+                <a href="https://apps.apple.com/app/open-food-facts/id588797948?utm_source=off&utm_campaign=app-landing-page&utm_medium=website" title="Open Food Facts sull'App Store Apple">
                 <img
                     src="/images/misc/appstore/black/appstore_IT.svg"
                     loading="lazy"
@@ -204,7 +254,7 @@
         </div>
         <img
             src="/images/illustrations/puzzle.svg"
-            alt="A puzzle with a hand"
+            alt="Un puzzle con una mano"
             class="puzzle-illustration show-for-large-up"
             loading="lazy"
         >
