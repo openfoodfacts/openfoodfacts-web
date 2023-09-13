@@ -1,9 +1,9 @@
 <style type="text/css">#install_the_app_block, .donation-banner-footer, .offdays-banner {display: none;} #main_column {padding-bottom: 0;}</style>
 <script>
     // You can change the URLs to one that works in your language. If you are unsure, do not touch anything
-    const googlePlayURL = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en&utm_source=off&utm_campaign=app-landing-page&utm_medium=website";
-    const appleStoreURL = "https://apps.apple.com/app/open-food-facts/id588797948?utm_source=off&utm_campaign=app-landing-page&utm_medium=website";
-    const microsoftStoreURL = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG?utm_source=off&utm_campaign=app-landing-page&utm_medium=website";
+    const googlePlayURL = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en";
+    const appleStoreURL = "https://apps.apple.com/app/open-food-facts/id588797948";
+    const microsoftStoreURL = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
 
     function getMobileOperatingSystem() {
       var userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -51,7 +51,7 @@
         var utmParameters = extractUTMParameters(currentURLObject);
         var targetUtmParameters = extractUTMParameters(targetURLObject);
 
-        if (utmParameters) {
+        if (Object.keys(utmParameters).length) {
             // Delete existing UTM parameters of target URL 
             for (var paramName in targetUtmParameters) {
                 if (targetUtmParameters.hasOwnProperty(paramName)) {
@@ -66,6 +66,10 @@
                     targetURLObject.searchParams.append(paramName, paramValue);
                 }
             }
+        } else {
+            targetURLObject.searchParams.append("utm_source", "off");
+            targetURLObject.searchParams.append("utm_campaign", "app-landing-page");
+            targetURLObject.searchParams.append("utm_medium", "website");
         }
         return targetURLObject.href;
     }
@@ -73,16 +77,23 @@
     // redirect to Google Play Store, Apple store, etc. if we detect
     // specific User-Agent 
     function redirectToStore() {
-    if (getMobileOperatingSystem() == "Android") {
-        window.location.href = addUTMParameters(googlePlayURL);
+        const currentURL = new URL(window.location.href);
+        if (new URLSearchParams(currentURL.search).get("redirect") == "0") {
+            // don't redirect if redirect=0 in query parameters
+            return;
         }
-    if (getMobileOperatingSystem() == "iOS") {
-        window.location.href = addUTMParameters(appleStoreURL);
+
+        const operatingSystem = getMobileOperatingSystem();
+        if (operatingSystem == "Android") {
+            window.location.href = addUTMParameters(googlePlayURL);
         }
-    if (getMobileOperatingSystem() == "Windows Phone") {
-        window.location.href = addUTMParameters(microsoftStoreURL);
+        else if (operatingSystem == "iOS") {
+            window.location.href = addUTMParameters(appleStoreURL);
         }
-    };
+        else if (operatingSystem == "Windows Phone") {
+            window.location.href = addUTMParameters(microsoftStoreURL);
+        }
+    }
     redirectToStore();
 </script>
 <div id="app-landing-page">
@@ -96,14 +107,14 @@
                     <span class="highlight-label blue rotate-right">planet</span>
                 </h1>
                 <p>The world's largest open food database at your fingertips!</p>
-                <a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en&utm_source=off&utm_campaign=app-landing-page&utm_medium=website" title="Open Food Facts on Google Play">
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=bg" title="Open Food Facts on Google Play">
                 <img
                     src="/images/misc/playstore/img/en_get.svg"
                     alt="Предлага се в Google Play"
                     width="120"
                     height="40"
                 ></a>
-                <a href="https://apps.apple.com/app/open-food-facts/id588797948?utm_source=off&utm_campaign=app-landing-page&utm_medium=website" title="Open Food Facts on the Apple App Store">
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts on the Apple App Store">
                 <img
                     src="/images/misc/appstore/black/appstore_BG.svg"
                     alt="Предлага се в App Store"
@@ -218,7 +229,7 @@
         </div>
         <div class="row">
             <div class="small-12 medium-7 medium-offset-5 column">
-                <a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en&utm_source=off&utm_campaign=app-landing-page&utm_medium=website" title="Open Food Facts on Google Play">
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=bg" title="Open Food Facts on Google Play">
                 <img
                     src="/images/misc/playstore/img/en_get.svg"
                     loading="lazy"
@@ -242,7 +253,7 @@
                     height="40"
                     width="120"
                 ></a>
-                <a href="https://apps.apple.com/app/open-food-facts/id588797948?utm_source=off&utm_campaign=app-landing-page&utm_medium=website" title="Open Food Facts on the Apple App Store">
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts on the Apple App Store">
                 <img
                     src="/images/misc/appstore/black/appstore_BG.svg"
                     loading="lazy"
@@ -260,3 +271,11 @@
         >
     </div>
 </div>
+<script>
+    document.querySelectorAll('[data-app-store="google"]').forEach((item) => {
+        item.href = addUTMParameters(googlePlayURL);
+    });
+    document.querySelectorAll('[data-app-store="apple"]').forEach((item) => {
+        item.href = addUTMParameters(appleStoreURL);
+    });
+</script>
