@@ -24,7 +24,7 @@ ROOT_HTML_DIR = PROJECT_DIR.parent / "lang"
 
 class KnowledgeContentItem(BaseModel):
     lang: Lang
-    tag_type: Literal["label", "additive", "category"]
+    tag_type: Literal["labels", "additives", "categories"]
     value_tag: constr(min_length=3)
     content: constr(min_length=2)
     country: Country
