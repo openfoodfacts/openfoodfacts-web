@@ -6,49 +6,25 @@ This script should be launched before committing every time a change is done
 to `content.yml`.
 """
 
-from collections import Counter
+import argparse
 from pathlib import Path
-from typing import Literal
 
 import markdown
 import yaml
+from _types import KnowledgeContent, KnowledgeContentItem
 from openfoodfacts.types import Country, Lang
-from pydantic import BaseModel, constr, validator
 
 PROJECT_DIR = Path(__file__).parent
 ROOT_HTML_DIR = PROJECT_DIR.parent / "lang"
 
 
-# Models related to information knowledge panel content
-
-
-class KnowledgeContentItem(BaseModel):
-    lang: Lang
-    tag_type: Literal["labels", "additives", "categories"]
-    value_tag: constr(min_length=3)
-    content: constr(min_length=2)
-    country: Country
-    category_tag: str | None = None
-
-
-class KnowledgeContent(BaseModel):
-    items: list[KnowledgeContentItem]
-
-    @validator("items")
-    def unique_items(cls, v):
-        """We check that there is no duplicate items, using as keys:
-        lang, tag_type, value_tag, country and category tag."""
-        count = Counter(
-            (item.lang, item.tag_type, item.value_tag, item.country, item.category_tag)
-            for item in v
-        )
-        most_common = count.most_common(1)
-        if most_common and most_common[0][1] > 1:
-            raise ValueError(f"more than 1 item with fields={most_common[0][0]}")
-        return v
-
-
-def generate_file_path(root_dir: Path, item: KnowledgeContentItem) -> Path:
+def generate_file_path(
+    root_dir: Path,
+    item: KnowledgeContentItem,
+    tag_type: str,
+    country: Country,
+    lang: Lang,
+) -> Path:
     """Generate a file path unique to the knowledge content item.
 
     The generated path depends on the `tag_type`, the `value_tag`, the
@@ -57,6 +33,9 @@ def generate_file_path(root_dir: Path, item: KnowledgeContentItem) -> Path:
     Args:
         root_dir: the root directory where HTML pages are located
         item: the knowledge content item
+        tag_type: the target tag type
+        country: the target country (2-letters code or 'world')
+        lang: the target lang (2-letters code)
 
     Returns:
         Path: the path where the HTML page should be saved
@@ -65,10 +44,10 @@ def generate_file_path(root_dir: Path, item: KnowledgeContentItem) -> Path:
     value_tag = item.value_tag.replace(":", "_")
     return (
         root_dir
-        / item.lang.name
+        / lang.name
         / "knowledge_panels"
-        / item.tag_type
-        / f"{value_tag}_{item.country.name}{category_tag_suffix}.html"
+        / tag_type
+        / f"{value_tag}_{country.name}{category_tag_suffix}.html"
     )
 
 
@@ -86,13 +65,23 @@ def build_content(root_dir: Path, file_path: Path):
     """
     with file_path.open("r") as f:
         data = yaml.safe_load(f)
-    knowledge_items = KnowledgeContent.parse_obj(data)
+    knowledge_content = KnowledgeContent.model_validate(data)
 
-    for item in knowledge_items.items:
-        output_path = generate_file_path(root_dir, item)
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(markdown.markdown(item.content))
+    for group in knowledge_content.groups:
+        for item in group.items:
+            output_path = generate_file_path(
+                root_dir,
+                item,
+                tag_type=group.tag_type,
+                country=group.country,
+                lang=group.lang,
+            )
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(markdown.markdown(item.content))
 
 
 if __name__ == "__main__":
-    build_content(ROOT_HTML_DIR, PROJECT_DIR / "content.yml")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("file_path", type=Path)
+    args = parser.parse_args()
+    build_content(ROOT_HTML_DIR, args.file_path)
