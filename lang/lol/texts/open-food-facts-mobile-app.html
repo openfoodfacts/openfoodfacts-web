@@ -1,112 +1,273 @@
-<h1>crwdns212757:0crwdne212757:0</h1>
-
-<p>crwdns245023:0crwdne245023:0</p>
-
-<h2>crwdns245041:0crwdne245041:0</h2>
-
-<div class="cell small-50 v-align-center" id="footer_scan" style="display:block">
-<div id="footer_install_the_app">crwdns245047:0crwdne245047:0</div> crwdns245049:0crwdne245049:0
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-	<div id="qrcode"></div>
+<style type="text/css">#install_the_app_block, .donation-banner-footer, .offdays-banner {display: none;} #main_column {padding-bottom: 0;}</style>
 <script>
-var qrcode = new QRCode(document.getElementById("qrcode"), {
-	text: "https://world.openfoodfacts.net/open-food-facts-mobile-app",
-	width: 128,
-	height: 128,
-	colorDark : "#000000",
-	colorLight : "#ffffff",
-	correctLevel : QRCode.CorrectLevel.H
-});
+    // You can change the URLs to one that works in your language. If you are unsure, do not touch anything
+    const googlePlayURL = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en";
+    const appleStoreURL = "https://apps.apple.com/app/open-food-facts/id588797948";
+    const microsoftStoreURL = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
+
+    function getMobileOperatingSystem() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+          // Windows Phone must come first because its UA also contains "Android"
+        if (/windows phone/i.test(userAgent)) {
+            return "Windows Phone";
+        }
+    
+        if (/android/i.test(userAgent)) {
+            return "Android";
+        }
+    
+        // iOS detection from: https://stackoverflow.com/a/9039885/177710
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "iOS";
+        }
+    
+        return "unknown";
+    }
+
+    // Function to extract UTM parameters from a URL
+    function extractUTMParameters(url) {
+        var utmParams = new URLSearchParams(url.search);
+        var utmParamObject = {};
+
+        for (var pair of utmParams.entries()) {
+            var paramName = pair[0];
+            var paramValue = pair[1];
+            if (paramName.startsWith('utm_')) {
+                utmParamObject[paramName] = paramValue;
+            }
+        }
+
+        return utmParamObject;
+    }
+
+    // Add UTM parameters extracted from current URL to `targetURL`
+    function addUTMParameters(targetURL) {
+        // Create URL objects for the current URL and target URL
+        var currentURLObject = new URL(window.location.href);
+        var targetURLObject = new URL(targetURL);
+
+        // Extract UTM parameters from the current URL
+        var utmParameters = extractUTMParameters(currentURLObject);
+        var targetUtmParameters = extractUTMParameters(targetURLObject);
+
+        if (Object.keys(utmParameters).length) {
+            // Delete existing UTM parameters of target URL 
+            for (var paramName in targetUtmParameters) {
+                if (targetUtmParameters.hasOwnProperty(paramName)) {
+                    targetURLObject.searchParams.delete(paramName);
+                }
+            }
+
+            // Add UTM parameters to the target URL
+            for (var paramName in utmParameters) {
+                if (utmParameters.hasOwnProperty(paramName)) {
+                    var paramValue = utmParameters[paramName];
+                    targetURLObject.searchParams.append(paramName, paramValue);
+                }
+            }
+        } else {
+            targetURLObject.searchParams.append("utm_source", "off");
+            targetURLObject.searchParams.append("utm_campaign", "app-landing-page");
+            targetURLObject.searchParams.append("utm_medium", "website");
+        }
+        return targetURLObject.href;
+    }
+
+    // redirect to Google Play Store, Apple store, etc. if we detect
+    // specific User-Agent 
+    function redirectToStore() {
+        const currentURL = new URL(window.location.href);
+        if (new URLSearchParams(currentURL.search).get("redirect") == "0") {
+            // don't redirect if redirect=0 in query parameters
+            return;
+        }
+
+        const operatingSystem = getMobileOperatingSystem();
+        if (operatingSystem == "Android") {
+            window.location.href = addUTMParameters(googlePlayURL);
+        }
+        else if (operatingSystem == "iOS") {
+            window.location.href = addUTMParameters(appleStoreURL);
+        }
+        else if (operatingSystem == "Windows Phone") {
+            window.location.href = addUTMParameters(microsoftStoreURL);
+        }
+    }
+    redirectToStore();
 </script>
-
-
-					
+<div id="app-landing-page">
+    <div id="download-app-block" class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    crwdns245281:0crwdne245281:0
+                </h1>
+                <p>crwdns245283:0crwdne245283:0</p>
+                <a data-app-store="google" href="crwdns245453:0crwdne245453:0" title="crwdns245285:0crwdne245285:0">
+                <img
+                    src="crwdns245287:0crwdne245287:0"
+                    alt="crwdns212771:0crwdne212771:0"
+                    width="120"
+                    height="40"
+                ></a>
+                <a data-app-store="apple" href="crwdns245455:0crwdne245455:0" title="crwdns245291:0crwdne245291:0">
+                <img
+                    src="crwdns245293:0crwdne245293:0"
+                    alt="crwdns212765:0crwdne212765:0"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+            <div class="small-12 medium-6 medium-offset-1 column">
+                <img src="crwdns245295:0crwdne245295:0" alt="crwdns245297:0crwdne245297:0" style="max-height: 250px">
+            </div>
+        </div>
+        <div class="row show-for-large-up" style="padding-top: 4rem; text-align: center">
+            <div class="small-3 small-centered column">
+                <p>crwdns245299:0crwdne245299:0 crwdns245301:0crwdne245301:0</p>
+                <img src="crwdns245303:0crwdne245303:0" width="180" height="180" alt="crwdns245305:0crwdne245305:0">
+            </div>
+        </div>
+    </div>
+    <div class="block block-seashell" id="app-card-block">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="crwdns245307:0crwdne245307:0" alt="crwdns245309:0crwdne245309:0">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    crwdns245311:0crwdne245311:0
+                </h1>
+                <p class="paragraph-top-margin">crwdns245313:0crwdne245313:0</p>
+                <p>crwdns245315:0crwdne245315:0</p>
+            </div>
+        </div>
+    </div>
+    <div class="block block-yellow">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    crwdns245317:0crwdne245317:0
+                </h1>
+                <p class="paragraph-top-margin">crwdns245319:0crwdne245319:0</p>
+            </div>
+            <div class="small-12 medium-3 medium-offset-1 end column">
+                <img src="crwdns245321:0crwdne245321:0" alt="crwdns245323:0crwdne245323:0" style="max-height: 200px;">
+            </div>
+        </div>
+    </div>
+    <div class="block block-light-green">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="crwdns245325:0crwdne245325:0" alt="crwdns245327:0crwdne245327:0" style="max-height: 200px">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    crwdns245329:0crwdne245329:0
+                </h1>
+                <p class="paragraph-top-margin">crwdns245331:0crwdne245331:0 crwdns245333:0crwdne245333:0</p>
+                <p>crwdns245335:0crwdne245335:0</p>
+                <a class="button round secondary small" href="crwdns245337:0crwdne245337:0">crwdns245339:0crwdne245339:0</a>
+            </div>
+        </div>
+    </div>
+    <div class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-5 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    crwdns245411:0crwdne245411:0
+                </h1>
+                <p class="paragraph-top-margin">crwdns245343:0crwdne245343:0</p>
+                <p>crwdns245345:0crwdne245345:0</p>
+                <a class="button round secondary small" href="crwdns245347:0crwdne245347:0">crwdns245349:0crwdne245349:0</a>
+            </div>
+            <div class="small-12 medium-6 end column">
+                <img
+                    src="crwdns245351:0crwdne245351:0"
+                    alt="crwdns245353:0crwdne245353:0"
+                    style="max-height: 250px"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="block block-white">
+        <div class="row" id="join-food-revolution-row">
+            <div class="small-12 medium-4 medium-offset-2 column">
+                <img
+                    src="crwdns245355:0crwdne245355:0"
+                    alt="crwdns245357:0crwdne245357:0"
+                    style="max-height: 180px"
+                    loading="lazy"
+                >
+                <p class="paragraph-top-margin">crwdns245359:0crwdne245359:0</p>
+            </div>
+            <div class="small-12 medium-4 end column">
+                <div class="testimonial-card">
+                    <p>crwdns245361:0crwdne245361:0 crwdns245363:0crwdne245363:0 crwdns245365:0crwdne245365:0</p>
+                    <p>
+                        <strong>crwdns245367:0crwdne245367:0</strong>
+                    </p>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <img
+                        src="crwdns245369:0crwdne245369:0"
+                        loading="lazy"
+                        alt="crwdns245371:0crwdne245371:0"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-7 medium-offset-5 column">
+                <a data-app-store="google" href="crwdns245457:0crwdne245457:0" title="crwdns245375:0crwdne245375:0">
+                <img
+                    src="crwdns245377:0crwdne245377:0"
+                    loading="lazy"
+                    alt="crwdns245379:0crwdne245379:0"
+                    width="120"
+                    height="40"
+                ></a>
+                <a href="crwdns245381:0crwdne245381:0" title="crwdns245383:0crwdne245383:0">
+                <img
+                    src="crwdns245385:0crwdne245385:0"
+                    loading="lazy"
+                    alt="crwdns245387:0crwdne245387:0"
+                    height="40"
+                    width="120"
+                ></a>
+                <a href="crwdns212779:0crwdne212779:0" title="crwdns245389:0crwdne245389:0">
+                <img
+                    src="crwdns245391:0crwdne245391:0"
+                    loading="lazy"
+                    alt="crwdns245393:0crwdne245393:0"
+                    height="40"
+                    width="120"
+                ></a>
+                <a data-app-store="apple" href="crwdns245459:0crwdne245459:0" title="crwdns245397:0crwdne245397:0">
+                <img
+                    src="crwdns245399:0crwdne245399:0"
+                    loading="lazy"
+                    alt="crwdns245401:0crwdne245401:0"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+        </div>
+        <img
+            src="crwdns245403:0crwdne245403:0"
+            alt="crwdns245405:0crwdne245405:0"
+            class="puzzle-illustration show-for-large-up"
+            loading="lazy"
+        >
+    </div>
 </div>
-<!--
-<img src="https://raw.githubusercontent.com/openfoodfacts/openfoodfacts-server/lp-illustrations/html/images/illustrations/get-the-app-en.svg" alt="Scan the QR Code with your phone to install the app" width="409" height="127" />
--->
-<h2>crwdns245043:0crwdne245043:0</h2>
-<a href="crwdns212761:0crwdne212761:0">
-<img src="crwdns212763:0crwdne212763:0" alt="crwdns212765:0crwdne212765:0" width="120" height="40" />
-</a>
-
-<a href="crwdns212767:0crwdne212767:0">
-<img src="crwdns212769:0crwdne212769:0" alt="crwdns212771:0crwdne212771:0" width="102" height="40" />
-</a>
-
-<a href="crwdns245045:0crwdne245045:0">
-<img src="crwdns212775:0crwdne212775:0" alt="crwdns212777:0crwdne212777:0" width="109" height="40px" />
-</a>
-
-<a href="crwdns212779:0crwdne212779:0">
-<img src="crwdns212781:0crwdne212781:0" loading="lazy" alt="crwdns212783:0crwdne212783:0" style="height: 40px;" /></a>
-
-<a href="crwdns212785:0crwdne212785:0">
-<img src="crwdns212787:0crwdne212787:0" loading="lazy" alt="crwdns212789:0crwdne212789:0" style="height: 40px;"/></a>
-
-<br><br>
-
-<p>crwdns212791:0crwdne212791:0 crwdns212793:0crwdne212793:0</p>
-
-<div class="panel callout">
-<h2>crwdns245051:0crwdne245051:0</h2>
-<p>crwdns245053:0crwdne245053:0</p>
-<p>crwdns245055:0crwdne245055:0</p>
-<p>crwdns245057:0crwdne245057:0</p>
-<p>crwdns245059:0crwdne245059:0
-</p>
-<p>crwdns245061:0crwdne245061:0
-</p>
-</div>
-<!-- TODO: Translate images to your language. Ask @teolemon for the SVG file-->
-<div class="row">
-<div class="small-12 medium-12 large-6 columns">
-<img src="crwdns245063:0crwdne245063:0" alt="crwdns245065:0crwdne245065:0">
-</div>
-</div>
-
-<!-- DO NOT translate after this line -->
-
-<scripts>
 <script>
-function getMobileOperatingSystem() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-      // Windows Phone must come first because its UA also contains "Android"
-    if (/windows phone/i.test(userAgent)) {
-        return "Windows Phone";
-    }
-
-    if (/android/i.test(userAgent)) {
-        return "Android";
-    }
-
-    // iOS detection from: https://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return "iOS";
-    }
-
-    return "unknown";
-}</script>
-
-<!-- You can change the URLs to one that works in your language. If you are unsure, do not touch anything -->
-
-<script>
-function DetectAndServe(){
-
-if (getMobileOperatingSystem() == "Android") {
-    window.location.href = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en";
-    }
-if (getMobileOperatingSystem() == "iOS") {
-    window.location.href = "https://apps.apple.com/app/open-food-facts/id588797948";
-    }
-if (getMobileOperatingSystem() == "Windows Phone") {
-    window.location.href = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
-    }
-};
-DetectAndServe();
+    document.querySelectorAll('[data-app-store="google"]').forEach((item) => {
+        item.href = addUTMParameters(googlePlayURL);
+    });
+    document.querySelectorAll('[data-app-store="apple"]').forEach((item) => {
+        item.href = addUTMParameters(appleStoreURL);
+    });
 </script>
-</scripts>
-
-<initjs>
-</initjs>

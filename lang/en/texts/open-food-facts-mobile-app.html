@@ -1,5 +1,10 @@
 <style type="text/css">#install_the_app_block, .donation-banner-footer, .offdays-banner {display: none;} #main_column {padding-bottom: 0;}</style>
 <script>
+    // You can change the URLs to one that works in your language. If you are unsure, do not touch anything
+    const googlePlayURL = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en";
+    const appleStoreURL = "https://apps.apple.com/app/open-food-facts/id588797948";
+    const microsoftStoreURL = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
+
     function getMobileOperatingSystem() {
       var userAgent = navigator.userAgent || navigator.vendor || window.opera;
     
@@ -18,22 +23,78 @@
         }
     
         return "unknown";
-    }</script>
+    }
 
-    <!-- You can change the URLs to one that works in your language. If you are unsure, do not touch anything -->
-    <script>
-    function DetectAndServe(){
-    if (getMobileOperatingSystem() == "Android") {
-        window.location.href = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en";
+    // Function to extract UTM parameters from a URL
+    function extractUTMParameters(url) {
+        var utmParams = new URLSearchParams(url.search);
+        var utmParamObject = {};
+
+        for (var pair of utmParams.entries()) {
+            var paramName = pair[0];
+            var paramValue = pair[1];
+            if (paramName.startsWith('utm_')) {
+                utmParamObject[paramName] = paramValue;
+            }
         }
-    if (getMobileOperatingSystem() == "iOS") {
-        window.location.href = "https://apps.apple.com/app/open-food-facts/id588797948";
+
+        return utmParamObject;
+    }
+
+    // Add UTM parameters extracted from current URL to `targetURL`
+    function addUTMParameters(targetURL) {
+        // Create URL objects for the current URL and target URL
+        var currentURLObject = new URL(window.location.href);
+        var targetURLObject = new URL(targetURL);
+
+        // Extract UTM parameters from the current URL
+        var utmParameters = extractUTMParameters(currentURLObject);
+        var targetUtmParameters = extractUTMParameters(targetURLObject);
+
+        if (Object.keys(utmParameters).length) {
+            // Delete existing UTM parameters of target URL 
+            for (var paramName in targetUtmParameters) {
+                if (targetUtmParameters.hasOwnProperty(paramName)) {
+                    targetURLObject.searchParams.delete(paramName);
+                }
+            }
+
+            // Add UTM parameters to the target URL
+            for (var paramName in utmParameters) {
+                if (utmParameters.hasOwnProperty(paramName)) {
+                    var paramValue = utmParameters[paramName];
+                    targetURLObject.searchParams.append(paramName, paramValue);
+                }
+            }
+        } else {
+            targetURLObject.searchParams.append("utm_source", "off");
+            targetURLObject.searchParams.append("utm_campaign", "app-landing-page");
+            targetURLObject.searchParams.append("utm_medium", "website");
         }
-    if (getMobileOperatingSystem() == "Windows Phone") {
-        window.location.href = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
+        return targetURLObject.href;
+    }
+
+    // redirect to Google Play Store, Apple store, etc. if we detect
+    // specific User-Agent 
+    function redirectToStore() {
+        const currentURL = new URL(window.location.href);
+        if (new URLSearchParams(currentURL.search).get("redirect") == "0") {
+            // don't redirect if redirect=0 in query parameters
+            return;
         }
-    };
-    DetectAndServe();
+
+        const operatingSystem = getMobileOperatingSystem();
+        if (operatingSystem == "Android") {
+            window.location.href = addUTMParameters(googlePlayURL);
+        }
+        else if (operatingSystem == "iOS") {
+            window.location.href = addUTMParameters(appleStoreURL);
+        }
+        else if (operatingSystem == "Windows Phone") {
+            window.location.href = addUTMParameters(microsoftStoreURL);
+        }
+    }
+    redirectToStore();
 </script>
 <div id="app-landing-page">
     <div id="download-app-block" class="block block-blue">
@@ -46,14 +107,14 @@
                     <span class="highlight-label blue rotate-right">planet</span>
                 </h1>
                 <p>The world's largest open food database at your fingertips!</p>
-                <a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en" title="Open Food Facts on Google Play">
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en" title="Open Food Facts on Google Play">
                 <img
                     src="/images/misc/playstore/img/en_get.svg"
                     alt="Available on Google Play"
                     width="120"
                     height="40"
                 ></a>
-                <a href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts on the Apple App Store">
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts on the Apple App Store">
                 <img
                     src="/images/misc/appstore/black/appstore_US.svg"
                     alt="Available on the App Store"
@@ -122,7 +183,7 @@
         <div class="row">
             <div class="small-12 medium-5 medium-offset-1 column">
                 <h1 class="title-2 emphasized-title">
-                    Scan almost any food to see it’s impact on the
+                    Scan almost any food to see its impact on the
                     <span class="highlight-label blue rotate-right">planet</span>
                 </h1>
                 <p class="paragraph-top-margin">Learn about the environmental impact of over 600 thousands food products with the Eco-Score.</p>
@@ -162,14 +223,13 @@
                         src="/images/misc/app-landing-page/store-review-rating.svg"
                         loading="lazy"
                         alt="Rating on Google Play Store and Apple Store"
-                        loading="lazy"
                     >
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="small-12 medium-7 medium-offset-5 column">
-                <a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en" title="Open Food Facts on Google Play">
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en" title="Open Food Facts on Google Play">
                 <img
                     src="/images/misc/playstore/img/en_get.svg"
                     loading="lazy"
@@ -193,7 +253,7 @@
                     height="40"
                     width="120"
                 ></a>
-                <a href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts on the Apple App Store">
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts on the Apple App Store">
                 <img
                     src="/images/misc/appstore/black/appstore_US.svg"
                     loading="lazy"
@@ -211,3 +271,11 @@
         >
     </div>
 </div>
+<script>
+    document.querySelectorAll('[data-app-store="google"]').forEach((item) => {
+        item.href = addUTMParameters(googlePlayURL);
+    });
+    document.querySelectorAll('[data-app-store="apple"]').forEach((item) => {
+        item.href = addUTMParameters(appleStoreURL);
+    });
+</script>
