@@ -1,0 +1,134 @@
+
+<h1>Dati</h1>
+
+<p>Il database di Open Pet Food Facts è disponibile sotto la <a href="https://opendatacommons.org/licenses/odbl/1.0/">Licenza Open Database</a>.<br/>
+I singoli contenuti del database sono disponibili sotto la <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Licenza Database Contents</a>.<br/>
+Le immagini dei prodotti sono disponibili sotto la <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">licenza Creative Commons Attribution ShareAlike</a>.
+Potrebbero contenere elementi grafici soggetti a diritto di copia o altri diritti, che potrebbero in alcuni casi essere riprodotti (diritti di quotazione o fair use).</p>
+
+<p>Sei pregato di leggere i <a href="https://world.openpetfoodfacts.org/terms-of-use">Termini e le condizioni di utilizzo e riutilizzo</a>, prima di riutilizzare i dati.</p> 
+
+
+<p>Siamo molto interessati a scoprire per cosa sono utilizzati i dati di Open Pet Food Facts. Non è obbligatorio, ma apprezzeremmo molto se <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">ci parlassi dei tuoi riutilizzi</a>, così che possiamo condividerli con la community di Open Pet Food Facts.</p>
+
+<h2>Esportazioni di dati da Open Pet Food Facts</h2>
+
+<p>I dump e le importazioni del database sono generati di notte.</p>
+
+<p>Le informazioni sui diversi campi per il dump di MongoDB e le esportazioni CSV, sono disponibili a <a href="https://static.openpetfoodfacts.org/data/data-fields.txt">https://world.openpetfoodfacts.org/data/data-fields.txt</a></p>
+
+
+<h3>Dump di MongoDB</h3>
+
+<p>Dati per tutti i prodotti sono disponibili un un dump del database di MongoDB.</p>
+
+<dl>
+ <dt>Collegamenti</dt>
+ <dd><a href="https://static.openpetfoodfacts.org/data/openpetfoodfacts-mongodbdump.tar.gz">https://static.openpetfoodfacts.org/data/openpetfoodfacts-mongodbdump.tar.gz</a></dd>
+ <dt>sha256sum</dt>
+ <dd><a href="https://static.openpetfoodfacts.org/data/sha256sum">https://static.openpetfoodfacts.org/data/sha256sum</a></dd>
+ <dt>md5sum</dt>
+ <dd><a href="https://static.openpetfoodfacts.org/data/md5sum">https://static.openpetfoodfacts.org/data/md5sum</a></dd>
+</dl>
+
+<h4>Esportazione Delta</h4>
+
+<p>Le esportazioni delta giornaliere sono fornite per i precedenti 14 giorni. L'elenco di file delta correntemente disponibili, si può trovare a 
+ <a href="https://static.openpetfoodfacts.org/data/delta/index.txt">https://static.openpetfoodfacts.org/data/delta/index.txt</a>.
+ Ogni riga rappresenta un file disponibile a <code>https://static.openpetfoodfacts.org/data/delta/{filename}</code>.
+ Il nome del file contiene un timestamp UNIX della prima e dell'ultima modifica contenuta nel file JSON, così che i file delta possano essere importati (dopo l'estrazione) con <code>mongoimport</code> in ordine alfabetico.</p>
+<p>Si prega di notare che a causa della natura di <code>mongoexport</code>, i file delta non possono dirti di prodotti eliminati. Per rimuovere prodotti eliminati dal tuo database, dovrai importare l'intero dump di MongoDB.</p>
+ 
+<h3>Esportazione dati CSV</h3>
+
+<p>I dati per tutti i prodotti, o per alcuni prodotti, sono scaricabili nel formato CSV (leggibile con OpenOffice, Excel e molti altri software), tramite il <a href="https://world.openpetfoodfacts.org/cgi/search.pl">modulo di ricerca avanzata</a>.</p>
+ 
+<dl>
+ <dt>Collegamenti</dt>
+ <dd><a href="https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv">https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv</a></dd>
+</dl>
+
+<p>La codifica del file è Unicode UTF-8. Il carattere che separa i campi è &lt;tab&gt; (tabulazione).</p>
+
+<h3>Esportazione dei dati RDF</h3>
+
+<p>Il database è anche disponibile nel formato RDF. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">annuncio in francese</a>.</p>
+
+<dl>
+ <dt>Collegamenti</dt>
+ <dd><a href="https://world.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.rdf">https://world.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.rdf</a></dd>
+</dl>
+
+<h2>API JSON live</h2>
+
+<p>L'API si comporta al 99% come su Open Food Facts, quindi molti SDK, i codici per interagire con l'API di Open Food Facts, dovrebbero funzionare semplicemente modificando l'endpoint da: openfoodfacts.org a openpetfoodfacts.org. Il codice non è stato aggiornato per oltre un anno, quindi molte API più nuove come Knowledge Panels non sono ancora disponibili.</p>
+
+<p>Un API JSON è anche disponibile per leggere i dati per un prodotto. Quest'API, in particolare, è utilizzata nell'app mobile di Open Pet Food Facts per iPhone e Android.</p>
+
+<p>Modifichiamo l'API nel tempo, ma stiamo attenti a mantenere la compatibilità con le versioni precedenti. Per favore, dicci se lo usi, così che possiamo dirti di potenziali cambiamenti.</p>
+
+<p>URL per leggere i dati per un prodotto: https://world.openpetfoodfacts.org/api/v0/product/<i>[barcode]</i>.json</p>
+
+<p>Esempio: <a href="https://world.openpetfoodfacts.org/api/v0/product/3600550578041.json">https://world.openpetfoodfacts.org/api/v0/product/3600550578041.json</a></p>
+
+<ul>
+<li>
+ <a href="https://wiki.openfoodfacts.org/API">API V1: Vecchia documentazione disponibile sulla Wiki</a> (Nota importante: la pagina è divisa in sub-pagine per LETTURA e SCRITTURA). 
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/api-documentation/">API V2: Completa ma non conforme a OpenAPI</a> - Contiene i casi d'uso per la visualizzazione di un prodotto e consente ai tuoi utenti di aggiungere i dati necessari per ottenere il Nutri-Score, la classificazione NOVA, gli additivi e l'Eco-Score.
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2: Nuova documentazione di OpenAPI - Lavori in Corso</a>
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V3: Nuova documentazione di OpenAPI - Lavori in Corso</a>
+ </li>
+</ul>
+<p>Sei benvenuto all'uso dell'API per i casi di produzione, finché 1 chiamata dell'API equivale ad una scansione reale da un utente.
+Ogni tentativo di raschiare il database usando l'API sarà molto probabilmente bloccata, poiché le esportazioni giornaliere complete sono disponibili su questa pagina.</p>
+<p>Inoltre, inviare un'intestazione HTTP con la tua chiamata dell'API è un buon modo in cui possiamo metterci in contatto, dovesse sorgere qualsiasi problema.</p>
+<p>Se sei insicuro di qualcosa, o hai qualche domanda (non ci sono domande stupide), sentiti libero di chiedere su Slack :-)</p>
+
+<h2>App mobile per Android e iPhone (aiuto necessario!)</h2>
+
+<p>Il codice per l'app mobile di Open Pet Food Facts correntemente distribuita, è disponibile su GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a>). <b>Ci <a href="https://github.com/openfoodfacts/smooth-app/discussions/1378">serve aiuto ad adattare il nuovo codice di Flutter per gli alimenti per animali domestici.</a></b>
+L'app consente agli utenti di scansionare il codice a barre dei prodotti, di visualizzarne le informazioni e di scattare foto e inviare immagini e dati per i prodotti mancanti.</p>
+
+<p>L'app per Android è sviluppata in Kotlin.</p>
+<p>L'app classica per <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a> non è mai stata adattata né distribuita per gli alimenti per animali domestici.</p>
+<p>La nuova app multi-piattaforma è sviluppata in Flutter/Dart.</p>
+
+<p>Sei il benvenuto per riutilizzare il codice (è open source) ed aiutarci a migliorarla, per tutti, su tutto il pianeta.</p>
+
+<h2>Wrapper e SDK</h2>
+<p>Abbiamo probabilmente un wrapper per il tuo linguaggio di programmazione preferito. Se lo facciamo, puoi utilizzarlo e migliorarlo e, probabilmente, aggiungervi supporto per Open Pet Food Facts. Altrimenti, puoi aiutare a crearlo.</p>
+<p>Ti consentiranno di consumare i dati, così come consentiranno ai tuoi utenti di contribuire ai nuovi dati</p>
+<ul>
+<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (vecchia app ufficiale di Open Pet Food Facts)</a></li>
+<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub (Al momento, soltanto Open Food Facts)</a></li>
+<li>Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub (Al momento, solo Open Food Facts)</a></li>
+<li>Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub (Al momento, solo Open Food Facts)</a></li>
+<li>Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub (Al momento, soltanto Open Food Facts)</a></li>
+<li>Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub (Al momento, solo Open Food Facts)</a></li>
+<li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub (Al momento, solo Open Food Facts)</a></li>
+<li>PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub (Al momento, solo Open Food Facts)</a></li>
+<li>PHP (Laravel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub (Al momento, solo Open Food Facts)</a></li>
+<li>Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub (Al momento, solo Open Food Facts)</a></li>
+<li>React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub (Al momento, solo Open Food Facts)</a></li>
+<li>Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub (Al momento, solo Open Food Facts)</a></li>
+<li>Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a></li>
+</ul>
+
+<h2>Discussione sui dati, sulle API e sulle esportazioni</h2>
+<p>Puoi <a href="https://slack.openfoodfacts.org">aderire alla chatroom di Slack di Open Pet Food Facts, il metodo preferito per fare domande e discutere dell'API</a>.</p>
+<p>Puoi <a href="https://github.com/openfoodfacts/api-documentation/discussions">aprire una discussione sulla repository della documentazione della nostra API</a>
+ 
+ <!--
+<p>You can also join the mailing list to discuss the API and exports, tell us about your re-uses, and be notified when improvements or changes are made to the API. Send an empty e-mail to
+<a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a> to subscribe.</p>
+-->
+
+<h2>Contatta</h2>
+
+<p>Per qualsiasi domanda relativa ai dati, puoi contattarci a <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">contact@openfoodfacts.org</a>
