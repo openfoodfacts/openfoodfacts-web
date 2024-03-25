@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0 (2024-03-25)
+
+
+### Features
+
+* skill-pool-odoo ([#557](https://github.com/openfoodfacts/openfoodfacts-web/issues/557)) ([4f72777](https://github.com/openfoodfacts/openfoodfacts-web/commit/4f727775bbc7ae8ed2174e63e9c4fc94f6c868a9))
+
+
+### Bug Fixes
+
+* change skill pool form link in every languages ([#561](https://github.com/openfoodfacts/openfoodfacts-web/issues/561)) ([7104dba](https://github.com/openfoodfacts/openfoodfacts-web/commit/7104dbaf752d32bff28aaf9e88532cb2cb599d77))
+* refactor html ([99df12f](https://github.com/openfoodfacts/openfoodfacts-web/commit/99df12f636ae396b04dbf0c695781f3eecc0db4b))
+* refactor html and add spaces ([c98af72](https://github.com/openfoodfacts/openfoodfacts-web/commit/c98af72bf8d2ee051c17a525c9bdedd2c6bacd28))
+
 ## 1.0.0 (2024-02-13)
 
 
