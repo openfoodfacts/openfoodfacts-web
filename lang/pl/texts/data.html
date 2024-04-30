@@ -1,6 +1,6 @@
 <h1 class="emphasized-title">Dane</h1>
 
-<h2 class="emphasized-title">Conditions for reuse</h2>
+<h2 class="emphasized-title">Warunki ponownego wykorzystania</h2>
 <p>The Open Food Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
 The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/>
 Products images are available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>.
@@ -9,18 +9,18 @@ They may contain graphical elements subject to copyright or other rights, that m
 <p>Please read <a href="https://world.openfoodfacts.org/terms-of-use">Terms and conditions of use and re-use</a> before re-using the data.</p>
 
 
-<h2 class="emphasized-title">Tell us about your reuse</h2>
-<p>We are very interested in learning what the Open Food Facts data is used for. It is not mandatory, but we would very much appreciate it if you <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Food Facts community. You can also <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">fill this form</a> to get a chance to get your app featured.</p>
+<h2 class="emphasized-title">Powiedz nam o swoim projekcie</h2>
+<p>Jesteśmy bardzo zainteresowani tym, do czego wykorzystuje się dane Open Food Facts. It is not mandatory, but we would very much appreciate it if you <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Food Facts community. You can also <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">fill this form</a> to get a chance to get your app featured.</p>
 
 <h2 class="emphasized-title">Eksport danych Open Food Facts</h2>
 
-<p>Database dumps and exports are generated nightly. The database is very big, so you can find <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">different ways to use the data</a>, depending on the export flavor.</p>
+<p>Zrzuty i eksporty baz danych są generowane co noc. The database is very big, so you can find <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">different ways to use the data</a>, depending on the export flavor.</p>
 
 <p>Information on the different fields for the MongoDB dump and CSV exports is available at <a href="https://static.openfoodfacts.org/data/data-fields.txt">https://world.openfoodfacts.org/data/data-fields.txt</a></p>
 
 <h3>MongoDB dump</h3>
 
-<p>Data for all products is available in a MongoDB database dump.</p>
+<p>Dane dla wszystkich produktów są dostępne w zrzucie bazy danych MongoDB.</p>
 <!--
 <h4>Why you'd want to use it: </h4>
 <ul>
@@ -29,23 +29,23 @@ They may contain graphical elements subject to copyright or other rights, that m
 </p>-->
 <dl>
  <dt>Link</dt>
- <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
  <dt>sha256sum</dt>
- <dd><a href="https://static.openfoodfacts.org/data/sha256sum">https://static.openfoodfacts.org/data/sha256sum</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/gz-sha256sum">https://static.openfoodfacts.org/data/gz-sha256sum</a></dd>
  <dt>md5sum</dt>
- <dd><a href="https://static.openfoodfacts.org/data/md5sum">https://static.openfoodfacts.org/data/md5sum</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/gz-md5sum">https://static.openfoodfacts.org/data/gz-md5sum</a></dd>
 </dl>
 
-<h4>Daily delta exports</h4>
+<h4>Delta Export</h4>
 
 <p>Daily delta exports are provided for the previous 14 days. The list of currently available delta files can be found at <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.</p>
 <p>Each line represents a file that is available at <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.</p>
 <p>The filename contains UNIX timestamp of the first and the last change contained in the JSON file, so that the delta files can be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
 <p>Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove deleted products from your database, you will need to import the full MongoDB dump.</p>
 
-<h3>JSONL data export</h3>
+<h3>Eksport danych JSONL</h3>
 
-<p>The whole database is also available in <a href="https://jsonlines.org/">JSONL format</a> (sometimes called LDJSON or NDJSON) where each line is a JSON object. It represents the same data as the MongoDB export. The file is compressed with gzip.</p>
+<p>Cała baza danych jest również dostępna w formacie <a href="https://jsonlines.org/">JSONL</a> (nazywanym także LDJSON lub NDJSON), gdzie każda linia jest obiektem JSON. Reprezentuje te same dane, co eksport MongoDB. Plik jest skompresowany programem gzip.</p>
 
 <dl>
  <dt>Link</dt>
@@ -53,13 +53,12 @@ They may contain graphical elements subject to copyright or other rights, that m
  </dd>
 </dl>
 
-<h3>CSV Data Export</h3>
+<h3>Eksport danych CSV</h3>
 <p>Data for all products, or some of the products, can be downloaded in the CSV format (readable with LibreOffice, Excel and many other spreadsheet software) through the <a href="https://world.openfoodfacts.org/cgi/search.pl">advanced search form</a>.</p>
 
 <dl>
  <dt>Links</dt>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a> (raw CSV)</dd>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format)</dd>
+ <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
 </dl>
 
 <p>The file encoding is Unicode UTF-8. The character that separates fields is &lt;tab&gt; (tabulation).</p>
@@ -69,7 +68,7 @@ They may contain graphical elements subject to copyright or other rights, that m
 
 <dl>
  <dt>Link</dt>
- <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf</a></dd>
+ <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
 <h3>Image Data Export</h3>
@@ -85,7 +84,7 @@ They may contain graphical elements subject to copyright or other rights, that m
 
 <p>URL to read data for a product: https://world.openfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
 
-<p>Example: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.json">https://world.openfoodfacts.org/api/v2/product/737628064502.json</a></p>
+<p>Example: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
 <p>Note that if the output is too overwhelming, you can filter it - as described in the API documentation.</p>
 
 <ul>
@@ -149,12 +148,12 @@ This API is not actively maintained, and not officially documented.
 
 <p>Możesz wykorzystać nasz kod (licencja Open source), pomóż nam go ulepszyć, dla wszystkich, na każdej planecie.</p>
 
-<h3>SDKs</h3>
+<h3>SDK</h3>
 <!-- TODO: Install locally -->
 <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">-->
 <ul>
-<li><i class="devicon-cordova-plain"></i> Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (stara wersja oficjalej aplikacji Open FoodFacts)</a></li>
-<li><i class="devicon-dart-plain"></i> DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
+<li><i class="devicon-cordova-plain"></i> Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (stara wersja oficjalnej aplikacji Open Food Facts)</a></li>
+<li><i class="devicon-dart-plain"></i> DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a> - <a href="https://pub.dev/packages/openfoodfacts">Pakiet na pub.dev</a></li>
 <li><i class="devicon-elixir-plain"></i> Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C758AFX0S">Discussion channel</a></li>
 <li><i class="devicon-go-plain"></i> Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV">Discussion channel</a></li>
 <li><i class="devicon-java-plain"></i> Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3">Discussion channel</a></li>

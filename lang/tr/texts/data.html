@@ -27,14 +27,14 @@ Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif 
 </p>-->
 <dl>
  <dt>Link</dt>
- <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
  <dt>sha256sum</dt>
- <dd><a href="https://static.openfoodfacts.org/data/sha256sum">https://static.openfoodfacts.org/data/sha256sum</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/gz-sha256sum">https://static.openfoodfacts.org/data/gz-sha256sum</a></dd>
  <dt>md5sum</dt>
- <dd><a href="https://static.openfoodfacts.org/data/md5sum">https://static.openfoodfacts.org/data/md5sum</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/gz-md5sum">https://static.openfoodfacts.org/data/gz-md5sum</a></dd>
 </dl>
 
-<h4>Günlük delta dışa aktarmaları</h4>
+<h4>Delta Dışa Aktarım</h4>
 
 <p>Günlük delta dışa aktarımlar önceki 14 gün için sağlanmaktadır. Şu anda mevcut olan delta dosyalarının listesi <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a> adresinde bulunabilir.</p>
 <p>Her satır <code>https://static.openfoodfacts.org/data/delta/{filename}</code> adresinde mevcut bir dosyaya karşılık gelmektedir.</p>
@@ -56,8 +56,7 @@ Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif 
 
 <dl>
  <dt>Bağlantılar</dt>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a> (ham CSV)</dd>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (GZIP formatında sıkıştırılmış CSV)</dd>
+ <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (GZIP formatında sıkıştırılmış CSV: ~ 0,9 Gb, sıkıştırılmamış: ~ 9 Gb)</dd>
 </dl>
 
 <p>Dosya kodlaması Unicode UTF-8'dir. Alanları ayıran karakter &lt;tab&gt; (tablolama)'dır.</p>
@@ -67,7 +66,7 @@ Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif 
 
 <dl>
  <dt>Link</dt>
- <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf</a></dd>
+ <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
 <h3>Görüntü Verilerini Dışa Aktarma</h3>
@@ -75,7 +74,7 @@ Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif 
 
 
 
-<h2 class="emphasized-title">JSON API için OpenAPI Belgeleri</h2>
+<h2 class="emphasized-title">Canlı JSON ve XML API'si</h2>
 
 <p>Bir ürünün verilerini okumak için bir JSON API de mevcuttur. Bu API özellikle iPhone ve Android için Open Food Facts mobil uygulamalarında kullanılır.</p>
 
@@ -83,7 +82,7 @@ Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif 
 
 <p>Bir ürüne ilişkin verileri okumak için URL: https://world.openfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
 
-<p>Örnek: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.json">https://world.openfoodfacts.org/api/v2/product/737628064502.json</a></p>
+<p>Örnek: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
 <p>Çıktı çok yoğunsa API belgelerinde açıklandığı gibi filtreleyebileceğinizi unutmayın.</p>
 
 <ul>
@@ -142,7 +141,7 @@ Bu API aktif olarak korunmaz ve resmi olarak belgelenmez.
 
 <p>Open Food Facts mobil uygulamasının kodu GitHub'da mevcuttur (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> ve <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).
 
-<p>Kullanımdan kaldırılan Kotlin ve Swift kod tabanlarını Kotlin ve Swift SDK'larına dönüştürmeye çalışıyoruz, yardımlarınız için teşekkürler :-)</p>
+<p>Kullanımdan kaldırılan Kotlin ve Swift kod tabanlarını Kotlin ve Swift SDK'larına dönüştürmeye çalışıyoruz. Uygulama, kullanıcıların ürünlerin barkodunu taramasına, ürün bilgilerini görüntülemesine ve eksik ürünler için fotoğraf ve veri çekip göndermesine olanak tanır.</p>
 <p>Uygulama, kullanıcıların ürünlerin barkodunu taramasına, ürün bilgilerini görüntülemesine ve eksik ürünler için resim ve veri çekip göndermesine olanak tanır.</p>
 
 <p>Kodu (açık kaynaktır) yeniden kullanmaya ve gezegen üzerindeki herkes için iyileştirmemize yardımcı olabilirsiniz.</p>

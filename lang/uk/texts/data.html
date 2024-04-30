@@ -10,7 +10,7 @@
 
 
 <h2 class="emphasized-title">Розкажіть про свою проблему</h2>
-<p>Ми дуже зацікавлені у вивченні того для чого дані Open Food Facts використовуються. It is not mandatory, but we would very much appreciate it if you <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Food Facts community. Ви також можете <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">заповнити цю форму</a>, щоб отримати можливість представити свою програму.</p>
+<p>Ми дуже зацікавлені у вивченні того для чого дані Open Food Facts використовуються. Це не є обов'язковим, але ми будемо дуже вдячні, якщо ви <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">розповісте нам про своє повторне використання</a>, щоб ми могли поділитися ними зі спільнотою Open Food Facts. Ви також можете <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">заповнити цю форму</a>, щоб отримати можливість представити свою програму.</p>
 
 <h2 class="emphasized-title">Експорт даних Open Food Facts</h2>
 
@@ -29,19 +29,20 @@
 </p>-->
 <dl>
  <dt>Силка</dt>
- <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
  <dt>sha256sum</dt>
- <dd><a href="https://static.openfoodfacts.org/data/sha256sum">https://static.openfoodfacts.org/data/sha256sum</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/gz-sha256sum">https://static.openfoodfacts.org/data/gz-sha256sum</a></dd>
  <dt>md5sum</dt>
- <dd><a href="https://static.openfoodfacts.org/data/md5sum">https://static.openfoodfacts.org/data/md5sum</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/gz-md5sum">https://static.openfoodfacts.org/data/gz-md5sum</a></dd>
 </dl>
 
-<h4>Щоденний дельта-експорт</h4>
+<h4>Експорт дельти</h4>
 
-<p>Щоденний експорт дельти представлені на попередні 14 днів. The list of currently available delta files can be found at <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.</p>
+<p>Щоденний експорт дельти представлені на попередні 14 днів. Список нині доступних дельта-файлів можна знайти за адресою
+<a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.</p>
 <p>Кожний рядок представляє файл, який є наявним на <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.</p>
-<p>The filename contains UNIX timestamp of the first and the last change contained in the JSON file, so that the delta files can be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
-<p>Будь ласка зауважте, що через природу <code>mongoexport</code>, дельти файлів не можуть розповісти вам про видалені продукти. To remove deleted products from your database, you will need to import the full MongoDB dump.</p>
+<p>Ім'я файлу містить UNIX-мітку часу першої та останньої зміни, що міститься у JSON-файлі, так що дельта-файли можна імпортувати (після вилучення) за допомогою <code>mongoimport</code> в алфавітному порядку.</p>
+<p>Будь ласка зауважте, що через природу <code>mongoexport</code>, дельти файлів не можуть розповісти вам про видалені продукти. Щоб вилучити видалені продути з вашої бази даних, вам буде потрібно імпортувати повний дамп MongoDB.</p>
 
 <h3>Експорт даних JSONL</h3>
 
@@ -54,26 +55,25 @@
 </dl>
 
 <h3>Експорт даних CSV</h3>
-<p>Data for all products, or some of the products, can be downloaded in the CSV format (readable with LibreOffice, Excel and many other spreadsheet software) through the <a href="https://world.openfoodfacts.org/cgi/search.pl">advanced search form</a>.</p>
+<p>Дані про всі про всі продукти, або деякі з них, можна завантажити у форматі CSV (читається за допомогою LibreOffice, Excel та багатьох інших програм для роботи з електронними таблицями) через <a href="https://world.openfoodfacts.org/cgi/search.pl">форму розширеного пошуку</a>.</p>
 
 <dl>
  <dt>Посилання</dt>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a> (raw CSV)</dd>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format)</dd>
+ <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
 </dl>
 
 <p>Кодування файлу є юнікодом UTF-8. Символ, що розділяє поля є &lt;tab&gt; (табуляція).</p>
 
 <h3>Експорт даних RDF</h3>
-<p>База даних також наявна у форматі RDF. You can read the <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
+<p>База даних також наявна у форматі RDF. Ви можете прочитати <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">оголошення французькою</a>.</p>
 
 <dl>
  <dt>Силка</dt>
- <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf</a></dd>
+ <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
 <h3>Експорт даних зображення</h3>
-<p>All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Перегляньте <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">нашу документацію</a>, щоб дізнатися більше про те, як завантажувати зображення.</p>
+<p>Усі зображення та результати OCR можна завантажити з нашого сервера або з AWS (через програму відкритих даних AWS). Перегляньте <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">нашу документацію</a>, щоб дізнатися більше про те, як завантажувати зображення.</p>
 
 
 
@@ -81,20 +81,20 @@
 
 <p>API JSON також є наявним для читання даних продукту. Цей API зокрема використовується у мобільних додатках Open Food Facts для iPhone та Android.</p>
 
-<p>Ми постійно вдосконалюємо API, але намагаємося підтримувати зворотну сумісність. Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
+<p>Ми постійно вдосконалюємо API, але намагаємося підтримувати зворотну сумісність. Будь ласка, <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">зв'яжіться з нами</a> якщо ви використовуєте його, щоб ми могли повідомити вам про потенційні зміни.</p>
 
 <p>URL для зчитування даних про товар: https://world.openfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
 
-<p>Приклад: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.json">https://world.openfoodfacts.org/api/v2/product/737628064502.json</a></p>
-<p>Note that if the output is too overwhelming, you can filter it - as described in the API documentation.</p>
+<p>Наприклад: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
+<p>Зауважте, що якщо результат занадто великий, його можна відфільтрувати - як описано в документації до API.</p>
 
 <ul>
  <li>
 <a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - нова документація по OpenAPI - Робота в процесі</a>
  </li>
 </ul>
-<h3 class="emphasized-title">OpenAPI help wanted</h3>
-We're eager to finish the documentation of the API, add use-cases, and automate SDK generation. If you are an OpenAPI connoisseur, you are very welcome to help.
+<h3 class="emphasized-title">Потрібна допомога OpenAPI</h3>
+Ми прагнемо закінчити документування API, додати кейси використання та автоматизувати генерацію SDK. Якщо ви знавець OpenAPI, ми будемо раді вашій допомозі.
 <!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
  <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
@@ -109,17 +109,17 @@ We're eager to finish the documentation of the API, add use-cases, and automate 
 <p>Також, надсилання HTTP заголовку з вашим викликом API є хорошим способом для нашого зв'язку, якщо виникне будь-яке питання.</p>
 <p>Якщо ви в чомусь не впевнені, або маєте якесь питання (дурних питань не буває), не соромтеся задавати його на каналі #api в Slack :-)</p>
 
-<h3 class="emphasized-title">Experimental XML API</h3>
+<h3 class="emphasized-title">Експериментальний XML API</h3>
 <p>Ви також можете отримати результат у форматі XML за допомогою <code>.xml</code></p>
 <p>Приклад: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
-This API is not actively maintained, and not officially documented.
+Цей API активно не підтримується та офіційно не задокументований.
 
 
 <h2 class="emphasized-title">Обкладинки та SDK</h2>
 <p>Ми можливо маємо обкладинку для вашої улюбленої мови програмування. Якщо так, то ви можете використовувати її та покращувати. Якщо ні, ви можете допомогти створити її.</p>
 <p>Вони дозволять вам споживати дані, так само і дозволять іншим користувачам вносити нові дані</p>
 
-<h3>General principles to make your users happy</h3>
+<h3>Загальні користувачі, щоб зробити ваших користувачів щасливими</h3>
 <ul>
 <li>Ви можете шукати інформацію про товари, включаючи багато корисних розрахункових значень.</li>
 <li>Якщо ви не можете дістати інформацію про окремий продукт, ви можете отримати користувача для надсилання фото та даних, що потім будуть оброблені Open Food Facts AI та розробітниками, щоб отримати підрахований результат, який ви хочете показати їм.</li>
@@ -129,7 +129,7 @@ This API is not actively maintained, and not officially documented.
 <h3>Якщо ваші користувачі не очікують результат одразу (на приклад додатки для інвентиризації)</h3>
 <ul>
 <li>Надсилайте фото (передня частина/харчування/інгредієнти): найбезболісніша річ для ваших користувачів</li>
-<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Штучний інтелект Open Food Facts - Robotoff, згенерує деякі похідні дані з фотографій</li>
 <li>З часом, інші додатки та спільнота Open Food Facts заповнить прогалини даних</li>
 </ul>
 
@@ -152,7 +152,7 @@ This API is not actively maintained, and not officially documented.
 
 <p>Вітається повторне використання вами коду (це відкрите джерело) та допомога нам у його покращенні, для кожного, по всій планеті.</p>
 
-<h3>SDKs</h3>
+<h3>SDK</h3>
 <!-- TODO: Install locally -->
 <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">-->
 <ul>
@@ -173,7 +173,7 @@ This API is not actively maintained, and not officially documented.
 
 <h2 class="emphasized-title">Обговорення дати, API та експортів</h2>
 
-<p>You can look at <a href="https://support.openfoodfacts.org/help/fr-fr/12">common FAQ questions about the API and Data Exports</a> and <a href="https://support.openfoodfacts.org/help/fr-fr">common Open Food Facts questions</a></p>
-<p>You can <a href="https://slack.openfoodfacts.org">join the Open Food Facts Slack chatroom</a> which is the preferred way to ask questions and discuss the API</a>. Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a></p>
+<p>Ви можете переглянути <a href="https://support.openfoodfacts.org/help/fr-fr/12">поширені запитання щодо API та експорту даних</a>та<a href="https://support.openfoodfacts.org/help/fr-fr">поширені запитання щодо Open Food Facts</a></p>
+<p>Ви можете <a href="https://slack.openfoodfacts.org">приєднатися до чату Open Food Facts у Slack</a> який є найкращим способом поставити запитання та обговорити API</a>. Будь ласка, <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ставте свої запитання на каналі #api</a></p>
 <p>Ви можете <a href="https://github.com/openfoodfacts/api-documentation/discussions">відкрити потік у нашому репозиторії документації до API</a>
-<p>For any question regarding the data, you can contact us at <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>
+<p>З будь-яких питань щодо даних, з нами можна зв'язатися за адресою <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>
