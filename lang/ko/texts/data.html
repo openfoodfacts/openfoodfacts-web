@@ -1,6 +1,6 @@
-
 <h1 class="emphasized-title">데이터</h1>
 
+<h2 class="emphasized-title">Conditions for reuse</h2>
 <p>Open Food Facts 데이터베이스는 <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>에 따라 제공됩니다.<br/>
 데이터베이스의 개별 내용은 <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>에 따라 사용 가능합니다.<br/>
 제품 이미지는 <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>에 따라 제공됩니다.
@@ -9,7 +9,8 @@
 <p>데이터를 다시 사용하기 전에 <a href="https://world.openfoodfacts.org/terms-of-use">이용 약관을 읽고</a> 다시 사용하십시오.</p>
 
 
-<p>우리는 Open Food Facts 데이터가 무엇에 사용되는지 배우는 것에 매우 관심이 있습니다. It is not mandatory, but we would very much appreciate it if you <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Food Facts community.</p>
+<h2 class="emphasized-title">Tell us about your reuse</h2>
+<p>우리는 Open Food Facts 데이터가 무엇에 사용되는지 배우는 것에 매우 관심이 있습니다. It is not mandatory, but we would very much appreciate it if you <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Food Facts community. You can also <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">fill this form</a> to get a chance to get your app featured.</p>
 
 <h2 class="emphasized-title">Open Food Facts 데이터 내보내기</h2>
 
@@ -20,29 +21,31 @@
 <h3>MongoDB 덤프</h3>
 
 <p>모든 제품의 데이터는 MongoDB 데이터베이스 덤프에서 이용할 수 있습니다.</p>
-
+<!--
+<h4>Why you'd want to use it: </h4>
+<ul>
+ <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
+</ul>
+</p>-->
 <dl>
  <dt>링크</dt>
- <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
  <dt>sha256sum</dt>
- <dd><a href="https://static.openfoodfacts.org/data/sha256sum">https://static.openfoodfacts.org/data/sha256sum</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/gz-sha256sum">https://static.openfoodfacts.org/data/gz-sha256sum</a></dd>
  <dt>md5sum</dt>
- <dd><a href="https://static.openfoodfacts.org/data/md5sum">https://static.openfoodfacts.org/data/md5sum</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/gz-md5sum">https://static.openfoodfacts.org/data/gz-md5sum</a></dd>
 </dl>
 
 <h4>델타(Delta) 내보내기</h4>
 
-<p>지난 14 일 동안 매일 델타 내보내기가 제공되었습니다. 현재 사용 가능한 델타 파일 목록은 
-<a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>에서 찾을 수 있습니다.
- 각 줄은 <code>https://static.openfoodfacts.org/data/delta/{filename}</code>에서 사용할 수 있는 파일을 나타냅니다.
- 파일 이름에는 JSON 파일에 포함된 첫 번째 및 마지막 변경사항의 UNIX 타임스탬프가 포함되어 있어, 델타 파일을 알파벳 순서로 <code>mongoimport</code>로 불러올 수 있습니다(추출 후).</p>
-<p><code>mongoexport</code>의 특성상 델타 파일이 삭제된 제품에 대해 알려줄 수 없다는 점에 유의하십시오. 삭제된 제품을 데이터베이스에서 제거하려면 전체 MongoDB 덤프를 가져와야 합니다.</p>
-
+<p>지난 14 일 동안 매일 델타 내보내기가 제공되었습니다. The list of currently available delta files can be found at <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.</p>
+<p>각 줄은 <code>https://static.openfoodfacts.org/data/delta/{filename}</code>에서 사용할 수 있는 파일을 나타냅니다.</p>
+<p>The filename contains UNIX timestamp of the first and the last change contained in the JSON file, so that the delta files can be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
+<p><code>mongoexport</code>의 특성상 델타 파일이 삭제된 제품에 대해 알려줄 수 없다는 점에 유의하십시오. To remove deleted products from your database, you will need to import the full MongoDB dump.</p>
 
 <h3>CSV 데이터 내보내기</h3>
 
-<p>전체 데이터베이스는 <a href="https://jsonlines.org/">JSONL 형식</a> (LDJSON 또는 NDJSON이라고도 함)으로도 사용할 수 있습니다. 여기서 각 행은 JSON 객체입니다. 
-  MongoDB 내보내기와 동일한 데이터를 나타냅니다. 파일은 gzip으로 압축됩니다.</p>
+<p>전체 데이터베이스는 <a href="https://jsonlines.org/">JSONL 형식</a> (LDJSON 또는 NDJSON이라고도 함)으로도 사용할 수 있습니다. 여기서 각 행은 JSON 객체입니다. MongoDB 내보내기와 동일한 데이터를 나타냅니다. 파일은 gzip으로 압축됩니다.</p>
 
 <dl>
  <dt>링크</dt>
@@ -50,81 +53,72 @@
  </dd>
 </dl>
 
-
 <h3>CSV 데이터 내보내기</h3>
-
-<p>모든 제품 또는 일부 제품에 대한 데이터는 <a href="https://world.openfoodfacts.org/cgi/search.pl">고급 검색 양식을 통해</a> CSV 형식(OpenOffice, Excel 및 기타 많은 소프트웨어로 읽을 수 있음)으로 다운로드할 수 있습니다.</p>
+<p>Data for all products, or some of the products, can be downloaded in the CSV format (readable with LibreOffice, Excel and many other spreadsheet software) through the <a href="https://world.openfoodfacts.org/cgi/search.pl">advanced search form</a>.</p>
 
 <dl>
  <dt>Links</dt>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a> (raw CSV)</dd>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format)</dd>
+ <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
 </dl>
 
 <p>파일 인코딩은 유니코드 UTF-8입니다. 필드를 구분하는 문자는 &lt;tab&gt;(표)이다.</p>
 
-
-
 <h3>RDF 데이터 내보내기</h3>
-
-<p>데이터베이스도 RDF 형식으로 이용할 수 있다. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
+<p>데이터베이스도 RDF 형식으로 이용할 수 있다. You can read the <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
 
 <dl>
  <dt>링크</dt>
- <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf</a></dd>
+ <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
 <h3>Image Data Export</h3>
+<p>All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images.</p>
 
-<p>All images and OCR results can either be downloaded from our server or from AWS (through AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images.</p>
 
-<h2 class="emphasized-title">Live JSON and XML API</h2>
+
+<h2 class="emphasized-title">OpenAPI Documentation for the JSON API</h2>
 
 <p>제품의 데이터를 읽는 데 JSON API를 사용할 수도 있습니다. 이 API는 특히 아이폰과 안드로이드용 오픈 푸드 팩트 모바일 앱에서 많이 쓰입니다.</p>
 
-<p>We improve the API over-time but we are careful to keep backwards compatibility. Please <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
+<p>We improve the API over-time but we are careful to keep backwards compatibility. Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
 
 <p>예시: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.json">https://world.openfoodfacts.org/api/v2/product/737628064502.json</a></p>
 
-<p>예시: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.json">https://world.openfoodfacts.org/api/v2/product/737628064502.json</a></p>
-<p>You can also get the result in XML by using <code>.xml</code></p>
-<p>Example: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+<p>Example: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
+<p>Note that if the output is too overwhelming, you can filter it - as described in the API documentation.</p>
 
 <ul>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - new OpenAPI documentation - Work in Progress</a>
+ </li>
+</ul>
+<h3 class="emphasized-title">OpenAPI help wanted</h3>
+We're eager to finish the documentation of the API, add use-cases, and automate SDK generation. If you are an OpenAPI connoisseur, you are very welcome to help.
+<!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
  <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
  </li>
  <li>
 <a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Comprehensive but not OpenAPI compliant</a> - It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
  </li>
- <li>
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2 - new OpenAPI documentation - Work in Progress</a>
- </li>
- <li>
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V3 - new OpenAPI documentation - Work in Progress</a>
- </li>
-</ul>
+-->
 
 <p>사용자가 1 번의 API 호출 = 1 번의 실제 스캔을하는 한 프로덕션 사례에 API를 사용하는 것이 매우 좋습니다.
 이 페이지에서 매일 전체 내보내기를 사용할 수 있으므로 API를 사용하여 데이터베이스를 긁어 내려는 시도가 차단 될 가능성이 큽니다.</p>
 <p>어떤 것에 대해 확신이 없거나 질문이 있다면(어리석은 질문은 없으니) Slack에 자유롭게 물어보십시오 :-)</p>
 <p>If you are unsure about anything, or have any question (there is no silly question), feel free to ask it on the #api channel on Slack :-)</p>
 
-<h2 class="emphasized-title">안드로이드와 아이폰 모바일 앱</h2>
+<h3 class="emphasized-title">Experimental XML API</h3>
+<p>You can also get the result in XML by using <code>.xml</code></p>
+<p>Example: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+This API is not actively maintained, and not officially documented.
 
-<p>The code for the Open Food Facts mobile app is available on GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
-The app allows users to scan the barcode of products, to view the product information, and to take and submit pictures and data for missing products.</p>
-
-<p>The classic app for iOS is developed in Swift.</p>
-<p>The classic app for Android is developed in Kotlin.</p>
-<p>The new cross-platform app is a Dart/Flutter app.</p>
-<p>코드를 다시 사용하고(오픈 소스) 지구상의 모든 사람들을 위해 우리가 코드를 개선하도록 도와주십시오.
 
 <h2 class="emphasized-title">Wrappers 및 SDKs</h2>
 <p>우리는 아마도 당신이 가장 좋아하는 프로그래밍 언어의 wrapper를 가지고 있을 것입니다. 우리가 사용한다면 그것을 사용하고 향상시킬 수 있습니다. 그렇지 않은 경우 만들 수 있습니다.</p>
 <p><a href="https://slack.openfoodfacts.org">질문을 하고 API를 토론하는 데 선호되는 방법인  Open Food Facts  Slack 채팅방에 가입</a>할 수 있습니다.</p>
 
-<h3>General principles</h3>
+<h3>General principles to make your users happy</h3>
 <ul>
 <li>You can search for information about products, including many useful computed values.</li>
 <li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
@@ -134,7 +128,7 @@ The app allows users to scan the barcode of products, to view the product inform
 <h3>If your users do not expect a result immediately (e.g. Inventory apps)</h3>
 <ul>
 <li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
-<li>The Open Food Facts AI Robotoff will generate some derived data from the photos</li>
+<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
 <li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
 </ul>
 
@@ -145,27 +139,37 @@ The app allows users to scan the barcode of products, to view the product inform
 <li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
+<h3>Android and iPhone mobile app</h3>
+
+<p>The code for the Open Food Facts mobile app is available on GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).
+
+<p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
+<p>The app allows users to scan the barcode of products, to view the product information, and to take and submit pictures and data for missing products.</p>
+
+<p>코드를 다시 사용하고(오픈 소스) 지구상의 모든 사람들을 위해 우리가 코드를 개선하도록 도와주십시오.</p>
+
+<h3>SDKs</h3>
+<!-- TODO: Install locally -->
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">-->
 <ul>
-<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (old Open Food Facts official app)</a></li>
-<li>PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a></li>
-<li>Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a></li>
-<li>Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a></li>
-<li>Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a></li>
-<li>Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a></li>
-<li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a></li>
-<li>PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub</a></li>
-<li>PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a></li>
-<li>Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub</a></li>
-<li>React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a></li>
-<li>Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a></li>
-<li>Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a></li>
+<li><i class="devicon-cordova-plain"></i> Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (old Open Food Facts official app)</a></li>
+<li><i class="devicon-dart-plain"></i> PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a></li>
+<li><i class="devicon-elixir-plain"></i> Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C758AFX0S">Discussion channel</a></li>
+<li><i class="devicon-go-plain"></i> Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV">Discussion channel</a></li>
+<li><i class="devicon-java-plain"></i> Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3">Discussion channel</a></li>
+<li><i class="devicon-kotlin-plain"></i> Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9">Discussion channel</a></li>
+<li><i class="devicon-nodejs-plain"></i> NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JQQ28P8">Discussion channel</a></li>
+<li><i class="devicon-php-plain"></i> PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Discussion channel</a></li>
+<li><i class="devicon-laravel-plain"></i> PHP (Laravel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Discussion channel</a></li>
+<li><i class="devicon-python-plain"></i>  Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C13993JDD">Discussion channel</a></li>
+<li><i class="devicon-react-plain"></i> React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CL29QEBPY">Discussion channel</a></li>
+<li><i class="devicon-ruby-plain"></i> Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C0ZALLH61">Discussion channel</a></li>
+<li><i class="devicon-rust-plain"></i> Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C010J616CKV">Discussion channel</a></li> 
 </ul>
 
 <h2 class="emphasized-title">데이터, API 논의 및 내보내기</h2>
-<p><a href="https://slack.openfoodfacts.org">질문을 하고 API를 토론하는 데 선호되는 방법인  Open Food Facts  Slack 채팅방에 가입</a>할 수 있습니다.</p>
+
+<p>You can look at <a href="https://support.openfoodfacts.org/help/fr-fr/12">common FAQ questions about the API and Data Exports</a> and <a href="https://support.openfoodfacts.org/help/fr-fr">common Open Food Facts questions</a></p>
+<p>You can <a href="https://slack.openfoodfacts.org">join the Open Food Facts Slack chatroom</a> which is the preferred way to ask questions and discuss the API</a>. Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a></p>
 <p>You can <a href="https://github.com/openfoodfacts/api-documentation/discussions">open a thread on our API documentation repository</a>
-
-
-<h2 class="emphasized-title">문의</h2>
-
-<p>데이터에 관한 문의 사항은 <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>로 문의하십시오.
+<p>For any question regarding the data, you can contact us at <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>

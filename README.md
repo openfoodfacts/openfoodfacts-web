@@ -20,6 +20,10 @@ https://crowdin.com/project/openfoodfacts
 * Once the pull request gets approved and merged, it will be deployed on the test server
 * Deployment to production is still manual
 
+## Requirements
+* Do not hotlink ressources like images, JS or CSS. They need to be commited to the repository. Please organize resources in folders.
+
+
 ## Deployment
 
 ### Actual prod (no docker)

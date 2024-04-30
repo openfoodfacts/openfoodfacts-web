@@ -1,6 +1,6 @@
-
 <h1 class="emphasized-title">Dữ liệu</h1>
 
+<h2 class="emphasized-title">Conditions for reuse</h2>
 <p>Cơ sở dữ liệu của Open Food Facts có sẵn theo <a href="https://opendatacommons.org/licenses/odbl/1.0/">Giấy phép Open Database License</a>.<br/>
 Các nội dung riêng lẻ của cơ sở dữ liệu có sẵn theo <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Giấy phép Database Contents License</a>.<br/>
 Các hình ảnh Sản phẩm có sẵn theo giấy phép <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike</a>.
@@ -9,7 +9,8 @@ Các dữ liệu có thể chứa các yếu tố đồ họa tuân theo bản q
 <p>Vui lòng đọc <a href="https://world.openfoodfacts.org/terms-of-use">Điều khoản và điều kiện sử dụng và sử dụng lại</a> trước khi sử dụng lại dữ liệu.</p>
 
 
-<p>Chúng tôi rất quan tâm đến việc tìm hiểu mục đích sử dụng dữ liệu từ Open Food Facts. It is not mandatory, but we would very much appreciate it if you <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Food Facts community.</p>
+<h2 class="emphasized-title">Tell us about your reuse</h2>
+<p>Chúng tôi rất quan tâm đến việc tìm hiểu mục đích sử dụng dữ liệu từ Open Food Facts. It is not mandatory, but we would very much appreciate it if you <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Food Facts community. You can also <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">fill this form</a> to get a chance to get your app featured.</p>
 
 <h2 class="emphasized-title">Xuất dữ liệu từ Open Food Facts</h2>
 
@@ -20,31 +21,31 @@ Các dữ liệu có thể chứa các yếu tố đồ họa tuân theo bản q
 <h3>Kết xuất MongoDB</h3>
 
 <p>Dữ liệu cho tất cả các sản phẩm có sẵn trong kết xuất cơ sở dữ liệu MongoDB.</p>
-
+<!--
+<h4>Why you'd want to use it: </h4>
+<ul>
+ <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
+</ul>
+</p>-->
 <dl>
  <dt>Liên kết</dt>
- <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
  <dt>sha256sum</dt>
- <dd><a href="https://static.openfoodfacts.org/data/sha256sum">https://static.openfoodfacts.org/data/sha256sum</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/gz-sha256sum">https://static.openfoodfacts.org/data/gz-sha256sum</a></dd>
  <dt>md5sum</dt>
- <dd><a href="https://static.openfoodfacts.org/data/md5sum">https://static.openfoodfacts.org/data/md5sum</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/gz-md5sum">https://static.openfoodfacts.org/data/gz-md5sum</a></dd>
 </dl>
 
 <h4>Xuất dữ liệu kiểu Delta</h4>
 
-<p>Xuất dữ liệu delta hàng ngày được cung cấp cho dữ liễu trong vòng 14 ngày trước đó. Bạn có thể tìm thấy danh sách các tệp delta hiện có tại
- <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.
- Mỗi dòng đại diện cho một tệp có sẵn tại <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.
- Tên tệp chứa kí dấu thời gian UNIX của lần thay đổi đầu tiên và cuối cùng có trong tệp JSON, để các tệp delta
- có thể được nhập (sau khi trích xuất) với <code>mongoimport</code> theo thứ tự bảng chữ cái.</p>
-<p>Xin lưu ý rằng do bản chất của <code>mongoexport</code>, các tệp delta không thể lưu trữ thông tin về các sản phẩm đã bị xóa. Để xóa
- sản phẩm đã xóa khỏi cơ sở dữ liệu của bạn, bạn sẽ cần nhập liệu toàn bộ tệp MongoDB.</p>
-
+<p>Xuất dữ liệu delta hàng ngày được cung cấp cho dữ liễu trong vòng 14 ngày trước đó. The list of currently available delta files can be found at <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.</p>
+<p>Mỗi dòng đại diện cho một tệp có sẵn tại <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.</p>
+<p>The filename contains UNIX timestamp of the first and the last change contained in the JSON file, so that the delta files can be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
+<p>Xin lưu ý rằng do bản chất của <code>mongoexport</code>, các tệp delta không thể lưu trữ thông tin về các sản phẩm đã bị xóa. To remove deleted products from your database, you will need to import the full MongoDB dump.</p>
 
 <h3>Xuất dữ liệu JSONL</h3>
 
-<p>Toàn bộ cơ sở dữ liệu cũng có sẵn ở <a href="https://jsonlines.org/">định dạng JSONL</a> (đôi khi được gọi là LDJSON hoặc NDJSON) trong đó mỗi dòng là một đối tượng JSON. 
-  Nó đại diện cho dữ liệu giống như xuất MongoDB. Tệp được nén dạng file gzip.</p>
+<p>Toàn bộ cơ sở dữ liệu cũng có sẵn ở <a href="https://jsonlines.org/">định dạng JSONL</a> (đôi khi được gọi là LDJSON hoặc NDJSON) trong đó mỗi dòng là một đối tượng JSON. Nó đại diện cho dữ liệu giống như xuất MongoDB. Tệp được nén dạng file gzip.</p>
 
 <dl>
  <dt>Liên kết</dt>
@@ -52,82 +53,72 @@ Các dữ liệu có thể chứa các yếu tố đồ họa tuân theo bản q
  </dd>
 </dl>
 
-
 <h3>Xuất dữ liệu CSV</h3>
-
-<p>Dữ liệu cho tất cả các sản phẩm hoặc một số sản phẩm có thể được tải xuống ở định dạng CSV (có thể đọc được bằng OpenOffice, Excel và nhiều phần mềm khác)
- thông qua <a href="https://world.openfoodfacts.org/cgi/search.pl">biểu mẫu tìm kiếm nâng cao</a>.</p>
+<p>Data for all products, or some of the products, can be downloaded in the CSV format (readable with LibreOffice, Excel and many other spreadsheet software) through the <a href="https://world.openfoodfacts.org/cgi/search.pl">advanced search form</a>.</p>
 
 <dl>
  <dt>Liên kết</dt>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a> (CSV thô)</dd>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (CSV nén ở định dạng GZIP)</dd>
+ <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
 </dl>
 
 <p>Tệp mã hóa dưới dạng Unicode UTF-8. Ký tự ngăn cách các trường là &lt;tab&gt; (lập bảng).</p>
 
-
-
 <h3>Xuất dữ liệu RDF</h3>
-
-<p>Cơ sở dữ liệu cũng có sẵn ở định dạng RDF. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
+<p>Cơ sở dữ liệu cũng có sẵn ở định dạng RDF. You can read the <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
 
 <dl>
  <dt>Liên kết</dt>
- <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf</a></dd>
+ <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
 <h3>Image Data Export</h3>
+<p>All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images.</p>
 
-<p>All images and OCR results can either be downloaded from our server or from AWS (through AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images.</p>
 
-<h2 class="emphasized-title">API JSON và XML trực tiếp</h2>
+
+<h2 class="emphasized-title">OpenAPI Documentation for the JSON API</h2>
 
 <p>API JSON cũng có sẵn để đọc dữ liệu cho một sản phẩm. API này đặc biệt được sử dụng trong ứng dụng di động Open Food Facts dành cho iPhone và Android.</p>
 
-<p>We improve the API over-time but we are careful to keep backwards compatibility. Please <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
+<p>We improve the API over-time but we are careful to keep backwards compatibility. Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
 
 <p>URL để đọc dữ liệu sản phẩm: https://world.openfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
 
-<p>Ví dụ: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.json">https://world.openfoodfacts.org/api/v2/product/737628064502.json</a></p>
-<p>You can also get the result in XML by using <code>.xml</code></p>
-<p>Ví dụ: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+<p>Example: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
+<p>Note that if the output is too overwhelming, you can filter it - as described in the API documentation.</p>
 
 <ul>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - new OpenAPI documentation - Work in Progress</a>
+ </li>
+</ul>
+<h3 class="emphasized-title">OpenAPI help wanted</h3>
+We're eager to finish the documentation of the API, add use-cases, and automate SDK generation. If you are an OpenAPI connoisseur, you are very welcome to help.
+<!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
  <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
  </li>
  <li>
 <a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Comprehensive but not OpenAPI compliant</a> - It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
  </li>
- <li>
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2 - new OpenAPI documentation - Work in Progress</a>
- </li>
- <li>
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V3 - new OpenAPI documentation - Work in Progress</a>
- </li>
-</ul>
+-->
 
 <p>Chúng tôi rất hoan nghênh bạn sử dụng API cho các trường hợp sản xuất, miễn là 1 lần gọi API = 1 lần quét thực bởi người dùng.
 Bất kỳ nỗ lực nào để loại bỏ cơ sở dữ liệu bằng cách sử dụng API sẽ rất có thể bị chặn, vì các bản xuất hàng ngày đầy đủ luôn có sẵn trên chính trang này.</p>
 <p>Ngoài ra, gửi tiêu đề HTTP với lệnh gọi API của bạn là một cách tốt để chúng tôi có thể liên hệ, nếu có bất kỳ vấn đề nào phát sinh.</p>
 <p>If you are unsure about anything, or have any question (there is no silly question), feel free to ask it on the #api channel on Slack :-)</p>
 
-<h2 class="emphasized-title">Ứng dụng di động Android và iPhone</h2>
+<h3 class="emphasized-title">Experimental XML API</h3>
+<p>You can also get the result in XML by using <code>.xml</code></p>
+<p>Ví dụ: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+This API is not actively maintained, and not officially documented.
 
-<p>The code for the Open Food Facts mobile app is available on GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
-The app allows users to scan the barcode of products, to view the product information, and to take and submit pictures and data for missing products.</p>
-
-<p>The classic app for iOS is developed in Swift.</p>
-<p>The classic app for Android is developed in Kotlin.</p>
-<p>The new cross-platform app is a Dart/Flutter app.</p>
-<p>Bạn có thể sử dụng lại mã (mã nguồn mở) và giúp chúng tôi cải thiện nó, cho mọi người, trên toàn cầu.
 
 <h2 class="emphasized-title">Wrappers và SDKs</h2>
 <p>Chúng tôi có thể cung cấp wrapper cho ngôn ngữ lập trình yêu thích của bạn. Nếu có nó, bạn có thể sử dụng và cải thiện nó. Nếu chúng tôi không thể cung cấp, bạn có thể giúp tạo mới.</p>
 <p>Chúng sẽ cho phép bạn sử dụng dữ liệu cũng như cho phép người dùng của bạn đóng góp dữ liệu mới</p>
 
-<h3>Nguyên tắc chung</h3>
+<h3>General principles to make your users happy</h3>
 <ul>
 <li>You can search for information about products, including many useful computed values.</li>
 <li>Nếu bạn không thể lấy thông tin về một sản phẩm cụ thể, bạn có thể yêu cầu người dùng gửi ảnh và dữ liệu sẽ được xử lý bởi Open Food Facts AI và những người đóng góp để có được kết quả tính toán mà bạn muốn cho họ xem.</li>
@@ -137,7 +128,7 @@ The app allows users to scan the barcode of products, to view the product inform
 <h3>Nếu người dùng của bạn cần kết quả ngay lập tức (ví dụ: các ứng dụng kho vận)</h3>
 <ul>
 <li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
-<li>Open Food Facts AI Robotoff sẽ tạo ra một số dữ liệu lấy từ các hình ảnh</li>
+<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
 <li>Theo thời gian, các ứng dụng khác và cộng đồng Open Food Facts sẽ bổ sung các khoảng trống dữ liệu</li>
 </ul>
 
@@ -148,27 +139,40 @@ The app allows users to scan the barcode of products, to view the product inform
 <li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
+<h3>Android/iPhone/Flutter mobile app</h3>
+
+<p>The code for the official Open Food Facts mobile apps is available on GitHub
+ <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>
+
+<p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
+<p>The app allows users to scan the barcode of products, to view the product information, and to take and submit pictures and data for missing products.</p>
+
+<p>Bạn có thể sử dụng lại mã (mã nguồn mở) và giúp chúng tôi cải thiện nó, cho mọi người, trên toàn cầu.</p>
+
+<h3>SDKs</h3>
+<!-- TODO: Install locally -->
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">-->
 <ul>
-<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (ứng dụng Open Food Facts chính thức cũ)</a></li>
-<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a> - <a href="https://pub.dev/packages/openfoodfacts">Gói trên pub.dev</a></li>
-<li>Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a></li>
-<li>Truy cập: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a></li>
-<li>Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a></li>
-<li>Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a></li>
-<li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a></li>
-<li>PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub</a></li>
-<li>PHP (Laravel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a></li>
-<li>Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub</a></li>
-<li>React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a></li>
-<li>Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a></li>
-<li>Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a></li>
+<li><i class="devicon-cordova-plain"></i> Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (ứng dụng Open Food Facts chính thức cũ)</a></li>
+<li><i class="devicon-dart-plain"></i> DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a> - <a href="https://pub.dev/packages/openfoodfacts">Gói trên pub.dev</a></li>
+<li><i class="devicon-elixir-plain"></i> Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C758AFX0S">Discussion channel</a></li>
+<li><i class="devicon-go-plain"></i> Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV">Discussion channel</a></li>
+<li><i class="devicon-java-plain"></i> Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3">Discussion channel</a></li>
+<li><i class="devicon-kotlin-plain"></i> Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9">Discussion channel</a></li>
+<li><i class="devicon-nodejs-plain"></i> NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JQQ28P8">Discussion channel</a></li>
+<li><i class="devicon-php-plain"></i> PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Discussion channel</a></li>
+<li><i class="devicon-laravel-plain"></i> PHP (Laravel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Discussion channel</a></li>
+<li><i class="devicon-python-plain"></i>  Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C13993JDD">Discussion channel</a></li>
+<li><i class="devicon-react-plain"></i> React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CL29QEBPY">Discussion channel</a></li>
+<li><i class="devicon-ruby-plain"></i> Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C0ZALLH61">Discussion channel</a></li>
+<li><i class="devicon-rust-plain"></i> Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C010J616CKV">Discussion channel</a></li> 
 </ul>
 
 <h2 class="emphasized-title">Thảo luận về dữ liệu, API và xuất dữ liệu</h2>
-<p>Bạn có thể <a href="https://slack.openfoodfacts.org">tham gia phòng trò chuyện Open Food Facts trên Slack, nơi được ưa thích để đặt câu hỏi và thảo luận về API</a>.</p>
+
+<p>You can look at <a href="https://support.openfoodfacts.org/help/fr-fr/12">common FAQ questions about the API and Data Exports</a> and <a href="https://support.openfoodfacts.org/help/fr-fr">common Open Food Facts questions</a></p>
+<p>You can <a href="https://slack.openfoodfacts.org">join the Open Food Facts Slack chatroom</a> which is the preferred way to ask questions and discuss the API</a>. Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a></p>
 <p>You can <a href="https://github.com/openfoodfacts/api-documentation/discussions">open a thread on our API documentation repository</a>
-
-
-<h2 class="emphasized-title">Liên hệ</h2>
-
-<p>Đối với bất kỳ câu hỏi nào liên quan đến dữ liệu, bạn có thể liên hệ với chúng tôi theo địa chỉ <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>
+<p>For any question regarding the data, you can contact us at <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>

@@ -1,6 +1,6 @@
-
 <h1 class="emphasized-title">Údaje</h1>
 
+<h2 class="emphasized-title">Podmínky pro opětovné použití</h2>
 <p>Databáze Open Food Facts je k dispozici pod <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
 Jednotlivý obsah databáze je k dispozici pod <a href="https://opendatacommons.org/licenses/dbcl/1.0/">licencí k obsahu databáze</a>.<br/>
 Obrázky produktů jsou k dispozici pod licencí <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Uveďte autora ShareAlike</a>.
@@ -9,7 +9,8 @@ Mohou obsahovat grafické prvky podléhající autorským právům nebo jiným p
 <p>Před opětovným použitím dat si prosím přečtěte <a href="https://world.openfoodfacts.org/terms-of-use">Podmínky používání a opětovného použití</a>.</p>
 
 
-<p>Velmi nás zajímá zjištění, k čemu se používají data Open Food Facts. To není povinné, ale velmi bychom ocenili, kdybyste nám <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">řekli o svém opakovaném používání</a>, abychom je mohli sdílet s komunitou Open Food Facts.</p>
+<h2 class="emphasized-title">Řekněte nám o svém opětovném použití</h2>
+<p>Velmi nás zajímá zjištění, k čemu se používají data Open Food Facts. To není povinné, ale velmi bychom ocenili, kdybyste nám <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">řekli o svém opětovném použití</a>, abychom ho mohli sdílet s komunitou Open Food Facts. Můžete také <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">vyplnit tento formulář</a> a získat tak šanci, aby byla vaše aplikace doporučena.</p>
 
 <h2 class="emphasized-title">Export dat Open Food Facts</h2>
 
@@ -20,30 +21,32 @@ Mohou obsahovat grafické prvky podléhající autorským právům nebo jiným p
 <h3>Výpis MongoDB</h3>
 
 <p>Data pro všechny produkty jsou k dispozici ve výpisu databáze MongoDB.</p>
-
+<!--
+<h4>Why you'd want to use it: </h4>
+<ul>
+ <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
+</ul>
+</p>-->
 <dl>
  <dt>Odkaz</dt>
- <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.tar.gz</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
  <dt>sha256sum</dt>
- <dd><a href="https://static.openfoodfacts.org/data/sha256sum">https://static.openfoodfacts.org/data/sha256sum</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/gz-sha256sum">https://static.openfoodfacts.org/data/gz-sha256sum</a></dd>
  <dt>md5sum</dt>
- <dd><a href="https://static.openfoodfacts.org/data/md5sum">https://static.openfoodfacts.org/data/md5sum</a></dd>
+ <dd><a href="https://static.openfoodfacts.org/data/gz-md5sum">https://static.openfoodfacts.org/data/gz-md5sum</a></dd>
 </dl>
 
 <h4>Delta Export</h4>
 
 <p>Denní delta exporty jsou poskytovány za předchozích 14 dní. Seznam aktuálně dostupných delta souborů lze nalézt na
- <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.
- Každý řádek představuje soubor, který je dostupný na adrese <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.
- Název souboru obsahuje UNIX časové razítko prvního a poslední změny obsažené v souboru JSON, aby delta soubory
- mohly být importovány (po extrakci) pomocí <code>mongoimport</code> v abecedním pořadí.</p>
-<p>Vezměte prosím na vědomí, že vzhledem k povaze <code>mongoexport</code>vám delta soubory nemohou říci o smazaných produktech. Chcete-li odstranit odstraněné produkty z databáze, musíte importovat celý výpis MongoDB.</p>
-
+ <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.</p>
+<p>Každý řádek představuje soubor, který je dostupný na adrese <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.</p>
+<p>Název souboru obsahuje UNIX časové razítko prvního a poslední změny obsažené v souboru JSON, aby delta soubory mohly být importovány (po extrakci) pomocí <code>mongoimport</code> v abecedním pořadí.</p>
+<p>Vezměte prosím na vědomí, že vzhledem k povaze <code>mongoexport</code>vám delta soubory nemohou říci o smazaných produktech. Chcete-li odebrat odstraněné produkty z databáze, musíte importovat celý výpis MongoDB.</p>
 
 <h3>Export dat JSONL</h3>
 
-<p>Celá databáze je k dispozici také ve formátu <a href="https://jsonlines.org/">JSONL</a> (někdy nazývaném LDJSON nebo NDJSON), kde je každý řádek objektem JSON. 
-  Představuje stejná data jako export MongoDB. Soubor je komprimován pomocí gzip.</p>
+<p>Celá databáze je k dispozici také ve formátu <a href="https://jsonlines.org/">JSONL</a> (někdy nazývaném LDJSON nebo NDJSON), kde je každý řádek objektem JSON. Představuje stejná data jako export MongoDB. Soubor je komprimován pomocí gzip.</p>
 
 <dl>
  <dt>Odkaz</dt>
@@ -51,82 +54,72 @@ Mohou obsahovat grafické prvky podléhající autorským právům nebo jiným p
  </dd>
 </dl>
 
-
 <h3>Export dat CSV</h3>
-
-<p>Data pro všechny produkty nebo některé produkty lze stáhnout ve formátu CSV (čitelný pomocí OpenOffice, Excel a mnoha dalších softwarů)
- prostřednictvím <a href="https://world.openfoodfacts.org/cgi/search.pl">formuláře pro pokročilé vyhledávání</a>.</p>
+<p>Data pro všechny produkty nebo některé produkty lze stáhnout ve formátu CSV (čitelný pomocí LibreOffice, Excel a mnoha dalších tabulkových softwarů) prostřednictvím <a href="https://world.openfoodfacts.org/cgi/search.pl">formuláře pro pokročilé vyhledávání</a>.</p>
 
 <dl>
  <dt>Odkazy</dt>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv</a> (nezpracovaný soubor CSV)</dd>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (komprimovaný CSV ve formátu GZIP)</dd>
+ <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (komprimovaný CSV ve formátu GZIP: ~ 0.9 Gb, rozbalený: ~ 9 Gb)</dd>
 </dl>
 
 <p>Kódování souboru je Unicode UTF-8. Znak, který odděluje pole, je &lt;tab&gt; (tabulka).</p>
 
-
-
 <h3>Export dat RDF</h3>
-
-<p>Databáze je dostupná také ve formátu RDF. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">oznámení ve francouzštině</a>.</p>
+<p>Databáze je dostupná také ve formátu RDF. Můžete si přečíst <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">oznámení ve francouzštině</a>.</p>
 
 <dl>
  <dt>Odkaz</dt>
- <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf</a></dd>
+ <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
 <h3>Export obrazových dat</h3>
-
 <p>Všechny obrázky a výsledky OCR lze stáhnout z našeho serveru nebo z AWS (prostřednictvím AWS Open Data Program). Podívejte se <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">na naši dokumentaci</a> a zjistěte více o tom, jak stahovat obrázky.</p>
 
-<h2 class="emphasized-title">Živé JSON a XML API</h2>
+
+
+<h2 class="emphasized-title">Dokumentace OpenAPI pro JSON API</h2>
 
 <p>K dispozici je také JSON API pro čtení dat pro produkt. Toto API se používá zejména v mobilní aplikaci Open Food Facts pro iPhone a Android.</p>
 
-<p>API v průběhu času vylepšujeme, ale dbáme na zachování zpětné kompatibility. Prosím, <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">kontaktujte nás</a>, pokud ho používáte, abychom Vám mohli sdělit o možných změnách.</p>
+<p>API v průběhu času vylepšujeme, ale dbáme na zachování zpětné kompatibility. Prosím, <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">kontaktujte nás</a>, pokud ho používáte, abychom Vás mohli informovat o možných změnách.</p>
 
 <p>Adresa URL pro čtení dat o produktu: https://world.openfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
 
-<p>Příklad: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.json">https://world.openfoodfacts.org/api/v2/product/737628064502.json</a></p>
-<p>Výsledek můžete také získat v XML pomocí <code>.xml</code></p>
-<p>Příklad: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+<p>Příklad: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
+<p>Všimněte si, že pokud je výstup příliš zahlcující, můžete jej filtrovat – jak je popsáno v dokumentaci API.</p>
 
 <ul>
-<li>
- <a href="https://wiki.openfoodfacts.org/API">API V1- Stará dokumentace dostupná na Wiki</a> (Důležitá poznámka: stránka je rozdělena na podstránky pro ČTENÍ a ZÁPIS). 
- </li>
  <li>
-<a href="https://openfoodfacts.github.io/api-documentation/">API V2 – Komplexní, ale není kompatibilní s OpenAPI</a> – Obsahuje případy použití pro zobrazení produktu a umožňuje vašim uživatelům přidávat údaje potřebné k získání Nutri-Score, klasifikace NOVA, přísad a Eco-Score.
- </li>
- <li>
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2 - nová dokumentace OpenAPI - Work in Progress</a>
- </li>
- <li>
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V3 - nová dokumentace OpenAPI - Work in Progress</a>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - nová dokumentace OpenAPI - Work in Progress</a>
  </li>
 </ul>
+<h3 class="emphasized-title">Hledáme pomoc s OpenAPI</h3>
+Jsme dychtiví dokončit dokumentaci API, přidat případy použití a automatizovat generování SDK. Pokud jste znalci OpenAPI, rádi si necháme pomoct.
+<!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
+<li>
+ <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Comprehensive but not OpenAPI compliant</a> - It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
+ </li>
+-->
 
 <p>Je velmi vítáno používat API pro produkční případy, pokud 1 volání API = 1 skutečné skenování uživatelem.
 Jakýkoli pokus o stažení databáze pomocí API bude velmi pravděpodobně zablokován, protože právě na této stránce jsou k dispozici úplné denní exporty.</p>
 <p>Také odeslání HTTP hlavičky s vaším voláním API je dobrý způsob, jak se s námi spojit, pokud by nastal nějaký problém.</p>
 <p>Pokud si nejste jistí, nebo máte nějaké dotazy (není tu žádná pošetilá otázka), Neváhejte se zeptat na kanálu #api na Slack :-)</p>
 
-<h2 class="emphasized-title">Mobilní aplikace pro Android a iPhone</h2>
+<h3 class="emphasized-title">Experimentální XML API</h3>
+<p>Výsledek můžete také získat v XML pomocí <code>.xml</code></p>
+<p>Příklad: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+Toto API není aktivně udržováno a není oficiálně zdokumentováno.
 
-<p>Kód pro mobilní aplikaci Open Food Facts je dostupný na GitHubu (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> a <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>).
-Aplikace umožňuje uživatelům naskenovat čárový kód produktů, zobrazit informace o produktu a pořídit a odeslat obrázky a data pro chybějící produkty.</p>
-
-<p>Klasická aplikace pro iOS je vyvinuta ve Swiftu.</p>
-<p>Klasická aplikace pro Android je vyvinuta v Kotlin.</p>
-<p>Nová aplikace pro různé platformy je aplikace Dart/Flutter.</p>
-<p>Můžete znovu použít kód (je to open source) a pomoci nám jej vylepšit, pro každého na celé planetě.
 
 <h2 class="emphasized-title">Obaly a sady SDK</h2>
 <p>Pravděpodobně máme wrapper pro váš oblíbený programovací jazyk. Pokud ano, můžete to využít a vylepšit. Pokud ne, můžete pomoci s jeho vytvořením.</p>
 <p>Umožní vám spotřebovávat data a také umožní vašim uživatelům přispívat novými daty</p>
 
-<h3>Obecné zásady</h3>
+<h3>Obecné zásady, aby byli vaši uživatelé spokojeni</h3>
 <ul>
 <li>Můžete vyhledávat informace o produktech, včetně mnoha užitečných vypočtených hodnot.</li>
 <li>Pokud nemůžete získat informace o konkrétním produktu, můžete přimět uživatele, aby poslal fotografie a data, která pak zpracuje Open Food Facts AI a přispěvatelé, aby získali vypočítaný výsledek, který jim chcete ukázat.</li>
@@ -136,7 +129,7 @@ Aplikace umožňuje uživatelům naskenovat čárový kód produktů, zobrazit i
 <h3>Pokud vaši uživatelé neočekávají výsledek okamžitě (např. aplikace Inventory)</h3>
 <ul>
 <li>Odešlete fotografie (přední strana/výživa/ingredience): pro vaše uživatele naprosto bezbolestná věc</li>
-<li>Open Food Facts AI Robotoff vygeneruje některá odvozená data z fotografií</li>
+<li>Open Food Facts AI „Robotoff“ vygeneruje některá odvozená data z fotografií</li>
 <li>Časem mezery v datech zaplní další aplikace a komunita Open Food Facts</li>
 </ul>
 
@@ -147,27 +140,40 @@ Aplikace umožňuje uživatelům naskenovat čárový kód produktů, zobrazit i
 <li>Odešlete kategorii + štítky &gt; brzy získáte Eco-Score (o dopadu na životní prostředí)</li>
 </ul>
 
+<h3>Mobilní aplikace pro Android/iPhone/Flutter</h3>
+
+<p>Kódy pro oficiální mobilní aplikace Open Food Facts jsou dostupné na GitHubu:
+ <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>,
+ <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> a
+ <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>
+
+<p>Uvažujeme o přeměně zastaralých kódových základen Kotlinu a Swiftu na SDK Kotlinu a Swiftu, pomoc vítána :-)</p>
+<p>Aplikace umožňuje uživatelům naskenovat čárový kód produktů, zobrazit informace o produktu a pořídit a odeslat obrázky a data pro chybějící produkty.</p>
+
+<p>Můžete znovu použít kód (je to open source) a pomoci nám jej vylepšit, pro každého na celé planetě.</p>
+
+<h3>SDK</h3>
+<!-- TODO: Install locally -->
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">-->
 <ul>
-<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (stará oficiální aplikace Open Food Facts)</a></li>
-<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a> - <a href="https://pub.dev/packages/openfoodfacts">Balíček na pub.dev</a></li>
-<li>Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a></li>
-<li>Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a></li>
-<li>Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a></li>
-<li>Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a></li>
-<li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a></li>
-<li>PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub</a></li>
-<li>PHP (Laravel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a></li>
-<li>Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub</a></li>
-<li>React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a></li>
-<li>Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a></li>
-<li>Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a></li>
+<li><i class="devicon-cordova-plain"></i> Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (stará oficiální aplikace Open Food Facts)</a></li>
+<li><i class="devicon-dart-plain"></i> DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a> - <a href="https://pub.dev/packages/openfoodfacts">Balíček na pub.dev</a></li>
+<li><i class="devicon-elixir-plain"></i> Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/C758AFX0S">Diskusní kanál</a></li>
+<li><i class="devicon-go-plain"></i> Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV">Diskusní kanál</a></li>
+<li><i class="devicon-java-plain"></i> Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3">Diskusní kanál</a></li>
+<li><i class="devicon-kotlin-plain"></i> Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9">Diskusní kanál</a></li>
+<li><i class="devicon-nodejs-plain"></i> NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/C1JQQ28P8">Diskusní kanál</a></li>
+<li><i class="devicon-php-plain"></i> PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Diskusní kanál</a></li>
+<li><i class="devicon-laravel-plain"></i> PHP (Laravel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Diskusní kanál</a></li>
+<li><i class="devicon-python-plain"></i>  Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/C13993JDD">Diskusní kanál</a></li>
+<li><i class="devicon-react-plain"></i> React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/CL29QEBPY">Diskusní kanál</a></li>
+<li><i class="devicon-ruby-plain"></i> Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/C0ZALLH61">Diskusní kanál</a></li>
+<li><i class="devicon-rust-plain"></i> Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/C010J616CKV">Diskusní kanál</a></li> 
 </ul>
 
 <h2 class="emphasized-title">Diskuse o datech, API a exportu</h2>
-<p>Můžete se <a href="https://slack.openfoodfacts.org">připojit k chatovací místnosti Open Food Facts Slack, což je preferovaný způsob, jak klást otázky a diskutovat o API</a>.</p>
+
+<p>Můžete se podívat na <a href="https://support.openfoodfacts.org/help/fr-fr/12">nejčastější dotazy týkající se API a exportů dat</a> a <a href="https://support.openfoodfacts.org/help/fr-fr">běžné otázky týkající se Open Food Facts</a></p>
+<p>Můžete se <a href="https://slack.openfoodfacts.org">připojit k Slackové chatovací místnosti Open Food Facts</a>, což je preferovaný způsob, jak klást otázky a diskutovat o API</a>. Prosím <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">položte své otázky v kanálu #api</a></p>
 <p>Můžete <a href="https://github.com/openfoodfacts/api-documentation/discussions">otevřít vlákno v našem úložišti dokumentace API</a>
-
-
-<h2 class="emphasized-title">Kontakt</h2>
-
-<p>V případě jakýchkoli dotazů ohledně údajů nás můžete kontaktovat na <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>
+<p>V případě jakýchkoli dotazů ohledně údajů nás můžete kontaktovat na <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>
