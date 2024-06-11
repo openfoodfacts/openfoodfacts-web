@@ -15,11 +15,12 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # same concurrency as off-server staging deployment
     environment: off-net
     concurrency: off-net
     steps:
     - name: Checkout git repository
-      uses: appleboy/ssh-action@v1.0.0 # v0.1.4
+      uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
@@ -37,3 +38,17 @@ jobs:
           git fetch --depth 1
           # Checkout current commit SHA
           git checkout -qf ${{ github.sha }}
+    # we need to restart staging backend to see deployed changes
+    - name: Restart staging backend
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        proxy_host: ${{ secrets.PROXY_HOST }}
+        proxy_username: ${{ secrets.USERNAME }}
+        proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          # Go to repository directory and restart backend
+          cd off-net
+          docker compose restart backend
