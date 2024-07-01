@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2024-07-01)
+
+
+### Bug Fixes
+
+* add repos ([4a461d2](https://github.com/openfoodfacts/openfoodfacts-web/commit/4a461d2989e84a81a2ae358b92024ddcc41657c6))
+* link to data export ([0a076af](https://github.com/openfoodfacts/openfoodfacts-web/commit/0a076af03b2d47cdda01c2c59d85ab1f8d77503a))
+
 ## 1.0.0 (2024-02-13)
 
 
