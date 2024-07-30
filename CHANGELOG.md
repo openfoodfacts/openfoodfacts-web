@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.0 (2024-07-30)
+
+
+### Bug Fixes
+
+* add repos ([4a461d2](https://github.com/openfoodfacts/openfoodfacts-web/commit/4a461d2989e84a81a2ae358b92024ddcc41657c6))
+* add some who-we-are links ([a6e776e](https://github.com/openfoodfacts/openfoodfacts-web/commit/a6e776e9db7a6c22564088ac99ded67b363ebfb7)), closes [#587](https://github.com/openfoodfacts/openfoodfacts-web/issues/587)
+* remove bogus text ([25b1d59](https://github.com/openfoodfacts/openfoodfacts-web/commit/25b1d598ec397ab0ac44d83267e573103cd5cb94))
+* remove bogus texts ([840dc0d](https://github.com/openfoodfacts/openfoodfacts-web/commit/840dc0d8ecf2c1ab54f24a6113bc324c1aee2540))
+
 ## 1.0.0 (2024-02-13)
 
 
