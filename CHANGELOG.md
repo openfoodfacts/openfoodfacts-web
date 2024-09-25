@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 (2024-09-25)
+
+
+### Bug Fixes
+
+* add some who-we-are links ([a6e776e](https://github.com/openfoodfacts/openfoodfacts-web/commit/a6e776e9db7a6c22564088ac99ded67b363ebfb7)), closes [#587](https://github.com/openfoodfacts/openfoodfacts-web/issues/587)
+* fr symlinks and PT index.html ([67701a6](https://github.com/openfoodfacts/openfoodfacts-web/commit/67701a694058f1afeb0c6737060b670825c2e1df))
+* remove bogus text ([25b1d59](https://github.com/openfoodfacts/openfoodfacts-web/commit/25b1d598ec397ab0ac44d83267e573103cd5cb94))
+
 ## 1.0.0 (2024-02-13)
 
 
