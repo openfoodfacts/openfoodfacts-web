@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.1.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.0.0...v1.1.0) (2024-10-01)
+
+
+### Features
+
+* obf-data-reload ([e31332d](https://github.com/openfoodfacts/openfoodfacts-web/commit/e31332d7a529dfd1f3af0122f0c5f0749d54f28d))
+* OPFF data reboot ([7b1e47c](https://github.com/openfoodfacts/openfoodfacts-web/commit/7b1e47c46a788c224e49ed6a3e1f9d61be2f59fd))
+* reboot OPF data page ([6b4fc40](https://github.com/openfoodfacts/openfoodfacts-web/commit/6b4fc4044cc401ec7eb409cf2ddf285620d62479))
+
+
+### Bug Fixes
+
+* add some who-we-are links ([a6e776e](https://github.com/openfoodfacts/openfoodfacts-web/commit/a6e776e9db7a6c22564088ac99ded67b363ebfb7)), closes [#587](https://github.com/openfoodfacts/openfoodfacts-web/issues/587)
+* fr symlinks and PT index.html ([67701a6](https://github.com/openfoodfacts/openfoodfacts-web/commit/67701a694058f1afeb0c6737060b670825c2e1df))
+* remove bogus text ([25b1d59](https://github.com/openfoodfacts/openfoodfacts-web/commit/25b1d598ec397ab0ac44d83267e573103cd5cb94))
+* Update labeler.yml ([768e318](https://github.com/openfoodfacts/openfoodfacts-web/commit/768e3183be016e1e27904b985b5c1027ae64739b))
+
 ## 1.0.0 (2024-09-25)
 
 
