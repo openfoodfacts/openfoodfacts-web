@@ -10,7 +10,7 @@ Estas podem conter elementos gráficos sujeitos a direitos de autor ou outros di
 
 
 <h2 class="emphasized-title">Fale-nos da sua reutilização</h2>
-<p>Estamos muito interessados em saber em que são usados os dados do Open Pet Food Facts. It is not mandatory, but we would very much appreciate it if you <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Beauty%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Pet Food Facts community. Também pode <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">preencher este formulário</a> para ter a oportunidade de ter a sua aplicação em destaque.</p>
+<p>Estamos muito interessados em saber em que são usados os dados do Open Pet Food Facts. Não é obrigatório, mas gostaríamos muito que <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">nos dissesse como reutiliza os nossos dados</a> para que possamos partilhá-los com a comunidade do Open Pet Food Facts. Também pode <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">preencher este formulário</a> para ter a oportunidade de ter a sua aplicação em destaque.</p>
 
 <h2 class="emphasized-title">Exportação de dados abertos do Open Pet Food Facts</h2>
 
@@ -38,7 +38,7 @@ Estas podem conter elementos gráficos sujeitos a direitos de autor ou outros di
 
 <h4>Exportação delta</h4>
 
-<p>Estão disponíveis as exportações diárias de delta dos últimos 14 dias. The list of currently available delta files can be found at <a href="https://static.openpetfoodfacts.org/data/delta/index.txt">https://static.openpetfoodfacts.org/data/delta/index.txt</a>.</p>
+<p>Estão disponíveis as exportações diárias de delta dos últimos 14 dias. A base de dados do Open Pet Food Facts está disponível sob a <a href="https://opendatacommons.org/licenses/odbl/1.0/">Licença Open Database</a>.<br/></p>
 <p>Each line represents a file that is available at <code>https://static.openpetfoodfacts.org/data/delta/{filename}</code>.</p>
 <p>O nome do ficheiro contém o carimbo de data/hora UNIX da primeira e da última alteração contida no ficheiro JSON, para que os ficheiros delta possam ser importados (após a extração) com <code>mongoimport</code> em ordem alfabética.</p>
 <p>Por favor, note que, devido à natureza do <code>mongoexport</code>, os ficheiros delta não podem informá-lo sobre os produtos eliminados. Para remover produtos eliminados da sua base de dados, terá de importar o dump completo do MongoDB.</p>
@@ -56,11 +56,12 @@ Estas podem conter elementos gráficos sujeitos a direitos de autor ou outros di
 <p>Uma forma adequada de explorar a base de dados é usar o DuckDB, uma ferramenta analítica em processo projetada para processar grandes quantidades de dados em uma fração de segundos. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Pet Food Facts database with DuckDB</p>
 
 <h3>Exportação de dados CSV</h3>
-<p>Data for all products, or some of the products, can be downloaded in the CSV format (readable with LibreOffice, Excel and many other spreadsheet software) through the <a href="https://world.openpetfoodfacts.org/cgi/search.pl">advanced search form</a>.</p>
+<p>Os dados de todos os produtos, ou alguns dos produtos, podem ser descarregados no formato CSV (legível com o OpenOffice, Excel e muitos outros programas)
+ através do <a href="https://world.openpetfoodfacts.org/cgi/search.pl">formulário de pesquisa avançada</a>.</p>
 
 <dl>
  <dt>Hiperligações</dt>
- <dd><a href="https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz">https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
+ <dd>A aplicação clássica para <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a> nunca foi adaptada nem implantada para alimentos de animais de estimação.</dd>
 </dl>
 
 <p>A codificação do ficheiro é Unicode UTF-8. O caractere que separa os campos é &lt;tab&gt; (tabulação).</p>
@@ -82,11 +83,11 @@ Estas podem conter elementos gráficos sujeitos a direitos de autor ou outros di
 
 <p>Também está disponível uma API JSON para ler os dados de um produto. Essa API é usada em particular na aplicação móvel Open Pet Food Facts para iPhone e Android.</p>
 
-<p>Atualizamos a API periodicamente, mas garantimos a compatibilidade com versões anteriores. Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Beauty%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
+<p>Atualizamos a API periodicamente, mas garantimos a compatibilidade com versões anteriores. Por favor, diga-nos se a utilizar, para que possamos informá-lo sobre possíveis alterações.</p>
 
-<p>URL to read data for a product: https://world.openpetfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
+<p>URL para ler os dados de um produto: https://world.openpetfoodfacts.org/api/v0/product/<i>[barcode]</i>.json</p>
 
-<p>Example: <a href="https://world.openpetfoodfacts.org/api/v3/product/737628064502.json">https://world.openpetfoodfacts.org/api/v3/product/737628064502.json</a></p>
+<p>Exemplo: <a href="https://world.openpetfoodfacts.org/api/v0/product/3600550578041.json">https://world.openpetfoodfacts.org/api/v0/product/3600550578041.json</a></p>
 <p>Note-se que se a saída for demasiado grande, pode filtrá-la - tal como descrito na documentação da API.</p>
 
 <ul>
@@ -112,7 +113,7 @@ Qualquer tentativa de sobrecarregar a base de dados pela API provavelmente será
 
 <h3 class="emphasized-title">API XML experimental</h3>
 <p>Também pode obter o resultado em XML utilizando <code>.xml</code></p>
-<p>Example: <a href="https://world.openpetfoodfacts.org/api/v2/product/737628064502.xml">https://world.openpetfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+<p><a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Abrangente, mas não compatível com OpenAPI</a> - Contém casos de utilização para mostrar um produto e permitir que seus utilizadores adicionem os dados necessários para obter o Nutri-Score, a classificação NOVA, os aditivos e o Eco-Score.</p>
 Esta API não é mantida ativamente e não está oficialmente documentada.
 
 
@@ -143,7 +144,7 @@ Esta API não é mantida ativamente e não está oficialmente documentada.
 
 <h3>Aplicação móvel Android / iPhone / Flutter</h3>
 
-<p>The code for the Open Pet Food Facts mobile app is available on GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).
+<p>A aplicação para Android é desenvolvida em Kotlin.
 
 <p>A aplicação permite ao utilizador ler o código de barras de produtos, visualizar as informações sobre produtos e tirar e enviar fotografias e dados de produtos em falta.</p>
 <p>A aplicação permite ao utilizador ler o código de barras de produtos, visualizar as informações sobre produtos e tirar e enviar fotografias e dados de produtos em falta.</p>
