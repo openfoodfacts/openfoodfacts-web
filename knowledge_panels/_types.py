@@ -15,7 +15,7 @@ class KnowledgeContentItem(BaseModel):
 
 class KnowledgeContentGroup(BaseModel):
     items: list[KnowledgeContentItem]
-    tag_type: Literal["labels", "additives", "categories"]
+    tag_type: Literal["labels", "additives", "categories", "ingredients"]
     country: Country
     lang: Lang
 
