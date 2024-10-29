@@ -57,7 +57,15 @@ They may contain graphical elements subject to copyright or other rights, that m
 
 <h3>Parquet Data Export on Hugging Face</h3>
 
-<p>A simplified of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. This data format is optimized for column-oriented queries, which is particular convenient for data analysis. i.e. you can select just the columns you care about, reducing the size of the file you have to handle. You don't have to download all columns, simplifying your data-processing on entry-level computers.</p>
+<p>A simplified version of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.
+    
+The Parquet format has proved to be handy: 
+
+<ul>
+<li>Data are organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big data of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
+</ul
 
 The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets. 
 <dl>
@@ -65,6 +73,8 @@ The dataset is available on <a href="https://huggingface.co/datasets/openfoodfac
  <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/products.parquet">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/products.parquet</a>
  </dd>
 </dl>
+
+Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.
 
 <h3>CSV Data Export</h3>
 <p>Data for all products, or some of the products, can be downloaded in the CSV format (readable with LibreOffice, Excel and many other spreadsheet software) through the <a href="https://world.openfoodfacts.org/cgi/search.pl">advanced search form</a>.</p>
