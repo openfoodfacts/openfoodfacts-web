@@ -4,6 +4,27 @@ on:
   pull_request:
     types:
       - opened
+
+  pull_request_target:
+    types:
+    - assigned
+    - unassigned
+    - labeled
+    - unlabeled
+    - opened
+    - edited
+    - closed
+    - reopened
+    - synchronize
+    - converted_to_draft
+    - ready_for_review
+    - locked
+    - unlocked
+    - review_requested
+    - review_request_removed
+    - auto_merge_enabled
+    - auto_merge_disabled
+
 jobs:
   add-to-project:
     name: Add issue to project
@@ -22,5 +43,5 @@ jobs:
         with:
           project-url: https://github.com/orgs/openfoodfacts/projects/136 # Add issue to the Translations project
           github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
-          labeled: 🌐 Translations, 
+          labeled: 🌐 Translations, translations, i18n, Translations
           label-operator: OR
