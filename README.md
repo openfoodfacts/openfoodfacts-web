@@ -6,7 +6,7 @@
 
 # openfoodfacts-web
 
-This project contains static contents for [openfoodfacts product-opener project](https://github.com/openfoodfacts/openfoodfacts-server/).
+IMPORTANT: This project contains static contents for [openfoodfacts product-opener project](https://github.com/openfoodfacts/openfoodfacts-server/). If you're looking for the server side version of Open Food Facts, look at product-opener instead of this repository.
 
 Having those file in a separate project helps being more agile on translations delivery.
 
@@ -19,6 +19,10 @@ https://crowdin.com/project/openfoodfacts
 * Set it up for translation in the .crowdin file
 * Once the pull request gets approved and merged, it will be deployed on the test server
 * Deployment to production is still manual
+
+## Requirements
+* Do not hotlink ressources like images, JS or CSS. They need to be commited to the repository. Please organize resources in folders.
+
 
 ## Deployment
 

@@ -1,85 +1,281 @@
-<h1>Instale o aplicativo Open Food Facts</h1>
-
-<p>Para digitalizar gêneros alimentícios e obter seu Nutri-Score, seu Eco-Score, seu nível de processamento com o grupo NOVA (Nova 4 são alimentos ultraprocessados) e para decifrar aditivos alimentares, instale o aplicativo Open Food Facts gratuito!</p>
-
-<a href="https://apps.apple.com/pt/app/open-food-facts/id588797948">
-<img src="https://static.openfoodfacts.org/images/misc/appstore/black/appstore_PT_BR.svg" alt="Disponível no App Store" width="120" height="40" />
-</a>
-
-<a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=pt-br">
-<img src="https://static.openfoodfacts.org/images/misc/google-play-badge-svg-master/img/pt-br_get.svg" alt="Disponível no Google Play" width="102" height="40" />
-</a>
-
-<a href="https://www.microsoft.com/pt-pt/p/openfoodfacts/9nblggh0dkqr">
-<img src="https://static.openfoodfacts.org/images/misc/microsoft/Portuguese-Brazilian.svg" alt="Disponível no Windows Phone Store" width="109" height="40" />
-</a>
-
-<a href="https://world.openfoodfacts.org/files/off.apk">
-<img src="https://static.openfoodfacts.org/images/misc/android-apk.svg" loading="lazy" alt="APK Android" /></a>
-
-<br><br>
-
-<p>Você também pode adicionar novos produtos ao Open Food Facts, ampliando-o para o bem comum para melhorar a nutrição e a saúde de todos. Obrigado!</p>
-
-<div class="panel callout">
-<h2>Veja os recursos mais recentes</h2>
-  <p><b>Junho de 2022:</b> <a href="https://blog.openfoodfacts.org/en/press-release-new-mobile-app">Completamente redesenhado app para Android e iPhone: mais personalizado, mais pedagógico e mais intuitivo</a></p>
-<p><b>Janeiro de 2021:</b> Os aplicativos <a href="https://fr.blog.openfoodfacts.org/news/lancement-de-l-eco-score-la-note-environnementale-des-produits-alimentaires">obtêm o Eco-Score, inicialmente na França (anúncio em francês)</a></p>
-<p><b>de setembro de 2020:</b> <a href="https://fr.blog.openfoodfacts.org/news/la-rentree-d-open-food-facts-en-6-actualites">Modo escuro, inteligência artificial, detecção vegetariana, vegana e de óleo de palma e contribuições offline (anúncio em francês)</a></p>
-<p><b>de junho de 2019:</b> <a href="https://en.blog.openfoodfacts.org/news/the-new-open-food-facts-app-to-better-decipher-labels-and-participate-in-the-common-good">Novos aplicativos móveis Open Food Facts para iPhone e Android</a><br>
-Novos recursos: varredura contínua, modo offline, comparação de produtos, listas, histórico ilimitado e muito mais!
-</p>
-<p><b>2012:</b> <a href="https://fr.blog.openfoodfacts.org/news/application-mobile-open-food-facts-pour-android">Lançamento do aplicativo móvel Open Food Facts, o primeiro aplicativo colaborativo de digitalização de alimentos.</a>
-</p>
-</div>
-<!-- TODO: Translate images to your language. Ask @teolemon for the SVG file-->
-<div class="row">
-<div class="small-12 medium-12 large-6 columns">
-<img src="https://static.openfoodfacts.org/images/misc/mobileapp/new_openfoodfacts_app_en_light_3_screenshots.png" alt="Experimente o novo app móvel Open Food Facts">
-</div>
-</div>
-
-<!-- DO NOT translate after this line -->
-
-<scripts>
+<style type="text/css">#install_the_app_block, .donation-banner-footer, .offdays-banner {display: none;} #main_column {padding-bottom: 0;}</style>
 <script>
-function getMobileOperatingSystem() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    // You can change the URLs to one that works in your language. If you are unsure, do not touch anything
+    const googlePlayURL = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en";
+    const appleStoreURL = "https://apps.apple.com/app/open-food-facts/id588797948";
+    const microsoftStoreURL = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
 
-      // Windows Phone must come first because its UA also contains "Android"
-    if (/windows phone/i.test(userAgent)) {
-        return "Windows Phone";
+    function getMobileOperatingSystem() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+          // Windows Phone must come first because its UA also contains "Android"
+        if (/windows phone/i.test(userAgent)) {
+            return "Windows Phone";
+        }
+    
+        if (/android/i.test(userAgent)) {
+            return "Android";
+        }
+    
+        // iOS detection from: https://stackoverflow.com/a/9039885/177710
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "iOS";
+        }
+    
+        return "unknown";
     }
 
-    if (/android/i.test(userAgent)) {
-        return "Android";
+    // Function to extract UTM parameters from a URL
+    function extractUTMParameters(url) {
+        var utmParams = new URLSearchParams(url.search);
+        var utmParamObject = {};
+
+        for (var pair of utmParams.entries()) {
+            var paramName = pair[0];
+            var paramValue = pair[1];
+            if (paramName.startsWith('utm_')) {
+                utmParamObject[paramName] = paramValue;
+            }
+        }
+
+        return utmParamObject;
     }
 
-    // iOS detection from: https://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return "iOS";
+    // Add UTM parameters extracted from current URL to `targetURL`
+    function addUTMParameters(targetURL) {
+        // Create URL objects for the current URL and target URL
+        var currentURLObject = new URL(window.location.href);
+        var targetURLObject = new URL(targetURL);
+
+        // Extract UTM parameters from the current URL
+        var utmParameters = extractUTMParameters(currentURLObject);
+        var targetUtmParameters = extractUTMParameters(targetURLObject);
+
+        if (Object.keys(utmParameters).length) {
+            // Delete existing UTM parameters of target URL 
+            for (var paramName in targetUtmParameters) {
+                if (targetUtmParameters.hasOwnProperty(paramName)) {
+                    targetURLObject.searchParams.delete(paramName);
+                }
+            }
+
+            // Add UTM parameters to the target URL
+            for (var paramName in utmParameters) {
+                if (utmParameters.hasOwnProperty(paramName)) {
+                    var paramValue = utmParameters[paramName];
+                    targetURLObject.searchParams.append(paramName, paramValue);
+                }
+            }
+        } else {
+            targetURLObject.searchParams.append("utm_source", "off");
+            targetURLObject.searchParams.append("utm_campaign", "app-landing-page");
+            targetURLObject.searchParams.append("utm_medium", "website");
+        }
+        return targetURLObject.href;
     }
 
-    return "unknown";
-}</script>
+    // redirect to Google Play Store, Apple store, etc. if we detect
+    // specific User-Agent 
+    function redirectToStore() {
+        const currentURL = new URL(window.location.href);
+        if (new URLSearchParams(currentURL.search).get("redirect") == "0") {
+            // don't redirect if redirect=0 in query parameters
+            return;
+        }
 
-<!-- You can change the URLs to one that works in your language. If you are unsure, do not touch anything -->
-
-<script>
-function DetectAndServe(){
-
-if (getMobileOperatingSystem() == "Android") {
-    window.location.href = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en";
+        const operatingSystem = getMobileOperatingSystem();
+        if (operatingSystem == "Android") {
+            window.location.href = addUTMParameters(googlePlayURL);
+        }
+        else if (operatingSystem == "iOS") {
+            window.location.href = addUTMParameters(appleStoreURL);
+        }
+        else if (operatingSystem == "Windows Phone") {
+            window.location.href = addUTMParameters(microsoftStoreURL);
+        }
     }
-if (getMobileOperatingSystem() == "iOS") {
-    window.location.href = "https://apps.apple.com/app/open-food-facts/id588797948";
-    }
-if (getMobileOperatingSystem() == "Windows Phone") {
-    }
-};
-DetectAndServe();
+    redirectToStore();
 </script>
-</scripts>
-
-<initjs>
-</initjs>
+<div id="app-landing-page">
+    <div id="download-app-block" class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Escolha os produtos que são bons para
+                    <span class="highlight-label yellow rotate-left">você</span>
+                    e o
+                    <span class="highlight-label blue rotate-right">planeta</span>
+                </h1>
+                <p>O maior banco de dados alimentar aberto do mundo ao seu alcance!</p>
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=pt-br" title="Open Food Facts no Google Play">
+                <img
+                    src="/images/misc/playstore/img/en_get.svg"
+                    alt="Disponível no Google Play"
+                    width="120"
+                    height="40"
+                ></a>
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Abra Food Facts na Apple App Store">
+                <img
+                    src="/images/misc/appstore/black/appstore_PT_BR.svg"
+                    alt="Disponível no App Store"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+            <div class="small-12 medium-6 medium-offset-1 column">
+                <img src="/images/illustrations/scale-ecoscore-nutriscore.svg" alt="Uma escala com o Nutri-Score e um rosto sorridente no lado esquerdo da escala e um Eco Score e o planeta Terra ao lado direito" style="max-height: 250px">
+            </div>
+        </div>
+        <div class="row show-for-large-up" style="padding-top: 4rem; text-align: center">
+            <div class="small-3 small-centered column">
+                <p>Não está no seu celular? Digitalize este código QR no seu celular para baixar o aplicativo!</p>
+                <img src="/images/misc/app-landing-page/qrcode_en.svg" width="180" height="180" alt="QR-Code link para https://world.openfoodfacts.org/open-food-facts-mobile-app">
+            </div>
+        </div>
+    </div>
+    <div class="block block-seashell" id="app-card-block">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="/images/misc/app-landing-page/mobile-app-preview/mobile-app-preview_en.svg" alt="Aplicativo Open Food Facts">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Uma varredura que realmente corresponde a
+                    <span class="highlight-label dark-orange rotate-right">quem você é</span>
+                </h1>
+                <p class="paragraph-top-margin">Desde reduzir a ingestão de sal até se tornar totalmente vegano, é fácil definir suas preferências pessoais no aplicativo e começar a receber recomendações mais inteligentes de alimentos.</p>
+                <p>O melhor de tudo é que o aplicativo sempre avisa se você estiver prestes a comer algo que contenha um alérgeno.</p>
+            </div>
+        </div>
+    </div>
+    <div class="block block-yellow">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Digitalize a comida da sua vida cotidiana para obter
+                    <span class="highlight-label orange rotate-left">imagem completa</span>
+                </h1>
+                <p class="paragraph-top-margin">Abra o aplicativo Open Food Facts e aponte a câmera para o código de barras da sua comida favorita!</p>
+            </div>
+            <div class="small-12 medium-3 medium-offset-1 end column">
+                <img src="/images/illustrations/app-barcode-scan.png" alt="Um código de barras está sendo digitalizado" style="max-height: 200px;">
+            </div>
+        </div>
+    </div>
+    <div class="block block-light-green">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="/images/illustrations/health-cereals-magnifier.svg" alt="Uma lupa sobre uma caixa de cereal e um logotipo Nutri-Score" style="max-height: 200px">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Leve sua
+                    <span class="highlight-label dark-green rotate-right">saúde</span>
+                   ao próximo nível
+                </h1>
+                <p class="paragraph-top-margin">Decifre diversos rótulos, conheça informações nutricionais e calcule instantaneamente o Nutri-Score do seu produto: um rótulo nutricional que converte o valor nutricional de alimentos e bebidas em uma pontuação geral. É brincadeira de criança!</p>
+                <p>As informações serão sempre exibidas de acordo com suas preferências.</p>
+                <a class="button round secondary small" href="/nutriscore">Saiba mais sobre o Nutri-Score</a>
+            </div>
+        </div>
+    </div>
+    <div class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-5 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Digitalize quase qualquer comida para ver o seu impacto no
+                    <span class="highlight-label blue rotate-right">planeta</span>
+                </h1>
+                <p class="paragraph-top-margin">Aprenda sobre o impacto ambiental de mais de 600 mil produtos alimentícios com o Eco-Score.</p>
+                <p>Consulte os painéis de conhecimento para obter informações como a pegada de carbono equivalente, a origem dos ingredientes e a possível ameaça às espécies durante o processo de fabricação.</p>
+                <a class="button round secondary small" href="/eco-score-the-environmental-impact-of-food-products">Saiba mais sobre o Eco-Score</a>
+            </div>
+            <div class="small-12 medium-6 end column">
+                <img
+                    src="/images/illustrations/app-planet-pizza.svg"
+                    alt="Uma lupa sobre uma pizza e o planeta Terra"
+                    style="max-height: 250px"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="block block-white">
+        <div class="row" id="join-food-revolution-row">
+            <div class="small-12 medium-4 medium-offset-2 column">
+                <img
+                    src="/images/misc/app-landing-page/join-the-food-revolution/join-the-food-revolution_en.svg"
+                    alt="Junte-se à revolução dos alimentos"
+                    style="max-height: 180px"
+                    loading="lazy"
+                >
+                <p class="paragraph-top-margin">Junto com mais de 170.000 colaboradores em todo o mundo!</p>
+            </div>
+            <div class="small-12 medium-4 end column">
+                <div class="testimonial-card">
+                    <p>“Eu amo esse aplicativo!! Eu uso quase todos os dias. Está me ajudando muito a encontrar o produto certo para mim!”</p>
+                    <p>
+                        <strong>Louise</strong>
+                    </p>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <img
+                        src="/images/misc/app-landing-page/store-review-rating.svg"
+                        loading="lazy"
+                        alt="Classificação na Google Play Store e Apple Store"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-7 medium-offset-5 column">
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=pt-br" title="Open Food Facts no Google Play">
+                <img
+                    src="/images/misc/playstore/img/en_get.svg"
+                    loading="lazy"
+                    alt="Disponível no Google Play"
+                    width="120"
+                    height="40"
+                ></a>
+                <a href="https://f-droid.org/packages/openfoodfacts.github.scrachx.openfood" title="Open Food Facts no F-Droid">
+                <img
+                    src="/images/misc/f-droid/get-it-on-en.png"
+                    loading="lazy"
+                    alt="Disponível no F-Droid"
+                    height="40"
+                    width="120"
+                ></a>
+                <a href="https://github.com/openfoodfacts/smooth-app/releases/latest" title="Aplicativo Open Food Facts no Github">
+                <img
+                    src="/images/misc/app-landing-page/download-apk/download-apk_en.svg"
+                    loading="lazy"
+                    alt="Baixe o APK"
+                    height="40"
+                    width="120"
+                ></a>
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Abra Food Facts na Apple App Store">
+                <img
+                    src="/images/misc/appstore/black/appstore_PT_BR.svg"
+                    loading="lazy"
+                    alt="Disponível no App Store"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+        </div>
+        <img
+            src="/images/illustrations/puzzle.svg"
+            alt="Um quebra-cabeça com uma mão"
+            class="puzzle-illustration show-for-large-up"
+            loading="lazy"
+        >
+    </div>
+</div>
+<script>
+    document.querySelectorAll('[data-app-store="google"]').forEach((item) => {
+        item.href = addUTMParameters(googlePlayURL);
+    });
+    document.querySelectorAll('[data-app-store="apple"]').forEach((item) => {
+        item.href = addUTMParameters(appleStoreURL);
+    });
+</script>
