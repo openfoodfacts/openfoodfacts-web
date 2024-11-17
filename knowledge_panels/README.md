@@ -1,3 +1,9 @@
-### How to add a new additive card ?
 ### How to generate HTML pages for additives from the Yaml page ?
-### How to commit those pages as a pull request ?
+
+Install the dependencies, then run the command with the list of directories containing the yaml files.
+
+```bash
+python3 build_html.py additives ingredients
+```
+
+The name of the directory must correspond to a tag type (ex: additives, ingredients, etc).
