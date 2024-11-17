@@ -1,4 +1,4 @@
-name: Build additives
+name: Build HTML pages for additives knowledge cards
 
 on:
   push
@@ -18,7 +18,10 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Upgrade assets
-      run: chmod +x knowledge_panels/build_html.py && knowledge_panels/build_html.py
+      run: |
+        cd knowledge_panels
+        python3 -m pip install -r requirements.txt --user
+        python3 build_html.py additives ingredients
 
     - name: Check for uncommitted changes
       id: check-changes
@@ -27,9 +30,9 @@ jobs:
     - name: Create Pull Request
       if: steps.check-changes.outputs.outcome == failure()
       id: cpr
-      uses: peter-evans/create-pull-request@v6
+      uses: peter-evans/create-pull-request@v7
       with:
-        base: develop
+        base: main
         commit-message: Automated update of additives HTML files
         committer: GitHub <noreply@github.com>
         author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
