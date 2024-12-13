@@ -54,7 +54,29 @@ Mohou obsahovat grafické prvky podléhající autorským právům nebo jiným p
  </dd>
 </dl>
 
-<p>A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Food Facts database with DuckDB</p>
+<p>Vhodným způsobem využití databáze je použití DuckDB, analytický nástroj v průběhu procesu určený ke zpracování velkého množství údajů v zlomku sekund. Můžete si přečíst náš <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">příspěvek na blogu</a>, kde vás provázíme průzkumem a zpracováním databáze Open Food Facts s DuckDB</p>
+
+<h3>Parquet Data Export on Hugging Face</h3>
+
+<p>A simplified version of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.</p>
+    
+<p>The Parquet format has proved to be handy:<p> 
+
+<ul>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
+</ul>
+
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
+
+<dl>
+ <dt>Odkaz</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>Export dat CSV</h3>
 <p>Data pro všechny produkty nebo některé produkty lze stáhnout ve formátu CSV (čitelný pomocí LibreOffice, Excel a mnoha dalších tabulkových softwarů) prostřednictvím <a href="https://world.openfoodfacts.org/cgi/search.pl">formuláře pro pokročilé vyhledávání</a>.</p>
@@ -171,9 +193,9 @@ Toto API není aktivně udržováno a není oficiálně zdokumentováno.
 <li><i class="devicon-react-plain"></i> React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/CL29QEBPY">Diskusní kanál</a></li>
 <li><i class="devicon-ruby-plain"></i> Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/C0ZALLH61">Diskusní kanál</a></li>
 <li><i class="devicon-rust-plain"></i> Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a> – <a href="https://app.slack.com/client/T02KVRT1Q/C010J616CKV">Diskusní kanál</a></li> 
-<li><i class="devicon-r-plain"></i> R: <a href="https://github.com/openfoodfacts/r-dashboard">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C2CR356NR">Discussion channel</a></li> 
-<li><i class="devicon-swift-plain"></i> Swift: <a href="https://github.com/openfoodfacts/openfoodfacts-swift">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CE2A1E7MH">Discussion channel</a></li> 
-<li><i class="devicon-c#-plain"></i> .NET/C#: <a href="https://github.com/openfoodfacts/openfoodfacts-csharp">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JHT98HJ">Discussion channel</a></li> 
+<li><i class="devicon-r-plain"></i> R: <a href="https://github.com/openfoodfacts/r-dashboard">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C2CR356NR">Diskusní kanál</a></li> 
+<li><i class="devicon-swift-plain"></i> Swift: <a href="https://github.com/openfoodfacts/openfoodfacts-swift">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CE2A1E7MH">Diskusní kanál</a></li> 
+<li><i class="devicon-c#-plain"></i> .NET/C#: <a href="https://github.com/openfoodfacts/openfoodfacts-csharp">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JHT98HJ">Diskusní kanál</a></li> 
 </ul>
 
 <h2 class="emphasized-title">Diskuse o datech, API a exportu</h2>
