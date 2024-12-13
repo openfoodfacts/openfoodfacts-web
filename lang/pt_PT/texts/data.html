@@ -53,6 +53,28 @@ Estas podem conter elementos gráficos sujeitos a direitos de autor ou outros di
 
 <p>Uma forma adequada de explorar a base de dados é usar o DuckDB, uma ferramenta analítica em processo projetada para processar grandes quantidades de dados em uma fração de segundos. Poder ler <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">esta publicação</a> no nosso blogue onde explicamos como explorar e processar a base de dados do Open Food Facts com DuckDB</p>
 
+<h3>Parquet Data Export on Hugging Face</h3>
+
+<p>A simplified version of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.</p>
+    
+<p>The Parquet format has proved to be handy:<p> 
+
+<ul>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
+</ul>
+
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
+
+<dl>
+ <dt>Hiperligação</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
+
 <h3>Exportação de dados CSV</h3>
 <p>Os dados relativos a todos os produtos, ou a alguns dos produtos, podem ser descarregados no formato CSV (legível com o LibreOffice, Excel e muitos outros programas de folha de cálculo) através do <a href="https://world.openfoodfacts.org/cgi/search.pl">formulário de pesquisa avançada</a>.</p>
 
@@ -82,9 +104,9 @@ Estas podem conter elementos gráficos sujeitos a direitos de autor ou outros di
 
 <p>Atualizamos a API periodicamente, mas garantimos a compatibilidade com versões anteriores. Por favor <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">entre em contacto</a> se o utilizar, para que possamos informá-lo sobre eventuais alterações.</p>
 
-<p>URL para ler os dados de um produto: https://world.openfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
-
 <p>Exemplo: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
+
+<p>URL para ler os dados de um produto: https://world.openfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
 <p>Note-se que se a saída for demasiado grande, pode filtrá-la - tal como descrito na documentação da API.</p>
 
 <ul>
@@ -146,7 +168,7 @@ Esta API não é mantida ativamente e não está oficialmente documentada.
  <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
  <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>
 
-<p>Pretendemos transformar as bases de código Kotlin e Swift obsoletas em SDKs Kotlin e Swift. Toda a ajuda é bem-vinda :-)</p>
+<p>A aplicação permite ao utilizador ler o código de barras de produtos, visualizar as informações sobre produtos e tirar e enviar fotografias e dados de produtos em falta.</p>
 <p>A aplicação permite ao utilizador ler o código de barras de produtos, visualizar as informações sobre produtos e tirar e enviar fotografias e dados de produtos em falta.</p>
 
 <p>Está convidado a reutilizar o código (é open source) e nos ajudar a melhorá-lo, para todos, no planeta inteiro.</p>
