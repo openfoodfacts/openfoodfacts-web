@@ -56,7 +56,7 @@
 
 <p>Відповідним способом використання бази даних є DuckDB, аналітичний інструмент, що працює всередині процесу і призначений для обробки великих обсягів даних за частку секунди. Ви можете прочитати наш <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">допис у блозі</a>, де ми розповідаємо, як досліджувати та обробляти базу даних Open Food Facts за допомогою DuckDB</p>
 
-<h3>Експорт даних Parquet на Hugging Face</h3>
+<h3>Експорт даних CSV</h3>
 
 <p>Спрощена версія дампа JSONL також доступна у форматі <a href="https://parquet.apache.org/">Parquet</a>. Під час перетворення ми відфільтрували стовпці, які містять дубліковану інформацію, використовуються для внутрішнього налагодження або просто нерелевантну для користувачів.</p>
     
@@ -78,11 +78,11 @@
 
 </p>Знайдіть більше інформації у <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, включаючи вказівки щодо повторного використання даних і приклади запитів.</p>
 
-<h3>Експорт даних CSV</h3>
+<h3>Експорт даних RDF</h3>
 <p>Дані про всі про всі продукти, або деякі з них, можна завантажити у форматі CSV (читається за допомогою LibreOffice, Excel та багатьох інших програм для роботи з електронними таблицями) через <a href="https://world.openfoodfacts.org/cgi/search.pl">форму розширеного пошуку</a>.</p>
 
 <dl>
- <dt>Посилання</dt>
+ <dt>Силка</dt>
  <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (стиснений CSV у форматі GZIP: ~0.9 ГБ, у розпакованому вигляді: ~9 ГБ)</dd>
 </dl>
 
@@ -96,7 +96,7 @@
  <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
-<h3>Експорт даних зображення</h3>
+<h3>Потрібна допомога OpenAPI</h3>
 <p>Усі зображення та результати OCR можна завантажити з нашого сервера або з AWS (через програму відкритих даних AWS). Перегляньте <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">нашу документацію</a>, щоб дізнатися більше про те, як завантажувати зображення.</p>
 
 
@@ -107,17 +107,17 @@
 
 <p>Ми постійно вдосконалюємо API, але намагаємося підтримувати зворотну сумісність. Будь ласка, <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">зв'яжіться з нами</a> якщо ви використовуєте його, щоб ми могли повідомити вам про потенційні зміни.</p>
 
-<p>URL для зчитування даних про товар: https://world.openfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
+<p>Також, надсилання HTTP заголовку з вашим викликом API є хорошим способом для нашого зв'язку, якщо виникне будь-яке питання.</p>
 
-<p>Наприклад: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
-<p>Зауважте, що якщо результат занадто великий, його можна відфільтрувати - як описано в документації до API.</p>
+<p>Якщо ви в чомусь не впевнені, або маєте якесь питання (дурних питань не буває), не соромтеся задавати його на каналі #api в Slack :-)</p>
+<p>Ви також можете отримати результат у форматі XML за допомогою <code>.xml</code></p>
 
 <ul>
  <li>
 <a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - нова документація по OpenAPI - Робота в процесі</a>
  </li>
 </ul>
-<h3 class="emphasized-title">Потрібна допомога OpenAPI</h3>
+<h3 class="emphasized-title">Експериментальний XML API</h3>
 Ми прагнемо закінчити документування API, додати кейси використання та автоматизувати генерацію SDK. Якщо ви знавець OpenAPI, ми будемо раді вашій допомозі.
 <!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
@@ -131,50 +131,50 @@
 <p>Ми дуже охочі до використання API для виробничих кейсів, доки 1 API = 1 справжньому скануванню користувача.
 Будь-яка спроба здерти базу даних використовуючи API буде ймовірно заблокованою, так як повний щоденний експорт саме на цій сторінці.</p>
 <p>Також, надсилання HTTP заголовку з вашим викликом API є хорошим способом для нашого зв'язку, якщо виникне будь-яке питання.</p>
-<p>Якщо ви в чомусь не впевнені, або маєте якесь питання (дурних питань не буває), не соромтеся задавати його на каналі #api в Slack :-)</p>
+<p>Вони дозволять вам споживати дані, так само і дозволять іншим користувачам вносити нові дані</p>
 
-<h3 class="emphasized-title">Експериментальний XML API</h3>
-<p>Ви також можете отримати результат у форматі XML за допомогою <code>.xml</code></p>
-<p>Приклад: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+<h3 class="emphasized-title">Загальні користувачі, щоб зробити ваших користувачів щасливими</h3>
+<p>The code for the official Open Food Facts mobile apps is available on GitHub
+ <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
+<p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
 Цей API активно не підтримується та офіційно не задокументований.
 
 
 <h2 class="emphasized-title">Обкладинки та SDK</h2>
 <p>Ми можливо маємо обкладинку для вашої улюбленої мови програмування. Якщо так, то ви можете використовувати її та покращувати. Якщо ні, ви можете допомогти створити її.</p>
-<p>Вони дозволять вам споживати дані, так само і дозволять іншим користувачам вносити нові дані</p>
+<p>Вітається повторне використання вами коду (це відкрите джерело) та допомога нам у його покращенні, для кожного, по всій планеті.</p>
 
-<h3>Загальні користувачі, щоб зробити ваших користувачів щасливими</h3>
+<h3>Якщо ваші користувачі не очікують результат одразу (на приклад додатки для інвентиризації)</h3>
 <ul>
 <li>Ви можете шукати інформацію про товари, включаючи багато корисних розрахункових значень.</li>
 <li>Якщо ви не можете дістати інформацію про окремий продукт, ви можете отримати користувача для надсилання фото та даних, що потім будуть оброблені Open Food Facts AI та розробітниками, щоб отримати підрахований результат, який ви хочете показати їм.</li>
 <li>Ви також можете реалізувати цілий потік, щоб вони одразу отримали результат з деякими зусиллями з їхнього боку.</li>
 </ul>
 
-<h3>Якщо ваші користувачі не очікують результат одразу (на приклад додатки для інвентиризації)</h3>
+<h3>Якщо ваші користувачі очікують результат одразу (на приклад програми щодо харчування)</h3>
 <ul>
 <li>Надсилайте фото (передня частина/харчування/інгредієнти): найбезболісніша річ для ваших користувачів</li>
 <li>Штучний інтелект Open Food Facts - Robotoff, згенерує деякі похідні дані з фотографій</li>
 <li>З часом, інші додатки та спільнота Open Food Facts заповнить прогалини даних</li>
 </ul>
 
-<h3>Якщо ваші користувачі очікують результат одразу (на приклад програми щодо харчування)</h3>
+<h3>Android/iPhone/Flutter mobile app</h3>
 <ul>
 <li>Надішліть інформацію про поживні речовини + категорію; отримайте Nutri-Score</li>
 <li>Надішліть інгредієнти; отримайте групу NOVA (про ультраобробку продуктів), добавки, алергени, нормалізовані інгредієнти, веганські, вегетаріанські</li>
 <li>Надішліть категорію + етикетки; незабаром отримайте Eco-Score (про вплив на навколишнє середовище)</li>
 </ul>
 
-<h3>Android/iPhone/Flutter mobile app</h3>
+<h3>SDK</h3>
 
-<p>The code for the official Open Food Facts mobile apps is available on GitHub
- <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>
+<p>Ви можете переглянути <a href="https://support.openfoodfacts.org/help/fr-fr/12">поширені запитання щодо API та експорту даних</a>та<a href="https://support.openfoodfacts.org/help/fr-fr">поширені запитання щодо Open Food Facts</a>
 
 <p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
-<p>Додаток дозволяє користувачам сканувати штрих-коди товарів, переглядати інформацію про товар, а також фотографувати й надсилати фотографії та дані про відсутні товари.</p>
+<p>Ви можете <a href="https://github.com/openfoodfacts/api-documentation/discussions">відкрити потік у нашому репозиторії документації до API</a></p>
 
-<p>Вітається повторне використання вами коду (це відкрите джерело) та допомога нам у його покращенні, для кожного, по всій планеті.</p>
+<p>З будь-яких питань щодо даних, з нами можна зв'язатися за адресою <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a></p>
 
 <h3>SDK</h3>
 <!-- TODO: Install locally -->
