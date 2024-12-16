@@ -55,7 +55,7 @@ De kan inneholde grafiske elementer som er underlagt opphavsrett eller andre ret
 
 <p>A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Food Facts database with DuckDB</p>
 
-<h3>Parquet Data Export on Hugging Face</h3>
+<h3>CSV dataeksport</h3>
 
 <p>A simplified version of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.</p>
     
@@ -77,17 +77,17 @@ De kan inneholde grafiske elementer som er underlagt opphavsrett eller andre ret
 
 </p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
-<h3>CSV dataeksport</h3>
+<h3>RDF dataeksport</h3>
 <p>Data for alle produkter, eller noen av produktene, kan bli lastet ned i CSV-format (leselig med LibreOffice, Excel og mange andre regnearkprogrammer) gjennom det <a href="https://world.openfoodfacts.org/cgi/search.pl">avanserte søkeskjemaet</a>.</p>
 
 <dl>
- <dt>Lenker</dt>
+ <dt>Lenke</dt>
  <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
 </dl>
 
 <p>Filkodingen er Unicode UTF-8. Karakteren som skiller felt er &lt;tab&gt; (tabulering).</p>
 
-<h3>RDF dataeksport</h3>
+<h3>Bildedataeksport</h3>
 <p>Databasen er også tilgjengelig i RDF-format. Du kan lese <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">kunngjøringen på fransk</a>.</p>
 
 <dl>
@@ -95,7 +95,7 @@ De kan inneholde grafiske elementer som er underlagt opphavsrett eller andre ret
  <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
-<h3>Bildedataeksport</h3>
+<h3>OpenAPI-hjelp ønskes</h3>
 <p>Alle bilder og OCR-resultater kan enten bli lastet ned fra vår server eller fra AWS (gjennom AWS Open Data Program). Sjekk ut <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">vår dokumentasjon</a> for å lære mer om hvordan du laster ned bilder.</p>
 
 
@@ -106,17 +106,17 @@ De kan inneholde grafiske elementer som er underlagt opphavsrett eller andre ret
 
 <p>Vi forbedrer API-en over tid, men vi er nøye med å beholde bakoverkompatibilitet. Vennligst <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">ta kontakt</a> hvis du bruker den, sånn at vi kan fortelle deg om eventuelle endringer.</p>
 
-<p>URL for å lese data for et produkt: https://world.openfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
+<p>Det å sende en HTTP-header med API-anropet ditt er også en god måte å komme i kontakt, skulle det oppstå noen problemer.</p>
 
 <p>Example: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
-<p>Merk at hvis utdataene er for overveldende, kan du filtrere den - som beskrevet i API-dokumentasjonen.</p>
+<p>Du kan også få resultatet i XML ved å bruke <code>.xml</code></p>
 
 <ul>
  <li>
 <a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - new OpenAPI documentation - Work in Progress</a>
  </li>
 </ul>
-<h3 class="emphasized-title">OpenAPI-hjelp ønskes</h3>
+<h3 class="emphasized-title">Eksperimental XML API</h3>
 Vi er ivrige etter å fullføre dokumentasjonen av API-en, legge til bruksmønster, og automatisere SDK-generering. Hvis du er en OpenAI-kjenner, er du velkommen til å hjelpe til.
 <!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
@@ -130,11 +130,14 @@ Vi er ivrige etter å fullføre dokumentasjonen av API-en, legge til bruksmønst
 <p>Du er velkommen til å bruke API-en for produksjonssaker, så lenge ett API-anrop = en reell skanning av en bruker.
 Ethvert forsøk på å skrape databasen ved hjelp av API-en vil sannsynligvis bli blokkert, siden komplette daglie eksporter er tilgjengelige på denne siden.</p>
 <p>Det å sende en HTTP-header med API-anropet ditt er også en god måte å komme i kontakt, skulle det oppstå noen problemer.</p>
-<p>Hvis du er usikker på noe, eller har noen spørsmål (det finnes ikke dumme spørsmål), er du velkommen til å spørre oss på #api kanalen på Slack :-)</p>
+<p>De lar deg forbruke data, samt at de lar brukerne dine bidra med nye data</p>
 
-<h3 class="emphasized-title">Eksperimental XML API</h3>
-<p>Du kan også få resultatet i XML ved å bruke <code>.xml</code></p>
-<p>Eksempel: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+<h3 class="emphasized-title">Generelle prinsipper for å gjøre brukerne dine fornøyde</h3>
+<p>The code for the official Open Food Facts mobile apps is available on GitHub
+ <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
+<p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
 Denne API-en blir ikke aktivt vedlikeholdt, og er ikke offisielt dokumentert.
 
 
@@ -149,14 +152,14 @@ Denne API-en blir ikke aktivt vedlikeholdt, og er ikke offisielt dokumentert.
 <li>Du kan også implementere hele flowen slik at de får resultatet med en gang med litt innsats fra deres side.</li>
 </ul>
 
-<h3>Hvis brukerne dine ikke forventer et ummidelbart resultat (f.eks. Inventory-apper)</h3>
+<h3>Hvis brukerne dine forventer et umiddelbart resultat (f.ek.s Ernærings-apper)</h3>
 <ul>
 <li>Send inn bilder (forside/ernæring/ingredienser): det mest plagefrie for brukerne dine</li>
 <li>Open Food Facts KI - Robotoff - vil generere noen avledede data fra bildene</li>
 <li>Over tid vil andre apper og Open Food Facts-fellesskapet fylle inn datahullene</li>
 </ul>
 
-<h3>Hvis brukerne dine forventer et umiddelbart resultat (f.ek.s Ernærings-apper)</h3>
+<h3>Android/iPhone/Flutter mobile app</h3>
 <ul>
 <li>Send inn ernæringsfakta + kategori &gt; få Nutri-Score</li>
 <li>Send inn ingredienser &gt; få NOVA-gruppa (om ultrabearbeiding av mat), tilsetningsstoffer, allergener, normaliserte ingredienser, vegansk, vegetariansk&hellip;</li>
