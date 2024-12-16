@@ -55,7 +55,7 @@ Ne saattavat sisältää tekijänoikeuden tai muun oikeuden alaisia graafisia el
 
 <p>A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Food Facts database with DuckDB</p>
 
-<h3>Parquet Data Export on Hugging Face</h3>
+<h3>Tietojen CSV-vienti</h3>
 
 <p>A simplified version of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.</p>
     
@@ -81,13 +81,13 @@ Ne saattavat sisältää tekijänoikeuden tai muun oikeuden alaisia graafisia el
 <p>Kaikkien tuotteiden tai joidenkin tuotteiden tiedot voidaan ladata CSV-muodossa (luettavissa LibreOfficella, Excelillä ja monilla muilla taulukkolaskentaohjelmilla) <a href="https://world.openfoodfacts.org/cgi/search.pl">tarkennetun hakulomakkeen</a>kautta.</p>
 
 <dl>
- <dt>Linkit</dt>
+ <dt>Linkki</dt>
  <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (pakattu CSV GZIP-muodossa: ~ 0,9 Gt, pakkaamaton: ~ 9 Gb)</dd>
 </dl>
 
 <p>Tiedoston merkistökoodaus on Unicode UTF-8. Kenttien erottimena on &lt;sarkain&gt;.</p>
 
-<h3>Tietojen RDF-vienti</h3>
+<h3>Kuvatietojen vienti</h3>
 <p>Tietokanta on myös saatavilla RDF-muodossa. Voit lukea <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">ilmoituksen ranskaksi</a>.</p>
 
 <dl>
@@ -95,7 +95,7 @@ Ne saattavat sisältää tekijänoikeuden tai muun oikeuden alaisia graafisia el
  <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
-<h3>Kuvatietojen vienti</h3>
+<h3>OpenAPI-apua kaivataan</h3>
 <p>Kaikki kuvat ja OCR-tulokset voidaan ladata joko palvelimeltamme tai AWS:stä (AWS Open Data Program -ohjelman kautta). Tutustu <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">dokumentaatioomme</a> saadaksesi lisätietoja miten ladata kuvia.</p>
 
 
@@ -106,17 +106,17 @@ Ne saattavat sisältää tekijänoikeuden tai muun oikeuden alaisia graafisia el
 
 <p>Parannamme ohjelmointirajapintaa ajan myötä, mutta huolehdimme yhteensopivuudesta aiempien versioiden kanssa. <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">ota yhteyttä</a> jos käytät sitä, jotta voimme kertoa sinulle mahdollisista muutoksista.</p>
 
-<p>Esimerkki: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.json">https://world.openfoodfacts.org/api/v2/product/737628064502.json</a></p>
+<p>Jos olet epävarma jostakin, tai sinulla on kysymyksiä (hölmöjä kysymyksiä ei ole), voit esittää kysymyksesi Slackissä :-)</p>
 
-<p>Esimerkki: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
-<p>Huomaa, että jos tulos on liian suuri, voit suodattaa sen API-dokumentaation mukaisesti.</p>
+<p>Jos olet epävarma jostakin, tai sinulla on jokin kysymys (ei ole typeriä kysymyksiä), kysy rohkeasti #api-kanavalla Slackissa :-)</p>
+<p>Tulokset saa myös XML-muodossa päätteellä <code>.xml</code></p>
 
 <ul>
  <li>
 <a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - uusi OpenAPI-dokumentaatio - Työ kesken</a>
  </li>
 </ul>
-<h3 class="emphasized-title">OpenAPI-apua kaivataan</h3>
+<h3 class="emphasized-title">Kokeellinen XML API</h3>
 Haluamme saada valmiiksi API:n dokumentoinnin, lisätä käyttötapauksia ja automatisoida SDK:n luomisen. Jos olet OpenAPI-tuntija, olet erittäin tervetullut auttamaan.
 <!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
@@ -130,17 +130,20 @@ Haluamme saada valmiiksi API:n dokumentoinnin, lisätä käyttötapauksia ja aut
 <p>Voit käyttää API:a tuotannossa, kunhan 1 API-kutsu = 1 oikea viivakoodin lukeminen käyttäjältä.
 Kaikki yritykset kaapia tietokantaa API:a käyttämällä estetään erittäin todennäköisesti, sillä päivittäiset viennit ovat saatavilla tältä samaiselta sivulta.</p>
 <p>Jos olet epävarma jostakin, tai sinulla on kysymyksiä (hölmöjä kysymyksiä ei ole), voit esittää kysymyksesi Slackissä :-)</p>
-<p>Jos olet epävarma jostakin, tai sinulla on jokin kysymys (ei ole typeriä kysymyksiä), kysy rohkeasti #api-kanavalla Slackissa :-)</p>
+<p>Voit <a href="https://slack.openfoodfacts.org">liittyä Open Food Facts Slack -keskusteluryhmään, joka on ensisijainen tapa kysyä kysymyksiä ja keskustella API:sta</a>.</p>
 
-<h3 class="emphasized-title">Kokeellinen XML API</h3>
-<p>Tulokset saa myös XML-muodossa päätteellä <code>.xml</code></p>
-<p>Esimerkki: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+<h3 class="emphasized-title">Yleiset periaatteet käyttäjien ilahduttamiseksi</h3>
+<p>The code for the official Open Food Facts mobile apps is available on GitHub
+ <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
+<p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
 Tätä API:ta ei ylläpidetä aktiivisesti, eikä sitä ole dokumentoitu virallisesti.
 
 
 <h2 class="emphasized-title">Kääreet ja SDK</h2>
 <p>Meillä on todennäköisesti kääre lempiohjelmointikielellesi. Jos on, voit käyttää ja parantaa sitä. Jos ei ole, voit auttaa luomaan sen.</p>
-<p>Voit <a href="https://slack.openfoodfacts.org">liittyä Open Food Facts Slack -keskusteluryhmään, joka on ensisijainen tapa kysyä kysymyksiä ja keskustella API:sta</a>.</p>
+<p>Voit uudelleen käyttää koodia (se on avointa lähdekoodia), ja auttaa meitä parantamaan sitä, kaikille, koko planeetalla.</p>
 
 <h3>Yleiset periaatteet käyttäjien ilahduttamiseksi</h3>
 <ul>
@@ -156,24 +159,21 @@ Tätä API:ta ei ylläpidetä aktiivisesti, eikä sitä ole dokumentoitu viralli
 <li>Ajan myötä muut sovellukset ja Open Food Facts -yhteisö täyttävät tietoaukot</li>
 </ul>
 
-<h3>Jos käyttäjäsi odottavat tulosta välittömästi (esim. ravitsemussovellukset)</h3>
+<h3>Android/iPhone/Flutter mobile app</h3>
 <ul>
 <li>Lähetä ravitsemustiedot + kategoria &gt; saat Nutri-Scoren</li>
 <li>Ilmoita ainesosat &gt; hanki NOVA-ryhmä (ruoan ultraprosessoinnista), lisäaineet, allergeenit, normalisoidut ainesosat, vegaani, vegetaari&hellip;</li>
 <li>Lähetä luokka + tunnisteet &gt; saat pian Eco-Scoren (ympäristövaikutuksista)</li>
 </ul>
 
-<h3>Android/iPhone/Flutter mobile app</h3>
+<h3>SDK:t</h3>
 
-<p>The code for the official Open Food Facts mobile apps is available on GitHub
- <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>
+<p>Voit tarkastella <a href="https://support.openfoodfacts.org/help/fr-fr/12">yleisiä API:ta ja tietojen vientiä koskevia FAQ-kysymyksiä</a> ja <a href="https://support.openfoodfacts.org/help/fr-fr">yleisiä Open Food Facts -kysymystä</a>
 
 <p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
-<p>Sovelluksen avulla käyttäjät voivat skannata tuotteiden viivakoodeja, katsella tuotetietoja, ja ottaa ja lähettää kuvia ja tietoja puuttuvista tuotteista.</p>
+<p>Voit <a href="https://github.com/openfoodfacts/api-documentation/discussions">aloittaa viestiketjun ohjelmointirajapintadokumentaatiotietovarastossamme</a></p>
 
-<p>Voit uudelleen käyttää koodia (se on avointa lähdekoodia), ja auttaa meitä parantamaan sitä, kaikille, koko planeetalla.</p>
+<p>Jos sinulla on kysyttävää datasta, voit ottaa meihin yhteyttä osoitteeseen <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a></p>
 
 <h3>SDK:t</h3>
 <!-- TODO: Install locally -->
