@@ -51,7 +51,29 @@ Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif 
  </dd>
 </dl>
 
-<p>Veritabanından yararlanmanın uygun bir yolu, büyük miktarda veriyi saniyeler içinde işlemek için tasarlanmış bir süreç içi analitik araç olan DuckDB'yi kullanmaktır. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Food Facts database with DuckDB</p>
+<p>Veritabanından yararlanmanın uygun bir yolu, büyük miktarda veriyi saniyeler içinde işlemek için tasarlanmış bir süreç içi analitik araç olan DuckDB'yi kullanmaktır. DuckDB ile Open Food Facts veritabanını keşfetmeyi ve işlemeyi adım adım anlattığımız <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog yazımızı</a> okuyabilirsiniz</p>
+
+<h3>Hugging Face'te Parke Verisi Aktarımı</h3>
+
+<p>JSONL dökümünün basitleştirilmiş bir versiyonu <a href="https://parquet.apache.org/">Parquet formatında</a> da mevcuttur. Dönüşüm sırasında, yinelenen bilgiler içeren, dahili hata ayıklama için kullanılan veya kullanıcılar için alakasız olan sütunları filtreledik.</p>
+    
+<p>Parke formatının kullanışlı olduğu kanıtlanmıştır:<p> 
+
+<ul>
+<li>Veriler satır yerine sütuna göre düzenlenir, bu da depolama alanından tasarruf sağlar ve analitik sorguları hızlandırır, yani yalnızca ilgilendiğiniz sütunları seçebilir, giriş seviyesi bilgisayarlarda bile sorgu performanslarını optimize edebilirsiniz.</li>
+<li>Yüksek verimli veri sıkıştırma ve açma, her türlü büyük veri kümesinin depolanması ve paylaşılması için idealdir</li>
+<li>Supports complex data types and advanced nested data structures.</li>
+</ul>
+
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
+
+<dl>
+ <dt>Link</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>CSV Veri Dışa Aktarımı</h3>
 <p>Tüm ürünlere veya bazı ürünlere ilişkin veriler, <a href="https://world.openfoodfacts.org/cgi/search.pl">gelişmiş arama formu</a> aracılığıyla CSV formatında (LibreOffice, Excel ve diğer birçok e-tablo yazılımıyla okunabilir) indirilebilir.</p>
@@ -165,9 +187,9 @@ Bu API aktif olarak korunmaz ve resmi olarak belgelenmez.
 <li><i class="devicon-react-plain"></i> React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CL29QEBPY">Tartışma kanalı</a></li>
 <li><i class="devicon-ruby-plain"></i> Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C0ZALLH61">Tartışma kanalı</a></li>
 <li><i class="devicon-rust-plain"></i> Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C010J616CKV">Tartışma kanalı</a></li> 
-<li><i class="devicon-r-plain"></i> R: <a href="https://github.com/openfoodfacts/r-dashboard">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C2CR356NR">Discussion channel</a></li> 
-<li><i class="devicon-swift-plain"></i> Swift: <a href="https://github.com/openfoodfacts/openfoodfacts-swift">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CE2A1E7MH">Discussion channel</a></li> 
-<li><i class="devicon-c#-plain"></i> .NET/C#: <a href="https://github.com/openfoodfacts/openfoodfacts-csharp">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JHT98HJ">Discussion channel</a></li> 
+<li><i class="devicon-r-plain"></i> R: <a href="https://github.com/openfoodfacts/r-dashboard">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C2CR356NR">Tartışma kanalı</a></li> 
+<li><i class="devicon-swift-plain"></i> Swift: <a href="https://github.com/openfoodfacts/openfoodfacts-swift">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CE2A1E7MH">Tartışma kanalı</a></li> 
+<li><i class="devicon-c#-plain"></i> .NET/C#: <a href="https://github.com/openfoodfacts/openfoodfacts-csharp">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JHT98HJ">Tartışma kanalı</a></li> 
 </ul>
 
 <h2 class="emphasized-title">Verileri, API'yi ve dışa aktarımları tartışmak</h2>
