@@ -56,16 +56,38 @@
 <p>דרך הולמת לנצל את מסד הנתונים לרעה היא להשתמש ב־DuckDB, כלי ניתוחי פנים תהליכי שתוכנן לעבד כמויות גדולות של נתונים בשברירי שנייה. אפשר לקרוא את <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">הרשומה בבלוג שלנו</a> בה אנו חוקרים ומעבדים את מסד הנתונים של Open Food Facts עם DuckDB</p>
 
 <h3>יצוא נתונים ב־CSV</h3>
+
+<p>גרסה מפושטת של היטל ה־JSONL זמין גם ב<a href="https://parquet.apache.org/">תצורת פרקט/Parquet</a>. במהלך ההמרה, סיננו עמודות שמכילות פרטים כפולים, כאלה שמשמשים לניפוי שגיאות פנימי או שהם פשוט לא מעניינים את המשתמשים.</p>
+    
+<p>תבנית פרקט/Parquet הוכחה כשימושית:<p> 
+
+<ul>
+<li>הנתונים מסודרים לפי עמודה, במקום לפי שורה, מה שחוסך בשטח אחסון ומאיץ את שאילתות הניתוח, כלומר, ניתן לבחור את העמודות שחשובות לך ובכך למטב ביצועים, אפילו במחשבים חלשים.</li>
+<li>דחיסת ופריסת נתונים יעילות במיוחד, מה שהופך אותה למיטבית לשיתוף סדרות נתונים גדולות מכל סוג שהוא</li>
+<li>תמיכה בסוגי נתונים מורכבים ומבני נתונים מקוננים מתקדמים.</li>
+</ul>
+
+<p>סדרת הנתונים זמינה ב־<a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, מערכת למידת מכונה בה מתכנתים וחוקרים יכולים לשתף מודלים ונתונים.</p>
+
+<dl>
+ <dt>קישור</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>אפשר למצוא מידע ב<a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">וויקי</a>, כולל הנחיות לגזירת נתונים ושאילתות לדוגמה למתחילים.</p>
+
+<h3>יצוא נתונים ב־CSV</h3>
 <p>הנתונים של כל המוצרים או חלקם, ניתנים להורדה בתבנית CSV (נתמכת על ידי LibreOffice, Excel ועוד תוכנות גיליונות נתונים) דרך <a href="https://world.openfoodfacts.org/cgi/search.pl">טופס החיפוש המתקדם</a>.</p>
 
 <dl>
- <dt>קישורים</dt>
+ <dt>קישור</dt>
  <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (CSV דחוס ב־GZIP‏: ~ 0.9 ג״ב, ללא דחיסה: ~ 9 ג״ב)</dd>
 </dl>
 
 <p>קידוד הקובץ הוא Unicode UTF-8. התו המפריד בין שדות הוא &lt;tab&gt; (טאב).</p>
 
-<h3>יצוא נתונים ב־RDF</h3>
+<h3>עקרונות כלליים</h3>
 <p>מסד הנתונים זמין גם בתצורת RDF. אפשר לקרוא את ה<a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">הכרזה בצרפתית</a>.</p>
 
 <dl>
@@ -73,7 +95,7 @@
  <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
-<h3>עקרונות כלליים</h3>
+<h3>דרושה עזרה עם OpenAPI</h3>
 <p>אפשר להוריד את כל התמונות ואת תוצאות המרת תמונה לטקסט מהשרת שלך או מ־AWS (דרך התוכנית AWS Open Data). אפשר לפנות ל<a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">תיעוד שלנו</a> כדי ללמוד עוד על איך להוריד תמונות.</p>
 
 
@@ -84,17 +106,17 @@
 
 <p>אנו משפרים את ה־API עם הזמן אך אנו מקפידים מאוד לשמור על תאימות לאחור. נא <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">ליצור קשר</a> אם הוא משמש אותך, כדי שנוכל לעדכן על שינויים אפשריים.</p>
 
-<p>כתובת לקריאת נתוני מוצר: https://world.openfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
+<p>כמו כן, שליחת כותרות HTTP עם קריאות ה־API שלך היא דרך מצוינת בה נוכל ליצור אתך קשר במקרה שיש תקלות כלשהן.</p>
 
-<p>לדוגמה: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
-<p>נא לשים לב שאם הפלט הוא קצת מעבר למה שציפית, אפשר לסנן אותו, כפי שמתואר ב־API.</p>
+<p>במקרה של ספק או אם יש לך שאלות (אין דבר כזה שאלות טפשיות), אפשר לפנות אלינו בערוץ ‎#api ב־Slack :-)</p>
+<p>לדוגמה: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
 
 <ul>
  <li>
 <a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - תיעוד OpenAPI חדש - עובדים על זה כרגע</a>
  </li>
 </ul>
-<h3 class="emphasized-title">דרושה עזרה עם OpenAPI</h3>
+<h3 class="emphasized-title">API ניסיוני עם XML</h3>
 אנו נשמח מאוד לסיים את תיעוד ה־API, להוסיף מקרי בוחן ולייצר אוטומציה של יצירת SDK. אם OpenAPI זה הצד החזק שלך, מאוד נשמח לקבל עזרה.
 <!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
@@ -108,50 +130,50 @@
 <p>אנו מזמינים אותך להשתמש ב־API למטרות פעילות מבצעית, כל עוד כל קריאת API שוות ערך לסריקה אמתית של משתמש.
 כל ניסיון לדלות את מסד הנתונים כולו דרך ה־API ייחסם כיוון שתוצאי ייצוא מלאים יומיים זמינים בעמוד זה ממש.</p>
 <p>כמו כן, שליחת כותרות HTTP עם קריאות ה־API שלך היא דרך מצוינת בה נוכל ליצור אתך קשר במקרה שיש תקלות כלשהן.</p>
-<p>במקרה של ספק או אם יש לך שאלות (אין דבר כזה שאלות טפשיות), אפשר לפנות אלינו בערוץ ‎#api ב־Slack :-)</p>
+<p>הם יאפשרו לך לצרוך נתונים, כמו גם לאפשר למשתמשים שלך לתרום נתונים חדשים</p>
 
-<h3 class="emphasized-title">API ניסיוני עם XML</h3>
-<p>לדוגמה: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+<h3 class="emphasized-title">עקרונות כלליים כדי לשמח את המשתמשים שלך</h3>
+<p>הקוד של היישומונים הרשמיים של Open Food Facts זמין ב־GitHub
+ <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
 <p>לדוגמה: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
 ה־API הזה לא מתוחזק באופן פעיל, ולא מתועד רשמית.
 
 
 <h2 class="emphasized-title">מעטפות וערכות SDK</h2>
 <p>כנראה שיש לנו מעטפת לשפת הפיתוח המועדפת עליך. אם יש לנו, ניתן להשתמש בה ולשפר אותה. אם אין לנו, ניתן לעזור ביצירתה.</p>
-<p>הם יאפשרו לך לצרוך נתונים, כמו גם לאפשר למשתמשים שלך לתרום נתונים חדשים</p>
+<p>אנו מזמינים אותך לעשות שימוש חוזר בקוד המקור (הפתוח) ולסייע לנו לשפר אותו, למען כולם, בכל רחבי העולם.</p>
 
-<h3>עקרונות כלליים כדי לשמח את המשתמשים שלך</h3>
+<h3>אם המשתמשים שלך לא מצפים לתוצאות מיידית (למשל: יישומוני מאגרים)</h3>
 <ul>
 <li>Cordova:‏ <a href="https://github. com/openfoodfacts/openfoodfacts-cordova-app">GitHub (היישומון הרשמי הישן של Open Food Facts)</a>.</li>
 <li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
 <li>Elixir:‏ <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a></li>
 </ul>
 
-<h3>אם המשתמשים שלך לא מצפים לתוצאות מיידית (למשל: יישומוני מאגרים)</h3>
+<h3>אם המשתמשים שלך מצפים לתוצאות מיידית (למשל: יישומוני תזונה)</h3>
 <ul>
 <li>מגישים תמונות (חזית/תזונה/רכיבים): הדבר הכי פחות מעיק על הלקוחות שלך</li>
 <li>רובוט הבינה המלאכותית של Open Food Facts -‏ Robotoff - יגזור נתונים מהתמונות</li>
 <li>עם הזמן, יישומונים אחרים וקהילת Open Food Facts ימלאו את פערי הנתונים</li>
 </ul>
 
-<h3>אם המשתמשים שלך מצפים לתוצאות מיידית (למשל: יישומוני תזונה)</h3>
+<h3>יישומון Android/iPhone/Flutter לניידים</h3>
 <ul>
 <li>מגישים עובדות תזונתיות + קטגוריה &gt; מקבלים Nutri-Score</li>
 <li>מגישים רכיבים &gt; מקבלים קבוצת NOVA (על אולטרה עיבוד של מזון), תוספים, מעוררי רגישות, רכיבים מיוצבים, צמחונות, טבעונות&hellip;</li>
 <li>מגישים קטגוריה + תוויות &gt; מקבלים בקרוב את ה־Eco-Score (על ההשפעה על איכות הסביבה)</li>
 </ul>
 
-<h3>יישומון Android/iPhone/Flutter לניידים</h3>
+<h3>ערכות SDK</h3>
 
-<p>הקוד של היישומונים הרשמיים של Open Food Facts זמין ב־GitHub
- <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>
+<p>אפשר לעיין ב<a href="https://support.openfoodfacts.org/help/fr-fr/12">שו״ת הנפוצות על API וייצוא נתונים</a> ו<a href="https://support.openfoodfacts.org/help/fr-fr">שאלות נפוצות על Open Food Facts</a>
 
 <p>אנחנו שוקלים להפוך את בסיסי הקוד של Kotlin ו־Swift ל־SDKs של Kotlin ו־Swift, נשמח לעזרה :-)</p>
-<p>היישומון מאפשר למשתמש לסרוק ברקודים של מוצרים, כדי לצפות בפרטי המוצר וכדי לצלם ולהגיש תמונות ונתונים שחסרים על המוצר.</p>
+<p>אפשר <a href="https://github.com/openfoodfacts/api-documentation/discussions">לפתוח שרשור במאגר תיעוד ה־API שלנו</a></p>
 
-<p>אנו מזמינים אותך לעשות שימוש חוזר בקוד המקור (הפתוח) ולסייע לנו לשפר אותו, למען כולם, בכל רחבי העולם.</p>
+<p>לכל שאלה בנוגע לנתונים, ניתן ליצור אתנו קשר בכתובת <a href="mailto:reuse@openfoodfacts.org">contact@openfoodfacts.org</a></p>
 
 <h3>ערכות SDK</h3>
 <!-- TODO: Install locally -->
