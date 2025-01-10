@@ -55,6 +55,28 @@ Potrebbero contenere elementi grafici soggetti a diritto di copia o altri diritt
 
 <p>Un modo adatto per utilizzare il database è DuckDB, uno strumento analitico in-process progettato per elaborare grandi quantità di dati in una frazione di secondi. Puoi leggere il nostro <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">articolo sul blog</a> con il quale ti guidiamo attraverso l'esplorazione e l'elaborazione del database di Open Food Facts con DuckDB</p>
 
+<h3>Parquet Data Export on Hugging Face</h3>
+
+<p>A simplified version of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.</p>
+    
+<p>The Parquet format has proved to be handy:<p> 
+
+<ul>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
+</ul>
+
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
+
+<dl>
+ <dt>Collegamenti</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
+
 <h3>Esportazione dati CSV</h3>
 <p>I dati per tutti i prodotti, o per alcuni dei prodotti, sono scaricabili nel formato CSV (leggibile con LibreOffice, Excel e molti altri software di fogli di calcolo), tramite il <a href="https://world.openfoodfacts.org/cgi/search.pl">modulo di ricerca avanzato</a>.</p>
 
@@ -127,14 +149,14 @@ Quest'API non è mantenuta attivamente e non è documentata ufficialmente.
 <li>È inoltre possibile implementare il flusso completo in modo che ottengano immediatamente il risultato con un certo sforzo da parte loro.</li>
 </ul>
 
-<h3>Se i tuoi utenti non si aspettano un risultato immediato (ad es. app per l'inventario)</h3>
+<h3>Se i tuoi utenti si aspettano un risultato immediato (ad es. app sull'alimentazione)</h3>
 <ul>
 <li>Invia foto (anteriore/nutrizione/ingredienti): la cosa più indolore per i tuoi utenti</li>
 <li>L'IA di Open Food Facts, Robotoff, genererà dei dati derivati dalle foto</li>
 <li>Col tempo, altre app e la community di Open Food Facts colmeranno le lacune di dati</li>
 </ul>
 
-<h3>Se i tuoi utenti si aspettano un risultato immediato (ad es. app sull'alimentazione)</h3>
+<h3>Se i tuoi utenti non si aspettano un risultato immediato (ad es. app per l'inventario)</h3>
 <ul>
 <li>Invia valori nutrizionali + categoria &gt; ottieni il Nutri-Score</li>
 <li>Invia gli ingredienti &gt; ottieni il gruppo NOVA (sull'ultra-trasformazione alimentare), additivi, allergeni, ingredienti normalizzati, vegano, vegetariano&hellip;</li>
