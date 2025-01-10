@@ -55,7 +55,29 @@ Pueden contener elementos gráficos sujetos a derechos de autor u otros derechos
 
 <p>Una forma adecuada de aprovechar la base de datos es usar DuckDB, una herramienta de análisis de procesos diseñada para procesar gran cantidad de datos en una fracción de segundos. Puedes leer el <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">artículo del blog</a> donde te guiamos en la exploración y procesamiento de la base de datos de Open Food Facts con DuckDB</p>
 
-<h3>Exportar datos en formato CSV</h3>
+<h3>Exportación de datos Parquet en Hugging Face</h3>
+
+<p>También está disponible una versión simplificada de JSONL en el formato <a href="https://parquet.apache.org/">Parquet</a>. Durante la conversión, filtramos las columnas que contienen información duplicada, se utilizan para depuración interna o simplemente son irrelevantes para los usuarios.</p>
+    
+<p>El formato Parquet ha demostrado ser útil:<p> 
+
+<ul>
+<li>Los datos se organizan por columna, en lugar de por fila, lo que ahorra espacio de almacenamiento y acelera las consultas analíticas, es decir, puede seleccionar solo las columnas que le interesan, optimizando el rendimiento de las consultas, incluso en computadoras de nivel básico.</li>
+<li>Compresión y descompresión de datos altamente eficientes, lo que lo hace ideal para almacenar y compartir grandes conjuntos de datos de cualquier tipo,</li>
+<li>Admite tipos de datos complejos y estructuras de datos anidadas avanzadas.</li>
+</ul>
+
+<p>El conjunto de datos está disponible en <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, un ecosistema colaborativo de aprendizaje automático donde los desarrolladores e investigadores pueden compartir modelos y conjuntos de datos.</p>
+
+<dl>
+ <dt>Enlace</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Encuentre más información en la Wiki <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29"></a>, incluidas pautas para la reutilización de datos y consultas de ejemplo para comenzar.</p>
+
+<h3>Exportar datos RDF</h3>
 <p>Los datos de todos los productos, o algunos de los productos, se pueden descargar en formato CSV (legible con LibreOffice, Excel y muchos otros programas de hojas de cálculo) a través del <a href="https://world.openfoodfacts.org/cgi/search.pl">formulario de búsqueda avanzada</a>.</p>
 
 <dl>
@@ -84,9 +106,9 @@ Pueden contener elementos gráficos sujetos a derechos de autor u otros derechos
 
 <p>Vamos mejorando la API con el tiempo, pero procuramos mantener la compatibilidad con versiones anteriores. Si la quieres utilizar, <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">contáctanos</a> para que te informemos sobre posibles cambios.</p>
 
-<p>URL para leer datos de un producto: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.json">https://world.openfoodfacts.org/api/v2/product/737628064502.json</a></p>
-
 <p>Ejemplo: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
+
+<p>URL para leer datos de un producto: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.json">https://world.openfoodfacts.org/api/v2/product/737628064502.json</a></p>
 <p>Ten en cuenta que, si el resultado es demasiado grande, puedes filtrar la información tal y como se describe en la documentación de la API.</p>
 
 <ul>
@@ -127,14 +149,14 @@ Esta API no se mantiene de forma habitual ni está documentada oficialmente.
 <li>También puedes implementar el flujo completo para que obtengan inmediatamente el resultado con algo de esfuerzo de tu parte.</li>
 </ul>
 
-<h3>Si tus usuarios no esperan un resultado inmediato (por ejemplo, aplicaciones de inventario)</h3>
+<h3>Si tus usuarios esperan un resultado inmediato (por ejemplo, aplicaciones de nutrición)</h3>
 <ul>
 <li>Enviar imágenes (frontal/información nutricional/ingredientes): la manera más indolora para tus usuarios.</li>
 <li>La IA de Open Food Facts, Robotoff, generará algunos datos obtenidos de las fotografías.</li>
 <li>Con el tiempo, otras aplicaciones, y la comunidad Open Food Facts rellenarán los datos que faltan.</li>
 </ul>
 
-<h3>Si tus usuarios esperan un resultado inmediato (por ejemplo, aplicaciones de nutrición)</h3>
+<h3>Si tus usuarios no esperan un resultado inmediato (por ejemplo, aplicaciones de inventario)</h3>
 <ul>
 <li>Sube la información nutricional y la categoría para conseguir el Nutri-Score</li>
 <li>Envía los ingredientes para obtener información sobre el grupo NOVA (sobre alimentos ultraprocesados), aditivos, alérgenos, ingredientes normalizados, veganos, vegetarianos…</li>
@@ -145,9 +167,9 @@ Esta API no se mantiene de forma habitual ni está documentada oficialmente.
 
 <p>El código de la aplicación móvil de Open Food Facts está disponible en GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> y <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).
 
-<p>Queremos convertir los obsoletos códigos Kotlin y Swift en Kotlin y Swift SDKs, por lo que toda ayuda es bienvenida. :-)
+<p>Exportar datos en formato CSV</p>
+<p>:-)
 La aplicación permite a los usuarios escanear el código de barras de los productos y así ver su información, además de permitirles hacer y enviar fotografías y datos de los productos que faltan.</p>
-<p>La aplicación permite a los usuarios escanear los códigos de barra de los productos, ver la información de éstos, y subir las imágenes y los datos que faltan de los productos.</p>
 
 <p>Te invitamos a reutilizar el código (es de código abierto) y a ayudarnos a mejorarlo, para todos, en todo el planeta.</p>
 
