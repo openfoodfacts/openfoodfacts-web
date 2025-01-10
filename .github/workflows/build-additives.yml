@@ -1,11 +1,10 @@
 name: Build HTML pages for additives knowledge cards
 
 on:
-  push
-  # Allow to be run manually
-  #workflow_dispatch:
-  #schedule:
-  #- cron: "0 19 * * *"
+  push:
+    paths:
+      - 'knowledge_panels/additives/*.yml'
+      - 'knowledge_panels/ingredients/*.yml'
 
 jobs:
   update-assets:
