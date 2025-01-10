@@ -40,7 +40,7 @@
 
 <p>Ежедневный экспорт дельты предоставляется за предыдущие 14 дней. Список доступных в настоящее время дельта-файлов можно найти по адресу <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.</p>
 <p>Каждая строка представляет файл, который доступен по адресу <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.</p>
-<p>The filename contains UNIX timestamp of the first and the last change contained in the JSON file, so that the delta files can be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
+<p>Имя файла содержит временную метку UNIX первого и последнего изменения, содержащегося в файле JSON, так что файлы дельта можно импортировать (после извлечения) с помощью <code>mongoimport</code> в алфавитном порядке.</p>
 <p>Обратите внимание, что из-за природы <code>mongoexport</code>, дельта-файлы не смогут рассказать вам об удаленных продуктах. Чтобы убрать удалённый товар из базы данных, вам нужно импортировать полный дамп MongoDB.</p>
 
 <h3>Экспорт данных CSV</h3>
@@ -53,11 +53,11 @@
  </dd>
 </dl>
 
-<p>A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. Вы можете прочитать наш <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">пост в блоге</a>, где мы расскажем вам об исследовании и обработке базы данных Open Food Facts с помощью DuckDB</p>
+<p>Подходящим способом использования базы данных является использование DuckDB — инструмента внутри процессной аналитики, предназначенного для обработки больших объемов данных за доли секунды. Вы можете прочитать наш <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">пост в блоге</a>, где мы расскажем вам об исследовании и обработке базы данных Open Food Facts с помощью DuckDB</p>
 
 <h3>Экспорт данных Parquet на Hugging Face</h3>
 
-<p>Упрощенная версия дампа JSONL также доступна в формате <a href="https://parquet.apache.org/">Parquet</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.</p>
+<p>Упрощенная версия дампа JSONL также доступна в формате <a href="https://parquet.apache.org/">Parquet</a>. В ходе конвертации мы отфильтровали столбцы, которые содержат дублированную информацию, используются для внутренней отладки или просто неактуальны для пользователей.</p>
     
 <p>Формат Parquet оказался удобным:<p> 
 
@@ -78,7 +78,8 @@
 </p>Найдите больше информации на <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, включая советы по использованию данных и примеры запросов, чтобы начать.</p>
 
 <h3>Экспорт данных CSV</h3>
-<p>Data for all products, or some of the products, can be downloaded in the CSV format (readable with LibreOffice, Excel and many other spreadsheet software) through the <a href="https://world.openfoodfacts.org/cgi/search.pl">advanced search form</a>.</p>
+<p>Данные по всем или некоторым продуктам можно загрузить в формате CSV (читаемый в LibreOffice, Excel и многих других программах)
+ через <a href="https://world.openfoodfacts.org/cgi/search.pl">форму расширенного поиска</a>.</p>
 
 <dl>
  <dt>Ссылка</dt>
@@ -117,7 +118,7 @@
  </li>
 </ul>
 <h3 class="emphasized-title">Требуется помощь OpenAPI</h3>
-We're eager to finish the documentation of the API, add use-cases, and automate SDK generation. Если вы являетесь знатоком OpenAPI, мы будем рады вашей помощи.
+Мы стремимся завершить документирование API, добавить варианты использования и автоматизировать генерацию SDK. Если вы являетесь знатоком OpenAPI, мы будем рады вашей помощи.
 <!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
  <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
