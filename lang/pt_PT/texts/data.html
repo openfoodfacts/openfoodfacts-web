@@ -53,6 +53,28 @@ Estas podem conter elementos gráficos sujeitos a direitos de autor ou outros di
 
 <p>Uma forma adequada de explorar a base de dados é usar o DuckDB, uma ferramenta analítica em processo projetada para processar grandes quantidades de dados em uma fração de segundos. Poder ler <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">esta publicação</a> no nosso blogue onde explicamos como explorar e processar a base de dados do Open Food Facts com DuckDB</p>
 
+<h3>Exportação de dados do Parquet no Hugging Face</h3>
+
+<p>Também está disponível uma versão simplificada do dump JSONL no <a href="https://parquet.apache.org/">formato Parquet</a>. Durante a conversão, filtramos colunas que contêm informações duplicadas, são usadas para depuração interna ou são simplesmente irrelevantes para os utilizadores.</p>
+    
+<p>O formato Parquet revelou-se útil:<p> 
+
+<ul>
+<li>Os dados são organizados por coluna, em vez de linha, o que poupa espaço de armazenamento e acelera as consultas analíticas, ou seja, pode selecionar apenas as colunas que lhe interessam, optimizando o desempenho das consultas, mesmo em computadores de nível básico.</li>
+<li>Compressão e descompressão de dados altamente eficientes, o que o torna ideal para armazenar e partilhar grandes conjuntos de dados de qualquer tipo,</li>
+<li>Suporta tipos de dados complexos e estruturas de dados agrupadas avançadas.</li>
+</ul>
+
+<p>O conjunto de dados está disponível em <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, um ecossistema colaborativo de aprendizagem automática onde os programadores e investigadores podem partilhar modelos e conjuntos de dados.</p>
+
+<dl>
+ <dt>Hiperligação</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Encontre mais informações na <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, incluindo diretrizes para reutilização de dados e consultas de exemplo para começar.</p>
+
 <h3>Exportação de dados CSV</h3>
 <p>Os dados relativos a todos os produtos, ou a alguns dos produtos, podem ser descarregados no formato CSV (legível com o LibreOffice, Excel e muitos outros programas de folha de cálculo) através do <a href="https://world.openfoodfacts.org/cgi/search.pl">formulário de pesquisa avançada</a>.</p>
 
@@ -82,9 +104,9 @@ Estas podem conter elementos gráficos sujeitos a direitos de autor ou outros di
 
 <p>Atualizamos a API periodicamente, mas garantimos a compatibilidade com versões anteriores. Por favor <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">entre em contacto</a> se o utilizar, para que possamos informá-lo sobre eventuais alterações.</p>
 
-<p>URL para ler os dados de um produto: https://world.openfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
-
 <p>Exemplo: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
+
+<p>URL para ler os dados de um produto: https://world.openfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
 <p>Note-se que se a saída for demasiado grande, pode filtrá-la - tal como descrito na documentação da API.</p>
 
 <ul>
@@ -125,14 +147,14 @@ Esta API não é mantida ativamente e não está oficialmente documentada.
 <li>Pode também implementar o fluxo completo para que recebam imediatamente o resultado com algum esforço do seu lado.</li>
 </ul>
 
-<h3>Se os seus utilizadores não esperam resultados imediatamente (por ex. aplicações de inventário)</h3>
+<h3>Se os seus utilizadores esperam imediatamente um resultado (por exemplo, aplicações de nutrição)</h3>
 <ul>
 <li>Envie fotografias (frente/nutrição/ingredientes): o mais fácil para os seus utilizadores</li>
 <li>O Open Food Facts AI - Robotoff - irá gerar alguns dados derivados das fotografias</li>
 <li>Ao longo do tempo as outras aplicações e a comunidade do Open Food Facts preencherão as lacunas de dados</li>
 </ul>
 
-<h3>Se os seus utilizadores esperam imediatamente um resultado (por exemplo, aplicações de nutrição)</h3>
+<h3>Se os seus utilizadores não esperam resultados imediatamente (por ex. aplicações de inventário)</h3>
 <ul>
 <li>Enviar informações nutricionais + categoria &gt; obtém-se o Nutri-Score</li>
 <li>Enviar os ingredientes &gt; obtém-se o grupo NOVA (sobre o ultra-processamento de alimentos), aditivos, alérgenos, ingredientes normalizados, vegan, vegetariano&hellip;</li>
@@ -146,7 +168,7 @@ Esta API não é mantida ativamente e não está oficialmente documentada.
  <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
  <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>
 
-<p>Pretendemos transformar as bases de código Kotlin e Swift obsoletas em SDKs Kotlin e Swift. Toda a ajuda é bem-vinda :-)</p>
+<p>Hiperligações</p>
 <p>A aplicação permite ao utilizador ler o código de barras de produtos, visualizar as informações sobre produtos e tirar e enviar fotografias e dados de produtos em falta.</p>
 
 <p>Está convidado a reutilizar o código (é open source) e nos ajudar a melhorá-lo, para todos, no planeta inteiro.</p>
