@@ -13,7 +13,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 <p>We are very interested in learning what the Open Products Facts data is used for. It is not mandatory, but we would very much appreciate it if you <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them
 with the Open Products Facts community. Вы также можете<a href="https://forms.gle/hwaeqBfs8ywwhbTg8">заполнить эту форму</a>, чтобы получить шанс на добавление вашего приложения в избранное.</p>
 
-<h2 class="emphasized-title">Open Products Facts data exports</h2>
+<h2 class="emphasized-title">Экспорт данных Open Products Facts</h2>
 
 <p>Дампы базы данных и экспорт генерируются каждую ночь. База данных очень большая, так что вы можете найти<a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">разные способы использования</a>, в зависимости от варианта экспорта.</p>
 
@@ -39,9 +39,8 @@ with the Open Products Facts community. Вы также можете<a href="htt
 
 <h4>Экспорт дельты</h4>
 
-<p>Ежедневный экспорт дельты предоставляется за предыдущие 14 дней. The list of currently available delta files can be found at
- <a href="https://static.openproductsfacts.org/data/delta/index.txt">https://static.openproductsfacts.org/data/delta/index.txt</a>.</p>
-<p>Each line represents a file that is available at <code>https://static.openproductsfacts.org/data/delta/{filename}</code>.</p>
+<p>Ежедневный экспорт дельты предоставляется за предыдущие 14 дней. Список доступных на данный момент дельта файлов находится на <a href="https://static.openproductsfacts.org/data/delta/index.txt">https://static.openproductsfacts.org/data/delta/index.txt</a>.</p>
+<p>Каждая строка представляет файл, который доступен на <code>https://static.openproductsfacts.org/data/delta/{filename}</code>.</p>
 <p>Имя файла содержит временную метку UNIX первого и последнего изменения, содержащегося в файле JSON, так что файлы дельта можно импортировать (после извлечения) с помощью <code>mongoimport</code> в алфавитном порядке.</p>
 <p>Обратите внимание, что из-за природы <code>mongoexport</code>, дельта-файлы не смогут рассказать вам об удаленных продуктах. Чтобы убрать удалённый товар из базы данных, вам нужно импортировать полный дамп MongoDB.</p>
 
@@ -55,7 +54,7 @@ with the Open Products Facts community. Вы также можете<a href="htt
  </dd>
 </dl>
 
-<p>Подходящим способом использования базы данных является использование DuckDB — инструмента внутри процессной аналитики, предназначенного для обработки больших объемов данных за доли секунды. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Products Facts database with DuckDB</p>
+<p>Подходящим способом использования базы данных является использование DuckDB — инструмента внутри процессной аналитики, предназначенного для обработки больших объемов данных за доли секунды. Вы можете прочитать наш <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">блог</a>, где мы показываем вам, как использовать и изучать базу данных Open Products Food с помощью DuckDB</p>
 
 <h3>Экспорт данных CSV</h3>
 <p>Данные по всем или некоторым продуктам можно загрузить в формате CSV (читаемый в OpenOffice, Excel и многих других программах)
@@ -63,7 +62,7 @@ with the Open Products Facts community. Вы также можете<a href="htt
 
 <dl>
  <dt>Ссылка</dt>
- <dd><a href="https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz">https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
+ <dd><a href="https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz">https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz</a> (сжатый CSV в формат GZIP: ~ 0.9 Гб, несжатый: ~ 9 Гб)</dd>
 </dl>
 
 <p>Кодировка файла - Unicode UTF-8. Символом, который разделяет поля, является &lt;tab&gt; (табуляция).</p>
@@ -83,7 +82,7 @@ with the Open Products Facts community. Вы также можете<a href="htt
 
 <h2 class="emphasized-title">OpenAPI Documentation for the JSON API</h2>
 
-<p>JSON API также доступен для чтения данных о продукте. This API is in particular used in the Open Products Facts mobile app for iPhone and Android.</p>
+<p>JSON API также доступен для чтения данных о продукте. Этот API, в частности, используется в мобильном приложении Open Food Facts для iPhone и Android.</p>
 
 <p>Мы улучшаем API сверхурочно, но мы тщательно следим за обратной совместимостью. Пожалуйста, сообщите нам, если вы используете его, чтобы мы могли рассказать вам о возможных изменениях.</p>
 
@@ -115,7 +114,7 @@ with the Open Products Facts community. Вы также можете<a href="htt
 
 <h3 class="emphasized-title">Экспериментальный XML API</h3>
 <p>Вы также можете получить результат в XML, используя <code>.xml</code></p>
-<p>Example: <a href="https://world.openproductsfacts.org/api/v2/product/737628064502.xml">https://world.openproductsfacts.org/api/v2/product/737628064502.xml</a></p>
+<p>Пример: <a href="https://world.openproductsfacts.org/api/v2/product/737628064502.xml">https://world.openproductsfacts.org/api/v2/product/737628064502.xml</a></p>
 Этот API не поддерживается, и не документирован.
 
 
@@ -157,7 +156,7 @@ with the Open Products Facts community. Вы также можете<a href="htt
 <!-- TODO: Install locally -->
 <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">-->
 <ul>
-<li><i class="devicon-cordova-plain"></i> Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (old Open Products Facts official app)</a></li>
+<li><i class="devicon-cordova-plain"></i> Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (старое приложение Open Products Facts)</a></li>
 <li><i class="devicon-dart-plain"></i> PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a></li>
 <li><i class="devicon-elixir-plain"></i> Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C758AFX0S">Канал для дискуссий</a></li>
 <li><i class="devicon-go-plain"></i> Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV">Канал для дискуссий</a></li>
