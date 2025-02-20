@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.1.0...v1.2.0) (2025-02-20)
+
+
+### Features
+
+* force release after green score pages merge ([#668](https://github.com/openfoodfacts/openfoodfacts-web/issues/668)) ([c1fa119](https://github.com/openfoodfacts/openfoodfacts-web/commit/c1fa119eced0481f84da478578d7845beeb3b002))
+
 ## [1.1.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.0.0...v1.1.0) (2025-02-11)
 
 
