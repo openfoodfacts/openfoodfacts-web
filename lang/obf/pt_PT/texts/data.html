@@ -54,6 +54,30 @@ Estas podem conter elementos gráficos sujeitos a direitos de autor ou outros di
 
 <p>Uma forma adequada de explorar a base de dados é usar o DuckDB, uma ferramenta analítica em processo projetada para processar grandes quantidades de dados em uma fração de segundos. Pode ler a nossa <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">publicação no blogue</a>onde o orientamos na exploração e processamento da base de dados Open Beauty Facts com DuckDB</p>
 
+
+<h3>Exportação de dados do Parquet no Hugging Face</h3>
+
+<p>Também está disponível uma versão simplificada do dump JSONL no <a href="https://parquet.apache.org/">formato Parquet</a>. Durante a conversão, filtramos colunas que contêm informações duplicadas, são usadas para depuração interna ou são simplesmente irrelevantes para os utilizadores.</p>
+    
+<p>O formato Parquet revelou-se útil:<p> 
+
+<ul>
+<li>Os dados são organizados por coluna, em vez de linha, o que poupa espaço de armazenamento e acelera as consultas analíticas, ou seja, pode selecionar apenas as colunas que lhe interessam, optimizando o desempenho das consultas, mesmo em computadores de nível básico.</li>
+<li>Compressão e descompressão de dados altamente eficientes, o que o torna ideal para armazenar e partilhar grandes conjuntos de dados de qualquer tipo,</li>
+<li>Suporta tipos de dados complexos e estruturas de dados agrupadas avançadas.</li>
+</ul>
+
+<p>O conjunto de dados está disponível em <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, um ecossistema colaborativo de aprendizagem automática onde os programadores e investigadores podem partilhar modelos e conjuntos de dados.</p>
+
+<dl>
+ <dt>Hiperligação</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Encontre mais informações na <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, incluindo diretrizes para reutilização de dados e consultas de exemplo para começar.</p>
+
+
 <h3>Exportação de dados CSV</h3>
 <p>Os dados de todos os produtos, ou alguns dos produtos, podem ser descarregados no formato CSV (legível com o OpenOffice, Excel
  e muitos outros programas) através do <a href="https://world.openbeautyfacts.org/cgi/search.pl">formulário de pesquisa avançada</a>.</p>
