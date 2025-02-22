@@ -56,6 +56,30 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>طريقة مناسبة لاستغلال قاعدة البيانات هي استخدام DuckDB، وهو أداة تحليلية تعمل ضمن العملية مصممة لمعالجة كميات كبيرة من البيانات في جزء من الثانية. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Beauty Facts database with DuckDB</p>
 
+
+<h3>تصدير بيانات Parquet على Hugging Face</h3>
+
+<p>إصدار مبسط من تفريغ الـJSONL أيضاً في <a href="https://parquet.apache.org/">تنسيق الباركيه</a>. خلال التحويل, صَفَّيّنا الأعمدة التي تحتوي على معلومات متكررة, تستخدم لتصحيح أخطاء داخلية, أو هي فقط عَرَضِيّة للمستخدمين.</p>
+    
+<p>لقد أثبت تنسيق الباركيه أنه مفيد:<p> 
+
+<ul>
+<li>يتم تنظيم البيانات حسب العمود، وليس حسب الصف، مما يوفر مساحة التخزين ويسرع استعلامات التحليلات، أي أنه يمكنك تحديد الأعمدة التي تهمك فقط، مما يؤدي إلى تحسين أداء الاستعلامات، حتى على أجهزة الكمبيوتر الأساسية.</li>
+<li>ضغط البيانات وفك ضغطها بكفاءة عالية، مما يجعلها جيدة لتخزين ومشاركة مجموعات البيانات الكبيرة من أي نوع،</li>
+<li>يدعم أنواع البيانات المعقدة وهياكل البيانات المتداخلة المتقدمة.</li>
+</ul>
+
+<p>تتوفر مجموعة البيانات على <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>، وهو نظام بيئي تعاوني للتعلم الآلي حيث يمكن للمطورين والباحثين مشاركة النماذج ومجموعات البيانات.</p>
+
+<dl>
+ <dt>رابط</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>يمكنك العثور على مزيد من المعلومات في <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>، بما في ذلك إرشادات إعادة استخدام البيانات وأمثلة الاستعلامات للبدء.</p>
+
+
 <h3>تصدير بيانات CSV</h3>
 <p>Data for all products, or some of the products, can be downloaded in CSV format (readable with OpenOffice, Excel and many other software)
  through the <a href="https://world.openbeautyfacts.org/cgi/search.pl">advanced search form</a>.</p>
