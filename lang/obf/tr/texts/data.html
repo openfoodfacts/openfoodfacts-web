@@ -56,6 +56,30 @@ Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif 
 
 <p>Veritabanından yararlanmanın uygun bir yolu, büyük miktarda veriyi saniyeler içinde işlemek için tasarlanmış bir süreç içi analitik araç olan DuckDB'yi kullanmaktır. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Beauty Facts database with DuckDB</p>
 
+
+<h3>Hugging Face'te Parke Verisi Aktarımı</h3>
+
+<p>JSONL dökümünün basitleştirilmiş bir versiyonu <a href="https://parquet.apache.org/">Parquet formatında</a> da mevcuttur. Dönüşüm sırasında, yinelenen bilgiler içeren, dahili hata ayıklama için kullanılan veya kullanıcılar için alakasız olan sütunları filtreledik.</p>
+    
+<p>Parke formatının kullanışlı olduğu kanıtlanmıştır:<p> 
+
+<ul>
+<li>Veriler satır yerine sütuna göre düzenlenir, bu da depolama alanından tasarruf sağlar ve analitik sorguları hızlandırır, yani yalnızca ilgilendiğiniz sütunları seçebilir, giriş seviyesi bilgisayarlarda bile sorgu performanslarını optimize edebilirsiniz.</li>
+<li>Yüksek verimli veri sıkıştırma ve açma, her türlü büyük veri kümesinin depolanması ve paylaşılması için idealdir</li>
+<li>Karmaşık veri türlerini ve gelişmiş iç içe geçmiş veri yapılarını destekler.</li>
+</ul>
+
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
+
+<dl>
+ <dt>Link</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
+
+
 <h3>CSV Veri Dışa Aktarımı</h3>
 <p>Tüm ürünlere veya bazı ürünlere ilişkin veriler, <a href="https://world.openbeautyfacts.org/cgi/search.pl">gelişmiş arama formu</a> aracılığıyla CSV formatında (OpenOffice, Excel ve diğer birçok yazılımla okunabilir) indirilebilir.</p>
 
