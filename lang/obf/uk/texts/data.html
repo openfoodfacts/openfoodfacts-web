@@ -55,6 +55,30 @@
 
 <p>Відповідним способом використання бази даних є DuckDB, аналітичний інструмент, що працює всередині процесу і призначений для обробки великих обсягів даних за частку секунди. Ви можете прочитати наш <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">допис у блозі</a>, де ми ознайомимо вас із вивченням та обробкою бази даних Open Beauty Facts за допомогою DuckDB</p>
 
+
+<h3>Експорт даних CSV</h3>
+
+<p>Спрощена версія дампа JSONL також доступна у форматі <a href="https://parquet.apache.org/">Parquet</a>. Під час перетворення ми відфільтрували стовпці, які містять дубліковану інформацію, використовуються для внутрішнього налагодження або просто нерелевантну для користувачів.</p>
+    
+<p>Формат Parquet виявився зручним:<p> 
+
+<ul>
+<li>Дані організовано за стовпцями, а не за рядками, що економить місце для зберігання та пришвидшує аналітичні запити, тобто ви можете вибрати лише ті стовпці, які вас цікавлять, оптимізуючи продуктивність запитів навіть на комп’ютерах початкового рівня.</li>
+<li>Високоефективне стиснення та декомпресія даних, що робить його хорошим для зберігання та обміну великими наборами даних будь-якого типу,</li>
+<li>Підтримує складні типи даних і розширені вкладені структури даних.</li>
+</ul>
+
+<p>Набір даних доступний на <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, спільній екосистемі машинного навчання, де розробники та дослідники можуть обмінюватися моделями та наборами даних.</p>
+
+<dl>
+ <dt>Силка</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Знайдіть більше інформації у <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, включаючи вказівки щодо повторного використання даних і приклади запитів.</p>
+
+
 <h3>Експорт даних RDF</h3>
 <p>Дані для всіх або деяких продуктів можна завантажити у форматі CSV (можна прочитати за допомогою LibreOffice, Excel та багатьох інших програм для роботи з електронними таблицями) через <a href="https://world.openbeautyfacts.org/cgi/search.pl">форму розширеного пошуку</a>.</p>
 
