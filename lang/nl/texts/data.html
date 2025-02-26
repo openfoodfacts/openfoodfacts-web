@@ -55,6 +55,28 @@ Ze kunnen grafische elementen bevatten die onderhevig zijn aan auteursrechten of
 
 <p>Een goede manier om de database te exploiteren is door gebruik te maken van DuckDB, een analytisch hulpprogramma dat ontworpen is om grote hoeveelheden gegevens in een fractie van een seconde te verwerken. Je kunt onze <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> lezen waarin we je helpen bij het verkennen en verwerken van de Open Food Facts database met DuckDB</p>
 
+<h3>Parquet-Data exporteren op Hugging Face</h3>
+
+<p>Een vereenvoudigde versie van de JSONL dump is ook beschikbaar in het <a href="https://parquet.apache.org/">Parquet formaat</a>. Tijdens de convertering hebben we kolommen gefilterd die dubbele informatie bevatten, gebruikt worden voor interne debugging of simpelweg irrelevant zijn voor gebruikers.</p>
+    
+<p>Het Parquet-formaat blijkt handig te zijn:<p> 
+
+<ul>
+<li>Gegevens worden georganiseerd per kolom, in plaats van per rij, wat opslagruimte bespaart en analysequery's versnelt, d.w.z. u kunt alleen de kolommen selecteren die u belangrijk vindt, waardoor de queryprestaties worden geoptimaliseerd, zelfs op instapcomputers.</li>
+<li>Zeer efficiënte gegevenscompressie en -decompressie, waardoor het geschikt is voor het opslaan en delen van grote datasets van welke aard dan ook,</li>
+<li>Ondersteunt complexe gegevenstypen en geavanceerde geneste gegevensstructuren.</li>
+</ul>
+
+<p>De dataset is beschikbaar op <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, een collaboratief Machine Learning-ecosysteem waar ontwikkelaars en onderzoekers modellen en datasets kunnen delen.</p>
+
+<dl>
+ <dt>Link</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Meer informatie vindt u in de <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, inclusief richtlijnen voor hergebruik van gegevens en voorbeeldquery's om aan de slag te gaan.</p>
+
 <h3>CSV Data export</h3>
 <p>Gegevens van alle producten, of een deel van de producten, kunnen worden gedownload in CSV-formaat (leesbaar met LibreOffice, Excel en vele andere software)
  via het <a href="https://world.openfoodfacts.org/cgi/search.pl">geavanceerd zoekformulier</a>.</p>
