@@ -1,4 +1,4 @@
-name: Build HTML pages for additives knowledge cards
+name: Build HTML pages for knowledge cards
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
       run: |
         cd knowledge_panels
         python3 -m pip install -r requirements.txt --user
-        python3 build_html.py additives ingredients
+        python3 build_html.py additives ingredients nutrients
 
     - name: Check for uncommitted changes
       id: check-changes
@@ -33,7 +33,7 @@ jobs:
       uses: peter-evans/create-pull-request@v7
       with:
         base: main
-        commit-message: Automated update of additives HTML files
+        commit-message: Automated update of knowledge cards HTML files
         committer: GitHub <noreply@github.com>
         author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
         signoff: false
@@ -41,4 +41,4 @@ jobs:
         delete-branch: true
         title: 'chore: Update assets'
         body: |
-          Automated update of additives HTML files
+          Automated update of knowledge cards HTML files
