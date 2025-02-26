@@ -1,5 +1,49 @@
 # Changelog
 
+## [1.2.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.1.0...v1.2.0) (2025-02-20)
+
+
+### Features
+
+* force release after green score pages merge ([#668](https://github.com/openfoodfacts/openfoodfacts-web/issues/668)) ([c1fa119](https://github.com/openfoodfacts/openfoodfacts-web/commit/c1fa119eced0481f84da478578d7845beeb3b002))
+
+## [1.1.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.0.0...v1.1.0) (2025-02-11)
+
+
+### Features
+
+* Add Parquet format to data page ([#629](https://github.com/openfoodfacts/openfoodfacts-web/issues/629)) ([5d3c100](https://github.com/openfoodfacts/openfoodfacts-web/commit/5d3c10004ab0827b76492778abb29c0a79384578))
+* add-new-social-networks to who-we-are.html ([#638](https://github.com/openfoodfacts/openfoodfacts-web/issues/638)) ([51f0f1f](https://github.com/openfoodfacts/openfoodfacts-web/commit/51f0f1fca654e82fb347f019f4608ed1e4947d7c))
+* Cherry pick French Update new-nutriscore.html ([de10bd8](https://github.com/openfoodfacts/openfoodfacts-web/commit/de10bd8f99177cd1d6acdc827cc5c389fa9f2867))
+* discover-cleanup-obf ([#611](https://github.com/openfoodfacts/openfoodfacts-web/issues/611)) ([e2d7458](https://github.com/openfoodfacts/openfoodfacts-web/commit/e2d745892ffb64d7d927c9206909fe5c4b865d15))
+* Getting nutriscore-v2.html ready for release in France ([#643](https://github.com/openfoodfacts/openfoodfacts-web/issues/643)) ([1d83ad0](https://github.com/openfoodfacts/openfoodfacts-web/commit/1d83ad03ca513794a97254cffa04d2b5facfca28))
+* Ingredient kickstart ([a6aa557](https://github.com/openfoodfacts/openfoodfacts-web/commit/a6aa5578b002b1678fdd9456f069d1c656be9873))
+* Nutrients knowledge panel kickstart ([#624](https://github.com/openfoodfacts/openfoodfacts-web/issues/624)) ([aa295de](https://github.com/openfoodfacts/openfoodfacts-web/commit/aa295decdb1f850037109d75c6e2a005a9d4286c))
+* obf-data-reload ([e31332d](https://github.com/openfoodfacts/openfoodfacts-web/commit/e31332d7a529dfd1f3af0122f0c5f0749d54f28d))
+* OPFF data reboot ([7b1e47c](https://github.com/openfoodfacts/openfoodfacts-web/commit/7b1e47c46a788c224e49ed6a3e1f9d61be2f59fd))
+* reboot OPF data page ([6b4fc40](https://github.com/openfoodfacts/openfoodfacts-web/commit/6b4fc4044cc401ec7eb409cf2ddf285620d62479))
+* Update follow-open-food-facts.html ([#639](https://github.com/openfoodfacts/openfoodfacts-web/issues/639)) ([c9fea34](https://github.com/openfoodfacts/openfoodfacts-web/commit/c9fea345e304a1604ff71b45c0d20199801edd45))
+* Update new-nutriscore.html ([da28dfc](https://github.com/openfoodfacts/openfoodfacts-web/commit/da28dfcb9d1d984b59306b978217090bd51411ca))
+* Update new-nutriscore.html ([87830bb](https://github.com/openfoodfacts/openfoodfacts-web/commit/87830bb9f984d8c3239564e51c68244b8a64cd3f))
+* Update new-nutriscore.html ([1988f32](https://github.com/openfoodfacts/openfoodfacts-web/commit/1988f324dd0548d3282e436a243b8c3384e5f6ae))
+
+
+### Bug Fixes
+
+* add some who-we-are links ([a6e776e](https://github.com/openfoodfacts/openfoodfacts-web/commit/a6e776e9db7a6c22564088ac99ded67b363ebfb7)), closes [#587](https://github.com/openfoodfacts/openfoodfacts-web/issues/587)
+* fix knowledge panel content building ([#626](https://github.com/openfoodfacts/openfoodfacts-web/issues/626)) ([bdf85d8](https://github.com/openfoodfacts/openfoodfacts-web/commit/bdf85d84d064d02e42c7513e5a2e09a126061014))
+* fr symlinks and PT index.html ([67701a6](https://github.com/openfoodfacts/openfoodfacts-web/commit/67701a694058f1afeb0c6737060b670825c2e1df))
+* ingredients content yaml fix ([ca995cd](https://github.com/openfoodfacts/openfoodfacts-web/commit/ca995cd38f2a30012cbdd85fab7cb530edb4ef1c))
+* nutriscore page image size and other fixes ([#652](https://github.com/openfoodfacts/openfoodfacts-web/issues/652)) ([0935143](https://github.com/openfoodfacts/openfoodfacts-web/commit/0935143865716704b1abb84a1070fcfe2eae7140))
+* remove bogus text ([25b1d59](https://github.com/openfoodfacts/openfoodfacts-web/commit/25b1d598ec397ab0ac44d83267e573103cd5cb94))
+* remove uservoice links ([#637](https://github.com/openfoodfacts/openfoodfacts-web/issues/637)) ([939b0a6](https://github.com/openfoodfacts/openfoodfacts-web/commit/939b0a63ff06b97d0f34de71ced8ef417d7f05ba))
+* Update crowdin.yml ([e1f588c](https://github.com/openfoodfacts/openfoodfacts-web/commit/e1f588c2820db343e20505fd4633db9a74049c43))
+* Update label.yml ([ff50325](https://github.com/openfoodfacts/openfoodfacts-web/commit/ff503250fec2d705d69ea409472612670a1fc902))
+* Update labeler.yml ([768e318](https://github.com/openfoodfacts/openfoodfacts-web/commit/768e3183be016e1e27904b985b5c1027ae64739b))
+* Update new-nutriscore.html ([9a82d94](https://github.com/openfoodfacts/openfoodfacts-web/commit/9a82d942b14f74bee5b5daa2d1bf4d04d982bd06))
+* Update new-nutriscore.html ([45d20fd](https://github.com/openfoodfacts/openfoodfacts-web/commit/45d20fdc8b3674645054a3c95a218f933f1d5ae3))
+* Update new-nutriscore.html ([fb20727](https://github.com/openfoodfacts/openfoodfacts-web/commit/fb207276a48119667daefa38967311b7c12fe27d))
+
 ## 1.0.0 (2024-09-25)
 
 
