@@ -1,129 +1,204 @@
+<h1 class="emphasized-title">Veri</h1>
 
-<h1>Veri</h1>
-
+<h2 class="emphasized-title">Yeniden kullanım koşulları</h2>
 <p>Open Beauty Facts veritabanı, <a href="https://opendatacommons.org/licenses/odbl/1.0/">Açık Veritabanı Lisansı</a>kapsamında mevcuttur.<br/>
 Veritabanının bireysel içerikleri <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Veritabanı İçeriği Lisansı</a>kapsamında mevcuttur.<br/>
 Ürün görselleri <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike lisansı</a>kapsamında mevcuttur.
 Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif haklarına veya diğer haklara tabi grafiksel ögeler içerebilirler.</p>
 
-<p>Verileri yeniden kullanmadan önce lütfen <a href="https://world.openbeautyfacts.org/terms-of-use">Kullanım ve yeniden kullanım şart ve koşullarını</a> okuyun.</p> 
+<p>Verileri yeniden kullanmadan önce lütfen <a href="https://world.openbeautyfacts.org/terms-of-use">Kullanım ve yeniden kullanım şart ve koşullarını</a> okuyun.</p>
 
-<p>Open Beauty Facts verilerinin ne için kullanıldığını öğrenmekle çok ilgileniyoruz. Zorunlu değildir ancak Open Beauty Facts topluluğuyla paylaşabilmemiz için <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">yeniden kullanımlarınız hakkında bize bilgi verirseniz</a> çok memnun oluruz.</p>
 
-<h2>Open Beauty Facts veri dışa aktarımaları</h2>
+<h2 class="emphasized-title">Bize yeniden kullanımınızdan bahsedin</h2>
+<p>Open Beauty Facts verilerinin ne için kullanıldığını öğrenmekle çok ilgileniyoruz. Zorunlu değildir ancak Open Beauty Facts topluluğuyla paylaşabilmemiz için <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">yeniden kullanımlarınız hakkında bize bilgi verirseniz</a> çok memnun oluruz. Uygulamanızın öne çıkarılması şansını yakalamak için <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">bu formu da doldurabilirsiniz</a>.</p>
 
-<p>Veritabanı dökümleri ve dışa aktarımları her gece yapılır.</p>
+<h2 class="emphasized-title">Open Beauty Facts veri dışa aktarımaları</h2>
+
+<p>Veritabanı dökümleri ve dışa aktarımları her gece yapılır. Veritabanı çok büyük olduğundan, dışa aktarma biçimine bağlı olarak <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">verileri kullanmanın farklı yollarını</a> bulabilirsiniz.</p>
 
 <p>MongoDB dökümü ve CSV dışa aktarımına ilişkin farklı alanlara ilişkin bilgilere <a href="https://static.openbeautyfacts.org/data/data-fields.txt">https://world.openbeautyfacts.org/data/data-fields.txt</a> adresinden ulaşılabilir</p>
-
 
 <h3>MongoDB dökümü</h3>
 
 <p>Tüm ürünler için veriler MongoDB veritabanı dökümünde mevcuttur.</p>
-
+<!--
+<h4>Why you'd want to use it: </h4>
+<ul>
+ <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
+</ul>
+</p>-->
 <dl>
  <dt>Link</dt>
- <dd><a href="https://static.openbeautyfacts.org/data/openbeautyfacts-mongodbdump.tar.gz">https://static.openbeautyfacts.org/data/openbeautyfacts-mongodbdump.tar.gz</a></dd>
+ <dd><a href="https://static.openbeautyfacts.org/data/openbeautyfacts-mongodbdump.gz">https://static.openbeautyfacts.org/data/openbeautyfacts-mongodbdump.gz</a></dd>
  <dt>sha256sum</dt>
- <dd><a href="https://static.openbeautyfacts.org/data/sha256sum">https://static.openbeautyfacts.org/data/sha256sum</a></dd>
+ <dd><a href="https://static.openbeautyfacts.org/data/gz-sha256sum">https://static.openbeautyfacts.org/data/gz-sha256sum</a></dd>
  <dt>md5sum</dt>
- <dd><a href="https://static.openbeautyfacts.org/data/md5sum">https://static.openbeautyfacts.org/data/md5sum</a></dd>
+ <dd><a href="https://static.openbeautyfacts.org/data/gz-md5sum">https://static.openbeautyfacts.org/data/gz-md5sum</a></dd>
 </dl>
 
 <h4>Delta Dışa Aktarım</h4>
 
 <p>Günlük delta dışa aktarımlar önceki 14 gün için sağlanmaktadır. Şu anda mevcut olan delta dosyalarının listesi şu adreste bulunabilir:
- <a href="https://static.openbeautyfacts.org/data/delta/index.txt">https://static.openbeautyfacts.org/data/delta/index.txt</a>.
- Her satır, <code>https://static.openbeautyfacts.org/data/delta/{filename}</code> adresinde bulunan bir dosyayı temsil eder.
- Dosya adı, JSON dosyasında bulunan ilk ve son değişikliğin UNIX zaman damgasını içerir, böylece delta dosyaları <code>mongoimport</code> ile alfabetik sıraya göre içe aktarılabilir (çıkarma işleminden sonra).</p>
-<p>Lütfen <code>mongoexport</code>'un yapısı gereği, delta dosyalarının silinen ürünler hakkında size bilgi veremeyeceğini unutmayın. Lütfen <code>mongoexport</code>'un yapısı gereği, delta dosyalarının silinen ürünler hakkında size bilgi veremeyeceğini unutmayın.</p>
- 
+ <a href="https://static.openbeautyfacts.org/data/delta/index.txt">https://static.openbeautyfacts.org/data/delta/index.txt</a>.</p>
+<p>Her satır, <code>https://static.openbeautyfacts.org/data/delta/{filename}</code> adresinde bulunan bir dosyayı temsil eder.</p>
+<p>Dosya adı, JSON dosyasındaki ilk ve son değişikliğin UNIX zaman damgasını içerir; böylece delta dosyaları <code>mongoimport</code> ile alfabetik sırayla içe aktarılabilir (çıkarıldıktan sonra).</p>
+<p>Lütfen <code>mongoexport</code>'un yapısı gereği, delta dosyalarının silinen ürünler hakkında size bilgi veremeyeceğini unutmayın. Silinen ürünleri veritabanınızdan kaldırmak için MongoDB dökümünün tamamını içe aktarmanız gerekecektir.</p>
+
 <h3>CSV Veri Dışa Aktarımı</h3>
 
-<p>Tüm ürünlere veya bazı ürünlere ilişkin veriler, <a href="https://world.openbeautyfacts.org/cgi/search.pl">gelişmiş arama formu</a> aracılığıyla CSV formatında (OpenOffice, Excel ve diğer birçok yazılımla okunabilir) indirilebilir.</p>
- 
+<p>Veritabanının tamamı ayrıca her satırın bir JSON nesnesi olduğu <a href="https://jsonlines.org/">JSONL format</a> (bazen LDJSON veya NDJSON olarak da adlandırılır) mevcuttur. MongoDB dışa aktarımıyla aynı verileri temsil eder. Dosya gzip ile sıkıştırılmıştır.</p>
+
 <dl>
  <dt>Link</dt>
- <dd><a href="https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv">https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv</a></dd>
+ <dd><a href="https://static.openbeautyfacts.org/data/openbeautyfacts-products.jsonl.gz">https://static.openbeautyfacts.org/data/openbeautyfacts-products.jsonl.gz</a>
+ </dd>
+</dl>
+
+<p>Veritabanından yararlanmanın uygun bir yolu, büyük miktarda veriyi saniyeler içinde işlemek için tasarlanmış bir süreç içi analitik araç olan DuckDB'yi kullanmaktır. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Beauty Facts database with DuckDB</p>
+
+
+<h3>Hugging Face'te Parke Verisi Aktarımı</h3>
+
+<p>JSONL dökümünün basitleştirilmiş bir versiyonu <a href="https://parquet.apache.org/">Parquet formatında</a> da mevcuttur. Dönüşüm sırasında, yinelenen bilgiler içeren, dahili hata ayıklama için kullanılan veya kullanıcılar için alakasız olan sütunları filtreledik.</p>
+    
+<p>Parke formatının kullanışlı olduğu kanıtlanmıştır:<p> 
+
+<ul>
+<li>Veriler satır yerine sütuna göre düzenlenir, bu da depolama alanından tasarruf sağlar ve analitik sorguları hızlandırır, yani yalnızca ilgilendiğiniz sütunları seçebilir, giriş seviyesi bilgisayarlarda bile sorgu performanslarını optimize edebilirsiniz.</li>
+<li>Yüksek verimli veri sıkıştırma ve açma, her türlü büyük veri kümesinin depolanması ve paylaşılması için idealdir</li>
+<li>Karmaşık veri türlerini ve gelişmiş iç içe geçmiş veri yapılarını destekler.</li>
+</ul>
+
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
+
+<dl>
+ <dt>Link</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
+
+
+<h3>CSV Veri Dışa Aktarımı</h3>
+<p>Tüm ürünlere veya bazı ürünlere ilişkin veriler, <a href="https://world.openbeautyfacts.org/cgi/search.pl">gelişmiş arama formu</a> aracılığıyla CSV formatında (OpenOffice, Excel ve diğer birçok yazılımla okunabilir) indirilebilir.</p>
+
+<dl>
+ <dt>Bağlantılar</dt>
+ <dd><a href="https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz">https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
 </dl>
 
 <p>Dosya kodlaması Unicode UTF-8'dir. Alanları ayıran karakter &lt;tab&gt; (tablolama)'dır.</p>
 
-
-
 <h3>RDF Veri Dışa Aktarımı</h3>
-
-<p>Veritabanı RDF formatında da mevcuttur. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">Fransızca duyuru</a>.</p>
+<p>Veritabanı RDF formatında da mevcuttur. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">Fransızca duyuruyu</a> okuyabilirsiniz.</p>
 
 <dl>
  <dt>Link</dt>
- <dd><a href="https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf">https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf</a></dd>
+ <dd><a href="https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf.gz">https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf.gz</a></dd>
 </dl>
 
-<h2>Canlı JSON API'si</h2>
+<h3>Görüntü Verilerini Dışa Aktarma</h3>
+<p>Tüm görüntüler ve OCR sonuçları sunucumuzdan veya AWS'den (AWS Açık Veri Programı aracılığıyla) indirilebilir. Resimlerin nasıl indirileceği hakkında daha fazla bilgi edinmek için <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">belgelerimize</a> göz atın.</p>
 
-API, %99 oranında Open Food Facts gibi davranır, dolayısıyla SDK'ların çoğu, Open Food Facts API ile etkileşime girecek kodlar yalnızca uç noktayı openfoodfacts.org'dan openbeautyfacts.org'a değiştirerek çalışmalıdır. Kod bir yılı aşkın süredir güncellenmediğinden Bilgi Panelleri gibi yeni API'lerin çoğu henüz mevcut değil.
+
+
+<h2 class="emphasized-title">Canlı JSON ve XML API'si</h2>
 
 <p>Bir ürünün verilerini okumak için bir JSON API de mevcuttur. Bu API, özellikle iPhone ve Android için Open Beauty Facts mobil uygulamasında kullanılır.</p>
 
-<p>API'yi zaman içinde değiştiriyoruz, ancak geriye dönük uyumluluğu korumak konusunda dikkatliyiz. Lütfen bunu kullanırsanız bize bildirin, böylece olası değişikliklerde sizi haberdar edebiliriz.</p>
+<p>API'yi zamanla geliştiriyoruz ancak geriye dönük uyumluluğu korumaya özen gösteriyoruz. Lütfen bunu kullanırsanız bize bildirin, böylece olası değişikliklerde sizi haberdar edebiliriz.</p>
 
 <p>Bir ürünün verilerini okumak için URL: https://world.openbeautyfacts.org/api/v2/product/<i>[barcode]</i>.json</p>
 
-
-
 <p>Örnek: <a href="https://world.openbeautyfacts.org/api/v2/product/3600550578041.json">https://world.openbeautyfacts.org/api/v2/product/3600550578041.json</a></p>
+<p>Çıktı çok yoğunsa API belgelerinde açıklandığı gibi filtreleyebileceğinizi unutmayın.</p>
+
 <ul>
-<li>
- <a href="https://wiki.openfoodfacts.org/API">API V1- Wiki</a>'de bulunan eski belgeler (Önemli not: sayfa okuma ve yazma için alt sayfalara bölünmüştür). 
- </li>
- <li>
-<a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Kapsamlı ancak OpenAPI uyumlu değil</a> - Bir ürünü görüntülemek ve kullanıcılarınızın Nutri-Score, NOVA sınıflandırması, katkı maddeleri ve Eco-Score'u almak için gereken verileri eklemesine olanak tanıyan kullanım senaryoları içerir.
- </li>
  <li>
 <a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2 - yeni OpenAPI belgeleri - Devam Eden Çalışmalar</a>
  </li>
- <li>
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V2 - yeni OpenAPI belgeleri - Devam Eden Çalışmalar</a>
- </li>
 </ul>
+<h3 class="emphasized-title">OpenAPI yardımı aranıyor</h3>
+API belgelerini tamamlamayı, kullanım senaryolarını eklemeyi ve SDK oluşturmayı otomatikleştirmeyi sabırsızlıkla bekliyoruz. Eğer bir OpenAPI uzmanıysanız, yardım etmekten memnuniyet duyarız.
+<!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
+<li>
+ <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
+ </li>
+ <li>
+<a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Comprehensive but not OpenAPI compliant</a> - It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
+ </li>
+-->
+
 <p>1 API çağrısı = kullanıcı tarafından yapılan 1 gerçek tarama olduğu sürece API'yi üretim amaçlarıyla kullanmanızdan memnuniyet duyarız.
 Tüm günlük dışa aktarımlar bu sayfada mevcuttur, dolayısıyla API kullanarak veritabanını baştan sona tarama girişimleri büyük ihtimalle engellenecektir.</p>
 <p>Herhangi bir şey hakkında emin değilseniz, ya da herhangi bir sorunuz varsa (saçma soru diye bir şey yoktur), Slack kanalımızda sormaktan çekinmeyin :-)</p>
-<p>Herhangi bir şey hakkında emin değilseniz, ya da herhangi bir sorunuz varsa (saçma soru diye bir şey yoktur), Slack kanalımızda sormaktan çekinmeyin :-)</p>
+<p>Herhangi bir konuda emin değilseniz veya herhangi bir sorunuz varsa (aptalca soru diye bir şey yoktur), Slack'teki #api kanalında sormaya çekinmeyin :-)</p>
 
-<h2>Android ve iPhone mobil uygulaması (yardım gerekli!)</h2>
+<h3 class="emphasized-title">Deneysel XML API'si</h3>
+<p>Sonucu <code>.xml</code>kullanarak XML'de de alabilirsiniz.</p>
+<p>Veri</p>
+Bu API aktif olarak korunmaz ve resmi olarak belgelenmez.
 
-<p>Open Food Facts mobil uygulamasının kodu GitHub'da mevcuttur (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> ve <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>). <b>Yeni yerel iOS kodunu kozmetik ürünlere uyarlamak için yardıma ihtiyacımız var</b> Uygulama, kullanıcıların ürünlerin barkodunu taramasına, ürün bilgilerini görüntülemesine ve eksik ürünler için fotoğraf ve veri çekip göndermesine olanak tanır.</p>
 
-<p>Android için uygulama Kotlin'de geliştirilmiştir.</p>
-<p>Yeni platformlar arası uygulama Flutter/Dart'ta geliştirilmiştir.</p>
-<p>Kodu (açık kaynaktır) yeniden kullanmaya ve gezegen üzerindeki herkes için iyileştirmemize yardımcı olabilirsiniz.
-
-<h2>Wrapper'lar ve SDK'lar</h2>
-<p>Muhtemelen en sevdiğiniz programlama dili için bir wrapper'ımız vardır. Eğer yaparsak, onu kullanabilir ve geliştirebilir ve muhtemelen buna Open Beauty Facts desteğini ekleyebilirsiniz. Eğer yoksa, oluşturmamıza yardımcı olabilirsiniz.</p>
+<h2 class="emphasized-title">Wrapper'lar ve SDK'lar</h2>
+<p>Muhtemelen en sevdiğiniz programlama dili için bir wrapper'ımız vardır. Eğer varsa, onu kullanabilir ve iyileştirebilirsiniz. Eğer yoksa, oluşturmamıza yardımcı olabilirsiniz.</p>
 <p><a href="https://slack.openfoodfacts.org">Soru sormak ve API'yi tartışmak için tercih edilen yol olan Open Food Facts Slack sohbet odasına katılabilirsiniz</a>.</p>
+
+<h3>Kullanıcılarınızı mutlu edecek genel prensipler</h3>
 <ul>
-<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (eski Open Beauty Facts resmi uygulaması)</a></li>
-<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub (Şu anda yalnızca Open Food Facts)</li>
-<li>Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub (Şu anda yalnızca Open Food Facts)</a></li>
-<li>Git: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub (Şu anda yalnızca Open Food Facts)</a></li>
-<li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub (Şu anda yalnızca Open Food Facts)</a></li>
-<li>PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub (Şu anda yalnızca Open Food Facts)</a></li>
-<li>PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub (Şu anda Open Food Facts)</a></li>
-<li>Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub (Şu anda yalnızca Open Food Facts)</a></li>
-<li>React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub (Şu anda yalnızca Open Food Facts)</a></li>
-<li>Ruby: <a href="https://github.com/openfoodfacts/openbeautyfacts-ruby">GitHub (Open Beauty Facts uyumlu)</a></li>
+<li>Birçok faydalı hesaplanmış değer de dahil olmak üzere ürünler hakkında bilgi arayabilirsiniz.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Beauty Facts AI and contributors to get the computed result you want to show them.</li>
+<li>Ayrıca, kendi taraflarında biraz çaba harcayarak sonucu hemen almaları için tam akışı da uygulayabilirsiniz.</li>
 </ul>
 
-<h2>Verileri, API'yi ve dışa aktarımları tartışmak</h2>
-<p>Soru sormanın ve API'yi tartışmanın tercih edilen yolu olan Open Beauty Facts Slack sohbet odasına <a href="https://slack.openfoodfacts.org">katılabilirsiniz</a>.</p>
+<h3>Kullanıcılarınız hemen bir sonuç beklemiyorsa (örn. Envanter uygulamaları)</h3>
+<ul>
+<li>Fotoğrafları gönderin (ön yüz/besin değerleri/içindekiler): Kullanıcılar anlayabileceği en basit haliyle</li>
+<li>The Open Beauty Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Beauty Facts community will fill the data gaps</li>
+</ul>
+
+<h3>If your users expect a result immediately (e.g. Allergy apps)</h3>
+<ul>
+<li>Submit ingredients + category &gt; get Ingredient analysis, additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit labels for added value</li>
+</ul>
+
+<h3>Android ve iPhone mobil uygulaması</h3>
+
+<p><a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Kapsamlı ancak OpenAPI uyumlu değil</a> - Bir ürünü görüntülemek ve kullanıcılarınızın Nutri-Score, NOVA sınıflandırması, katkı maddeleri ve Eco-Score'u almak için gereken verileri eklemesine olanak tanıyan kullanım senaryoları içerir.
+
+<p>Kullanımdan kaldırılan Kotlin ve Swift kod tabanlarını Kotlin ve Swift SDK'larına dönüştürmeye çalışıyoruz. Uygulama, kullanıcıların ürünlerin barkodunu taramasına, ürün bilgilerini görüntülemesine ve eksik ürünler için fotoğraf ve veri çekip göndermesine olanak tanır.</p>
+<p>Uygulama, kullanıcıların ürünlerin barkodunu taramasına, ürün bilgilerini görüntülemesine ve eksik ürünler için resim ve veri çekip göndermesine olanak tanır.</p>
+
+<p>Kodu (açık kaynaktır) yeniden kullanmaya ve gezegen üzerindeki herkes için iyileştirmemize yardımcı olabilirsiniz.</p>
+
+<h3>SDK'lar</h3>
+<!-- TODO: Install locally -->
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">-->
+<ul>
+<li><i class="devicon-cordova-plain"></i> Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (eski Open Beauty Facts resmi uygulaması)</a></li>
+<li><i class="devicon-dart-plain"></i> PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a></li>
+<li><i class="devicon-elixir-plain"></i> Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C758AFX0S">Tartışma kanalı</a></li>
+<li><i class="devicon-go-plain"></i> <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV">Tartışma kanalına git</a></li>
+<li><i class="devicon-java-plain"></i> Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3">Tartışma kanalı</a></li>
+<li><i class="devicon-kotlin-plain"></i> Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9">Tartışma kanalı</a></li>
+<li><i class="devicon-nodejs-plain"></i> NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JQQ28P8">Tartışma kanalı</a></li>
+<li><i class="devicon-php-plain"></i> PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Tartışma kanalı</a></li>
+<li><i class="devicon-laravel-plain"></i> PHP (Laravel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Tartışma kanalı</a></li>
+<li><i class="devicon-python-plain"></i>  Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C13993JDD">Tartışma kanalı</a></li>
+<li><i class="devicon-react-plain"></i> React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CL29QEBPY">Tartışma kanalı</a></li>
+<li><i class="devicon-ruby-plain"></i> Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C0ZALLH61">Tartışma kanalı</a></li>
+<li><i class="devicon-rust-plain"></i> Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C010J616CKV">Tartışma kanalı</a></li> 
+<li><i class="devicon-r-plain"></i> R: <a href="https://github.com/openfoodfacts/r-dashboard">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C2CR356NR">Tartışma kanalı</a></li> 
+<li><i class="devicon-swift-plain"></i> Swift: <a href="https://github.com/openfoodfacts/openfoodfacts-swift">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CE2A1E7MH">Tartışma kanalı</a></li> 
+<li><i class="devicon-c#-plain"></i> .NET/C#: <a href="https://github.com/openfoodfacts/openfoodfacts-csharp">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JHT98HJ">Tartışma kanalı</a></li> 
+</ul>
+
+<h2 class="emphasized-title">Verileri, API'yi ve dışa aktarımları tartışmak</h2>
+
+<p>API ve Veri Dışa Aktarma işlemleriyle ilgili <a href="https://support.openfoodfacts.org/help/fr-fr/12">yaygın sıkça sorulan sorulara</a> ve Open Food Facts'le ilgili <a href="https://support.openfoodfacts.org/help/fr-fr">yaygın sorulara</a> bakabilirsiniz.</p>
+<p>You can <a href="https://slack.openfoodfacts.org">join the Open Beauty Facts Slack chatroom</a> which is the preferred way to ask questions and discuss the API</a>. Lütfen sorularınızı <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">#api kanalında sorun</a></p>
 <p>https://github.com/openfoodfacts/api-documentation/discussions
-<!--
-<p>You can also join the mailing list to discuss the API and exports, tell us about your re-uses, and be notified when improvements or changes are made to the API. Send an empty e-mail to
-<a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a> to subscribe.</p>
--->
-
-<h2>İletişim</h2>
-
-<p>Verilerle ilgili herhangi bir sorunuz varsa, <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a> adresinden bize ulaşabilirsiniz
+<p>Verilerle ilgili herhangi bir sorunuz varsa <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a> adresinden bizimle iletişime geçebilirsiniz.
