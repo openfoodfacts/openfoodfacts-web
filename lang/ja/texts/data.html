@@ -53,7 +53,29 @@ They may contain graphical elements subject to copyright or other rights, that m
  </dd>
 </dl>
 
-<p>データベースを活用する適切な方法は、DuckDBを使用することです。これは、大量のデータを数秒で処理するために設計されたインプロセス分析ツールです。 DuckDBを使用してOpen Food Factsデータベースを探索および処理する方法について説明した <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">ブログ投稿</a> をお読みください。</p>
+<p>データベースを活用する適切な方法は、DuckDBを使用することです。 これは、大量のデータを数秒で処理するために設計されたインプロセス分析ツールです。 DuckDBを使用してOpen Food Factsデータベースを探索および処理する方法について説明した <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">ブログ投稿</a> をお読みください。</p>
+
+<h3>Parquet Data Export on Hugging Face</h3>
+
+<p>A simplified version of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.</p>
+    
+<p>The Parquet format has proved to be handy:<p> 
+
+<ul>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
+</ul>
+
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
+
+<dl>
+ <dt>Link</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>CSV Data Export</h3>
 <p>Data for all products, or some of the products, can be downloaded in the CSV format (readable with LibreOffice, Excel and many other spreadsheet software) through the <a href="https://world.openfoodfacts.org/cgi/search.pl">advanced search form</a>.</p>
@@ -110,7 +132,7 @@ Any attempt to scrape the database using the API will very likely be blocked, as
 <p>Also, sending an HTTP header with your API call is a good way we can get in touch, should any issue arise.</p>
 <p>何か不明な点や質問がある場合(愚かな質問はありません) お気軽に Slack の #api チャンネルでお問い合わせください :-)</p>
 
-<h3 class="emphasized-title">Experimental XML API</h3>
+<h3 class="emphasized-title">実験用 XML API</h3>
 <p><code>.xml</code> を使用して結果を XML で取得することもできます。</p>
 <p>例: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
 This API is not actively maintained, and not officially documented.
