@@ -1,132 +1,206 @@
+<h1 class="emphasized-title">Data</h1>
 
-<h1>Data</h1>
-
+<h2 class="emphasized-title">Vilkår for gjenbruk</h2>
 <p>The Open Beauty Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
 The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/>
 Products images are available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>.
 De kan inneholde grafiske elementer som er underlagt opphavsrett eller andre rettigheter, som i noen tilfeller kan bli reprodusert (sitatrettigheter eller rimelig bruk).</p>
 
-<p>Please read <a href="https://world.openbeautyfacts.org/terms-of-use">Terms and conditions of use and re-use</a> before re-using the data.</p> 
+<p>Please read <a href="https://world.openbeautyfacts.org/terms-of-use">Terms and conditions of use and re-use</a> before re-using the data.</p>
 
-<p>We are very interested in learning what the Open Beauty Facts data is used for. It is not mandatory, but we would very much appreciate it if you <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Beauty Facts community.</p>
 
-<h2>Open Beauty Facts data exports</h2>
+<h2 class="emphasized-title">Fortell oss om gjenbruken din</h2>
+<p>We are very interested in learning what the Open Beauty Facts data is used for. It is not mandatory, but we would very much appreciate it if you <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Beauty%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Beauty Facts community. Du kan også <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">fylle ut dette skjemaet</a> for en sjanse til å få appen din fremhevet.</p>
 
-<p>Databasedumper og eksporter genereres hver natt.</p>
+<h2 class="emphasized-title">Open Beauty Facts data exports</h2>
+
+<p>Databasedumper og eksporter genereres hver natt. Databasen er svært stor, så du kan finne <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data">forskjellige måter å bruke dataene</a>, avhengig av eksporttypen.</p>
 
 <p>Information on the different fields for the MongoDB dump and CSV exports is available at <a href="https://static.openbeautyfacts.org/data/data-fields.txt">https://world.openbeautyfacts.org/data/data-fields.txt</a></p>
-
 
 <h3>MongoDB dump</h3>
 
 <p>Data for alle produkter er tilgjengelige i en MongoDB database-dump.</p>
-
+<!--
+<h4>Why you'd want to use it: </h4>
+<ul>
+ <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
+</ul>
+</p>-->
 <dl>
  <dt>Lenke</dt>
- <dd><a href="https://static.openbeautyfacts.org/data/openbeautyfacts-mongodbdump.tar.gz">https://static.openbeautyfacts.org/data/openbeautyfacts-mongodbdump.tar.gz</a></dd>
+ <dd><a href="https://static.openbeautyfacts.org/data/openbeautyfacts-mongodbdump.gz">https://static.openbeautyfacts.org/data/openbeautyfacts-mongodbdump.gz</a></dd>
  <dt>sha256sum</dt>
- <dd><a href="https://static.openbeautyfacts.org/data/sha256sum">https://static.openbeautyfacts.org/data/sha256sum</a></dd>
+ <dd><a href="https://static.openbeautyfacts.org/data/gz-sha256sum">https://static.openbeautyfacts.org/data/gz-sha256sum</a></dd>
  <dt>md5sum</dt>
- <dd><a href="https://static.openbeautyfacts.org/data/md5sum">https://static.openbeautyfacts.org/data/md5sum</a></dd>
+ <dd><a href="https://static.openbeautyfacts.org/data/gz-md5sum">https://static.openbeautyfacts.org/data/gz-md5sum</a></dd>
 </dl>
 
 <h4>Delta Export</h4>
 
-<p>Daglige deltaeksporter blir gitt for de foregående 14 dagene. The list of currently available delta files can be found at
- <a href="https://static.openbeautyfacts.org/data/delta/index.txt">https://static.openbeautyfacts.org/data/delta/index.txt</a>.
- Each line represents a file that is available at <code>https://static.openbeautyfacts.org/data/delta/{filename}</code>.
- The filename contains UNIX timestamp of the first and the last change contained in the JSON file, so that the delta files can
- be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
-<p>Vær oppmerksom på at på grunn av karakteren til <code>mongoexport</code>, kan ikke deltafilene fortelle deg om slettede produkter. Vær oppmerksom på at på grunn av karakteren til <code>mongoexport</code>, kan ikke deltafilene fortelle deg om slettede produkter.</p>
- 
-<h3>CSV dataeksport</h3>
+<p>Daglige deltaeksporter blir gitt for de foregående 14 dagene. The list of currently available delta files can be found at <a href="https://static.openbeautyfacts.org/data/delta/index.txt">https://static.openbeautyfacts.org/data/delta/index.txt</a>.</p>
+<p>Each line represents a file that is available at <code>https://static.openbeautyfacts.org/data/delta/{filename}</code>.</p>
+<p>Filnavnet inneholder et UNIX-tidsstempel for den første og siste endringen som JSON-filen inneholder, sånn at deltafilene kan bli importert (etter utpakning) med <code>mongoimport</code> i alfabetisk rekkefølge.</p>
+<p>Vær oppmerksom på at på grunn av karakteren til <code>mongoexport</code>, kan ikke deltafilene fortelle deg om slettede produkter. For å fjerne slettede produkter fra databasen din, må du importere hele MongoDB-dumpen.</p>
 
-<p>Data for all products, or some of the products, can be downloaded in CSV format (readable with OpenOffice, Excel and many other software)
- through the <a href="https://world.openbeautyfacts.org/cgi/search.pl">advanced search form</a>.</p>
- 
+<h3>JSONL dataeksport</h3>
+
+<p>Hele databasen er også tilgjengelig i <a href="https://jsonlines.org/">JSONL-format</a> (noen ganger kalt LDJSON eller NDJSON) hvor hver linje er et JSON-objekt. Det representerer samme data som MongoDB-eksporten. Filen er komprimert med gzip.</p>
+
 <dl>
  <dt>Lenke</dt>
- <dd><a href="https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv">https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv</a></dd>
+ <dd><a href="https://static.openbeautyfacts.org/data/openbeautyfacts-products.jsonl.gz">https://static.openbeautyfacts.org/data/openbeautyfacts-products.jsonl.gz</a>
+ </dd>
+</dl>
+
+<p>A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Beauty Facts database with DuckDB</p>
+
+
+<h3>CSV dataeksport</h3>
+
+<p>A simplified version of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.</p>
+    
+<p>The Parquet format has proved to be handy:<p> 
+
+<ul>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
+</ul>
+
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
+
+<dl>
+ <dt>Lenke</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
+
+
+<h3>RDF dataeksport</h3>
+<p>Data for all products, or some of the products, can be downloaded in the CSV format (readable with LibreOffice, Excel and many other spreadsheet software) through the <a href="https://world.openbeautyfacts.org/cgi/search.pl">advanced search form</a>.</p>
+
+<dl>
+ <dt>Lenke</dt>
+ <dd><a href="https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz">https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
 </dl>
 
 <p>Filkodingen er Unicode UTF-8. Karakteren som skiller felt er &lt;tab&gt; (tabulering).</p>
 
-
-
-<h3>RDF dataeksport</h3>
-
-<p>Databasen er også tilgjengelig i RDF-format. <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
+<h3>Bildedataeksport</h3>
+<p>Databasen er også tilgjengelig i RDF-format. Du kan lese <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">kunngjøringen på fransk</a>.</p>
 
 <dl>
  <dt>Lenke</dt>
- <dd><a href="https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf">https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf</a></dd>
+ <dd><a href="https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf.gz">https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf.gz</a></dd>
 </dl>
 
-<h2>Live JSON API</h2>
+<h3>OpenAPI-hjelp ønskes</h3>
+<p>Alle bilder og OCR-resultater kan enten bli lastet ned fra vår server eller fra AWS (gjennom AWS Open Data Program). Sjekk ut <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">vår dokumentasjon</a> for å lære mer om hvordan du laster ned bilder.</p>
 
-The API behaves 99% like Open Food Facts, so many of the SDKs, codes to interact with the Open Food Facts API should work by merely changing the endpoint from: openfoodfacts.org to openbeautyfacts.org. The code hasn't been updated in over a year, so many of the newer APIs like Knowledge Panels are not available yet.
+
+
+<h2 class="emphasized-title">OpenAPI Documentation for the JSON API</h2>
 
 <p>En JSON API er også tilgjengelig for å lese dataene til et produkt. This API is in particular used in the Open Beauty Facts mobile app for iPhone and Android.</p>
 
-<p>We change the API over-time but we are careful to keep backwards compatibility. Please tell us if you use it, so that we can tell you about potential changes.</p>
+<p>Vi forbedrer API-en over tid, men vi er nøye med å beholde bakoverkompatibilitet. Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Beauty%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
 
-<p>URL to read data for a product: https://world.openbeautyfacts.org/api/v2/product/<i>[barcode]</i>.json</p>
+<p>URL to read data for a product: https://world.openbeautyfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
 
+<p>The app for Android is developed in Kotlin.</p>
+<p>Du kan også få resultatet i XML ved å bruke <code>.xml</code></p>
 
-
-<p>Example: <a href="https://world.openbeautyfacts.org/api/v2/product/3600550578041.json">https://world.openbeautyfacts.org/api/v2/product/3600550578041.json</a></p>
 <ul>
+ <li>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - new OpenAPI documentation - Work in Progress</a>
+ </li>
+</ul>
+<h3 class="emphasized-title">Eksperimental XML API</h3>
+Vi er ivrige etter å fullføre dokumentasjonen av API-en, legge til bruksmønster, og automatisere SDK-generering. Hvis du er en OpenAI-kjenner, er du velkommen til å hjelpe til.
+<!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
  <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
  </li>
  <li>
 <a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Comprehensive but not OpenAPI compliant</a> - It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
  </li>
- <li>
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V2 - new OpenAPI documentation - Work in Progress</a>
- </li>
- <li>
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api-v3/">API V3 - new OpenAPI documentation - Work in Progress</a>
- </li>
-</ul>
+-->
+
 <p>Du er velkommen til å bruke API-en for produksjonssaker, så lenge ett API-anrop = en reell skanning av en bruker.
 Ethvert forsøk på å skrape databasen ved hjelp av API-en vil sannsynligvis bli blokkert, siden komplette daglie eksporter er tilgjengelige på denne siden.</p>
 <p>Det å sende en HTTP-header med API-anropet ditt er også en god måte å komme i kontakt, skulle det oppstå noen problemer.</p>
-<p>If you are unsure about anything, or have any question (there is no silly question), feel free to ask it on Slack :-)</p>
-
-<h2>Android and iPhone mobile app (help needed!)</h2>
-
-<p>The code for the Open Beauty Facts mobile app is available on GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>). <b>We need help to adapt the new native iOS code to cosmetics</b>
-The app allows users to scan the barcode of products, to view the product information, and to take and send pictures and data for missing products.</p>
-
-<p>The app for Android is developed in Kotlin.</p>
-<p>The new cross-platform app is developed in Flutter/Dart.</p>
-<p>You are welcome to reuse the code (it's open source) and help us improve it, for everyone, on all the planet.
-
-<h2>Wrappers og SDK-er</h2>
-<p>Vi har sannsynligvis en wrapper for ditt favorittprogrammeringsspråk. If we do, you can use it and improve it, and probably add Open Beauty Facts support to it. Hvis vi ikke har det, kan du hjelpe oss med å lage den.</p>
 <p>De lar deg forbruke data, samt at de lar brukerne dine bidra med nye data</p>
+
+<h3 class="emphasized-title">Generelle prinsipper for å gjøre brukerne dine fornøyde</h3>
+<p>The code for the official Open Food Facts mobile apps is available on GitHub
+ <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
+<p>Example: <a href="https://world.openbeautyfacts.org/api/v2/product/737628064502.xml">https://world.openbeautyfacts.org/api/v2/product/737628064502.xml</a></p>
+Denne API-en blir ikke aktivt vedlikeholdt, og er ikke offisielt dokumentert.
+
+
+<h2 class="emphasized-title">Wrappers og SDK-er</h2>
+<p>Vi har sannsynligvis en wrapper for ditt favorittprogrammeringsspråk. Hvis vi har det, så kan du bruke den og forbedre den. Hvis vi ikke har det, kan du hjelpe oss med å lage den.</p>
+<p>De lar deg forbruke data, samt at de lar brukerne dine bidra med nye data</p>
+
+<h3>Generelle prinsipper for å gjøre brukerne dine fornøyde</h3>
 <ul>
-<li>Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (old Open Beauty Facts official app)</a></li>
+<li>Du kan søke etter informasjon om produkter, inkludert mange nyttige beregnede verdier.</li>
 <li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub (Open Food Facts only at the moment)</a></li>
-<li>Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub (Open Food Facts only at the moment)</a></li>
-<li>Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub (Open Food Facts only at the moment)</a></li>
-<li>NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub (Open Food Facts only at the moment)</a></li>
-<li>PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub (Open Food Facts only at the moment)</a></li>
-<li>PHP (Lararel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub (Open Food Facts only at the moment)</a></li>
-<li>Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub (Open Food Facts only at the moment)</a></li>
-<li>React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub (Open Food Facts only at the moment)</a></li>
-<li>Ruby: <a href="https://github.com/openfoodfacts/openbeautyfacts-ruby">GitHub (Open Beauty Facts compatible)</a></li>
+<li>Du kan også implementere hele flowen slik at de får resultatet med en gang med litt innsats fra deres side.</li>
 </ul>
 
-<h2>Discussing data, API and exports</h2>
-<p>You can <a href="https://slack.openfoodfacts.org">join the Open Beauty Facts Slack chatroom which is the preferred way to ask questions and discuss the API</a>.</p>
+<h3>Hvis brukerne dine forventer et umiddelbart resultat (f.ek.s Ernærings-apper)</h3>
+<ul>
+<li>Send inn bilder (forside/ernæring/ingredienser): det mest plagefrie for brukerne dine</li>
+<li>The Open Beauty Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Beauty Facts community will fill the data gaps</li>
+</ul>
+
+<h3>If your users expect a result immediately (e.g. Allergy apps)</h3>
+<ul>
+<li>Submit ingredients + category &gt; get Ingredient analysis, additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit labels for added value</li>
+</ul>
+
+<h3>Android/iPhone/Flutter mobile app</h3>
+
+<p>The code for the Open Beauty Facts mobile app is available on GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).
+
+<p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
+<p>The app allows users to scan the barcode of products, to view the product information, and to take and submit pictures and data for missing products.</p>
+
+<p>You are welcome to reuse the code (it's open source) and help us improve it, for everyone, on all the planet.</p>
+
+<h3>SDKs</h3>
+<!-- TODO: Install locally -->
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">-->
+<ul>
+<li><i class="devicon-cordova-plain"></i> Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (old Open Beauty Facts official app)</a></li>
+<li><i class="devicon-dart-plain"></i> DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a> - <a href="https://pub.dev/packages/openfoodfacts">Package on pub.dev</a></li>
+<li><i class="devicon-elixir-plain"></i> Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C758AFX0S">Discussion channel</a></li>
+<li><i class="devicon-go-plain"></i> Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV">Discussion channel</a></li>
+<li><i class="devicon-java-plain"></i> Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3">Discussion channel</a></li>
+<li><i class="devicon-kotlin-plain"></i> Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9">Discussion channel</a></li>
+<li><i class="devicon-nodejs-plain"></i> NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JQQ28P8">Discussion channel</a></li>
+<li><i class="devicon-php-plain"></i> PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Discussion channel</a></li>
+<li><i class="devicon-laravel-plain"></i> PHP (Laravel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Discussion channel</a></li>
+<li><i class="devicon-python-plain"></i>  Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C13993JDD">Discussion channel</a></li>
+<li><i class="devicon-react-plain"></i> React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CL29QEBPY">Discussion channel</a></li>
+<li><i class="devicon-ruby-plain"></i> Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C0ZALLH61">Discussion channel</a></li>
+<li><i class="devicon-rust-plain"></i> Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C010J616CKV">Discussion channel</a></li> 
+<li><i class="devicon-r-plain"></i> R: <a href="https://github.com/openfoodfacts/r-dashboard">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C2CR356NR">Discussion channel</a></li> 
+<li><i class="devicon-swift-plain"></i> Swift: <a href="https://github.com/openfoodfacts/openfoodfacts-swift">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CE2A1E7MH">Discussion channel</a></li> 
+<li><i class="devicon-c#-plain"></i> .NET/C#: <a href="https://github.com/openfoodfacts/openfoodfacts-csharp">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JHT98HJ">Discussion channel</a></li> 
+</ul>
+
+<h2 class="emphasized-title">Discussing data, API and exports</h2>
+
+<p>You can look at <a href="https://support.openfoodfacts.org/help/fr-fr/12">common FAQ questions about the API and Data Exports</a> and <a href="https://support.openfoodfacts.org/help/fr-fr">common Open Food Facts questions</a></p>
+<p>You can <a href="https://slack.openfoodfacts.org">join the Open Beauty Facts Slack chatroom</a> which is the preferred way to ask questions and discuss the API</a>. Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a></p>
 <p>You can <a href="https://github.com/openfoodfacts/api-documentation/discussions">open a thread on our API documentation repository</a>
-<!--
-<p>You can also join the mailing list to discuss the API and exports, tell us about your re-uses, and be notified when improvements or changes are made to the API. Send an empty e-mail to
-<a href="mailto:api-subscribe@openfoodfacts.org">api-subscribe@openfoodfacts.org</a> to subscribe.</p>
--->
-
-<h2>Kontakt</h2>
-
-<p>For any question regarding the data, you can contact us at <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>
+<p>For any question regarding the data, you can contact us at <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>
