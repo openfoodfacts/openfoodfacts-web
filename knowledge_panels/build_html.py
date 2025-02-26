@@ -36,13 +36,14 @@ def generate_file_path(
 ) -> Path:
     """Generate a file path unique to the knowledge content item.
 
-    The generated path depends on the `tag_type`, the `value_tag`, the
+    The generated path depends on the `project_type` `tag_type`, the `value_tag`, the
     `country` the `lang` and the `category_tag`.
 
     Args:
         root_dir: the root directory where HTML pages are located
         item: the knowledge content item
         tag_type: the target tag type
+        project_type: obf, opff, opf, off
         country: the target country (2-letters code or 'world')
         lang: the target lang (2-letters code)
 
@@ -50,10 +51,12 @@ def generate_file_path(
         Path: the path where the HTML page should be saved
     """
     category_tag_suffix = "" if item.category_tag is None else f"_{item.category_tag}"
+    project_type = "/" if item.project_type is "off" else f"/_{item.project_type}"
     value_tag = item.value_tag.replace(":", "_")
     return (
         root_dir
         / lang
+        project_type
         / "knowledge_panels"
         / tag_type
         / f"{value_tag}_{country}{category_tag_suffix}.html"
@@ -72,6 +75,7 @@ def build_content(root_dir: Path, dir_paths: list[Path]):
         dir_paths: the directories containing YAML files
     """
     logger.info("Deleting existing HTML files")
+    # probably failing here ? 
     for knowledge_panels_dir in root_dir.glob("*/knowledge_panels"):
         for tag_type_dir in knowledge_panels_dir.glob("*"):
             for file_path in tag_type_dir.glob("*.html"):
@@ -101,7 +105,7 @@ def build_content_from_file(root_dir: Path, file_path: Path):
     # tag_type is the name of the directory
     tag_type = file_path.parent.stem
 
-    if tag_type not in ("labels", "additives", "categories", "ingredients"):
+    if tag_type not in ("labels", "additives", "categories", "ingredients", "nutrients"):
         logger.info("Ignoring file %s: unknown tag type %s", file_path, tag_type)
         return
 
