@@ -30,6 +30,7 @@ class KnowledgeContentItem(BaseModel):
 def generate_file_path(
     root_dir: Path,
     item: KnowledgeContentItem,
+    project_type: str,
     tag_type: str,
     country: str,
     lang: str,
