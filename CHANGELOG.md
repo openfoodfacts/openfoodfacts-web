@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.3.0...v1.3.1) (2025-04-08)
+
+
+### Bug Fixes
+
+* OPFF data page ([#686](https://github.com/openfoodfacts/openfoodfacts-web/issues/686)) ([a24a9d2](https://github.com/openfoodfacts/openfoodfacts-web/commit/a24a9d27774d8ffa64c11f54f2097be647bd2f97))
+
 ## [1.3.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.2.0...v1.3.0) (2025-02-26)
 
 
