@@ -5,17 +5,47 @@ on:
     types:
       - opened
       - edited
-      - transfered
+      - deleted
+      - transferred
+      - pinned
+      - unpinned
+      - closed
+      - reopened
+      - assigned
+      - unassigned
       - labeled
-  pull_request:
+      - unlabeled
+      - locked
+      - unlocked
+      - milestoned
+      - demilestoned
+  pull_request_target:
     types:
-      - opened
-      - edited
+    - assigned
+    - unassigned
+    - labeled
+    - unlabeled
+    - opened
+    - edited
+    - closed
+    - reopened
+    - synchronize
+    - converted_to_draft
+    - ready_for_review
+    - locked
+    - unlocked
+    - review_requested
+    - review_request_removed
+    - auto_merge_enabled
+    - auto_merge_disabled
 jobs:
   add-to-project:
     name: Add issue to project
     if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      repository-projects: write
     steps:
       - uses: actions/add-to-project@main
         with:
@@ -117,4 +147,10 @@ jobs:
           project-url: https://github.com/orgs/openfoodfacts/projects/42 # Add issue to the Knowledge Panels issues board
           github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
           labeled: 📖 Knowledge panels
+          label-operator: OR
+      - uses: actions/add-to-project@main
+        with:
+          project-url: https://github.com/orgs/openfoodfacts/projects/136 # Add issue to the Translations project
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          labeled: 🌐 Translations, translations, i18n, Translations
           label-operator: OR
