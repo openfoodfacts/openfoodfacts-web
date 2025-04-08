@@ -53,7 +53,31 @@ Products images are available under the <a href="https://creativecommons.org/lic
  </dd>
 </dl>
 
-<p>Ένας κατάλληλος τρόπος για την εκμετάλλευση της βάσης δεδομένων είναι η χρήση του DuckDB, ενός αναλυτικού εργαλείου που έχει σχεδιαστεί για την επεξεργασία μεγάλου όγκου δεδομένων σε κλάσματα δευτερολέπτων. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Beauty Facts database with DuckDB</p>
+<p>A suitable way to exploit the database is to use DuckDB, an in-processs analytical tool designed to process large amount of data in a fraction of seconds. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Beauty Facts database with DuckDB</p>
+
+
+<h3>Εξαγωγή δεδομένων Parquet στο Hugging Face</h3>
+
+<p>Μια απλοποιημένη έκδοση της καταχώρησης JSONL είναι επίσης διαθέσιμη σε μορφή <a href="https://parquet.apache.org/">Parquet</a>. Κατά τη μετατροπή, φιλτράραμε στήλες που περιέχουν διπλότυπες πληροφορίες, χρησιμοποιούνται για εσωτερικό εντοπισμό σφαλμάτων ή είναι απλώς περιττές για τους χρήστες.</p>
+    
+<p>Η μορφή Parquet έχει αποδειχθεί εύχρηστη:<p> 
+
+<ul>
+<li>Τα δεδομένα οργανώνονται ανά στήλη και όχι κατά σειρά, γεγονός που εξοικονομεί χώρο αποθήκευσης και επιταχύνει τα ερωτήματα αναλυτικών στοιχείων, δηλαδή μπορείτε να επιλέξετε μόνο τις στήλες που σας ενδιαφέρουν, βελτιστοποιώντας τις επιδόσεις των ερωτημάτων, ακόμη και σε υπολογιστές μεσαίας κατηγορίας.</li>
+<li>Ιδιαίτερα αποτελεσματική συμπίεση και αποσυμπίεση δεδομένων, καθιστώντας τα κατάλληλα για την αποθήκευση και την κοινή χρήση μεγάλων συνόλων δεδομένων κάθε είδους,</li>
+<li>Υποστηρίζει σύνθετους τύπους δεδομένων και προηγμένες εμφωλευμένες δομές δεδομένων.</li>
+</ul>
+
+<p>Το σύνολο δεδομένων είναι διαθέσιμο στο <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, ένα συνεργατικό οικοσύστημα Μηχανικής Μάθησης όπου οι προγραμματιστές και οι ερευνητές μπορούν να μοιράζονται μοντέλα και σύνολα δεδομένων.</p>
+
+<dl>
+ <dt>Σύνδεσμος</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Βρείτε περισσότερες πληροφορίες στο <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, συμπεριλαμβανομένων οδηγιών για επαναχρησιμοποίηση δεδομένων και παραδειγμάτων ερωτημάτων για να ξεκινήσετε.</p>
+
 
 
 <h3>Εξαγωγή δεδομένων Parquet στο Hugging Face</h3>

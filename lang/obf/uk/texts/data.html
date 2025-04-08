@@ -1,9 +1,9 @@
 <h1 class="emphasized-title">Дані</h1>
 
 <h2 class="emphasized-title">Умови повторного використання</h2>
-<p>База даних Open Beauty Facts доступна за <a href="https://opendatacommons.org/licenses/odbl/1.0/">Ліцензією Open Database</a>.<br/>
-Окремий вміст бази даних доступний за <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Ліцензією на вміст бази даних</a>.<br/>
-Зображення продуктів доступні за <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">ліцензією Creative Commons Attribution ShareAlike</a>.
+<p>The Open Beauty Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
+The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/>
+Зображення продуктів доступні за ліцензією <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike</a>.
 Вони можуть містити графічні елементи, що підлягають авторському праву чи іншим правам, які можуть у деяких випадках бути відтворені (права на цитування або добросовісне використання).</p>
 
 <p>Перед повторним використанням даних прочитайте <a href="https://world.openbeautyfacts.org/terms-of-use">Умови використання та повторного використання</a>.</p>
@@ -53,7 +53,31 @@
  </dd>
 </dl>
 
-<p>Відповідним способом використання бази даних є DuckDB, аналітичний інструмент, що працює всередині процесу і призначений для обробки великих обсягів даних за частку секунди. Ви можете прочитати наш <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">допис у блозі</a>, де ми ознайомимо вас із вивченням та обробкою бази даних Open Beauty Facts за допомогою DuckDB</p>
+<p>Відповідним способом використання бази даних є використання DuckDB, внутрішнього аналітичного інструменту, призначеного для обробки великої кількості даних за частки секунд. Ви можете прочитати наш <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">допис у блозі</a>, де ми ознайомимо вас із вивченням та обробкою бази даних Open Beauty Facts за допомогою DuckDB</p>
+
+
+<h3>Експорт даних CSV</h3>
+
+<p>Спрощена версія дампа JSONL також доступна у форматі <a href="https://parquet.apache.org/">Parquet</a>. Під час перетворення ми відфільтрували стовпці, які містять дубліковану інформацію, використовуються для внутрішнього налагодження або просто нерелевантну для користувачів.</p>
+    
+<p>Формат Parquet виявився зручним:<p> 
+
+<ul>
+<li>Дані організовано за стовпцями, а не за рядками, що економить місце для зберігання та пришвидшує аналітичні запити, тобто ви можете вибрати лише ті стовпці, які вас цікавлять, оптимізуючи продуктивність запитів навіть на комп’ютерах початкового рівня.</li>
+<li>Високоефективне стиснення та декомпресія даних, що робить його хорошим для зберігання та обміну великими наборами даних будь-якого типу,</li>
+<li>Підтримує складні типи даних і розширені вкладені структури даних.</li>
+</ul>
+
+<p>Набір даних доступний на <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, спільній екосистемі машинного навчання, де розробники та дослідники можуть обмінюватися моделями та наборами даних.</p>
+
+<dl>
+ <dt>Силка</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Знайдіть більше інформації у <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, включаючи вказівки щодо повторного використання даних і приклади запитів.</p>
+
 
 
 <h3>Експорт даних CSV</h3>

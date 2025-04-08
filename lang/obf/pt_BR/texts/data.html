@@ -1,7 +1,9 @@
 <h1 class="emphasized-title">Dados</h1>
 
 <h2 class="emphasized-title">Condições para reutilização</h2>
-<p>The Open Beauty Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/> The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/> Products images are available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>.
+<p>The Open Beauty Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
+The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/>
+As imagens dos produtos estão disponíveis sob a <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>.
 As licenças são licenças livres que autorizem a utilização e reprodução do conteúdo para todos os efeitos, incluindo uso comercial, sob certas condições,
 especialmente a atribuição e a repartição sob a mesma condição de trabalhos derivados.</p>
 
@@ -54,7 +56,31 @@ especialmente a atribuição e a repartição sob a mesma condição de trabalho
  </dd>
 </dl>
 
-<p>Uma maneira adequada de explorar o banco de dados é usar o DuckDB, uma ferramenta analítica em processo projetada para processar grandes quantidades de dados em uma fração de segundos. Você pode ler nossa <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">postagem no ‘blog’</a> onde orientamos você na exploração e processamento do banco de dados do "Open Beauty Facts" com o 'DuckDB'</p>
+<p>A suitable way to exploit the database is to use DuckDB, an in-processs analytical tool designed to process large amount of data in a fraction of seconds. Você pode ler nossa <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">postagem no ‘blog’</a> onde orientamos você na exploração e processamento do banco de dados do "Open Beauty Facts" com o 'DuckDB'</p>
+
+
+<h3>Exportação de dados do Parquet no Hugging Face</h3>
+
+<p>Uma versão simplificada do dump JSONL também está disponível no formato <a href="https://parquet.apache.org/">Parquet</a>. Durante a conversão, filtramos colunas que contêm informações duplicadas, são usadas para depuração interna ou que são simplesmente irrelevantes para os usuários.</p>
+    
+<p>O formato Parquet provou ser útil:<p> 
+
+<ul>
+<li>Os dados são organizados por coluna, e não por linha, o que economiza espaço de armazenamento e acelera as consultas de análise, por exemplo, você pode selecionar apenas as colunas que você se importa, otimizando o desempenho das consultas, mesmo em computadores de entrada.</li>
+<li>Compressão e descompressão de dados altamente eficientes, o que o torna ideal para armazenar e compartilhar grandes conjuntos de dados de qualquer tipo,</li>
+<li>Suporta tipos de dados complexos e estruturas de dados aninhadas avançadas.</li>
+</ul>
+
+<p>O conjunto de dados está disponível no <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, um ecossistema colaborativo de aprendizado de máquina onde desenvolvedores e pesquisadores podem compartilhar modelos e conjuntos de dados.</p>
+
+<dl>
+ <dt>Hiperligação</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Encontre mais informações na <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, incluindo diretrizes para reutilização de dados e exemplos de consultas para começar.</p>
+
 
 
 <h3>Exportação de dados do Parquet no Hugging Face</h3>

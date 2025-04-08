@@ -1,9 +1,9 @@
 <h1 class="emphasized-title">Données</h1>
 
 <h2 class="emphasized-title">Conditions de réutilisation</h2>
-<p>La base de données Open Beauty Facts est disponible sous licence <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
-Les contenus individuels de la base de données sont disponibles sous licence <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/>
-Les images des produits sont disponibles sous licence <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>.
+<p>The Open Beauty Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
+The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/>
+Les images des produits sont disponibles sous la <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>.
 Les licences sont des licences libres qui autorisent l'utilisation et la reproduction du contenu à toutes fins, y compris l'utilisation commerciale, sous certaines conditions,
 en particulier l'attribution et le partage sous la même condition d'œuvres dérivées.</p>
 
@@ -54,7 +54,31 @@ en particulier l'attribution et le partage sous la même condition d'œuvres dé
  </dd>
 </dl>
 
-<p>Un moyen approprié d'exploiter la base de données est d'utiliser DuckDB, un outil analytique intégré conçu pour traiter de grandes quantités de données en une fraction de seconde. Vous pouvez lire notre <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">article de blog</a> dans lequel nous vous expliquons comment explorer et utiliser la base de données Open Beauty Facts avec DuckDB</p>
+<p> Vous pouvez lire notre <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">article de blog</a> dans lequel nous vous expliquons comment explorer et utiliser la base de données Open Beauty Facts avec DuckDB</p>
+
+
+<h3>Export des données Parquet sur Hugging Face</h3>
+
+<p>Une version simplifiée du dump JSONL est aussi disponible dans le <a href="https://parquet.apache.org/">format Parquet</a>. Lors de la conversion, nous avons filtré les colonnes qui contiennent des informations dupliquées, qui sont utilisées pour le débogage interne ou qui ne sont tout simplement pas pertinentes pour les utilisateurs.</p>
+    
+<p>Le format Parquet s'est avéré pratique :<p> 
+
+<ul>
+<li>Les données sont organisées par colonne plutôt que par ligne, ce qui permet d'économiser de l'espace de stockage et d'accélérer les requêtes d'analyse, c'est-à-dire que vous pouvez sélectionner uniquement les colonnes qui vous intéressent, optimisant ainsi les performances des requêtes, même sur les ordinateurs d'entrée de gamme.</li>
+<li>Compression et décompression de données hautement efficaces, ce qui le rend idéal pour le stockage et le partage de grands ensembles de données de toute nature,</li>
+<li>Prend en charge les types de données complexes et les structures de données imbriquées avancées.</li>
+</ul>
+
+<p>L'ensemble de données est disponible sur <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, un écosystème collaboratif d'apprentissage automatique où les développeurs et les chercheurs peuvent partager des modèles et des ensembles de données.</p>
+
+<dl>
+ <dt>Lien</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Trouvez plus d'informations dans le <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, y compris les directives pour la réutilisation des données et des exemples de requêtes pour commencer.</p>
+
 
 
 <h3>Export des données Parquet sur Hugging Face</h3>

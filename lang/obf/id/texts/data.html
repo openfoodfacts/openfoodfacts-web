@@ -1,8 +1,9 @@
 <h1 class="emphasized-title">Data</h1>
 
 <h2 class="emphasized-title">Ketentuan untuk penggunaan kembali</h2>
-<p>Basis data Open Beauty Facts tersedia di bawah <a href="https://opendatacommons.org/licenses/odbl/1.0/">Lisensi Basis Data Terbuka</a>.<br/>
-Konten individual basis data tersedia di bawah <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Lisensi Konten Basis Data</a>.<br/>Gambar - gambar produk tersedia di bawah <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Lisensi Creative Commons Attribution ShareAlike</a>.
+<p>The Open Beauty Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
+The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/>
+Gambar produk tersedia di bawah <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike</a>.
 Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak lainnya, yang mungkin dalam kasus tertentu direproduksi (hak kutipan atau penggunaan wajar).</p>
 
 <p>Harap baca <a href="https://world.openbeautyfacts.org/terms-of-use">Persyaratan dan ketentuan penggunaan dan penggunaan kembali</a> sebelum menggunakan kembali datanya.</p>
@@ -52,7 +53,31 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
  </dd>
 </dl>
 
-<p>Cara yang cocok untuk mengeksploitasi basis data adalah dengan menggunakan DuckDB, alat analisis dalam proses yang dirancang untuk memproses data dalam jumlah besar dalam waktu sepersekian detik. Anda dapat membaca <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">postingan blog</a> kami di mana kami memandu Anda menjelajahi dan memproses basis data Open Beauty Facts dengan DuckDB</p>
+<p>A suitable way to exploit the database is to use DuckDB, an in-processs analytical tool designed to process large amount of data in a fraction of seconds. Anda dapat membaca <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">postingan blog</a> kami di mana kami memandu Anda menjelajahi dan memproses basis data Open Beauty Facts dengan DuckDB</p>
+
+
+<h3>Ekspor Data CSV</h3>
+
+<p>Versi sederhana dari dump JSONL juga tersedia dalam format <a href="https://parquet.apache.org/">Parquet</a>. Selama konversi, kami memfilter kolom yang berisi informasi yang diduplikasi, digunakan untuk debugging internal, atau tidak relevan bagi pengguna.</p>
+    
+<p>Format Parket telah terbukti praktis:<p> 
+
+<ul>
+<li>Data disusun berdasarkan kolom, bukan berdasarkan baris, yang menghemat ruang penyimpanan dan mempercepat kueri analitik, yaitu Anda dapat memilih kolom yang Anda pedulikan, mengoptimalkan kinerja kueri, bahkan pada komputer tingkat pemula.</li>
+<li>Kompresi dan dekompresi data yang sangat efisien, sehingga cocok untuk menyimpan dan berbagi kumpulan data besar dalam bentuk apa pun,</li>
+<li>Mendukung tipe data yang kompleks dan struktur data bersarang tingkat lanjut.</li>
+</ul>
+
+<p>Dataset ini tersedia di <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, sebuah ekosistem Machine Learning kolaboratif di mana para pengembang dan peneliti dapat berbagi model dan dataset.</p>
+
+<dl>
+ <dt>Tautan</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/beauty.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Temukan informasi lebih lanjut di <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, termasuk panduan untuk penggunaan ulang data dan contoh kueri untuk memulai.</p>
+
 
 
 <h3>Ekspor Data CSV</h3>
