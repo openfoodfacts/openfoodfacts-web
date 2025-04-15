@@ -52,7 +52,7 @@ def generate_file_path(
         Path: the path where the HTML page should be saved
     """
     category_tag_suffix = "" if item.category_tag is None else f"_{item.category_tag}"
-    project_type = project_type or ""
+    flavor = flavor or ""
     value_tag = item.value_tag.replace(":", "_")
     return (
         root_dir
