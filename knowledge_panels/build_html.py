@@ -57,7 +57,7 @@ def generate_file_path(
     return (
         root_dir
         / lang
-       / project_type
+       / flavor
         / "knowledge_panels"
         / tag_type
         / f"{value_tag}_{country}{category_tag_suffix}.html"
