@@ -44,7 +44,7 @@ def generate_file_path(
         root_dir: the root directory where HTML pages are located
         item: the knowledge content item
         tag_type: the target tag type
-        project_type: obf, opff, opf, off
+        flavor: obf, opff, opf, off
         country: the target country (2-letters code or 'world')
         lang: the target lang (2-letters code)
 
