@@ -7,6 +7,7 @@ on:
       - 'knowledge_panels/ingredients/*.yml'
       - 'knowledge_panels/nutrients/*.yml'
       - 'knowledge_panels/obf/ingredients/*.yml'
+      - 'knowledge_panels/**.yml'
 jobs:
   update-assets:
     if: github.repository_owner == 'openfoodfacts'
@@ -21,7 +22,7 @@ jobs:
       run: |
         cd knowledge_panels
         python3 -m pip install -r requirements.txt --user
-        python3 build_html.py additives ingredients
+        python3 build_html.py additives ingredients nutrients
 
     - name: Check for uncommitted changes
       id: check-changes
@@ -33,12 +34,12 @@ jobs:
       uses: peter-evans/create-pull-request@v7
       with:
         base: main
-        commit-message: Automated update of additives HTML files
+        commit-message: Automated update of knowledge cards HTML files
         committer: GitHub <noreply@github.com>
         author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
         signoff: false
         branch: auto-update-assets
         delete-branch: true
-        title: 'chore: Update assets'
+        title: 'chore: Automated update of knowledge cards HTML files'
         body: |
-          Automated update of additives HTML files
+          Automated update of knowledge cards HTML files
