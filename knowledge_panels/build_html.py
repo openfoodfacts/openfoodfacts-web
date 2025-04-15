@@ -37,7 +37,7 @@ def generate_file_path(
 ) -> Path:
     """Generate a file path unique to the knowledge content item.
 
-    The generated path depends on the `project_type` `tag_type`, the `value_tag`, the
+    The generated path depends on the `flavor` `tag_type`, the `value_tag`, the
     `country` the `lang` and the `category_tag`.
 
     Args:
