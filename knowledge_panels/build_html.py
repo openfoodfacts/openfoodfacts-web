@@ -7,13 +7,16 @@ to `content.yml`.
 """
 
 import argparse
+import itertools
 from pathlib import Path
 
 import markdown
-import yaml
+import ruamel.yaml
 from openfoodfacts.types import Country, Lang
 from openfoodfacts.utils import get_logger
 from pydantic import BaseModel, constr
+
+yaml = ruamel.yaml.YAML(typ='safe')
 
 logger = get_logger()
 
@@ -30,19 +33,21 @@ class KnowledgeContentItem(BaseModel):
 def generate_file_path(
     root_dir: Path,
     item: KnowledgeContentItem,
+    flavor: str|None,
     tag_type: str,
     country: str,
     lang: str,
 ) -> Path:
     """Generate a file path unique to the knowledge content item.
 
-    The generated path depends on the `tag_type`, the `value_tag`, the
+    The generated path depends on the `flavor` `tag_type`, the `value_tag`, the
     `country` the `lang` and the `category_tag`.
 
     Args:
         root_dir: the root directory where HTML pages are located
         item: the knowledge content item
         tag_type: the target tag type
+        flavor: obf, opff, opf, off
         country: the target country (2-letters code or 'world')
         lang: the target lang (2-letters code)
 
@@ -50,9 +55,11 @@ def generate_file_path(
         Path: the path where the HTML page should be saved
     """
     category_tag_suffix = "" if item.category_tag is None else f"_{item.category_tag}"
+    flavor = flavor or ""
     value_tag = item.value_tag.replace(":", "_")
     return (
         root_dir
+        / flavor
         / lang
         / "knowledge_panels"
         / tag_type
@@ -71,19 +78,14 @@ def build_content(root_dir: Path, dir_paths: list[Path]):
         root_dir: the root directory where HTML pages are located
         dir_paths: the directories containing YAML files
     """
-    logger.info("Deleting existing HTML files")
-    for knowledge_panels_dir in root_dir.glob("*/knowledge_panels"):
-        for tag_type_dir in knowledge_panels_dir.glob("*"):
-            for file_path in tag_type_dir.glob("*.html"):
-                logger.info("Removing file %s", file_path)
-                file_path.unlink()
-
     for dir_path in dir_paths:
         for file_path in dir_path.glob("*.yml"):
             build_content_from_file(root_dir, file_path)
+        for file_path in dir_path.glob("*/*.yml"):
+            build_content_from_file(root_dir, file_path, flavor=file_path.parent.stem)
 
 
-def build_content_from_file(root_dir: Path, file_path: Path):
+def build_content_from_file(root_dir: Path, file_path: Path, flavor=None):
     """Build content as HTML pages from `file_path` (a YAML file).
 
     The YAML file should follows the schema of `KnowledgeContent`.
@@ -95,13 +97,16 @@ def build_content_from_file(root_dir: Path, file_path: Path):
         root_dir: the root directory where HTML pages are located
         file_path: the input YAML file path
     """
-    with file_path.open("r") as f:
-        data = yaml.safe_load(f)
+    if flavor and (flavor not in ("obf", "off", "opf", "opff")):
+        logger.info("Ignoring file %s: unknown flavor %s", file_path, flavor)
+        return
 
-    # tag_type is the name of the directory
-    tag_type = file_path.parent.stem
+    # tag_type is in the name of the directory
+    tag_type = (
+        file_path.parent.stem if not flavor else file_path.parent.parent.stem
+    )
 
-    if tag_type not in ("labels", "additives", "categories", "ingredients"):
+    if tag_type not in ("labels", "additives", "categories", "ingredients", "nutrients"):
         logger.info("Ignoring file %s: unknown tag type %s", file_path, tag_type)
         return
 
@@ -115,6 +120,15 @@ def build_content_from_file(root_dir: Path, file_path: Path):
         logger.info("Ignoring file %s: unknown lang %s", file_path, lang)
         return
 
+    # remove existing files
+    for file in root_dir.glob(f"knowledge_panels{f'/{flavor}' if flavor else ''}/*.html"):
+        file_path.unlink()
+
+    # read data
+    with file_path.open("r") as f:
+        data = yaml.load(f)
+    
+    # generate html files
     for value_tag, item in data.items():
         content = item["content"]
         output_path = generate_file_path(
@@ -124,6 +138,7 @@ def build_content_from_file(root_dir: Path, file_path: Path):
                 content=content,
                 category_tag=item.get("category_tag"),
             ),
+            flavor=flavor,
             tag_type=tag_type,
             country=country,
             lang=lang,
@@ -139,7 +154,7 @@ if __name__ == "__main__":
         "dir_path",
         type=Path,
         nargs="+",
-        help="One or more directories containing YAML files",
+        help="One or more directories containing YAML files (and eventual flavors dirs)",
     )
     args = parser.parse_args()
     build_content(ROOT_HTML_DIR, args.dir_path)
