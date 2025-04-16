@@ -52,7 +52,29 @@ en particulier l'attribution et le partage sous la même condition d'œuvres dé
  </dd>
 </dl>
 
-<p>Un moyen approprié d'exploiter la base de données est d'utiliser DuckDB, un outil analytique intégré conçu pour traiter de grandes quantités de données en une fraction de seconde. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Food Facts database with DuckDB</p>
+<p>Un moyen approprié d'exploiter la base de données est d'utiliser DuckDB, un outil analytique intégré conçu pour traiter de grandes quantités de données en une fraction de seconde. Vous pouvez lire notre <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">article de blog</a> dans lequel nous vous expliquons comment explorer et utiliser la base de données Open Food Facts avec DuckDB</p>
+
+<h3>Export des données Parquet sur Hugging Face</h3>
+
+<p>Une version simplifiée du dump JSONL est aussi disponible dans le <a href="https://parquet.apache.org/">format Parquet</a>. Lors de la conversion, nous avons filtré les colonnes qui contiennent des informations dupliquées, qui sont utilisées pour le débogage interne ou qui ne sont tout simplement pas pertinentes pour les utilisateurs.</p>
+    
+<p>Le format Parquet s'est avéré pratique :<p> 
+
+<ul>
+<li>Les données sont organisées par colonne plutôt que par ligne, ce qui permet d'économiser de l'espace de stockage et d'accélérer les requêtes d'analyse, c'est-à-dire que vous pouvez sélectionner uniquement les colonnes qui vous intéressent, optimisant ainsi les performances des requêtes, même sur les ordinateurs d'entrée de gamme.</li>
+<li>Compression et décompression de données hautement efficaces, ce qui le rend idéal pour le stockage et le partage de grands ensembles de données de toute nature,</li>
+<li>Prend en charge les types de données complexes et les structures de données imbriquées avancées.</li>
+</ul>
+
+<p>L'ensemble de données est disponible sur <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, un écosystème collaboratif d'apprentissage automatique où les développeurs et les chercheurs peuvent partager des modèles et des ensembles de données.</p>
+
+<dl>
+ <dt>Lien</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Trouvez plus d'informations dans le <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, y compris les directives pour la réutilisation des données et des exemples de requêtes pour commencer.</p>
 
 <h3>Export CSV</h3>
 <p>Les données relatives à tous les produits ou à certains d'entre eux peuvent être téléchargées au format CSV (lisible avec LibreOffice, Excel et de nombreux autres tableurs) via le <a href="https://world.openfoodfacts.org/cgi/search.pl">formulaire de recherche avancée</a>.</p>
@@ -83,9 +105,9 @@ en particulier l'attribution et le partage sous la même condition d'œuvres dé
 
 <p>Nous améliorons l'API au fil du temps mais nous veillons à conserver une rétrocompatibilité. Veuillez <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">prendre contact</a> si vous l'utilisez, afin que nous puissions vous informer des changements éventuels.</p>
 
-<p>Exemple : <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.json">https://world.openfoodfacts.org/api/v2/product/737628064502.json</a></p>
-
 <p>Exemple : <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
+
+<p>Exemple : <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.json">https://world.openfoodfacts.org/api/v2/product/737628064502.json</a></p>
 <p>Notez que si les résultats sont trop nombreux, vous pouvez les filtrer, comme décrit dans la documentation de l'API.</p>
 
 <ul>
@@ -126,14 +148,14 @@ Cette API n'est pas activement maintenue et n'est pas officiellement documentée
 <li>Elixir : <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a></li>
 </ul>
 
-<h3>Si vos utilisateurs n'attendent pas de résultat immédiat (par exemple, application d'inventaire)</h3>
+<h3>Si vos utilisateurs attendent un résultat immédiat (par exemple applications de nutrition)</h3>
 <ul>
 <li>Envoyer des photos (face/nutrition/ingrédients) : chose la moins pénible pour vos utilisateurs</li>
 <li>L'IA d'Open Food Facts - Robotoff - générera des données dérivées à partir des photos</li>
 <li>Par la suite, d'autres applis, ainsi que la communauté Open Food Facts, rempliront les données manquantes</li>
 </ul>
 
-<h3>Si vos utilisateurs attendent un résultat immédiat (par exemple applications de nutrition)</h3>
+<h3>Si vos utilisateurs n'attendent pas de résultat immédiat (par exemple, application d'inventaire)</h3>
 <ul>
 <li>Envoyer les valeurs nutritionnelles + la catégorie &gt; obtention du Nutri-Score</li>
 <li>Envoyez les ingrédients, obtenez le groupe NOVA (à propos de l'ultra transformation des aliments), les additifs, les allergènes, les ingrédients normalisés, des informations végans et végétariennes</li>
@@ -144,8 +166,7 @@ Cette API n'est pas activement maintenue et n'est pas officiellement documentée
 
 <p>Le code des applications mobiles officielles d'Open Food Facts est disponible sur GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android Kotlin</a> et <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS Swift</a>).
 
-<p>Nous cherchons à transformer les bases de code Kotlin et Swift obsolètes en SDK Kotlin et Swift, toute aide est la bienvenue :-) 
-L'application permet aux utilisateurs de scanner le code barre des produits, de voir les informations sur le produit et de prendre et de soumettre des photos et des données pour les produits manquants.</p>
+<p>L'application permet aux utilisateurs de scanner le code-barres des produits, d'afficher des informations sur les produits, de prendre et d'envoyer des photos et des données sur les produits manquants.</p>
 <p>L'application permet aux utilisateurs de scanner le code-barres des produits, d'afficher des informations sur les produits, de prendre et d'envoyer des photos et des données sur les produits manquants.</p>
 
 <p>Vous êtes invités à réutiliser le code (il est open source) et à nous aider à l'améliorer, pour tous, sur toute la planète.</p>
