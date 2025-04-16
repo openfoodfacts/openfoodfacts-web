@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.2.0...v1.3.0) (2025-02-26)
+
+
+### Features
+
+* Parquet for Open Beauty Facts ([#673](https://github.com/openfoodfacts/openfoodfacts-web/issues/673)) ([bd38b49](https://github.com/openfoodfacts/openfoodfacts-web/commit/bd38b49d079a69c29b2949543ec8f66d3c64cc7c))
+
+
+### Bug Fixes
+
+* green-score-fix-for-app ([#675](https://github.com/openfoodfacts/openfoodfacts-web/issues/675)) ([24543fe](https://github.com/openfoodfacts/openfoodfacts-web/commit/24543fe41b6c943a3fbfc321cd158a03e9c7deac))
+
 ## [1.2.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.1.0...v1.2.0) (2025-02-20)
 
 
