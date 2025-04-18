@@ -1,10 +1,10 @@
-name: Build HTML pages for knowledge cards
+name: Build HTML pages for Knowledge cards related to Taxonomy entries
 
 on:
   push:
     paths:
       - 'knowledge_panels/**.yml'
-      
+  workflow_dispatch:
 jobs:
   update-assets:
     if: github.repository_owner == 'openfoodfacts'
@@ -19,7 +19,7 @@ jobs:
       run: |
         cd knowledge_panels
         python3 -m pip install -r requirements.txt --user
-        python3 build_html.py additives ingredients nutrients
+        python3 build_html.py additives ingredients nutrients categories
 
     - name: Check for uncommitted changes
       id: check-changes
