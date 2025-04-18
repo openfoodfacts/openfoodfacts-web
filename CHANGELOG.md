@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.4.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.3.0...v1.4.0) (2025-04-18)
+
+
+### Features
+
+* Create 1 sample "Ingredients" knowledge panels for Open Beauty Facts ([#660](https://github.com/openfoodfacts/openfoodfacts-web/issues/660)) ([8e6f6ef](https://github.com/openfoodfacts/openfoodfacts-web/commit/8e6f6ef6edf6e329012f73ab1ba0d5660f744a40))
+* Create prompts.txt for knowledge panels draft generation ([#688](https://github.com/openfoodfacts/openfoodfacts-web/issues/688)) ([6038080](https://github.com/openfoodfacts/openfoodfacts-web/commit/60380800e23a839b06448b0ef52e4cbc098285a0))
+* Create sample "Category" knowledge panels for Open Food Facts (en:easter eggs) ([#698](https://github.com/openfoodfacts/openfoodfacts-web/issues/698)) ([836b05d](https://github.com/openfoodfacts/openfoodfacts-web/commit/836b05dc66723dca36cb53e6bb0d2ebadfd0edb2))
+* Create sample "Labels" knowledge panels for Open Food Facts ([#622](https://github.com/openfoodfacts/openfoodfacts-web/issues/622)) ([b9f329c](https://github.com/openfoodfacts/openfoodfacts-web/commit/b9f329c240c2c3e8dee29325c2e9d2934351f231))
+* Update build_html.py generation script for multi-project ([#681](https://github.com/openfoodfacts/openfoodfacts-web/issues/681)) ([450a478](https://github.com/openfoodfacts/openfoodfacts-web/commit/450a4787bf3a85777534aa0bc68f3655455f3223))
+* Update open-beauty-facts-mobile-app.html ([#655](https://github.com/openfoodfacts/openfoodfacts-web/issues/655)) ([a3a743b](https://github.com/openfoodfacts/openfoodfacts-web/commit/a3a743bb1bcaf5223475b73b0474d2cef3082b6c))
+
+
+### Bug Fixes
+
+* Knowledge Panels catchall ([#709](https://github.com/openfoodfacts/openfoodfacts-web/issues/709)) ([872b054](https://github.com/openfoodfacts/openfoodfacts-web/commit/872b05471951a822be0d594ec7c7db6b8f26389b))
+* OPFF data page ([#686](https://github.com/openfoodfacts/openfoodfacts-web/issues/686)) ([a24a9d2](https://github.com/openfoodfacts/openfoodfacts-web/commit/a24a9d27774d8ffa64c11f54f2097be647bd2f97))
+* Update build-additives.yml ([7af8d25](https://github.com/openfoodfacts/openfoodfacts-web/commit/7af8d2566f88123cac59f2ad452d7d7c775331ef))
+* Update presskit.html ([65f1fc5](https://github.com/openfoodfacts/openfoodfacts-web/commit/65f1fc5ba7bd49b0a0ed721a0a366de246998946))
+* Update revue-de-presse-fr.html ([131165f](https://github.com/openfoodfacts/openfoodfacts-web/commit/131165fca2ca205c50422885c7d2e60ff4637bb9))
+* Update world-en.yml ([7d04613](https://github.com/openfoodfacts/openfoodfacts-web/commit/7d046134ea70cdaab7d1ccf6c3e896a6b0865d0e))
+
 ## [1.3.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.2.0...v1.3.0) (2025-02-26)
 
 
