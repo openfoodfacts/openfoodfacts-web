@@ -10,6 +10,12 @@ IMPORTANT: This project contains static contents for [openfoodfacts product-open
 
 Having those file in a separate project helps being more agile on translations delivery.
 
+## 🎨 Design & User interface
+- We strive to thoughfully design every content page before we move on to implementation, so that we respect Open Food Facts' graphic charter and nascent design system, while having efficient user flows.
+- [![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?logo=figma&logoColor=white) Mockups on the current app and future plans to discuss](https://www.figma.com/design/Qg9URUyrjHgYmnDHXRsTTB/Current-Website-design?m=auto&t=jNwvjRR8nIgOzzJZ-6)
+- Note that @manoncorneille and @galnaf have proposed a revamp for the Discover and Contribute pages
+- Note that we have a detailed mockup for the landing page that hasn't been implemented (and would be high value)
+
 ## Help translate
 
 https://crowdin.com/project/openfoodfacts
