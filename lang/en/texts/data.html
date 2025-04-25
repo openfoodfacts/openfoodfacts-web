@@ -82,13 +82,16 @@ They may contain graphical elements subject to copyright or other rights, that m
 
 <dl>
  <dt>Links</dt>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
+ <dd>Food: <a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
+ <dd>Cosmetics: <a href="https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz">https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz</a></dd>
+ <dd>Pet Food: <a href="https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz">https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz</a></dd>
+ <dd>All other products: <a href="https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz">https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz</a></dd>
 </dl>
 
 <p>The file encoding is Unicode UTF-8. The character that separates fields is &lt;tab&gt; (tabulation).</p>
 
 <h3>RDF Data Export</h3>
-<p>The database is also available in the RDF format. You can read the <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
+<p>The database is also available in the RDF format (this is an experiment, not actively maintained anymore). You can read the <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
 
 <dl>
  <dt>Link</dt>
@@ -96,47 +99,30 @@ They may contain graphical elements subject to copyright or other rights, that m
 </dl>
 
 <h3>Image Data Export</h3>
-<p>All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images.</p>
-
-
+<p>All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). 
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/" class="button rounded">Check out our documentation to learn more about how to download images</a></p>
 
 <h2 class="emphasized-title">Live JSON and XML API</h2>
 
-<p>A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android.</p>
+<p>A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app.</p>
 
 <p>We improve the API over-time but we are careful to keep backwards compatibility. Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
-
-<p>URL to read data for a product: https://world.openfoodfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
-
-<p>Example: <a href="https://world.openfoodfacts.org/api/v3/product/737628064502.json">https://world.openfoodfacts.org/api/v3/product/737628064502.json</a></p>
-<p>Note that if the output is too overwhelming, you can filter it - as described in the API documentation.</p>
-
 <ul>
  <li>
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - new OpenAPI documentation - Work in Progress</a>
+ <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/" class="button rounded">Discover our API</a>
  </li>
 </ul>
-<h3 class="emphasized-title">OpenAPI help wanted</h3>
-We're eager to finish the documentation of the API, add use-cases, and automate SDK generation. If you are an OpenAPI connoisseur, you are very welcome to help.
-<!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
-<li>
- <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
- </li>
- <li>
-<a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Comprehensive but not OpenAPI compliant</a> - It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
- </li>
--->
+<h3 class="emphasized-title">Contributing to improving our API and OpenAPI documentation</h3>
+<p>We're eager to finish the documentation of the API, add use-cases, and automate SDK generation. If you are an OpenAPI connoisseur, you are very welcome to help.</p>
 
 <p>You are very welcome to use the API for production cases, as long as 1 API call = 1 real scan by a user.
 Any attempt to scrape the database using the API will very likely be blocked, as full daily exports are available on this very page.</p>
 <p>Also, sending an HTTP header with your API call is a good way we can get in touch, should any issue arise.</p>
-<p>If you are unsure about anything, or have any question (there is no silly question), feel free to ask it on the #api channel on Slack :-)</p>
 
-<h3 class="emphasized-title">Experimental XML API</h3>
+<h3 class="emphasized-title">XML API (unsupported)</h3>
 <p>You can also get the result in XML by using <code>.xml</code></p>
 <p>Example: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
 This API is not actively maintained, and not officially documented.
-
 
 <h2 class="emphasized-title">Wrappers and SDKs</h2>
 <p>We probably have a wrapper for your favorite programming language. If we do, you can use it and improve it. If we don't, you can help create it.</p>
@@ -167,10 +153,8 @@ This API is not actively maintained, and not officially documented.
 
 <p>The code for the Open Food Facts mobile app is available on GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).
 
-<p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)
-The app allows users to scan the barcode of products, to view the product information, and to take and submit pictures and data for missing products.</p>
+<p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
 <p>The app allows users to scan the barcode of products, to view the product information, and to take and submit pictures and data for missing products.</p>
-
 <p>You are welcome to reuse the code (it's open source) and help us improve it, for everyone, on all the planet.</p>
 
 <h3>SDKs</h3>
@@ -425,5 +409,5 @@ The app allows users to scan the barcode of products, to view the product inform
 
 <p>You can look at <a href="https://support.openfoodfacts.org/help/fr-fr/12">common FAQ questions about the API and Data Exports</a> and <a href="https://support.openfoodfacts.org/help/fr-fr">common Open Food Facts questions</a></p>
 <p>You can <a href="https://slack.openfoodfacts.org">join the Open Food Facts Slack chatroom</a> which is the preferred way to ask questions and discuss the API</a>. Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a></p>
-<p>You can <a href="https://github.com/openfoodfacts/api-documentation/discussions">open a thread on our API documentation repository</a>
+<p>You can <a href="https://github.com/openfoodfacts/openfoodfacts-server/discussions">open a thread on our API documentation repository</a>
 <p>For any question regarding the data, you can contact us at <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>
