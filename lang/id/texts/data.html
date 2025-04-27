@@ -81,13 +81,16 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
 
 <dl>
  <dt>Tautan</dt>
- <dd><a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (CSV terkompresi dalam format GZIP: ~ 0.9 Gb, tidak terkompresi: ~ 9 Gb)</dd>
+ <dd>Food: <a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
+ <dd>Cosmetics: <a href="https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz">https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz</a></dd>
+ <dd>Pet Food: <a href="https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz">https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz</a></dd>
+ <dd>All other products: <a href="https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz">https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz</a></dd>
 </dl>
 
 <p>Pengodean berkas berbasis Unicode UTF-8. Karakter yang memisahkan field adalah &lt;tab&gt; (tabulation).</p>
 
 <h3>Ekspor Data Gambar</h3>
-<p>Basis data juga tersedia dalam format RDF. Anda dapat membaca <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">pengumuman dalam bahasa Prancis</a>.</p>
+<p>The database is also available in the RDF format (this is an experiment, not actively maintained anymore). Anda dapat membaca <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">pengumuman dalam bahasa Prancis</a>.</p>
 
 <dl>
  <dt>Tautan</dt>
@@ -95,50 +98,28 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
 </dl>
 
 <h3>Dibutuhkan bantuan OpenAPI</h3>
-<p>Semua gambar dan hasil OCR bisa diunduh dari server kami atau dari AWS (melalui Program Data Terbuka AWS). Lihat <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">dokumentasi kami</a> untuk mempelajari lebih lanjut cara mengunduh gambar.</p>
-
-
+<p>Semua gambar dan hasil OCR bisa diunduh dari server kami atau dari AWS (melalui Program Data Terbuka AWS). 
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/" class="button rounded">Check out our documentation to learn more about how to download images</a></p>
 
 <h2 class="emphasized-title">Dokumentasi OpenAPI untuk API JSON</h2>
-
-<p>API JSON juga tersedia untuk membaca data suatu produk. API ini secara khusus digunakan dalam aplikasi seluler Open Food Facts untuk iPhone dan Android.</p>
-
+<p>API JSON juga tersedia untuk membaca data suatu produk. This API is in particular used in the Open Food Facts mobile app.</p>
 <p>Kami meningkatkan API dari waktu ke waktu, tapi kami berhati - hati untuk menjaga kompatibilitas mundur. Silakan <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">menghubungi kami</a> jika Anda menggunakannya, sehingga kami dapat memberi tahu Anda tentang kemungkinan perubahan.</p>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/api/" class="button rounded">Discover our API</a>
 
-<p>Juga, mengirim header HTTP dengan pemanggilan API Anda adalah cara yang baik untuk menghubungi kami, jika ada masalah yang muncul.</p>
+<h3 class="emphasized-title">Contributing to improving our API and OpenAPI documentation</h3>
+<p>We're eager to finish the documentation of the API, add use-cases, and automate SDK generation. If you are an OpenAPI connoisseur, you are very welcome to help.</p>
 
-<p>Jika ada hal yang meragukan, atau Anda punya pertanyaan (tidak ada pertanyaan bodoh), silakan tanyakan di kanal #api di Slack :-)</p>
-<p>Anda juga bisa mendapatkan hasilnya dalam format XML dengan menggunakan <code>.xml</code></p>
+<p>You are very welcome to use the API for production cases, as long as 1 API call = 1 real scan by a user.
+Any attempt to scrape the database using the API will very likely be blocked, as full daily exports are available on this very page.</p>
+<p>Also, sending an HTTP header with your API call is a good way we can get in touch, should any issue arise.</p>
 
-<ul>
- <li>
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - dokumentasi OpenAPI baru - Sedang dalam Proses</a>
- </li>
-</ul>
-<h3 class="emphasized-title">API XML Eksperimental</h3>
-Kami ingin sekali menyelesaikan dokumentasi API, menambahkan kasus penggunaan, dan mengotomatiskan pembuatan SDK. Jika Anda adalah seorang ahli OpenAPI, Anda sangat dipersilakan untuk membantu.
-<!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
-<li>
- <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
- </li>
- <li>
-<a href="https://openfoodfacts.github.io/api-documentation/">API V2 - Comprehensive but not OpenAPI compliant</a> - It contains uses cases for displaying a product, and letting your users add the data required to get the Nutri-Score, the NOVA classification, additives, and the Eco-Score.
- </li>
--->
-
-<p>Anda dipersilahkan untuk menggunakan API untuk kasus - kasus produksi, selama 1 pemanggilan API = 1 pemindaian nyata oleh pengguna.
-Upaya apapun untuk mengikis basis data menggunakan API akan sangat mungkin diblokir, karena ekspor harian lengkap tersedia di halaman ini.</p>
-<p>Juga, mengirim header HTTP dengan pemanggilan API Anda adalah cara yang baik untuk menghubungi kami, jika ada masalah yang muncul.</p>
-<p>Pembungkus akan membiarkan Anda menggunakan data, serta membiarkan para pengguna Anda menyumbangkan data baru</p>
-
-<h3 class="emphasized-title">Prinsip-prinsip umum untuk membuat pengguna Anda senang</h3>
+<h3 class="emphasized-title">XML API (unsupported)</h3>
 <p>Kode untuk aplikasi seluler resmi Open Food Facts tersedia di GitHub
  <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
  <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
  <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
 <p>Kami ingin mengubah basis kode Kotlin dan Swift yang sudah tidak digunakan lagi menjadi Kotlin dan Swift SDK, mohon bantuannya :-)</p>
 API ini tidak dipelihara secara aktif, dan tidak didokumentasikan secara resmi.
-
 
 <h2 class="emphasized-title">Pembungkus dan SDK</h2>
 <p>Kami mungkin memiliki pembungkus untuk bahasa pemrograman favorit Anda. Jika kami memilikinya, Anda dapat menggunakan dan meningkatkannya. Jika tidak, Anda dapat membantu kami membuatnya.</p>
@@ -162,45 +143,248 @@ API ini tidak dipelihara secara aktif, dan tidak didokumentasikan secara resmi.
 <ul>
 <li>Kirimkan informasi nilai gizi + kategori &gt; dapatkan Nutri-Score</li>
 <li>Kirimkan kandungan bahan &gt; dapatkan grup NOVA (tentang pemrosesan ultra makanan), zat aditif, alergen, kandungan bahan yang dinormalisasi, vegan, vegetarian&hellip;</li>
-<li>Kirimkan kategori + label &gt; segera dapatkan Eco-Score (tentang dampak lingkungan)</li>
+<li>Submit category + labels &gt; soon get the Green-Score (about environmental impact)</li>
 </ul>
 
 <h3>SDK</h3>
 
 <p>Anda dapat melihat <a href="https://support.openfoodfacts.org/help/fr-fr/12">pertanyaan umum yang sering ditanyakan tentang API dan Ekspor Data</a> dan <a href="https://support.openfoodfacts.org/help/fr-fr">pertanyaan umum tentang Open Food Facts</a>
 
-<p>Kami ingin mengubah basis kode Kotlin dan Swift yang sudah tidak digunakan lagi menjadi Kotlin dan Swift SDK, mohon bantuannya :-)</p>
+<p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
 <p>Anda dapat <a href="https://github.com/openfoodfacts/api-documentation/discussions">membuka utas di repositori dokumentasi API kami</a></p>
-
 <p>Untuk pertanyaan apa pun terkait data, Anda dapat menghubungi kami di <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a></p>
 
 <h3>SDK</h3>
-<!-- TODO: Install locally -->
+<!-- TODO: Install locally to get icons -->
 <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">-->
-<ul>
-<li><i class="devicon-cordova-plain"></i> Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">Github (aplikasi resmi Open Food Facts versi sebelumnya)</a></li>
-<li><i class="devicon-dart-plain"></i> DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a> - <a href="https://pub.dev/packages/openfoodfacts">Package on pub.dev</a></li>
-<li><i class="devicon-elixir-plain"></i> Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C758AFX0S">Saluran diskusi</a></li>
-<li><i class="devicon-go-plain"></i> Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV">Saluran diskusi</a></li>
-<li><i class="devicon-java-plain"></i> Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3">Saluran diskusi</a></li>
-<li><i class="devicon-java-plain"></i> Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9">Saluran diskusi</a></li>
-<li><i class="devicon-java-plain"></i> Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9">Saluran diskusi</a></li>
-<li><i class="devicon-kotlin-plain"></i> PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Saluran diskusi</a></li>
-<li><i class="devicon-nodejs-plain"></i> PHP (Laravel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Saluran diskusi</a></li>
-<li><i class="devicon-php-plain"></i> Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C13993JDD">Saluran diskusi</a></li>
-<li><i class="devicon-laravel-plain"></i> React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CL29QEBPY">Saluran diskusi</a></li>
-<li><i class="devicon-python-plain"></i>  Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C0ZALLH61">Saluran diskusi</a></li>
-<li><i class="devicon-react-plain"></i> Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C010J616CKV">Saluran diskusi</a></li>
-<li><i class="devicon-ruby-plain"></i> R: <a href="https://github.com/openfoodfacts/r-dashboard">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C2CR356NR">Saluran diskusi</a></li>
-<li><i class="devicon-rust-plain"></i> Swift: <a href="https://github.com/openfoodfacts/openfoodfacts-swift">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CE2A1E7MH">Saluran diskusi</a></li> 
-<li><i class="devicon-r-plain"></i> .NET/C#: <a href="https://github.com/openfoodfacts/openfoodfacts-csharp">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JHT98HJ">Saluran diskusi</a></li> 
-<li><i class="devicon-swift-plain"></i> Swift: <a href="https://github.com/openfoodfacts/openfoodfacts-swift">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CE2A1E7MH">Saluran diskusi</a></li> 
-<li><i class="devicon-c#-plain"></i> .NET/C#: <a href="https://github.com/openfoodfacts/openfoodfacts-csharp">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JHT98HJ">Saluran diskusi</a></li> 
-</ul>
+
+            <div class="grid-x">
+                <div class="cell small-12 medium-6 large-4">
+                     <label for="sdkFilter">Filter by name:</label>
+                     <input type="text" id="sdkFilter" placeholder="e.g., Python, Java, React...">
+                </div>
+            </div>
+
+
+            <table class="stack hover" id="sdkTable">
+                <thead>
+                    <tr>
+                        <th width="60">Icon</th>
+                        <th width="200" data-sortable data-column-index="1">Language / Framework</th>
+                        <th>Sumber daya</th>
+                        <th data-sortable data-column-index="3">Discussion</th>
+                    </tr>
+                </thead>
+                <tbody id="sdkTableBody">
+                    <tr>
+                        <td data-label="Icon"><i class="devicon-cordova-plain"></i></td>
+                        <td data-label="Language / Framework">Cordova (Old App)</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion">T/A</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Icon"><i class="devicon-dart-plain"></i></td>
+                        <td data-label="Language / Framework">DART</td>
+                        <td data-label="Resources">
+                            <a href="https://github.com/openfoodfacts/openfoodfacts-dart" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            <a href="https://pub.dev/packages/openfoodfacts" target="_blank" rel="noopener noreferrer">pub.dev</a>
+                        </td>
+                        <td data-label="Discussion">T/A</td> </tr>
+                    <tr>
+                        <td data-label="Icon"><i class="devicon-elixir-plain"></i></td>
+                        <td data-label="Language / Framework">Elixir</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-elixir" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C758AFX0S" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-go-plain"></i></td>
+                        <td data-label="Language / Framework">Go</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-go" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-java-plain"></i></td>
+                        <td data-label="Language / Framework">Java</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-java" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-java-plain"></i></td>
+                        <td data-label="Language / Framework">Spring Boot</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-springboot-starter" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Icon"><i class="devicon-kotlin-plain"></i></td>
+                        <td data-label="Language / Framework">Kotlin</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-kotlin" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-nodejs-plain"></i></td>
+                        <td data-label="Language / Framework">NodeJS</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-nodejs" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1JQQ28P8" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-php-plain"></i></td>
+                        <td data-label="Language / Framework">PHP</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-php" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-laravel-plain"></i></td>
+                        <td data-label="Language / Framework">PHP (Laravel)</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-laravel" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-python-plain"></i></td>
+                        <td data-label="Language / Framework">Python</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-python" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C13993JDD" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-react-original"></i></td> <td data-label="Language / Framework">React Native</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-react-native" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/CL29QEBPY" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-ruby-plain"></i></td>
+                        <td data-label="Language / Framework">Ruby</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-ruby" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C0ZALLH61" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-rust-plain"></i></td>
+                        <td data-label="Language / Framework">Karat</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-rust" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C010J616CKV" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-r-plain"></i></td>
+                        <td data-label="Language / Framework">R</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/r-dashboard" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C2CR356NR" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-swift-plain"></i></td>
+                        <td data-label="Language / Framework">Swift</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-swift" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/CE2A1E7MH" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-csharp-plain"></i></td> <td data-label="Language / Framework">.NET/C#</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-csharp" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1JHT98HJ" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+<script>
+    // Ensure the DOM is fully loaded before running scripts
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Initialize Foundation framework components
+        $(document).foundation();
+
+        // --- Filtering ---
+        const filterInput = document.getElementById('sdkFilter');
+        const tableBody = document.getElementById('sdkTableBody');
+        // Get live collection of rows - updates automatically if rows are added/removed
+        const tableRows = tableBody.getElementsByTagName('tr');
+
+        // Add event listener for input changes (keyup is responsive)
+        filterInput.addEventListener('keyup', function() {
+            const filterText = filterInput.value.toLowerCase().trim(); // Get filter text, lowercase and trim whitespace
+
+            // Loop through all table rows in the body
+            for (let i = 0; i < tableRows.length; i++) {
+                const row = tableRows[i];
+                // Get all text content from the row's cells
+                const rowData = row.textContent || row.innerText;
+
+                // Check if row data includes the filter text
+                if (rowData.toLowerCase().indexOf(filterText) > -1) {
+                    row.style.display = ""; // Show row if it matches
+                } else {
+                    row.style.display = "none"; // Hide row if it doesn't match
+                }
+            }
+        });
+
+        // --- Sorting ---
+        const table = document.getElementById('sdkTable');
+        // Select only headers marked as sortable
+        const headers = table.querySelectorAll('th[data-sortable]');
+        const tbody = table.querySelector('tbody'); // Reference to the table body
+
+        // Add click event listener to each sortable header
+        headers.forEach(header => {
+            header.addEventListener('click', () => {
+                // Get column index from data attribute (adjusting for 0-based index internally)
+                const columnIndex = parseInt(header.dataset.columnIndex, 10);
+                // Check current sort direction or default to 'asc' if none
+                const currentSortDir = header.dataset.sortDir;
+                // Toggle direction: if 'asc', change to 'desc', otherwise change to 'asc'
+                const newSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
+
+                // Remove sort direction attributes from all other headers
+                headers.forEach(h => {
+                    if (h !== header) {
+                        delete h.dataset.sortDir; // Remove attribute to reset arrow style via CSS
+                    }
+                });
+
+                // Set the new sort direction on the clicked header
+                header.dataset.sortDir = newSortDir;
+
+                // Call the sorting function
+                sortTable(columnIndex, newSortDir);
+            });
+        });
+
+        // Function to sort table rows
+        function sortTable(columnIndex, direction) {
+            // Convert HTMLCollection/NodeList of rows to a standard JavaScript Array
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
+            // Sort the array of rows
+            const sortedRows = rows.sort((a, b) => {
+                // Get the text content of the cells in the target column for comparison
+                // Use textContent for consistency, trim whitespace, convert to lowercase
+                const cellA = a.querySelectorAll('td')[columnIndex]?.textContent.trim().toLowerCase() || '';
+                const cellB = b.querySelectorAll('td')[columnIndex]?.textContent.trim().toLowerCase() || '';
+
+                // Comparison logic
+                if (cellA < cellB) {
+                    return direction === 'asc' ? -1 : 1; // If 'asc', A comes first (-1), else B comes first (1)
+                }
+                if (cellA > cellB) {
+                    return direction === 'asc' ? 1 : -1; // If 'asc', B comes first (1), else A comes first (-1)
+                }
+                return 0; // If equal, order doesn't matter
+            });
+
+            // Clear the current rows from the table body
+            // While loop is efficient for removing all children
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
+            }
+
+            // Append the sorted rows back into the table body
+            // Using spread syntax (...) to append all elements in the array
+            tbody.append(...sortedRows);
+        }
+
+    }); // End DOMContentLoaded
+</script>
 
 <h2 class="emphasized-title">Membahas data, API, dan eskpor</h2>
 
 <p>Anda dapat melihat <a href="https://support.openfoodfacts.org/help/fr-fr/12">pertanyaan umum yang sering ditanyakan tentang API dan Ekspor Data</a> dan <a href="https://support.openfoodfacts.org/help/fr-fr">pertanyaan umum tentang Open Food Facts</a></p>
 <p>Anda dapat <a href="https://slack.openfoodfacts.org">bergabung dalam ruang obrolan Slack Open Food Facts</a> yang merupakan cara yang lebih disukai untuk mengajukan pertanyaan dan mendiskusikan API</a>. Silakan <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ajukan pertanyaan Anda di saluran #api</a></p>
-<p>Anda dapat <a href="https://github.com/openfoodfacts/api-documentation/discussions">membuka utas di repositori dokumentasi API kami</a>
+<p>You can <a href="https://github.com/openfoodfacts/openfoodfacts-server/discussions">open a thread on our API documentation repository</a>
 <p>Untuk pertanyaan apa pun terkait data, Anda dapat menghubungi kami di <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>
