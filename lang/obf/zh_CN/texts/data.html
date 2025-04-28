@@ -40,7 +40,7 @@ They may contain graphical elements subject to copyright or other rights, that m
  <dd><a href="https://static.openbeautyfacts.org/data/openbeautyfacts-mongodbdump.gz">https://static.openbeautyfacts.org/data/openbeautyfacts-mongodbdump.gz</a></dd>
  <dt>SHA256 校验和</dt>
  <dd><a href="https://static.openbeautyfacts.org/data/gz-sha256sum">https://static.openbeautyfacts.org/data/gz-sha256sum</a></dd>
- <dt>md5sum</dt>
+ <dt>MD5 校验和</dt>
  <dd><a href="https://static.openbeautyfacts.org/data/gz-md5sum">https://static.openbeautyfacts.org/data/gz-md5sum</a></dd>
 </dl>
 
@@ -48,22 +48,12 @@ They may contain graphical elements subject to copyright or other rights, that m
 
 <p>提供前 14 天的每日增量导出数据。 The list of currently available delta files can be found at <a href="https://static.openbeautyfacts.org/data/delta/index.txt">https://static.openbeautyfacts.org/data/delta/index.txt</a>.</p>
 <p>Each line represents a file that is available at <code>https://static.openbeautyfacts.org/data/delta/{filename}</code>.</p>
-<p>The filename contains UNIX timestamp of the first and the last change contained in the JSON file, so that the delta files can be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
-<p>Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. To remove deleted products from your database, you will need to import the full MongoDB dump.</p>
+<p>文件名包含 JSON 文件中第一个和最后一个更改的 UNIX 时间戳，以便可以按字母顺序使用 <code>mongoimport</code> 导入增量文件（提取后）。</p>
+<p>请注意，由于 <code>mongoexport</code>的性质，增量文件无法告诉您有关已删除产品的信息。 要从数据库中删除已删除的产品，您需要导入完整的 MongoDB 转储。</p>
 
 <h3>JSONL 数据导出</h3>
 
-<p>The whole database is also available in <a href="https://jsonlines.org/">JSONL format</a> (sometimes called LDJSON or NDJSON) where each line is a JSON object. It represents the same data as the MongoDB export. The file is compressed with gzip. It represents the same data as the MongoDB export. The file is compressed with gzip. It represents the same data as the MongoDB export. The file is compressed with gzip. It represents the same data as the MongoDB export. The file is compressed with gzip. It represents the same data as the MongoDB export. The file is compressed with gzip. It represents the same data as the MongoDB export. The file is compressed with gzip.</p>
+<p>整个数据库也可以采用 <a href="https://jsonlines.org/">JSONL 格式</a> （有时称为 LDJSON 或 NDJSON），其中每一行都是一个 JSON 对象。 它代表与 MongoDB 导出相同的数据。 该文件使用 gzip 压缩。</p>
 
 <dl>
  <dt>链接</dt>
@@ -71,22 +61,22 @@ They may contain graphical elements subject to copyright or other rights, that m
  </dd>
 </dl>
 
-<p>A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Beauty Facts database with DuckDB</p>
+<p>利用数据库的一个合适方法是使用 DuckDB，这是一种旨在在几分之一秒内处理大量数据的进程内分析工具。 A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Beauty Facts database with DuckDB</p>
 
 
-<h3>Parquet Data Export on Hugging Face</h3>
+<h3>Hugging Face 上的 Parquet 格式数据导出</h3>
 
-<p>A simplified version of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.</p>
+<p>JSONL 转储的简化版本也可在 <a href="https://parquet.apache.org/">Parquet 格式</a>中使用。 在转换过程中，我们过滤掉了包含重复信息、用于内部调试或与用户无关的列。</p>
     
-<p>The Parquet format has proved to be handy:<p> 
+<p>Parquet 格式已被证明非常方便：<p> 
 
 <ul>
-<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
-<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
-<li>Supports complex data types and advanced nested data structures.</li>
+<li>数据按列而不是按行组织，这节省了存储空间并加快了分析查询速度，即您可以只选择您关心的列，从而优化查询性能，即使在入门级计算机上也是如此。</li>
+<li>高效的数据压缩和解压缩，适合存储和共享任何类型的大数据集，</li>
+<li>支持复杂数据类型和高级嵌套数据结构。</li>
 </ul>
 
-<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
+<p>该数据集可在 <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>上获得，这是一个协作机器学习生态系统，开发人员和研究人员可以在其中共享模型和数据集。</p>
 
 <dl>
  <dt>链接</dt>
@@ -102,30 +92,30 @@ They may contain graphical elements subject to copyright or other rights, that m
  through the <a href="https://world.openbeautyfacts.org/cgi/search.pl">advanced search form</a>.</p>
 
 <dl>
- <dt>Links</dt>
+ <dt>链接</dt>
  <dd><a href="https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz">https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
 </dl>
 
-<p>The file encoding is Unicode UTF-8. The file encoding is Unicode UTF-8. The character that separates fields is &lt;tab&gt; (tabulation). The file encoding is Unicode UTF-8. The file encoding is Unicode UTF-8. The character that separates fields is &lt;tab&gt; (tabulation). The file encoding is Unicode UTF-8. The character that separates fields is &lt;tab&gt; (tabulation).</p>
+<p>文件编码为Unicode UTF-8。 分隔字段的字符是 &lt;tab&gt; （制表符）。</p>
 
-<h3>RDF Data Export</h3>
-<p>The database is also available in the RDF format. The database is also available in the RDF format. The database is also available in the RDF format. The database is also available in the RDF format. The database is also available in the RDF format. You can read the <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>. The database is also available in the RDF format. The database is also available in the RDF format. The database is also available in the RDF format. The database is also available in the RDF format. You can read the <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
+<h3>RDF数据导出</h3>
+<p>The database is also available in the RDF format. The database is also available in the RDF format. The database is also available in the RDF format. The database is also available in the RDF format. The database is also available in the RDF format. You can read the <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>. 您可以<a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">用法语阅读公告</a>。</p>
 
 <dl>
  <dt>链接</dt>
  <dd><a href="https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf.gz">https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf.gz</a></dd>
 </dl>
 
-<h3>Image Data Export</h3>
-<p>All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images.</p>
+<h3>图像数据导出</h3>
+<p>所有图像和 OCR 结果都可以从我们的服务器或 AWS（通过 AWS 开放数据计划）下载。 All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images.</p>
 
 
 
-<h2 class="emphasized-title">OpenAPI Documentation for the JSON API</h2>
+<h2 class="emphasized-title">实时 JSON 和 XML API</h2>
 
-<p>A JSON API is also available to read the data for a product. A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android. A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android. A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android. A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android. A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android. A JSON API is also available to read the data for a product. This API is in particular used in the Open Beauty Facts mobile app for iPhone and Android.</p>
+<p>JSON API 也可用于读取产品数据。 A JSON API is also available to read the data for a product. This API is in particular used in the Open Beauty Facts mobile app for iPhone and Android.</p>
 
-<p>We improve the API over-time but we are careful to keep backwards compatibility. We improve the API over-time but we are careful to keep backwards compatibility. Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes. Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Beauty%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
+<p>我们会不断改进 API，但我们会小心保持旧版本兼容性。 Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Beauty%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
 
 <p>URL to read data for a product: https://world.openbeautyfacts.org/api/v2/product/<i>[barcode]</i>.json</p>
 
@@ -138,7 +128,7 @@ They may contain graphical elements subject to copyright or other rights, that m
  </li>
 </ul>
 <h3 class="emphasized-title">OpenAPI help wanted</h3>
-We're eager to finish the documentation of the API, add use-cases, and automate SDK generation. If you are an OpenAPI connoisseur, you are very welcome to help.
+我们渴望完成 API 的文档、添加用例并自动化 SDK 生成。 如果您对 OpenAPI 十分了解，我们需要您的协助。
 <!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
  <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
@@ -148,13 +138,13 @@ We're eager to finish the documentation of the API, add use-cases, and automate 
  </li>
 -->
 
-<p>You are very welcome to use the API for production cases, as long as 1 API call = 1 real scan by a user.
-Any attempt to scrape the database using the API will very likely be blocked, as full daily exports are available on this very page.</p>
-<p>Also, sending an HTTP header with your API call is a good way we can get in touch, should any issue arise.</p>
+<p>非常欢迎您将 API 用于生产案例，只要 1 次 API 调用 = 用户进行 1 次真实数据请求。
+任何使用 API 抓取数据库的尝试都很可能被阻止，因为完整的每日导出数据就在这个页面上提供。</p>
+<p>此外，如果出现任何问题，在 API 调用中发送您的 HTTP 标头是与我们联系的好方法。</p>
 <p>If you are unsure about anything, or have any question (there is no silly question), feel free to ask it on the #api channel on Slack :-)</p>
 
 <h3 class="emphasized-title">Experimental XML API</h3>
-<p>You can also get the result in XML by using <code>.xml</code></p>
+<p>您还可以使用 <code>.xml</code>以 XML 格式获取结果</p>
 <p>The Open Beauty Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
 The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/>
 Products images are available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>.
@@ -166,23 +156,23 @@ They may contain graphical elements subject to copyright or other rights, that m
 They may contain graphical elements subject to copyright or other rights, that may in some cases be reproduced (quotation rights or fair use).
 They may contain graphical elements subject to copyright or other rights, that may in some cases be reproduced (quotation rights or fair use).
 They may contain graphical elements subject to copyright or other rights, that may in some cases be reproduced (quotation rights or fair use).</p>
-This API is not actively maintained, and not officially documented.
+此 API 并未得到积极维护，也没有官方文档。
 
 
-<h2 class="emphasized-title">Wrappers and SDKs</h2>
-<p>We probably have a wrapper for your favorite programming language. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it.</p>
-<p>They will let you consume data, as well as let your users contribute new data</p>
+<h2 class="emphasized-title">包装器和 SDK</h2>
+<p>我们可能有您最喜欢的编程语言的包装器。 请尽量使用并改进它。 如果你没有找到，你也可以帮助创建它。</p>
+<p>它们不仅能让你消费数据，还能让你的用户贡献新数据</p>
 
-<h3>General principles to make your users happy</h3>
+<h3>让用户满意的一般原则</h3>
 <ul>
-<li>You can search for information about products, including many useful computed values.</li>
+<li>您可以搜索有关产品的信息，包括许多有用的计算值。</li>
 <li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Beauty Facts AI and contributors to get the computed result you want to show them.</li>
-<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
+<li>您还可以实施完整的流程，以便他们只需付出一些努力就能立即获得结果。</li>
 </ul>
 
-<h3>If your users do not expect a result immediately (e.g. Inventory apps)</h3>
+<h3>如果您的用户不期望立即获得结果（例如库存应用程序）</h3>
 <ul>
-<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>提交照片（正面/营养/成分）：对用户来说最轻松的事情</li>
 <li>The Open Beauty Facts AI - Robotoff - will generate some derived data from the photos</li>
 <li>Over time, other apps, and the Open Beauty Facts community will fill the data gaps</li>
 </ul>
@@ -193,7 +183,7 @@ This API is not actively maintained, and not officially documented.
 <li>Submit labels for added value</li>
 </ul>
 
-<h3>Android and iPhone mobile app</h3>
+<h3>Android 和 iPhone 移动应用程序</h3>
 
 <p>The code for the Open Beauty Facts mobile app is available on GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>). <b>We need help to adapt the new native iOS code to cosmetics</b>
 The app allows users to scan the barcode of products, to view the product information, and to take and send pictures and data for missing products. <b>We need help to adapt the new native iOS code to cosmetics</b>
@@ -206,9 +196,9 @@ The app allows users to scan the barcode of products, to view the product inform
 The app allows users to scan the barcode of products, to view the product information, and to take and send pictures and data for missing products.
 
 <p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
-<p>The app allows users to scan the barcode of products, to view the product information, and to take and submit pictures and data for missing products.</p>
+<p>该应用程序允许用户扫描产品的条形码，查看产品信息，以及拍摄和提交缺失产品的图片和数据。</p>
 
-<p>You are welcome to reuse the code (it's open source) and help us improve it, for everyone, on all the planet.</p>
+<p>欢迎您复用代码（它是开源的）并帮助我们改进它，造福地球上的每个人。</p>
 
 <h3>SDKs</h3>
 <!-- TODO: Install locally -->
@@ -235,7 +225,7 @@ The app allows users to scan the barcode of products, to view the product inform
 
 <h2 class="emphasized-title">讨论数据、API 和导出</h2>
 
-<p>You can look at <a href="https://support.openfoodfacts.org/help/fr-fr/12">common FAQ questions about the API and Data Exports</a> and <a href="https://support.openfoodfacts.org/help/fr-fr">common Open Food Facts questions</a></p>
-<p>You can <a href="https://slack.openfoodfacts.org">join the Open Beauty Facts Slack chatroom</a> which is the preferred way to ask questions and discuss the API</a>. Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a> Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a> Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a></p>
+<p>您可以查看 <a href="https://support.openfoodfacts.org/help/fr-fr/12">有关 API 和数据导出的常见问题</a> 和 <a href="https://support.openfoodfacts.org/help/fr-fr">常见的 Open Food Facts 问题</a></p>
+<p>You can <a href="https://slack.openfoodfacts.org">join the Open Beauty Facts Slack chatroom</a> which is the preferred way to ask questions and discuss the API</a>. Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a> Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a> 请 <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">在#api 频道</a>中提出您的问题</p>
 <p>You can <a href="https://github.com/openfoodfacts/api-documentation/discussions">open a thread on our API documentation repository</a>
-<p>For any question regarding the data, you can contact us at <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>
+<p>如对数据有任何疑问，请联系我们 <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>
