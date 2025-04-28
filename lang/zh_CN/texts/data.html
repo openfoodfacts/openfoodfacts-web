@@ -32,30 +32,20 @@ They may contain graphical elements subject to copyright or other rights, that m
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
  <dt>SHA256 校验和</dt>
  <dd><a href="https://static.openfoodfacts.org/data/gz-sha256sum">https://static.openfoodfacts.org/data/gz-sha256sum</a></dd>
- <dt>md5sum</dt>
+ <dt>MD5 校验和</dt>
  <dd><a href="https://static.openfoodfacts.org/data/gz-md5sum">https://static.openfoodfacts.org/data/gz-md5sum</a></dd>
 </dl>
 
 <h4>Delta Export</h4>
 
 <p>提供前 14 天的每日增量导出数据。 当前可用的增量文件列表可以在 <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>找到。</p>
-<p>Each line represents a file that is available at <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.</p>
-<p>The filename contains UNIX timestamp of the first and the last change contained in the JSON file, so that the delta files can be imported (after extraction) with <code>mongoimport</code> in alphabetical order.</p>
-<p>Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove
- deleted products from your database, you will need to import the full MongoDB dump. To remove deleted products from your database, you will need to import the full MongoDB dump.</p>
+<p>每一行代表一个可在 <code>https://static.openfoodfacts.org/data/delta/{filename}</code>处获取的文件。</p>
+<p>文件名包含 JSON 文件中第一个和最后一个更改的 UNIX 时间戳，以便可以按字母顺序使用 <code>mongoimport</code> 导入增量文件（提取后）。</p>
+<p>请注意，由于 <code>mongoexport</code>的性质，增量文件无法告诉您有关已删除产品的信息。 要从数据库中删除已删除的产品，您需要导入完整的 MongoDB 转储。</p>
 
 <h3>JSONL 数据导出</h3>
 
-<p>The whole database is also available in <a href="https://jsonlines.org/">JSONL format</a> (sometimes called LDJSON or NDJSON) where each line is a JSON object. It represents the same data as the MongoDB export. The file is compressed with gzip. It represents the same data as the MongoDB export. The file is compressed with gzip. It represents the same data as the MongoDB export. The file is compressed with gzip. It represents the same data as the MongoDB export. The file is compressed with gzip. It represents the same data as the MongoDB export. The file is compressed with gzip. It represents the same data as the MongoDB export. The file is compressed with gzip.</p>
+<p>整个数据库也可以采用 <a href="https://jsonlines.org/">JSONL 格式</a> （有时称为 LDJSON 或 NDJSON），其中每一行都是一个 JSON 对象。 它代表与 MongoDB 导出相同的数据。 该文件使用 gzip 压缩。</p>
 
 <dl>
  <dt>链接</dt>
@@ -63,21 +53,21 @@ They may contain graphical elements subject to copyright or other rights, that m
  </dd>
 </dl>
 
-<p>A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Food Facts database with DuckDB</p>
+<p>利用数据库的一个合适方法是使用 DuckDB，这是一种旨在在几分之一秒内处理大量数据的进程内分析工具。 您可以阅读我们的 <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">博客文章</a> ，我们将引导您使用 DuckDB 探索和处理 Open Food Facts 数据库</p>
 
-<h3>Parquet Data Export on Hugging Face</h3>
+<h3>Hugging Face 上的 Parquet 格式数据导出</h3>
 
-<p>A simplified version of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.</p>
+<p>JSONL 转储的简化版本也可在 <a href="https://parquet.apache.org/">Parquet 格式</a>中使用。 在转换过程中，我们过滤掉了包含重复信息、用于内部调试或与用户无关的列。</p>
     
-<p>The Parquet format has proved to be handy:<p> 
+<p>Parquet 格式已被证明非常方便：<p> 
 
 <ul>
-<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
-<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
-<li>Supports complex data types and advanced nested data structures.</li>
+<li>数据按列而不是按行组织，这节省了存储空间并加快了分析查询速度，即您可以只选择您关心的列，从而优化查询性能，即使在入门级计算机上也是如此。</li>
+<li>高效的数据压缩和解压缩，适合存储和共享任何类型的大数据集，</li>
+<li>支持复杂数据类型和高级嵌套数据结构。</li>
 </ul>
 
-<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
+<p>该数据集可在 <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>上获得，这是一个协作机器学习生态系统，开发人员和研究人员可以在其中共享模型和数据集。</p>
 
 <dl>
  <dt>链接</dt>
@@ -88,79 +78,79 @@ They may contain graphical elements subject to copyright or other rights, that m
 </p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>CSV 数据导出</h3>
-<p>Data for all products, or some of the products, can be downloaded in the CSV format (readable with LibreOffice, Excel and many other spreadsheet software) through the <a href="https://world.openfoodfacts.org/cgi/search.pl">advanced search form</a>.</p>
+<p>可以通过 <a href="https://world.openfoodfacts.org/cgi/search.pl">高级搜索表单</a>以 CSV 格式（可使用 LibreOffice、Excel 和许多其他电子表格软件读取）下载所有产品或部分产品的数据。</p>
 
 <dl>
- <dt>Links</dt>
- <dd>Food: <a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
- <dd>Cosmetics: <a href="https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz">https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz</a></dd>
- <dd>Pet Food: <a href="https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz">https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz</a></dd>
- <dd>All other products: <a href="https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz">https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz</a></dd>
+ <dt>链接</dt>
+ <dd>食物： <a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> （GZIP 格式压缩的 CSV：约 0.9 Gb，未压缩：约 9 Gb）</dd>
+ <dd>化妆品： <a href="https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz">https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz</a></dd>
+ <dd>宠物食品： <a href="https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz">https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz</a></dd>
+ <dd>所有其他产品： <a href="https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz">https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz</a></dd>
 </dl>
 
-<p>The file encoding is Unicode UTF-8. The file encoding is Unicode UTF-8. The character that separates fields is &lt;tab&gt; (tabulation). The file encoding is Unicode UTF-8. The file encoding is Unicode UTF-8. The character that separates fields is &lt;tab&gt; (tabulation). The file encoding is Unicode UTF-8. The character that separates fields is &lt;tab&gt; (tabulation).</p>
+<p>文件编码为Unicode UTF-8。 分隔字段的字符是 &lt;tab&gt; （制表符）。</p>
 
-<h3>RDF Data Export</h3>
-<p>The database is also available in the RDF format (this is an experiment, not actively maintained anymore). The database is also available in the RDF format. The database is also available in the RDF format. The database is also available in the RDF format. The database is also available in the RDF format. You can read the <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">announcement in French</a>.</p>
+<h3>RDF数据导出</h3>
+<p>该数据库还提供 RDF 格式（这是一个实验，不再积极维护）。 您可以<a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">用法语阅读公告</a>。</p>
 
 <dl>
  <dt>链接</dt>
  <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
-<h3>Image Data Export</h3>
-<p>All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images. 
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/" class="button rounded">Check out our documentation to learn more about how to download images</a></p>
+<h3>图像数据导出</h3>
+<p>所有图像和 OCR 结果都可以从我们的服务器或 AWS（通过 AWS 开放数据计划）下载。 
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/" class="button rounded">查看我们的文档以了解有关如何下载图像的更多信息</a></p>
 
-<h2 class="emphasized-title">OpenAPI Documentation for the JSON API</h2>
-<p>A JSON API is also available to read the data for a product. A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android. A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android. A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android. A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android. A JSON API is also available to read the data for a product. This API is in particular used in the Open Food Facts mobile app for iPhone and Android. This API is in particular used in the Open Food Facts mobile app.</p>
-<p>We improve the API over-time but we are careful to keep backwards compatibility. We improve the API over-time but we are careful to keep backwards compatibility. Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes. We improve the API over-time but we are careful to keep backwards compatibility. Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/api/" class="button rounded">Discover our API</a>
+<h2 class="emphasized-title">实时 JSON 和 XML API</h2>
+<p>JSON API 也可用于读取产品数据。 此 API 特别用于 Open Food Facts 移动应用程序。</p>
+<p>我们会不断改进 API，但我们会小心保持旧版本兼容性。 如果您使用它，请 <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">与我们联系</a> ，以便我们告知您可能发生的变化。</p>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/api/" class="button rounded">探索我们的 API</a>
 
-<h3 class="emphasized-title">Contributing to improving our API and OpenAPI documentation</h3>
-<p>We're eager to finish the documentation of the API, add use-cases, and automate SDK generation. If you are an OpenAPI connoisseur, you are very welcome to help.</p>
+<h3 class="emphasized-title">为改进我们的 API 和 OpenAPI 文档做出贡献</h3>
+<p>我们渴望完成 API 的文档、添加用例并自动化 SDK 生成。 如果您对 OpenAPI 十分了解，我们需要您的协助。</p>
 
-<p>You are very welcome to use the API for production cases, as long as 1 API call = 1 real scan by a user.
-Any attempt to scrape the database using the API will very likely be blocked, as full daily exports are available on this very page.</p>
-<p>Also, sending an HTTP header with your API call is a good way we can get in touch, should any issue arise.</p>
+<p>非常欢迎您将 API 用于生产案例，只要 1 次 API 调用 = 用户进行 1 次真实数据请求。
+任何使用 API 抓取数据库的尝试都很可能被阻止，因为完整的每日导出数据就在这个页面上提供。</p>
+<p>此外，如果出现任何问题，在 API 调用中发送您的 HTTP 标头是与我们联系的好方法。</p>
 
-<h3 class="emphasized-title">XML API (unsupported)</h3>
-<p>You can also get the result in XML by using <code>.xml</code></p>
-<p>Example: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
-This API is not actively maintained, and not officially documented.
+<h3 class="emphasized-title">XML API（暂不支持）</h3>
+<p>您还可以使用 <code>.xml</code>以 XML 格式获取结果</p>
+<p>例如： <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+此 API 并未得到积极维护，也没有官方文档。
 
-<h2 class="emphasized-title">Wrappers and SDKs</h2>
-<p>We probably have a wrapper for your favorite programming language. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it. If we do, you can use it and improve it. If we don't, you can help create it.</p>
-<p>They will let you consume data, as well as let your users contribute new data</p>
+<h2 class="emphasized-title">包装器和 SDK</h2>
+<p>我们可能有您最喜欢的编程语言的包装器。 请尽量使用并改进它。 如果你没有找到，你也可以帮助创建它。</p>
+<p>它们不仅能让你消费数据，还能让你的用户贡献新数据</p>
 
-<h3>General principles to make your users happy</h3>
+<h3>让用户满意的一般原则</h3>
 <ul>
-<li>You can search for information about products, including many useful computed values.</li>
-<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
-<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
+<li>您可以搜索有关产品的信息，包括许多有用的计算值。</li>
+<li>如果您无法获取特定产品的信息，您可以让您的用户发送产品照片和数据，然后由 Open Food Facts AI 和贡献者处理这些信息以获得您想要向他们展示的计算结果。</li>
+<li>您还可以实施完整的流程，以便他们只需付出一些努力就能立即获得结果。</li>
 </ul>
 
-<h3>If your users do not expect a result immediately (e.g. Inventory apps)</h3>
+<h3>如果您的用户不期望立即获得结果（例如库存应用程序）</h3>
 <ul>
-<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
-<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
-<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
+<li>提交照片（正面/营养/成分）：对用户来说最轻松的事情</li>
+<li>Open Food Facts AI - Robotoff - 将从照片中生成一些衍生数据</li>
+<li>随着时间的推移，其他应用程序和 Open Food Facts 社区将填补数据空白</li>
 </ul>
 
-<h3>If your users expect a result immediately (e.g. Nutrition apps)</h3>
+<h3>如果您的用户希望立即获得结果（例如营养应用程序）</h3>
 <ul>
-<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
-<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>提交营养成分表 + 类别 &gt; 获取 Nutri-Score 得分</li>
+<li>提交成分 &gt; 获取 NOVA 小组（关于食品超加工）、添加剂、过敏原、标准化成分、纯素食、素食&hellip;等信息；</li>
 <li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
-<h3>Android and iPhone mobile app</h3>
+<h3>Android 和 iPhone 移动应用程序</h3>
 
-<p>The code for the Open Food Facts mobile app is available on GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).
+<p>Open Food Facts 移动应用程序的代码可在 GitHub 上获取（<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>、 <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> 和 <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>）。
 
 <p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
-<p>The app allows users to scan the barcode of products, to view the product information, and to take and submit pictures and data for missing products.</p>
-<p>You are welcome to reuse the code (it's open source) and help us improve it, for everyone, on all the planet.</p>
+<p>该应用程序允许用户扫描产品的条形码，查看产品信息，以及拍摄和提交缺失产品的图片和数据。</p>
+<p>欢迎您复用代码（它是开源的）并帮助我们改进它，造福地球上的每个人。</p>
 
 <h3>SDKs</h3>
 <!-- TODO: Install locally to get icons -->
@@ -168,8 +158,8 @@ This API is not actively maintained, and not officially documented.
 
             <div class="grid-x">
                 <div class="cell small-12 medium-6 large-4">
-                     <label for="sdkFilter">Filter by name:</label>
-                     <input type="text" id="sdkFilter" placeholder="e.g., Python, Java, React...">
+                     <label for="sdkFilter">按名称过滤：</label>
+                     <input type="text" id="sdkFilter" placeholder="例如，Python、Java、React……">
                 </div>
             </div>
 
@@ -177,16 +167,16 @@ This API is not actively maintained, and not officially documented.
             <table class="stack hover" id="sdkTable">
                 <thead>
                     <tr>
-                        <th width="60">Icon</th>
-                        <th width="200" data-sortable data-column-index="1">Language / Framework</th>
+                        <th width="60">图标</th>
+                        <th width="200" data-sortable data-column-index="1">语言/框架</th>
                         <th>参考资源</th>
-                        <th data-sortable data-column-index="3">Discussion</th>
+                        <th data-sortable data-column-index="3">讨论</th>
                     </tr>
                 </thead>
                 <tbody id="sdkTableBody">
                     <tr>
                         <td data-label="Icon"><i class="devicon-cordova-plain"></i></td>
-                        <td data-label="Language / Framework">Cordova (Old App)</td>
+                        <td data-label="Language / Framework">Cordova（旧应用程序）</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app" target="_blank" rel="noopener noreferrer">GitHub</a></td>
                         <td data-label="Discussion">N/A</td>
                     </tr>
@@ -202,89 +192,89 @@ This API is not actively maintained, and not officially documented.
                         <td data-label="Icon"><i class="devicon-elixir-plain"></i></td>
                         <td data-label="Language / Framework">Elixir</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-elixir" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C758AFX0S" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C758AFX0S" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-go-plain"></i></td>
                         <td data-label="Language / Framework">Go</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-go" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-java-plain"></i></td>
                         <td data-label="Language / Framework">Java</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-java" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-java-plain"></i></td>
                         <td data-label="Language / Framework">Spring Boot</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-springboot-starter" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                     <tr>
                         <td data-label="Icon"><i class="devicon-kotlin-plain"></i></td>
                         <td data-label="Language / Framework">Kotlin</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-kotlin" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-nodejs-plain"></i></td>
                         <td data-label="Language / Framework">NodeJS</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-nodejs" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1JQQ28P8" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1JQQ28P8" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-php-plain"></i></td>
                         <td data-label="Language / Framework">PHP</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-php" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-laravel-plain"></i></td>
-                        <td data-label="Language / Framework">PHP (Laravel)</td>
+                        <td data-label="Language / Framework">PHP（Laravel）</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-laravel" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-python-plain"></i></td>
                         <td data-label="Language / Framework">Python</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-python" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C13993JDD" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C13993JDD" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-react-original"></i></td> <td data-label="Language / Framework">React Native</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-react-native" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/CL29QEBPY" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/CL29QEBPY" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-ruby-plain"></i></td>
                         <td data-label="Language / Framework">Ruby</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-ruby" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C0ZALLH61" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C0ZALLH61" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-rust-plain"></i></td>
                         <td data-label="Language / Framework">赤色</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-rust" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C010J616CKV" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C010J616CKV" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-r-plain"></i></td>
                         <td data-label="Language / Framework">R</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/r-dashboard" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C2CR356NR" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C2CR356NR" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-swift-plain"></i></td>
                         <td data-label="Language / Framework">Swift</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-swift" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/CE2A1E7MH" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/CE2A1E7MH" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-csharp-plain"></i></td> <td data-label="Language / Framework">.NET/C#</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-csharp" target="_blank" rel="noopener noreferrer">GitHub</a></td>
-                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1JHT98HJ" target="_blank" rel="noopener noreferrer">Slack Channel</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1JHT98HJ" target="_blank" rel="noopener noreferrer">Slack 频道</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -392,7 +382,7 @@ This API is not actively maintained, and not officially documented.
 
 <h2 class="emphasized-title">讨论数据、API 和导出</h2>
 
-<p>You can look at <a href="https://support.openfoodfacts.org/help/fr-fr/12">common FAQ questions about the API and Data Exports</a> and <a href="https://support.openfoodfacts.org/help/fr-fr">common Open Food Facts questions</a></p>
-<p>You can <a href="https://slack.openfoodfacts.org">join the Open Food Facts Slack chatroom</a> which is the preferred way to ask questions and discuss the API</a>. Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a> Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a> Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a> Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a> Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a> Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a> Please <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ask your questions in the #api channel</a></p>
-<p>You can <a href="https://github.com/openfoodfacts/openfoodfacts-server/discussions">open a thread on our API documentation repository</a>
-<p>For any question regarding the data, you can contact us at <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>
+<p>您可以查看 <a href="https://support.openfoodfacts.org/help/fr-fr/12">有关 API 和数据导出的常见问题</a> 和 <a href="https://support.openfoodfacts.org/help/fr-fr">常见的 Open Food Facts 问题</a></p>
+<p>您可以 <a href="https://slack.openfoodfacts.org">加入 Open Food Facts Slack 聊天室</a> 这是提问和讨论 API</a>的首选方式。 请 <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">在#api 频道</a>中提出您的问题</p>
+<p>您可以 <a href="https://github.com/openfoodfacts/openfoodfacts-server/discussions">在我们的 API 文档存储库上新建一个讨论</a>
+<p>如对数据有任何疑问，请联系我们 <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>
