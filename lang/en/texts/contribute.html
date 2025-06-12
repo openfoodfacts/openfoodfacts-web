@@ -177,3 +177,25 @@ analyze their nutritional quality, determine if they are suitable for vegans and
 		<p>There are many more ways to contribute to Open Food Facts, please <a href="https://slack.openfoodfacts.org">join us on Slack</a> and let's start the discussion!</p>
 	</div>
 </div>
+
+<script>
+	function onMount(fn) {
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", fn);
+		} else {
+			fn();
+		}
+	}
+
+	onMount(() => {
+		function sendHeight() {
+			const height = document.body.scrollHeight;
+			console.debug("Calculated height: " + height);
+			parent.postMessage({ frameHeight: height }, '*');
+		}
+		// Send the height on initial load
+		sendHeight();
+		// Send the height whenever the window is resized
+		window.addEventListener("resize", sendHeight);
+	});
+</script>
