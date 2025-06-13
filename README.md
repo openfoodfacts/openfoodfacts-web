@@ -6,9 +6,11 @@
 
 # openfoodfacts-web
 
-IMPORTANT: This project contains static contents for [openfoodfacts product-opener project](https://github.com/openfoodfacts/openfoodfacts-server/). If you're looking for the server side version of Open Food Facts, look at product-opener instead of this repository.
-
-Having those file in a separate project helps being more agile on translations delivery.
+> [!IMPORTANT]
+> This project contains static contents for [openfoodfacts product-opener project](https://github.com/openfoodfacts/openfoodfacts-server/).
+> If you're looking for the server side version of Open Food Facts, look at product-opener instead of this repository.
+> 
+> Having those file in a separate project helps being more agile on translations delivery.
 
 ## 🎨 Design & User interface
 - We strive to thoughfully design every content page before we move on to implementation, so that we respect Open Food Facts' graphic charter and nascent design system, while having efficient user flows.
