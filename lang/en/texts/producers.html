@@ -254,7 +254,9 @@ If you don't already have a file with your product data, <a href="">we provide a
 		function sendHeight() {
 			const height = document.body.scrollHeight;
 			console.debug("Calculated height: " + height);
-			parent.postMessage({ frameHeight: height }, '*');
+			if (typeof parent !== 'undefined' && parent !== window) {
+				parent.postMessage({ frameHeight: height }, '*');
+			}
 		}
 		// Send the height on initial load
 		sendHeight();

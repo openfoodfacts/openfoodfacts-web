@@ -1,5 +1,3 @@
-
-
 <!-- no side column -->
 
 <h1 class="emphasized-title">Contribute to Open Food Facts</h1>
@@ -191,7 +189,9 @@ analyze their nutritional quality, determine if they are suitable for vegans and
 		function sendHeight() {
 			const height = document.body.scrollHeight;
 			console.debug("Calculated height: " + height);
-			parent.postMessage({ frameHeight: height }, '*');
+			if (typeof parent !== 'undefined' && parent !== window) {
+				parent.postMessage({ frameHeight: height }, '*');
+			}
 		}
 		// Send the height on initial load
 		sendHeight();
