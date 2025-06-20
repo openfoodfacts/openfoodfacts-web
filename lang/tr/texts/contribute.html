@@ -1,6 +1,4 @@
-
-
-<!-- no side column -->
+ <!-- no side column -->
 
 <h1 class="emphasized-title">Open Food Facts'a Katkıda Bulunun</h1>
 
@@ -199,7 +197,7 @@ Halihazırda çok ilgili bir katılımcıysanız veya yeni gelmiş ve katılmak 
 	</li>
 </ul>
 
-<a class="button" href="https://wiki.openfoodfacts.org/Projects_homepage">Explore on-going projects</a>
+<a class="button" href="https://wiki.openfoodfacts.org/Projects_homepage">Devam eden projeleri keşfedin</a>
 
 <hr>
 
@@ -208,3 +206,27 @@ Halihazırda çok ilgili bir katılımcıysanız veya yeni gelmiş ve katılmak 
 		<p>Open Food Facts'e katkıda bulunmak için daha pek çok yol var, lütfen <a href="https://slack.openfoodfacts.org">Slack kanalımıza katılın</a> ve tartışmaya başlayalım!</p>
 	</div>
 </div>
+
+<script>
+	function onMount(fn) {
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", fn);
+		} else {
+			fn();
+		}
+	}
+
+	onMount(() => {
+		function sendHeight() {
+			const height = document.body.scrollHeight;
+			console.debug("Calculated height: " + height);
+			if (typeof parent !== 'undefined' && parent !== window) {
+				parent.postMessage({ frameHeight: height }, '*');
+			}
+		}
+		// Send the height on initial load
+		sendHeight();
+		// Send the height whenever the window is resized
+		window.addEventListener("resize", sendHeight);
+	});
+</script>
