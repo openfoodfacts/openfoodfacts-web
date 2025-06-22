@@ -1,6 +1,4 @@
-
-
-<!-- no side column -->
+ <!-- no side column -->
 
 <h1 class="emphasized-title">Допринеси за Open Food Facts</h1>
 
@@ -177,3 +175,27 @@ Open Food Facts съществува благодарение на гражда�
 		<p>Има много начини да допринесеш за Open Food Facts, моля <a href="https://slack.openfoodfacts.org">присъедини се към нас в Slack</a> и нека започнем дискусията!</p>
 	</div>
 </div>
+
+<script>
+	function onMount(fn) {
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", fn);
+		} else {
+			fn();
+		}
+	}
+
+	onMount(() => {
+		function sendHeight() {
+			const height = document.body.scrollHeight;
+			console.debug("Calculated height: " + height);
+			if (typeof parent !== 'undefined' && parent !== window) {
+				parent.postMessage({ frameHeight: height }, '*');
+			}
+		}
+		// Send the height on initial load
+		sendHeight();
+		// Send the height whenever the window is resized
+		window.addEventListener("resize", sendHeight);
+	});
+</script>
