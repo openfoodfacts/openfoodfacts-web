@@ -24,7 +24,7 @@ Each entry in the `world-en.yml` file follows a YAML format. Here's a general st
 
 **Key elements:**
 
-*   **`"en:your-panel-identifier"`:** This is the unique key for your knowledge panel.
+*   **`"en:your-panel-identifier"`:** This is the unique key for your knowledge panel. It should match an entry in the relevant Open Food Facts taxonomy.
     *   It should be in English (`en:` prefix).
     *   Use lowercase letters and hyphens for spaces (e.g., `en:corn-syrup`, `en:e202`).
     *   Make it descriptive and relevant to the content.
