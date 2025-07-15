@@ -240,3 +240,27 @@ Wenn Sie noch keine Datei mit Ihren Produktdaten haben, <a href="">stellen wir e
 <h3 id="est_ce_que_les_produits_pour_animaux_les_produits_non_alimentaires_les_cosmetiques_et_les_autres_produits_peuvent_etre_integres_a_open_food_facts">Können tierische Produkte, Non-Food-Produkte, Kosmetika und andere Produkte in die Open Food Facts Datenbank eingestellt werden?</h3>
 <p>Wir haben spezielle Projekte für Kosmetika, für Tierfutter sowie für andere Produkte (Open Beauty Facts, Open Pet Food Facts bzw. Open Products Facts) erstellt. Daher freuen wir uns, Ihre Produkte in das für sie passende Projekt importieren zu können.</p>
 </div>
+
+<script>
+	function onMount(fn) {
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", fn);
+		} else {
+			fn();
+		}
+	}
+
+	onMount(() => {
+		function sendHeight() {
+			const height = document.body.scrollHeight;
+			console.debug("Calculated height: " + height);
+			if (typeof parent !== 'undefined' && parent !== window) {
+				parent.postMessage({ frameHeight: height }, '*');
+			}
+		}
+		// Send the height on initial load
+		sendHeight();
+		// Send the height whenever the window is resized
+		window.addEventListener("resize", sendHeight);
+	});
+</script>

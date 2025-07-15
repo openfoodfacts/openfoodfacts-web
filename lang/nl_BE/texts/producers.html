@@ -241,3 +241,27 @@ Indien je nog niet over een bestand met jouw productgegevens beschikt, is er een
 <p>We hebben specifieke projecten voor cosmetica, voor diervoeding en voor andere producten (Open Beauty Facts, Open Pet Food Facts en Open Product 
 Facts). We zijn dan ook blij dat we uw producten kunnen importeren in het project dat bij hen past.</p>
 </div>
+
+<script>
+	function onMount(fn) {
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", fn);
+		} else {
+			fn();
+		}
+	}
+
+	onMount(() => {
+		function sendHeight() {
+			const height = document.body.scrollHeight;
+			console.debug("Calculated height: " + height);
+			if (typeof parent !== 'undefined' && parent !== window) {
+				parent.postMessage({ frameHeight: height }, '*');
+			}
+		}
+		// Send the height on initial load
+		sendHeight();
+		// Send the height whenever the window is resized
+		window.addEventListener("resize", sendHeight);
+	});
+</script>

@@ -1,88 +1,349 @@
-<h1>Instalați aplicația mobilă Open Pet Food Facts</h1>
-
-<p>Pentru a scana produse alimentare pentru animale de companie, pentru a ști dacă este un aliment ultraprocesat și pentru a descifra aditivii pentru hrana pentru animale de companie, instalați aplicația gratuită Open Pet Food Facts!</p>
-
-<a href="https://apps.apple.com/app/open-food-facts/id588797948"><img src="https://static.openfoodfacts.org/images/misc/appstore/black/appstore_RO.svg" alt="Disponibil pe App Store" width="120" height="40" /></a>
-
-<a href="https://play.google.com/store/apps/details?id=org.openpetfoodfacts.scanner&hl=ro"><img src="https://static.openfoodfacts.org/images/misc/google-play-badge-svg-master/img/ro_get.svg" alt="Disponibil pe Google Play" width="102" height="40" /></a>
-
-<a href="https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG"><img src="https://static.openfoodfacts.org/images/misc/microsoft/Romanian.svg" alt="Disponibil în Windows Phone Store" width="109" height="40" /></a>
-
-<a href="https://github.com/openfoodfacts/smooth-app/releases/latest"><img src="https://static.openfoodfacts.org/images/misc/android-apk.svg" loading="lazy" alt="Disponibil ca APK Android" /></a>
-
-<a href="https://f-droid.org/en/packages/org.openpetfoodfacts.scanner/">
-<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" loading="lazy" alt="Disponibil de pe F-Droid" /></a>
-
-
-<br><br>
-
-<p>De asemenea, puteți adăuga produse noi la Open Pet Food Facts și puteți construi un bun comun pentru a îmbunătăți nutriția și sănătatea animalelor de companie din întreaga lume. Vă mulţumim!</p>
-
-<div class="panel callout">
-<h2>Vedeți cele mai recente caracteristici</h2>
-  <p><b>Iunie 2022:</b> <a href="https://blog.openfoodfacts.org/en/press-release-new-mobile-app">Aplicație reproiectată complet pentru Android și iPhone: mai personalizată, mai pedagogică și mai intuitivă</a></p>
-<p><b>ianuarie 2021:</b> Aplicațiile <a href="https://blog.openfoodfacts.org/fr/news/lancement-de-l-eco-score-la-note-environnementale-des-produits-alimentaires">obțin Scorul Eco, inițial în Franța (anunț în franceză)</a></p>
-<p><b>septembrie 2020:</b> <a href="https://blog.openfoodfacts.org/fr/news/la-rentree-d-open-food-facts-en-6-actualites">Modul întunecat, inteligență artificială, detectare vegetariană, vegană și ulei de palmier și contribuții offline (anunț în franceză)</a></p>
-<p><b>iunie 2019:</b> <a href="https://blog.openfoodfacts.org/en/news/the-new-open-food-facts-app-to-better-decipher-labels-and-participate-in-the-common-good">Noi aplicații mobile Open Food Facts pentru iPhone și Android</a><br>
-Caracteristici noi: scanare continuă, mod offline, comparare produse, liste, istoric nelimitat și multe altele!
-</p>
-<p><b>2012:</b> <a href="https://blog.openfoodfacts.org/fr/news/application-mobile-open-food-facts-pour-android">Lansarea aplicației mobile Open Food Facts, prima aplicație de scanare colaborativă pentru alimente.</a>
-</p>
-</div>
-<!-- TODO Translate images to your language. Ask @teolemon for the SVG file-->
-<div class="row">
-<div class="small-12 medium-12 large-6 columns">
-<img src="https://static.openfoodfacts.org/images/misc/crowdsourcing/features_june_2019_1920x1080_en.jpg" alt="Open Food Facts aplicația mobilă">
-
-</div>
-<div class="small-12 medium-12 large-6 columns">
-
-<img src="https://static.openfoodfacts.org/images/misc/crowdsourcing/app_ios_2019_3_screens_en.png" alt="Încercați noua aplicație mobilă Open Food Facts">
-</div>
-</div>
-
-<!-- DO NOT translate after this line -->
-
-<scripts>
+<style type="text/css">#install_the_app_block, .donation-banner-footer, .offdays-banner {display: none;} #main_column {padding-bottom: 0;}</style>
 <script>
-function getMobileOperatingSystem() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    // You can change the URLs to one that works in your language. If you are unsure, do not touch anything
+    const googlePlayURL = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en";
+    const appleStoreURL = "https://apps.apple.com/app/open-food-facts/id588797948";
+    const microsoftStoreURL = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
 
-      // Windows Phone must come first because its UA also contains "Android"
-    if (/windows phone/i.test(userAgent)) {
-        return "Windows Phone";
+    function getMobileOperatingSystem() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+          // Windows Phone must come first because its UA also contains "Android"
+        if (/windows phone/i.test(userAgent)) {
+            return "Windows Phone";
+        }
+    
+        if (/android/i.test(userAgent)) {
+            return "Android";
+        }
+    
+        // iOS detection from: https://stackoverflow.com/a/9039885/177710
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "iOS";
+        }
+    
+        return "unknown";
     }
 
-    if (/android/i.test(userAgent)) {
-        return "Android";
+    // Function to extract UTM parameters from a URL
+    function extractUTMParameters(url) {
+        var utmParams = new URLSearchParams(url.search);
+        var utmParamObject = {};
+
+        for (var pair of utmParams.entries()) {
+            var paramName = pair[0];
+            var paramValue = pair[1];
+            if (paramName.startsWith('utm_')) {
+                utmParamObject[paramName] = paramValue;
+            }
+        }
+
+        return utmParamObject;
     }
 
-    // iOS detection from: https://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return "iOS";
+    // Add UTM parameters extracted from current URL to `targetURL`
+    function addUTMParameters(targetURL) {
+        // Create URL objects for the current URL and target URL
+        var currentURLObject = new URL(window.location.href);
+        var targetURLObject = new URL(targetURL);
+
+        // Extract UTM parameters from the current URL
+        var utmParameters = extractUTMParameters(currentURLObject);
+        var targetUtmParameters = extractUTMParameters(targetURLObject);
+
+        if (Object.keys(utmParameters).length) {
+            // Delete existing UTM parameters of target URL 
+            for (var paramName in targetUtmParameters) {
+                if (targetUtmParameters.hasOwnProperty(paramName)) {
+                    targetURLObject.searchParams.delete(paramName);
+                }
+            }
+
+            // Add UTM parameters to the target URL
+            for (var paramName in utmParameters) {
+                if (utmParameters.hasOwnProperty(paramName)) {
+                    var paramValue = utmParameters[paramName];
+                    targetURLObject.searchParams.append(paramName, paramValue);
+                }
+            }
+        } else {
+            targetURLObject.searchParams.append("utm_source", "off");
+            targetURLObject.searchParams.append("utm_campaign", "app-landing-page");
+            targetURLObject.searchParams.append("utm_medium", "website");
+        }
+        return targetURLObject.href;
     }
 
-    return "unknown";
-}</script>
+    // redirect to Google Play Store, Apple store, etc. if we detect
+    // specific User-Agent 
+    function redirectToStore() {
+        const currentURL = new URL(window.location.href);
+        if (new URLSearchParams(currentURL.search).get("redirect") == "0") {
+            // don't redirect if redirect=0 in query parameters
+            return;
+        }
 
-<!-- You can change the URLs to one that works in your language. If you are unsure, do not touch anything -->
-
-<script>
-function DetectAndServe(){
-
-if (getMobileOperatingSystem() == "Android") {
-    window.location.href = "https://play.google.com/store/apps/details?id=org.openpetfoodfacts.scanner&hl=en";
+        const operatingSystem = getMobileOperatingSystem();
+        if (operatingSystem == "Android") {
+            window.location.href = addUTMParameters(googlePlayURL);
+        }
+        else if (operatingSystem == "iOS") {
+            window.location.href = addUTMParameters(appleStoreURL);
+        }
+        else if (operatingSystem == "Windows Phone") {
+            window.location.href = addUTMParameters(microsoftStoreURL);
+        }
     }
-if (getMobileOperatingSystem() == "iOS") {
-    window.location.href = "https://apps.apple.com/app/open-food-facts/id588797948";
-    }
-if (getMobileOperatingSystem() == "Windows Phone") {
-    window.location.href = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
-    }
-};
-DetectAndServe();
+    redirectToStore();
 </script>
-</scripts>
+<div id="app-landing-page">
+    <div id="download-app-block" class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Alege produse care sunt bune pentru
+                    <span class="highlight-label yellow rotate-left">tu</span>
+                    și
+                    <span class="highlight-label blue rotate-right">planetă</span>
+                </h1>
+                <p>Cea mai mare bază de date deschisă cu alimente din lume la îndemâna ta!</p>
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=ro" title="Deschide Food Facts în Google Play">
+                <img
+                    src="/images/misc/playstore/img/en_get.svg"
+                    alt="Disponibil pe Google Play"
+                    width="120"
+                    height="40"
+                ></a>
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Deschide Food Facts în Apple App Store">
+                <img
+                    src="/images/misc/appstore/black/appstore_RO.svg"
+                    alt="Disponibil pe App Store"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+            <div class="small-12 medium-6 medium-offset-1 column">
+                <img src="/images/illustrations/scale-ecoscore-nutriscore.svg" alt="A scale with a Nutri-Score and a smiley face on the left side of the scale and an Green Score and planet Earth on the right side" style="max-height: 250px">
+            </div>
+        </div>
+        <div class="row show-for-large-up" style="padding-top: 4rem; text-align: center">
+            <div class="small-3 small-centered column">
+                <p>Nu ești pe telefonul mobil? Scanați acest cod QR de pe mobil pentru a descărca aplicația!</p>
+                <img src="/images/misc/app-landing-page/qrcode_en.svg" width="180" height="180" alt="QR-Code link către https://world.openfoodfacts.org/open-food-facts-mobile-app">
+            </div>
+        </div>
+    </div>
+    <div class="block block-seashell" id="app-card-block">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="/images/misc/app-landing-page/mobile-app-preview/mobile-app-preview_en.svg" alt="Open Food Facts aplicația mobilă">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    O scanare care se potrivește cu adevărat cu
+                    <span class="highlight-label dark-orange rotate-right">cine sunteți</span>
+                </h1>
+                <p class="paragraph-top-margin">De la reducerea consumului de sare până la devenirea vegană completă, este ușor să vă setați propriile preferințe personale în aplicație și să începeți să primiți recomandări mai inteligente pentru alimente.</p>
+                <p>Cel mai bine, aplicația vă avertizează întotdeauna dacă sunteți pe cale să mâncați ceva care conține un alergen.</p>
+            </div>
+        </div>
+    </div>
+    <div class="block block-yellow">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Scanați mâncarea din viața de zi cu zi pentru a obține imaginea completă
+                </h1>
+                <p class="paragraph-top-margin">Deschideți aplicația Open Food Facts și îndreptați camera către codul de bare al mâncării preferate!</p>
+            </div>
+            <div class="small-12 medium-3 medium-offset-1 end column">
+                <img src="/images/illustrations/app-barcode-scan.png" alt="Un cod de bare în curs de scanare" style="max-height: 200px;">
+            </div>
+        </div>
+    </div>
+    <div class="block block-light-green">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="/images/illustrations/health-cereals-magnifier.svg" alt="O lupă peste o cutie de cereale și un logo Nutri-Score" style="max-height: 200px">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Du-ți
+                    <span class="highlight-label dark-green rotate-right">sănătatea</span>
+                    la nivelul următor
+                </h1>
+                <p class="paragraph-top-margin">Descifrați diferite etichete, aflați despre informațiile nutriționale și calculați instantaneu Scorul Nutrițional al produsului dvs.: o etichetă nutrițională care convertește valoarea nutrițională a alimentelor și a băuturilor într-un scor general. Este o joacă de copii!</p>
+                <p>Informațiile vor fi întotdeauna afișate în funcție de preferințele dvs.</p>
+                <a class="button round secondary small" href="/nutriscore">Aflați mai multe despre Nutri-Score</a>
+            </div>
+        </div>
+    </div>
+    <div class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-5 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Scanați aproape orice mâncare pentru a vedea impactul acesteia asupra planetei
+                </h1>
+                <p class="paragraph-top-margin">Learn about the environmental impact of over 600 thousands food products with the Green-Score.</p>
+                <p>Răsfoiți panourile de cunoștințe pentru a obține informații precum amprenta de carbon echivalentă, originea ingredientelor, posibila amenințare a speciilor în timpul procesului de fabricație.</p>
+                <a class="button round secondary small" href="/green-score">Read more about the Green-Score</a>
+            </div>
+            <div class="small-12 medium-6 end column">
+                <img
+                    src="/images/illustrations/app-planet-pizza.svg"
+                    alt="O lupă peste o pizza și planeta Pământ"
+                    style="max-height: 250px"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </div>
+<div class="block block-white">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                 <img src="/images/logos/obf-logo-icon-light.svg" alt="Ilustrație a produselor cosmetice" style="max-height: 200px" loading="lazy">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Înțelege-ți
+                    <span class="highlight-label blue rotate-left">Cosmeticele</span>
+                </h1>
+                <p class="paragraph-top-margin">Scanați produsele cosmetice pentru a descifra lista ingredientelor (INCI). Identificați alergenii, produsele vegane, vegetariene sau fără ulei de palmier.</p>
+                <p>Fă alegeri informate cu privire la produsele de înfrumusețare pe care le folosești zilnic.</p>
+                <a class="button round secondary small" href="https://world.openbeautyfacts.org/">Află despre Open Beauty Facts</a>
+            </div>
+        </div>
+    </div>
 
-<initjs>
-</initjs>
+
+
+<div class="block block-seashell">
+        <div class="row">
+            <div class="small-12 medium-5 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Alege ce e mai bun pentru
+                    <span class="highlight-label pink rotate-right">Animalele tale de companie</span>
+                </h1>
+                <p class="paragraph-top-margin">Scanează hrana pentru animale de companie pentru a-i înțelege compoziția și calitatea nutrițională.</p>
+                <p>Găsește produse adaptate nevoilor și preferințelor specifice ale animalului tău de companie, asigurându-te că primește dieta potrivită.</p>
+                 <a class="button round secondary small" href="https://world.openpetfoodfacts.org/">Aflați despre hrana deschisă pentru animale de companie</a>
+            </div>
+            <div class="small-12 medium-6 end column">
+                 <img src="/images/logos/opff-logo-icon-light.svg" alt="Ilustrație a hranei pentru animale de companie și a unui animal de companie fericit" style="max-height: 250px" loading="lazy">
+            </div>
+        </div>
+    </div>
+<div class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                 <img src="/images/logos/opf-logo-icon-light.svg" alt="Ilustrație reprezentând diverse alte produse" style="max-height: 200px" loading="lazy">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Descoperă mai multe despre
+                    <span class="highlight-label blue rotate-left">Alte produse</span>
+                </h1>
+                <p class="paragraph-top-margin">Scanează obiecte de zi cu zi, dincolo de alimente și cosmetice. Contribuiți cu informații despre materialele produsului, reutilizabilitate și opțiuni de sfârșit de viață.</p>
+                <p>Ajută la construirea unei baze de date pentru o economie mai circulară.</p>
+                 <a class="button round secondary small" href="https://world.openproductsfacts.org/">Aflați despre informațiile despre produsele deschise</a>
+            </div>
+        </div>
+    </div>
+<div class="block block-yellow">
+        <div class="row">
+            <div class="small-12 medium-5 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Urmăriți prețurile și
+                    <span class="highlight-label light-blue rotate-right">inflația</span>
+                </h1>
+                <p class="paragraph-top-margin">Monitorizați evoluția prețurilor produselor în timp. Contribuiți cu ușurință cu datele despre prețuri scanând chitanțele sau produsele din magazine.</p>
+                <p>Ajută la identificarea inflației prin contracție (când produsele devin mai mici, dar prețul rămâne același) și construiește o bază de date transparentă a prețurilor pentru toată lumea.</p>
+                 <a class="button round secondary small" href="https://prices.openfoodfacts.org/">Aflați despre prețurile deschise</a>
+            </div>
+            <div class="small-12 medium-6 end column" style="
+    font-size: 200px;
+">
+                 💸
+            </div>
+        </div>
+    </div>
+    
+    <div class="block block-white">
+        <div class="row" id="join-food-revolution-row">
+            <div class="small-12 medium-4 medium-offset-2 column">
+                <img
+                    src="/images/misc/app-landing-page/join-the-food-revolution/join-the-food-revolution_en.svg"
+                    alt="Alăturați-vă revoluției alimentare"
+                    style="max-height: 180px"
+                    loading="lazy"
+                >
+                <p class="paragraph-top-margin">Împreună cu peste 170.000 de colaboratori din întreaga lume!</p>
+            </div>
+            <div class="small-12 medium-4 end column">
+                <div class="testimonial-card">
+                    <p>„Îmi place această aplicație!! O folosesc aproape zilnic. Mă ajută foarte mult să găsesc produsul potrivit pentru mine!”</p>
+                    <p>
+                        <strong>Louise</strong>
+                    </p>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <img
+                        src="/images/misc/app-landing-page/store-review-rating.svg"
+                        loading="lazy"
+                        alt="Evaluare pe Google Play Store și Apple Store"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-7 medium-offset-5 column">
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=ro" title="Deschide Food Facts în Google Play">
+                <img
+                    src="/images/misc/playstore/img/en_get.svg"
+                    loading="lazy"
+                    alt="Disponibil pe Google Play"
+                    width="120"
+                    height="40"
+                ></a>
+                <a href="https://f-droid.org/packages/openfoodfacts.github.scrachx.openfood" title="Open Food Facts pe F-Droid">
+                <img
+                    src="/images/misc/f-droid/get-it-on-en.png"
+                    loading="lazy"
+                    alt="Disponibil pe F-Droid"
+                    height="40"
+                    width="120"
+                ></a>
+                <a href="https://github.com/openfoodfacts/smooth-app/releases/latest" title="Deschideți aplicația Food Facts pe Github">
+                <img
+                    src="/images/misc/app-landing-page/download-apk/download-apk_en.svg"
+                    loading="lazy"
+                    alt="Descărcați APK-ul"
+                    height="40"
+                    width="120"
+                ></a>
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Deschide Food Facts în Apple App Store">
+                <img
+                    src="/images/misc/appstore/black/appstore_RO.svg"
+                    loading="lazy"
+                    alt="Disponibil pe App Store"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+        </div>
+        <img
+            src="/images/illustrations/puzzle.svg"
+            alt="Un puzzle cu o mână"
+            class="puzzle-illustration show-for-large-up"
+            loading="lazy"
+        >
+    </div>
+</div>
+<script>
+    document.querySelectorAll('[data-app-store="google"]').forEach((item) => {
+        item.href = addUTMParameters(googlePlayURL);
+    });
+    document.querySelectorAll('[data-app-store="apple"]').forEach((item) => {
+        item.href = addUTMParameters(appleStoreURL);
+    });
+</script>
