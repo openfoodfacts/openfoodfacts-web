@@ -1,6 +1,4 @@
-
-
-<!-- no side column -->
+ <!-- no side column -->
 
 <h1 class="emphasized-title">Zostań współtwórcą Open Food Facts</h1>
 
@@ -176,3 +174,27 @@ Niezależnie od tego, czy jesteś już bardzo zaangażowanym współtwórcą, cz
 		<p>Istnieje wiele innych sposobów aby wspomóc Open Food Facts, proszę <a href="https://slack.openfoodfacts.org">wejdź na naszego Slacka</a> i zacznijmy dyskusję!</p>
 	</div>
 </div>
+
+<script>
+	function onMount(fn) {
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", fn);
+		} else {
+			fn();
+		}
+	}
+
+	onMount(() => {
+		function sendHeight() {
+			const height = document.body.scrollHeight;
+			console.debug("Calculated height: " + height);
+			if (typeof parent !== 'undefined' && parent !== window) {
+				parent.postMessage({ frameHeight: height }, '*');
+			}
+		}
+		// Send the height on initial load
+		sendHeight();
+		// Send the height whenever the window is resized
+		window.addEventListener("resize", sendHeight);
+	});
+</script>

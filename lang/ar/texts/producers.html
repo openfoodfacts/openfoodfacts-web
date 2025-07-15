@@ -240,3 +240,27 @@
 <h3 id="est_ce_que_les_produits_pour_animaux_les_produits_non_alimentaires_les_cosmetiques_et_les_autres_produits_peuvent_etre_integres_a_open_food_facts">هل يمكن دمج المنتجات الحيوانية والمنتجات غير الغذائية ومستحضرات التجميل وغيرها من المنتجات في حقائق الأغذية المفتوحة؟</h3>
 <p>We have created specific projects for cosmetics, for animal feed, as well as for other products (Open Beauty Facts, Open Pet Food Facts and Open Products Facts respectively). We are therefore happy to be able to import your products into the project that suits them.</p>
 </div>
+
+<script>
+	function onMount(fn) {
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", fn);
+		} else {
+			fn();
+		}
+	}
+
+	onMount(() => {
+		function sendHeight() {
+			const height = document.body.scrollHeight;
+			console.debug("Calculated height: " + height);
+			if (typeof parent !== 'undefined' && parent !== window) {
+				parent.postMessage({ frameHeight: height }, '*');
+			}
+		}
+		// Send the height on initial load
+		sendHeight();
+		// Send the height whenever the window is resized
+		window.addEventListener("resize", sendHeight);
+	});
+</script>
