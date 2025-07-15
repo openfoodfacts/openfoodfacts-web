@@ -2,8 +2,10 @@ name: Build HTML pages for Knowledge cards related to Taxonomy entries
 
 on:
   push:
+    branches:
+      - main
     paths:
-      - 'knowledge_panels/**.yml'
+      - 'knowledge_panels/**/**.yml'
   workflow_dispatch:
 jobs:
   update-assets:
@@ -19,7 +21,7 @@ jobs:
       run: |
         cd knowledge_panels
         python3 -m pip install -r requirements.txt --user
-        python3 build_html.py additives ingredients nutrients categories
+        python3 build_html.py additives ingredients nutrients categories labels
 
     - name: Check for uncommitted changes
       id: check-changes

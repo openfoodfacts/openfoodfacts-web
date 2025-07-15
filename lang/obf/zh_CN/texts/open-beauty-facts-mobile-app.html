@@ -1,62 +1,332 @@
-<h1>安装 Open Beauty Facts 手机应用程序</h1>
-
-<p>无需化学或拉丁文知识，对化妆品进行扫描即可解析成分列表，下载免费软件Open Beauty Facts！</p>
-
-<a href="https://apps.apple.com/cn/app/open-beauty-facts/id1122926380"><img src="https://static.openfoodfacts.org/images/misc/appstore/black/appstore_US.svg" alt="Available on the App Store" width="120" height="40" /></a>
-<a href="https://play.google.com/store/apps/details?id=org.openbeautyfacts.scanner&hl=zh_cn"><img src="https://static.openfoodfacts.org/images/misc/google-play-badge-svg-master/img/en_get.svg" alt="Available on Google Play" width="102" height="40" /></a>
-<a href="https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG"><img src="https://static.openfoodfacts.org/images/misc/microsoft/English.svg" alt="可在WindowsPhone下载" width="109" height="40" /></a>
-<a href="https://github.com/openfoodfacts/smooth-app/releases/latest"><img src="https://static.openfoodfacts.org/images/misc/android-apk.svg" loading="lazy" alt="Android APK" /></a>
-
-<a href="https://f-droid.org/packages/openfoodfacts.github.scrachx.openbeauty/">
-<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" loading="lazy" alt="Available from F-Droid" /></a>
-
-
-<br><br>
-
-<p>您还可以在Open Beauty Facts中添加新产品，对所有人在化妆品和健康方面的共同利益做出改善。 谢谢！</p>
-
-<!-- DO NOT translate after this line -->
-
-<scripts>
+<style type="text/css">#install_the_app_block, .donation-banner-footer, .offdays-banner {display: none;} #main_column {padding-bottom: 0;}</style>
 <script>
-function getMobileOperatingSystem() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    // You can change the URLs to one that works in your language. If you are unsure, do not touch anything
+    const googlePlayURL = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en";
+    const appleStoreURL = "https://apps.apple.com/app/open-food-facts/id588797948";
+    const microsoftStoreURL = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
 
-      // Windows Phone must come first because its UA also contains "Android"
-    if (/windows phone/i.test(userAgent)) {
-        return "Windows Phone";
+    function getMobileOperatingSystem() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+          // Windows Phone must come first because its UA also contains "Android"
+        if (/windows phone/i.test(userAgent)) {
+            return "Windows Phone";
+        }
+    
+        if (/android/i.test(userAgent)) {
+            return "Android";
+        }
+    
+        // iOS detection from: https://stackoverflow.com/a/9039885/177710
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "iOS";
+        }
+    
+        return "unknown";
     }
 
-    if (/android/i.test(userAgent)) {
-        return "Android";
+    // Function to extract UTM parameters from a URL
+    function extractUTMParameters(url) {
+        var utmParams = new URLSearchParams(url.search);
+        var utmParamObject = {};
+
+        for (var pair of utmParams.entries()) {
+            var paramName = pair[0];
+            var paramValue = pair[1];
+            if (paramName.startsWith('utm_')) {
+                utmParamObject[paramName] = paramValue;
+            }
+        }
+
+        return utmParamObject;
     }
 
-    // iOS detection from: https://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return "iOS";
+    // Add UTM parameters extracted from current URL to `targetURL`
+    function addUTMParameters(targetURL) {
+        // Create URL objects for the current URL and target URL
+        var currentURLObject = new URL(window.location.href);
+        var targetURLObject = new URL(targetURL);
+
+        // Extract UTM parameters from the current URL
+        var utmParameters = extractUTMParameters(currentURLObject);
+        var targetUtmParameters = extractUTMParameters(targetURLObject);
+
+        if (Object.keys(utmParameters).length) {
+            // Delete existing UTM parameters of target URL 
+            for (var paramName in targetUtmParameters) {
+                if (targetUtmParameters.hasOwnProperty(paramName)) {
+                    targetURLObject.searchParams.delete(paramName);
+                }
+            }
+
+            // Add UTM parameters to the target URL
+            for (var paramName in utmParameters) {
+                if (utmParameters.hasOwnProperty(paramName)) {
+                    var paramValue = utmParameters[paramName];
+                    targetURLObject.searchParams.append(paramName, paramValue);
+                }
+            }
+        } else {
+            targetURLObject.searchParams.append("utm_source", "obf");
+            targetURLObject.searchParams.append("utm_campaign", "app-landing-page");
+            targetURLObject.searchParams.append("utm_medium", "website");
+        }
+        return targetURLObject.href;
     }
 
-    return "unknown";
-}</script>
+    // redirect to Google Play Store, Apple store, etc. if we detect
+    // specific User-Agent 
+    function redirectToStore() {
+        const currentURL = new URL(window.location.href);
+        if (new URLSearchParams(currentURL.search).get("redirect") == "0") {
+            // don't redirect if redirect=0 in query parameters
+            return;
+        }
 
-<!-- You can change the URLs to one that works in your language. If you are unsure, do not touch anything -->
-
-<script>
-function DetectAndServe(){
-
-if (getMobileOperatingSystem() == "Android") {
-    window.location.href = "https://play.google.com/store/apps/details?id=org.openbeautyfacts.scanner&hl=en";
+        const operatingSystem = getMobileOperatingSystem();
+        if (operatingSystem == "Android") {
+            window.location.href = addUTMParameters(googlePlayURL);
+        }
+        else if (operatingSystem == "iOS") {
+            window.location.href = addUTMParameters(appleStoreURL);
+        }
+        else if (operatingSystem == "Windows Phone") {
+            window.location.href = addUTMParameters(microsoftStoreURL);
+        }
     }
-if (getMobileOperatingSystem() == "iOS") {
-    window.location.href = "https://apps.apple.com/app/open-beauty-facts/id1122926380";
-    }
-if (getMobileOperatingSystem() == "Windows Phone") {
-    window.location.href = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
-    }
-};
-DetectAndServe();
+    redirectToStore();
 </script>
-</scripts>
+<div id="app-landing-page">
+    <div id="download-app-block" class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    选择对
+                    <span class="highlight-label yellow rotate-left">您</span>
+                    和
+                    <span class="highlight-label blue rotate-right">地球</span>有益的产品
+                </h1>
+                <p>The world's largest open cosmetics database at your fingertips, available through the Open Food Facts universal app!</p>
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=zh-cn" title="在 Google Play 上查看 Open Food Facts 应用程序">
+                <img
+                    src="/images/misc/playstore/img/zh-cn_get.svg"
+                    alt="可在 Google Play 上获取"
+                    width="120"
+                    height="40"
+                ></a>
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="在 Apple App Store 上查看 Open Food Facts 应用程序">
+                <img
+                    src="/images/misc/appstore/black/appstore_US.svg"
+                    alt="可在 App Store 获取"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+            <div class="small-12 medium-6 medium-offset-1 column">
+               <!-- <img src="/images/illustrations/scale-ecoscore-nutriscore.svg" alt="A scale with a Nutri-Score and a smiley face on the left side of the scale and an Eco Score and planet Earth on the right side" style="max-height: 250px">-->
+            </div>
+        </div>
+        <div class="row show-for-large-up" style="padding-top: 4rem; text-align: center">
+            <div class="small-3 small-centered column">
+                <p>还未安装应用程序吗？ 用手机扫描此二维码即可下载应用程序！</p>
+                <img src="/images/misc/app-landing-page/qrcode_en.svg" width="180" height="180" alt="二维码链接至 https://world.openfoodfacts.org/open-food-facts-mobile-app">
+            </div>
+        </div>
+    </div>
+    <div class="block block-seashell" id="app-card-block">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+               <!-- <img src="/images/misc/app-landing-page/mobile-app-preview/mobile-app-preview_en.svg" alt="Open Food Facts mobile app">-->
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    真正匹配
+                    <span class="highlight-label dark-orange rotate-right">你是谁</span>的扫描
+                </h1>
+                <p class="paragraph-top-margin">无需化学或拉丁文知识，对化妆品进行扫描即可解析成分列表，下载免费软件Open Beauty Facts！</p>
+                <p>您还可以在Open Beauty Facts中添加新产品，对所有人在化妆品和健康方面的共同利益做出改善。</p>
+            </div>
+        </div>
+    </div>
+    <div class="block block-yellow">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Scan the cosmetics from your everyday life to get the
+                    <span class="highlight-label orange rotate-left">full picture</span>
+                </h1>
+                <p class="paragraph-top-margin">Open the Open Food Facts app and point the camera to your favorite cosmetics's barcode!</p>
+            </div>
+            <div class="small-12 medium-3 medium-offset-1 end column">
+                <img src="/images/illustrations/app-barcode-scan.png" alt="A barcode being scanned" style="max-height: 200px;">
+            </div>
+        </div>
+    </div>
+    <div class="block block-light-green">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <!--<img src="/images/illustrations/health-cereals-magnifier.svg" alt="A magnifier over a cereal box and a Nutri-Score logo" style="max-height: 200px">-->
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    将您的
+                    <span class="highlight-label dark-green rotate-right">健康</span>
+                    提升到新的水平
+                </h1>
+                <p class="paragraph-top-margin">Decipher various labels, learn about cosmetic ingredients inside your product. 这是儿戏！ 这简直是小菜一碟！</p>
+                <p>该信息将始终根据您的喜好显示。</p>
+            </div>
+        </div>
+    </div>
 
-<initjs>
-</initjs>
+
+    <div class="block block-white">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                 <img src="/images/logos/obf-logo-icon-light.svg" alt="化妆品插图" style="max-height: 200px" loading="lazy">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    了解您的
+                    <span class="highlight-label blue rotate-left">化妆品</span>
+                </h1>
+                <p class="paragraph-top-margin">扫描化妆品以解读其成分列表（INCI）。 识别过敏原、纯素、素食或不含棕榈油的产品。</p>
+                <p>对您每天使用的美容产品做出明智的选择。</p>
+                <a class="button round secondary small" href="https://world-zh.openbeautyfacts.org/">了解 Open Beauty Facts</a>
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="block block-seashell">
+        <div class="row">
+            <div class="small-12 medium-5 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    为您的
+                    <span class="highlight-label pink rotate-right">宠物</span>选择最好的
+                </h1>
+                <p class="paragraph-top-margin">扫描宠物食品以了解其成分和营养质量。</p>
+                <p>找到适合您宠物的特定需求和喜好的产品，确保它们获得正确的饮食。</p>
+                 <a class="button round secondary small" href="https://world-zh.openpetfoodfacts.org/">了解开放宠物食品事实</a>
+            </div>
+            <div class="small-12 medium-6 end column">
+                 <img src="/images/logos/opff-logo-icon-light.svg" alt="宠物食品和快乐宠物的插图" style="max-height: 250px" loading="lazy">
+            </div>
+        </div>
+    </div>
+<div class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                 <img src="/images/logos/opf-logo-icon-light.svg" alt="代表各种其他产品的插图" style="max-height: 200px" loading="lazy">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    了解有关
+                    <span class="highlight-label blue rotate-left">的更多信息 其他产品</span>
+                </h1>
+                <p class="paragraph-top-margin">扫描食品和化妆品以外的日常用品。 提供有关产品材料、可重复使用性和报废选项的信息。</p>
+                <p>帮助建立更加循环的经济数据库。</p>
+                 <a class="button round secondary small" href="https://world-zh.openproductsfacts.org/">了解开放产品事实</a>
+            </div>
+        </div>
+    </div>
+<div class="block block-yellow">
+        <div class="row">
+            <div class="small-12 medium-5 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    跟踪价格和
+                    <span class="highlight-label light-blue rotate-right">通货膨胀</span>
+                </h1>
+                <p class="paragraph-top-margin">监控产品价格随时间的变化。 通过扫描商店中的收据或产品轻松提供价格数据。</p>
+                <p>帮助识别缩减通胀（产品变小但价格保持不变），并为每个人建立透明的价格数据库。</p>
+                 <a class="button round secondary small" href="https://prices.openfoodfacts.org/">了解开盘价</a>
+            </div>
+            <div class="small-12 medium-6 end column" style="
+    font-size: 200px;
+">
+                 💸
+            </div>
+        </div>
+    </div>
+
+    <div class="block block-white">
+        <div class="row" id="join-food-revolution-row">
+            <!--<div class="small-12 medium-4 medium-offset-2 column">
+                <img
+                    src="/images/misc/app-landing-page/join-the-food-revolution/join-the-food-revolution_en.svg"
+                    alt="Join the cosmetic revolution"
+                    style="max-height: 180px"
+                    loading="lazy"
+                >
+                <p class="paragraph-top-margin">Along with more than 170,000 contributors worldwide!</p>
+            </div>
+          -->
+            <div class="small-12 medium-4 end column">
+                <div class="testimonial-card">
+                    <p>“我喜欢这个应用程序！ 我几乎每天都使用它。 它对我找到适合我的产品有很大帮助！”</p>
+                    <p>
+                        <strong>Louise</strong>
+                    </p>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <img
+                        src="/images/misc/app-landing-page/store-review-rating.svg"
+                        loading="lazy"
+                        alt="在 Google Play Store 和 Apple Store 上为 Open Food Facts 应用程序评分"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-7 medium-offset-5 column">
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=zh-cn" title="在 Google Play 上查看 Open Food Facts 应用程序">
+                <img
+                    src="/images/misc/playstore/img/zh-cn_get.svg"
+                    loading="lazy"
+                    alt="可在 Google Play 上获取"
+                    width="120"
+                    height="40"
+                ></a>
+                <a href="https://f-droid.org/packages/openfoodfacts.github.scrachx.openfood" title="在 F-Droid 上查看 Open Food Facts 应用程序">
+                <img
+                    src="/images/misc/f-droid/get-it-on-en.png"
+                    loading="lazy"
+                    alt="可在 F-Droid 获取"
+                    height="40"
+                    width="120"
+                ></a>
+                <a href="https://github.com/openfoodfacts/smooth-app/releases/latest" title="在 Github 上查看 Open Food Facts 应用程序">
+                <img
+                    src="/images/misc/app-landing-page/download-apk/download-apk_en.svg"
+                    loading="lazy"
+                    alt="下载APK文件"
+                    height="40"
+                    width="120"
+                ></a>
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="在 Apple App Store 上查看 Open Food Facts 应用程序">
+                <img
+                    src="/images/misc/appstore/black/appstore_US.svg"
+                    loading="lazy"
+                    alt="可在 App Store 获取"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+        </div>
+        <img
+            src="/images/illustrations/puzzle.svg"
+            alt="A puzzle with a hand"
+            class="puzzle-illustration show-for-large-up"
+            loading="lazy"
+        >
+    </div>
+</div>
+<script>
+    document.querySelectorAll('[data-app-store="google"]').forEach((item) => {
+        item.href = addUTMParameters(googlePlayURL);
+    });
+    document.querySelectorAll('[data-app-store="apple"]').forEach((item) => {
+        item.href = addUTMParameters(appleStoreURL);
+    });
+</script>
