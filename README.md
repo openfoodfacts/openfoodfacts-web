@@ -22,11 +22,11 @@
 - We strive to thoughfully design every content page before we move on to implementation, so that we respect Open Food Facts' graphic charter and nascent design system, while having efficient user flows.
 - [![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?logo=figma&logoColor=white) Mockups on the current app and future plans to discuss](https://www.figma.com/design/Qg9URUyrjHgYmnDHXRsTTB/Current-Website-design?m=auto&t=jNwvjRR8nIgOzzJZ-6)
 - Note that @manoncorneille and @galnaf have proposed a revamp for the Discover and Contribute pages
-- Note that we have a detailed mockup for the landing page that hasn't been implemented (and would be high value)
+- Note that we have a detailed mockup for the landing page that hasn't been implemented (and is a very high priority)
 
 ## Help translate
 
-https://crowdin.com/project/openfoodfacts
+https://translate.openfoodfacts.org
 
 ## Adding a new page or updating an existing page
 * Create a pull request on openfoodfacts-web with the new or modified HTML file (you can do that with the "GitHub Desktop" app if you are unfamiliar with the command line)
