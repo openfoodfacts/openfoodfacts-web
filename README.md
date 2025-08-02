@@ -4,7 +4,7 @@
   <img height="100" src="https://static.openfoodfacts.org/images/logos/off-logo-horizontal-light.svg">
 </picture>
 
-# openfoodfacts-web
+# openfoodfacts-web (where the static content of openfoodfacts-server lives)
 
 > [!IMPORTANT]
 > This project contains static contents for [openfoodfacts product-opener project](https://github.com/openfoodfacts/openfoodfacts-server/).
