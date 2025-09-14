@@ -43,7 +43,7 @@ Ne saattavat sisältää tekijänoikeuden tai muun oikeuden alaisia graafisia el
 <p>Tiedostonimi sisältää JSON-tiedoston ensimmäisen ja viimeisen muutoksen UNIX-aikaleiman, jotta delta-tiedostot voidaan tuoda (purkauksen jälkeen) <code>mongoimport</code> :lla aakkosjärjestyksessä.</p>
 <p>Huomioi, että <code>mongoexport</code>-komennon luonteen takia muutostiedostot eivät voi kertoa poistetuista tuotteista. Jos haluat poistaa poistetut tuotteet tietokannastasi, sinun on tuotava koko MongoDB-vedos.</p>
 
-<h3>Tietojen CSV-vienti</h3>
+<h3>JSONL-tietojen vienti</h3>
 
 <p>Koko tietokanta on saatavilla myös <a href="https://jsonlines.org/">JSONL-muodossa</a> (joskus kutsutaan nimellä LDJSON tai NDJSON), jossa jokainen rivi on JSON-objekti. Se edustaa samoja tietoja kuin MongoDB-vienti. Tiedosto on pakattu gzip:llä.</p>
 
@@ -58,17 +58,17 @@ Ne saattavat sisältää tekijänoikeuden tai muun oikeuden alaisia graafisia el
 
 <h3>Parkettitietojen vienti Hugging Face -sovellukseen</h3>
 
-<p>A simplified version of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.</p>
+<p>JSONL dump -toiminnon yksinkertaistettu versio on saatavilla myös <a href="https://parquet.apache.org/">parkettimuodossa</a>. Tämän muutoksen aikana olemme suodattaneet sarakkeita, jotka sisältävät monistettua tietoa, ovat merkityksettömiä käyttäjille tai joita käytetään virheidenkorjaukseen.</p>
     
-<p>The Parquet format has proved to be handy:<p> 
+<p>Parkettimuoto on todistetusti hyödyllinen:<p> 
 
 <ul>
-<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
-<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
-<li>Supports complex data types and advanced nested data structures.</li>
+<li>Dataa ei säilytetä riveillä vaan sarakkeissa, mikä säästää tallennustilaa ja nopeuttaa analytiikkakyselyitä. Tämä tarkoittaa sitä, että voit yksinkertaisesti valita haluamasi sarakkeet, mikä parantaa kyselyiden suorituskykyä jopa perustason tietokoneilla.</li>
+<li>Hyvin tekohas datan pakkaus ja purku, mikä tekee siitä hyvän paikan kaikenlaisten tietopakettien varastoinnille ja jakamiselle,</li>
+<li>Tukee monimutkaisia datatyyppejä ja edistyneitä sisäkkäisiä tietorakenteita.</li>
 </ul>
 
-<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
+<p>Tämä datapaketti on saatavilla sivustolla <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, joka on yhteistyöhön ja koneoppimiseen perustuva järjestelmä, jossa kehittäjät ja tutkijat voivat jakaa malleja ja dataa.</p>
 
 <dl>
  <dt>Linkki</dt>
