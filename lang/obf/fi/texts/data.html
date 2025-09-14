@@ -56,7 +56,7 @@ Ne saattavat sisältää tekijänoikeuden tai muun oikeuden alaisia graafisia el
 <p>Voit hyödyntää tietokantaa DuckDB:llä, joka on prosessinsisäinen analyyttinen työkalu, joka on suunniteltu käsittelemään suuria määriä dataa sekunnin murto-osassa. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Beauty Facts database with DuckDB</p>
 
 
-<h3>Tietojen CSV-vienti</h3>
+<h3>Parkettitietojen vienti Hugging Face -sovellukseen</h3>
 
 <p>A simplified version of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.</p>
     
@@ -102,9 +102,9 @@ Ne saattavat sisältää tekijänoikeuden tai muun oikeuden alaisia graafisia el
 
 
 
-<h2 class="emphasized-title">OpenAPI Documentation for the JSON API</h2>
+<h2 class="emphasized-title">Live JSON ja XML API</h2>
 
-<p>Myös JSON API on saatavilla tuotteen tietojen lukemiseen. Tätä API:ta käytetään erityisesti Open Beauty Facts -mobiilisovelluksessa iPhonelle ja Androidille.</p>
+<p>JSON API on myös saatavilla tuotteen tietojen lukemiseen. Tätä API:ta käytetään erityisesti Open Beauty Facts -mobiilisovelluksessa iPhonelle ja Androidille.</p>
 
 <p>Parannamme ohjelmointirajapintaa ajan myötä, mutta huolehdimme yhteensopivuudesta aiempien versioiden kanssa. Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Beauty%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
 
@@ -119,7 +119,7 @@ Ne saattavat sisältää tekijänoikeuden tai muun oikeuden alaisia graafisia el
  </li>
 </ul>
 <h3 class="emphasized-title">Kokeellinen XML API</h3>
-We're eager to finish the documentation of the API, add use-cases, and automate SDK generation. If you are an OpenAPI connoisseur, you are very welcome to help.
+Pyrimme saamaan valmiiksi API:n dokumentaation, lisäämään käyttökokemusta ja automatisoimaan SDK-generaatiota. Jos olet OpenAPI-asiantuntija, olet hyvin tervetullut auttamaan.
 <!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
  <a href="https://wiki.openfoodfacts.org/API">API V1- Old documentation available on the Wiki</a> (Important note: the page is divided into subpages for READ and WRITE). 
@@ -129,21 +129,18 @@ We're eager to finish the documentation of the API, add use-cases, and automate 
  </li>
 -->
 
-<p>You are very welcome to use the API for production cases, as long as 1 API call = 1 real scan by a user.
-Any attempt to scrape the database using the API will very likely be blocked, as full daily exports are available on this very page.</p>
-<p>Also, sending an HTTP header with your API call is a good way we can get in touch, should any issue arise.</p>
+<p>Voit käyttää API:a tuotantotapauksia varten, kunhan yksi API-kutsu edellyttää yhtä aitoa skannausta käyttäjän toimesta.
+Kaikki yritykset tietokannan kopioimiseksi API:n avulla todennäköisesti estetään, koska kaikki päivittäiset tietoviennit ovat saatavilla tällä sivulla.</p>
+<p>Tämän lisäksi HTTP-päätteen lähettäminen API-soiton yhteydessä on hyvä tapa ottaa meihin yhteyttä, jos ilmenee ongelmia.</p>
 <p>Voit <a href="https://slack.openfoodfacts.org">liittyä Open Food Facts Slack -keskusteluryhmään, joka on ensisijainen tapa kysyä kysymyksiä ja keskustella API:sta</a>.</p>
 
 <h3 class="emphasized-title">Yleiset periaatteet käyttäjien ilahduttamiseksi</h3>
-<p>The code for the official Open Food Facts mobile apps is available on GitHub
- <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
+<p>Tulokset saa myös XML-muodossa päätteellä <code>.xml</code></p>
 <p>Example: <a href="https://world.openbeautyfacts.org/api/v2/product/737628064502.xml">https://world.openbeautyfacts.org/api/v2/product/737628064502.xml</a></p>
-Tätä API:ta ei ylläpidetä aktiivisesti, eikä sitä ole dokumentoitu virallisesti.
+Tätä API:a ei ylläpidetä aktiivisesti, eikä sitä ole dokumentoitu virallisesti.
 
 
-<h2 class="emphasized-title">Kääreet ja SDK</h2>
+<h2 class="emphasized-title">Kääreet ja SDK:t</h2>
 <p>Meillä on todennäköisesti kääre lempiohjelmointikielellesi. Jos on, voit käyttää ja parantaa sitä. Jos ei ole, voit auttaa luomaan sen.</p>
 <p>Voit uudelleen käyttää koodia (se on avointa lähdekoodia), ja auttaa meitä parantamaan sitä, kaikille, koko planeetalla.</p>
 
