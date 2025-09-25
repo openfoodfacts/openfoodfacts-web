@@ -50,7 +50,7 @@ That way for deployment, we can just copy `/lang` and `/html` to `/srv/off/` and
 
 ### On docker
 
-See [openfoodfacts-server:docs/how-to-guides/using-pages-from-openfoodfacts-web.md](https://github.com/openfoodfacts/openfoodfacts-server/blob/main/docs/how-to-guides/using-pages-from-openfoodfacts-web.md)
+See [openfoodfacts-server:docs/dev/how-to-quick-start-guide.md#using-pages-from-openfoodfacts-web](https://github.com/openfoodfacts/openfoodfacts-server/blob/main/docs/dev/how-to-quick-start-guide.md#using-pages-from-openfoodfacts-web)
 
 And that's it! That would be already be enough of a big change for a first step. Then we can have a look at what we have in `/html/` to see what we should move, one by one.
 
