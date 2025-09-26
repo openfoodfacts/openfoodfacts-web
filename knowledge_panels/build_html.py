@@ -125,6 +125,7 @@ def build_content_from_file(
         "categories",
         "ingredients",
         "nutrients",
+        "nova_groups",
     ):
         logger.info("Ignoring file %s: unknown tag type %s", file_path, tag_type)
         return
