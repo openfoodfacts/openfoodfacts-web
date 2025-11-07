@@ -1,75 +1,327 @@
-<h1>Installer l'application mobile Open Products Facts</h1>
-
-<p>Pour scanner des produits non-alimentaires et non-cosmétiques, comme les livres, les DVDs ou les produits de nettoyage, installez notre application gratuite Open Products Facts !</p>
-
-<a href="https://apps.apple.com/app/open-food-facts/id588797948"><img src="https://static.openfoodfacts.org/images/misc/appstore/black/appstore_FR.svg" alt="Disponible sur l'App Store" width="120" height="40" /></a>
-
-<a href="https://play.google.com/store/apps/details?id=org.openproductsfacts.scanner&hl=fr"><img src="https://static.openfoodfacts.org/images/misc/google-play-badge-svg-master/img/fr_get.svg" alt="Disponible sur Google Play" width="102" height="40" /></a>
-
-<a href="https://github.com/openfoodfacts/smooth-app/releases/latest"><img src="https://static.openfoodfacts.org/images/misc/android-apk.svg" loading="lazy" alt="APK Android" /></a>
-
-<br><br>
-
-<p>Vous pouvez aussi ajouter de nouveaux produits à Open Products Facts et contribuer au bien commun pour toutes sortes d'utilisations. Merci !</p>
-
-<div class="panel callout">
-
-<h2>Voir les dernières fonctionnalités</h2>
-<p><b>Janvier 2021 :</b><a href="https://fr.blog.openfoodfacts.org/news/lancement-de-l-eco-score-la-note-environnementale-des-produits-alimentaires"> L'Eco-Score est ajouté à l'application, initialement en France (annonce en français)</a></p>
-<p><b>Septembre 2020 :</b> <a href="https://fr.blog.openfoodfacts.org/news/la-rentree-d-open-food-facts-en-6-actualites">Mode sombre, intelligence artificielle, détection de produits végétariens, végétaliens et à base d'huile de palme, et contributions hors ligne (annonce en français)</a></p>
-<p><b>Juin 2019 :</b> <a href="https://en.blog.openfoodfacts.org/news/the-new-open-food-facts-app-to-better-decipher-labels-and-participate-in-the-common-good">Nouvelles applications mobiles Open Food Facts pour iPhone et Android</a><br>
-Nouvelles fonctionnalités : scan continu, mode hors ligne, comparaison de produits, listes, historique illimité et plus encore !
-</p>
-<p><b>2012 :</b> <a href="https://fr.blog.openfoodfacts.org/news/application-mobile-open-food-facts-pour-android">Lancement de l'application mobile Open Food Facts, la toute première application collaborative de scan de produits alimentaires.</a>
-</p>
-</div>
-
-<!-- TODO Translate images to your language. Ask @teolemon for the SVG file-->
-<div class="row">
-<div class="small-12 medium-12 large-6 columns">
-<img src="https://static.openfoodfacts.org/images/misc/app_mobile_juin_2019_nouvelle_version_1920x1080_menu.jpg" alt="Application mobile Open Food Facts">
-
-</div>
-<div class="small-12 medium-12 large-6 columns">
-
-<img src="https://static.openfoodfacts.org/images/misc/crowdsourcing/app_ios_2019_3_screens_en.png" alt="Essayez la nouvelle application mobile Open Food Facts">
-</div>
-</div>
-
-<!-- DO NOT translate after this line -->
-
-<scripts>
+<style type="text/css">#install_the_app_block, .donation-banner-footer, .offdays-banner {display: none;} #main_column {padding-bottom: 0;}</style>
 <script>
-function getMobileOperatingSystem() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    // You can change the URLs to one that works in your language. If you are unsure, do not touch anything
+    const googlePlayURL = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en";
+    const appleStoreURL = "https://apps.apple.com/app/open-food-facts/id588797948";
+    const microsoftStoreURL = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
 
-    if (/android/i.test(userAgent)) {
-        return "Android";
+    function getMobileOperatingSystem() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+          // Windows Phone must come first because its UA also contains "Android"
+        if (/windows phone/i.test(userAgent)) {
+            return "Windows Phone";
+        }
+    
+        if (/android/i.test(userAgent)) {
+            return "Android";
+        }
+    
+        // iOS detection from: https://stackoverflow.com/a/9039885/177710
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "iOS";
+        }
+    
+        return "unknown";
     }
 
-    // iOS detection from: https://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return "iOS";
+    // Function to extract UTM parameters from a URL
+    function extractUTMParameters(url) {
+        var utmParams = new URLSearchParams(url.search);
+        var utmParamObject = {};
+
+        for (var pair of utmParams.entries()) {
+            var paramName = pair[0];
+            var paramValue = pair[1];
+            if (paramName.startsWith('utm_')) {
+                utmParamObject[paramName] = paramValue;
+            }
+        }
+
+        return utmParamObject;
     }
 
-    return "unknown";
-}</script>
+    // Add UTM parameters extracted from current URL to `targetURL`
+    function addUTMParameters(targetURL) {
+        // Create URL objects for the current URL and target URL
+        var currentURLObject = new URL(window.location.href);
+        var targetURLObject = new URL(targetURL);
 
-<!-- You can change the URLs to one that works in your language. If you are unsure, do not touch anything -->
+        // Extract UTM parameters from the current URL
+        var utmParameters = extractUTMParameters(currentURLObject);
+        var targetUtmParameters = extractUTMParameters(targetURLObject);
 
-<script>
-function DetectAndServe(){
+        if (Object.keys(utmParameters).length) {
+            // Delete existing UTM parameters of target URL 
+            for (var paramName in targetUtmParameters) {
+                if (targetUtmParameters.hasOwnProperty(paramName)) {
+                    targetURLObject.searchParams.delete(paramName);
+                }
+            }
 
-if (getMobileOperatingSystem() == "Android") {
-    window.location.href = "https://play.google.com/store/apps/details?id=org.openproductsfacts.scanner&hl=en";
+            // Add UTM parameters to the target URL
+            for (var paramName in utmParameters) {
+                if (utmParameters.hasOwnProperty(paramName)) {
+                    var paramValue = utmParameters[paramName];
+                    targetURLObject.searchParams.append(paramName, paramValue);
+                }
+            }
+        } else {
+            targetURLObject.searchParams.append("utm_source", "opf");
+            targetURLObject.searchParams.append("utm_campaign", "app-landing-page");
+            targetURLObject.searchParams.append("utm_medium", "website");
+        }
+        return targetURLObject.href;
     }
-if (getMobileOperatingSystem() == "iOS") {
-    window.location.href = "https://apps.apple.com/app/open-food-facts/id588797948";
+
+    // redirect to Google Play Store, Apple store, etc. if we detect
+    // specific User-Agent 
+    function redirectToStore() {
+        const currentURL = new URL(window.location.href);
+        if (new URLSearchParams(currentURL.search).get("redirect") == "0") {
+            // don't redirect if redirect=0 in query parameters
+            return;
+        }
+
+        const operatingSystem = getMobileOperatingSystem();
+        if (operatingSystem == "Android") {
+            window.location.href = addUTMParameters(googlePlayURL);
+        }
+        else if (operatingSystem == "iOS") {
+            window.location.href = addUTMParameters(appleStoreURL);
+        }
+        else if (operatingSystem == "Windows Phone") {
+            window.location.href = addUTMParameters(microsoftStoreURL);
+        }
     }
-};
-DetectAndServe();
+    redirectToStore();
 </script>
-</scripts>
-
-<initjs>
-</initjs>
+<div id="app-landing-page">
+    <div id="download-app-block" class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Fais des choix durables pour
+                    <span class="highlight-label yellow rotate-left">toi</span>
+                    et la
+                    <span class="highlight-label blue rotate-right">planète</span>
+                </h1>
+                <p>Découvre l'impact environnemental de tes produits du quotidien !</p>
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=fr" title="Open Food Facts sur Google Play">
+                <img
+                    src="/images/misc/playstore/img/fr_get.svg"
+                    alt="Disponible sur Google Play"
+                    width="120"
+                    height="40"
+                ></a>
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts sur l'App Store d'Apple">
+                <img
+                    src="/images/misc/appstore/black/appstore_FR.svg"
+                    alt="Disponible sur l'App Store"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+            <div class="small-12 medium-6 medium-offset-1 column">
+                <img src="/images/illustrations/scale-ecoscore-nutriscore.svg" alt="Une échelle représentant l'équilibre entre impact environnemental et impact du produit" style="max-height: 250px">
+            </div>
+        </div>
+        <div class="row show-for-large-up" style="padding-top: 4rem; text-align: center">
+            <div class="small-3 small-centered column">
+                <p>Pas sur votre mobile ? Scannez ce QR code depuis votre mobile pour télécharger l'application !</p>
+                <img src="/images/misc/app-landing-page/qrcode_en.svg" width="180" height="180" alt="QR-Code reliant à https://world.openfoodfacts.org/open-food-facts-mobile-app">
+            </div>
+        </div>
+    </div>
+    <div class="block block-seashell" id="app-card-block">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="/images/misc/app-landing-page/mobile-app-preview/mobile-app-preview_en.svg" alt="Application mobile Open Food Facts">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Scanne les produits pour préserver
+                    <span class="highlight-label dark-orange rotate-right">tes valeurs</span>
+                </h1>
+                <p class="paragraph-top-margin">L'application Open Food Facts t'aide à faire des choix éclairés pour tes produits du quotidien. Bien qu'elle soit principalement faite pour la nourriture, tu peux également scanner d'autres produits, notamment ceux qui ont des données d'impact environnemental, un indice de réparabilité, et des informations de composition.</p>
+                <p>Définis tes préférences personnelles pour avoir de meilleures recommandations qui correspondent à tes objectifs sur le long terme.</p>
+            </div>
+        </div>
+    </div>
+    <div class="block block-yellow">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Scanne les produits pour
+                    <span class="highlight-label orange rotate-left">prendre du recul</span>
+                </h1>
+                <p class="paragraph-top-margin">Ouvre l'application Open Food Facts et scanne les codes-barres autour de toi !</p>
+                <p>Scannez les appareils électroniques, les appareils électroménagers et autres objets du quotidien pour découvrir leur impact environnemental et leurs caractéristiques de durabilité.</p>
+            </div>
+            <div class="small-12 medium-3 medium-offset-1 end column">
+                <img src="/images/illustrations/app-barcode-scan.png" alt="Un code-barres en cours de scan" style="max-height: 200px;">
+            </div>
+        </div>
+    </div>
+    <div class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-5 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Découvre l'impact environnemental sur la
+                    <span class="highlight-label blue rotate-right">planète</span>
+                </h1>
+                <p class="paragraph-top-margin">Découvre le bilan carbone de tes produits et fais des choix éclairés pour ton empreinte environnementale.</p>
+                <p>Apprends-en sur les émissions de carbone, la composition des matériaux, les symboles de recyclage et l’efficacité énergétique de tes objets du quotidien. Open Products Facts t'aide à comprendre l'empreinte environnementale des choses que tu achètes.</p>
+            </div>
+            <div class="small-12 medium-6 end column">
+                <img
+                    src="/images/illustrations/app-planet-pizza.svg"
+                    alt="Visualisation de l'impact environnemental"
+                    style="max-height: 250px"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="block block-light-green">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="https://static.openproductsfacts.org/images/lang/fr/labels/indice-de-reparabilite-7-3.152x90.svg" alt="Indice de réparabilité" style="max-height: 200px">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Soutiens une
+                    <span class="highlight-label dark-green rotate-right">économie circulaire</span>
+                </h1>
+                <p class="paragraph-top-margin">Vérifie l'indice de réparabilité de tes appareils électroniques et électroménagers. Choisis des produits réparables plutôt que des produits remplaçables.</p>
+                <p>En comprenant les matériaux utilisés et les options de réparation existantes, tu pourras faire des choix durables qui visent à réduire le nombre de déchets.</p>
+            </div>
+        </div>
+    </div>
+    <div class="block block-white">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="/images/illustrations/health-cereals-magnifier.svg" alt="Une loupe au-dessus d'une boîte de céréales et un logo Nutri-Score" style="max-height: 200px">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Mais aussi et surtout, scanne
+                    <span class="highlight-label dark-green rotate-right">tes produits alimentaires</span>
+                </h1>
+                <p class="paragraph-top-margin">Au-delà des produits non alimentaires, l'application est surtout faite pour t'aider à comprendre ce que tu manges. Déchiffre les ingrédients, les informations nutritionnelles et affiche directement le Nutri-Score et l'Eco-Score de tes produits.</p>
+                <p>Fais des choix bons pour la santé et pour la planète.</p>
+                <a class="button round secondary small" href="/nutriscore">En savoir plus sur le Nutri-Score</a>
+            </div>
+        </div>
+    </div>
+    <div class="block block-seashell">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                 <img src="/images/logos/obf-logo-icon-light.svg" alt="Illustration de produits cosmétiques" style="max-height: 200px" loading="lazy">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Comprendre vos
+                    <span class="highlight-label blue rotate-left">Cosmétiques</span>
+                </h1>
+                <p class="paragraph-top-margin">Scannez les produits cosmétiques pour déchiffrer leur liste d'ingrédients (INCI). Identifiez les allergènes, les produits végétaliens, végétariens ou sans huile de palme.</p>
+                <p>Faites des choix éclairés concernant les produits de beauté que vous utilisez au quotidien.</p>
+                <a class="button round secondary small" href="https://world-fr.openbeautyfacts.org/">En savoir plus sur Open Beauty Facts</a>
+            </div>
+        </div>
+    </div>
+    <div class="block block-yellow">
+        <div class="row">
+            <div class="small-12 medium-5 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Choisissez le meilleur pour vos
+                    <span class="highlight-label pink rotate-right">Animaux</span>
+                </h1>
+                <p class="paragraph-top-margin">Scannez les aliments pour animaux de compagnie pour comprendre leur composition et leur qualité nutritionnelle.</p>
+                <p>Trouvez des produits adaptés aux besoins et aux préférences spécifiques de votre animal, en vous assurant qu'il reçoit la bonne alimentation.</p>
+                 <a class="button round secondary small" href="https://world-fr.openpetfoodfacts.org/">En savoir plus sur Open Pet Food Facts</a>
+            </div>
+            <div class="small-12 medium-6 end column">
+                 <img src="/images/logos/opff-logo-icon-light.svg" alt="Illustration de nourriture pour animaux de compagnie et d'un animal heureux" style="max-height: 250px" loading="lazy">
+            </div>
+        </div>
+    </div>
+    <div class="block block-white">
+        <div class="row" id="join-food-revolution-row">
+            <div class="small-12 medium-4 medium-offset-2 column">
+                <img
+                    src="/images/misc/app-landing-page/join-the-food-revolution/join-the-food-revolution_fr.svg"
+                    alt="Rejoins le mouvement"
+                    style="max-height: 180px"
+                    loading="lazy"
+                >
+                <p class="paragraph-top-margin">Avec plus de 170 000 contributeurs dans le monde !</p>
+            </div>
+            <div class="small-12 medium-4 end column">
+                <div class="testimonial-card">
+                    <p>« J'adore cette appli !! Je l'utilise presque tous les jours. Elle m'aide à trouver des produits qui me conviennent vraiment ! »</p>
+                    <p>
+                        <strong>Louise</strong>
+                    </p>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <img
+                        src="/images/misc/app-landing-page/store-review-rating.svg"
+                        loading="lazy"
+                        alt="Note sur Google Play Store et Apple Store"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-7 medium-offset-5 column">
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=fr" title="Open Food Facts sur Google Play">
+                <img
+                    src="/images/misc/playstore/img/fr_get.svg"
+                    loading="lazy"
+                    alt="Disponible sur Google Play"
+                    width="120"
+                    height="40"
+                ></a>
+                <a href="https://f-droid.org/packages/openfoodfacts.github.scrachx.openfood" title="Open Food Facts sur F-Droid">
+                <img
+                    src="/images/misc/f-droid/get-it-on-fr.png"
+                    loading="lazy"
+                    alt="Disponible sur F-Droid"
+                    height="40"
+                    width="120"
+                ></a>
+                <a href="https://github.com/openfoodfacts/smooth-app/releases/latest" title="Application Open Food Facts sur Github">
+                <img
+                    src="/images/misc/app-landing-page/download-apk/download-apk_en.svg"
+                    loading="lazy"
+                    alt="Téléchargez l'APK"
+                    height="40"
+                    width="120"
+                ></a>
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts sur l'App Store d'Apple">
+                <img
+                    src="/images/misc/appstore/black/appstore_FR.svg"
+                    loading="lazy"
+                    alt="Disponible sur l'App Store"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+        </div>
+        <img
+            src="/images/illustrations/puzzle.svg"
+            alt="Un puzzle avec une main"
+            class="puzzle-illustration show-for-large-up"
+            loading="lazy"
+        >
+    </div>
+</div>
+<script>
+    document.querySelectorAll('[data-app-store="google"]').forEach((item) => {
+        item.href = addUTMParameters(googlePlayURL);
+    });
+    document.querySelectorAll('[data-app-store="apple"]').forEach((item) => {
+        item.href = addUTMParameters(appleStoreURL);
+    });
+</script>
