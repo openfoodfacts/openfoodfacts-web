@@ -27,8 +27,8 @@ sub check_repetitions {
     
     # Pattern 1: Same substantial text appearing 2+ times consecutively with space/newline between
     # Looking for patterns like "Text Text" or "Text Text Text"
-    my $min_len = 15;
-    while ($content =~ /([^\s<>]{$min_len,}[^<>]{0,50}?)\s+\1/g) {
+    my $min_len = 20;
+    while ($content =~ /([^\n<]{$min_len,}?)\s+\1/g) {
         my $match = $1;
         
         # Skip pure HTML tags and structural elements
