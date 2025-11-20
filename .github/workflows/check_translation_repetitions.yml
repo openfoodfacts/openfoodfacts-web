@@ -1,0 +1,64 @@
+name: Check Translation Repetitions
+
+on:
+  push:
+    paths:
+      - 'lang/**/*.html'
+  pull_request:
+    paths:
+      - 'lang/**/*.html'
+
+jobs:
+  check-repetitions:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for better diffs
+      
+      - name: Set up Perl
+        run: |
+          perl --version
+      
+      - name: Check for text repetitions in translation files
+        run: |
+          # Make script executable
+          chmod +x scripts/check_translation_repetitions.pl
+          
+          # If this is a PR, only check changed files
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "Checking only changed files in PR..."
+            CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep '\.html$' | grep '^lang/' || true)
+            
+            if [ -z "$CHANGED_FILES" ]; then
+              echo "No translation HTML files changed in this PR."
+              exit 0
+            fi
+            
+            echo "Changed files:"
+            echo "$CHANGED_FILES"
+            echo ""
+            
+            # Run check on changed files
+            ./scripts/check_translation_repetitions.pl $CHANGED_FILES
+          else
+            # For push events, check all files
+            echo "Checking all translation files..."
+            ./scripts/check_translation_repetitions.pl
+          fi
+      
+      - name: Add comment with instructions on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            if (context.eventName === 'pull_request') {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: '## ❌ Translation Repetition Check Failed\n\nThe automated check detected repeated text in some translation files. This usually happens when:\n- Text is accidentally duplicated during translation in Crowdin\n- The same phrase appears multiple times consecutively\n\nPlease review the check output above and remove the duplicate text from the affected files.\n\n**Example of what to fix:**\n```html\n<!-- ❌ Before (incorrect - text repeated) -->\n<p>¿Preguntas o comentarios? ¿Preguntas o comentarios? Questions or comments?</p>\n\n<!-- ✅ After (correct) -->\n<p>¿Preguntas o comentarios? Reach out on Slack...</p>\n```\n\nIf you believe this is a false positive, please tag @teolemon for review.'
+              });
+            }
