@@ -20,7 +20,7 @@ jobs:
     concurrency: off-net
     steps:
     - name: Checkout git repository
-      uses: appleboy/ssh-action@v1.2.3
+      uses: appleboy/ssh-action@v1.2.4
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
@@ -40,7 +40,7 @@ jobs:
           git checkout -qf ${{ github.sha }}
     # we need to restart staging backend to see deployed changes
     - name: Restart staging backend
-      uses: appleboy/ssh-action@v1.2.3
+      uses: appleboy/ssh-action@v1.2.4
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
