@@ -4,241 +4,246 @@
 	
 
 
-<h1>Guide for producers</h1>
+<h1>Οδηγός για παραγωγούς</h1>
 
-<p>This guide explains why and how producers can directly integrate photos and product data into the Open Food Facts database.</p>
+<p>Αυτός ο οδηγός εξηγεί γιατί και πώς οι παραγωγοί μπορούν να ενσωματώσουν
+        απευθείας φωτογραφίες και δεδομένα προϊόντων στη βάση δεδομένων του Open
+        Food Facts.</p>
 
 <ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#pourquoi_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">Why add your product data to Open Food Facts</a></li>
+<li><a href="#pourquoi_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">Γιατί να προσθέσετε τα δεδομένα των προϊόντων σας στο Open Facts</a></li>
 <ul>
-<li><a href="#exemples_de_producteurs_qui_transmettent_les_photos_et_donnees_de_leurs_produits_a_open_food_facts">Examples of producers who submit photos and product data to Open Food Facts</a></li>
+<li><a href="#exemples_de_producteurs_qui_transmettent_les_photos_et_donnees_de_leurs_produits_a_open_food_facts">Παραδείγματα παραγωγών που υποβάλλουν φωτογραφίες και δεδομένα προϊόντων στο Open Food Facts</a></li>
 </ul>
-<li><a href="#comment_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">How to add data for your products in Open Food Facts</a></li>
+<li><a href="#comment_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">Πώς να προσθέσετε δεδομένα για τα προϊόντα σας στο Open Facts</a></li>
 <ul>
-<li><a href="#licence">Licence</a></li>
-<li><a href="#quelles_donnees">What data ?</a></li>
+<li><a href="#licence">Άδεια</a></li>
+<li><a href="#quelles_donnees">Ποια δεδομένα;</a></li>
 <ul>
-<li><a href="#une_base_dans_toutes_les_langues">A database in all languages</a></li>
-<li><a href="#photos_et_donnees">Photos and Data</a></li>
+<li><a href="#une_base_dans_toutes_les_langues">Μια βάση δεδομένων σε όλες τις γλώσσες</a></li>
+<li><a href="#photos_et_donnees">Φωτογραφίες και Δεδομένα</a></li>
 </ul>
-<li><a href="#ajout_manuel">Manual addition</a></li>
-<li><a href="#ajout_automatise">Automated addition</a></li>
+<li><a href="#ajout_manuel">Χειροκίνητη προσθήκη</a></li>
+<li><a href="#ajout_automatise">Αυτοματοποιημένη προσθήκη</a></li>
 <ul>
-<li><a href="#format_des_images">Picture format</a></li>
+<li><a href="#format_des_images">Μορφή εικόνας</a></li>
 <ul>
-<li><a href="#format_des_fichiers_images">Format of image files</a></li>
-<li><a href="#nom_des_fichiers_images">Name of the image files</a></li>
+<li><a href="#format_des_fichiers_images">Μορφή αρχείων εικόνας</a></li>
+<li><a href="#nom_des_fichiers_images">Ονομασία αρχείων εικόνας</a></li>
 </ul>
-<li><a href="#format_des_donnees">Data format</a></li>
+<li><a href="#format_des_donnees">Μορφή δεδομένων</a></li>
 <ul>
-<li><a href="#champs_obligatoires">Required fields</a></li>
-<li><a href="#champs_optionnels">Optional fields</a></li>
+<li><a href="#champs_obligatoires">Υποχρεωτικά πεδία</a></li>
+<li><a href="#champs_optionnels">Προαιρετικά πεδία</a></li>
 </ul>
-<li><a href="#envoi_des_photos_et_des_donnees">Sending photos and data</a></li>
+<li><a href="#envoi_des_photos_et_des_donnees">Αποστολή φωτογραφιών και δεδομένων</a></li>
 </ul>
 </ul>
 <li><a href="#questions_frequentes">Συχνές Ερωτήσεις</a></li>
 <ul>
-<li><a href="#est_ce_que_le_referencement_des_produits_est_gratuit">Is the listing of products free?</a></li>
-<li><a href="#les_donnees_des_producteurs_vont_elles_ecraser_les_donnees_saisies_par_les_contributeurs">Will producer data overwrite data entered by contributors?</a></li>
-<li><a href="#est_il_possible_de_supprimer_les_produits_qui_ne_sont_plus_vendus">Is it possible to delete products that are no longer sold?</a></li>
-<li><a href="#est_ce_que_les_produits_pour_animaux_les_produits_non_alimentaires_les_cosmetiques_et_les_autres_produits_peuvent_etre_integres_a_open_food_facts">Can animal products, non-food products, cosmetics and other products be integrated into Open Food Facts?</a></li>
+<li><a href="#est_ce_que_le_referencement_des_produits_est_gratuit">Είναι δωρεάν η καταχώριση των προϊόντων;</a></li>
+<li><a href="#les_donnees_des_producteurs_vont_elles_ecraser_les_donnees_saisies_par_les_contributeurs">Θα αντικαταστήσουν τα δεδομένα των παραγωγών που εισήγαγαν οι συνεισφέροντες;</a></li>
+<li><a href="#est_il_possible_de_supprimer_les_produits_qui_ne_sont_plus_vendus">Είναι δυνατή η διαγραφή προϊόντων που δεν πωλούνται πλέον;</a></li>
+<li><a href="#est_ce_que_les_produits_pour_animaux_les_produits_non_alimentaires_les_cosmetiques_et_les_autres_produits_peuvent_etre_integres_a_open_food_facts">Μπορούν να ενσωματωθούν στο Open Food Facts ζωικά προϊόντα, μη εδώδιμα προϊόντα, καλλυντικά και άλλα;</a></li>
 </ul>
 </ul>
 
 <h2 id="introduction">Introduction</h2>
 
-<p>The photos and data on the food products referenced in the Open Food Facts database come from 2 sources:</p>
+<p>Οι φωτογραφίες και τα δεδομένα για τα τρόφιμα που αναφέρονται στη βάση δεδομένων Open Food Facts προέρχονται από 2 πηγές:</p>
 <ul>
-<li>crowdsourcing through mobile apps and the Open Food Facts website: contributors scan barcodes, send product photos, ingredient lists and nutrition charts and then enter the data in a structured way.</li>
-  <li>the addition of data directly from the producers, either manually or automatically.</li>
+<li>πληθοπορισμός μέσω εφαρμογών για κινητά και του ιστότοπου Open Food Facts: οι συνεισφέροντες σαρώνουν γραμμωτούς κώδικες, στέλνουν φωτογραφίες προϊόντων, λίστες συστατικών και διατροφικούς πίνακες και στη συνέχεια εισάγουν τα δεδομένα με δομημένο τρόπο.</li>
+  <li>προσθήκη δεδομένων απευθείας από τους παραγωγούς, είτε χειροκίνητα είτε αυτόματα.</li>
 </ul>
 
 
-<h2 id="pourquoi_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">Why add product data to Open Food Facts</h2>
-<p>There are many benefits to importing date directly from manufacturers:</p>
+<h2 id="pourquoi_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">Γιατί να προσθέσετε δεδομένα προϊόντων στο Open Food Facts</h2>
+<p>Υπάρχουν πολλά οφέλη από την εισαγωγή δεδομένων απευθείας από τους κατασκευαστές:</p>
 
 <ul>
-<li>The data is complete, up to date, and without risk of error.</li>
-<li>The photos are of better quality than the photos taken by the contributors in very variable conditions.</li>
-<li>The data is then available in more than 100 applications.</li>
-<li>You can easily obtain statistics about your products and export the data of your products supplemented by indicators calculated by Open Food Facts such as the Nutri-Score.</li>
+<li>Τα δεδομένα είναι πλήρη, ενημερωμένα και χωρίς κίνδυνο λάθους.</li>
+<li>Οι φωτογραφίες είναι καλύτερης ποιότητας από τις φωτογραφίες που τραβούν οι συνεισφέροντες σε πολύ μεταβλητές συνθήκες.</li>
+<li>Τα δεδομένα είναι στη συνέχεια διαθέσιμα σε περισσότερες από 100 εφαρμογές.</li>
+<li>Μπορείτε εύκολα να λάβετε στατιστικά στοιχεία για τα προϊόντα σας και να εξάγετε τα δεδομένα των προϊόντων σας συμπληρωμένα με δείκτες που υπολογίζονται από το Open Food Facts, όπως το Nutri-Score.</li>
 </ul>
   
   
-<h3 id="exemples_de_producteurs_qui_transmettent_les_photos_et_donnees_de_leurs_produits_a_open_food_facts">Examples of producers who submit photos and product data to Open Food Facts</h3>
+<h3 id="exemples_de_producteurs_qui_transmettent_les_photos_et_donnees_de_leurs_produits_a_open_food_facts">Παραδείγματα παραγωγών που υποβάλλουν φωτογραφίες και δεδομένα προϊόντων στο Open Food Facts</h3>
 
-<p>A growing number of high level French producers are sending us the data of their products: Fleury Michon, Sodebo, System U, Carrefour, Casino, Franprix, Monoprix.</p>
+<p>Ένας αυξανόμενος αριθμός παραγωγών υψηλού επιπέδου στη Γαλλία μάς στέλνουν τα δεδομένα των προϊόντων τους: Fleury Michon, Sodebo, System U, Carrefour, Casino, Franprix, Monoprix.</p>
 
-<h2 id="comment_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">How to add the data of your products in Open Food Facts</h2>
+<h2 id="comment_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">Πώς να προσθέσετε τα δεδομένα των προϊόντων σας στο Open Food Facts</h2>
 
-<h3 id="licence">Licence</h3>
+<h3 id="licence">Άδεια</h3>
   
-<p>All data sent to Open Food Facts is published under the Open Database License (ODbL), and the photos under the Creative Commons License CC-BY-SA. These licenses allow the data to be freely reusable by all and for all purposes. For more information, see the <a href="https://fr.openfoodfacts.org/conditions-d-utilisation">Terms of Use, Contribution, and Reuse.</a></p>
+<p>Όλα τα δεδομένα που αποστέλλονται στο Open Food Facts δημοσιεύονται με την Άδεια Ανοικτής Βάσης Δεδομένων (ODbL) και οι φωτογραφίες με την Άδεια Creative Commons CC-BY-SA. Αυτές οι άδειες επιτρέπουν την ελεύθερη επαναχρησιμοποίηση των δεδομένων από όλους και για όλους τους σκοπούς. Για περισσότερες πληροφορίες, ανατρέξτε στους <a href="https://fr.openfoodfacts.org/conditions-d-utilisation">Όρους Χρήσης, Συνεισφοράς και Επαναχρησιμοποίησης.</a></p>
   
-<h3 id="quelles_donnees">What data</h3>
+<h3 id="quelles_donnees">Ποια δεδομένα</h3>
 
-<p>All the data you have can be integrated into Open Food Facts: ingredients and nutritional information of course, but also labels, materials used for packaging, traceability of ingredients, instructions for preparation and recycling, ecological footprint etc.</p>
-<p>We regularly add new fields to the database based on the information on the packages or provided by the manufacturers.</p>
-We have recently added fields on the carbon footprint, and the packaging of products, which are already highlighted on Open Food Facts and in applications that help to change the behavior in terms of recycling.<p></p>
+<p>Όλα τα δεδομένα που έχετε μπορούν να ενσωματωθούν στο Open Food Facts: συστατικά και διατροφικές πληροφορίες φυσικά, αλλά και ετικέτες, υλικά που χρησιμοποιούνται για τη συσκευασία, ιχνηλασιμότητα συστατικών, οδηγίες προετοιμασίας και ανακύκλωσης, οικολογικό αποτύπωμα κλπ.</p>
+<p>Προσθέτουμε τακτικά νέα πεδία στη βάση δεδομένων με βάση τις πληροφορίες στις συσκευασίες ή αυτές που παρέχονται από τους κατασκευαστές.</p>
+Πρόσφατα προσθέσαμε πεδία για το ανθρακικό αποτύπωμα και τη συσκευασία των προϊόντων, τα οποία ήδη επισημαίνονται στο Open Food Facts και σε εφαρμογές που βοηθούν στην αλλαγή συμπεριφοράς όσον αφορά την ανακύκλωση.<p></p>
 
- <h4 id="une_base_dans_toutes_les_langues">A database in all languages</h4>
+ <h4 id="une_base_dans_toutes_les_langues">Μια βάση δεδομένων σε όλες τις γλώσσες</h4>
   
-<p>The Open Food Facts database, site and mobile applications are also fully multilingual and available in all countries. If you have photos and data in multiple languages, we can also integrate them into Open Food Facts.</p>
+<p>Η βάση δεδομένων Open Food Facts, ο ιστότοπος και οι εφαρμογές για κινητά είναι επίσης πλήρως πολυγλωσσικές και διαθέσιμες σε όλες τις χώρες. Αν έχετε φωτογραφίες και δεδομένα σε πολλές γλώσσες, μπορούμε επίσης να τα ενσωματώσουμε στο Open Food Facts.</p>
 
-<h4 id="photos_et_donnees">Photos and Data</h4>
+<h4 id="photos_et_donnees">Φωτογραφίες και Δεδομένα</h4>
 
-<p>One of the fundamental principles of Open Food Facts is that the user or contributor must be able to verify the information from a photo.</p>
-<p>We therefore ask you to send us photos of the product and packaging (possibly as a flat file of the packaging) to support the structured data you send.</p>
+<p>Μία από τις θεμελιώδεις αρχές του Open Food Facts είναι ότι ο χρήστης ή ο συνεισφέρων πρέπει να είναι σε θέση να επαληθεύσει τις πληροφορίες από μια φωτογραφία.</p>
+<p>Σας ζητούμε λοιπόν να μας στείλετε φωτογραφίες του προϊόντος και της συσκευασίας (πιθανώς ως επίπεδο αρχείο της συσκευασίας) για να υποστηρίξετε τα δομημένα δεδομένα που στέλνετε.</p>
 
-<h3 id="ajout_manuel">Manual addition</h3>
+<h3 id="ajout_manuel">Χειροκίνητη προσθήκη</h3>
 
-<p>If you have a small number of products whose formulation does not change often, you can create an account on Open Food Facts and add yourself photos and data of your products.</p>
-<p>Highly recommended method: Add photos and enter information from the <a href="https://world.openfoodfacts.org">Open Food Facts website</a> .</p>
-<p>Alternative method: Use the Android mobile application to scan and then photograph and finally enter a product completely.</p>
-<p>Thank you in advance for telling us if you add your products yourself so that we can identify your account as a producer account, and indicate that the information comes directly from your company.</p>
+<p>Εάν έχετε μικρό αριθμό προϊόντων των οποίων η σύνθεση δεν αλλάζει συχνά, μπορείτε να δημιουργήσετε έναν λογαριασμό στο Open Food Facts και να προσθέσετε μόνοι σας φωτογραφίες και δεδομένα των προϊόντων σας.</p>
+<p>Ιδιαίτερα συνιστώμενη μέθοδος: Προσθέστε φωτογραφίες και εισαγάγετε πληροφορίες από τον <a href="https://world.openfoodfacts.org">ιστότοπο Open Food Facts</a>.</p>
+<p>Εναλλακτική μέθοδος: Χρησιμοποιήστε την εφαρμογή Android για να σαρώσετε και στη συνέχεια να φωτογραφίσετε και τελικά να καταχωρίσετε πλήρως ένα προϊόν.</p>
+<p>Σας ευχαριστούμε εκ των προτέρων που μας ενημερώνετε εάν προσθέτετε τα προϊόντα σας μόνοι σας, ώστε να μπορέσουμε να αναγνωρίσουμε τον λογαριασμό σας ως λογαριασμό παραγωγού και να υποδείξουμε ότι οι πληροφορίες προέρχονται απευθείας από την εταιρεία σας.</p>
 
-<h3 id="ajout_automatise">Automated addition</h3>
+<h3 id="ajout_automatise">Αυτοματοποιημένη προσθήκη</h3>
 
-To make importing data easier and faster, we have defined a standard format for images and data:
-<h4 id="format_des_images">Picture format</h4>
+Για να κάνουμε την εισαγωγή δεδομένων ευκολότερη και ταχύτερη, έχουμε ορίσει μια τυπική μορφή για εικόνες και δεδομένα:
+<h4 id="format_des_images">Μορφή εικόνας</h4>
 
-<p>At least 3 images are required:</p>
+<p>Απαιτούνται τουλάχιστον 3 εικόνες:</p>
 <ul>
-<li>Front view of product on white background (avoid three-quarter views that do not allow visual recognition of products without barcode scanning)</li>
-<li>List of ingredients</li>
-<li>Nutritional table</li>
+<li>Μπροστινή όψη του προϊόντος σε λευκό φόντο (αποφύγετε τις όψεις τριών τετάρτων που δεν επιτρέπουν την οπτική αναγνώριση των προϊόντων χωρίς σάρωση γραμμωτού κώδικα)</li>
+<li>Λίστα συστατικών</li>
+<li>Διατροφικός πίνακας</li>
 </ul>
   
-<p>The front view, ingredients and nutrition chart must be provided in at least the main language of the product. It is recommended that you also provide images for other languages when they appear on the product.</p>
+<p>Η μπροστινή όψη, τα συστατικά και ο διατροφικός πίνακας πρέπει να παρέχονται τουλάχιστον στην κύρια γλώσσα του προϊόντος. Συνιστάται να παρέχετε επίσης εικόνες για άλλες γλώσσες όταν εμφανίζονται στο προϊόν.</p>
 
-<p>For example, a product intended for the Belgian market may have photos showing the product written in French and written in Dutch.</p>
+<p>Για παράδειγμα, ένα προϊόν που προορίζεται για τη βελγική αγορά μπορεί να έχει φωτογραφίες που δείχνουν το προϊόν γραμμένο στα γαλλικά και ολλανδικά.</p>
 
-  <p>Other images may also be included:</p>
+  <p>Μπορούν επίσης να συμπεριληφθούν και άλλες εικόνες:</p>
 <ul>
-<li>Verso and other views of the product (they allow in particular to automatically identify labels logos etc.)</li>
-<li>Flat view of the packaging</li>
+<li>Πίσω όψη και άλλες όψεις του προϊόντος (επιτρέπουν συγκεκριμένα τον αυτόματο εντοπισμό ετικετών, λογότυπων κλπ.)</li>
+<li>Επίπεδη όψη της συσκευασίας</li>
 </ul>
   
-<h5 id="format_des_fichiers_images">Format of image files</h5>
+<h5 id="format_des_fichiers_images">Μορφή αρχείων εικόνας</h5>
 <ul>
-  <li>JPEG or PNG format</li>
-  <li>Size at least 2000 pixels wide or tall</li>
+  <li>Μορφή JPEG ή PNG</li>
+  <li>Μέγεθος τουλάχιστον 2000 pixels πλάτος ή ύψος</li>
 </ul>
 
-<h5 id="nom_des_fichiers_images">Name of the image files</h5>
+<h5 id="nom_des_fichiers_images">Ονομασία αρχείων εικόνας</h5>
 
 
-<pre>[barcode]_[type of image]_[language code].[jpg or png]</pre>
+<pre>[barcode]_[τύπος εικόνας]_[κωδικός γλώσσας].[jpg ή png]</pre>
 
-  <p>For example :</p>
+  <p>Για παράδειγμα:</p>
 
-<p>3660140808750_front_en.jpg for the front image of the product whose barcode is 3660140808750</p>
+<p>3660140808750_front_en.jpg για την μπροστινή εικόνα του προϊόντος με
+        γραμμωτό κώδικα 3660140808750</p>
 
-  <p>The types of images are:</p>
+  <p>Οι τύποι εικόνων είναι:</p>
 
 <ul>
   <!-- Do not translate field names, just their description -->
-  <li>front: front image</li>
-  <li>ingredients: list of ingredients</li>
-  <li>nutrition: nutritional chart</li>
-  <li>back: version</li>
-  <li>any name you see fit (characters from a to e, no spaces) for other views</li>
+  <li>front: μπροστινή εικόνα</li>
+  <li>ingredients: λίστα συστατικών</li>
+  <li>nutrition: διατροφικός πίνακας</li>
+  <li>back: πίσω όψη</li>
+  <li>οποιοδήποτε όνομα κρίνετε κατάλληλο (χαρακτήρες από a έως e, χωρίς
+            κενά) για άλλες όψεις</li>
 </ul>
   
 
-<h4 id="format_des_donnees">Data format</h4>
+<h4 id="format_des_donnees">Μορφή δεδομένων</h4>
 
-<p>The data must be provided in a table in XLS (or CSV format, with tabulation as field separator character) and UTF-8 character encoding.</p>
-<p>The first line contains the field names, and each of the products occupies one of the following lines. The order of the fields does not matter, and not all columns need to be present.</p>
-<p>Some fields are mandatory and others are optional. We encourage you to fill in as many fields as possible so that the data can be used by as many applications as possible. If in doubt, or if you have data for which there are not yet fields in the Open Food Facts database, you can contact us so that we can add fields and make the best possible match.</p>
+<p>Τα δεδομένα πρέπει να παρέχονται σε πίνακα σε μορφή XLS (ή CSV, με
+        διαχωριστικό πεδίου το tab) και κωδικοποίηση χαρακτήρων UTF-8.</p>
+<p>Η πρώτη γραμμή περιέχει τα ονόματα των πεδίων και κάθε ένα από τα γινόμενα καταλαμβάνει μία από τις ακόλουθες γραμμές. Η σειρά των πεδίων δεν έχει σημασία και δεν χρειάζεται να υπάρχουν όλες οι στήλες.</p>
+<p>Ορισμένα πεδία είναι υποχρεωτικά και άλλα είναι προαιρετικά. Σας ενθαρρύνουμε να συμπληρώσετε όσο το δυνατόν περισσότερα πεδία, ώστε τα δεδομένα να μπορούν να χρησιμοποιηθούν από όσο το δυνατόν περισσότερες εφαρμογές. Σε περίπτωση αμφιβολίας ή εάν έχετε δεδομένα για τα οποία δεν υπάρχουν ακόμη πεδία στη βάση δεδομένων Open Food Facts, μπορείτε να επικοινωνήσετε μαζί μας, ώστε να προσθέσουμε πεδία και να κάνουμε την καλύτερη δυνατή αντιστοίχιση.</p>
 	
-If you don't already have a file with your product data, <a href="">we provide an empty template you can use</a>.
+Εάν δεν έχετε ήδη αρχείο με τα δεδομένα των προϊόντων σας, <a href="">παρέχουμε ένα κενό πρότυπο που μπορείτε να χρησιμοποιήσετε</a>.
 
-  <h5 id="champs_obligatoires">Required fields</h5>
+  <h5 id="champs_obligatoires">Υποχρεωτικά πεδία</h5>
 
 <ul>  
   <!-- Do not translate field names, just their description -->
-  <li>code: product barcode as it appears on the packaging (EAN-13, EAN-8 or other)</li>
-  <li>lang: 2-letter code of the main language (most present on the packaging) of the product (example: fr for French)</li>
-  <li>product_name_ [2-letter code of the main language]: product name (in the field product_name_en for the name in French)</li>
-  <li>generic_name_ [2-letter code of the main language]: Generic product name </li>
-  <li>brands: brands (several possible values for brands and sub-brands, to be separated by commas)</li>
-  <li>quantity: quantity, specify the unit, and possibly add in parentheses if the product contains several units (example: 120 g (4 x 30 g))</li>
-  <li>categories: product category, in the main product language (example: chocolate cakes)</li>
-  <li>countries: country where the product is sold, in the main language of the product (several possible values, to be separated by commas)</li>
-  <li>ingredients_text_ [2-letter code of the main language]: list of ingredients (in the ingredients_text_fr field for the list in French). Allergens may be indicated in CAPITAL LETTERS or between </li>
-  <li>allergens: allergens, in the main language of the product, separated by commas</li>
-  <li>traces: traces of allergens, in the main language of the product, separated by commas</li>
+  <li>code: γραμμωτός κώδικας προϊόντος όπως εμφανίζεται στη συσκευασία (EAN-13, EAN-8 ή άλλο)</li>
+  <li>lang: κωδικός 2 γραμμάτων της κύριας γλώσσας (που εμφανίζεται περισσότερο στη συσκευασία) του προϊόντος (παράδειγμα: fr για γαλλικά)</li>
+  <li>product_name_ [κωδικός 2 γραμμάτων της κύριας γλώσσας]: όνομα προϊόντος (στο πεδίο product_name_en για το όνομα στα γαλλικά)</li>
+  <li>generic_name_ [κωδικός 2 γραμμάτων της κύριας γλώσσας]: Γενική ονομασία προϊόντος </li>
+  <li>brands: μάρκες (πολλές πιθανές τιμές για μάρκες και υπο-μάρκες, διαχωρισμένες με κόμματα)</li>
+  <li>quantity: ποσότητα, προσδιορίστε τη μονάδα και πιθανώς προσθέστε σε παρένθεση εάν το προϊόν περιέχει πολλές μονάδες (παράδειγμα: 120 g (4 x 30 g))</li>
+  <li>categories: κατηγορία προϊόντος, στην κύρια γλώσσα του προϊόντος (παράδειγμα: κέικ σοκολάτας)</li>
+  <li>countries: χώρα όπου πωλείται το προϊόν, στην κύρια γλώσσα του προϊόντος (πολλές πιθανές τιμές, διαχωρισμένες με κόμματα)</li>
+  <li>ingredients_text_ [κωδικός 2 γραμμάτων της κύριας γλώσσας]: λίστα συστατικών (στο πεδίο ingredients_text_fr για τη λίστα στα Γαλλικά). Τα αλλεργιογόνα μπορούν να αναγράφονται με ΚΕΦΑΛΑΙΑ ΓΡΑΜΜΑΤΑ ή μεταξύ </li>
+  <li>allergens: αλλεργιογόνα, στην κύρια γλώσσα του προϊόντος, διαχωρισμένα με κόμματα</li>
+  <li>traces: ίχνη αλλεργιογόνων, στην κύρια γλώσσα του προϊόντος, διαχωρισμένα με κόμματα</li>
 </ul>
 
-<p>Among the mandatory fields are the nutritional values that appear on the package, per 100g / 100ml of product as sold.</p>
-<p>All values must have no unit (the unit is kJ for energy and g for all other fields).</p>
+<p>Μεταξύ των υποχρεωτικών πεδίων είναι οι διατροφικές αξίες που εμφανίζονται στη συσκευασία, ανά 100g / 100ml προϊόντος όπως πωλείται.</p>
+<p>Όλες οι τιμές δεν πρέπει να έχουν μονάδα (η μονάδα είναι kJ για την ενέργεια και g για όλα τα άλλα πεδία).</p>
 
 <ul>
   <!-- Do not translate nutrient field names -->
-  <li>energy_100g: energy, in kJ</li>
-  <li>fat_100g: fat</li>
-  <li>saturated-fat_100g: saturated fat</li>
-  <li>carbohydrates_100g: carbohydrates</li>
-  <li>sugars_100g: sugars</li>
-  <li>proteins_100g: proteins</li>
-  <li>salt_100g: salt</li>
+  <li>energy_100g: ενέργεια, σε kJ</li>
+  <li>fat_100g: λιπαρά</li>
+  <li>saturated-fat_100g: κορεσμένα λιπαρά</li>
+  <li>carbohydrates_100g: υδατάνθρακες</li>
+  <li>sugars_100g: σάκχαρα</li>
+  <li>proteins_100g: πρωτεΐνες</li>
+  <li>salt_100g: αλάτι</li>
   <!-- Do not translate nutrient field names -->
 </ul>
 
-<p>It is strongly recommended to also indicate the fibers and the % of fruits and vegetables so that this information can be taken into account in the calculation of Nutri-Score:</p>
+<p>Συνιστάται ιδιαίτερα να αναφέρετε επίσης τις φυτικές ίνες και το % φρούτων και λαχανικών ώστε αυτές οι πληροφορίες να ληφθούν υπόψη στον υπολογισμό του Nutri-Score:</p>
 
   <ul>
     <!-- Do not translate nutrient field names -->
-  <li>fiber_100g: fibers</li>
+  <li>fiber_100g: φυτικές ίνες</li>
   <li>fruits-vegetables-nuts_100g</li>
     <!-- Do not translate nutrient field names -->
   </ul>
   
-  <h5 id="champs_optionnels">Optional fields</h5>
+  <h5 id="champs_optionnels">Προαιρετικά πεδία</h5>
 
   <ul>
-    <li>labels: labels, in the main language of the product (several possible values, to be separated by commas) (example: AB Bio, MSC, Max Havelaar). Note: the labels must appear on the packaging of the product.</li>
-    <li>origins: origins of the ingredients, in the main language of the product (several possible values, to be separated by commas) (example: Peru, Périgord)</li>
-    <li>packaging: materials and forms of the product packaging, in the main language of the product (several possible values, to be separated by commas) (example: can, aluminum)</li>
-    <li>manufacturing_places: manufacturing locations, in the main language of the product (several possible values, to be separated by commas: city names, countries)</li>
-    <li>emb_codes: packager codes and European sanitary stamps (several possible values, to be separated by commas)</li>
-    <li>stores: places of sale (several possible values, to be separated by commas: names of supermarket chains)</li>
-    <li>nutri_score: Nutri-Score rating from A to E, only in case it is indicated on the package</li>
-    <li>serving_size: quantity of a serving, specify the unit</li>
+    <li>labels: ετικέτες, στην κύρια γλώσσα του προϊόντος (διάφορες πιθανές τιμές, που πρέπει να διαχωρίζονται με κόμματα) (παράδειγμα: AB Bio, MSC, Max Havelaar). Σημείωση: Οι ετικέτες πρέπει να εμφανίζονται στη συσκευασία του προϊόντος.</li>
+    <li>origins: προέλευση συστατικών, στην κύρια γλώσσα του προϊόντος (πολλές πιθανές τιμές, διαχωρισμένες με κόμματα) (παράδειγμα: Περού, Périgord)</li>
+    <li>packaging: υλικά και σχήματα της συσκευασίας του προϊόντος, στην κύρια γλώσσα του προϊόντος (πολλές πιθανές τιμές, διαχωρισμένες με κόμματα) (παράδειγμα: κονσέρβα, αλουμίνιο)</li>
+    <li>manufacturing_places: τοποθεσίες παραγωγής, στην κύρια γλώσσα του προϊόντος (πολλές πιθανές τιμές, διαχωρισμένες με κόμματα: ονόματα πόλεων, χώρες)</li>
+    <li>emb_codes: κωδικοί συσκευαστών και ευρωπαϊκές υγειονομικές σφραγίδες (πολλές πιθανές τιμές, διαχωρισμένες με κόμματα)</li>
+    <li>stores: σημεία πώλησης (πολλές πιθανές τιμές, διαχωρισμένες με κόμματα: ονόματα αλυσίδων σούπερ μάρκετ)</li>
+    <li>nutri_score: βαθμολογία Nutri-Score από A έως E, μόνο στην περίπτωση που αναγράφεται στη συσκευασία</li>
+    <li>serving_size: ποσότητα μερίδας, προσδιορίστε τη μονάδα</li>
   </ul>
 
-<p>Nutritional values can also be indicated for the prepared product (with water, milk etc.). Then add "_prepared" to the name of the field. For example energy_prepared_100g.</p>
-<p>It is also possible to indicate the values for other nutrients:</p>
+<p>Οι θρεπτικές τιμές μπορούν επίσης να αναφέρονται για το παρασκευασμένο προϊόν (με νερό, γάλα κλπ.). Στη συνέχεια, προσθέστε την ένδειξη "_prepared" στο όνομα του πεδίου. Για παράδειγμα energy_prepared_100g.</p>
+<p>Είναι επίσης δυνατό να υποδείξετε τις τιμές για άλλα θρεπτικά συστατικά:</p>
 
 [[nutrients-list.html]]
 
-<h4 id="envoi_des_photos_et_des_donnees">Sending photos and data</h4>
-<p>If the number of products is relatively small (less than 1000 products) and the updates are infrequent (for example every 6 months), it is possible to send us the photos and the CSV file by any means (for example mail for CSV file and WeTransfer, Google Drive, DropBox etc. for photos).</p>
-<p>For a larger number of products or a more regular update, we can create an SFTP space where you can manually or automatically send data and photos. Contact us so that we can put this in place.</p>
+<h4 id="envoi_des_photos_et_des_donnees">Αποστολή φωτογραφιών και δεδομένων</h4>
+<p>Εάν ο αριθμός των προϊόντων είναι σχετικά μικρός (λιγότερα από 1000 προϊόντα) και οι ενημερώσεις είναι σπάνιες (για παράδειγμα κάθε 6 μήνες), είναι δυνατό να μας στείλετε τις φωτογραφίες και το αρχείο CSV με οποιοδήποτε μέσο (για παράδειγμα email για το αρχείο CSV και WeTransfer, Google Drive, DropBox κλπ. για τις φωτογραφίες).</p>
+<p>Για μεγαλύτερο αριθμό προϊόντων ή για πιο τακτική ενημέρωση, μπορούμε να δημιουργήσουμε έναν χώρο SFTP όπου μπορείτε να στέλνετε δεδομένα και φωτογραφίες χειροκίνητα ή αυτόματα. Επικοινωνήστε μαζί μας για να μπορέσουμε να το θέσουμε σε εφαρμογή.</p>
 
-<h2 id="questions_frequentes">Frequently asked Questions</h2>
+<h2 id="questions_frequentes">Συχνές Ερωτήσεις</h2>
 
-<h3 id="est_ce_que_le_referencement_des_produits_est_gratuit">Is the listing of products free?</h3>
-<p>The import of the data is completely free. We do not accept any retribution for the inclusion of data. We are very pleased that you have decided to contribute the data of your products to the food transparency, and we thank you for it.</p>
+<h3 id="est_ce_que_le_referencement_des_produits_est_gratuit">Είναι δωρεάν η καταχώριση των προϊόντων;</h3>
+<p>Η εισαγωγή των δεδομένων είναι εντελώς δωρεάν. Δεν δεχόμαστε αντίποινα για την συμπερίληψη δεδομένων. Χαιρόμαστε ιδιαίτερα που αποφασίσατε να συνεισφέρετε τα δεδομένα των προϊόντων σας στη διαφάνεια των τροφίμων και σας ευχαριστούμε γι' αυτό.</p>
   
-<h3 id="les_donnees_des_producteurs_vont_elles_ecraser_les_donnees_saisies_par_les_contributeurs">Will producer data overwrite data entered by contributors?</h3>
-<p>Producer data is automatically controlled by Open Food Facts with consistency checking algorithms, and then by some contributors. We have full confidence in the data you send us, but we know by experience that typos  are possible.</p>
-<p>Once checked, they will replace and / or supplement the data entered by the contributors.</p>
+<h3 id="les_donnees_des_producteurs_vont_elles_ecraser_les_donnees_saisies_par_les_contributeurs">Θα αντικαταστήσουν τα δεδομένα των παραγωγών που εισήγαγαν οι συνεισφέροντες;</h3>
+<p>Τα δεδομένα παραγωγών ελέγχονται αυτόματα από το Open Food Facts με αλγόριθμους ελέγχου συνέπειας και στη συνέχεια από ορισμένους συνεισφέροντες. Έχουμε πλήρη εμπιστοσύνη στα δεδομένα που μας στέλνετε, αλλά γνωρίζουμε εκ πείρας ότι είναι πιθανά τυπογραφικά λάθη.</p>
+<p>Μόλις ελεγχθούν, θα αντικαταστήσουν και/ή θα συμπληρώσουν τα δεδομένα που έχουν εισαχθεί από τους συνεισφέροντες.</p>
 
-<p>In the case of a regular and automated import, the data will replace at every import the updates by contributors, unless a manifest error (which will be reported to you) is reported on a product by a contributor.</p>
+<p>Στην περίπτωση τακτικής και αυτοματοποιημένης εισαγωγής, τα δεδομένα θα αντικαθιστούν σε κάθε εισαγωγή τις ενημερώσεις από συνεισφέροντες, εκτός εάν αναφερθεί προφανές σφάλμα (το οποίο θα σας αναφερθεί) σε ένα προϊόν από έναν συνεισφέροντα.</p>
 
-<h3 id="est_il_possible_de_supprimer_les_produits_qui_ne_sont_plus_vendus">Is it possible to delete products that are no longer sold?</h3>
+<h3 id="est_il_possible_de_supprimer_les_produits_qui_ne_sont_plus_vendus">Είναι δυνατή η διαγραφή προϊόντων που δεν πωλούνται πλέον;</h3>
 
-<p>When a product disappears from the shelves, it is quickly consumed, and we find that it is quickly no longer scanned.</p>
-<p>We then archive the product so that it remains available as an archive for scientific purposes in the context of food cohorts that can last for decades. It is indeed essential to be able to obtain the compositions of the product at a precise date, even if it has changed or disappeared.</p>
-<p>If you have historical data on your old products or old versions of your products, we would also be very interested in this historical data, in order to be able to go back in time, to allow scientific analyzes on long time, and to make it possible to visualize the evolution some products.</p>
-<p>Producers can also send us the lists of barcodes removed from the sale so that we can label the products appropriately.</p>
+<p>Όταν ένα προϊόν εξαφανίζεται από τα ράφια, καταναλώνεται γρήγορα και διαπιστώνουμε ότι γρήγορα παύει να σαρώνεται.</p>
+<p>Στη συνέχεια, αρχειοθετούμε το προϊόν, ώστε να παραμένει διαθέσιμο ως αρχείο για επιστημονικούς σκοπούς στο πλαίσιο ομάδων τροφίμων, το οποίο μπορεί να διαρκέσει για δεκαετίες. Είναι πράγματι απαραίτητο να μπορείτε να λάβετε τις συνθέσεις του προϊόντος σε μια ακριβή ημερομηνία, ακόμη και αν έχουν αλλάξει ή εξαφανιστεί.</p>
+<p>Εάν έχετε ιστορικά δεδομένα για τα παλιά σας προϊόντα ή παλιές εκδόσεις των προϊόντων σας, θα μας ενδιέφεραν επίσης πολύ αυτά τα ιστορικά δεδομένα, προκειμένου να μπορέσουμε να γυρίσουμε πίσω στο χρόνο, να επιτρέψουμε επιστημονικές αναλύσεις σε μεγάλο χρονικό διάστημα και να καταστήσουμε δυνατή την οπτικοποίηση της εξέλιξης ορισμένων προϊόντων.</p>
+<p>Οι παραγωγοί μπορούν επίσης να μας στείλουν λίστες με γραμμωτούς κώδικες που έχουν αποσυρθεί από την πώληση, ώστε να μπορούμε να επισημάνουμε τα προϊόντα κατάλληλα.</p>
   
-<h3 id="est_ce_que_les_produits_pour_animaux_les_produits_non_alimentaires_les_cosmetiques_et_les_autres_produits_peuvent_etre_integres_a_open_food_facts">Can animal products, non-food products, cosmetics and other products be integrated into Open Food Facts?</h3>
-<p>We have created specific projects for cosmetics, for animal feed, as well as for other products (Open Beauty Facts, Open Pet Food Facts and Open Products Facts respectively). We are therefore happy to be able to import your products into the project that suits them.</p>
+<h3 id="est_ce_que_les_produits_pour_animaux_les_produits_non_alimentaires_les_cosmetiques_et_les_autres_produits_peuvent_etre_integres_a_open_food_facts">Μπορούν να ενσωματωθούν στο Open Food Facts ζωικά προϊόντα, μη εδώδιμα προϊόντα, καλλυντικά και άλλα;</h3>
+<p>Έχουμε δημιουργήσει συγκεκριμένα έργα για καλλυντικά, για ζωοτροφές, καθώς και για άλλα προϊόντα (Open Beauty Facts, Open Pet Food Facts και Open Products Facts αντίστοιχα). Χαιρόμαστε, επομένως, που μπορούμε να εισάγουμε τα προϊόντα σας στο έργο που τους ταιριάζει.</p>
 </div>
 
 <script>
