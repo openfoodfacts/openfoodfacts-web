@@ -23,6 +23,9 @@ sub check_repetitions {
     # Remove HTML comments
     $content =~ s/<!--.*?-->//gs;
     
+    # Remove style blocks (CSS is expected to have repeated patterns)
+    $content =~ s/<style[^>]*>.*?<\/style>//gsi;
+    
     my @issues;
     
     # Pattern 1: Same substantial text appearing 2+ times consecutively with space/newline between
@@ -37,6 +40,14 @@ sub check_repetitions {
         next if $match =~ /^(div|p|span|strong|em|li|ul|ol)$/i;
         next if $match =~ /^[a-z0-9_-]+$/i;  # CSS classes, IDs, technical strings
         next if $match =~ /^["\'\(\)\[\]{}]+$/;  # Quotes and brackets
+        
+        # Skip CSS-like patterns (properties, values, selectors)
+        next if $match =~ /^\s*(box-shadow|animation|transform|transition|rgba|scale|translate|rotate|skew|matrix)[\s:;(]/i;
+        next if $match =~ /^\s*\.(mod-|btn-|nav-|header-|footer-|sidebar-)/i;  # CSS class selectors
+        next if $match =~ /^\s*and\s*\(\s*(min-|max-)(width|height)/i;  # Media queries
+        next if $match =~ /^\s*[\d.]+\s*(px|em|rem|%|vh|vw|s|ms)\s*[,;)]/;  # CSS values
+        next if $match =~ /^\s*#[a-fA-F0-9]{3,8}\s*[;,)]/;  # Hex colors
+        next if $match =~ /^\s*null\s*,/;  # JavaScript null patterns
         
         my $preview = $match;
         $preview =~ s/\s+/ /g;
