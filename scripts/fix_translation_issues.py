@@ -252,7 +252,8 @@ Examples:
     print(f"📊 Summary: {total_fixes} fixes across {total_files} files")
     print(f"{'='*60}")
     
-    return 0 if total_fixes >= 0 else 1
+    # Always return success - this script is a repair tool
+    return 0
 
 
 if __name__ == '__main__':
