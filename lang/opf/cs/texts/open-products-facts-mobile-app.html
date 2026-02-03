@@ -1,75 +1,327 @@
-<h1>Nainstalujte si mobilní aplikaci Open Products Facts</h1>
-
-<p>Chcete-li skenovat nepotravinářské, nekosmetické produkty, jako jsou knihy, DVD, čisticí prostředky, nainstalujte si bezplatnou aplikaci Open Products Facts!</p>
-
-<a href="https://apps.apple.com/app/open-food-facts/id588797948"><img src="https://static.openfoodfacts.org/images/misc/appstore/black/appstore_CZ.svg" alt="Dostupné na App Store" width="120" height="40" /></a>
-
-<a href="https://play.google.com/store/apps/details?id=org.openproductsfacts.scanner&hl=cs"><img src="https://static.openfoodfacts.org/images/misc/google-play-badge-svg-master/img/cs_get.svg" alt="Dostupné na Google Play" width="102" height="40" /></a>
-
-<a href="https://github.com/openfoodfacts/smooth-app/releases/latest"><img src="https://static.openfoodfacts.org/images/misc/android-apk.svg" loading="lazy" alt="Android APK" /></a>
-
-<br><br>
-
-<p>Můžete také přidat nové produkty do Open Products Facts a vytvořit společný statek pro všechny druhy použití. Děkujeme!</p>
-
-<div class="panel callout">
-
-<h2>Podívejte se na nejnovější funkce</h2>
-<p><b>Leden 2021:</b> Aplikace <a href="https://fr.blog.openfoodfacts.org/news/lancement-de-l-eco-score-la-note-environnementale-des-produits-alimentaires">získávají Eco-Score, zpočátku ve Francii (oznámení ve francouzštině)</a></p>
-<p><b>Září 2020:</b> <a href="https://fr.blog.openfoodfacts.org/news/la-rentree-d-open-food-facts-en-6-actualites">Tmavý režim, umělá inteligence, detekce vegetariánství, veganství a palmového oleje a offline příspěvky (oznámení ve francouzštině)</a></p>
-<p><b>červen 2019:</b> <a href="https://en.blog.openfoodfacts.org/news/the-new-open-food-facts-app-to-better-decipher-labels-and-participate-in-the-common-good">Nové mobilní aplikace Open Food Facts pro iPhone a Android</a><br>
-Nové funkce: nepřetržité skenování, offline režim, porovnání produktů, seznamy, neomezená historie a další!
-</p>
-<p><b>2012:</b> <a href="https://fr.blog.openfoodfacts.org/news/application-mobile-open-food-facts-pour-android">Spuštění mobilní aplikace Open Food Facts, úplně první aplikace pro společné skenování potravin.</a>
-</p>
-</div>
-
-<!-- TODO Translate images to your language. Ask @teolemon for the SVG file-->
-<div class="row">
-<div class="small-12 medium-12 large-6 columns">
-<img src="https://static.openfoodfacts.org/images/misc/crowdsourcing/features_june_2019_1920x1080_en.jpg" alt="Mobilní aplikace Open Food Facts">
-
-</div>
-<div class="small-12 medium-12 large-6 columns">
-
-<img src="https://static.openfoodfacts.org/images/misc/crowdsourcing/app_ios_2019_3_screens_en.png" alt="Vyzkoušejte novou mobilní aplikaci Open Food Facts">
-</div>
-</div>
-
-<!-- DO NOT translate after this line -->
-
-<scripts>
+<style type="text/css">#install_the_app_block, .donation-banner-footer, .offdays-banner {display: none;} #main_column {padding-bottom: 0;}</style>
 <script>
-function getMobileOperatingSystem() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    // You can change the URLs to one that works in your language. If you are unsure, do not touch anything
+    const googlePlayURL = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en";
+    const appleStoreURL = "https://apps.apple.com/app/open-food-facts/id588797948";
+    const microsoftStoreURL = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
 
-    if (/android/i.test(userAgent)) {
-        return "Android";
+    function getMobileOperatingSystem() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+          // Windows Phone must come first because its UA also contains "Android"
+        if (/windows phone/i.test(userAgent)) {
+            return "Windows Phone";
+        }
+    
+        if (/android/i.test(userAgent)) {
+            return "Android";
+        }
+    
+        // iOS detection from: https://stackoverflow.com/a/9039885/177710
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "iOS";
+        }
+    
+        return "unknown";
     }
 
-    // iOS detection from: https://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return "iOS";
+    // Function to extract UTM parameters from a URL
+    function extractUTMParameters(url) {
+        var utmParams = new URLSearchParams(url.search);
+        var utmParamObject = {};
+
+        for (var pair of utmParams.entries()) {
+            var paramName = pair[0];
+            var paramValue = pair[1];
+            if (paramName.startsWith('utm_')) {
+                utmParamObject[paramName] = paramValue;
+            }
+        }
+
+        return utmParamObject;
     }
 
-    return "unknown";
-}</script>
+    // Add UTM parameters extracted from current URL to `targetURL`
+    function addUTMParameters(targetURL) {
+        // Create URL objects for the current URL and target URL
+        var currentURLObject = new URL(window.location.href);
+        var targetURLObject = new URL(targetURL);
 
-<!-- You can change the URLs to one that works in your language. If you are unsure, do not touch anything -->
+        // Extract UTM parameters from the current URL
+        var utmParameters = extractUTMParameters(currentURLObject);
+        var targetUtmParameters = extractUTMParameters(targetURLObject);
 
-<script>
-function DetectAndServe(){
+        if (Object.keys(utmParameters).length) {
+            // Delete existing UTM parameters of target URL 
+            for (var paramName in targetUtmParameters) {
+                if (targetUtmParameters.hasOwnProperty(paramName)) {
+                    targetURLObject.searchParams.delete(paramName);
+                }
+            }
 
-if (getMobileOperatingSystem() == "Android") {
-    window.location.href = "https://play.google.com/store/apps/details?id=org.openproductsfacts.scanner&hl=en";
+            // Add UTM parameters to the target URL
+            for (var paramName in utmParameters) {
+                if (utmParameters.hasOwnProperty(paramName)) {
+                    var paramValue = utmParameters[paramName];
+                    targetURLObject.searchParams.append(paramName, paramValue);
+                }
+            }
+        } else {
+            targetURLObject.searchParams.append("utm_source", "opf");
+            targetURLObject.searchParams.append("utm_campaign", "app-landing-page");
+            targetURLObject.searchParams.append("utm_medium", "website");
+        }
+        return targetURLObject.href;
     }
-if (getMobileOperatingSystem() == "iOS") {
-    window.location.href = "https://apps.apple.com/app/open-food-facts/id588797948";
+
+    // redirect to Google Play Store, Apple store, etc. if we detect
+    // specific User-Agent 
+    function redirectToStore() {
+        const currentURL = new URL(window.location.href);
+        if (new URLSearchParams(currentURL.search).get("redirect") == "0") {
+            // don't redirect if redirect=0 in query parameters
+            return;
+        }
+
+        const operatingSystem = getMobileOperatingSystem();
+        if (operatingSystem == "Android") {
+            window.location.href = addUTMParameters(googlePlayURL);
+        }
+        else if (operatingSystem == "iOS") {
+            window.location.href = addUTMParameters(appleStoreURL);
+        }
+        else if (operatingSystem == "Windows Phone") {
+            window.location.href = addUTMParameters(microsoftStoreURL);
+        }
     }
-};
-DetectAndServe();
+    redirectToStore();
 </script>
-</scripts>
-
-<initjs>
-</initjs>
+<div id="app-landing-page">
+    <div id="download-app-block" class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Dělejte udržitelná rozhodnutí pro
+                    <span class="highlight-label yellow rotate-left">vás</span>
+                    a
+                    <span class="highlight-label blue rotate-right">planetu</span>
+                </h1>
+                <p>Objevte dopad produktů denní potřeby na životní prostředí!</p>
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=cs" title="Open Food Facts na Google Play">
+                <img
+                    src="/images/misc/playstore/img/en_get.svg"
+                    alt="Dostupné na Google Play"
+                    width="120"
+                    height="40"
+                ></a>
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts v Apple App Store">
+                <img
+                    src="/images/misc/appstore/black/appstore_CZ.svg"
+                    alt="Dostupné na App Store"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+            <div class="small-12 medium-6 medium-offset-1 column">
+                <img src="/images/illustrations/scale-ecoscore-nutriscore.svg" alt="Stupnice znázorňující environmentální rovnováhu a dopad produktu" style="max-height: 250px">
+            </div>
+        </div>
+        <div class="row show-for-large-up" style="padding-top: 4rem; text-align: center">
+            <div class="small-3 small-centered column">
+                <p>Nejste na svém mobilu? Naskenujte tento QR kód ze svého mobilu a stáhněte si aplikaci!</p>
+                <img src="/images/misc/app-landing-page/qrcode_en.svg" width="180" height="180" alt="QR kód odkazující na https://world.openfoodfacts.org/open-food-facts-mobile-app">
+            </div>
+        </div>
+    </div>
+    <div class="block block-seashell" id="app-card-block">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="/images/misc/app-landing-page/mobile-app-preview/mobile-app-preview_en.svg" alt="Mobilní aplikace Open Food Facts">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Naskenujte produkty, které odpovídají
+                    <span class="highlight-label dark-orange rotate-right">vašim hodnotám</span>
+                </h1>
+                <p class="paragraph-top-margin">Aplikace Open Food Facts vám pomůže informovaně se rozhodovat o produktech denní potřeby. I když je primárně určen pro potraviny, podporuje také skenování dalších produktů, včetně těch s údaji o dopadu na životní prostředí, skóre opravitelnosti a informacemi o materiálech.</p>
+                <p>Nastavte si osobní preference a získejte chytřejší doporučení, která jsou v souladu s vašimi cíli v oblasti udržitelnosti.</p>
+            </div>
+        </div>
+    </div>
+    <div class="block block-yellow">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Naskenujte produkty, abyste získali
+                    <span class="highlight-label orange rotate-left">úplný obrázek</span>
+                </h1>
+                <p class="paragraph-top-margin">Otevřete aplikaci Open Food Facts a namiřte fotoaparát na čárový kód produktu!</p>
+                <p>Naskenujte elektroniku, spotřebiče a další předměty denní potřeby a zjistěte jejich dopad na životní prostředí a vlastnosti udržitelnosti.</p>
+            </div>
+            <div class="small-12 medium-3 medium-offset-1 end column">
+                <img src="/images/illustrations/app-barcode-scan.png" alt="Probíhající skenování čárového kódu" style="max-height: 200px;">
+            </div>
+        </div>
+    </div>
+    <div class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-5 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Pochopte vliv na životní prostředí na
+                    <span class="highlight-label blue rotate-right">planetu</span>
+                </h1>
+                <p class="paragraph-top-margin">Zjistěte dopad produktů na emise CO2 a čiňte informovaná rozhodnutí o své ekologické stopě.</p>
+                <p>Zjistěte více o emisích uhlíku, složení materiálů, recyklačních předpisech a energetické účinnosti předmětů denní potřeby. Open Products Facts vám pomůže pochopit environmentální náklady na věci, které si kupujete.</p>
+            </div>
+            <div class="small-12 medium-6 end column">
+                <img
+                    src="/images/illustrations/app-planet-pizza.svg"
+                    alt="Vizualizace dopadu na životní prostředí"
+                    style="max-height: 250px"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="block block-light-green">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="https://static.openproductsfacts.org/images/lang/fr/labels/indice-de-reparabilite-7-3.152x90.svg" alt="Index opravitelnosti" style="max-height: 200px">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Support a
+                    <span class="highlight-label dark-green rotate-right">circular economy</span>
+                </h1>
+                <p class="paragraph-top-margin">Check the repairability score of electronics and appliances. Choose products that can be repaired rather than replaced.</p>
+                <p>Understand product materials, find repair options, and make choices that reduce waste and support sustainability.</p>
+            </div>
+        </div>
+    </div>
+    <div class="block block-white">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="/images/illustrations/health-cereals-magnifier.svg" alt="Lupa nad krabicí od cereálií a logo Nutri-Score" style="max-height: 200px">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Also scan
+                    <span class="highlight-label dark-green rotate-right">food products</span>
+                </h1>
+                <p class="paragraph-top-margin">Beyond non-food products, the app excels at helping you understand food. Decipher labels, learn about nutritional information, and instantly see the Nutri-Score and Eco-Score of food products.</p>
+                <p>Make healthier choices while also considering the environmental impact of your food.</p>
+                <a class="button round secondary small" href="/nutriscore">Přečtěte si více o Nutri-Score</a>
+            </div>
+        </div>
+    </div>
+    <div class="block block-seashell">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                 <img src="/images/logos/obf-logo-icon-light.svg" alt="Ilustrace kosmetických produktů" style="max-height: 200px" loading="lazy">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Pochopte svou
+                    <span class="highlight-label blue rotate-left">Kosmetiku</span>
+                </h1>
+                <p class="paragraph-top-margin">Naskenujte kosmetické produkty a rozluštěte jejich seznam složek (INCI). Identifikujte alergeny, veganské, vegetariánské produkty nebo produkty bez palmového oleje.</p>
+                <p>Dělejte informovaná rozhodnutí o kosmetických produktech, které používáte každý den.</p>
+                <a class="button round secondary small" href="https://world-cs.openbeautyfacts.org/">Zjistěte více o Open Beauty Facts</a>
+            </div>
+        </div>
+    </div>
+    <div class="block block-yellow">
+        <div class="row">
+            <div class="small-12 medium-5 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Vyberte si to nejlepší pro své
+                    <span class="highlight-label pink rotate-right">mazlíčky</span>
+                </h1>
+                <p class="paragraph-top-margin">Naskenujte krmivo pro domácí mazlíčky, abyste pochopili jeho složení a nutriční hodnotu.</p>
+                <p>Najděte produkty přizpůsobené specifickým potřebám a preferencím vašeho mazlíčka a zajistěte mu správnou stravu.</p>
+                 <a class="button round secondary small" href="https://world-cs.openpetfoodfacts.org/">Zjistěte více o krmivech pro domácí mazlíčky Open Pet Food Facts</a>
+            </div>
+            <div class="small-12 medium-6 end column">
+                 <img src="/images/logos/opff-logo-icon-light.svg" alt="Ilustrace krmiva pro domácí mazlíčky a šťastného mazlíčka" style="max-height: 250px" loading="lazy">
+            </div>
+        </div>
+    </div>
+    <div class="block block-white">
+        <div class="row" id="join-food-revolution-row">
+            <div class="small-12 medium-4 medium-offset-2 column">
+                <img
+                    src="/images/misc/app-landing-page/join-the-food-revolution/join-the-food-revolution_en.svg"
+                    alt="Zapojte se do hnutí"
+                    style="max-height: 180px"
+                    loading="lazy"
+                >
+                <p class="paragraph-top-margin">Spolu s více než 170 000 přispěvateli z celého světa!</p>
+            </div>
+            <div class="small-12 medium-4 end column">
+                <div class="testimonial-card">
+                    <p>"Miluji tuhle aplikaci!!" Používám ji téměř denně. Hodně mi pomáhá najít ten správný produkt pro mě!“</p>
+                    <p>
+                        <strong>Louise</strong>
+                    </p>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <img
+                        src="/images/misc/app-landing-page/store-review-rating.svg"
+                        loading="lazy"
+                        alt="Hodnocení v Obchodě Google Play a Apple Store"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-7 medium-offset-5 column">
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=cs" title="Open Food Facts na Google Play">
+                <img
+                    src="/images/misc/playstore/img/en_get.svg"
+                    loading="lazy"
+                    alt="Dostupné na Google Play"
+                    width="120"
+                    height="40"
+                ></a>
+                <a href="https://f-droid.org/packages/openfoodfacts.github.scrachx.openfood" title="Open Food Facts na F-Droidu">
+                <img
+                    src="/images/misc/f-droid/get-it-on-en.png"
+                    loading="lazy"
+                    alt="Dostupné na F-Droidu"
+                    height="40"
+                    width="120"
+                ></a>
+                <a href="https://github.com/openfoodfacts/smooth-app/releases/latest" title="Aplikace Open Food Facts na Githubu">
+                <img
+                    src="/images/misc/app-landing-page/download-apk/download-apk_en.svg"
+                    loading="lazy"
+                    alt="Stáhnout soubor APK"
+                    height="40"
+                    width="120"
+                ></a>
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts v Apple App Store">
+                <img
+                    src="/images/misc/appstore/black/appstore_CZ.svg"
+                    loading="lazy"
+                    alt="Dostupné na App Store"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+        </div>
+        <img
+            src="/images/illustrations/puzzle.svg"
+            alt="Puzzle s rukama"
+            class="puzzle-illustration show-for-large-up"
+            loading="lazy"
+        >
+    </div>
+</div>
+<script>
+    document.querySelectorAll('[data-app-store="google"]').forEach((item) => {
+        item.href = addUTMParameters(googlePlayURL);
+    });
+    document.querySelectorAll('[data-app-store="apple"]').forEach((item) => {
+        item.href = addUTMParameters(appleStoreURL);
+    });
+</script>

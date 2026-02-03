@@ -1,75 +1,327 @@
-<h1>Встановіть мобільний додаток "Факти про відкриті продукти</h1>
-
-<p>Щоб сканувати непродовольчі, некосметичні товари, такі як книги, DVD-диски, засоби для чищення, встановіть безплатний додаток Open Products Facts!</p>
-
-<a href="https://apps.apple.com/app/open-food-facts/id588797948"><img src="https://static.openfoodfacts.org/images/misc/appstore/black/appstore_US.svg" alt="Доступно в App Store" width="120" height="40" /></a>
-
-<a href="https://play.google.com/store/apps/details?id=org.openproductsfacts.scanner&hl=en"><img src="https://static.openfoodfacts.org/images/misc/google-play-badge-svg-master/img/en_get.svg" alt="Доступно на Google Play" width="102" height="40" /></a>
-
-<a href="https://github.com/openfoodfacts/smooth-app/releases/latest"><img src="https://static.openfoodfacts.org/images/misc/android-apk.svg" loading="lazy" alt="АРК для Android" /></a>
-
-<br><br>
-
-<p>Ви також можете додавати нові продукти до Відкритих фактів про продукти і створювати спільне благо для всіх видів використання. Дякуємо!</p>
-
-<div class="panel callout">
-
-<h2>Ознайомтеся з найновішими функціями</h2>
-<p><b>Січень 2021:</b> Додатки <a href="https://fr.blog.openfoodfacts.org/news/lancement-de-l-eco-score-la-note-environnementale-des-produits-alimentaires">отримують Eco-Score, спочатку у Франції (оголошення французькою мовою)</a>.</p>
-<p><b>Вересень 2020:</b> <a href="https://fr.blog.openfoodfacts.org/news/la-rentree-d-open-food-facts-en-6-actualites">Темний режим, штучний інтелект, виявлення вегетаріанської, веганської та пальмової олії, а також внески офлайн (анонс французькою мовою)</a>.</p>
-<p><b>Червень 2019:</b> <a href="https://en.blog.openfoodfacts.org/news/the-new-open-food-facts-app-to-better-decipher-labels-and-participate-in-the-common-good">Нові мобільні додатки Open Food Facts для iPhone та Android</a><br>.
-Нові функції: безперервне сканування, офлайн-режим, порівняння продуктів, списки, необмежена історія та багато іншого!
-</p>
-<p><b>2012:</b> <a href="https://fr.blog.openfoodfacts.org/news/application-mobile-open-food-facts-pour-android">Запуск мобільного додатку Open Food Facts, найпершого додатку для спільного сканування продуктів харчування.</a>.
-</p>
-</div>
-
-<!-- TODO Translate images to your language. Ask @teolemon for the SVG file-->
-<div class="row">
-<div class="small-12 medium-12 large-6 columns">
-<img src="https://static.openfoodfacts.org/images/misc/crowdsourcing/features_june_2019_1920x1080_en.jpg" alt="Мобільний додаток Open Food Facts">
-
-</div>
-<div class="small-12 medium-12 large-6 columns">
-
-<img src="https://static.openfoodfacts.org/images/misc/crowdsourcing/app_ios_2019_3_screens_en.png" alt="Open Food Facts mobile application">
-</div>
-</div>
-
-<!-- DO NOT translate after this line -->
-
-<scripts>
+<style type="text/css">#install_the_app_block, .donation-banner-footer, .offdays-banner {display: none;} #main_column {padding-bottom: 0;}</style>
 <script>
-function getMobileOperatingSystem() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    // You can change the URLs to one that works in your language. If you are unsure, do not touch anything
+    const googlePlayURL = "https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en";
+    const appleStoreURL = "https://apps.apple.com/app/open-food-facts/id588797948";
+    const microsoftStoreURL = "https://apps.microsoft.com/store/detail/open-food-facts-scan-to-get-nutriscore-ecoscore-and-more/XP8LT18SRPKLRG";
 
-    if (/android/i.test(userAgent)) {
-        return "Android";
+    function getMobileOperatingSystem() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+          // Windows Phone must come first because its UA also contains "Android"
+        if (/windows phone/i.test(userAgent)) {
+            return "Windows Phone";
+        }
+    
+        if (/android/i.test(userAgent)) {
+            return "Android";
+        }
+    
+        // iOS detection from: https://stackoverflow.com/a/9039885/177710
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "iOS";
+        }
+    
+        return "unknown";
     }
 
-    // iOS detection from: https://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return "iOS";
+    // Function to extract UTM parameters from a URL
+    function extractUTMParameters(url) {
+        var utmParams = new URLSearchParams(url.search);
+        var utmParamObject = {};
+
+        for (var pair of utmParams.entries()) {
+            var paramName = pair[0];
+            var paramValue = pair[1];
+            if (paramName.startsWith('utm_')) {
+                utmParamObject[paramName] = paramValue;
+            }
+        }
+
+        return utmParamObject;
     }
 
-    return "unknown";
-}</script>
+    // Add UTM parameters extracted from current URL to `targetURL`
+    function addUTMParameters(targetURL) {
+        // Create URL objects for the current URL and target URL
+        var currentURLObject = new URL(window.location.href);
+        var targetURLObject = new URL(targetURL);
 
-<!-- You can change the URLs to one that works in your language. If you are unsure, do not touch anything -->
+        // Extract UTM parameters from the current URL
+        var utmParameters = extractUTMParameters(currentURLObject);
+        var targetUtmParameters = extractUTMParameters(targetURLObject);
 
-<script>
-function DetectAndServe(){
+        if (Object.keys(utmParameters).length) {
+            // Delete existing UTM parameters of target URL 
+            for (var paramName in targetUtmParameters) {
+                if (targetUtmParameters.hasOwnProperty(paramName)) {
+                    targetURLObject.searchParams.delete(paramName);
+                }
+            }
 
-if (getMobileOperatingSystem() == "Android") {
-    window.location.href = "https://play.google.com/store/apps/details?id=org.openproductsfacts.scanner&hl=en";
+            // Add UTM parameters to the target URL
+            for (var paramName in utmParameters) {
+                if (utmParameters.hasOwnProperty(paramName)) {
+                    var paramValue = utmParameters[paramName];
+                    targetURLObject.searchParams.append(paramName, paramValue);
+                }
+            }
+        } else {
+            targetURLObject.searchParams.append("utm_source", "opf");
+            targetURLObject.searchParams.append("utm_campaign", "app-landing-page");
+            targetURLObject.searchParams.append("utm_medium", "website");
+        }
+        return targetURLObject.href;
     }
-if (getMobileOperatingSystem() == "iOS") {
-    window.location.href = "https://apps.apple.com/app/open-food-facts/id588797948";
+
+    // redirect to Google Play Store, Apple store, etc. if we detect
+    // specific User-Agent 
+    function redirectToStore() {
+        const currentURL = new URL(window.location.href);
+        if (new URLSearchParams(currentURL.search).get("redirect") == "0") {
+            // don't redirect if redirect=0 in query parameters
+            return;
+        }
+
+        const operatingSystem = getMobileOperatingSystem();
+        if (operatingSystem == "Android") {
+            window.location.href = addUTMParameters(googlePlayURL);
+        }
+        else if (operatingSystem == "iOS") {
+            window.location.href = addUTMParameters(appleStoreURL);
+        }
+        else if (operatingSystem == "Windows Phone") {
+            window.location.href = addUTMParameters(microsoftStoreURL);
+        }
     }
-};
-DetectAndServe();
+    redirectToStore();
 </script>
-</scripts>
-
-<initjs>
-</initjs>
+<div id="app-landing-page">
+    <div id="download-app-block" class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Робіть стійкі вибори для
+                    <span class="highlight-label yellow rotate-left">себе</span>
+                    та
+                    <span class="highlight-label blue rotate-right">планети</span>
+                </h1>
+                <p>Дізнайтеся про вплив повсякденних продуктів на навколишнє середовище!</p>
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en" title="Відкрийте Open Food Facts у Google Play">
+                <img
+                    src="/images/misc/playstore/img/en_get.svg"
+                    alt="Доступно на Google Play"
+                    width="120"
+                    height="40"
+                ></a>
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts в Apple App Store">
+                <img
+                    src="/images/misc/appstore/black/appstore_US.svg"
+                    alt="Доступно в App Store"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+            <div class="small-12 medium-6 medium-offset-1 column">
+                <img src="/images/illustrations/scale-ecoscore-nutriscore.svg" alt="Шкала, що відображає екологічний баланс та вплив продукту" style="max-height: 250px">
+            </div>
+        </div>
+        <div class="row show-for-large-up" style="padding-top: 4rem; text-align: center">
+            <div class="small-3 small-centered column">
+                <p>Не на твоєму мобільному телефоні? Проскануйте цей QR-код зі свого мобільного, щоб завантажити додаток!</p>
+                <img src="/images/misc/app-landing-page/qrcode_en.svg" width="180" height="180" alt="QR-код для переходу на https://world.openfoodfacts.org/open-food-facts-mobile-app">
+            </div>
+        </div>
+    </div>
+    <div class="block block-seashell" id="app-card-block">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="/images/misc/app-landing-page/mobile-app-preview/mobile-app-preview_en.svg" alt="Мобільний додаток Open Food Facts">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Скануйте товари, щоб знайти ті, що відповідають
+                    <span class="highlight-label dark-orange rotate-right">вашим цінностям</span>
+                </h1>
+                <p class="paragraph-top-margin">Додаток Open Food Facts допомагає вам робити обґрунтований вибір щодо продуктів щоденного вжитку. Хоча він призначений в першу чергу для продуктів харчування, він також підтримує сканування інших товарів, включаючи ті, що містять дані про вплив на навколишнє середовище, оцінки ремонтопридатності та інформацію про матеріали.</p>
+                <p>Встановіть свої особисті уподобання та отримуйте розумніші рекомендації, які відповідають вашим цілям у сфері сталого розвитку.</p>
+            </div>
+        </div>
+    </div>
+    <div class="block block-yellow">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Скануйте продукти, щоб отримати
+                    <0>повну картину</0>
+                </h1>
+                <p class="paragraph-top-margin">Відкрийте додаток Open Food Facts і наведіть камеру на штрих-код продукту!</p>
+                <p>Скануйте електроніку, побутову техніку та інші предмети повсякденного вжитку, щоб дізнатися про їхній вплив на навколишнє середовище та характеристики стійкості.</p>
+            </div>
+            <div class="small-12 medium-3 medium-offset-1 end column">
+                <img src="/images/illustrations/app-barcode-scan.png" alt="Штрих-код сканується" style="max-height: 200px;">
+            </div>
+        </div>
+    </div>
+    <div class="block block-blue">
+        <div class="row">
+            <div class="small-12 medium-5 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Розуміння впливу навколишнього середовища на
+                    <0>планету</0>
+                </h1>
+                <p class="paragraph-top-margin">Дізнайтеся про вплив продуктів на викиди CO2 та приймайте обґрунтовані рішення щодо свого впливу на навколишнє середовище.</p>
+                <p>Дізнайтеся про викиди вуглецю, склад матеріалів, коди переробки та енергоефективність предметів повсякденного вжитку. Open Products Facts допомагає вам зрозуміти екологічну вартість речей, які ви купуєте.</p>
+            </div>
+            <div class="small-12 medium-6 end column">
+                <img
+                    src="/images/illustrations/app-planet-pizza.svg"
+                    alt="Візуалізація впливу на навколишнє середовище"
+                    style="max-height: 250px"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="block block-light-green">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="https://static.openproductsfacts.org/images/lang/fr/labels/indice-de-reparabilite-7-3.152x90.svg" alt="Індекс ремонтопридатності" style="max-height: 200px">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Підтримайте
+                    <span class="highlight-label dark-green rotate-right">циркулярну економіку</span>
+                </h1>
+                <p class="paragraph-top-margin">Перевірте оцінку ремонтопридатності електроніки та побутової техніки. Вибирайте товари, які можна відремонтувати, а не замінити.</p>
+                <p>Зрозумійте, з яких матеріалів виготовлений продукт, знайдіть варіанти ремонту та зробіть вибір, який зменшить кількість відходів і сприятиме сталому розвитку.</p>
+            </div>
+        </div>
+    </div>
+    <div class="block block-white">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                <img src="/images/illustrations/health-cereals-magnifier.svg" alt="Лупа над коробкою з пластівцями та логотип Nutri-Score" style="max-height: 200px">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Також проскануйте
+                    <span class="highlight-label dark-green rotate-right">харчові продукти</span>
+                </h1>
+                <p class="paragraph-top-margin">Окрім нехарчових продуктів, додаток чудово допомагає розібратися в харчових продуктах. Розшифровуйте етикетки, дізнавайтеся про харчову цінність продуктів та миттєво бачте їхні показники Nutri-Score та Eco-Score.</p>
+                <p>Робіть більш здоровий вибір, враховуючи також вплив вашої їжі на навколишнє середовище.</p>
+                <a class="button round secondary small" href="/nutriscore">Дізнатися більше про Nutri-Score</a>
+            </div>
+        </div>
+    </div>
+    <div class="block block-seashell">
+        <div class="row">
+            <div class="small-12 medium-4 medium-offset-1 column">
+                 <img src="/images/logos/obf-logo-icon-light.svg" alt="Ілюстрація косметичних продуктів" style="max-height: 200px" loading="lazy">
+            </div>
+            <div class="small-12 medium-5 end column">
+                <h1 class="title-2 emphasized-title">
+                    Зрозумійте свою
+                    <span class="highlight-label blue rotate-left">Косметика</span>
+                </h1>
+                <p class="paragraph-top-margin">Відскануйте косметичні продукти, щоб розшифрувати список їхніх інгредієнтів (INCI). Визначте алергени, веганські, вегетаріанські продукти або продукти без пальмової олії.</p>
+                <p>Робіть усвідомлений вибір косметичних засобів, які ви використовуєте щодня.</p>
+                <a class="button round secondary small" href="https://world.openbeautyfacts.org/">Дізнайтеся про відкриті факти про красу</a>
+            </div>
+        </div>
+    </div>
+    <div class="block block-yellow">
+        <div class="row">
+            <div class="small-12 medium-5 medium-offset-1 column">
+                <h1 class="title-2 emphasized-title">
+                    Оберіть найкраще для своїх
+                    <span class="highlight-label pink rotate-right">домашніх тварин</span>
+                </h1>
+                <p class="paragraph-top-margin">Відскануйте корм для домашніх тварин, щоб зрозуміти його склад та харчову цінність.</p>
+                <p>Знайдіть продукти, адаптовані до конкретних потреб та вподобань вашого улюбленця, забезпечуючи йому правильний раціон.</p>
+                 <a class="button round secondary small" href="https://world.openpetfoodfacts.org/">Дізнайтеся про Open Pet Food Facts</a>
+            </div>
+            <div class="small-12 medium-6 end column">
+                 <img src="/images/logos/opff-logo-icon-light.svg" alt="Ілюстрація корму для домашніх тварин та щасливого улюбленця" style="max-height: 250px" loading="lazy">
+            </div>
+        </div>
+    </div>
+    <div class="block block-white">
+        <div class="row" id="join-food-revolution-row">
+            <div class="small-12 medium-4 medium-offset-2 column">
+                <img
+                    src="/images/misc/app-landing-page/join-the-food-revolution/join-the-food-revolution_en.svg"
+                    alt="Долучайтеся до ініціативи"
+                    style="max-height: 180px"
+                    loading="lazy"
+                >
+                <p class="paragraph-top-margin">Разом з більш ніж 170000 учасників по всьому світу!</p>
+            </div>
+            <div class="small-12 medium-4 end column">
+                <div class="testimonial-card">
+                    <p>“Я люблю цей додаток!! Я використовую його щодня. Це дуже допомагає мені знайти продукт, який підходить саме мені!"</p>
+                    <p>
+                        <strong>Луїза</strong>
+                    </p>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <img
+                        src="/images/misc/app-landing-page/store-review-rating.svg"
+                        loading="lazy"
+                        alt="Рейтинг у Google Play Store та Apple Store"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-7 medium-offset-5 column">
+                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en" title="Відкрийте Open Food Facts у Google Play">
+                <img
+                    src="/images/misc/playstore/img/en_get.svg"
+                    loading="lazy"
+                    alt="Доступно на Google Play"
+                    width="120"
+                    height="40"
+                ></a>
+                <a href="https://f-droid.org/packages/openfoodfacts.github.scrachx.openfood" title="Відкрийте Open Food Facts в F-Droid">
+                <img
+                    src="/images/misc/f-droid/get-it-on-en.png"
+                    loading="lazy"
+                    alt="Доступно на F-Droid"
+                    height="40"
+                    width="120"
+                ></a>
+                <a href="https://github.com/openfoodfacts/smooth-app/releases/latest" title="Відкрийте додаток Open Food Facts в Github">
+                <img
+                    src="/images/misc/app-landing-page/download-apk/download-apk_en.svg"
+                    loading="lazy"
+                    alt="Завантажити APK"
+                    height="40"
+                    width="120"
+                ></a>
+                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948" title="Open Food Facts в Apple App Store">
+                <img
+                    src="/images/misc/appstore/black/appstore_US.svg"
+                    loading="lazy"
+                    alt="Доступно в App Store"
+                    width="120"
+                    height="40"
+                ></a>
+            </div>
+        </div>
+        <img
+            src="/images/illustrations/puzzle.svg"
+            alt="Головоломка з рукою"
+            class="puzzle-illustration show-for-large-up"
+            loading="lazy"
+        >
+    </div>
+</div>
+<script>
+    document.querySelectorAll('[data-app-store="google"]').forEach((item) => {
+        item.href = addUTMParameters(googlePlayURL);
+    });
+    document.querySelectorAll('[data-app-store="apple"]').forEach((item) => {
+        item.href = addUTMParameters(appleStoreURL);
+    });
+</script>
