@@ -15,7 +15,7 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
 
     - name: Upgrade assets
       run: |
@@ -30,7 +30,7 @@ jobs:
     - name: Create Pull Request
       if: steps.check-changes.outputs.outcome == failure()
       id: cpr
-      uses: peter-evans/create-pull-request@v7
+      uses: peter-evans/create-pull-request@v8
       with:
         base: main
         commit-message: Automated update of knowledge cards HTML files
