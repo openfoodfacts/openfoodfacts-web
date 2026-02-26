@@ -19,12 +19,6 @@ Tie var ietvert grafiskos elementus, uz kuriem attiecas autortiesības vai citas
 <h3>MongoDB izgāstuve</h3>
 
 <p>Visu produktu dati ir pieejami MongoDB datu bāzē.</p>
-<!--
-<h4>Why you'd want to use it: </h4>
-<ul>
- <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
-</ul>
-</p>-->
 <dl>
  <dt>Saite</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
@@ -57,15 +51,15 @@ Tie var ietvert grafiskos elementus, uz kuriem attiecas autortiesības vai citas
 
 <p>Vienkāršota JSONL izmetes versija ir pieejama arī <a href="https://parquet.apache.org/">Parquet formātā</a>. Konvertēšanas laikā mēs filtrējām kolonnas, kas satur dublētu informāciju, tiek izmantotas iekšējai atkļūdošanai vai vienkārši nav būtiskas lietotājiem.</p>
     
-<p>Parketa formāts ir izrādījies ērts:<p> 
+<p>Parketa formāts ir izrādījies ērts:</p> 
 
 <ul>
-<li>Dati tiek kārtoti pa kolonnām, nevis rindām, kas ietaupa vietu krātuvē un paātrina analītikas vaicājumus, t. i., varat atlasīt tikai tās kolonnas, kas jums ir svarīgas, optimizējot vaicājumu veiktspēju pat iesācēju līmeņa datoros.</li>
-<li>Ļoti efektīva datu saspiešana un dekompresija, kas padara to piemērotu jebkura veida lielu datu kopu glabāšanai un koplietošanai,</li>
-<li>Atbalsta sarežģītus datu tipus un uzlabotas ligzdotas datu struktūras.</li>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
 </ul>
 
-<p>Datu kopa ir pieejama vietnē <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>— mašīnmācīšanās ekosistēmā, kurā izstrādātāji un pētnieki var koplietot modeļus un datu kopas.</p>
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
 
 <dl>
  <dt>Saite</dt>
@@ -73,7 +67,7 @@ Tie var ietvert grafiskos elementus, uz kuriem attiecas autortiesības vai citas
  </dd>
 </dl>
 
-</p>Vairāk informācijas atradīsiet <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, tostarp vadlīnijas datu atkārtotai izmantošanai un vaicājumu piemērus, lai sāktu darbu.</p>
+<p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>CSV datu eksports</h3>
 <p>Visu vai dažu produktu datus var lejupielādēt CSV formātā (lasāms ar LibreOffice, Excel un daudzām citām izklājlapu programmatūrām), izmantojot <a href="https://world.openfoodfacts.org/cgi/search.pl">paplašinātās meklēšanas formu</a>.</p>
@@ -123,23 +117,23 @@ Jebkurš mēģinājums nokasīt datubāzi, izmantojot API, visticamāk, tiks blo
 
 <h3>Vispārīgi principi, lai jūsu lietotāji būtu apmierināti</h3>
 <ul>
-<li>Varat meklēt informāciju par produktiem, tostarp daudzas noderīgas aprēķinātās vērtības.</li>
-<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
-<li>Varat arī ieviest visu plūsmu, lai viņi nekavējoties iegūtu rezultātu, pieliekot zināmas pūles.</li>
+<li>You can search for information about products, including many useful computed values.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
+<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
 </ul>
 
 <h3>Ja lietotāji negaida tūlītēju rezultātu (piemēram, inventarizācijas lietotnes)</h3>
 <ul>
-<li>Iesniedziet fotoattēlus (priekšpuse/uzturvērtība/sastāvdaļas): visnesāpīgākā lieta jūsu lietotājiem</li>
-<li>Atvērto pārtikas faktu mākslīgais intelekts — Robotoff — no fotoattēliem ģenerēs atvasinātus datus.</li>
-<li>Laika gaitā citas lietotnes un Open Food Facts kopiena aizpildīs datu nepilnības.</li>
+<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
 </ul>
 
 <h3>Android/iPhone/Flutter mobile app</h3>
 <ul>
-<li>Iesniedziet uzturvērtības informāciju + kategoriju &gt; , lai iegūtu Nutri-Score</li>
-<li>Iesniedziet sastāvdaļas &gt; , lai saņemtu NOVA grupu (par pārtikas ultraapstrādi), piedevām, alergēniem, normalizētām sastāvdaļām, vegāniem, veģetāriešiem&hellip;</li>
-<li>Iesniegt kategoriju + etiķetes &gt; drīzumā saņemt eko-vērtējumu (par ietekmi uz vidi)</li>
+<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
+<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
 <h3>Android/iPhone/Flutter mobile app</h3>
@@ -147,7 +141,7 @@ Jebkurš mēģinājums nokasīt datubāzi, izmantojot API, visticamāk, tiks blo
 <p>The code for the official Open Food Facts mobile apps is available on GitHub
  <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
  <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
 
 <p>Mēs vēlamies pārveidot novecojušās Kotlin un Swift koda bāzes par Kotlin un Swift SDK, palīdzība ir laipni gaidīta :-)</p>
 <p>Lietotne ļauj lietotājiem skenēt produktu svītrkodus, skatīt informāciju par produktu, kā arī uzņemt un iesniegt attēlus un datus par trūkstošiem produktiem.</p>
