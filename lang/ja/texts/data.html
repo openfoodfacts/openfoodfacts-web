@@ -21,12 +21,6 @@
 <h3>MongoDB ダンプ</h3>
 
 <p>すべての製品のデータは、MongoDB データベース ダンプで入手できます。</p>
-<!--
-<h4>Why you'd want to use it: </h4>
-<ul>
- <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
-</ul>
-</p>-->
 <dl>
  <dt>リンク</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
@@ -59,15 +53,15 @@
 
 <p>JSONL ダンプの簡略化されたバージョンは、 <a href="https://parquet.apache.org/">Parquet 形式</a>でも利用できます。 変換中に、重複した情報を含む列、内部デバッグに使用される列、またはユーザーにとって無関係な列をフィルターしました。</p>
     
-<p>Parquet 形式は便利であることが証明されています。<p> 
+<p>Parquet 形式は便利であることが証明されています。</p> 
 
 <ul>
-<li>データは行ではなく列ごとに整理されるため、ストレージ スペースが節約され、分析クエリが高速化されます。つまり、必要な列だけを選択して、エントリー レベルのコンピューターでもクエリ パフォーマンスを最適化できます。</li>
-<li>非常に効率的なデータ圧縮と解凍により、あらゆる種類の大規模なデータセットの保存と共有に適しています。</li>
-<li>複雑なデータ型と高度なネストされたデータ構造をサポートします。</li>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
 </ul>
 
-<p>データセットは、開発者と研究者がモデルとデータセットを共有できる共同機械学習エコシステムである <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>で入手できます。</p>
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
 
 <dl>
  <dt>リンク</dt>
@@ -75,7 +69,7 @@
  </dd>
 </dl>
 
-</p>データの再利用に関するガイドラインや開始するためのサンプルクエリなど、詳細については、 <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>をご覧ください。</p>
+<p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>CSVデータのエクスポート</h3>
 <p>すべての製品または一部の製品のデータは、 <a href="https://world.openfoodfacts.org/cgi/search.pl">詳細検索フォーム</a>を通じて CSV 形式 (LibreOffice、Excel、その他の多くのスプレッドシート ソフトウェアで読み取り可能) でダウンロードできます。</p>
@@ -125,28 +119,28 @@
 
 <h3>ユーザーを満足させるための一般原則</h3>
 <ul>
-<li>多くの有用な計算値を含む製品に関する情報を検索できます。</li>
-<li>特定の製品に関する情報が入手できない場合は、ユーザーに写真やデータを送信してもらうことができます。それらは Open Food Facts AI と貢献者によって処理され、ユーザーに表示する計算結果が生成されます。</li>
-<li>完全なフローを実装して、ユーザー側で少しの労力をかけるだけですぐに結果が得られるようにすることもできます。</li>
+<li>You can search for information about products, including many useful computed values.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
+<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
 </ul>
 
 <h3>ユーザーがすぐに結果を期待していない場合（例：在庫管理アプリ）</h3>
 <ul>
-<li>写真を送信する (正面/栄養/材料): ユーザーにとって最も負担の少ないもの</li>
-<li>Open Food Facts AI - Robotoff - は写真から派生データを生成します</li>
-<li>時間が経つにつれて、他のアプリやOpen Food Factsコミュニティがデータのギャップを埋めていくだろう。</li>
+<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
 </ul>
 
 <h3>ユーザーがすぐに結果を期待している場合（例：栄養アプリ）</h3>
 <ul>
-<li>栄養成分表を提出 + カテゴリー &gt; ニュートリスコアを取得</li>
-<li>原材料を提出します &gt; NOVAグループ(食品の超加工について)、添加物、アレルゲン、正規化された食材、ビーガン、ベジタリアン&hellip;</li>
-<li>カテゴリ + ラベル &gt; を送信すると、すぐにエコ スコアが表示されます (環境への影響について)</li>
+<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
+<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
 <h3>AndroidおよびiPhoneモバイルアプリ</h3>
 
-<p>Open Food Facts モバイル アプリのコードは、GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>、 <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> および <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>) で入手できます。
+<p>Open Food Facts モバイル アプリのコードは、GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>、 <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> および <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>) で入手できます。</p>
 
 <p>廃止予定の Kotlin および Swift コードベースを Kotlin および Swift SDK に変換する予定ですので、ご協力をお待ちしています :-)</p>
 <p><a href="https://github.com/openfoodfacts/openfoodfacts-ios">(<a href="https://github.com/openfoodfacts/smooth-app"></a></a>Android</a> iOS <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">)。
