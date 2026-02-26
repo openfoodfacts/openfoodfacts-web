@@ -19,12 +19,6 @@ Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif 
 <h3>MongoDB dökümü</h3>
 
 <p>Tüm ürünler için veriler MongoDB veritabanı dökümünde mevcuttur.</p>
-<!--
-<h4>Why you'd want to use it: </h4>
-<ul>
- <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
-</ul>
-</p>-->
 <dl>
  <dt>Link</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
@@ -57,15 +51,15 @@ Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif 
 
 <p>JSONL dökümünün basitleştirilmiş bir versiyonu <a href="https://parquet.apache.org/">Parquet formatında</a> da mevcuttur. Dönüşüm sırasında, yinelenen bilgiler içeren, dahili hata ayıklama için kullanılan veya kullanıcılar için alakasız olan sütunları filtreledik.</p>
     
-<p>Parke formatının kullanışlı olduğu kanıtlanmıştır:<p> 
+<p>Parke formatının kullanışlı olduğu kanıtlanmıştır:</p> 
 
 <ul>
-<li>Veriler satır yerine sütuna göre düzenlenir, bu da depolama alanından tasarruf sağlar ve analitik sorguları hızlandırır, yani yalnızca ilgilendiğiniz sütunları seçebilir, giriş seviyesi bilgisayarlarda bile sorgu performanslarını optimize edebilirsiniz.</li>
-<li>Yüksek verimli veri sıkıştırma ve açma, her türlü büyük veri kümesinin depolanması ve paylaşılması için idealdir</li>
-<li>Karmaşık veri türlerini ve gelişmiş iç içe geçmiş veri yapılarını destekler.</li>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
 </ul>
 
-<p>Veri seti, geliştiricilerin ve araştırmacıların modelleri ve veri setlerini paylaşabilecekleri işbirlikçi bir Makine Öğrenmesi ekosistemi olan <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>üzerinde mevcuttur.</p>
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
 
 <dl>
  <dt>Link</dt>
@@ -73,7 +67,7 @@ Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif 
  </dd>
 </dl>
 
-</p>Başlamak için veri yeniden kullanımına ilişkin yönergeler ve örnek sorgular da dahil olmak üzere daha fazla bilgiyi <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>adresinde bulabilirsiniz.</p>
+<p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>CSV Veri Dışa Aktarımı</h3>
 <p>Tüm ürünlere veya bazı ürünlere ilişkin veriler, <a href="https://world.openfoodfacts.org/cgi/search.pl">gelişmiş arama formu</a> aracılığıyla CSV formatında (LibreOffice, Excel ve diğer birçok e-tablo yazılımıyla okunabilir) indirilebilir.</p>
@@ -123,28 +117,28 @@ Bu API aktif olarak korunmaz ve resmi olarak belgelenmez.
 
 <h3>Kullanıcılarınızı mutlu edecek genel prensipler</h3>
 <ul>
-<li>Birçok faydalı hesaplanmış değer de dahil olmak üzere ürünler hakkında bilgi arayabilirsiniz.</li>
-<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
-<li>Ayrıca, kendi taraflarında biraz çaba harcayarak sonucu hemen almaları için tam akışı da uygulayabilirsiniz.</li>
+<li>You can search for information about products, including many useful computed values.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
+<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
 </ul>
 
 <h3>Kullanıcılarınız hemen bir sonuç beklemiyorsa (örn. Envanter uygulamaları)</h3>
 <ul>
-<li>Fotoğrafları gönderin (ön yüz/besin değerleri/içindekiler): Kullanıcılar anlayabileceği en basit haliyle</li>
-<li>Open Food Facts AI - Robotoff - fotoğraflardan bazı türetilmiş veriler üretecek</li>
-<li>Zamanla diğer uygulamalar ve Open Food Facts topluluğu veri boşluklarını dolduracak</li>
+<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
 </ul>
 
 <h3>Kullanıcılarınız hemen bir sonuç bekliyorsa (ör. Beslenme uygulamaları)</h3>
 <ul>
-<li>Beslenme gerçeklerini gönderin + kategori &gt; Nutri-Score'u alın</li>
-<li>Malzemeleri gönder &gt; NOVA grubunu (gıda ultra işleme hakkında), katkı maddelerini, alerjenleri, normalleştirilmiş içerik maddelerini, vegan, vejetaryen&hellip; edinin</li>
-<li>Kategori + etiketleri gönderin &gt; yakında Eco-Score'u alın (çevresel etki hakkında)</li>
+<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
+<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
 <h3>Android ve iPhone mobil uygulaması</h3>
 
-<p>Open Food Facts mobil uygulamasının kodu GitHub'da mevcuttur (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> ve <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).
+<p>Open Food Facts mobil uygulamasının kodu GitHub'da mevcuttur (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> ve <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).</p>
 
 <p>Kullanımdan kaldırılan Kotlin ve Swift kod tabanlarını Kotlin ve Swift SDK'larına dönüştürmeyi hedefliyoruz, yardımlarınızı bekliyoruz :-)</p>
 <p>Uygulama, kullanıcıların ürünlerin barkodunu taramasına, ürün bilgilerini görüntülemesine ve eksik ürünler için resim ve veri çekip göndermesine olanak tanır.</p>
