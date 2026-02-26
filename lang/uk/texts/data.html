@@ -21,12 +21,6 @@
 <h3>Дамп MongoDB</h3>
 
 <p>Дані для всі продуктів наявні в дампі бази даних MongoDB.</p>
-<!--
-<h4>Why you'd want to use it: </h4>
-<ul>
- <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
-</ul>
-</p>-->
 <dl>
  <dt>Силка</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
@@ -60,15 +54,15 @@
 
 <p>Спрощена версія дампа JSONL також доступна у форматі <a href="https://parquet.apache.org/">Parquet</a>. Під час перетворення ми відфільтрували стовпці, які містять дубліковану інформацію, використовуються для внутрішнього налагодження або просто нерелевантну для користувачів.</p>
     
-<p>Формат Parquet виявився зручним:<p> 
+<p>Формат Parquet виявився зручним:</p> 
 
 <ul>
-<li>Дані організовано за стовпцями, а не за рядками, що економить місце для зберігання та пришвидшує аналітичні запити, тобто ви можете вибрати лише ті стовпці, які вас цікавлять, оптимізуючи продуктивність запитів навіть на комп’ютерах початкового рівня.</li>
-<li>Високоефективне стиснення та декомпресія даних, що робить його хорошим для зберігання та обміну великими наборами даних будь-якого типу,</li>
-<li>Підтримує складні типи даних і розширені вкладені структури даних.</li>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
 </ul>
 
-<p>Набір даних доступний на <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, спільній екосистемі машинного навчання, де розробники та дослідники можуть обмінюватися моделями та наборами даних.</p>
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
 
 <dl>
  <dt>Силка</dt>
@@ -76,7 +70,7 @@
  </dd>
 </dl>
 
-</p>Знайдіть більше інформації у <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, включаючи вказівки щодо повторного використання даних і приклади запитів.</p>
+<p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>Експорт даних RDF</h3>
 <p>Дані про всі про всі продукти, або деякі з них, можна завантажити у форматі CSV (читається за допомогою LibreOffice, Excel та багатьох інших програм для роботи з електронними таблицями) через <a href="https://world.openfoodfacts.org/cgi/search.pl">форму розширеного пошуку</a>.</p>
@@ -129,28 +123,28 @@
 
 <h3>Якщо ваші користувачі не очікують результат одразу (на приклад додатки для інвентиризації)</h3>
 <ul>
-<li>Ви можете шукати інформацію про товари, включаючи багато корисних розрахункових значень.</li>
-<li>Якщо ви не можете дістати інформацію про окремий продукт, ви можете отримати користувача для надсилання фото та даних, що потім будуть оброблені Open Food Facts AI та розробітниками, щоб отримати підрахований результат, який ви хочете показати їм.</li>
-<li>Ви також можете реалізувати цілий потік, щоб вони одразу отримали результат з деякими зусиллями з їхнього боку.</li>
+<li>You can search for information about products, including many useful computed values.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
+<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
 </ul>
 
 <h3>Якщо ваші користувачі очікують результат одразу (на приклад програми щодо харчування)</h3>
 <ul>
-<li>Надсилайте фото (передня частина/харчування/інгредієнти): найбезболісніша річ для ваших користувачів</li>
-<li>Штучний інтелект Open Food Facts - Robotoff, згенерує деякі похідні дані з фотографій</li>
-<li>З часом, інші додатки та спільнота Open Food Facts заповнить прогалини даних</li>
+<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
 </ul>
 
 <h3>Android/iPhone/Flutter mobile app</h3>
 <ul>
-<li>Надішліть інформацію про поживні речовини + категорію; отримайте Nutri-Score</li>
-<li>Надішліть інгредієнти; отримайте групу NOVA (про ультраобробку продуктів), добавки, алергени, нормалізовані інгредієнти, веганські, вегетаріанські</li>
-<li>Надішліть категорію + етикетки; незабаром отримайте Eco-Score (про вплив на навколишнє середовище)</li>
+<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
+<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
 <h3>SDK</h3>
 
-<p>Ви можете переглянути <a href="https://support.openfoodfacts.org/help/fr-fr/12">поширені запитання щодо API та експорту даних</a>та<a href="https://support.openfoodfacts.org/help/fr-fr">поширені запитання щодо Open Food Facts</a>
+<p>Ви можете переглянути <a href="https://support.openfoodfacts.org/help/fr-fr/12">поширені запитання щодо API та експорту даних</a>та<a href="https://support.openfoodfacts.org/help/fr-fr">поширені запитання щодо Open Food Facts</a></p>
 
 <p>Ми прагнемо перетворити застарілі кодові бази Kotlin і Swift на SDK Kotlin і Swift, допоможіть нам у цьому :-)</p>
 <p>Ви можете <a href="https://github.com/openfoodfacts/api-documentation/discussions">відкрити потік у нашому репозиторії документації до API</a></p>
