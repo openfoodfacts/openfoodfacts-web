@@ -21,12 +21,6 @@ Mohou obsahovat grafické prvky podléhající autorským právům nebo jiným p
 <h3>Výpis MongoDB</h3>
 
 <p>Data pro všechny produkty jsou k dispozici ve výpisu databáze MongoDB.</p>
-<!--
-<h4>Why you'd want to use it: </h4>
-<ul>
- <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
-</ul>
-</p>-->
 <dl>
  <dt>Odkaz</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
@@ -60,15 +54,15 @@ Mohou obsahovat grafické prvky podléhající autorským právům nebo jiným p
 
 <p>Zjednodušená verze výpisu JSONL je k dispozici také ve formátu <a href="https://parquet.apache.org/">Parquet</a>. Při převodu jsme filtrovali sloupce, které obsahují duplicitní informace, slouží k internímu ladění nebo jsou pro uživatele jednoduše irelevantní.</p>
     
-<p>Ukázalo se, že formát Parquet je vhodný:<p> 
+<p>Ukázalo se, že formát Parquet je vhodný:</p> 
 
 <ul>
-<li>Data jsou organizována podle sloupců, nikoli podle řádků, což šetří úložný prostor a urychluje analytické dotazy, tj. můžete vybrat pouze sloupce, které vás zajímají, a optimalizovat tak výkon dotazů, a to i na méně výkonných počítačích.</li>
-<li>Vysoce účinná komprese a dekomprese dat, díky čemuž je vhodná pro ukládání a sdílení velkých datových sad jakéhokoli druhu,</li>
-<li>Podporuje komplexní datové typy a pokročilé vnořené datové struktury.</li>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
 </ul>
 
-<p>Soubor dat je k dispozici na <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, kolaborativním ekosystému strojového učení, kde mohou vývojáři a výzkumníci sdílet modely a datové sady.</p>
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
 
 <dl>
  <dt>Odkaz</dt>
@@ -76,7 +70,7 @@ Mohou obsahovat grafické prvky podléhající autorským právům nebo jiným p
  </dd>
 </dl>
 
-</p>Další informace najdete na <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, včetně pokynů pro opětovné použití dat a příkladů dotazů, jak začít.</p>
+<p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>Export dat RDF</h3>
 <p>Data pro všechny produkty nebo některé produkty lze stáhnout ve formátu CSV (čitelný pomocí LibreOffice, Excel a mnoha dalších tabulkových softwarů) prostřednictvím <a href="https://world.openfoodfacts.org/cgi/search.pl">formuláře pro pokročilé vyhledávání</a>.</p>
@@ -129,28 +123,28 @@ Toto API není aktivně udržováno a není oficiálně zdokumentováno.
 
 <h3>Obecné zásady, aby byli vaši uživatelé spokojeni</h3>
 <ul>
-<li>Můžete vyhledávat informace o produktech, včetně mnoha užitečných vypočtených hodnot.</li>
-<li>Pokud nemůžete získat informace o konkrétním produktu, můžete přimět uživatele, aby poslal fotografie a data, která pak zpracuje Open Food Facts AI a přispěvatelé, aby získali vypočítaný výsledek, který jim chcete ukázat.</li>
-<li>Můžete také implementovat kompletní tok tak, aby okamžitě získali výsledek s určitým úsilím na jejich straně.</li>
+<li>You can search for information about products, including many useful computed values.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
+<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
 </ul>
 
 <h3>Pokud vaši uživatelé neočekávají výsledek okamžitě (např. aplikace Inventory)</h3>
 <ul>
-<li>Odešlete fotografie (přední strana/výživa/ingredience): pro vaše uživatele naprosto bezbolestná věc</li>
-<li>Open Food Facts AI „Robotoff“ vygeneruje některá odvozená data z fotografií</li>
-<li>Časem mezery v datech zaplní další aplikace a komunita Open Food Facts</li>
+<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
 </ul>
 
 <h3>Mobilní aplikace pro Android/iPhone/Flutter</h3>
 <ul>
-<li>Odešlete nutriční fakta + kategorie &gt; získejte Nutri-Score</li>
-<li>Odešlete ingredience &gt; získejte skupinu NOVA (o ultrazpracování potravin), přísady, alergeny, normalizované ingredience, veganské, vegetariánské&hellip;</li>
-<li>Odešlete kategorii + štítky &gt; brzy získáte Eco-Score (o dopadu na životní prostředí)</li>
+<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
+<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
 <h3>SDK</h3>
 
-<p>Můžete se podívat na <a href="https://support.openfoodfacts.org/help/fr-fr/12">nejčastější dotazy týkající se API a exportů dat</a> a <a href="https://support.openfoodfacts.org/help/fr-fr">běžné otázky týkající se Open Food Facts</a>
+<p>Můžete se podívat na <a href="https://support.openfoodfacts.org/help/fr-fr/12">nejčastější dotazy týkající se API a exportů dat</a> a <a href="https://support.openfoodfacts.org/help/fr-fr">běžné otázky týkající se Open Food Facts</a></p>
 
 <p>Snažíme se z deprecated Kotlin a Swift codebases udělat Kotlin a Swift SDK, pomoc vítána :-)</p>
 <p>Můžete <a href="https://github.com/openfoodfacts/api-documentation/discussions">otevřít vlákno v našem úložišti dokumentace API</a></p>
