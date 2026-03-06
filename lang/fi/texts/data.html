@@ -21,12 +21,6 @@ Ne saattavat sisältää tekijänoikeuden tai muun oikeuden alaisia graafisia el
 <h3>MongoDB-vedos</h3>
 
 <p>Kaikkien tuotteiden tiedot ovat saatavilla MongoDB tietokantavedoksena.</p>
-<!--
-<h4>Why you'd want to use it: </h4>
-<ul>
- <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
-</ul>
-</p>-->
 <dl>
  <dt>Linkki</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
@@ -59,15 +53,15 @@ Ne saattavat sisältää tekijänoikeuden tai muun oikeuden alaisia graafisia el
 
 <p>JSONL dump -toiminnon yksinkertaistettu versio on saatavilla myös <a href="https://parquet.apache.org/">parkettimuodossa</a>. Tämän muutoksen aikana olemme suodattaneet sarakkeita, jotka sisältävät monistettua tietoa, ovat merkityksettömiä käyttäjille tai joita käytetään virheidenkorjaukseen.</p>
     
-<p>Parkettimuoto on todistetusti hyödyllinen:<p> 
+<p>Parkettimuoto on todistetusti hyödyllinen:</p> 
 
 <ul>
-<li>Dataa ei säilytetä riveillä vaan sarakkeissa, mikä säästää tallennustilaa ja nopeuttaa analytiikkakyselyitä. Tämä tarkoittaa sitä, että voit yksinkertaisesti valita haluamasi sarakkeet, mikä parantaa kyselyiden suorituskykyä jopa perustason tietokoneilla.</li>
-<li>Hyvin tekohas datan pakkaus ja purku, mikä tekee siitä hyvän paikan kaikenlaisten tietopakettien varastoinnille ja jakamiselle,</li>
-<li>Tukee monimutkaisia datatyyppejä ja edistyneitä sisäkkäisiä tietorakenteita.</li>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
 </ul>
 
-<p>Tämä datapaketti on saatavilla sivustolla <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, joka on yhteistyöhön ja koneoppimiseen perustuva järjestelmä, jossa kehittäjät ja tutkijat voivat jakaa malleja ja dataa.</p>
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
 
 <dl>
  <dt>Linkki</dt>
@@ -75,7 +69,7 @@ Ne saattavat sisältää tekijänoikeuden tai muun oikeuden alaisia graafisia el
  </dd>
 </dl>
 
-</p>Löydä lisää tietoa <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wikistämme</a> sisältäen esimerkkikysymyksiä sekä ohjeita datan uudelleenkäyttöä varten.</p>
+<p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>Tietojen CSV-vienti</h3>
 <p>Kaikkien tuotteiden tai joidenkin tuotteiden tiedot voidaan ladata CSV-muodossa (luettavissa LibreOfficella, Excelillä ja monilla muilla taulukkolaskentaohjelmilla) <a href="https://world.openfoodfacts.org/cgi/search.pl">tarkennetun hakulomakkeen</a> kautta.</p>
@@ -125,28 +119,28 @@ Tätä API:a ei ylläpidetä aktiivisesti, eikä sitä ole dokumentoitu virallis
 
 <h3>Yleiset periaatteet käyttäjien ilahduttamiseksi</h3>
 <ul>
-<li>Voit etsiä tietoja tuotteista, mukaan lukien monia hyödyllisiä laskettuja arvoja.</li>
-<li>Jos et saa tietoja tietystä tuotteesta, voit pyytää käyttäjää lähettämään valokuvia ja tietoja, jotka sitten Open Food Facts AI ja avustajat käsittelevät saadakseen lasketun tuloksen, jonka haluat näyttää heille.</li>
-<li>Voit myös toteuttaa koko flown niin, että he saavat heti tuloksen pienellä vaivalla.</li>
+<li>You can search for information about products, including many useful computed values.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
+<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
 </ul>
 
 <h3>Jos käyttäjäsi eivät odota tulosta heti (esim. varastosovellukset)</h3>
 <ul>
-<li>Lähetä valokuvat (etu/ravinto/ainesosat): käyttäjillesi kivuton asia</li>
-<li>Open Food Facts AI - Robotoff - tuottaa valokuvista johdettuja tietoja</li>
-<li>Ajan myötä muut sovellukset ja Open Food Facts -yhteisö täyttävät tietoaukot</li>
+<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
 </ul>
 
 <h3>Jos käyttäjäsi odottavat tulosta välittömästi (esim. ravitsemussovellukset)</h3>
 <ul>
-<li>Lähetä ravitsemustiedot + kategoria &gt; saat Nutri-Scoren</li>
-<li>Ilmoita ainesosat &gt; hanki NOVA-ryhmä (ruoan ultraprosessoinnista), lisäaineet, allergeenit, normalisoidut ainesosat, vegaani, vegetaari&hellip;</li>
-<li>Lähetä luokka + tunnisteet &gt; saat pian Eco-Scoren (ympäristövaikutuksista)</li>
+<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
+<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
 <h3>SDK:t</h3>
 
-<p>Voit tarkastella <a href="https://support.openfoodfacts.org/help/fr-fr/12">yleisiä API:ta ja tietojen vientiä koskevia FAQ-kysymyksiä</a> ja <a href="https://support.openfoodfacts.org/help/fr-fr">yleisiä Open Food Facts -kysymystä</a>
+<p>Voit tarkastella <a href="https://support.openfoodfacts.org/help/fr-fr/12">yleisiä API:ta ja tietojen vientiä koskevia FAQ-kysymyksiä</a> ja <a href="https://support.openfoodfacts.org/help/fr-fr">yleisiä Open Food Facts -kysymystä</a></p>
 
 <p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
 <p>Voit <a href="https://github.com/openfoodfacts/api-documentation/discussions">aloittaa viestiketjun ohjelmointirajapintadokumentaatiotietovarastossamme</a></p>

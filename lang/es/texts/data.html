@@ -21,12 +21,6 @@ Pueden contener elementos gráficos sujetos a derechos de autor u otros derechos
 <h3>Volcado de MongoDB</h3>
 
 <p>Los datos para todos los productos están disponibles en un volcado de base de datos MongoDB.</p>
-<!--
-<h4>Why you'd want to use it: </h4>
-<ul>
- <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
-</ul>
-</p>-->
 <dl>
  <dt>Enlace</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
@@ -59,15 +53,15 @@ Pueden contener elementos gráficos sujetos a derechos de autor u otros derechos
 
 <p>También está disponible una versión simplificada de JSONL en el formato <a href="https://parquet.apache.org/">Parquet</a>. Durante la conversión, filtramos las columnas que contienen información duplicada, se utilizan para depuración interna o simplemente son irrelevantes para los usuarios.</p>
     
-<p>El formato Parquet ha demostrado ser útil:<p> 
+<p>El formato Parquet ha demostrado ser útil:</p> 
 
 <ul>
-<li>Los datos se organizan por columna, en lugar de por fila, lo que ahorra espacio de almacenamiento y acelera las consultas analíticas, es decir, puede seleccionar solo las columnas que le interesan, optimizando el rendimiento de las consultas, incluso en computadoras de nivel básico.</li>
-<li>Compresión y descompresión de datos altamente eficientes, lo que lo hace ideal para almacenar y compartir grandes conjuntos de datos de cualquier tipo,</li>
-<li>Admite tipos de datos complejos y estructuras de datos anidadas avanzadas.</li>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
 </ul>
 
-<p>El conjunto de datos está disponible en <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, un ecosistema colaborativo de aprendizaje automático donde los desarrolladores e investigadores pueden compartir modelos y conjuntos de datos.</p>
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
 
 <dl>
  <dt>Enlace</dt>
@@ -75,7 +69,7 @@ Pueden contener elementos gráficos sujetos a derechos de autor u otros derechos
  </dd>
 </dl>
 
-</p>Encuentre más información en la Wiki <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29"></a>, incluidas pautas para la reutilización de datos y consultas de ejemplo para comenzar.</p>
+<p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>Exportar datos RDF</h3>
 <p>Los datos de todos los productos, o algunos de los productos, se pueden descargar en formato CSV (legible con LibreOffice, Excel y muchos otros programas de hojas de cálculo) a través del <a href="https://world.openfoodfacts.org/cgi/search.pl">formulario de búsqueda avanzada</a>.</p>
@@ -125,28 +119,28 @@ Esta API no se mantiene de forma habitual ni está documentada oficialmente.
 
 <h3>Principios generales para hacer felices a tus usuarios</h3>
 <ul>
-<li>Puedes buscar información sobre productos, incluso muchos valores computados útiles.</li>
-<li>Si no puedes obtener información sobre un producto específico, puedes hacer que tus usuarios envíen fotos y datos, que más tarde serán procesados por la AI y los colaboradores de Open Food Facts para obtener el resultado computado que deseas mostrarles.</li>
-<li>También puedes implementar el flujo completo para que obtengan inmediatamente el resultado con algo de esfuerzo de tu parte.</li>
+<li>You can search for information about products, including many useful computed values.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
+<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
 </ul>
 
 <h3>Si tus usuarios esperan un resultado inmediato (por ejemplo, aplicaciones de nutrición)</h3>
 <ul>
-<li>Enviar imágenes (frontal/información nutricional/ingredientes): la manera más indolora para tus usuarios.</li>
-<li>La IA de Open Food Facts, Robotoff, generará algunos datos obtenidos de las fotografías.</li>
-<li>Con el tiempo, otras aplicaciones, y la comunidad Open Food Facts rellenarán los datos que faltan.</li>
+<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
 </ul>
 
 <h3>Si tus usuarios no esperan un resultado inmediato (por ejemplo, aplicaciones de inventario)</h3>
 <ul>
-<li>Sube la información nutricional y la categoría para conseguir el Nutri-Score</li>
-<li>Envía los ingredientes para obtener información sobre el grupo NOVA (sobre alimentos ultraprocesados), aditivos, alérgenos, ingredientes normalizados, veganos, vegetarianos…</li>
-<li>Envía la categoría y el etiquetado especial y pronto obtendrás el Eco-Score (información sobre el impacto ambiental).</li>
+<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
+<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
 <h3>Aplicación móvil para Android y iPhone</h3>
 
-<p>El código de la aplicación móvil de Open Food Facts está disponible en GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> y <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).
+<p>El código de la aplicación móvil de Open Food Facts está disponible en GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> y <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).</p>
 
 <p>Queremos convertir los códigos base obsoletos de Kotlin y Swift en SDK de Kotlin y Swift. ¡Te esperamos! :-)</p>
 <p>:-)
