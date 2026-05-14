@@ -4,241 +4,241 @@
 	
 
 
-<h1>Guide for producers</h1>
+<h1>プロデューサー向けガイド</h1>
 
 <p>This guide explains why and how producers can directly integrate photos and product data into the Open Food Facts database.</p>
 
 <ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#pourquoi_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">Why add your product data to Open Food Facts</a></li>
+<li><a href="#introduction">導入</a></li>
+<li><a href="#pourquoi_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">Open Food Factsに製品データを追加する理由</a></li>
 <ul>
-<li><a href="#exemples_de_producteurs_qui_transmettent_les_photos_et_donnees_de_leurs_produits_a_open_food_facts">Examples of producers who submit photos and product data to Open Food Facts</a></li>
+<li><a href="#exemples_de_producteurs_qui_transmettent_les_photos_et_donnees_de_leurs_produits_a_open_food_facts">Open Food Factsに写真や製品データを提出する生産者の例</a></li>
 </ul>
-<li><a href="#comment_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">How to add data for your products in Open Food Facts</a></li>
+<li><a href="#comment_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">Open Food Factsに商品のデータを追加する方法</a></li>
 <ul>
-<li><a href="#licence">Licence</a></li>
-<li><a href="#quelles_donnees">What data ?</a></li>
+<li><a href="#licence">ライセンス</a></li>
+<li><a href="#quelles_donnees">何のデータですか?</a></li>
 <ul>
-<li><a href="#une_base_dans_toutes_les_langues">A database in all languages</a></li>
-<li><a href="#photos_et_donnees">Photos and Data</a></li>
+<li><a href="#une_base_dans_toutes_les_langues">すべての言語のデータベース</a></li>
+<li><a href="#photos_et_donnees">写真とデータ</a></li>
 </ul>
-<li><a href="#ajout_manuel">Manual addition</a></li>
-<li><a href="#ajout_automatise">Automated addition</a></li>
+<li><a href="#ajout_manuel">手動で追加</a></li>
+<li><a href="#ajout_automatise">自動追加</a></li>
 <ul>
-<li><a href="#format_des_images">Picture format</a></li>
+<li><a href="#format_des_images">画像フォーマット</a></li>
 <ul>
-<li><a href="#format_des_fichiers_images">Format of image files</a></li>
-<li><a href="#nom_des_fichiers_images">Name of the image files</a></li>
+<li><a href="#format_des_fichiers_images">画像ファイルの形式</a></li>
+<li><a href="#nom_des_fichiers_images">画像ファイルの名前</a></li>
 </ul>
-<li><a href="#format_des_donnees">Data format</a></li>
+<li><a href="#format_des_donnees">データ形式</a></li>
 <ul>
-<li><a href="#champs_obligatoires">Required fields</a></li>
-<li><a href="#champs_optionnels">Optional fields</a></li>
+<li><a href="#champs_obligatoires">必須フィールド</a></li>
+<li><a href="#champs_optionnels">オプションフィールド</a></li>
 </ul>
-<li><a href="#envoi_des_photos_et_des_donnees">Sending photos and data</a></li>
+<li><a href="#envoi_des_photos_et_des_donnees">写真とデータの送信</a></li>
 </ul>
 </ul>
 <li><a href="#questions_frequentes">よくある質問</a></li>
 <ul>
-<li><a href="#est_ce_que_le_referencement_des_produits_est_gratuit">Is the listing of products free?</a></li>
-<li><a href="#les_donnees_des_producteurs_vont_elles_ecraser_les_donnees_saisies_par_les_contributeurs">Will producer data overwrite data entered by contributors?</a></li>
-<li><a href="#est_il_possible_de_supprimer_les_produits_qui_ne_sont_plus_vendus">Is it possible to delete products that are no longer sold?</a></li>
-<li><a href="#est_ce_que_les_produits_pour_animaux_les_produits_non_alimentaires_les_cosmetiques_et_les_autres_produits_peuvent_etre_integres_a_open_food_facts">Can animal products, non-food products, cosmetics and other products be integrated into Open Food Facts?</a></li>
+<li><a href="#est_ce_que_le_referencement_des_produits_est_gratuit">商品の掲載は無料ですか？</a></li>
+<li><a href="#les_donnees_des_producteurs_vont_elles_ecraser_les_donnees_saisies_par_les_contributeurs">プロデューサーデータは、貢献者が入力したデータを上書きしますか?</a></li>
+<li><a href="#est_il_possible_de_supprimer_les_produits_qui_ne_sont_plus_vendus">販売終了した商品を削除することは可能ですか？</a></li>
+<li><a href="#est_ce_que_les_produits_pour_animaux_les_produits_non_alimentaires_les_cosmetiques_et_les_autres_produits_peuvent_etre_integres_a_open_food_facts">動物性製品、食品以外の製品、化粧品、その他の製品を Open Food Facts に統合できますか?</a></li>
 </ul>
 </ul>
 
-<h2 id="introduction">Introduction</h2>
+<h2 id="introduction">導入</h2>
 
-<p>The photos and data on the food products referenced in the Open Food Facts database come from 2 sources:</p>
+<p>Open Food Facts データベースで参照される食品の写真とデータは、次の 2 つのソースから取得されています。</p>
 <ul>
-<li>crowdsourcing through mobile apps and the Open Food Facts website: contributors scan barcodes, send product photos, ingredient lists and nutrition charts and then enter the data in a structured way.</li>
-  <li>the addition of data directly from the producers, either manually or automatically.</li>
+<li>モバイル アプリと Open Food Facts Web サイトを通じたクラウドソーシング: 貢献者はバーコードをスキャンし、製品の写真、原材料リスト、栄養チャートを送信し、構造化された方法でデータを入力します。</li>
+  <li>手動または自動でプロデューサーから直接データを追加します。</li>
 </ul>
 
 
-<h2 id="pourquoi_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">Why add product data to Open Food Facts</h2>
-<p>There are many benefits to importing date directly from manufacturers:</p>
+<h2 id="pourquoi_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">Open Food Factsに製品データを追加する理由</h2>
+<p>メーカーから直接デーツを輸入することには多くの利点があります。</p>
 
 <ul>
-<li>The data is complete, up to date, and without risk of error.</li>
-<li>The photos are of better quality than the photos taken by the contributors in very variable conditions.</li>
-<li>The data is then available in more than 100 applications.</li>
-<li>You can easily obtain statistics about your products and export the data of your products supplemented by indicators calculated by Open Food Facts such as the Nutri-Score.</li>
+<li>データは完全かつ最新であり、エラーのリスクはありません。</li>
+<li>これらの写真は、投稿者がさまざまな条件下で撮影した写真よりも品質が優れています。</li>
+<li>データは 100 を超えるアプリケーションで利用できるようになります。</li>
+<li>製品に関する統計情報を簡単に取得し、Nutri-Score などの Open Food Facts によって計算された指標で補足された製品データをエクスポートできます。</li>
 </ul>
   
   
-<h3 id="exemples_de_producteurs_qui_transmettent_les_photos_et_donnees_de_leurs_produits_a_open_food_facts">Examples of producers who submit photos and product data to Open Food Facts</h3>
+<h3 id="exemples_de_producteurs_qui_transmettent_les_photos_et_donnees_de_leurs_produits_a_open_food_facts">Open Food Factsに写真や製品データを提出する生産者の例</h3>
 
-<p>A growing number of high level French producers are sending us the data of their products: Fleury Michon, Sodebo, System U, Carrefour, Casino, Franprix, Monoprix.</p>
+<p>Fleury Michon、Sodebo、System U、Carrefour、Casino、Franprix、Monoprix など、ますます多くのフランスの一流メーカーが自社製品のデータを私たちに送ってきています。</p>
 
-<h2 id="comment_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">How to add the data of your products in Open Food Facts</h2>
+<h2 id="comment_ajouter_les_donnees_de_ses_produits_dans_open_food_facts">Open Food Factsに商品データを追加する方法</h2>
 
-<h3 id="licence">Licence</h3>
+<h3 id="licence">ライセンス</h3>
   
-<p>All data sent to Open Food Facts is published under the Open Database License (ODbL), and the photos under the Creative Commons License CC-BY-SA. These licenses allow the data to be freely reusable by all and for all purposes. For more information, see the <a href="https://fr.openfoodfacts.org/conditions-d-utilisation">Terms of Use, Contribution, and Reuse.</a></p>
+<p>Open Food Facts に送信されたすべてのデータは Open Database License (ODbL) に基づいて公開され、写真は Creative Commons License CC-BY-SA に基づいて公開されます。 これらのライセンスにより、データは誰でもあらゆる目的で自由に再利用できるようになります。 詳細については、 <a href="https://fr.openfoodfacts.org/conditions-d-utilisation">「使用、貢献、再利用の条件」を参照してください。</a></p>
   
-<h3 id="quelles_donnees">What data</h3>
+<h3 id="quelles_donnees">どのようなデータ</h3>
 
-<p>All the data you have can be integrated into Open Food Facts: ingredients and nutritional information of course, but also labels, materials used for packaging, traceability of ingredients, instructions for preparation and recycling, ecological footprint etc.</p>
-<p>We regularly add new fields to the database based on the information on the packages or provided by the manufacturers.</p>
-We have recently added fields on the carbon footprint, and the packaging of products, which are already highlighted on Open Food Facts and in applications that help to change the behavior in terms of recycling.<p></p>
+<p>あなたが保有するすべてのデータは Open Food Facts に統合できます。原材料や栄養情報はもちろん、ラベル、包装に使用されている材料、原材料の追跡可能性、調理およびリサイクルの指示、環境フットプリントなども統合できます。</p>
+<p>パッケージの情報やメーカーから提供された情報に基づいて、データベースに新しいフィールドを定期的に追加します。</p>
+最近、Open Food Facts やリサイクルに関する行動の変化に役立つアプリケーションですでに強調されている、カーボン フットプリントと製品のパッケージに関するフィールドを追加しました。<p></p>
 
- <h4 id="une_base_dans_toutes_les_langues">A database in all languages</h4>
+ <h4 id="une_base_dans_toutes_les_langues">すべての言語のデータベース</h4>
   
-<p>The Open Food Facts database, site and mobile applications are also fully multilingual and available in all countries. If you have photos and data in multiple languages, we can also integrate them into Open Food Facts.</p>
+<p>Open Food Facts データベース、サイト、モバイル アプリケーションも完全に多言語対応しており、すべての国で利用できます。 複数の言語で写真やデータをお持ちの場合は、それらを Open Food Facts に統合することもできます。</p>
 
-<h4 id="photos_et_donnees">Photos and Data</h4>
+<h4 id="photos_et_donnees">写真とデータ</h4>
 
-<p>One of the fundamental principles of Open Food Facts is that the user or contributor must be able to verify the information from a photo.</p>
-<p>We therefore ask you to send us photos of the product and packaging (possibly as a flat file of the packaging) to support the structured data you send.</p>
+<p>Open Food Facts の基本原則の 1 つは、ユーザーまたは投稿者が写真から情報を検証できなければならないということです。</p>
+<p>したがって、送信する構造化データをサポートするために、製品とパッケージの写真（パッケージのフラット ファイルなど）を送信していただくようお願いします。</p>
 
-<h3 id="ajout_manuel">Manual addition</h3>
+<h3 id="ajout_manuel">手動で追加</h3>
 
-<p>If you have a small number of products whose formulation does not change often, you can create an account on Open Food Facts and add yourself photos and data of your products.</p>
-<p>Highly recommended method: Add photos and enter information from the <a href="https://world.openfoodfacts.org">Open Food Facts website</a> .</p>
-<p>Alternative method: Use the Android mobile application to scan and then photograph and finally enter a product completely.</p>
-<p>Thank you in advance for telling us if you add your products yourself so that we can identify your account as a producer account, and indicate that the information comes directly from your company.</p>
+<p>配合が頻繁に変更されない少数の製品がある場合は、Open Food Facts にアカウントを作成し、製品の写真とデータを自分で追加することができます。</p>
+<p>強く推奨される方法: <a href="https://world.openfoodfacts.org">Open Food Facts ウェブサイト</a> から写真を追加し、情報を入力します。</p>
+<p>別の方法: Android モバイル アプリケーションを使用して、製品をスキャンし、写真を撮り、最後に製品を完全に入力します。</p>
+<p>ご自身で商品を追加する場合は、その旨をお知らせいただければ、お客様のアカウントがプロデューサーアカウントであることを識別し、情報がお客様の会社から直接提供されていることを示すことができますので、よろしくお願いいたします。</p>
 
-<h3 id="ajout_automatise">Automated addition</h3>
+<h3 id="ajout_automatise">自動追加</h3>
 
-To make importing data easier and faster, we have defined a standard format for images and data:
-<h4 id="format_des_images">Picture format</h4>
+データのインポートをより簡単かつ迅速にするために、画像とデータの標準形式を定義しました。
+<h4 id="format_des_images">画像フォーマット</h4>
 
-<p>At least 3 images are required:</p>
+<p>少なくとも 3 枚の画像が必要です:</p>
 <ul>
-<li>Front view of product on white background (avoid three-quarter views that do not allow visual recognition of products without barcode scanning)</li>
+<li>白い背景に製品を正面から見た写真（バーコードスキャンなしでは製品を視覚的に認識できない斜めからの写真は避けてください）</li>
 <li>原材料の一覧</li>
-<li>Nutritional table</li>
+<li>栄養成分表</li>
 </ul>
   
-<p>The front view, ingredients and nutrition chart must be provided in at least the main language of the product. It is recommended that you also provide images for other languages ​​when they appear on the product.</p>
+<p>正面図、原材料、栄養成分表は、少なくとも製品の主要言語で提供する必要があります。 It is recommended that you also provide images for other languages ​​when they appear on the product.</p>
 
-<p>For example, a product intended for the Belgian market may have photos showing the product written in French and written in Dutch.</p>
+<p>たとえば、ベルギー市場向けの製品の場合、製品の写真にはフランス語で書かれたものとオランダ語で書かれたものがあるかもしれません。</p>
 
-  <p>Other images may also be included:</p>
+  <p>その他の画像も含まれる場合があります:</p>
 <ul>
-<li>Verso and other views of the product (they allow in particular to automatically identify labels logos etc.)</li>
-<li>Flat view of the packaging</li>
+<li>製品の裏面およびその他のビュー（特に、ラベルやロゴなどを自動的に識別できます）</li>
+<li>パッケージの平面図</li>
 </ul>
   
-<h5 id="format_des_fichiers_images">Format of image files</h5>
+<h5 id="format_des_fichiers_images">画像ファイルの形式</h5>
 <ul>
-  <li>JPEG or PNG format</li>
-  <li>Size at least 2000 pixels wide or tall</li>
+  <li>JPEGまたはPNG形式</li>
+  <li>幅または高さが少なくとも2000ピクセル</li>
 </ul>
 
-<h5 id="nom_des_fichiers_images">Name of the image files</h5>
+<h5 id="nom_des_fichiers_images">画像ファイルの名前</h5>
 
 
-<pre>[barcode]_[type of image]_[language code].[jpg or png]</pre>
+<pre>[バーコード]_[画像の種類]_[言語コード].[jpg または png]</pre>
 
-  <p>For example :</p>
+  <p>例えば ：</p>
 
-<p>3660140808750_front_en.jpg for the front image of the product whose barcode is 3660140808750</p>
+<p>バーコードが3660140808750の商品の前面画像：3660140808750_front_en.jpg</p>
 
-  <p>The types of images are:</p>
+  <p>画像の種類は次のとおりです。</p>
 
 <ul>
   <!-- Do not translate field names, just their description -->
-  <li>front: front image</li>
-  <li>ingredients: list of ingredients</li>
-  <li>nutrition: nutritional chart</li>
-  <li>back: version</li>
-  <li>any name you see fit (characters from a to e, no spaces) for other views</li>
+  <li>前面：前面画像</li>
+  <li>原材料：原材料リスト</li>
+  <li>栄養：栄養チャート</li>
+  <li>戻る: バージョン</li>
+  <li>他のビューに適切な名前（a から e までの文字、スペースなし）</li>
 </ul>
   
 
-<h4 id="format_des_donnees">Data format</h4>
+<h4 id="format_des_donnees">データ形式</h4>
 
-<p>The data must be provided in a table in XLS (or CSV format, with tabulation as field separator character) and UTF-8 character encoding.</p>
-<p>The first line contains the field names, and each of the products occupies one of the following lines. The order of the fields does not matter, and not all columns need to be present.</p>
-<p>一部のフィールドは必須ですが、その他はオプションです。 We encourage you to fill in as many fields as possible so that the data can be used by as many applications as possible. If in doubt, or if you have data for which there are not yet fields in the Open Food Facts database, you can contact us so that we can add fields and make the best possible match.</p>
+<p>データは、XLS (またはフィールド区切り文字としてタブを使用した CSV 形式) のテーブルと UTF-8 文字エンコードで提供する必要があります。</p>
+<p>最初の行にはフィールド名が含まれ、各製品は後続の行のいずれかを占めます。 フィールドの順序は重要ではなく、すべての列が存在する必要はありません。</p>
+<p>一部のフィールドは必須ですが、その他はオプションです。 できるだけ多くのアプリケーションでデータを使用できるように、できるだけ多くのフィールドに入力することをお勧めします。 ご不明な点がある場合、または Open Food Facts データベースにまだフィールドがないデータがある場合は、弊社までご連絡いただければ、フィールドを追加して最適な一致を実現いたします。</p>
 	
-If you don't already have a file with your product data, <a href="">we provide an empty template you can use</a>.
+製品データを含むファイルがまだない場合は、 <a href="">使用できる空のテンプレートが用意されています</a>。
 
-  <h5 id="champs_obligatoires">Required fields</h5>
+  <h5 id="champs_obligatoires">必須フィールド</h5>
 
 <ul>  
   <!-- Do not translate field names, just their description -->
-  <li>code: product barcode as it appears on the packaging (EAN-13, EAN-8 or other)</li>
-  <li>lang: 2-letter code of the main language (most present on the packaging) of the product (example: fr for French)</li>
-  <li>product_name_ [2-letter code of the main language]: product name (in the field product_name_en for the name in French)</li>
-  <li>generic_name_ [2-letter code of the main language]: Generic product name </li>
-  <li>brands: brands (several possible values for brands and sub-brands, to be separated by commas)</li>
-  <li>quantity: quantity, specify the unit, and possibly add in parentheses if the product contains several units (example: 120 g (4 x 30 g))</li>
-  <li>categories: product category, in the main product language (example: chocolate cakes)</li>
-  <li>countries: country where the product is sold, in the main language of the product (several possible values, to be separated by commas)</li>
-  <li>ingredients_text_ [2-letter code of the main language]: list of ingredients (in the ingredients_text_fr field for the list in French). Allergens may be indicated in CAPITAL LETTERS or between </li>
-  <li>allergens: allergens, in the main language of the product, separated by commas</li>
-  <li>traces: traces of allergens, in the main language of the product, separated by commas</li>
+  <li>コード: パッケージに表示されている製品バーコード (EAN-13、EAN-8 など)</li>
+  <li>lang: 製品の主要言語（パッケージに最も多く記載されている言語）の2文字コード（例：フランス語の場合はfr）</li>
+  <li>product_name_ [主要言語の2文字コード]：製品名（フランス語の名前の場合はproduct_name_enフィールド）</li>
+  <li>generic_name_ [主要言語の2文字コード]: 一般的な製品名 </li>
+  <li>ブランド: ブランド（ブランドとサブブランドには複数の値があり、カンマで区切られます）</li>
+  <li>数量: 数量、単位を指定します。製品に複数の単位が含まれている場合は括弧で囲むこともできます（例: 120 g (4 x 30 g)）</li>
+  <li>カテゴリ: 製品カテゴリ、製品の主要言語で（例: チョコレートケーキ）</li>
+  <li>国: 製品が販売されている国（製品の主要言語で表記）（複数の値が指定可能で、カンマで区切る）</li>
+  <li>ingredient_text_ [メイン言語の2文字コード]: 材料のリスト（フランス語のリストの場合は ingredient_text_fr フィールド）。 アレルゲンは大文字または小文字で表記されます。 </li>
+  <li>アレルゲン：製品の主要言語でコンマで区切られたアレルゲン</li>
+  <li>痕跡：製品の主要言語で、コンマで区切られたアレルゲンの痕跡</li>
 </ul>
 
-<p>Among the mandatory fields are the nutritional values that appear on the package, per 100g / 100ml of product as sold.</p>
-<p>All values must have no unit (the unit is kJ for energy and g for all other fields).</p>
+<p>必須項目には、販売時の製品 100g / 100ml あたりでパッケージに表示される栄養価が含まれます。</p>
+<p>すべての値には単位がありません (エネルギーの単位は kJ、その他のフィールドの単位は g です)。</p>
 
 <ul>
   <!-- Do not translate nutrient field names -->
-  <li>energy_100g: energy, in kJ</li>
-  <li>fat_100g: fat</li>
-  <li>saturated-fat_100g: saturated fat</li>
-  <li>carbohydrates_100g: carbohydrates</li>
-  <li>sugars_100g: sugars</li>
-  <li>proteins_100g: proteins</li>
-  <li>salt_100g: salt</li>
+  <li>energy_100g: エネルギー（kJ）</li>
+  <li>fat_100g: 脂肪</li>
+  <li>飽和脂肪100g: 飽和脂肪</li>
+  <li>炭水化物_100g: 炭水化物</li>
+  <li>糖類_100g: 糖類</li>
+  <li>タンパク質_100g: タンパク質</li>
+  <li>salt_100g: 塩</li>
   <!-- Do not translate nutrient field names -->
 </ul>
 
-<p>It is strongly recommended to also indicate the fibers and the % of fruits and vegetables so that this information can be taken into account in the calculation of Nutri-Score:</p>
+<p>Nutri-Score の計算にこの情報が考慮されるように、繊維と果物および野菜の割合も示すことを強くお勧めします。</p>
 
   <ul>
     <!-- Do not translate nutrient field names -->
-  <li>fiber_100g: fibers</li>
-  <li>fruits-vegetables-nuts_100g</li>
+  <li>fiber_100g: 繊維</li>
+  <li>果物・野菜・ナッツ_100g</li>
     <!-- Do not translate nutrient field names -->
   </ul>
   
-  <h5 id="champs_optionnels">Optional fields</h5>
+  <h5 id="champs_optionnels">オプションフィールド</h5>
 
   <ul>
-    <li>labels: labels, in the main language of the product (several possible values, to be separated by commas) (example: AB Bio, MSC, Max Havelaar). Note: the labels must appear on the packaging of the product.</li>
-    <li>origins: origins of the ingredients, in the main language of the product (several possible values, to be separated by commas) (example: Peru, Périgord)</li>
-    <li>packaging: materials and forms of the product packaging, in the main language of the product (several possible values, to be separated by commas) (example: can, aluminum)</li>
-    <li>manufacturing_places: manufacturing locations, in the main language of the product (several possible values, to be separated by commas: city names, countries)</li>
-    <li>emb_codes: packager codes and European sanitary stamps (several possible values, to be separated by commas)</li>
-    <li>stores: places of sale (several possible values, to be separated by commas: names of supermarket chains)</li>
-    <li>nutri_score: Nutri-Score rating from A to E, only in case it is indicated on the package</li>
-    <li>serving_size: quantity of a serving, specify the unit</li>
+    <li>ラベル: 製品の主要言語でのラベル (複数の可能な値、カンマで区切る) (例: AB Bio、MSC、Max Havelaar)。 注意: ラベルは製品のパッケージに表示する必要があります。</li>
+    <li>原産地: 製品の主要言語での原材料の原産地（複数の値をカンマで区切って指定）（例: Peru, Périgord）</li>
+    <li>包装: 製品の主要言語で、製品包装の材質と形状（複数の可能な値をコンマで区切る）（例: 缶、アルミニウム）</li>
+    <li>manufacturing_places: 製品の主要言語での製造場所（都市名、国など、カンマで区切られた複数の可能な値）</li>
+    <li>emb_codes: 梱包業者コードと欧州衛生スタンプ（複数の値が可能で、カンマで区切られます）</li>
+    <li>店舗: 販売場所（複数の可能な値、カンマで区切る：スーパーマーケットチェーンの名前）</li>
+    <li>nutri_score: パッケージに記載されている場合のみ、AからEまでのNutri-Score評価</li>
+    <li>serving_size: 1食分の量、単位を指定します</li>
   </ul>
 
-<p>Nutritional values can also be indicated for the prepared product (with water, milk etc.). Then add "_prepared" to the name of the field. For example energy_prepared_100g.</p>
-<p>It is also possible to indicate the values for other nutrients:</p>
+<p>調理済み製品（水、牛乳など）の栄養価も表示できます。 次に、フィールドの名前に「_prepared」を追加します。 たとえば、energy_prepared_100g。</p>
+<p>他の栄養素の値を示すことも可能です。</p>
 
-[[nutrients-list.html]]
+[[栄養素リスト.html]]
 
-<h4 id="envoi_des_photos_et_des_donnees">Sending photos and data</h4>
-<p>If the number of products is relatively small (less than 1000 products) and the updates are infrequent (for example every 6 months), it is possible to send us the photos and the CSV file by any means (for example mail for CSV file and WeTransfer, Google Drive, DropBox etc. for photos).</p>
-<p>For a larger number of products or a more regular update, we can create an SFTP space where you can manually or automatically send data and photos. Contact us so that we can put this in place.</p>
+<h4 id="envoi_des_photos_et_des_donnees">写真とデータの送信</h4>
+<p>製品数が比較的少なく（1000 点未満）、更新頻度も低い（たとえば 6 か月ごと）場合は、写真と CSV ファイルを任意の手段（たとえば、CSV ファイルはメール、写真は WeTransfer、Google Drive、DropBox など）で送信することができます。</p>
+<p>製品の数が多い場合や、より定期的な更新が必要な場合は、データや写真を手動または自動で送信できる SFTP スペースを作成できます。 これを実施できるように、弊社までご連絡ください。</p>
 
-<h2 id="questions_frequentes">Frequently asked Questions</h2>
+<h2 id="questions_frequentes">よくある質問</h2>
 
-<h3 id="est_ce_que_le_referencement_des_produits_est_gratuit">Is the listing of products free?</h3>
-<p>The import of the data is completely free. We do not accept any retribution for the inclusion of data. We are very pleased that you have decided to contribute the data of your products to the food transparency, and we thank you for it.</p>
+<h3 id="est_ce_que_le_referencement_des_produits_est_gratuit">商品の掲載は無料ですか？</h3>
+<p>データのインポートは完全に無料です。 データの掲載に対するいかなる報復もお受けできません。 貴社が食品の透明性に製品データを提供することを決定されたことを大変嬉しく思い、感謝申し上げます。</p>
   
-<h3 id="les_donnees_des_producteurs_vont_elles_ecraser_les_donnees_saisies_par_les_contributeurs">Will producer data overwrite data entered by contributors?</h3>
-<p>Producer data is automatically controlled by Open Food Facts with consistency checking algorithms, and then by some contributors. We have full confidence in the data you send us, but we know by experience that typos  are possible.</p>
-<p>Once checked, they will replace and / or supplement the data entered by the contributors.</p>
+<h3 id="les_donnees_des_producteurs_vont_elles_ecraser_les_donnees_saisies_par_les_contributeurs">プロデューサーデータは、貢献者が入力したデータを上書きしますか?</h3>
+<p>生産者データは、一貫性チェックアルゴリズムを備えた Open Food Facts によって自動的に管理され、その後、一部の貢献者によって管理されます。 当社は、お客様から送信されたデータに全幅の信頼を置いていますが、経験上、タイプミスが発生する可能性があることを承知しています。</p>
+<p>確認後、寄稿者が入力したデータを置き換えたり、補足したりします。</p>
 
-<p>In the case of a regular and automated import, the data will replace at every import the updates by contributors, unless a manifest error (which will be reported to you) is reported on a product by a contributor.</p>
+<p>通常の自動インポートの場合、製品に関して貢献者によってマニフェスト エラー (報告されます) が報告されない限り、データはインポートのたびに貢献者による更新に置き換えられます。</p>
 
-<h3 id="est_il_possible_de_supprimer_les_produits_qui_ne_sont_plus_vendus">Is it possible to delete products that are no longer sold?</h3>
+<h3 id="est_il_possible_de_supprimer_les_produits_qui_ne_sont_plus_vendus">販売終了した商品を削除することは可能ですか？</h3>
 
-<p>When a product disappears from the shelves, it is quickly consumed, and we find that it is quickly no longer scanned.</p>
-<p>We then archive the product so that it remains available as an archive for scientific purposes in the context of food cohorts that can last for decades. It is indeed essential to be able to obtain the compositions of the product at a precise date, even if it has changed or disappeared.</p>
-<p>If you have historical data on your old products or old versions of your products, we would also be very interested in this historical data, in order to be able to go back in time, to allow scientific analyzes on long time, and to make it possible to visualize the evolution some products.</p>
-<p>Producers can also send us the lists of barcodes removed from the sale so that we can label the products appropriately.</p>
+<p>商品が棚から消えると、すぐに消費され、すぐに注目されなくなります。</p>
+<p>その後、製品をアーカイブし、数十年にわたって食品コホートの文脈で科学的目的のアーカイブとして利用できるようにしておきます。 製品の構成が変わったり消えたりした場合でも、正確な日付でその構成を入手できることは非常に重要です。</p>
+<p>古い製品や古いバージョンの製品に関する履歴データをお持ちの場合は、時間を遡って長期間の科学的分析を可能にし、一部の製品の進化を視覚化できるようにするために、当社もこの履歴データに非常に興味を持っています。</p>
+<p>生産者は、販売から削除されたバーコードのリストを当社に送信して、製品に適切なラベルを付けることもできます。</p>
   
-<h3 id="est_ce_que_les_produits_pour_animaux_les_produits_non_alimentaires_les_cosmetiques_et_les_autres_produits_peuvent_etre_integres_a_open_food_facts">Can animal products, non-food products, cosmetics and other products be integrated into Open Food Facts?</h3>
-<p>We have created specific projects for cosmetics, for animal feed, as well as for other products (Open Beauty Facts, Open Pet Food Facts and Open Products Facts respectively). We are therefore happy to be able to import your products into the project that suits them.</p>
+<h3 id="est_ce_que_les_produits_pour_animaux_les_produits_non_alimentaires_les_cosmetiques_et_les_autres_produits_peuvent_etre_integres_a_open_food_facts">動物性製品、食品以外の製品、化粧品、その他の製品を Open Food Facts に統合できますか?</h3>
+<p>当社は、化粧品、動物飼料、その他の製品 (それぞれ Open Beauty Facts、Open Pet Food Facts、Open Products Facts) 向けに特定のプロジェクトを作成しました。 したがって、当社はお客様の製品を適切なプロジェクトにインポートできることを嬉しく思っています。</p>
 </div>
 
 <script>

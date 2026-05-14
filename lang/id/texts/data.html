@@ -20,12 +20,6 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
 <h3>Dump MongoDB</h3>
 
 <p>Data untuk semua produk tersedia di dump basis data MongoDB.</p>
-<!--
-<h4>Why you'd want to use it: </h4>
-<ul>
- <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
-</ul>
-</p>-->
 <dl>
  <dt>Tautan</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
@@ -58,15 +52,15 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
 
 <p>Versi sederhana dari dump JSONL juga tersedia dalam format <a href="https://parquet.apache.org/">Parquet</a>. Selama konversi, kami memfilter kolom yang berisi informasi yang diduplikasi, digunakan untuk debugging internal, atau tidak relevan bagi pengguna.</p>
     
-<p>Format Parket telah terbukti praktis:<p> 
+<p>Format Parket telah terbukti praktis:</p> 
 
 <ul>
-<li>Data disusun berdasarkan kolom, bukan berdasarkan baris, yang menghemat ruang penyimpanan dan mempercepat kueri analitik, yaitu Anda dapat memilih kolom yang Anda pedulikan, mengoptimalkan kinerja kueri, bahkan pada komputer tingkat pemula.</li>
-<li>Kompresi dan dekompresi data yang sangat efisien, sehingga cocok untuk menyimpan dan berbagi kumpulan data besar dalam bentuk apa pun,</li>
-<li>Mendukung tipe data yang kompleks dan struktur data bersarang tingkat lanjut.</li>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
 </ul>
 
-<p>Dataset ini tersedia di <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, sebuah ekosistem Machine Learning kolaboratif di mana para pengembang dan peneliti dapat berbagi model dan dataset.</p>
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
 
 <dl>
  <dt>Tautan</dt>
@@ -74,7 +68,7 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
  </dd>
 </dl>
 
-</p>Temukan informasi lebih lanjut di <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, termasuk panduan untuk penggunaan ulang data dan contoh kueri untuk memulai.</p>
+<p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>Eksor Data RDF</h3>
 <p>Data untuk semua produk, atau beberapa produk, dapat diunduh dalam format CSV (dapat dibaca dengan LibreOffice, Excel, dan banyak perangkat lunak spreadsheet lainnya) melalui <a href="https://world.openfoodfacts.org/cgi/search.pl">formulir pencarian lanjutan</a>.</p>
@@ -127,28 +121,28 @@ API ini tidak dipelihara secara aktif, dan tidak didokumentasikan secara resmi.
 
 <h3>Jika para pengguna Anda tidak mengharapkan hasil segera (misalnya aplikasi Inventori)</h3>
 <ul>
-<li>Anda dapat mencari informasi tentang produk - produk, termasuk banyak nilai komputasi yang berguna.</li>
-<li>Jika Anda tidak bisa mendapatkan informasi tentang suatu produk yang spesifik, Anda dapat meminta para pengguna Anda untuk mengirimkan foto dan data, yang akan kemudian diproses oleh AI Open Food Facts dan para kontributor untuk mendapatkan hasil terkomputasi yang ingin Anda tunjukkan kepada mereka.</li>
-<li>Anda juga dapat mengimplementasikan alur lengkapnya sehingga mereka segera mendapatkan hasilnya dengan beberapa usaha dari pihak mereka.</li>
+<li>You can search for information about products, including many useful computed values.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
+<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
 </ul>
 
 <h3>Jika para pengguna Anda mengharapkan hasil yang cepat (misalnya aplikasi Nutrisi)</h3>
 <ul>
-<li>Kirimkan foto (depan/nutrisi/kandungan bahan): hal yang paling tidak menyakitkan bagi pengguna Anda</li>
-<li>Open Food Facts AI - Robotoff - akan menghasilkan beberapa data turunan dari foto</li>
-<li>Seiring waktu, aplikasi lain, dan komunitas Open Food Facts akan mengisi kesenjangan datanya</li>
+<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
 </ul>
 
 <h3>Aplikasi seluler Android/iPhone/Flutter</h3>
 <ul>
-<li>Kirimkan informasi nilai gizi + kategori &gt; dapatkan Nutri-Score</li>
-<li>Kirimkan kandungan bahan &gt; dapatkan grup NOVA (tentang pemrosesan ultra makanan), zat aditif, alergen, kandungan bahan yang dinormalisasi, vegan, vegetarian&hellip;</li>
-<li>Kirimkan kategori + label &gt; segera dapatkan Eco-Score (tentang dampak lingkungan)</li>
+<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
+<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
 <h3>SDK</h3>
 
-<p>Anda dapat melihat <a href="https://support.openfoodfacts.org/help/fr-fr/12">pertanyaan umum yang sering ditanyakan tentang API dan Ekspor Data</a> dan <a href="https://support.openfoodfacts.org/help/fr-fr">pertanyaan umum tentang Open Food Facts</a>
+<p>Anda dapat melihat <a href="https://support.openfoodfacts.org/help/fr-fr/12">pertanyaan umum yang sering ditanyakan tentang API dan Ekspor Data</a> dan <a href="https://support.openfoodfacts.org/help/fr-fr">pertanyaan umum tentang Open Food Facts</a></p>
 
 <p>Kami ingin mengubah basis kode Kotlin dan Swift yang sudah tidak digunakan lagi menjadi Kotlin dan Swift SDK, mohon bantuannya :-)</p>
 <p>Anda dapat <a href="https://github.com/openfoodfacts/api-documentation/discussions">membuka utas di repositori dokumentasi API kami</a></p>

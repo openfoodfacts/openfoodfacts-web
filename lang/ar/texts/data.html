@@ -21,12 +21,6 @@
 <h3>تفريغ MongoDB</h3>
 
 <p>البيانات الخاصة بجميع المنتجات متوفرة في تفريغ قاعدة بيانات MongoDB.</p>
-<!--
-<h4>Why you'd want to use it: </h4>
-<ul>
- <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
-</ul>
-</p>-->
 <dl>
  <dt>رابط</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
@@ -59,15 +53,15 @@
 
 <p>إصدار مبسط من تفريغ الـJSONL أيضاً في <a href="https://parquet.apache.org/">تنسيق الباركيه</a>. خلال التحويل, صَفَّيّنا الأعمدة التي تحتوي على معلومات متكررة, تستخدم لتصحيح أخطاء داخلية, أو هي فقط عَرَضِيّة للمستخدمين.</p>
     
-<p>لقد أثبت تنسيق الباركيه أنه مفيد:<p> 
+<p>لقد أثبت تنسيق الباركيه أنه مفيد:</p> 
 
 <ul>
-<li>يتم تنظيم البيانات حسب العمود، وليس حسب الصف، مما يوفر مساحة التخزين ويسرع استعلامات التحليلات، أي أنه يمكنك تحديد الأعمدة التي تهمك فقط، مما يؤدي إلى تحسين أداء الاستعلامات، حتى على أجهزة الكمبيوتر الأساسية.</li>
-<li>ضغط البيانات وفك ضغطها بكفاءة عالية، مما يجعلها جيدة لتخزين ومشاركة مجموعات البيانات الكبيرة من أي نوع،</li>
-<li>يدعم أنواع البيانات المعقدة وهياكل البيانات المتداخلة المتقدمة.</li>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
 </ul>
 
-<p>تتوفر مجموعة البيانات على <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>، وهو نظام بيئي تعاوني للتعلم الآلي حيث يمكن للمطورين والباحثين مشاركة النماذج ومجموعات البيانات.</p>
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
 
 <dl>
  <dt>رابط</dt>
@@ -75,7 +69,7 @@
  </dd>
 </dl>
 
-</p>يمكنك العثور على مزيد من المعلومات في <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>، بما في ذلك إرشادات إعادة استخدام البيانات وأمثلة الاستعلامات للبدء.</p>
+<p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>تصدير بيانات CSV</h3>
 <p>يمكن تنزيل بيانات جميع المنتجات، أو بعض المنتجات، بتنسيق CSV (قابل للقراءة باستخدام LibreOffice وExcel والعديد من برامج جداول البيانات الأخرى) من خلال نموذج البحث المتقدم <a href="https://world.openfoodfacts.org/cgi/search.pl"></a>.</p>
@@ -83,7 +77,7 @@
 <dl>
  <dt>الروابط</dt>
  <dd>الغذاء:
-<a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (CSV مضغوط بصيغة GZIP: ~ 0.9 ج.ب, بدون ضغط: ~ 9 ج.ب) </dd>
+<a href="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz">https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv.gz</a> (CSV مضغوط بصيغة GZIP: ~ 0.9 ج.ب, بدون ضغط: ~ 9 ج.ب)</dd>
  <dd>مستحضرات التجميل:
 <a href="https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz">https://static.openbeautyfacts.org/data/en.openbeautyfacts.org.products.csv.gz</a></dd>
  <dd>طعام الحيوانات الأليفة: <a href="https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz">https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz</a></dd>
@@ -127,23 +121,23 @@
 
 <h3>المبادئ العامة لإسعاد المستخدمين</h3>
 <ul>
-<li>يمكنك البحث عن معلومات حول المنتجات، بما في ذلك العديد من القيم المحسوبة المفيدة.</li>
-<li>إذا لم تتمكن من الحصول على المعلومات حول منتج معين، فيمكنك جعل المستخدم يرسل الصور والبيانات، والتي سيتم معالجتها بعد ذلك بواسطة Open Food Facts AI والمساهمين للحصول على النتيجة المحسوبة التي تريد إظهارها لهم.</li>
-<li>يمكنك أيضًا تنفيذ التدفق الكامل حتى يحصلوا على النتيجة فورًا مع بذل بعض الجهد من جانبهم.</li>
+<li>You can search for information about products, including many useful computed values.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
+<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
 </ul>
 
 <h3>إذا لم يتوقع المستخدمون الحصول على نتيجة فورية (على سبيل المثال تطبيقات المخزون)</h3>
 <ul>
-<li>إرسال الصور (الواجهة/التغذية/المكونات): الشيء الأكثر سهولة بالنسبة لمستخدميك</li>
-<li>سيقوم الذكاء الاصطناعي Open Food Facts - Robotoff - بإنشاء بعض البيانات المشتقة من الصور</li>
-<li>بمرور الوقت، ستعمل التطبيقات الأخرى ومجتمع Open Food Facts على سد فجوات البيانات</li>
+<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
 </ul>
 
 <h3>إذا كان المستخدمون يتوقعون الحصول على نتيجة على الفور (على سبيل المثال تطبيقات التغذية)</h3>
 <ul>
-<li>أرسل معلومات التغذية + الفئة &gt; احصل على Nutri-Score</li>
-<li>أرسل المكونات &gt; احصل على مجموعة NOVA (حول المعالجة الفائقة للأطعمة)، المواد المضافة، المواد المسببة للحساسية، المكونات الطبيعية، نباتي، نباتي تمامًا&hellip;</li>
-<li>أرسل الفئة + العلامات &gt; احصل قريبًا على النتيجة البيئية (حول التأثير البيئي)</li>
+<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
+<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
 <h3>Android/iPhone/Flutter mobile app</h3>
@@ -151,7 +145,7 @@
 <p>The code for the official Open Food Facts mobile apps is available on GitHub
  <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
  <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
 
 <p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
 <p>يتيح التطبيق للمستخدمين مسح الرمز الشريطي للمنتجات، وعرض معلومات المنتج، والتقاط الصور والبيانات الخاصة بالمنتجات المفقودة وإرسالها.</p>

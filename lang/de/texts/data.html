@@ -21,12 +21,6 @@ Sie könnten grafische Elemente enthalten, die dem Urheberrecht oder anderen Rec
 <h3>MongoDB-Datenbankauszug</h3>
 
 <p>Die Daten für alle Produkte sind in einem MongoDB-Datenbankdump verfügbar.</p>
-<!--
-<h4>Why you'd want to use it: </h4>
-<ul>
- <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
-</ul>
-</p>-->
 <dl>
  <dt>Herunterladen</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
@@ -59,12 +53,12 @@ Sie könnten grafische Elemente enthalten, die dem Urheberrecht oder anderen Rec
 
 <p>Eine vereinfachte Version des JSONL-Dumps ist auch im <a href="https://parquet.apache.org/">Parquet-Format</a> verfügbar. Bei der Konvertierung wurden Spalten herausgefiltert, die doppelte Informationen enthalten, für die interne Fehlersuche verwendet werden oder für die Benutzer einfach irrelevant sind.</p>
     
-<p>Das Parquet-Format hat sich als praktisch erwiesen:<p> 
+<p>Das Parquet-Format hat sich als praktisch erwiesen:</p> 
 
 <ul>
-<li>Die Daten sind nach Spalten und nicht nach Zeilen organisiert, was Speicherplatz spart und die Analyseabfragen beschleunigt, d. h. Sie brauchen nur die Spalten auszuwählen, die für Sie wichtig sind, und können so die Abfrageleistung optimieren, selbst auf Einsteiger-Computern.</li>
+<li>Die Daten sind spaltenorientiert statt zeilenorientiert organisiert. Dies spart Speicherplatz und beschleunigt Analyse-Abfragen, da gezielt nur die relevanten Spalten auswählen können. So wird die Abfrageleistung selbst auf Einsteiger-Rechnern optimiert.</li>
 <li>Hocheffiziente Datenkomprimierung und -dekomprimierung, die sich für die Speicherung und gemeinsame Nutzung großer Datenmengen jeder Art eignet,</li>
-<li>Unterstützt komplexe Datentypen und erweiterte verschachtelte Datenstrukturen.</li>
+<li>Unterstützt komplexe Datentypen und tief verschachtelte Datenstrukturen.</li>
 </ul>
 
 <p>Der Datensatz ist auf <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a> verfügbar, einem kollaborativen Ökosystem für maschinelles Lernen, in dem Entwickler und Forscher Modelle und Datensätze austauschen können.</p>
@@ -75,7 +69,7 @@ Sie könnten grafische Elemente enthalten, die dem Urheberrecht oder anderen Rec
  </dd>
 </dl>
 
-</p>Weitere Informationen finden Sie im <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, einschließlich Leitlinien für die Wiederverwendung von Daten und Beispielabfragen für den Einstieg.</p>
+<p>Weitere Informationen finden Sie im <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, einschließlich Leitlinien für die Wiederverwendung von Daten und Beispielabfragen für den Einstieg.</p>
 
 <h3>CSV-Daten-Export</h3>
 <p>Die Daten für alle oder einige der Produkte können im CSV-Format (lesbar mit LibreOffice, Excel und vielen anderen Tabellenkalkulationsprogrammen) über das Formular <a href="https://world.openfoodfacts.org/cgi/search.pl">Erweiterte Suche</a> heruntergeladen werden.</p>
@@ -121,35 +115,32 @@ Diese API wird nicht aktiv gepflegt und ist nicht offiziell dokumentiert.
 
 <h2 class="emphasized-title">Wrappers und SDKs</h2>
 <p>Wir haben wahrscheinlich einen Wrapper für Ihre bevorzugte Programmiersprache. Wenn wir dies tun, können Sie es nutzen und verbessern. Wenn wir es nicht tun, können Sie uns helfen, ihn zu erstellen.</p>
-<p>Sie können <a href="https://slack.openfoodfacts.org">dem Open Food Facts Chatroom auf Slack beitreten, der unser bevorzugter Weg ist, um Fragen zu stellen und die über die API</a> zu diskutieren.</p>
+<p>Sie ermöglichen Ihnen den Verbrauch von Daten und lassen Ihre Nutzer neue Daten beitragen</p>
 
 <h3>Allgemeine Grundsätze, um Ihre Nutzer zufrieden zu stellen</h3>
 <ul>
 <li>Sie können nach Informationen von Produkten suchen, einschließlich vieler nützlicher Berechnungswerte.</li>
-<li>Wenn Sie die Informationen über ein bestimmtes Produkt nicht abrufen können, können Sie Ihre Nutzer auffordern, Fotos und Daten zu senden, die dann von der künstlichen Intelligenz von Open Food Facts und den Mitwirkenden verarbeitet werden, um das berechnete Ergebnis zu erhalten, das Sie ihnen zeigen möchten.</li>
-<li>Sie können auch den kompletten Fluss implementieren, so dass sie sofort das Ergebnis mit etwas Aufwand auf ihrer Seite bekommen.</li>
+<li>Sollten keine Informationen zu einem bestimmten Produkt vorliegen, können Sie Ihre Nutzer bitten, Fotos und Daten zu senden; diese werden anschließend von der Open Food Facts KI sowie von Mitwirkenden verarbeitet, um das gewünschte Ergebnis zu ermitteln.</li>
+<li>Sie können zudem den vollständigen Prozess so implementieren, dass die Nutzer trotz eines gewissen Eigenaufwands sofort ein Ergebnis erhalten.</li>
 </ul>
 
 <h3>Wenn Ihre Benutzer nicht sofort ein Ergebnis erwarten (z. B. Inventarisierungs-Apps)</h3>
 <ul>
-<li>Fotos einreichen (Vorderseite/Nährwertangaben/Zutaten): dies ist für Ihre Nutzer am einfachsten</li>
-<li>Die KI von Open Food Facts - Robotoff - wird einige abgeleitete Daten aus den Fotos generieren</li>
-<li>Mit der Zeit werden andere Apps und die Open Food Facts-Community die Datenlücken füllen</li>
+<li>Fotos hochladen (Vorderseite, Nährwerte, Inhaltsstoffe): am einfachsten für Ihre Nutzer</li>
+<li>Die Open Food Facts KI - Robotoff - extrahiert die Daten aus den Fotos aus</li>
+<li>Mit der Zeit werden die fehlenden Daten von anderen Apps und der Open Food Facts Community ergänzt</li>
 </ul>
 
 <h3>Wenn Ihre Benutzer sofort ein Ergebnis erwarten (z. B. Ernährungs-Apps)</h3>
 <ul>
-<li>Nährwertangaben + Kategorie einreichen ➜ Nutri-Score erhalten</li>
-<li>Zutaten einreichen ➜ die NOVA-Gruppe (über die Ultrahochverarbeitung von Lebensmitteln), Zusatzstoffe, Allergene, normalisierte Zutaten, vegan, vegetarisch erhalten &hellip;</li>
-<li>Kategorie + Etiketten einreichen ➜ demnächst den Eco-Score (über die Umweltauswirkungen) erhalten</li>
+<li>Nährwertangaben + Kategorie eingeben ➜ Nutri-Score erhalten</li>
+<li>Zutaten eingeben ➜ die NOVA-Gruppe (über die Ultrahochverarbeitung von Lebensmitteln), Zusatzstoffe, Allergene, normalisierte Zutaten, vegan, vegetarisch erhalten &hellip;</li>
+<li>Kategorie + Etiketten eingeben ➜ bald den Eco-Score (über die Umweltauswirkungen) erhalten</li>
 </ul>
 
 <h3>Mobile Anwendung für Android/iPhone/Flutter</h3>
 
-<p>Der Code für die offiziellen Open Food Facts Mobile Apps ist auf GitHub verfügbar
- <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>
+<p>Der Code für die Open Food Facts-App für Mobilgeräte ist auf GitHub verfügbar (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> und <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).</p>
 
 <p>Wir wollen die veralteten Kotlin- und Swift-Codebasen in Kotlin- und Swift-SDKs umwandeln, Hilfe ist willkommen 🙂</p>
 <p>Die App ermöglicht es den Nutzern, den Barcode von Produkten zu erfassen, die Produktinformationen einzusehen und Bilder und Daten zu fehlenden Produkten aufzunehmen und zu übermitteln.</p>
@@ -388,4 +379,4 @@ Diese API wird nicht aktiv gepflegt und ist nicht offiziell dokumentiert.
 <p>Sie können sich <a href="https://support.openfoodfacts.org/help/fr-fr/12">allgemeine FAQ-Fragen zur API und zum Datenexport</a> und <a href="https://support.openfoodfacts.org/help/fr-fr">allgemeine Fragen zu Open Food Facts</a> ansehen</p>
 <p>Sie können <a href="https://slack.openfoodfacts.org">dem Open Food Facts Slack-Chatroom</a> beitreten, der der bevorzugte Weg ist, um Fragen zu stellen und die API zu diskutieren</a>. Bitte <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">stellen Sie Ihre Fragen im #api channel</a></p>
 <p>Sie können <a href="https://github.com/openfoodfacts/openfoodfacts-server/discussions">ein Thema in unserem API-Dokumentations-Repository eröffnen</a>
-<p>Bei Fragen zu den Daten können Sie uns unter <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a> kontaktieren.
+<p>Bei Fragen zu den Daten können Sie sich unter <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a> an uns wenden

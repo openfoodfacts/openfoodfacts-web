@@ -21,12 +21,6 @@
 <h3>Дамп MongoDB</h3>
 
 <p>Данные для всех продуктов доступны в дампе базы данных MongoDB.</p>
-<!--
-<h4>Why you'd want to use it: </h4>
-<ul>
- <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
-</ul>
-</p>-->
 <dl>
  <dt>Ссылка</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
@@ -59,15 +53,15 @@
 
 <p>Упрощенная версия дампа JSONL также доступна в формате <a href="https://parquet.apache.org/">Parquet</a>. В ходе конвертации мы отфильтровали столбцы, которые содержат дублированную информацию, используются для внутренней отладки или просто неактуальны для пользователей.</p>
     
-<p>Формат Parquet оказался удобным:<p> 
+<p>Формат Parquet оказался удобным:</p> 
 
 <ul>
-<li>Данные организованы по столбцам, а не по строкам, что экономит дисковое пространство и ускоряет аналитические запросы, т. е. вы можете выбрать только те столбцы, которые вам нужны, оптимизируя производительность запросов даже на компьютерах начального уровня.</li>
-<li>Высокоэффективное сжатие и распаковка данных, что делает его полезным для хранения и обмена большими наборами данных любого рода,</li>
-<li>Поддерживает сложные типы данных и расширенные вложенные структуры данных.</li>
+<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
+<li>Supports complex data types and advanced nested data structures.</li>
 </ul>
 
-<p>Набор данных доступен на <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>— совместной экосистеме машинного обучения, где разработчики и исследователи могут обмениваться моделями и наборами данных.</p>
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
 
 <dl>
  <dt>Ссылка</dt>
@@ -75,7 +69,7 @@
  </dd>
 </dl>
 
-</p>Найдите больше информации на <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, включая советы по использованию данных и примеры запросов, чтобы начать.</p>
+<p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <h3>Экспорт данных CSV</h3>
 <p>Данные по всем или некоторым продуктам можно загрузить в формате CSV (читаемый в LibreOffice, Excel и многих других программах)
@@ -126,28 +120,28 @@
 
 <h3>Общие принципы, которые помогут сделать ваших пользователей счастливыми</h3>
 <ul>
-<li>Вы можете искать информацию о продуктах, включая множество полезных расчетных значений.</li>
-<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
-<li>Вы также можете реализовать весь процесс, чтобы они немедленно получили результат, приложив некоторые усилия с их стороны.</li>
+<li>You can search for information about products, including many useful computed values.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Food Facts AI and contributors to get the computed result you want to show them.</li>
+<li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
 </ul>
 
 <h3>Если ваши пользователи не ожидают немедленного результата (например, приложения Inventory)</h3>
 <ul>
-<li>Отправка фотографий (вид/пищевая ценность/ингредиенты): самый безболезненный способ для ваших пользователей</li>
-<li>Искусственный интеллект Open Food Facts - Robotoff - сгенерирует некоторые производные данные из фотографий</li>
-<li>Со временем другие приложения и сообщество Open Food Facts заполнят пробелы в данных</li>
+<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
+<li>The Open Food Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Food Facts community will fill the data gaps</li>
 </ul>
 
 <h3>Если ваши пользователи ожидают немедленного результата (например, приложения по питанию)</h3>
 <ul>
-<li>Предоставьте пищевые факты + категорию &gt; получить Nutri-Score</li>
-<li>Предоставьте ингредиенты &gt; получите группу NOVA (о пищевой ультра обработке), добавки, аллергены, нормализованные ингредиенты, веганские, вегетарианские&hellip;</li>
-<li>Предоставьте категорию + этикетки &gt; скоро вы получите Eco-Score (насчёт влияния на окружающую среду)</li>
+<li>Submit nutrition facts + category &gt; get Nutri-Score</li>
+<li>Submit ingredients &gt; get the NOVA group (about food ultra-processing), additives, allergens, normalized ingredients, vegan, vegetarian&hellip;</li>
+<li>Submit category + labels &gt; soon get the Eco-Score (about environmental impact)</li>
 </ul>
 
 <h3>Мобильное приложение для Android и iPhone</h3>
 
-<p>Код мобильного приложения Open Pet Food Facts доступен на GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).
+<p>Код мобильного приложения Open Pet Food Facts доступен на GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> and <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).</p>
 
 <p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
 <p>Приложение позволяет пользователям сканировать штрихкод продукта, чтобы найти о нём информацию, и добавить фото и информацию для новых продуктов.</p>
