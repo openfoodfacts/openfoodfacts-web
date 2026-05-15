@@ -10,7 +10,7 @@ Pueden contener elementos gráficos sujetos a derechos de autor u otros derechos
 
 
 <h2 class="emphasized-title">Háblanos sobre tu reutilización</h2>
-<p>Nos gustaría saber cómo se utilizan los datos de Open Pet Food Facts. No es obligatorio, pero te agradeceríamos <a href="mailto:contact@openfoodfacts.org?subject=Open%20Pet%20Food%20Facts%20Data%20reuse">que nos contaras cómo vas a utilizar los datos</a> para compartirlo con la comunidad de Open Pet Food Facts. También puedes <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">rellenar este formulario</a> para hacer destacar tu aplicación.</p>
+<p>Nos gustaría saber cómo se utilizan los datos de Open Pet Food Facts. It is not mandatory, but we would very much appreciate it if you <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Pet%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Pet Food Facts community. También puedes <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">rellenar este formulario</a> para hacer destacar tu aplicación.</p>
 
 <h2 class="emphasized-title">Exportar datos de Open Pet Food Facts</h2>
 
@@ -54,13 +54,13 @@ Pueden contener elementos gráficos sujetos a derechos de autor u otros derechos
 </dl>
 
 
-<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
-
 <h3>Exportación de datos Parquet en Hugging Face</h3>
+
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
 
 <p>También está disponible una versión simplificada de JSONL en el formato <a href="https://parquet.apache.org/">Parquet</a>. Durante la conversión, filtramos las columnas que contienen información duplicada, se utilizan para depuración interna o simplemente son irrelevantes para los usuarios.</p>
     
-<p>El formato Parquet ha demostrado ser útil:<p> 
+<p>El formato Parquet ha demostrado ser útil:</p> 
 
 <ul>
 <li>Los datos se organizan por columna, en lugar de por fila, lo que ahorra espacio de almacenamiento y acelera las consultas analíticas, es decir, puede seleccionar solo las columnas que le interesan, optimizando el rendimiento de las consultas, incluso en computadoras de nivel básico.</li>
@@ -74,16 +74,16 @@ Pueden contener elementos gráficos sujetos a derechos de autor u otros derechos
  </dd>
 </dl>
 
-</p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
+<p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
-<p>Una forma apropiada de aprovechar la base de datos es usar DuckDB, una herramienta analítica en marcha diseñada para procesar una gran cantidad de datos en una fracción de segundos. Puedes leer nuestra <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">entrada del blog</a> donde te guiamos en la exploración y procesamiento de la base de datos Open Pet Food Facts con DuckDB</p>
+<p>Una forma adecuada de aprovechar la base de datos es usar DuckDB, una herramienta de análisis de procesos diseñada para procesar gran cantidad de datos en una fracción de segundos. Puedes leer nuestra <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">entrada del blog</a> donde te guiamos en la exploración y procesamiento de la base de datos Open Pet Food Facts con DuckDB</p>
 
 <h3>Exportar datos RDF</h3>
 <p>Los datos de todos los productos, o algunos de los productos, se pueden descargar en formato CSV (legible con OpenOffice, Excel y muchos otros programas de hojas de cálculo) a través del <a href="https://world.openpetfoodfacts.org/cgi/search.pl">formulario de búsqueda avanzada</a>.</p>
 
 <dl>
  <dt>Enlaces</dt>
- <dd>Exportar datos en formato CSV</dd>
+ <dd><a href="https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz">https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
 </dl>
 
 <p>La codificación del archivo es Unicode UTF-8. El carácter que separa los campos es &lt;tab&gt; (tabulación).</p>
@@ -146,22 +146,22 @@ Esta API no se mantiene de forma habitual ni está documentada oficialmente.
 <h3>Principios generales para hacer felices a tus usuarios</h3>
 <ul>
 <li>You can search for information about products, including many useful computed values.</li>
-<li>Si no puedes obtener información sobre un producto en específico, puedes hacer que tus usuarios envíen fotos y datos, que más tarde serán procesados por la IA de Open Pet Food Facts y los colaboradores para obtener el resultado computado que deseas mostrarles.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Pet Food Facts AI and contributors to get the computed result you want to show them.</li>
 <li>You can also implement the complete flow so that they get immediately the result with some effort on their side.</li>
 </ul>
 
 <h3>Si tus usuarios esperan un resultado inmediato (por ejemplo, aplicaciones de nutrición)</h3>
 <ul>
 <li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
-<li>La IA de Open Food Facts, Robotoff, generará algunos datos obtenidos de las fotografías</li>
-<li>Con el tiempo, otras aplicaciones y la comunidad Open Pet Food Facts llenarán los vacíos de datos.</li>
+<li>The Open Pet Food Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Pet Food Facts community will fill the data gaps</li>
 </ul>
 
 <h3>Si tus usuarios esperan un resultado inmediato (por ejemplo, aplicaciones de Nutrición o Alergias)</h3>
 <ul>
 <li>Envía los ingredientes + categoría &gt; obtén el análisis de los ingredientes, aditivos, alérgenos, ingredientes normalizados, veganos, vegetarianos&hellip;</li>
 <li>Enviar etiquetas para obtener valor añadido</li>
-<li>Enviar nutrición</li>
+<li>Submit nutrition</li>
 </ul>
 
 <h3>Aplicación móvil para Android y iPhone</h3>
