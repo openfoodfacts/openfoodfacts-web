@@ -55,6 +55,27 @@ Potrebbero contenere elementi grafici soggetti a diritto di copia o altri diritt
 
 <p>Un modo adatto per utilizzare il database è DuckDB, uno strumento analitico in-process progettato per elaborare grandi quantità di dati in una frazione di secondi. Puoi leggere il nostro <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">articolo sul blog</a> con il quale ti guidiamo attraverso l'esplorazione e l'elaborazione del database di Open Products Facts con DuckDB</p>
 
+<h3>Esportazione dati Parquet su Hugging Face</h3>
+
+<p>Una versione semplificata dell'esportazione JSONL è disponibile anche nel <a href="https://parquet.apache.org/">formato Parquet</a>. Durante la conversione, abbiamo filtrato le colonne che contengono informazioni duplicate, che vengono utilizzate per le verifiche interne o che semplicemente non sono rilevanti per gli utenti.</p>
+    
+<p>Il formato Parquet ha dimostrato di essere utile:<p> 
+
+<ul>
+<li>I dati sono organizzati per colonna anziché per riga, il che consente di risparmiare spazio di archiviazione e velocizzare le ricerche analitiche, ad esempio è possibile selezionare solo le colonne di proprio interesse, ottimizzando le prestazioni delle ricerche anche su computer meno performanti.</li>
+<li>Compressione e decompressione dei dati altamente efficiente, il che lo rende adatto per l'archiviazione e la condivisione di grandi quantità di dati di qualsiasi tipo,</li>
+<li>Supporta tipi di dati complessi e strutture dati nidificate avanzate.</li>
+</ul>
+
+<p>Il dati sono disponibili su <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, un ecosistema collaborativo per l'apprendimento automatico in cui sviluppatori e ricercatori possono condividere modelli e dati.</p>
+
+<dl>
+ <dt>Collegamenti</dt>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ </dd>
+</dl>
+
+</p>Trova maggiori informazioni nella <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, comprese le linee guida per il riutilizzo dei dati e le query di esempio per iniziare.</p>
 <h3>Esportazione dati CSV</h3>
 <p>I dati per tutti i prodotti, o alcuni prodotti, sono scaricabili in formato CSV (leggibile con OpenOffice, Excel e molti altri software), tramite il <a href="https://world.openproductsfacts.org/cgi/search.pl">modulo di ricerca avanzata</a>.</p>
 
@@ -152,27 +173,131 @@ L'app permette agli utenti di scansionare il codice a barre dei prodotti, per vi
 <p>Sei il benvenuto per riutilizzare il codice (è open source) ed aiutarci a migliorarla, per tutti, su tutto il pianeta.</p>
 
 <h3>SDK</h3>
-<!-- TODO: Install locally -->
-<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">-->
-<ul>
-<li><i class="devicon-cordova-plain"></i> Cordova: <a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app">GitHub (vecchia app ufficiale di Open Products Facts)</a></li>
-<li><i class="devicon-dart-plain"></i> DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
-<li><i class="devicon-elixir-plain"></i> Elixir: <a href="https://github.com/openfoodfacts/openfoodfacts-elixir">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C758AFX0S">Canale di discussione</a></li>
-<li><i class="devicon-go-plain"></i> Go: <a href="https://github.com/openfoodfacts/openfoodfacts-go">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV">Canale di discussione</a></li>
-<li><i class="devicon-java-plain"></i> Java: <a href="https://github.com/openfoodfacts/openfoodfacts-java">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3">Canale di discussione</a></li>
-<li><i class="devicon-java-plain"></i> Spring Boot: <a href="https://github.com/openfoodfacts/openfoodfacts-springboot-starter">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3">Discussion channel</a></li>
-<li><i class="devicon-kotlin-plain"></i> PHP: <a href="https://github.com/openfoodfacts/openfoodfacts-php">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Canale di discussione</a></li>
-<li><i class="devicon-nodejs-plain"></i> PHP (Laravel): <a href="https://github.com/openfoodfacts/openfoodfacts-laravel">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM">Canale di discussione</a></li>
-<li><i class="devicon-php-plain"></i> Python: <a href="https://github.com/openfoodfacts/openfoodfacts-python">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C13993JDD">Canale di discussione</a></li>
-<li><i class="devicon-laravel-plain"></i> React Native: <a href="https://github.com/openfoodfacts/openfoodfacts-react-native">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CL29QEBPY">Canale di discussione</a></li>
-<li><i class="devicon-python-plain"></i>  Ruby: <a href="https://github.com/openfoodfacts/openfoodfacts-ruby">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C0ZALLH61">Canale di discussione</a></li>
-<li><i class="devicon-react-plain"></i> Rust: <a href="https://github.com/openfoodfacts/openfoodfacts-rust">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C010J616CKV">Canale di discussione</a></li>
-<li><i class="devicon-ruby-plain"></i> R: <a href="https://github.com/openfoodfacts/r-dashboard">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C2CR356NR">Canale di discussione</a></li>
-<li><i class="devicon-rust-plain"></i> Swift: <a href="https://github.com/openfoodfacts/openfoodfacts-swift">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/CE2A1E7MH">Canale di discussione</a></li> 
-<li><i class="devicon-r-plain"></i> .NET/C#: <a href="https://github.com/openfoodfacts/openfoodfacts-csharp">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JHT98HJ">Canale di discussione</a></li> 
-<li><i class="devicon-swift-plain"></i> NodeJS: <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C1JQQ28P8">Canale di discussione</a></li> 
-<li><i class="devicon-c#-plain"></i> Kotlin: <a href="https://github.com/openfoodfacts/openfoodfacts-kotlin">GitHub</a> - <a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9">Canale di discussione</a></li> 
-</ul>
+<!-- TODO: Install locally to get icons -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"> -->
+
+            <div class="grid-x">
+                <div class="cell small-12 medium-6 large-4">
+                     <label for="sdkFilter">Filtra per nome:</label>
+                     <input type="text" id="sdkFilter" placeholder="ad esempio, Python, Java, React...">
+                </div>
+            </div>
+
+
+            <table class="stack hover" id="sdkTable">
+                <thead>
+                    <tr>
+                        <th width="60">Icona</th>
+                        <th width="200" data-sortable data-column-index="1">Lingua/schermata</th>
+                        <th>Risorse</th>
+                        <th data-sortable data-column-index="3">Discussione</th>
+                    </tr>
+                </thead>
+                <tbody id="sdkTableBody">
+                    <tr>
+                        <td data-label="Icon"><i class="devicon-cordova-plain"></i></td>
+                        <td data-label="Language / Framework">Cordova (vecchia applicazione)</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-cordova-app" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion">N/D</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Icon"><i class="devicon-dart-plain"></i></td>
+                        <td data-label="Language / Framework">DART</td>
+                        <td data-label="Resources">
+                            <a href="https://github.com/openfoodfacts/openfoodfacts-dart" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            <a href="https://pub.dev/packages/openfoodfacts" target="_blank" rel="noopener noreferrer">pub.dev</a>
+                        </td>
+                        <td data-label="Discussion">N/D</td> </tr>
+                    <tr>
+                        <td data-label="Icon"><i class="devicon-elixir-plain"></i></td>
+                        <td data-label="Language / Framework">Elisir</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-elixir" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C758AFX0S" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-go-plain"></i></td>
+                        <td data-label="Language / Framework">Vai</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-go" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-java-plain"></i></td>
+                        <td data-label="Language / Framework">Java</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-java" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-java-plain"></i></td>
+                        <td data-label="Language / Framework">Avvio Primavera</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-springboot-starter" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3J5RT3" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Icon"><i class="devicon-kotlin-plain"></i></td>
+                        <td data-label="Language / Framework">Kotlin</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-kotlin" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-javascript-plain"></i></td>
+                        <td data-label="Language / Framework">JavaScript</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-js" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1JQQ28P8" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-php-plain"></i></td>
+                        <td data-label="Language / Framework">PHP</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-php" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-laravel-plain"></i></td>
+                        <td data-label="Language / Framework">PHP (Laravel)</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-laravel" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1G3GTJNM" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-python-plain"></i></td>
+                        <td data-label="Language / Framework">Python</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-python" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C13993JDD" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-react-original"></i></td> <td data-label="Language / Framework">React Native</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-react-native" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/CL29QEBPY" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-ruby-plain"></i></td>
+                        <td data-label="Language / Framework">Ruby</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-ruby" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C0ZALLH61" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-rust-plain"></i></td>
+                        <td data-label="Language / Framework">Ruggine</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-rust" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C010J616CKV" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-r-plain"></i></td>
+                        <td data-label="Language / Framework">R</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/r-dashboard" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C2CR356NR" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-swift-plain"></i></td>
+                        <td data-label="Language / Framework">Swift</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-swift" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/CE2A1E7MH" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                     <tr>
+                        <td data-label="Icon"><i class="devicon-csharp-plain"></i></td> <td data-label="Language / Framework">.NET/C#</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-csharp" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1JHT98HJ" target="_blank" rel="noopener noreferrer">Canale Slack</a></td>
+                    </tr>
+                </tbody>
+            </table>
 
 <h2 class="emphasized-title">Discussione sui dati, sulle API e sulle esportazioni</h2>
 
