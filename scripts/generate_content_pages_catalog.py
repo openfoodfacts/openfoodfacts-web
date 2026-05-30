@@ -44,6 +44,8 @@ def build_catalog() -> dict:
         texts_dir = language_dir / "texts"
 
         for file_path in sorted(texts_dir.rglob("*.html")):
+            if file_path.name.startswith("."):
+                continue
             relative_page_path = file_path.relative_to(texts_dir).as_posix()
             language_relative_path = file_path.relative_to(REPO_ROOT).as_posix()
 

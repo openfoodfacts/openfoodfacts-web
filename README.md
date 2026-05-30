@@ -56,3 +56,5 @@ And that's it! That would be already be enough of a big change for a first step.
 
 ## Tools
 - [Basic command generator](https://docs.google.com/spreadsheets/d/1WOBGwvPAnojJlCFJ54eq4FY9-tAkiPx39mgxlt9lnP4/edit#gid=525301263)
+- `python3 scripts/generate_content_pages_catalog.py` regenerates `lang/content-pages.json`, a machine-readable list of content pages, available languages, and edit links.
+- Optional page presentation metadata (description, miniature image, metadata object, background color) can be maintained in `lang/content-pages-metadata.json`.
