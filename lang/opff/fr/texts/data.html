@@ -55,13 +55,13 @@ en particulier l'attribution et le partage sous la même condition d'œuvres dé
 </dl>
 
 
-<p>L'ensemble de données est disponible sur <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, un écosystème collaboratif d'apprentissage automatique où les développeurs et les chercheurs peuvent partager des modèles et des ensembles de données.</p>
-
 <h3>Export des données Parquet sur Hugging Face</h3>
+
+<p>L'ensemble de données est disponible sur <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, un écosystème collaboratif d'apprentissage automatique où les développeurs et les chercheurs peuvent partager des modèles et des ensembles de données.</p>
 
 <p>Une version simplifiée du dump JSONL est aussi disponible dans le <a href="https://parquet.apache.org/">format Parquet</a>. Lors de la conversion, nous avons filtré les colonnes qui contiennent des informations dupliquées, qui sont utilisées pour le débogage interne ou qui ne sont tout simplement pas pertinentes pour les utilisateurs.</p>
     
-<p>Le format Parquet s'est avéré pratique :<p> 
+<p>Le format Parquet s'est avéré pratique :</p> 
 
 <ul>
 <li>Les données sont organisées par colonne plutôt que par ligne, ce qui permet d'économiser de l'espace de stockage et d'accélérer les requêtes d'analyse, c'est-à-dire que vous pouvez sélectionner uniquement les colonnes qui vous intéressent, optimisant ainsi les performances des requêtes, même sur les ordinateurs d'entrée de gamme.</li>
@@ -71,13 +71,13 @@ en particulier l'attribution et le partage sous la même condition d'œuvres dé
 
 <dl>
  <dt>Lien</dt>
- <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/petfood.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/petfood.parquet?download=true</a>
  </dd>
 </dl>
 
-</p>Trouvez plus d'informations dans le <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, y compris les directives pour la réutilisation des données et des exemples de requêtes pour commencer.</p>
+<p>Trouvez plus d'informations dans le <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, y compris les directives pour la réutilisation des données et des exemples de requêtes pour commencer.</p>
 
-<p> Vous pouvez lire notre <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">article de blog</a> dans lequel nous vous expliquons comment explorer et utiliser la base de données Open Pet Food Facts avec DuckDB</p>
+<p>Un moyen approprié d'exploiter la base de données est d'utiliser DuckDB, un outil analytique intégré conçu pour traiter de grandes quantités de données en une fraction de seconde. Vous pouvez lire notre <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">article de blog</a> dans lequel nous vous expliquons comment explorer et utiliser la base de données Open Pet Food Facts avec DuckDB</p>
 
 <h3>Export CSV</h3>
 <p>Les données de tous les produits, ou seulement certains, peuvent être téléchargées au format CSV (utilisables dans OpenOffice, Excel et de nombreux logiciels) via le <a href="https://world.openpetfoodfacts.org/cgi/search.pl">formulaire de recherche avancée</a>.</p>
@@ -106,9 +106,9 @@ en particulier l'attribution et le partage sous la même condition d'œuvres dé
 
 <p>Une API JSON est également disponible pour accéder aux données d'un produit. L'API est utilisée en particulier pour les applications mobiles Android et iPhone Open Pet Food Facts.</p>
 
-<p>Nous améliorons l'API au fil du temps mais nous veillons à conserver une rétrocompatibilité. Veuillez <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Beauty%20Facts%20Data%20reuse">nous contacter</a> si vous l'utilisez, afin que nous puissions vous informer des changements potentiels.</p>
+<p>Nous améliorons l'API au fil du temps mais nous veillons à conserver une rétrocompatibilité. Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Pet%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
 
-<p>L'URL pour lire les données d'un produit : https://world.openpetfoodfacts.org/api/v0/product/<i>[code barre]</i>.json</p>
+<p>URL to read data for a product: https://world.openpetfoodfacts.org/api/v3/product/<em>[barcode]</em>.json</p>
 
 <p>Exemple : <a href="https://world.openpetfoodfacts.org/api/v0/product/3600550578041.json">https://world.openpetfoodfacts.org/api/v0/product/3600550578041.json</a></p>
 <p>Notez que si les résultats sont trop nombreux, vous pouvez les filtrer, comme décrit dans la documentation de l'API.</p>
@@ -162,12 +162,12 @@ Cette API n'est pas activement maintenue et n'est pas officiellement documentée
 <ul>
 <li>Envoyez les ingrédients + la catégorie &gt; obtenez l'analyse des ingrédients, les additifs, les allergènes, les ingrédients normalisés, végétalien, végétarien&hellip;</li>
 <li>Envoyez des étiquettes pour obtenir plus d'infos</li>
-<li>Soumettre nutrition</li>
+<li>Soumettre les informations nutritionnelles</li>
 </ul>
 
 <h3>Application mobile Android et iPhone</h3>
 
-<p>Le code de l'application universelle actuelle appelée Open Food Facts est disponible sur GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>. Elle peut scanner et ajouter de la nourriture pour animaux.
+<p>The code for the current universal app called Open Food Facts is available on GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>). Elle peut scanner et ajouter de la nourriture pour animaux.
  
 L'ancienne application mobile Open Pet Food Facts, toujours disponible pour Android est construite sur Kotlin. Le plan est de la mettre à jour vers une version standardisée Open Pet Food Facts de l'application Flutter.
 

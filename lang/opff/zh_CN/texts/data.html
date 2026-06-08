@@ -10,7 +10,7 @@
 
 
 <h2 class="emphasized-title">告诉我们您使用我们数据的情况</h2>
-<p>我们非常有兴趣了解 Open Pet Food Facts 数据的用途。 这不是强制性的，但如果您 <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Beauty%20Facts%20Data%20reuse">告诉我们您的重复使用情况</a> 我们会非常感激，以便我们与 Open Pet Food Facts 社区分享。 您还可以 <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">填写此表格</a> 以获得让您的应用获得推荐的机会。</p>
+<p>我们非常有兴趣了解 Open Pet Food Facts 数据的用途。 It is not mandatory, but we would very much appreciate it if you <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Pet%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Pet Food Facts community. 您还可以 <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">填写此表格</a> 以获得让您的应用获得推荐的机会。</p>
 
 <h2 class="emphasized-title">Open Pet Food Facts data exports</h2>
 
@@ -54,13 +54,13 @@
 </dl>
 
 
-<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
-
 <h3>Hugging Face 上的 Parquet 格式数据导出</h3>
+
+<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
 
 <p>JSONL 转储的简化版本也可在 <a href="https://parquet.apache.org/">Parquet 格式</a>中使用。 在转换过程中，我们过滤掉了包含重复信息、用于内部调试或与用户无关的列。</p>
     
-<p>Parquet 格式已被证明非常方便：<p> 
+<p>Parquet 格式已被证明非常方便：</p> 
 
 <ul>
 <li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
@@ -70,11 +70,11 @@
 
 <dl>
  <dt>链接</dt>
- <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/petfood.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/petfood.parquet?download=true</a>
  </dd>
 </dl>
 
-</p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
+<p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
 
 <p>利用数据库的一个合适方法是使用 DuckDB，这是一种旨在在几分之一秒内处理大量数据的进程内分析工具。 您可以阅读我们的 <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">博客文章</a> ，我们将在其中引导您使用 DuckDB 探索和处理 Open Pet Food Facts 数据库</p>
 
@@ -84,7 +84,7 @@
 
 <dl>
  <dt>链接</dt>
- <dd><a href="https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz">https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz</a> （GZIP 格式压缩的 CSV：~ 0.9 Gb，未压缩：~ 9 Gb）</dd>
+ <dd><a href="https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz">https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
 </dl>
 
 <p>文件编码为Unicode UTF-8。 分隔字段的字符是 &lt;tab&gt; （制表符）。</p>
@@ -106,9 +106,9 @@
 
 <p>JSON API 也可用于读取产品数据。 此 API 特别用于适用于 iPhone 和 Android 的 Open Pet Food Facts 移动应用程序。</p>
 
-<p>我们会不断改进 API，但我们会小心保持旧版本兼容性。 如果您使用它，请 <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Beauty%20Facts%20Data%20reuse">与我们联系</a> ，以便我们告知您可能发生的变化。</p>
+<p>我们会不断改进 API，但我们会小心保持旧版本兼容性。 Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Pet%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
 
-<p>URL to read data for a product: https://world.openpetfoodfacts.org/api/v0/product/<i>[barcode]</i>.json</p>
+<p>URL to read data for a product: https://world.openpetfoodfacts.org/api/v3/product/<em>[barcode]</em>.json</p>
 
 <p>Example: <a href="https://world.openpetfoodfacts.org/api/v0/product/3600550578041.json">https://world.openpetfoodfacts.org/api/v0/product/3600550578041.json</a></p>
 <p>请注意，如果输出太多，您可以对其进行过滤 - 按照 API 文档中所述。</p>
@@ -167,7 +167,7 @@
 
 <h3>Android 和 iPhone 移动应用程序</h3>
 
-<p>当前通用应用程序 Open Food Facts 的代码可在 GitHub 上找到（<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>）。 It can scan and add pet food.
+<p>The code for the current universal app called Open Food Facts is available on GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>). It can scan and add pet food.
  
 The legacy Open Pet Food Facts mobile app, still available for Android is built on Kotlin. The plan is to update it to a Open Pet Food Facts branded flavor of the Flutter app.
 

@@ -10,7 +10,7 @@ Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif 
 
 
 <h2 class="emphasized-title">Bize yeniden kullanımınızdan bahsedin</h2>
-<p>Open Pet Food Facts verilerinin ne için kullanıldığını öğrenmekle çok ilgileniyoruz. Zorunlu değildir ancak Open Pet Food Facts topluluğuyla paylaşabilmemiz için <a href="mailto:contact@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">yeniden kullanımlarınız hakkında bize bilgi verirseniz</a> çok memnun oluruz. Uygulamanızın öne çıkarılması şansını yakalamak için <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">bu formu da doldurabilirsiniz</a>.</p>
+<p>Open Pet Food Facts verilerinin ne için kullanıldığını öğrenmekle çok ilgileniyoruz. It is not mandatory, but we would very much appreciate it if you <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Pet%20Food%20Facts%20Data%20reuse">tell us about your re-uses</a> so that we can share them with the Open Pet Food Facts community. Uygulamanızın öne çıkarılması şansını yakalamak için <a href="https://forms.gle/hwaeqBfs8ywwhbTg8">bu formu da doldurabilirsiniz</a>.</p>
 
 <h2 class="emphasized-title">Open Pet Food Facts verilerini dışa aktarma</h2>
 
@@ -54,36 +54,36 @@ Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif 
 </dl>
 
 
-<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
-
 <h3>Hugging Face'te Parke Verisi Aktarımı</h3>
+
+<p>Veri kümesi, geliştiricilerin ve araştırmacıların modellerini ve veri kümelerini paylaşabildikleri ortak bir makine öğrenimi ekosistemi olan <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>'da mevcuttur.</p>
 
 <p>JSONL dökümünün basitleştirilmiş bir versiyonu <a href="https://parquet.apache.org/">Parquet formatında</a> da mevcuttur. Dönüşüm sırasında, yinelenen bilgiler içeren, dahili hata ayıklama için kullanılan veya kullanıcılar için alakasız olan sütunları filtreledik.</p>
     
-<p>Parke formatının kullanışlı olduğu kanıtlanmıştır:<p> 
+<p>Parke formatının kullanışlı olduğu kanıtlanmıştır:</p> 
 
 <ul>
-<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
+<li>Veriler satır yerine sütunlara göre düzenlenir; bu da depolama alanından tasarruf sağlar ve analitik sorguları hızlandırır. Yani, ilgilendiğiniz sütunları seçerek sorgu performansını optimize edebilirsiniz; bu, giriş seviyesi bilgisayarlarda bile mümkündür.</li>
 <li>Son derece verimli veri sıkıştırma ve açma özelliği sayesinde, her türlü büyük veri setinin depolanması ve paylaşılması için idealdir</li>
-<li>Supports complex data types and advanced nested data structures.</li>
+<li>Karmaşık veri türlerini ve gelişmiş iç içe geçmiş veri yapılarını destekler.</li>
 </ul>
 
 <dl>
  <dt>Link</dt>
- <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/food.parquet?download=true</a>
+ <dd><a href="https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/petfood.parquet?download=true">https://huggingface.co/datasets/openfoodfacts/product-database/resolve/main/petfood.parquet?download=true</a>
  </dd>
 </dl>
 
-</p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
+<p>Verilerin yeniden kullanımıyla ilgili kılavuzlar ve başlangıç için örnek sorgular da dahil olmak üzere daha fazla bilgiyi <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>'da bulabilirsiniz.</p>
 
-<p>Veritabanını kullanmanın uygun bir yolu, saniyenin çok küçük bir kısmında büyük miktarda veriyi işleyebilen işlem içi bir analitik araç olan DuckDB'yi kullanmaktır. Open Pet Food Facts veritabanını DuckDB ile keşfetme ve işleme konusunda size yol gösterdiğimiz <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog yazımızı</a> okuyabilirsiniz</p>
+<p>Veritabanından yararlanmanın uygun bir yolu, büyük miktarda veriyi saniyeler içinde işlemek için tasarlanmış bir süreç içi analitik araç olan DuckDB'yi kullanmaktır. Open Pet Food Facts veritabanını DuckDB ile keşfetme ve işleme konusunda size yol gösterdiğimiz <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog yazımızı</a> okuyabilirsiniz</p>
 
 <h3>CSV Veri Dışa Aktarımı</h3>
 <p>Tüm ürünlere veya bazı ürünlere ilişkin veriler, <a href="https://world.openpetfoodfacts.org/cgi/search.pl">gelişmiş arama formu</a> aracılığıyla CSV formatında (OpenOffice, Excel ve diğer birçok yazılımla okunabilir) indirilebilir.</p>
 
 <dl>
  <dt>Bağlantılar</dt>
- <dd><a href="https://wiki.openfoodfacts.org/API">API V1- Wiki</a>'de bulunan eski belgeler (Önemli not: sayfa okuma ve yazma için alt sayfalara bölünmüştür).</dd>
+ <dd><a href="https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz">https://static.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
 </dl>
 
 <p>Dosya kodlaması Unicode UTF-8'dir. Alanları ayıran karakter &lt;tab&gt; (tablolama)'dır.</p>
@@ -105,9 +105,9 @@ Bazı durumlarda çoğaltılabilen (alıntı hakkı veya adil kullanım), telif 
 
 <p>Bir ürünün verilerini okumak için bir JSON API de mevcuttur. Bu API özellikle iPhone ve Android için Open Pet Food Facts mobil uygulamasında kullanılır.</p>
 
-<p>API'yi zamanla geliştiriyoruz ancak geriye dönük uyumluluğu korumaya özen gösteriyoruz. Lütfen bunu kullanırsanız bize bildirin, böylece olası değişikliklerde sizi haberdar edebiliriz.</p>
+<p>API'yi zamanla geliştiriyoruz ancak geriye dönük uyumluluğu korumaya özen gösteriyoruz. Please <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Pet%20Food%20Facts%20Data%20reuse">get in touch</a> if you use it, so that we can tell you about potential changes.</p>
 
-<p>Bir ürüne ilişkin verileri okumak için URL: https://world.openpetfoodfacts.org/api/v0/product/<i>[barcode]</i>.json</p>
+<p>URL to read data for a product: https://world.openpetfoodfacts.org/api/v3/product/<em>[barcode]</em>.json</p>
 
 <p>Örnek: <a href="https://world.openpetfoodfacts.org/api/v0/product/3600550578041.json">https://world.openpetfoodfacts.org/api/v0/product/3600550578041.json</a></p>
 <p>Çıktı çok yoğunsa API belgelerinde açıklandığı gibi filtreleyebileceğinizi unutmayın.</p>
@@ -145,28 +145,28 @@ Bu API aktif olarak korunmaz ve resmi olarak belgelenmez.
 
 <h3>Kullanıcılarınızı mutlu edecek genel prensipler</h3>
 <ul>
-<li>You can search for information about products, including many useful computed values.</li>
-<li>Belirli bir ürünle ilgili bilgiye ulaşamıyorsanız, kullanıcınızdan fotoğraf ve veri göndermesini isteyebilirsiniz; bu veriler daha sonra Open Pet Food Facts AI ve katkıda bulunanlar tarafından işlenerek onlara göstermek istediğiniz hesaplanmış sonuca ulaştırılır.</li>
+<li>Ürünler hakkında bilgi arayabilir, bunlara birçok yararlı hesaplanmış değer de dahildir.</li>
+<li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Pet Food Facts AI and contributors to get the computed result you want to show them.</li>
 <li>Ayrıca, kendi taraflarında biraz çaba harcayarak sonucu hemen almaları için tam akışı da uygulayabilirsiniz.</li>
 </ul>
 
 <h3>Kullanıcılarınız hemen bir sonuç beklemiyorsa (örn. Envanter uygulamaları)</h3>
 <ul>
-<li>Submit photos (front/nutrition/ingredients): most painless thing for your users</li>
-<li>Open Pet Food Facts AI - Robotoff - fotoğraflardan bazı türetilmiş veriler üretecek</li>
-<li>Zamanla, diğer uygulamalar ve Open Pet Food Facts topluluğu veri boşluklarını dolduracaktır</li>
+<li>Fotoğrafları gönderin (ön yüz/besin değerleri/içindekiler): kullanıcılarınız için en zahmetsiz yol</li>
+<li>The Open Pet Food Facts AI - Robotoff - will generate some derived data from the photos</li>
+<li>Over time, other apps, and the Open Pet Food Facts community will fill the data gaps</li>
 </ul>
 
 <h3>Kullanıcılarınız hemen sonuç bekliyorsa (örneğin Beslenme veya Alerji uygulamaları)</h3>
 <ul>
 <li>İçerikleri + kategoriyi gönderin &gt; İçerik analizi, katkı maddeleri, alerjenler, normalleştirilmiş içerikler, vegan, vejetaryen&hellip;alın</li>
 <li>Eklenmiş değer için etiketler gönderin</li>
-<li>Beslenmeyi gönder</li>
+<li>Submit nutrition</li>
 </ul>
 
 <h3>Android ve iPhone mobil uygulaması</h3>
 
-<p>Open Food Facts adlı mevcut evrensel uygulamanın kodu GitHub'da mevcuttur (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>. Evcil hayvan mamasını tarayıp ekleyebilir.
+<p>The code for the current universal app called Open Food Facts is available on GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>). Evcil hayvan mamasını tarayıp ekleyebilir.
  
 Android için hala mevcut olan eski Open Pet Food Facts mobil uygulaması Kotlin üzerine inşa edilmiştir. Flutter uygulamasının Open Pet Food Facts markalı bir versiyonuna güncellenmesi planlanıyor.
 
