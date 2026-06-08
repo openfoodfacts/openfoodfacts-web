@@ -35,7 +35,7 @@ https://translate.openfoodfacts.org
 * Deployment to production is still manual
 
 ## Requirements
-* Do not hotlink ressources like images, JS or CSS. They need to be commited to the repository. Please organize resources in folders.
+* Do not hotlink resources like images, JS or CSS. They need to be committed to the repository. Please organize resources in folders.
 
 
 ## Deployment
