@@ -116,7 +116,8 @@ def build_content_from_file(
         file_path: the input YAML file path
     """
     if flavor not in ("obf", "off", "opf", "opff"):
-        raise ValueError("Ignoring file %s: unknown flavor %s", file_path, flavor)
+        raise ValueError(f"Ignoring file {file_path}: unknown flavor {flavor}")
+
 
     tag_type, country, lang = extract_information_from_file_name(file_path)
     if tag_type not in (
