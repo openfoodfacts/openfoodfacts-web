@@ -123,7 +123,7 @@ def get_lang_code(filepath):
 
 def fix_utm_campaigns(content, lang_code):
     """
-    Fix UTM campaign parameters to use correct language code.
+    Fix UTM parameter issues: wrong language codes, and a misspelled name.
     
     Args:
         content: File content
@@ -141,6 +141,8 @@ def fix_utm_campaigns(content, lang_code):
         # UTM term patterns
         (r'utm_term=[a-zA-Z_]+-text-ecoscore-page', f'utm_term={lang_code}-text-ecoscore-page'),
         (r'utm_term=[a-zA-Z_]+-text-button-ecoscore-page', f'utm_term={lang_code}-text-button-ecoscore-page'),
+        # Misspelled parameter name (language-independent)
+        (r'utf_medium=', 'utm_medium='),
     ]
     
     for pattern, replacement in patterns:
