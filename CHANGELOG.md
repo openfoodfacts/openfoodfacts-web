@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.4.0...v1.4.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* utm_medium typo in the English content pages ([#937](https://github.com/openfoodfacts/openfoodfacts-web/issues/937)) ([73d1aac](https://github.com/openfoodfacts/openfoodfacts-web/commit/73d1aac1f27398f4a67c1f8783490addb40d1018))
+
 ## [1.1.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.0.0...v1.1.0) (2026-06-23)
 
 
