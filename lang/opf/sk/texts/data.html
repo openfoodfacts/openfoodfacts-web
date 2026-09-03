@@ -41,11 +41,11 @@ Môžu obsahovať grafické prvky podliehajúce autorským právam alebo iným p
 <p>Denný export delta sa poskytuje za predchádzajúcich 14 dní. The list of currently available delta files can be found at <a href="https://static.openproductsfacts.org/data/delta/index.txt">https://static.openproductsfacts.org/data/delta/index.txt</a>.</p>
 <p>Každý riadok predstavuje súbor, ktorý je dostupný na adrese <code>https://static.openproductsfacts.org/data/delta/{filename}</code>.</p>
 <p>Názov súboru obsahuje UNIXovú časovú pečiatku prvej a poslednej zmeny obsiahnutej v súbore JSON, takže delta súbory možno importovať (po extrakcii) s <code>mongoimport</code> v abecednom poradí.</p>
-<p>Please note that due to the nature of <code>mongoexport</code>, the delta files cannot tell you about deleted products. To remove deleted products from your database, you will need to import the full MongoDB dump.</p>
+<p>Upozorňujeme, že vzhľadom na povahu súboru <code>mongoexport</code>vám súbory delta nepovedia o odstránených produktoch. Ak chcete odstrániť odstránené produkty z databázy, budete musieť importovať celý výpis MongoDB.</p>
 
-<h3>JSONL data export</h3>
+<h3>Export údajov JSONL</h3>
 
-<p>The whole database is also available in <a href="https://jsonlines.org/">JSONL format</a> (sometimes called LDJSON or NDJSON) where each line is a JSON object. It represents the same data as the MongoDB export. The file is compressed with gzip.</p>
+<p>Celá databáza je k dispozícii aj vo formáte <a href="https://jsonlines.org/">JSONL</a> (niekedy nazývanom LDJSON alebo NDJSON), kde každý riadok je objekt JSON. Predstavuje rovnaké údaje ako export MongoDB. Súbor je komprimovaný pomocou gzip.</p>
 
 <dl>
  <dt>Odkaz</dt>
@@ -53,21 +53,21 @@ Môžu obsahovať grafické prvky podliehajúce autorským právam alebo iným p
  </dd>
 </dl>
 
-<p>A suitable way to exploit the database is to use DuckDB, an in-process analytical tool designed to process large amount of data in a fraction of seconds. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Products Facts database with DuckDB</p>
+<p>Vhodným spôsobom využitia databázy je použitie DuckDB, analytického nástroja určeného na spracovanie veľkého množstva údajov za zlomok sekundy. You can read our <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">blog post</a> where we walk you through exploring and processing the Open Products Facts database with DuckDB</p>
 
-<h3>Parquet Data Export on Hugging Face</h3>
+<h3>Export údajov o parketách na Hugging Face</h3>
 
-<p>A simplified version of the JSONL dump is also available in the <a href="https://parquet.apache.org/">Parquet format</a>. During the conversion, we filtered columns that contains duplicated information, are used for internal debugging, or are simply irrelevant for users.</p>
+<p>Zjednodušená verzia JSONL výpisu je k dispozícii aj vo formáte <a href="https://parquet.apache.org/">Parquet</a>. Počas konverzie sme filtrovali stĺpce, ktoré obsahujú duplicitné informácie, používajú sa na interné ladenie alebo sú jednoducho irelevantné pre používateľov.</p>
     
-<p>The Parquet format has proved to be handy:<p> 
+<p>Formát Parquet sa ukázal ako praktický:<p> 
 
 <ul>
-<li>Data is organized by column, rather than by row, which saves storage space and speeds up analytics queries, i.e. you can select just the columns you care about, optimizing query performances, even on entry-level computers.</li>
-<li>Highly efficient data compression and decompression, making it good for storing and sharing big datasets of any kind,</li>
-<li>Supports complex data types and advanced nested data structures.</li>
+<li>Dáta sú usporiadané podľa stĺpcov, nie podľa riadkov, čo šetrí úložný priestor a zrýchľuje analytické dotazy, t. j. môžete vybrať iba stĺpce, ktoré vás zaujímajú, čím sa optimalizuje výkon dotazov, a to aj na základných počítačoch.</li>
+<li>Vysoko efektívna kompresia a dekompresia dát, vďaka čomu je vhodná na ukladanie a zdieľanie veľkých súborov údajov akéhokoľvek druhu,</li>
+<li>Podporuje komplexné dátové typy a pokročilé vnorené dátové štruktúry.</li>
 </ul>
 
-<p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
+<p>Súbor údajov je k dispozícii na <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, čo je ekosystém strojového učenia, kde vývojári a výskumníci môžu zdieľať modely a súbory údajov.</p>
 
 <dl>
  <dt>Odkaz</dt>
@@ -75,12 +75,12 @@ Môžu obsahovať grafické prvky podliehajúce autorským právam alebo iným p
  </dd>
 </dl>
 
-</p>Find more information in the <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, including guidelines for data reuse and example queries to get started.</p>
-<h3>CSV Data Export</h3>
+</p>Viac informácií nájdete na <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, vrátane pokynov na opätovné použitie údajov a príkladov dotazov na začiatok.</p>
+<h3>Export údajov CSV</h3>
 <p>Data for all products, or some of the products, can be downloaded in the CSV format (readable with LibreOffice, Excel and many other spreadsheet software) through the <a href="https://world.openproductsfacts.org/cgi/search.pl">advanced search form</a>.</p>
 
 <dl>
- <dt>Links</dt>
+ <dt>Odkazy</dt>
  <dd><a href="https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz">https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz</a> (compressed CSV in GZIP format: ~ 0.9 Gb, uncompressed: ~ 9 Gb)</dd>
 </dl>
 
@@ -186,7 +186,7 @@ This API is not actively maintained, and not officially documented.
             <table class="stack hover" id="sdkTable">
                 <thead>
                     <tr>
-                        <th width="60">Icon</th>
+                        <th width="60">Ikona</th>
                         <th width="200" data-sortable data-column-index="1">Language / Framework</th>
                         <th>Resources</th>
                         <th data-sortable data-column-index="3">Discussion</th>
