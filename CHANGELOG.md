@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.4.2](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.4.1...v1.4.2) (2026-09-03)
+
+
+### Bug Fixes
+
+* Update open-food-facts-mobile-app.html ([108f02a](https://github.com/openfoodfacts/openfoodfacts-web/commit/108f02a30e5aa1ac2838184198a5922defa78b5e))
+* Update open-food-facts-mobile-app.html ([2bbe076](https://github.com/openfoodfacts/openfoodfacts-web/commit/2bbe0763b883c061cc0d694b65ffe99874d66ff6))
+* Update open-food-facts-mobile-app.html ([3402c5a](https://github.com/openfoodfacts/openfoodfacts-web/commit/3402c5ad0a81042cdcae863146501c38c1f3bde7))
+* Update open-pet-food-facts-mobile-app.html ([6b40c68](https://github.com/openfoodfacts/openfoodfacts-web/commit/6b40c685722e07388eaaeba587e2c58098e3c814))
+* Update open-products-facts-mobile-app.html ([a71cde5](https://github.com/openfoodfacts/openfoodfacts-web/commit/a71cde53956d7cb709c10bc7ce62368f9ebb7a61))
+
 ## [1.4.1](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.4.0...v1.4.1) (2026-08-14)
 
 
