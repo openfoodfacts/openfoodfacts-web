@@ -102,5 +102,25 @@ class TestTranslationQA(unittest.TestCase):
 
         self.assertEqual(len(violations), 0, f"Found {len(violations)} hardcoded English Google Play URLs in non-English locales:\n" + "\n".join(violations[:10]))
 
+    def test_playstore_badges_localized(self):
+        """Directive 3: Play Store badges must use localized badge SVG when available."""
+        from fix_translation_issues import get_playstore_badge
+        violations = []
+        pattern = re.compile(r'((?:https://static\.openfoodfacts\.org)?/images/misc/playstore/img/([a-zA-Z0-9_-]+)_get\.svg)')
+        for path in self.html_files:
+            lang_code = get_lang_code(path)
+            if not lang_code or lang_code in ('en', 'en_GB', 'en_AU'):
+                continue
+            expected_badge = get_playstore_badge(lang_code)
+            if not expected_badge or expected_badge == 'en':
+                continue
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            for m, badge in pattern.findall(content):
+                if badge != expected_badge:
+                    violations.append(f"{path}: found {badge}_get.svg, expected {expected_badge}_get.svg")
+
+        self.assertEqual(len(violations), 0, f"Found {len(violations)} unlocalized Play Store badges in non-English locales:\n" + "\n".join(violations[:10]))
+
 if __name__ == '__main__':
     unittest.main()

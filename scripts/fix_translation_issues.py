@@ -239,6 +239,189 @@ def fix_app_store_urls(content, lang_code):
     return content, fixes
 
 
+# Play Store language badge aliases: maps folder lang_code to playstore SVG code prefix
+PLAYSTORE_ALIASES = {
+    "tl": "fil",
+    "he": "iw",
+    "yi": "iw",
+    "uk": "ua",
+    "nb": "no",
+    "nn": "no",
+    "zh": "zh-cn",
+    "zh_CN": "zh-cn",
+    "zh_TW": "zh-tw",
+    "zh_HK": "zh-hk",
+    "pt_BR": "pt-br",
+    "es_419": "es-419",
+}
+
+# App Store badge aliases: maps folder lang_code to appstore SVG country suffix
+APPSTORE_ALIASES = {
+    "el": "GR",
+    "en": "US",
+    "en_US": "US",
+    "en_GB": "UK",
+    "en_AU": "US",
+    "es": "ES",
+    "es_419": "ES_MX",
+    "fr": "FR",
+    "fr_CA": "FR_CA",
+    "pt": "PT_PT",
+    "pt_PT": "PT_PT",
+    "pt_BR": "PT_BR",
+    "zh_CN": "CN_SC",
+    "zh": "CN_SC",
+    "zh_TW": "CN_TC",
+    "zh_HK": "CN_TC",
+    "he": "HB",
+    "iw": "HB",
+    "ja": "JP",
+    "ko": "KR",
+    "cs": "CZ",
+    "da": "DK",
+    "de": "DE",
+    "et": "EE",
+    "fi": "FI",
+    "hu": "HU",
+    "id": "ID",
+    "it": "IT",
+    "lt": "LT",
+    "lv": "LV",
+    "ms": "MY",
+    "nl": "NL",
+    "nl_BE": "NL",
+    "nl_NL": "NL",
+    "no": "NO",
+    "nb": "NO",
+    "nn": "NO",
+    "pl": "PL",
+    "ro": "RO",
+    "ru": "RU",
+    "sv": "SE",
+    "sk": "SK",
+    "sl": "SI",
+    "th": "TH",
+    "tr": "TR",
+    "vi": "VN",
+    "ar": "AR",
+    "az": "AZ",
+    "bg": "BG",
+    "mt": "MT",
+    "tl": "PH",
+    "fil": "PH",
+}
+
+# Available badge sets (loaded dynamically if base dir exists, or cached defaults)
+_PLAYSTORE_SVGS = None
+_APPSTORE_SVGS = None
+
+def _get_available_badge_sets():
+    global _PLAYSTORE_SVGS, _APPSTORE_SVGS
+    if _PLAYSTORE_SVGS is None:
+        root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        play_dir = os.path.join(root_dir, 'html', 'images', 'misc', 'playstore', 'img')
+        app_dir = os.path.join(root_dir, 'html', 'images', 'misc', 'appstore', 'black')
+        if os.path.isdir(play_dir):
+            _PLAYSTORE_SVGS = {f.split('_get.svg')[0] for f in os.listdir(play_dir) if f.endswith('_get.svg')}
+        else:
+            _PLAYSTORE_SVGS = set()
+        if os.path.isdir(app_dir):
+            _APPSTORE_SVGS = {f.split('.svg')[0].replace('appstore_', '') for f in os.listdir(app_dir) if f.endswith('.svg')}
+        else:
+            _APPSTORE_SVGS = set()
+    return _PLAYSTORE_SVGS, _APPSTORE_SVGS
+
+
+def get_playstore_badge(lang_code):
+    """Return the SVG badge prefix for Google Play Store for the given language code, or None."""
+    if not lang_code:
+        return None
+    play_set, _ = _get_available_badge_sets()
+    if lang_code in PLAYSTORE_ALIASES:
+        target = PLAYSTORE_ALIASES[lang_code]
+        if not play_set or target in play_set:
+            return target
+    val = lang_code.lower().replace('_', '-')
+    if not play_set or val in play_set:
+        return val
+    base = lang_code.split('_')[0].split('-')[0].lower()
+    if base in PLAYSTORE_ALIASES:
+        target = PLAYSTORE_ALIASES[base]
+        if not play_set or target in play_set:
+            return target
+    if not play_set or base in play_set:
+        return base
+    return None
+
+
+def get_appstore_badge(lang_code):
+    """Return the SVG badge country code for Apple App Store for the given language code, or None."""
+    if not lang_code:
+        return None
+    _, app_set = _get_available_badge_sets()
+    if lang_code in APPSTORE_ALIASES:
+        target = APPSTORE_ALIASES[lang_code]
+        if not app_set or target in app_set:
+            return target
+    upper = lang_code.upper()
+    if not app_set or upper in app_set:
+        return upper
+    base = lang_code.split('_')[0].split('-')[0]
+    if base in APPSTORE_ALIASES:
+        target = APPSTORE_ALIASES[base]
+        if not app_set or target in app_set:
+            return target
+    if not app_set or base.upper() in app_set:
+        return base.upper()
+    return None
+
+
+def fix_store_badges(content, lang_code):
+    """
+    Fix Google Play Store and Apple App Store image badge paths to use the localized badge.
+    E.g. /images/misc/playstore/img/en_get.svg -> /images/misc/playstore/img/el_get.svg
+    and /images/misc/appstore/black/appstore_US.svg -> /images/misc/appstore/black/appstore_GR.svg
+    """
+    fixes = 0
+    play_badge = get_playstore_badge(lang_code)
+    if play_badge:
+        def replace_play_badge(m):
+            nonlocal fixes
+            old = m.group(0)
+            prefix = m.group(1) # e.g. "https://static.openfoodfacts.org" or ""
+            current = m.group(2)
+            if current != play_badge:
+                fixes += 1
+                return f'{prefix}/images/misc/playstore/img/{play_badge}_get.svg'
+            return old
+
+        content = re.sub(
+            r'((?:https://static\.openfoodfacts\.org)?)/images/misc/playstore/img/([a-zA-Z0-9_-]+)_get\.svg',
+            replace_play_badge,
+            content
+        )
+
+    app_badge = get_appstore_badge(lang_code)
+    if app_badge:
+        def replace_app_badge(m):
+            nonlocal fixes
+            old = m.group(0)
+            prefix = m.group(1) # e.g. "https://static.openfoodfacts.org" or ""
+            current = m.group(2)
+            if current != app_badge:
+                fixes += 1
+                return f'{prefix}/images/misc/appstore/black/appstore_{app_badge}.svg'
+            return old
+
+        content = re.sub(
+            r'((?:https://static\.openfoodfacts\.org)?)/images/misc/appstore/black/appstore_([a-zA-Z0-9_]+)\.svg',
+            replace_app_badge,
+            content
+        )
+
+    return content, fixes
+
+
 def protect_brand_names(content):
     """
     Protect brand names according to Directive 1 (The "No-Translate" List).
@@ -332,7 +515,7 @@ def fix_dynamic_repetitions(content, filepath):
     return content, fixes
 
 
-def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fix_brands=True, fix_typography=True, verbose=False):
+def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fix_badges=True, fix_brands=True, fix_typography=True, verbose=False):
     """
     Process a single HTML file to fix translation issues.
     """
@@ -376,6 +559,12 @@ def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fi
         content, fixes = fix_app_store_urls(content, lang_code)
         if fixes > 0:
             fix_details.append(f"{fixes} app store URLs")
+        total_fixes += fixes
+
+    if fix_badges and not is_en:
+        content, fixes = fix_store_badges(content, lang_code)
+        if fixes > 0:
+            fix_details.append(f"{fixes} store badges")
         total_fixes += fixes
 
     if fix_brands:
@@ -423,6 +612,10 @@ def main():
                         help='Fix App Store and Google Play URLs (default: True)')
     parser.add_argument('--no-urls', action='store_true',
                         help='Skip fixing URLs')
+    parser.add_argument('--fix-badges', action='store_true', default=True,
+                        help='Fix Play Store and App Store image badges (default: True)')
+    parser.add_argument('--no-badges', action='store_true',
+                        help='Skip fixing badges')
     parser.add_argument('--fix-brands', action='store_true', default=True,
                         help='Protect brand names from translation (default: True)')
     parser.add_argument('--no-brands', action='store_true',
@@ -440,6 +633,7 @@ def main():
     fix_repetitions = args.fix_repetitions and not args.no_repetitions
     fix_utm = args.fix_utm and not args.no_utm
     fix_urls = args.fix_urls and not args.no_urls
+    fix_badges = args.fix_badges and not args.no_badges
     fix_brands = args.fix_brands and not args.no_brands
     fix_typography = args.fix_typography and not args.no_typography
     
@@ -465,6 +659,7 @@ def main():
             fix_repetitions=fix_repetitions,
             fix_utm=fix_utm,
             fix_urls=fix_urls,
+            fix_badges=fix_badges,
             fix_brands=fix_brands,
             fix_typography=fix_typography,
             verbose=args.verbose

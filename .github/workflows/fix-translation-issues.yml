@@ -13,6 +13,11 @@ on:
         required: false
         type: boolean
         default: true
+      fix_badges:
+        description: 'Fix Play Store and App Store button image badges'
+        required: false
+        type: boolean
+        default: true
       fix_brands:
         description: 'Protect brand names according to No-Translate list'
         required: false
@@ -64,6 +69,10 @@ jobs:
           
           if [ "${{ inputs.fix_urls }}" != "true" ]; then
             ARGS="$ARGS --no-urls"
+          fi
+
+          if [ "${{ inputs.fix_badges }}" != "true" ]; then
+            ARGS="$ARGS --no-badges"
           fi
 
           if [ "${{ inputs.fix_brands }}" != "true" ]; then
