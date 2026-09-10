@@ -12,6 +12,8 @@ import re
 import sys
 import unittest
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 def get_lang_code(filepath):
     parts = filepath.replace('\\', '/').split('/')
     for i, part in enumerate(parts):
@@ -102,5 +104,25 @@ class TestTranslationQA(unittest.TestCase):
 
         self.assertEqual(len(violations), 0, f"Found {len(violations)} hardcoded English Google Play URLs in non-English locales:\n" + "\n".join(violations[:10]))
 
+    def test_creative_commons_urls_localized(self):
+        """Directive 3: Creative Commons deed URLs must match localized target code when supported."""
+        from fix_translation_issues import CC_DEED_LANG_MAP
+        violations = []
+        for path in self.html_files:
+            lang_code = get_lang_code(path)
+            if not lang_code:
+                continue
+            expected_deed = CC_DEED_LANG_MAP.get(lang_code, 'en')
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            for m in re.finditer(r'href="(https?://creativecommons\.org/licenses/by-sa/3\.0/deed\.[a-zA-Z_-]+)"', content):
+                url = m.group(1)
+                actual_deed = url.split('.')[-1]
+                if actual_deed != expected_deed:
+                    violations.append(f"{path}: got {actual_deed}, expected {expected_deed} ({url})")
+
+        self.assertEqual(len(violations), 0, f"Found {len(violations)} mismatched Creative Commons deed URLs:\n" + "\n".join(violations[:10]))
+
 if __name__ == '__main__':
     unittest.main()
+

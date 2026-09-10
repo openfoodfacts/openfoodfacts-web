@@ -239,6 +239,93 @@ def fix_app_store_urls(content, lang_code):
     return content, fixes
 
 
+# Supported language codes for Creative Commons BY-SA 3.0 deeds
+CC_DEED_LANG_MAP = {
+    'an': 'an',
+    'ar': 'ar',
+    'az': 'az',
+    'be': 'be',
+    'bg': 'bg',
+    'bn': 'bn',
+    'ca': 'ca',
+    'cs': 'cs',
+    'da': 'da',
+    'de': 'de',
+    'el': 'el',
+    'en': 'en',
+    'en_AU': 'en',
+    'en_GB': 'en',
+    'eo': 'eo',
+    'es': 'es',
+    'et': 'et',
+    'eu': 'eu',
+    'fa': 'fa',
+    'fi': 'fi',
+    'fr': 'fr',
+    'fy': 'fy',
+    'ga': 'ga',
+    'gl': 'gl',
+    'hi': 'hi',
+    'hr': 'hr',
+    'hu': 'hu',
+    'id': 'id',
+    'is': 'is',
+    'it': 'it',
+    'ja': 'ja',
+    'ko': 'ko',
+    'lt': 'lt',
+    'lv': 'lv',
+    'ms': 'ms',
+    'nb': 'no',
+    'nl': 'nl',
+    'nl_BE': 'nl',
+    'nl_NL': 'nl',
+    'nn': 'no',
+    'no': 'no',
+    'pl': 'pl',
+    'pt': 'pt',
+    'pt_PT': 'pt',
+    'pt_BR': 'pt-br',
+    'ro': 'ro',
+    'ru': 'ru',
+    'sk': 'sk',
+    'sl': 'sl',
+    'sr': 'sr-latn',
+    'sr_CS': 'sr-latn',
+    'sr_RS': 'sr-latn',
+    'sv': 'sv',
+    'tr': 'tr',
+    'uk': 'uk',
+    'zh': 'zh-hans',
+    'zh_CN': 'zh-hans',
+    'zh_HK': 'zh-hant',
+    'zh_TW': 'zh-hant',
+}
+
+
+def fix_creative_commons_urls(content, lang_code):
+    """
+    Fix Creative Commons deed URLs based on the target language code.
+    Directive 3: URL & Domain Consistency.
+    Adapts https://creativecommons.org/licenses/by-sa/3.0/deed.en to deed.<lang>.
+    Falls back to deed.en if CC doesn't support the language.
+    """
+    fixes = 0
+    target_deed = CC_DEED_LANG_MAP.get(lang_code, 'en')
+
+    def replace_cc_url(m):
+        nonlocal fixes
+        old = m.group(0)
+        new = f'https://creativecommons.org/licenses/by-sa/3.0/deed.{target_deed}'
+        if new != old:
+            fixes += 1
+            return new
+        return old
+
+    content = re.sub(r'https?://creativecommons\.org/licenses/by-sa/3\.0/deed\.[a-zA-Z_-]+', replace_cc_url, content)
+    return content, fixes
+
+
 def protect_brand_names(content):
     """
     Protect brand names according to Directive 1 (The "No-Translate" List).
@@ -378,6 +465,11 @@ def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fi
             fix_details.append(f"{fixes} app store URLs")
         total_fixes += fixes
 
+        content, fixes = fix_creative_commons_urls(content, lang_code)
+        if fixes > 0:
+            fix_details.append(f"{fixes} Creative Commons URLs")
+        total_fixes += fixes
+
     if fix_brands:
         content, fixes = protect_brand_names(content)
         if fixes > 0:
@@ -457,7 +549,9 @@ def main():
         for root, dirs, fnames in os.walk(base_dir):
             for fname in fnames:
                 if fname.endswith('.html'):
-                    files.append(os.path.join(root, fname))
+                    full_path = os.path.join(root, fname)
+                    if not os.path.islink(full_path):
+                        files.append(full_path)
     
     for html_file in files:
         fixes = process_file(
