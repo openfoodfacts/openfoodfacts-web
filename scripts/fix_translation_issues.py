@@ -6,20 +6,14 @@ Can be used as part of a GitHub Action to repair Crowdin translations.
 This script fixes:
 1. UTM campaign parameters to use correct language code based on folder path
 2. UTM term parameters with incorrect language prefixes
-3. Common text repetition patterns (both known patterns and dynamic detection)
+3. Apple App Store and Google Play URLs to use correct localized language codes (l=<lc>, hl=<lc>)
+4. Protect brand names according to the official "No-Translate" list
+5. Subdomain and locale URL consistency
+6. French typographical quality (non-breaking spaces before : ; ? ! and within « »)
+7. Common text repetition patterns (both known patterns and dynamic detection)
 
 Usage:
-    python fix_translation_issues.py [--base-dir DIR] [--fix-repetitions] [--fix-utm] [--verbose]
-
-Examples:
-    # Fix all issues in lang directory
-    python fix_translation_issues.py --base-dir lang
-    
-    # Fix only UTM parameters
-    python fix_translation_issues.py --fix-utm --no-repetitions
-    
-    # Verbose output
-    python fix_translation_issues.py -v
+    python fix_translation_issues.py [--base-dir DIR] [--fix-repetitions] [--fix-utm] [--fix-urls] [--fix-brands] [--fix-typography] [--verbose]
 """
 import os
 import re
@@ -111,29 +105,60 @@ KNOWN_REPETITIONS = [
     ("Are you one of them? Are you one of them?", "Are you one of them?"),
 ]
 
+# Protected brand names rules (Directive 1)
+BRAND_PROTECTION_RULES = [
+    # Slovak translations of Open Food Facts
+    (r'\bOtvorte Food Facts\b', 'Open Food Facts'),
+    (r'\botvorte food facts\b', 'Open Food Facts'),
+    # Norwegian translations of Open Food Facts
+    (r'\bÅpne matfakta\b', 'Open Food Facts'),
+    (r'\båpne matfakta\b', 'Open Food Facts'),
+    (r'\bÅpne Matfakta\b', 'Open Food Facts'),
+    (r'\båpen matfakta\b', 'Open Food Facts'),
+    (r'\bÅpen matfakta\b', 'Open Food Facts'),
+    (r'\bÅpne databasen over matfakta\b', 'Open Food Facts-databasen'),
+    # French translations of Open Food Facts
+    (r'\bInformations nutritionnelles ouvertes\b', 'Open Food Facts'),
+    # Portuguese translations of Open Food Facts
+    (r'\bAbra Food Facts\b', 'Open Food Facts'),
+    (r'\babra food facts\b', 'Open Food Facts'),
+    # Spanish translations of Open Food Facts
+    (r'\babierto hechos de comida\b', 'Open Food Facts'),
+    (r'\bAbierto Hechos de Comida\b', 'Open Food Facts'),
+    # Occitan translations of Open Food Facts
+    (r'\blos faches de l\'alimentacion dobèrta\b', 'Open Food Facts'),
+    (r'\bfaches alimentaris dobèrts\b', 'Open Food Facts'),
+    # Green-Score translations (Directive 1: Reject "Pontuação Verde", "Puntuación Verde")
+    (r'\bLa [Pp]untuación [Vv]erde\b', 'El Green-Score'),
+    (r'\bla [Pp]untuación [Vv]erde\b', 'el Green-Score'),
+    (r'\b[Pp]untuación [Vv]erde\b', 'Green-Score'),
+    (r'\bA [Pp]ontuação [Vv]erde\b', 'O Green-Score'),
+    (r'\ba [Pp]ontuação [Vv]erde\b', 'o Green-Score'),
+    (r'\b[Pp]ontuação [Vv]erde\b', 'Green-Score'),
+]
+
 
 def get_lang_code(filepath):
-    """Extract language code from folder path like /lang/aa/ -> aa"""
-    parts = filepath.split(os.sep)
+    """Extract language code from folder path like /lang/aa/ -> aa or /lang/obf/fr/ -> fr"""
+    parts = filepath.replace('\\', '/').split('/')
     for i, part in enumerate(parts):
-        if part == 'lang' and i + 1 < len(parts):
+        if part in ('obf', 'opf', 'opff') and i + 1 < len(parts):
+            return parts[i + 1]
+        if part == 'lang' and i + 1 < len(parts) and parts[i + 1] not in ('obf', 'opf', 'opff', 'README.md'):
             return parts[i + 1]
     return None
 
 
+def get_lang_val(lang_code):
+    """Return lowercase hyphenated code suitable for web parameters (pt-br, zh-cn, etc.)."""
+    return lang_code.lower().replace('_', '-')
+
+
 def fix_utm_campaigns(content, lang_code):
     """
-    Fix UTM parameter issues: wrong language codes, and a misspelled name.
-    
-    Args:
-        content: File content
-        lang_code: Language code from folder path
-    
-    Returns:
-        (fixed_content, number_of_fixes)
+    Fix UTM parameter issues: wrong language codes, and misspelled parameter names.
     """
     fixes = 0
-    
     patterns = [
         # UTM campaign patterns
         (r'utm_campaign=search_and_links_promo_[a-zA-Z_]+', f'utm_campaign=search_and_links_promo_{lang_code}'),
@@ -154,23 +179,114 @@ def fix_utm_campaigns(content, lang_code):
     return content, fixes
 
 
+def fix_app_store_urls(content, lang_code):
+    """
+    Fix Apple App Store and Google Play URLs to use the proper language codes.
+    Directive 3: URL & Domain Consistency.
+    """
+    fixes = 0
+    lang_val = get_lang_val(lang_code)
+
+    # 1. Apple Store links with existing ?l=... or in promo links
+    # Match https://apps.apple.com/app/open-food-facts/id588797948?l=...
+    def replace_apple_l(m):
+        nonlocal fixes
+        old = m.group(0)
+        # replace l=en or any code with lang_val
+        new = re.sub(r'(\?|&amp;|&)l=[a-zA-Z_-]+', r'\1l=' + lang_val, old)
+        if new != old:
+            fixes += 1
+        return new
+
+    content = re.sub(r'https://apps\.apple\.com/app/open-food-facts/id588797948\?[^"\'\s>]+', replace_apple_l, content)
+
+    # 2. Apple Store links that have ?utm_source= without ?l=
+    def add_apple_l(m):
+        nonlocal fixes
+        old = m.group(0)
+        if '?l=' not in old and '&amp;l=' not in old and '&l=' not in old:
+            # Add ?l= at the start of query string
+            new = old.replace('id588797948?', f'id588797948?l={lang_val}&amp;')
+            if new != old:
+                fixes += 1
+                return new
+        return old
+
+    content = re.sub(r'https://apps\.apple\.com/app/open-food-facts/id588797948\?[^"\'\s>]+', add_apple_l, content)
+
+    # 3. Google Play links: update hl=...
+    def replace_google_hl(m):
+        nonlocal fixes
+        old = m.group(0)
+        new = re.sub(r'(\?|&amp;|&)hl=[a-zA-Z_-]+', r'\1hl=' + lang_val, old)
+        if new != old:
+            fixes += 1
+        return new
+
+    content = re.sub(r'https://play\.google\.com/store/apps/details\?id=org\.openfoodfacts\.scanner[^"\'\s>]+', replace_google_hl, content)
+
+    # 4. In mobile app landing page: const defaultLang = "..."
+    def replace_default_lang(m):
+        nonlocal fixes
+        old = m.group(0)
+        new = f'const defaultLang = "{lang_val}";'
+        if new != old:
+            fixes += 1
+        return new
+
+    content = re.sub(r'const defaultLang = "[^"]*";', replace_default_lang, content)
+
+    return content, fixes
+
+
+def protect_brand_names(content):
+    """
+    Protect brand names according to Directive 1 (The "No-Translate" List).
+    """
+    fixes = 0
+    for pattern, replacement in BRAND_PROTECTION_RULES:
+        matches = len(re.findall(pattern, content))
+        if matches:
+            content = re.sub(pattern, replacement, content)
+            fixes += matches
+    return content, fixes
+
+
+def fix_french_typography(content, lang_code):
+    """
+    Respect locale-specific typography for French (Directive 4):
+    Non-breaking spaces (&nbsp;) before : ; ? ! and within « ».
+    Applied only to text outside of HTML tags.
+    """
+    if lang_code != 'fr':
+        return content, 0
+
+    parts = re.split(r'(<[^>]+>)', content)
+    fixes = 0
+    for i in range(len(parts)):
+        # Even indices are text outside HTML tags
+        if i % 2 == 0:
+            orig = parts[i]
+            # Space before : ; ? !
+            parts[i] = re.sub(r'([^\s&;])\s+([:;?!])', r'\1&nbsp;\2', parts[i])
+            # Space inside guillemets
+            parts[i] = re.sub(r'«\s+', '«&nbsp;', parts[i])
+            parts[i] = re.sub(r'\s+»', '&nbsp;»', parts[i])
+            if parts[i] != orig:
+                fixes += 1
+
+    return "".join(parts), fixes
+
+
 def fix_known_repetitions(content):
     """
     Fix known text repetition patterns.
-    
-    Args:
-        content: File content
-    
-    Returns:
-        (fixed_content, number_of_fixes)
     """
     fixes = 0
-    
     for find, replace in KNOWN_REPETITIONS:
         if find in content:
             content = content.replace(find, replace)
             fixes += 1
-    
     return content, fixes
 
 
@@ -184,44 +300,24 @@ def is_css_pattern(text):
 
 def fix_dynamic_repetitions(content, filepath):
     """
-    Dynamically detect and fix text repetitions similar to the Perl script.
-    Looks for substantial text (20+ chars) that appears consecutively.
-    
-    Args:
-        content: File content
-        filepath: Path to file (for skip logic)
-    
-    Returns:
-        (fixed_content, number_of_fixes)
+    Dynamically detect and fix text repetitions.
     """
     fixes = 0
-    
-    # Skip certain files known to have false positives (CSS-heavy files)
     skip_files = ['landing-off.html', 'presse.html', 'revue-de-presse-fr.html']
     for skip_file in skip_files:
         if skip_file in filepath:
             return content, 0
     
-    # Pattern to find consecutive duplicate text (min 20 chars)
-    # Match text that doesn't contain < or > (to avoid HTML tags)
     min_len = 20
-    
-    # Use a loop to find and fix repetitions
-    max_iterations = 50  # Increased to handle severe repetitions
+    max_iterations = 50
     for _ in range(max_iterations):
-        # Find pattern: text followed by whitespace (including newlines) followed by same text
         match = re.search(r'([^\n<>]{' + str(min_len) + r',}?)\s+\1', content, re.MULTILINE)
         if not match:
             break
         
         matched_text = match.group(1).strip()
-        
-        # Skip if it's a CSS pattern
         if is_css_pattern(matched_text):
-            # Can't skip easily in regex, so just break
             break
-        
-        # Skip pure structural/technical patterns
         if re.match(r'^[\s\n\r\t<>\/]+$', matched_text):
             break
         if re.match(r'^[a-z0-9_-]+$', matched_text, re.IGNORECASE):
@@ -229,7 +325,6 @@ def fix_dynamic_repetitions(content, filepath):
         if re.match(r'^["\'\(\)\[\]{}]+$', matched_text):
             break
         
-        # Fix the repetition - replace "text text" with "text"
         full_match = match.group(0)
         content = content.replace(full_match, matched_text, 1)
         fixes += 1
@@ -237,25 +332,16 @@ def fix_dynamic_repetitions(content, filepath):
     return content, fixes
 
 
-def process_file(filepath, fix_repetitions=True, fix_utm=True, verbose=False):
+def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fix_brands=True, fix_typography=True, verbose=False):
     """
     Process a single HTML file to fix translation issues.
-    
-    Args:
-        filepath: Path to HTML file
-        fix_repetitions: Whether to fix text repetitions
-        fix_utm: Whether to fix UTM parameters
-        verbose: Whether to print detailed output
-    
-    Returns:
-        Number of fixes made
     """
     lang_code = get_lang_code(filepath)
     if not lang_code or lang_code == 'README.md':
         return 0
     
-    # Skip English folder for UTM changes (English is the source)
-    skip_utm = lang_code == 'en'
+    # Skip English folder for localized URL and campaign changes
+    is_en = lang_code == 'en'
     
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
@@ -275,16 +361,33 @@ def process_file(filepath, fix_repetitions=True, fix_utm=True, verbose=False):
             fix_details.append(f"{fixes} known repetitions")
         total_fixes += fixes
         
-        # Also try dynamic repetition detection
         content, fixes = fix_dynamic_repetitions(content, filepath)
         if fixes > 0:
             fix_details.append(f"{fixes} dynamic repetitions")
         total_fixes += fixes
     
-    if fix_utm and not skip_utm:
+    if fix_utm and not is_en:
         content, fixes = fix_utm_campaigns(content, lang_code)
         if fixes > 0:
             fix_details.append(f"{fixes} UTM params")
+        total_fixes += fixes
+
+    if fix_urls and not is_en:
+        content, fixes = fix_app_store_urls(content, lang_code)
+        if fixes > 0:
+            fix_details.append(f"{fixes} app store URLs")
+        total_fixes += fixes
+
+    if fix_brands:
+        content, fixes = protect_brand_names(content)
+        if fixes > 0:
+            fix_details.append(f"{fixes} protected brands")
+        total_fixes += fixes
+
+    if fix_typography:
+        content, fixes = fix_french_typography(content, lang_code)
+        if fixes > 0:
+            fix_details.append(f"{fixes} typography spacing")
         total_fixes += fixes
     
     if content != original:
@@ -305,17 +408,6 @@ def main():
     parser = argparse.ArgumentParser(
         description='Fix common translation issues in lang files',
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-    # Fix all issues
-    %(prog)s --base-dir lang
-    
-    # Fix only UTM parameters  
-    %(prog)s --fix-utm --no-repetitions
-    
-    # Verbose output
-    %(prog)s -v
-"""
     )
     parser.add_argument('--base-dir', default='lang',
                         help='Base directory for language files (default: lang)')
@@ -327,15 +419,29 @@ Examples:
                         help='Fix UTM parameters (default: True)')
     parser.add_argument('--no-utm', action='store_true',
                         help='Skip fixing UTM parameters')
+    parser.add_argument('--fix-urls', action='store_true', default=True,
+                        help='Fix App Store and Google Play URLs (default: True)')
+    parser.add_argument('--no-urls', action='store_true',
+                        help='Skip fixing URLs')
+    parser.add_argument('--fix-brands', action='store_true', default=True,
+                        help='Protect brand names from translation (default: True)')
+    parser.add_argument('--no-brands', action='store_true',
+                        help='Skip brand name protection')
+    parser.add_argument('--fix-typography', action='store_true', default=True,
+                        help='Fix locale typography spacing (default: True)')
+    parser.add_argument('--no-typography', action='store_true',
+                        help='Skip typography fixes')
     parser.add_argument('--verbose', '-v', action='store_true',
                         help='Verbose output')
     parser.add_argument('files', nargs='*',
                         help='Specific files to process (optional)')
     args = parser.parse_args()
     
-    # Handle negation flags
     fix_repetitions = args.fix_repetitions and not args.no_repetitions
     fix_utm = args.fix_utm and not args.no_utm
+    fix_urls = args.fix_urls and not args.no_urls
+    fix_brands = args.fix_brands and not args.no_brands
+    fix_typography = args.fix_typography and not args.no_typography
     
     base_dir = args.base_dir
     if not os.path.isabs(base_dir):
@@ -344,20 +450,25 @@ Examples:
     total_fixes = 0
     total_files = 0
     
-    # If specific files provided, process only those
     if args.files:
         files = args.files
     else:
         files = []
-        for lang_dir in os.listdir(base_dir):
-            lang_path = os.path.join(base_dir, lang_dir)
-            if not os.path.isdir(lang_path):
-                continue
-            
-            files.extend(glob.glob(os.path.join(lang_path, '**/*.html'), recursive=True))
+        for root, dirs, fnames in os.walk(base_dir):
+            for fname in fnames:
+                if fname.endswith('.html'):
+                    files.append(os.path.join(root, fname))
     
     for html_file in files:
-        fixes = process_file(html_file, fix_repetitions, fix_utm, args.verbose)
+        fixes = process_file(
+            html_file,
+            fix_repetitions=fix_repetitions,
+            fix_utm=fix_utm,
+            fix_urls=fix_urls,
+            fix_brands=fix_brands,
+            fix_typography=fix_typography,
+            verbose=args.verbose
+        )
         if fixes > 0:
             total_files += 1
             total_fixes += fixes
@@ -366,7 +477,6 @@ Examples:
     print(f"📊 Summary: {total_fixes} fixes across {total_files} files")
     print(f"{'='*60}")
     
-    # Always return success - this script is a repair tool
     return 0
 
 
