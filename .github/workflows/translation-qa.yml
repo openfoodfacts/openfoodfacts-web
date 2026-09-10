@@ -1,0 +1,32 @@
+name: 🌍 Translation QA & i18n Checks
+
+on:
+  push:
+    paths:
+      - 'lang/**/*.html'
+      - 'scripts/test_translation_qa.py'
+      - 'scripts/fix_translation_issues.py'
+  pull_request:
+    paths:
+      - 'lang/**/*.html'
+      - 'scripts/test_translation_qa.py'
+      - 'scripts/fix_translation_issues.py'
+
+permissions:
+  contents: read
+
+jobs:
+  translation-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run Translation QA test suite
+        run: |
+          python scripts/test_translation_qa.py
