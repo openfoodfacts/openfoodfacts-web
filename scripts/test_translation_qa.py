@@ -122,5 +122,17 @@ class TestTranslationQA(unittest.TestCase):
 
         self.assertEqual(len(violations), 0, f"Found {len(violations)} unlocalized Play Store badges in non-English locales:\n" + "\n".join(violations[:10]))
 
+    def test_facet_links_prefixed(self):
+        """Directive 3: Multi-facet links must be prefixed with /facets/ and use plural facet names."""
+        pattern = re.compile(r'href=[\'"](?:https?://[a-z0-9.-]*openfoodfacts\.org)?/(?:label/|category/[^/]+/origins|categories/[^/]+/environmental-score)')
+        violations = []
+        for path in self.html_files:
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            for m in pattern.finditer(content):
+                violations.append(f"{path}: {m.group(0)}")
+
+        self.assertEqual(len(violations), 0, f"Found {len(violations)} un-prefixed facet links:\n" + "\n".join(violations[:10]))
+
 if __name__ == '__main__':
     unittest.main()
