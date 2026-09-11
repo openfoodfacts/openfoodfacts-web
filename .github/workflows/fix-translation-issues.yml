@@ -13,6 +13,11 @@ on:
         required: false
         type: boolean
         default: true
+      fix_badges:
+        description: 'Fix Play Store and App Store button image badges'
+        required: false
+        type: boolean
+        default: true
       fix_brands:
         description: 'Protect brand names according to No-Translate list'
         required: false
@@ -43,12 +48,12 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.x'
       
@@ -64,6 +69,10 @@ jobs:
           
           if [ "${{ inputs.fix_urls }}" != "true" ]; then
             ARGS="$ARGS --no-urls"
+          fi
+
+          if [ "${{ inputs.fix_badges }}" != "true" ]; then
+            ARGS="$ARGS --no-badges"
           fi
 
           if [ "${{ inputs.fix_brands }}" != "true" ]; then
@@ -92,7 +101,7 @@ jobs:
       
       - name: Create Pull Request
         if: steps.fix.outputs.changes == 'true' && inputs.create_pr == true
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'fix: Auto-fix translation issues (UTM params, App Store URLs, brand names)'

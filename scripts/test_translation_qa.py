@@ -123,6 +123,38 @@ class TestTranslationQA(unittest.TestCase):
 
         self.assertEqual(len(violations), 0, f"Found {len(violations)} mismatched Creative Commons deed URLs:\n" + "\n".join(violations[:10]))
 
+    def test_playstore_badges_localized(self):
+        """Directive 3: Play Store badges must use localized badge SVG when available."""
+        from fix_translation_issues import get_playstore_badge
+        violations = []
+        pattern = re.compile(r'((?:https://static\.openfoodfacts\.org)?/images/misc/playstore/img/([a-zA-Z0-9_-]+)_get\.svg)')
+        for path in self.html_files:
+            lang_code = get_lang_code(path)
+            if not lang_code or lang_code in ('en', 'en_GB', 'en_AU'):
+                continue
+            expected_badge = get_playstore_badge(lang_code)
+            if not expected_badge or expected_badge == 'en':
+                continue
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            for m, badge in pattern.findall(content):
+                if badge != expected_badge:
+                    violations.append(f"{path}: found {badge}_get.svg, expected {expected_badge}_get.svg")
+
+        self.assertEqual(len(violations), 0, f"Found {len(violations)} unlocalized Play Store badges in non-English locales:\n" + "\n".join(violations[:10]))
+
+    def test_facet_links_prefixed(self):
+        """Directive 3: Multi-facet links must be prefixed with /facets/ and use plural facet names."""
+        pattern = re.compile(r'href=[\'"](?:https?://[a-z0-9.-]*openfoodfacts\.org)?/(?:label/|category/[^/]+/origins|categories/[^/]+/environmental-score)')
+        violations = []
+        for path in self.html_files:
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            for m in pattern.finditer(content):
+                violations.append(f"{path}: {m.group(0)}")
+
+        self.assertEqual(len(violations), 0, f"Found {len(violations)} un-prefixed facet links:\n" + "\n".join(violations[:10]))
+
 if __name__ == '__main__':
     unittest.main()
 
