@@ -323,6 +323,7 @@ def fix_creative_commons_urls(content, lang_code):
         return old
 
     content = re.sub(r'https?://creativecommons\.org/licenses/by-sa/3\.0/deed\.[a-zA-Z_-]+', replace_cc_url, content)
+    return content, fixes
 # Play Store language badge aliases: maps folder lang_code to playstore SVG code prefix
 PLAYSTORE_ALIASES = {
     "tl": "fil",
@@ -395,16 +396,60 @@ APPSTORE_ALIASES = {
     "fil": "PH",
 }
 
+# F-Droid badge language aliases: maps folder lang_code to F-Droid PNG code suffix
+FDROID_ALIASES = {
+    "tl": "fil",
+    "he": "he",
+    "iw": "he",
+    "yi": "he",
+    "uk": "ua",
+    "nb": "no",
+    "no": "no",
+    "nn": "nn",
+    "zh": "zh-cn",
+    "zh_CN": "zh-cn",
+    "zh_TW": "zh-tw",
+    "zh_HK": "zh-hk",
+    "pt_BR": "pt-br",
+    "pt_PT": "pt-pt",
+    "es_419": "es-419",
+    "en_AU": "en-au",
+    "en_GB": "en-gb",
+    "en_CA": "en-ca",
+    "en_US": "en-us",
+    "fr_CA": "fr-ca",
+    "fr_FR": "fr-fr",
+    "nl_BE": "nl",
+    "nl_NL": "nl",
+    "sr_RS": "sr",
+    "sr_CS": "sr",
+}
+
+# F-Droid badges available on openfoodfacts-server (/images/misc/f-droid/get-it-on-<lang>.png)
+FDROID_BADGES = {
+    "af", "am", "ar", "az", "be", "bg", "bn", "bs", "ca", "cs", "cy", "da", "de",
+    "el", "en", "en-au", "en-ca", "en-gb", "en-us", "eo", "es", "es-419", "es-ar",
+    "es-es", "es-mx", "et", "eu", "fa", "fi", "fil", "fr", "fr-ca", "fr-fr", "fy",
+    "ga", "gd", "gl", "gu", "he", "hi", "hr", "hu", "hy", "id", "is", "it", "iw",
+    "ja", "jp", "ka", "kk", "km", "kn", "ko", "ky", "lb", "lo", "lt", "lv", "mk",
+    "ml", "mn", "mr", "ms", "my", "ne", "nl", "nn", "no", "pa", "pl", "pt",
+    "pt-br", "pt-pt", "ro", "ru", "si", "sk", "sl", "sq", "sr", "sv", "sw", "ta",
+    "te", "th", "tr", "ua", "ur", "uz", "vi", "zh-cn", "zh-hans", "zh-hant",
+    "zh-hk", "zh-tw", "zu"
+}
+
 # Available badge sets (loaded dynamically if base dir exists, or cached defaults)
 _PLAYSTORE_SVGS = None
 _APPSTORE_SVGS = None
+_FDROID_PNGS = None
 
 def _get_available_badge_sets():
-    global _PLAYSTORE_SVGS, _APPSTORE_SVGS
+    global _PLAYSTORE_SVGS, _APPSTORE_SVGS, _FDROID_PNGS
     if _PLAYSTORE_SVGS is None:
         root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         play_dir = os.path.join(root_dir, 'html', 'images', 'misc', 'playstore', 'img')
         app_dir = os.path.join(root_dir, 'html', 'images', 'misc', 'appstore', 'black')
+        fdroid_dir = os.path.join(root_dir, 'html', 'images', 'misc', 'f-droid')
         if os.path.isdir(play_dir):
             _PLAYSTORE_SVGS = {f.split('_get.svg')[0] for f in os.listdir(play_dir) if f.endswith('_get.svg')}
         else:
@@ -413,14 +458,18 @@ def _get_available_badge_sets():
             _APPSTORE_SVGS = {f.split('.svg')[0].replace('appstore_', '') for f in os.listdir(app_dir) if f.endswith('.svg')}
         else:
             _APPSTORE_SVGS = set()
-    return _PLAYSTORE_SVGS, _APPSTORE_SVGS
+        if os.path.isdir(fdroid_dir):
+            _FDROID_PNGS = {f.replace('get-it-on-', '').replace('.png', '') for f in os.listdir(fdroid_dir) if f.startswith('get-it-on-') and f.endswith('.png')}
+        else:
+            _FDROID_PNGS = FDROID_BADGES
+    return _PLAYSTORE_SVGS, _APPSTORE_SVGS, _FDROID_PNGS
 
 
 def get_playstore_badge(lang_code):
     """Return the SVG badge prefix for Google Play Store for the given language code, or None."""
     if not lang_code:
         return None
-    play_set, _ = _get_available_badge_sets()
+    play_set, _, _ = _get_available_badge_sets()
     if lang_code in PLAYSTORE_ALIASES:
         target = PLAYSTORE_ALIASES[lang_code]
         if not play_set or target in play_set:
@@ -442,7 +491,7 @@ def get_appstore_badge(lang_code):
     """Return the SVG badge country code for Apple App Store for the given language code, or None."""
     if not lang_code:
         return None
-    _, app_set = _get_available_badge_sets()
+    _, app_set, _ = _get_available_badge_sets()
     if lang_code in APPSTORE_ALIASES:
         target = APPSTORE_ALIASES[lang_code]
         if not app_set or target in app_set:
@@ -460,11 +509,34 @@ def get_appstore_badge(lang_code):
     return None
 
 
+def get_fdroid_badge(lang_code):
+    """Return the PNG badge suffix for F-Droid for the given language code, or None."""
+    if not lang_code:
+        return None
+    _, _, fdroid_set = _get_available_badge_sets()
+    if lang_code in FDROID_ALIASES:
+        target = FDROID_ALIASES[lang_code]
+        if not fdroid_set or target in fdroid_set:
+            return target
+    val = lang_code.lower().replace('_', '-')
+    if not fdroid_set or val in fdroid_set:
+        return val
+    base = lang_code.split('_')[0].split('-')[0].lower()
+    if base in FDROID_ALIASES:
+        target = FDROID_ALIASES[base]
+        if not fdroid_set or target in fdroid_set:
+            return target
+    if not fdroid_set or base in fdroid_set:
+        return base
+    return None
+
+
 def fix_store_badges(content, lang_code):
     """
-    Fix Google Play Store and Apple App Store image badge paths to use the localized badge.
-    E.g. /images/misc/playstore/img/en_get.svg -> /images/misc/playstore/img/el_get.svg
-    and /images/misc/appstore/black/appstore_US.svg -> /images/misc/appstore/black/appstore_GR.svg
+    Fix Google Play Store, Apple App Store, and F-Droid image badge paths to use the localized badge.
+    E.g. /images/misc/playstore/img/en_get.svg -> /images/misc/playstore/img/el_get.svg,
+    /images/misc/appstore/black/appstore_US.svg -> /images/misc/appstore/black/appstore_GR.svg,
+    and /images/misc/f-droid/get-it-on-en.png -> /images/misc/f-droid/get-it-on-de.png
     """
     fixes = 0
     play_badge = get_playstore_badge(lang_code)
@@ -503,6 +575,88 @@ def fix_store_badges(content, lang_code):
             content
         )
 
+    fdroid_badge = get_fdroid_badge(lang_code)
+    if fdroid_badge:
+        def replace_fdroid_badge(m):
+            nonlocal fixes
+            old = m.group(0)
+            prefix = m.group(1) # e.g. "https://static.openfoodfacts.org" or ""
+            current = m.group(2)
+            if current != fdroid_badge:
+                fixes += 1
+                return f'{prefix}/images/misc/f-droid/get-it-on-{fdroid_badge}.png'
+            return old
+
+        content = re.sub(
+            r'((?:https://static\.openfoodfacts\.org)?)/images/misc/f-droid/get-it-on(?:-([a-zA-Z0-9_-]+))?\.png',
+            replace_fdroid_badge,
+            content
+        )
+
+    return content, fixes
+
+
+# Food revolution image translated assets available in openfoodfacts-server
+FOOD_REVOLUTION_SVGS = {
+    "ca", "cs", "da", "de", "en", "eo", "es", "eu", "fi", "fr",
+    "gl", "hu", "id", "it", "nl", "no", "pl", "pt", "ro", "ru",
+    "sv", "tr", "uk", "vi"
+}
+
+FOOD_REVOLUTION_ALIASES = {
+    "nb": "no",
+    "nn": "no",
+    "nl_BE": "nl",
+    "nl_NL": "nl",
+    "pt_BR": "pt",
+    "pt_PT": "pt",
+}
+
+
+def get_food_revolution_asset(lang_code):
+    """Return the language code for join-the-food-revolution SVG, or None if not available."""
+    if not lang_code:
+        return None
+    if lang_code in FOOD_REVOLUTION_ALIASES:
+        target = FOOD_REVOLUTION_ALIASES[lang_code]
+        if target in FOOD_REVOLUTION_SVGS:
+            return target
+    if lang_code in FOOD_REVOLUTION_SVGS:
+        return lang_code
+    base = lang_code.split('_')[0].split('-')[0].lower()
+    if base in FOOD_REVOLUTION_ALIASES:
+        target = FOOD_REVOLUTION_ALIASES[base]
+        if target in FOOD_REVOLUTION_SVGS:
+            return target
+    if base in FOOD_REVOLUTION_SVGS:
+        return base
+    return None
+
+
+def fix_food_revolution_assets(content, lang_code):
+    """
+    Fix join-the-food-revolution SVG path to use the localized asset when available.
+    E.g. /images/misc/app-landing-page/join-the-food-revolution/join-the-food-revolution_en.svg -> _de.svg
+    """
+    target = get_food_revolution_asset(lang_code)
+    if not target:
+        return content, 0
+    fixes = 0
+
+    def replace_svg(m):
+        nonlocal fixes
+        prefix = m.group(1)
+        current = m.group(2)
+        if current != target:
+            fixes += 1
+            return f'{prefix}/images/misc/app-landing-page/join-the-food-revolution/join-the-food-revolution_{target}.svg'
+        return m.group(0)
+
+    content = re.sub(
+        r'((?:https://static\.openfoodfacts\.org)?)/images/misc/app-landing-page/join-the-food-revolution/join-the-food-revolution_([a-zA-Z_-]+)\.svg',
+        replace_svg,
+        content
+    )
     return content, fixes
 
 
@@ -723,6 +877,11 @@ def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fi
             fix_details.append(f"{fixes} store badges")
         total_fixes += fixes
 
+        content, fixes = fix_food_revolution_assets(content, lang_code)
+        if fixes > 0:
+            fix_details.append(f"{fixes} food revolution assets")
+        total_fixes += fixes
+
     if fix_brands:
         content, fixes = protect_brand_names(content)
         if fixes > 0:
@@ -734,6 +893,18 @@ def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fi
         if fixes > 0:
             fix_details.append(f"{fixes} typography spacing")
         total_fixes += fixes
+
+    if filepath.endswith('/texts/press.html') and not is_en:
+        try:
+            from fix_press_pages import fix_standard_press_file
+            new_content = fix_standard_press_file(content, lang_code)
+            if new_content != content:
+                content = new_content
+                fix_details.append("press page structure & includes")
+                total_fixes += 1
+        except Exception as e:
+            if verbose:
+                print(f"Error fixing press page in {filepath}: {e}", file=sys.stderr)
     
     if content != original:
         try:
@@ -773,7 +944,7 @@ def main():
     parser.add_argument('--no-urls', action='store_true',
                         help='Skip fixing URLs')
     parser.add_argument('--fix-badges', action='store_true', default=True,
-                        help='Fix Play Store and App Store image badges (default: True)')
+                        help='Fix Play Store, App Store, and F-Droid image badges (default: True)')
     parser.add_argument('--no-badges', action='store_true',
                         help='Skip fixing badges')
     parser.add_argument('--fix-brands', action='store_true', default=True,

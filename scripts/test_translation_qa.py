@@ -143,6 +143,26 @@ class TestTranslationQA(unittest.TestCase):
 
         self.assertEqual(len(violations), 0, f"Found {len(violations)} unlocalized Play Store badges in non-English locales:\n" + "\n".join(violations[:10]))
 
+    def test_fdroid_badges_localized(self):
+        """Directive 3: F-Droid badges must use localized badge PNG when available."""
+        from fix_translation_issues import get_fdroid_badge
+        violations = []
+        pattern = re.compile(r'((?:https://static\.openfoodfacts\.org)?/images/misc/f-droid/get-it-on(?:-([a-zA-Z0-9_-]+))?\.png)')
+        for path in self.html_files:
+            lang_code = get_lang_code(path)
+            if not lang_code or lang_code in ('en', 'en_GB', 'en_AU'):
+                continue
+            expected_badge = get_fdroid_badge(lang_code)
+            if not expected_badge or expected_badge == 'en':
+                continue
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            for m, badge in pattern.findall(content):
+                if badge != expected_badge:
+                    violations.append(f"{path}: found get-it-on-{badge or 'en'}.png, expected get-it-on-{expected_badge}.png")
+
+        self.assertEqual(len(violations), 0, f"Found {len(violations)} unlocalized F-Droid badges in non-English locales:\n" + "\n".join(violations[:10]))
+
     def test_facet_links_prefixed(self):
         """Directive 3: Multi-facet links must be prefixed with /facets/ and use plural facet names."""
         pattern = re.compile(r'href=[\'"](?:https?://[a-z0-9.-]*openfoodfacts\.org)?/(?:label/|category/[^/]+/origins|categories/[^/]+/environmental-score)')
@@ -154,6 +174,70 @@ class TestTranslationQA(unittest.TestCase):
                 violations.append(f"{path}: {m.group(0)}")
 
         self.assertEqual(len(violations), 0, f"Found {len(violations)} un-prefixed facet links:\n" + "\n".join(violations[:10]))
+
+    def test_food_revolution_assets_localized(self):
+        """Directive 3: Food revolution image banner must use localized SVG when available."""
+        from fix_translation_issues import get_food_revolution_asset
+        violations = []
+        pattern = re.compile(r'((?:https://static\.openfoodfacts\.org)?/images/misc/app-landing-page/join-the-food-revolution/join-the-food-revolution_([a-zA-Z_-]+)\.svg)')
+        for path in self.html_files:
+            lang_code = get_lang_code(path)
+            if not lang_code or lang_code in ('en', 'en_GB', 'en_AU'):
+                continue
+            expected_asset = get_food_revolution_asset(lang_code)
+            if not expected_asset or expected_asset == 'en':
+                continue
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            # Strip comments to ignore commented-out templates (like in OBF)
+            content_clean = re.sub(r'<!--.*?-->', '', content, flags=re.DOTALL)
+            for m, asset in pattern.findall(content_clean):
+                if asset != expected_asset:
+                    violations.append(f"{path}: found join-the-food-revolution_{asset}.svg, expected join-the-food-revolution_{expected_asset}.svg")
+
+    def test_press_page_includes_valid(self):
+        """Directive 5: All include directives [[...]] in press.html must resolve to an existing file."""
+        violations = []
+        root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        for path in self.html_files:
+            if not path.endswith('/texts/press.html'):
+                continue
+            lang_code = get_lang_code(path)
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            for inc in re.findall(r'\[\[(.*?)\]\]', content):
+                inc_clean = inc.strip()
+                t_lang = os.path.join(root_dir, 'lang', lang_code, inc_clean)
+                t_en = os.path.join(root_dir, 'lang', 'en', inc_clean)
+                if not os.path.exists(t_lang) and not os.path.exists(t_en):
+                    violations.append(f"{path}: include [[{inc_clean}]] not found")
+        self.assertEqual(len(violations), 0, f"Found {len(violations)} broken includes in press pages:\n" + "\n".join(violations[:10]))
+
+    def test_press_material_icons_ligatures(self):
+        """Directive 5: Material icons inside press.html must use untranslated ligature names."""
+        violations = []
+        for path in self.html_files:
+            if not path.endswith('/texts/press.html'):
+                continue
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            for m in re.finditer(r'<span class=[\'"]material-icons[\'"]>([^<]*)</span>', content):
+                txt = m.group(1).strip()
+                if txt and txt != 'download':
+                    violations.append(f"{path}: unexpected ligature '{txt}'")
+        self.assertEqual(len(violations), 0, f"Found {len(violations)} translated material icons in press pages:\n" + "\n".join(violations[:10]))
+
+    def test_press_no_obsolete_logo_includes(self):
+        """Directive 5: Press page must not reference obsolete texts/logo.html."""
+        violations = []
+        for path in self.html_files:
+            if not path.endswith('/texts/press.html'):
+                continue
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            if 'texts/logo.html' in content or 'logo.html' in content:
+                violations.append(f"{path}: references obsolete logo.html")
+        self.assertEqual(len(violations), 0, f"Found {len(violations)} references to obsolete logo.html in press pages:\n" + "\n".join(violations[:10]))
 
 if __name__ == '__main__':
     unittest.main()
