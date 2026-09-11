@@ -1,0 +1,1 @@
+Nutri-Score SVG assets

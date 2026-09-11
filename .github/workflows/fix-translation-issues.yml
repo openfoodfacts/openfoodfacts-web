@@ -8,6 +8,26 @@ on:
         required: false
         type: boolean
         default: true
+      fix_urls:
+        description: 'Fix Apple App Store and Google Play URLs with language codes'
+        required: false
+        type: boolean
+        default: true
+      fix_badges:
+        description: 'Fix Play Store and App Store button image badges'
+        required: false
+        type: boolean
+        default: true
+      fix_brands:
+        description: 'Protect brand names according to No-Translate list'
+        required: false
+        type: boolean
+        default: true
+      fix_typography:
+        description: 'Fix French typography (non-breaking spaces)'
+        required: false
+        type: boolean
+        default: true
       fix_repetitions:
         description: 'Fix text repetitions'
         required: false
@@ -47,6 +67,22 @@ jobs:
             ARGS="$ARGS --no-utm"
           fi
           
+          if [ "${{ inputs.fix_urls }}" != "true" ]; then
+            ARGS="$ARGS --no-urls"
+          fi
+
+          if [ "${{ inputs.fix_badges }}" != "true" ]; then
+            ARGS="$ARGS --no-badges"
+          fi
+
+          if [ "${{ inputs.fix_brands }}" != "true" ]; then
+            ARGS="$ARGS --no-brands"
+          fi
+
+          if [ "${{ inputs.fix_typography }}" != "true" ]; then
+            ARGS="$ARGS --no-typography"
+          fi
+
           if [ "${{ inputs.fix_repetitions }}" != "true" ]; then
             ARGS="$ARGS --no-repetitions"
           fi
@@ -68,7 +104,7 @@ jobs:
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'fix: Auto-fix translation issues (UTM params and repetitions)'
+          commit-message: 'fix: Auto-fix translation issues (UTM params, App Store URLs, brand names)'
           title: '🔧 Auto-fix translation issues'
           body: |
             ## Automated Translation Fixes
@@ -77,6 +113,8 @@ jobs:
             
             ### Changes
             - Fixed UTM campaign parameters to use correct language codes
+            - Fixed Apple App Store and Google Play URLs to use proper language codes
+            - Reverted accidental brand name translations per No-Translate list
             - Fixed text repetition issues from Crowdin translations
             
             ### How to review
@@ -98,7 +136,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add -A
-          git commit -m "fix: Auto-fix translation issues (UTM params and repetitions)"
+          git commit -m "fix: Auto-fix translation issues (UTM params, App Store URLs, brand names)"
           git push
       
       - name: Summary
