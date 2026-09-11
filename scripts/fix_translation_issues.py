@@ -435,6 +435,66 @@ def protect_brand_names(content):
     return content, fixes
 
 
+def fix_facet_links(content):
+    """
+    Fix legacy facet links not prefixed with /facets/ and ensure plural form.
+    E.g.:
+      /label/fair-trade/origins -> /facets/labels/fair-trade/origins
+      /label/commerce-equitable/origines -> /facets/labels/commerce-equitable/origines
+      https://world.openfoodfacts.org/label/nutriscore/categories -> https://world.openfoodfacts.org/facets/labels/nutriscore/categories
+      https://*.openfoodfacts.org/label/nutriscore/brands -> https://*.openfoodfacts.org/facets/labels/nutriscore/brands
+      /categories/meals/environmental-score -> /facets/categories/meals/environmental-score
+      /category/perfumes/origins -> /facets/categories/perfumes/origins
+    """
+    fixes = 0
+
+    def replace_label(m):
+        nonlocal fixes
+        fixes += 1
+        quote = m.group(1)
+        domain = m.group(2) or ""
+        tag = m.group(3)
+        subfacet = m.group(4)
+        return f'href={quote}{domain}/facets/labels/{tag}/{subfacet}{quote}'
+
+    content, n1 = re.subn(
+        r'href=([\'"])(https?://[a-z0-9.-]*openfoodfacts\.org)?/label/([a-zA-Z0-9_:-]+)/(origins|categories|brands|marques|origines|oorsprong)\1',
+        replace_label,
+        content
+    )
+
+    def replace_category(m):
+        nonlocal fixes
+        fixes += 1
+        quote = m.group(1)
+        domain = m.group(2) or ""
+        tag = m.group(3)
+        subfacet = m.group(4)
+        return f'href={quote}{domain}/facets/categories/{tag}/{subfacet}{quote}'
+
+    content, n2 = re.subn(
+        r'href=([\'"])(https?://[a-z0-9.-]*openfoodfacts\.org)?/(?:category|categories)/([a-zA-Z0-9_:-]+)/(eco-score|environmental-score|origins)\1',
+        replace_category,
+        content
+    )
+
+    def replace_green_categories(m):
+        nonlocal fixes
+        fixes += 1
+        quote = m.group(1)
+        tag1 = m.group(2)
+        tag2 = m.group(3)
+        return f'href={quote}/facets/categories/{tag1}/{tag2}{quote}'
+
+    content, n3 = re.subn(
+        r'href=([\'"])/categories/(aduan|dumuni|meals|swakudya)/(nne|lamini-jateb|anviw|puntuaci|xikoro-xa-mbango)\1',
+        replace_green_categories,
+        content
+    )
+
+    return content, fixes
+
+
 def fix_french_typography(content, lang_code):
     """
     Respect locale-specific typography for French (Directive 4):
@@ -515,7 +575,7 @@ def fix_dynamic_repetitions(content, filepath):
     return content, fixes
 
 
-def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fix_badges=True, fix_brands=True, fix_typography=True, verbose=False):
+def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fix_badges=True, fix_brands=True, fix_typography=True, fix_facets=True, verbose=False):
     """
     Process a single HTML file to fix translation issues.
     """
@@ -538,6 +598,12 @@ def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fi
     total_fixes = 0
     fix_details = []
     
+    if fix_facets:
+        content, fixes = fix_facet_links(content)
+        if fixes > 0:
+            fix_details.append(f"{fixes} facet links")
+        total_fixes += fixes
+
     if fix_repetitions:
         content, fixes = fix_known_repetitions(content)
         if fixes > 0:
@@ -600,6 +666,10 @@ def main():
     )
     parser.add_argument('--base-dir', default='lang',
                         help='Base directory for language files (default: lang)')
+    parser.add_argument('--fix-facets', action='store_true', default=True,
+                        help='Fix legacy facet links (default: True)')
+    parser.add_argument('--no-facets', action='store_true',
+                        help='Skip fixing legacy facet links')
     parser.add_argument('--fix-repetitions', action='store_true', default=True,
                         help='Fix repeated text (default: True)')
     parser.add_argument('--no-repetitions', action='store_true',
@@ -630,6 +700,7 @@ def main():
                         help='Specific files to process (optional)')
     args = parser.parse_args()
     
+    fix_facets = args.fix_facets and not args.no_facets
     fix_repetitions = args.fix_repetitions and not args.no_repetitions
     fix_utm = args.fix_utm and not args.no_utm
     fix_urls = args.fix_urls and not args.no_urls
@@ -662,6 +733,7 @@ def main():
             fix_badges=fix_badges,
             fix_brands=fix_brands,
             fix_typography=fix_typography,
+            fix_facets=fix_facets,
             verbose=args.verbose
         )
         if fixes > 0:
