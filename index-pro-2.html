@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Food Facts for Businesses - Pro Platform</title>
+    <link rel="icon" type="image/png" href="html/images/logos/openfoodfacts/off-logo-favicon-light.png">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            color: #222222;
+            background-color: #ffffff;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Top Bar */
+        .site-top-bar {
+            background-color: #2b2b2b;
+            color: #ffffff;
+            font-size: 0.8rem;
+            padding: 0.4rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .top-bar-dropdown {
+            background: #444444;
+            color: #ffffff;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+
+        /* Header Navigation */
+        .site-header {
+            background: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .header-logo-group {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .header-logo-group img {
+            height: 38px;
+            width: auto;
+        }
+
+        .header-logo-subtitle {
+            font-size: 0.75rem;
+            color: #ff7900;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-top: -3px;
+            margin-left: 48px;
+        }
+
+        .header-search {
+            flex: 1;
+            max-width: 320px;
+            position: relative;
+        }
+
+        .header-search input {
+            width: 100%;
+            background: #f2f2f2;
+            border: 1px solid transparent;
+            padding: 0.5rem 1rem 0.5rem 2.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .header-search input:focus {
+            background: #ffffff;
+            border-color: #ff7900;
+        }
+
+        .header-search svg {
+            position: absolute;
+            left: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888888;
+        }
+
+        .header-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .header-nav-links a:hover {
+            color: #ff7900;
+        }
+
+        .header-btn-app {
+            background: #111111;
+            color: #ffffff;
+            padding: 0.5rem 1.1rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            letter-spacing: 0.5px;
+            transition: background 0.2s;
+        }
+
+        .header-btn-app:hover {
+            background: #333333;
+        }
+
+        /* Top Notification Banner */
+        .donation-banner {
+            background-color: #4a77db;
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            gap: 1.5rem;
+        }
+
+        .donation-banner-btn {
+            background: #ffffff;
+            color: #111111;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-shrink: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .donation-banner-close {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffffff;
+            opacity: 0.8;
+            font-size: 1.25rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        /* Pro Landing Page Styles */
+        #pro-landing-page {
+            color: #222222;
+            overflow-x: hidden;
+        }
+
+        .block {
+            padding: 4.5rem 1.5rem;
+            position: relative;
+            width: 100%;
+        }
+
+        .block-hero {
+            background-color: #eef6fc;
+            padding: 4rem 1.5rem 5rem;
+            overflow: hidden;
+        }
+
+        .block-reasons {
+            background-color: #ffffff;
+            padding: 4.5rem 1.5rem 5.5rem;
+            position: relative;
+        }
+
+        .block-come-as-you-are {
+            background-color: #eaf8ea;
+            padding: 5rem 1.5rem 5.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .block-transparency {
+            background-color: #edf2fc;
+            padding: 4.5rem 1.5rem 5rem;
+            position: relative;
+        }
+
+        .block-community {
+            background-color: #edf7fc;
+            padding: 4.5rem 1.5rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title-1 {
+            font-size: 2.35rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 1.15rem;
+            color: #111111;
+        }
+
+        .title-2 {
+            font-size: 2.15rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            color: #111111;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: #444444;
+            line-height: 1.55;
+            margin: 0 auto 2rem;
+        }
+
+        .highlight-label {
+            display: inline-block;
+            padding: 0.15rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+        }
+
+        .highlight-label.blue {
+            background-color: #2b78d6;
+        }
+
+        .rotate-left {
+            transform: rotate(-4deg);
+        }
+
+        .rotate-right {
+            transform: rotate(4deg);
+        }
+
+        /* Hero */
+        .hero-wrapper {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .hero-mascot-img {
+            position: absolute;
+            left: -70px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 145px;
+            height: auto;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-text-col {
+            flex: 1;
+            max-width: 620px;
+            margin-left: 95px;
+            z-index: 2;
+        }
+
+        .hero-search-box {
+            position: relative;
+            max-width: 500px;
+            margin-top: 2rem;
+        }
+
+        .hero-search-input {
+            width: 100%;
+            padding: 1.1rem 1.75rem 1.1rem 3.4rem;
+            border-radius: 50px;
+            border: 1px solid #d5e4f2;
+            background: #ffffff;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 16px rgba(43, 120, 214, 0.08);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .hero-search-input:focus {
+            border-color: #2b78d6;
+            box-shadow: 0 6px 20px rgba(43, 120, 214, 0.18);
+        }
+
+        .hero-search-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8fa2b4;
+            pointer-events: none;
+        }
+
+        .hero-phone-col {
+            flex: 0 0 260px;
+            margin-left: 2rem;
+            z-index: 2;
+            text-align: right;
+        }
+
+        .hero-phone-col img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.1));
+        }
+
+        /* 3 Reasons Section */
+        .reasons-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .reasons-deco-donut {
+            position: absolute;
+            top: 2.5rem;
+            left: 5%;
+            width: 90px;
+            height: auto;
+            z-index: 1;
+        }
+
+        .reasons-deco-snack {
+            position: absolute;
+            top: 2.5rem;
+            right: 5%;
+            width: 90px;
+            height: auto;
+            z-index: 1;
+        }
+
+        .reasons-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .reason-card {
+            background-color: #fff8ea;
+            border: 1px solid #fae8c0;
+            border-radius: 16px;
+            padding: 2.75rem 1.75rem 2.25rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .reason-number-badge {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 34px;
+            border-radius: 8px;
+            background: #ea3f24;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 6px rgba(234, 63, 36, 0.35);
+        }
+
+        .reason-number-badge.orange {
+            background: #f2780c;
+            box-shadow: 0 3px 6px rgba(242, 120, 12, 0.35);
+        }
+
+        .reason-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 1.15rem;
+            color: #111111;
+        }
+
+        .reason-card p {
+            font-size: 0.95rem;
+            line-height: 1.55;
+            color: #444444;
+            margin: 0;
+        }
+
+        .deco-pizza-bottom {
+            position: absolute;
+            bottom: 2rem;
+            left: 2%;
+            width: 80px;
+            height: auto;
+            z-index: 1;
+        }
+
+        .deco-orange-mid {
+            position: absolute;
+            top: 50%;
+            left: calc(66.6% - 25px);
+            transform: translateY(-50%);
+            width: 65px;
+            height: auto;
+            z-index: 3;
+        }
+
+        .deco-tomato-bottom {
+            position: absolute;
+            bottom: 2rem;
+            right: 2%;
+            width: 75px;
+            height: auto;
+            z-index: 1;
+        }
+
+        /* Come As You Are Section */
+        .clouds-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.45;
+        }
+
+        .come-as-you-are-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 3.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .import-methods-container {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            align-items: end;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .import-method-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .import-method-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #222222;
+            min-height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .import-method-img-box {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.75rem;
+        }
+
+        .import-method-img-box img {
+            max-height: 135px;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .pro-btn-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.75rem 1.6rem;
+            background: #ffffff;
+            color: #222222;
+            border: 1px solid #c8d9d9;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: all 0.2s ease;
+        }
+
+        .pro-btn-pill:hover {
+            background: #f7faf8;
+            color: #111111;
+            border-color: #a8c6c6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Transparency Section */
+        .transparency-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .transparency-wrapper .title-2 {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .transparency-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .brands-container {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.75rem 1.25rem 1.25rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .brands-crop-box {
+            width: 100%;
+            height: 120px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brands-crop-box img {
+            width: 100%;
+            object-fit: cover;
+            object-position: 50% 48%;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            gap: 8px;
+            margin-top: 1.25rem;
+        }
+
+        .carousel-indicator-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #cfd9e6;
+        }
+
+        .carousel-indicator-dot.active {
+            background: #2b78d6;
+        }
+
+        /* Testimonial Bubble */
+        .testimonial-speech-box {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.5rem 2rem 2rem;
+            position: relative;
+            box-shadow: 0 8px 24px rgba(45, 129, 224, 0.06);
+        }
+
+        .testimonial-speech-box::before {
+            content: "";
+            position: absolute;
+            left: -14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 14px solid transparent;
+            border-bottom: 14px solid transparent;
+            border-right: 14px solid #ffffff;
+        }
+
+        .testimonial-avatar-container {
+            position: absolute;
+            top: -34px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .testimonial-avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #1a1a1a;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            text-align: left;
+        }
+
+        .testimonial-logo-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .testimonial-logo-footer img {
+            height: 48px;
+            object-fit: contain;
+        }
+
+        /* Community Section */
+        .community-wrapper {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 80px 1.2fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .community-mascot-box {
+            position: relative;
+        }
+
+        .community-mascot-box img {
+            position: absolute;
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 135px;
+            height: auto;
+        }
+
+        .community-text-col h2 {
+            font-size: 2.15rem;
+            font-weight: 800;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #111111;
+        }
+
+        .community-text-col p {
+            font-size: 1.05rem;
+            line-height: 1.55;
+            color: #444444;
+            margin-bottom: 1.85rem;
+            max-width: 480px;
+        }
+
+        .slack-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .slack-badge-counter {
+            display: inline-flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #d2e0ed;
+            border-radius: 8px;
+            padding: 7px 16px;
+            gap: 14px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+            width: fit-content;
+        }
+
+        .slack-badge-counter .slack-divider {
+            width: 1px;
+            height: 22px;
+            background: #e2ecf5;
+        }
+
+        .slack-badge-counter .slack-number {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #222222;
+        }
+
+        .slack-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: #ffffff;
+            color: #222222;
+            padding: 9px 20px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: 1px solid #d2e0ed;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            text-decoration: none;
+            width: fit-content;
+            transition: all 0.2s ease;
+        }
+
+        .slack-cta-btn:hover {
+            background: #f7fafc;
+            color: #111111;
+            border-color: #b5cde2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Stickers Stack */
+        .stickers-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.15rem;
+        }
+
+        .pro-sticker {
+            font-size: 1.45rem;
+            font-weight: 900;
+            padding: 0.65rem 1.85rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            color: #ffffff;
+            transition: transform 0.2s ease;
+        }
+
+        .pro-sticker:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+        }
+
+        .pro-sticker.sticker-red {
+            background-color: #f13c23;
+            transform: rotate(2.5deg);
+        }
+
+        .pro-sticker.sticker-blue {
+            background-color: #2b78d6;
+            transform: rotate(-3deg);
+        }
+
+        .pro-sticker.sticker-green {
+            background-color: #0b9e43;
+            transform: rotate(2.5deg);
+        }
+
+        .pro-sticker.sticker-orange {
+            background-color: #f67a08;
+            transform: rotate(-3.5deg);
+        }
+
+        /* App Promo Footer Banner */
+        .app-promo-section {
+            background: #ffffff;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .app-promo-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .app-promo-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Global Footer */
+        .site-footer-top {
+            background-color: #f5ebe6;
+            padding: 3.5rem 2rem;
+            border-top: 1px solid #ebdcd5;
+        }
+
+        .footer-top-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: #111111;
+        }
+
+        .footer-col p, .footer-col a {
+            font-size: 0.95rem;
+            color: #444444;
+            line-height: 1.6;
+        }
+
+        .footer-social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-pills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .footer-pill-link {
+            background: #ffffff;
+            color: #333333;
+            border: 1px solid #d9cbbe;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .footer-pill-link:hover {
+            background: #ff7900;
+            color: #ffffff;
+            border-color: #ff7900;
+        }
+
+        .site-footer-bottom {
+            background-color: #211a17;
+            color: #e0e0e0;
+            padding: 3rem 2rem 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-bottom-logo {
+            height: 36px;
+            margin-bottom: 1rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-bottom-tagline {
+            font-size: 0.9rem;
+            color: #aaaaaa;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-bottom-lang-dropdown {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #332a26;
+            color: #ffffff;
+            border: 1px solid #4a3d38;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+
+        .footer-bottom-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.75rem;
+            font-size: 0.85rem;
+            color: #bbbbbb;
+        }
+
+        .footer-bottom-nav a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 960px) {
+            .site-header {
+                flex-wrap: wrap;
+            }
+            .header-search {
+                order: 3;
+                max-width: 100%;
+                width: 100%;
+            }
+            .hero-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-mascot-img {
+                display: none;
+            }
+            .hero-text-col {
+                margin-left: 0;
+                margin-bottom: 2.5rem;
+            }
+            .hero-search-box {
+                margin: 1.5rem auto 0;
+            }
+            .hero-phone-col {
+                margin-left: 0;
+                text-align: center;
+            }
+            .reasons-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+            }
+            .reasons-deco-donut, .reasons-deco-snack, .deco-pizza-bottom, .deco-orange-mid, .deco-tomato-bottom {
+                display: none;
+            }
+            .import-methods-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .transparency-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonial-speech-box::before {
+                display: none;
+            }
+            .community-wrapper {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .community-mascot-box {
+                display: none;
+            }
+            .community-text-col p {
+                margin: 0 auto 1.85rem;
+            }
+            .slack-actions {
+                align-items: center;
+            }
+            .stickers-column {
+                margin-top: 2rem;
+            }
+            .footer-top-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Site Top Bar -->
+    <div class="site-top-bar">
+        <div class="top-bar-dropdown">
+            <span>Pays de vente</span>
+            <span>▾</span>
+        </div>
+        <div class="top-bar-dropdown">
+            <span>Français</span>
+            <span>▾</span>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <a href="/" class="header-logo-group">
+            <img src="html/images/logos/openfoodfacts/off-logo-horizontal-light.svg" alt="Open Food Facts Logo">
+            <span class="header-logo-subtitle">for Businesses</span>
+        </a>
+
+        <div class="header-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" placeholder="Search" aria-label="Search">
+        </div>
+
+        <nav class="header-nav-links">
+            <a href="/search">Rechercher</a>
+            <a href="/discover">Découvrir</a>
+            <a href="/contribute">Contribuer</a>
+            <a href="/open-food-facts-mobile-app" class="header-btn-app">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                INSTALLER APP MOBILE
+            </a>
+        </nav>
+    </header>
+
+    <!-- Top Donation Banner -->
+    <div class="donation-banner">
+        <a href="https://donate.openfoodfacts.org" class="donation-banner-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#ea3f24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            Faire un don
+        </a>
+        <span>Open Food Facts est un projet collaboratif construit par des dizaines de milliers de bénévoles et géré par une organisation à but non lucratif. Aidez-nous à faire grandir le projet !</span>
+        <span class="donation-banner-close" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+
+    <!-- Main Pro Content -->
+    <div id="pro-landing-page">
+
+        <!-- Section 1: Hero -->
+        <div class="block block-hero">
+            <div class="hero-wrapper">
+                <img src="html/images/producers/hero-orange.png" alt="Open Food Facts Mascot" class="hero-mascot-img" loading="eager">
+                <div class="hero-text-col">
+                    <h1 class="title-1">The world's largest open source food database</h1>
+                    <p class="subtitle">Whether you want it or not, your products might already be present on our database.<br>We need you onboard to help us keep this data up-to-date.</p>
+                    <div class="hero-search-box">
+                        <svg class="hero-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" class="hero-search-input" placeholder="Enter your company name to see your products" aria-label="Enter your company name to see your products">
+                    </div>
+                </div>
+                <div class="hero-phone-col">
+                    <img src="html/images/producers/pro-app-phone-mockup.png" alt="Open Food Facts App Product View" loading="eager">
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: 3 Reasons to Join -->
+        <div class="block block-reasons">
+            <img src="html/images/producers/donut.png" alt="Donut illustration" class="reasons-deco-donut" loading="lazy">
+            <img src="html/images/producers/snack-bar.png" alt="Snack bar illustration" class="reasons-deco-snack" loading="lazy">
+
+            <div class="reasons-header">
+                <h2 class="title-2">
+                    3 reasons <span class="highlight-label blue rotate-right">WHY</span> to join
+                </h2>
+                <p class="subtitle">
+                    Our database is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+            </div>
+
+            <div class="reasons-grid">
+                <!-- Card 1 -->
+                <div class="reason-card">
+                    <div class="reason-number-badge">1</div>
+                    <h3>Certify your data</h3>
+                    <p>Once imported via the Pro Platform, your data is considered certified and is protected from any edits.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="reason-card">
+                    <div class="reason-number-badge orange">2</div>
+                    <h3>Adopt the scores</h3>
+                    <p>The NutriScore, the EcoScore and the NOVA Groups are instantly computed when you enter the required data.<br><br>Import you data and request a synthesis to check where your products stand !</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="reason-card">
+                    <div class="reason-number-badge">3</div>
+                    <h3>Get recommandations</h3>
+                    <p>Significantly improve the NutriScore with a reasonable reduction in sugar, salt or saturated fats.</p>
+                </div>
+
+                <img src="html/images/producers/orange-small.png" alt="Small orange illustration" class="deco-orange-mid" loading="lazy">
+            </div>
+
+            <img src="html/images/producers/pizza.png" alt="Pizza illustration" class="deco-pizza-bottom" loading="lazy">
+            <img src="html/images/producers/tomato.png" alt="Tomato illustration" class="deco-tomato-bottom" loading="lazy">
+        </div>
+
+        <!-- Section 3: Come As You Are -->
+        <div class="block block-come-as-you-are">
+            <svg class="clouds-pattern" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M120 180C140 130 200 110 250 130C290 80 370 80 410 130C450 110 500 130 520 170C550 190 560 230 540 260C510 300 130 310 100 270C80 240 90 200 120 180Z" fill="#ffffff" fill-opacity="0.35"/>
+                <path d="M1020 420C1040 380 1090 360 1130 380C1160 340 1230 340 1260 380C1290 360 1340 380 1350 410C1380 430 1380 460 1370 490C1340 520 1020 530 1000 490C980 470 990 440 1020 420Z" fill="#ffffff" fill-opacity="0.35"/>
+            </svg>
+
+            <div class="come-as-you-are-header">
+                <h2 class="title-2">Come as you are</h2>
+                <p class="subtitle">
+                    The goal of this platform is to help you allow you to start your transparency journey with as few friction as possible.<br>
+                    There will all ways be a way you can import data in Open Food Facts.
+                </p>
+            </div>
+
+            <div class="import-methods-container">
+                <!-- Option 1: Spreadsheet -->
+                <div class="import-method-card">
+                    <div class="import-method-title">You already have an extraction?</div>
+                    <div class="import-method-img-box">
+                        <img src="html/images/producers/spreadsheet.png" alt="Spreadsheet extraction" loading="lazy">
+                    </div>
+                    <a href="/cgi/user.pl" class="pro-btn-pill">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        Check my spreadsheet
+                    </a>
+                </div>
+
+                <!-- Option 2: PIM -->
+                <div class="import-method-card">
+                    <div class="import-method-title">Working with one of those PIM?</div>
+                    <div class="import-method-img-box">
+                        <img src="html/images/producers/equadis.svg" alt="EQUADIS - Your B2B/B2C Digital Partner" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Option 3: None of these -->
+                <div class="import-method-card">
+                    <div class="import-method-title">None of these?</div>
+                    <div class="import-method-img-box">
+                        <img src="html/images/producers/import-other.png" alt="Custom import assistance" loading="lazy">
+                    </div>
+                    <a href="mailto:producers@openfoodfacts.org" class="pro-btn-pill">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        Contact us
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: They Support Food Transparency -->
+        <div class="block block-transparency">
+            <div class="transparency-wrapper">
+                <h2 class="title-2">They support food transparency</h2>
+                
+                <div class="transparency-grid">
+                    <!-- Left: Brands showcase carousel -->
+                    <div class="brands-container">
+                        <div class="brands-crop-box">
+                            <img src="html/images/producers/many-producers.png" alt="Partner brand logos" loading="lazy">
+                        </div>
+                        <div class="carousel-indicators">
+                            <span class="carousel-indicator-dot active"></span>
+                            <span class="carousel-indicator-dot"></span>
+                            <span class="carousel-indicator-dot"></span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Menguy's Testimonial -->
+                    <div class="testimonial-speech-box">
+                        <div class="testimonial-avatar-container">
+                            <img src="html/images/producers/menguys-testimonial-portrait.png" alt="Menguy's R&D representative" loading="lazy">
+                        </div>
+                        <p class="testimonial-text">
+                            The Pro Platform is very helpful for the R&D team, they use it to identify reformulation opportunities and to analyse where additvies could be removed
+                        </p>
+                        <div class="testimonial-logo-footer">
+                            <img src="html/images/producers/menguys-logo.png" alt="Menguy's Logo" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Join the Community -->
+        <div class="block block-community">
+            <div class="community-wrapper">
+                <div class="community-mascot-box">
+                    <img src="html/images/producers/community-orange.png" alt="Open Food Facts Orange" loading="lazy">
+                </div>
+
+                <div class="community-text-col">
+                    <h2>Join the community</h2>
+                    <p>
+                        Discuss with your pairs from all over the world, nurture the debate about the place food is taking in our society and make the most out of Pro Platform!
+                    </p>
+                    <div class="slack-actions">
+                        <div class="slack-badge-counter">
+                            <svg class="slack-logo-icon" width="24" height="24" viewBox="0 0 127 127" fill="none">
+                                <path d="M27.2 79.7c0 7.5-6.1 13.6-13.6 13.6S0 87.2 0 79.7s6.1-13.6 13.6-13.6h13.6v13.6zm6.8 0c0-7.5 6.1-13.6 13.6-13.6s13.6 6.1 13.6 13.6v34c0 7.5-6.1 13.6-13.6 13.6s-13.6-6.1-13.6-13.6v-34z" fill="#E01E5A"/>
+                                <path d="M47.6 27.2c-7.5 0-13.6-6.1-13.6-13.6S40.1 0 47.6 0s13.6 6.1 13.6 13.6v13.6H47.6zm0 6.8c7.5 0 13.6 6.1 13.6 13.6s-6.1 13.6-13.6 13.6H13.6C6.1 61.2 0 55.1 0 47.6s6.1-13.6 13.6-13.6h34z" fill="#36C5F0"/>
+                                <path d="M99.8 47.6c0-7.5 6.1-13.6 13.6-13.6s13.6 6.1 13.6 13.6-6.1 13.6-13.6 13.6H99.8V47.6zm-6.8 0c0 7.5-6.1 13.6-13.6 13.6s-13.6-6.1-13.6-13.6V13.6C65.8 6.1 71.9 0 79.4 0s13.6 6.1 13.6 13.6v34z" fill="#2EB67D"/>
+                                <path d="M79.4 99.8c7.5 0 13.6 6.1 13.6 13.6s-6.1 13.6-13.6 13.6-13.6-6.1-13.6-13.6V99.8h13.6zm0-6.8c-7.5 0-13.6-6.1-13.6-13.6s6.1-13.6 13.6-13.6h34c7.5 0 13.6 6.1 13.6 13.6s-6.1 13.6-13.6 13.6h-34z" fill="#ECB22E"/>
+                            </svg>
+                            <span class="slack-divider"></span>
+                            <span class="slack-number">7517</span>
+                        </div>
+
+                        <a href="https://slack.openfoodfacts.org" target="_blank" rel="noopener" class="slack-cta-btn">
+                            <svg width="18" height="18" viewBox="0 0 127 127" fill="none">
+                                <path d="M27.2 79.7c0 7.5-6.1 13.6-13.6 13.6S0 87.2 0 79.7s6.1-13.6 13.6-13.6h13.6v13.6zm6.8 0c0-7.5 6.1-13.6 13.6-13.6s13.6 6.1 13.6 13.6v34c0 7.5-6.1 13.6-13.6 13.6s-13.6-6.1-13.6-13.6v-34z" fill="#E01E5A"/>
+                                <path d="M47.6 27.2c-7.5 0-13.6-6.1-13.6-13.6S40.1 0 47.6 0s13.6 6.1 13.6 13.6v13.6H47.6zm0 6.8c7.5 0 13.6 6.1 13.6 13.6s-6.1 13.6-13.6 13.6H13.6C6.1 61.2 0 55.1 0 47.6s6.1-13.6 13.6-13.6h34z" fill="#36C5F0"/>
+                                <path d="M99.8 47.6c0-7.5 6.1-13.6 13.6-13.6s13.6 6.1 13.6 13.6-6.1 13.6-13.6 13.6H99.8V47.6zm-6.8 0c0 7.5-6.1 13.6-13.6 13.6s-13.6-6.1-13.6-13.6V13.6C65.8 6.1 71.9 0 79.4 0s13.6 6.1 13.6 13.6v34z" fill="#2EB67D"/>
+                                <path d="M79.4 99.8c7.5 0 13.6 6.1 13.6 13.6s-6.1 13.6-13.6 13.6-13.6-6.1-13.6-13.6V99.8h13.6zm0-6.8c-7.5 0-13.6-6.1-13.6-13.6s6.1-13.6 13.6-13.6h34c7.5 0 13.6 6.1 13.6 13.6s-6.1 13.6-13.6 13.6h-34z" fill="#ECB22E"/>
+                            </svg>
+                            Join 7517 producers on Slack
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stickers Stack -->
+                <div class="stickers-column">
+                    <div class="pro-sticker sticker-red">FOOD EDUCATION</div>
+                    <div class="pro-sticker sticker-blue">ECOSCORE</div>
+                    <div class="pro-sticker sticker-green">REFORMULATIONS TIPS</div>
+                    <div class="pro-sticker sticker-orange">WEBINARS</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- App Promo Footer Section -->
+    <div class="app-promo-section">
+        <div class="app-promo-container">
+            <img src="html/images/producers/app-banner-strip.png" alt="Installez l'app ! Scannez les aliments de votre quotidien" loading="lazy">
+        </div>
+    </div>
+
+    <!-- Global Footer -->
+    <footer class="site-footer">
+        <div class="site-footer-top">
+            <div class="footer-top-container">
+                <div class="footer-col">
+                    <h4>Rencontrez Les Contributeurs</h4>
+                    <p><a href="/code-of-conduct" style="text-decoration: underline;">Découvrez notre Code de conduite</a></p>
+                    <p style="margin-top: 0.5rem;">Rejoignez-nous sur Slack et le groupe Facebook des contributeurs</p>
+                    <div class="footer-social-links">
+                        <span style="font-size: 0.9rem; font-weight: 600;">Suivez nous :</span>
+                        <a href="https://twitter.com/openfoodfacts" aria-label="Twitter">𝕏</a>
+                        <a href="https://facebook.com/openfoodfacts" aria-label="Facebook">f</a>
+                        <a href="https://instagram.com/openfoodfacts" aria-label="Instagram">📸</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Découvrez Le Projet</h4>
+                    <div class="footer-pills-list">
+                        <a href="/who-we-are" class="footer-pill-link">Qui sommes-nous ?</a>
+                        <a href="/vision" class="footer-pill-link">Vision, mission, valeurs et programmes</a>
+                        <a href="/faq" class="footer-pill-link">Questions fréquentes</a>
+                        <a href="https://blog.openfoodfacts.org" class="footer-pill-link">Le blog d'Open Food Facts</a>
+                        <a href="/press" class="footer-pill-link">Presse</a>
+                        <a href="https://wiki.openfoodfacts.org" class="footer-pill-link">Open Food Facts wiki (fr)</a>
+                        <a href="/translators" class="footer-pill-link">Traducteurs</a>
+                        <a href="/partners" class="footer-pill-link">Partenaires</a>
+                        <a href="https://world.openbeautyfacts.org" class="footer-pill-link">Open Beauty Facts - Cosmétiques</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-footer-bottom">
+            <img src="html/images/logos/openfoodfacts/off-logo-horizontal-light.svg" alt="Open Food Facts" class="footer-bottom-logo">
+            <p class="footer-bottom-tagline">
+                Une base de données collaborative,<br>libre et ouverte des produits alimentaires du monde entier.
+            </p>
+            <div class="footer-bottom-lang-dropdown">
+                <span>Français</span>
+                <span>▾</span>
+            </div>
+            <div class="footer-bottom-nav">
+                <a href="/legal">Mentions légales</a>
+                <a href="/terms-of-use">Conditions d'utilisation</a>
+                <a href="/data">Données, API et SDK</a>
+                <a href="https://donate.openfoodfacts.org">Faire un don à l'association Open Food Facts</a>
+                <a href="/pro">Producteurs</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
