@@ -1,12 +1,45 @@
 <h1 class="emphasized-title">Data</h1>
 
 <h2 class="emphasized-title">Conditions for reuse</h2>
-<p>The Open Products Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>.<br/>
-The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License</a>.<br/>
-Products images are available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence</a>.
+<p>The Open Products Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License (ODbL)</a>.<br/>
+The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License (DbCL)</a>.<br/>
+Products images are available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence (CC-BY-SA)</a>.
 They may contain graphical elements subject to copyright or other rights, that may in some cases be reproduced (quotation rights or fair use).</p>
 
-<p>Please read <a href="https://world.openproductsfacts.org/terms-of-use">Terms and conditions of use and re-use</a> before re-using the data.</p>
+<p>Please read our <a href="https://world.openproductsfacts.org/terms-of-use">Terms and conditions of use and re-use</a> before re-using the data.</p>
+
+<h3>Simplified ODbL summary</h3>
+<p>This is a human-readable summary of the <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL 1.0 license</a> (see also the <a href="https://opendatacommons.org/licenses/odbl/summary/">Open Data Commons summary</a>):</p>
+<p><strong>You are free:</strong></p>
+<ul>
+ <li><strong>To share:</strong> To copy, distribute and use the database.</li>
+ <li><strong>To create:</strong> To produce works (such as applications, websites, services, or analytical studies) from the database.</li>
+ <li><strong>To adapt:</strong> To modify, transform and build upon the database.</li>
+</ul>
+<p><strong>As long as you:</strong></p>
+<ul>
+ <li><strong>Attribute:</strong> You must attribute any public use of the database, or works produced from the database, in the manner specified in the ODbL (e.g. <em>"Contains data from Open Products Facts, available under the Open Database License"</em>). For any redistribution of the database, or works produced from it, you must make clear to others the license of the database and keep intact any notices on the original database.</li>
+ <li><strong>Share-Alike:</strong> If you publicly use any adapted version of this database, or works produced from an adapted database, you must also offer that adapted database under the ODbL and share your modifications back.</li>
+ <li><strong>Keep open:</strong> If you redistribute the database, or an adapted version of it, you may use technological measures that restrict the work (such as DRM) only as long as you also redistribute a version without such measures.</li>
+</ul>
+
+<h3>Be on the legal side: The technical route to compliance</h3>
+<p>We want everyone to succeed with their projects while keeping data open for everyone! To ensure your application or reuse complies with the license and our infrastructure policies, please follow this technical checklist (see also our <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/tutorials/license-be-on-the-legal-side/">license compliance tutorial</a>):</p>
+<ul>
+ <li><strong>Include a descriptive HTTP User-Agent:</strong> Always send a specific <code>User-Agent</code> header with your API calls, including your app name, version, and a contact email or URL (e.g., <code>User-Agent: YourAppName/1.0 (contact@example.com - https://example.com)</code>). This ensures we can get in touch with you if an issue arises instead of having to block your IP address.</li>
+ <li><strong>Respect fair API usage (1 call = 1 user scan):</strong> The live API is meant for interactive queries triggered by real users. It is strictly forbidden to scrape or mass-crawl the live API.</li>
+ <li><strong>Use bulk exports for offline, analytical, or caching needs:</strong> If you need access to all products or want to run complex queries, please download the nightly MongoDB dumps, CSV, or Parquet exports (described below) or build a <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/tutorials/creating-a-local-cache-of-open-food-facts-data/">local cache</a>.</li>
+ <li><strong>Contribute back (Share-Alike in practice):</strong> In the spirit of the ODbL Share-Alike obligation, if your app allows users to add new products, update nutrition/ingredients, or submit photos, please send those contributions back to Open Products Facts via our API or SDKs. This ensures everyone benefits from continuous data improvements.</li>
+ <li><strong>Prominent UI attribution:</strong> Clearly attribute Open Products Facts in your app or website UI (for example, on product pages, search screens, and in the "About" or "Settings" sections) with clickable links back to Open Products Facts and the ODbL license.</li>
+</ul>
+
+<p><strong>Compliance resources:</strong></p>
+<ul>
+ <li><a href="https://wiki.openfoodfacts.org/ODBL_License">Simple summary of the ODbL and our license on the wiki</a></li>
+ <li><a href="https://wiki.openfoodfacts.org/ODBL_License#Attribution_guidelines">Attribution guidelines (how to attribute on mobile, web, and print)</a></li>
+ <li><a href="https://wiki.openfoodfacts.org/ODBL_non-compliance">ODbL non-compliance registry</a>: Check that your project is fully compliant. If your app is listed or you have questions, please reach out to us at <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a> or in the <strong>#api</strong> channel on <a href="https://slack.openfoodfacts.org">Slack</a> so we can help you achieve compliance!</li>
+ <li><a href="https://support.openfoodfacts.org/help/en-gb/12-api">API FAQ &amp; legal questions</a></li>
+</ul>
 
 
 <h2 class="emphasized-title">Tell us about your reuse</h2>
@@ -96,7 +129,6 @@ They may contain graphical elements subject to copyright or other rights, that m
 
 <h3>Image Data Export</h3>
 <p>All images and OCR results can either be downloaded from our server or from AWS (through the AWS Open Data Program). Check out <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">our documentation</a> to learn more about how to download images.</p>
-
 
 
 <h2 class="emphasized-title">Live JSON and XML API</h2>
@@ -298,6 +330,107 @@ The app allows users to scan the barcode of products, to view the product inform
                     </tr>
                 </tbody>
             </table>
+
+
+<script>
+    // Ensure the DOM is fully loaded before running scripts
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Initialize Foundation framework components
+        $(document).foundation();
+
+        // --- Filtering ---
+        const filterInput = document.getElementById('sdkFilter');
+        const tableBody = document.getElementById('sdkTableBody');
+        // Get live collection of rows - updates automatically if rows are added/removed
+        const tableRows = tableBody.getElementsByTagName('tr');
+
+        // Add event listener for input changes (keyup is responsive)
+        filterInput.addEventListener('keyup', function() {
+            const filterText = filterInput.value.toLowerCase().trim(); // Get filter text, lowercase and trim whitespace
+
+            // Loop through all table rows in the body
+            for (let i = 0; i < tableRows.length; i++) {
+                const row = tableRows[i];
+                // Get all text content from the row's cells
+                const rowData = row.textContent || row.innerText;
+
+                // Check if row data includes the filter text
+                if (rowData.toLowerCase().indexOf(filterText) > -1) {
+                    row.style.display = ""; // Show row if it matches
+                } else {
+                    row.style.display = "none"; // Hide row if it doesn't match
+                }
+            }
+        });
+
+        // --- Sorting ---
+        const table = document.getElementById('sdkTable');
+        // Select only headers marked as sortable
+        const headers = table.querySelectorAll('th[data-sortable]');
+        const tbody = table.querySelector('tbody'); // Reference to the table body
+
+        // Add click event listener to each sortable header
+        headers.forEach(header => {
+            header.addEventListener('click', () => {
+                // Get column index from data attribute (adjusting for 0-based index internally)
+                const columnIndex = parseInt(header.dataset.columnIndex, 10);
+                // Check current sort direction or default to 'asc' if none
+                const currentSortDir = header.dataset.sortDir;
+                // Toggle direction: if 'asc', change to 'desc', otherwise change to 'asc'
+                const newSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
+
+                // Remove sort direction attributes from all other headers
+                headers.forEach(h => {
+                    if (h !== header) {
+                        delete h.dataset.sortDir; // Remove attribute to reset arrow style via CSS
+                    }
+                });
+
+                // Set the new sort direction on the clicked header
+                header.dataset.sortDir = newSortDir;
+
+                // Call the sorting function
+                sortTable(columnIndex, newSortDir);
+            });
+        });
+
+        // Function to sort table rows
+        function sortTable(columnIndex, direction) {
+            // Convert HTMLCollection/NodeList of rows to a standard JavaScript Array
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
+            // Sort the array of rows
+            const sortedRows = rows.sort((a, b) => {
+                // Get the text content of the cells in the target column for comparison
+                // Use textContent for consistency, trim whitespace, convert to lowercase
+                const cellA = a.querySelectorAll('td')[columnIndex]?.textContent.trim().toLowerCase() || '';
+                const cellB = b.querySelectorAll('td')[columnIndex]?.textContent.trim().toLowerCase() || '';
+
+                // Comparison logic
+                if (cellA < cellB) {
+                    return direction === 'asc' ? -1 : 1; // If 'asc', A comes first (-1), else B comes first (1)
+                }
+                if (cellA > cellB) {
+                    return direction === 'asc' ? 1 : -1; // If 'asc', B comes first (1), else A comes first (-1)
+                }
+                return 0; // If equal, order doesn't matter
+            });
+
+            // Clear the current rows from the table body
+            // While loop is efficient for removing all children
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
+            }
+
+            // Append the sorted rows back into the table body
+            // Using spread syntax (...) to append all elements in the array
+            tbody.append(...sortedRows);
+        }
+
+    }); // End DOMContentLoaded
+</script>
+
 
 <h2 class="emphasized-title">Discussing data, API and exports</h2>
 
