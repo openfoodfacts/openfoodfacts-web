@@ -1,11 +1,45 @@
 <h1 class="emphasized-title">Data</h1>
 
 <h2 class="emphasized-title">Ketentuan untuk penggunaan kembali</h2>
-<p>Basis data Open Pet Food Facts tersedia di bawah <a href="https://opendatacommons.org/licenses/odbl/1.0/">Lisensi Basis Data Terbuka</a>.<br/>
-Konten individual basis data tersedia di bawah <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Lisensi Konten Basis Data</a>.<br/>Gambar - gambar produk tersedia di bawah <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.id">Lisensi Creative Commons Attribution ShareAlike</a>.
+<p>The Open Pet Food Facts database is available under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License (ODbL)</a>.<br/>
+The individual contents of the database are available under the <a href="https://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License (DbCL)</a>.<br/>
+Products images are available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution ShareAlike licence (CC-BY-SA)</a>.
 Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak lainnya, yang mungkin dalam kasus tertentu direproduksi (hak kutipan atau penggunaan wajar).</p>
 
-<p>Harap baca <a href="https://world.openpetfoodfacts.org/terms-of-use">Persyaratan dan ketentuan penggunaan dan penggunaan kembali</a> sebelum menggunakan kembali datanya.</p>
+<p>Please read our <a href="https://world.openpetfoodfacts.org/terms-of-use">Terms and conditions of use and re-use</a> before re-using the data.</p>
+
+<h3>Simplified ODbL summary</h3>
+<p>This is a human-readable summary of the <a href="https://opendatacommons.org/licenses/odbl/1.0/">ODbL 1.0 license</a> (see also the <a href="https://opendatacommons.org/licenses/odbl/summary/">Open Data Commons summary</a>):</p>
+<p><strong>You are free:</strong></p>
+<ul>
+ <li><strong>To share:</strong> To copy, distribute and use the database.</li>
+ <li><strong>To create:</strong> To produce works (such as applications, websites, services, or analytical studies) from the database.</li>
+ <li><strong>To adapt:</strong> To modify, transform and build upon the database.</li>
+</ul>
+<p><strong>As long as you:</strong></p>
+<ul>
+ <li><strong>Attribute:</strong> You must attribute any public use of the database, or works produced from the database, in the manner specified in the ODbL (e.g. <em>"Contains data from Open Pet Food Facts, available under the Open Database License"</em>). For any redistribution of the database, or works produced from it, you must make clear to others the license of the database and keep intact any notices on the original database.</li>
+ <li><strong>Share-Alike:</strong> If you publicly use any adapted version of this database, or works produced from an adapted database, you must also offer that adapted database under the ODbL and share your modifications back.</li>
+ <li><strong>Keep open:</strong> If you redistribute the database, or an adapted version of it, you may use technological measures that restrict the work (such as DRM) only as long as you also redistribute a version without such measures.</li>
+</ul>
+
+<h3>Be on the legal side: The technical route to compliance</h3>
+<p>We want everyone to succeed with their projects while keeping data open for everyone! To ensure your application or reuse complies with the license and our infrastructure policies, please follow this technical checklist (see also our <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/tutorials/license-be-on-the-legal-side/">license compliance tutorial</a>):</p>
+<ul>
+ <li><strong>Include a descriptive HTTP User-Agent:</strong> Always send a specific <code>User-Agent</code> header with your API calls, including your app name, version, and a contact email or URL (e.g., <code>User-Agent: YourAppName/1.0 (contact@example.com - https://example.com)</code>). This ensures we can get in touch with you if an issue arises instead of having to block your IP address.</li>
+ <li><strong>Respect fair API usage (1 call = 1 user scan):</strong> The live API is meant for interactive queries triggered by real users. It is strictly forbidden to scrape or mass-crawl the live API.</li>
+ <li><strong>Use bulk exports for offline, analytical, or caching needs:</strong> If you need access to all products or want to run complex queries, please download the nightly MongoDB dumps, CSV, or Parquet exports (described below) or build a <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/tutorials/creating-a-local-cache-of-open-food-facts-data/">local cache</a>.</li>
+ <li><strong>Contribute back (Share-Alike in practice):</strong> In the spirit of the ODbL Share-Alike obligation, if your app allows users to add new products, update nutrition/ingredients, or submit photos, please send those contributions back to Open Pet Food Facts via our API or SDKs. This ensures everyone benefits from continuous data improvements.</li>
+ <li><strong>Prominent UI attribution:</strong> Clearly attribute Open Pet Food Facts in your app or website UI (for example, on product pages, search screens, and in the "About" or "Settings" sections) with clickable links back to Open Pet Food Facts and the ODbL license.</li>
+</ul>
+
+<p><strong>Compliance resources:</strong></p>
+<ul>
+ <li><a href="https://wiki.openfoodfacts.org/ODBL_License">Simple summary of the ODbL and our license on the wiki</a></li>
+ <li><a href="https://wiki.openfoodfacts.org/ODBL_License#Attribution_guidelines">Attribution guidelines (how to attribute on mobile, web, and print)</a></li>
+ <li><a href="https://wiki.openfoodfacts.org/ODBL_non-compliance">ODbL non-compliance registry</a>: Check that your project is fully compliant. If your app is listed or you have questions, please reach out to us at <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a> or in the <strong>#api</strong> channel on <a href="https://slack.openfoodfacts.org">Slack</a> so we can help you achieve compliance!</li>
+ <li><a href="https://support.openfoodfacts.org/help/en-gb/12-api">API FAQ &amp; legal questions</a></li>
+</ul>
 
 
 <h2 class="emphasized-title">Ceritakan kepada kami tentang penggunaan ulang Anda</h2>
@@ -17,7 +51,7 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
 
 <p>Informasi tentang berbagai bidang untuk dump MongoDB dan ekspor CSV tersedia di <a href="https://static.openpetfoodfacts.org/data/data-fields.txt">https://world.openpetfoodfacts.org/data/data-fields.txt</a></p>
 
-<h3>Dump MongoDB</h3>
+<h3>Ekspor Data CSV</h3>
 
 <p>Data untuk semua produk tersedia di dump basis data MongoDB.</p>
 <!--
@@ -39,7 +73,7 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
 
 <p>Ekspor delta harian disediakan selama periode 14 hari sebelumnya. Daftar file delta yang saat ini tersedia dapat ditemukan di <a href="https://static.openpetfoodfacts.org/data/delta/index.txt">https://static.openpetfoodfacts.org/data/delta/index.txt</a>.</p>
 <p>Tiap baris mewakili berkas yang tersedia di <code>https://static.openpetfoodfacts.org/data/delta/{filename}</code>.</p>
-<p>Nama berkas berisi stempel waktu UNIX mengenai perubahan pertama dan terakhir yang terdapat dalam berkas JSON, sehingga berkas delta dapat diimpor (setelah ekstrasi) dengan <code>mongoimport</code> dalam urutan abjad.</p>
+<p>Format Parket telah terbukti praktis:</p>
 <p>Harap dicatat bahwa karena sifat <code>mongoexport</code>, berkas delta tidak dapat memberi tahu Anda tentang produk - produk yang dihapus. Untuk menghilangkan produk - produk yang dihapus dari basis data Anda, Anda akan harus mengimpor dump MongoDB lengkap.</p>
 
 <h3>Ekspor data JSONL</h3>
@@ -53,7 +87,7 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
 </dl>
 
 
-<h3>Ekspor Data CSV</h3>
+<h3>Ekspor Data Gambar</h3>
 
 <p>Kumpulan data tersebut tersedia di <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, sebuah ekosistem Pembelajaran Mesin kolaboratif tempat para pengembang dan peneliti dapat berbagi model dan kumpulan data.</p>
 
@@ -77,7 +111,7 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
 
 <p>Cara yang cocok untuk mengeksploitasi basis data adalah dengan menggunakan DuckDB, alat analisis dalam proses yang dirancang untuk memproses data dalam jumlah besar dalam waktu sepersekian detik. Anda dapat membaca <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">postingan blog</a> kami di mana kami memandu Anda menjelajahi dan memproses basis data Fakta Makanan Hewan Peliharaan Terbuka dengan DuckDB</p>
 
-<h3>Eksor Data RDF</h3>
+<h3>Dibutuhkan bantuan OpenAPI</h3>
 <p>Data untuk semua produk, atau beberapa produk, dapat diunduh dalam format CSV (dapat dibaca dengan LibreOffice, Excel, dan banyak perangkat lunak spreadsheet lainnya) melalui <a href="https://world.openpetfoodfacts.org/cgi/search.pl">formulir pencarian lanjutan</a>.</p>
 
 <dl>
@@ -87,7 +121,7 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
 
 <p>Pengodean berkas berbasis Unicode UTF-8. Karakter yang memisahkan field adalah &lt;tab&gt; (tabulation).</p>
 
-<h3>Ekspor Data Gambar</h3>
+<h3>Berpartisipasi dalam meningkatkan dokumentasi API dan OpenAPI kami</h3>
 <p>Basis data juga tersedia dalam format RDF. Anda dapat membaca <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">pengumuman dalam bahasa Prancis</a>.</p>
 
 <dl>
@@ -95,9 +129,8 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
  <dd><a href="https://world.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.rdf.gz">https://world.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
-<h3>Dibutuhkan bantuan OpenAPI</h3>
+<h3>XML API (tidak didukung)</h3>
 <p>Semua gambar dan hasil OCR bisa diunduh dari server kami atau dari AWS (melalui Program Data Terbuka AWS). Lihat <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">dokumentasi kami</a> untuk mempelajari lebih lanjut cara mengunduh gambar.</p>
-
 
 
 <h2 class="emphasized-title">Dokumentasi OpenAPI untuk API JSON</h2>
@@ -106,17 +139,20 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
 
 <p>Kami meningkatkan API dari waktu ke waktu, tapi kami berhati - hati untuk menjaga kompatibilitas mundur. Silakan <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Pet%20Food%20Facts%20Data%20reuse">hubungi kami</a> jika Anda menggunakannya, agar kami dapat memberi tahu Anda tentang potensi perubahan.</p>
 
-<p>URL untuk membaca data produk: https://world.openpetfoodfacts.org/api/v3/product/<em>[barcode]</em>.json</p>
+<p>Pembungkus akan membiarkan Anda menggunakan data, serta membiarkan para pengguna Anda menyumbangkan data baru</p>
 
-<p>Contoh: <a href="https://world.openpetfoodfacts.org/api/v3/product/737628064502.json">https://world.openpetfoodfacts.org/api/v3/product/737628064502.json</a></p>
-<p>Anda juga bisa mendapatkan hasilnya dalam format XML dengan menggunakan <code>.xml</code></p>
+<p>Kode untuk aplikasi seluler resmi Open Food Facts tersedia di GitHub
+ <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
+<p>Contoh: <a href="https://world.openbeautyfacts.org/api/v2/product/737628064502.xml">https://world.openbeautyfacts.org/api/v2/product/737628064502.xml</a></p>
 
 <ul>
  <li>
 <a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - dokumentasi OpenAPI baru - Sedang dalam Proses</a>
  </li>
 </ul>
-<h3 class="emphasized-title">API XML Eksperimental</h3>
+<h3 class="emphasized-title">Jika para pengguna Anda tidak mengharapkan hasil segera (misalnya aplikasi Inventori)</h3>
 Kami ingin sekali menyelesaikan dokumentasi API, menambahkan kasus penggunaan, dan mengotomatiskan pembuatan SDK. Jika Anda adalah seorang ahli OpenAPI, Anda sangat dipersilakan untuk membantu.
 <!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
@@ -129,37 +165,34 @@ Kami ingin sekali menyelesaikan dokumentasi API, menambahkan kasus penggunaan, d
 
 <p>Anda dipersilahkan untuk menggunakan API untuk kasus - kasus produksi, selama 1 pemanggilan API = 1 pemindaian nyata oleh pengguna.
 Upaya apapun untuk mengikis basis data menggunakan API akan sangat mungkin diblokir, karena ekspor harian lengkap tersedia di halaman ini.</p>
-<p>Juga, mengirim header HTTP dengan pemanggilan API Anda adalah cara yang baik untuk menghubungi kami, jika ada masalah yang muncul.</p>
-<p>Pembungkus akan membiarkan Anda menggunakan data, serta membiarkan para pengguna Anda menyumbangkan data baru</p>
+<p>Anda dapat melihat <a href="https://support.openfoodfacts.org/help/fr-fr/12">pertanyaan umum yang sering ditanyakan tentang API dan Ekspor Data</a> dan <a href="https://support.openfoodfacts.org/help/fr-fr">pertanyaan umum tentang Open Food Facts</a></p>
+<p>Kode untuk aplikasi seluler Open Beauty Products Facts tersedia di GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> dan <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).</p>
 
-<h3 class="emphasized-title">Prinsip-prinsip umum untuk membuat pengguna Anda senang</h3>
-<p>Kode untuk aplikasi seluler resmi Open Food Facts tersedia di GitHub
- <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
-<p>Pembungkus akan membiarkan Anda menggunakan data, serta membiarkan para pengguna Anda menyumbangkan data baru</p>
+<h3 class="emphasized-title">Jika para pengguna Anda mengharapkan hasil yang cepat (misalnya aplikasi Nutrisi)</h3>
+<p>Kami ingin mengubah basis kode Kotlin dan Swift yang sudah tidak digunakan lagi menjadi Kotlin dan Swift SDK, mohon bantuannya :-)</p>
+<p><a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> dan <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
 API ini tidak dipelihara secara aktif, dan tidak didokumentasikan secara resmi.
 
 
 <h2 class="emphasized-title">Pembungkus dan SDK</h2>
 <p>Kami mungkin memiliki pembungkus untuk bahasa pemrograman favorit Anda. Jika kami memilikinya, Anda dapat menggunakan dan meningkatkannya. Jika tidak, Anda dapat membantu kami membuatnya.</p>
-<p>Anda dipersilahkan untuk menggunakan kodenya kembali (ini bersifat sumber terbuka) dan membantu kami meningkatkannya, untuk semua orang, di seluruh planet ini.</p>
+<p>Anda dapat melihat <a href="https://support.openfoodfacts.org/help/fr-fr/12">pertanyaan umum yang sering ditanyakan tentang API dan Ekspor Data</a> dan <a href="https://support.openfoodfacts.org/help/fr-fr">pertanyaan umum tentang Open Food Facts</a></p>
 
-<h3>Jika para pengguna Anda tidak mengharapkan hasil segera (misalnya aplikasi Inventori)</h3>
+<h3>Aplikasi seluler Android/iPhone/Flutter</h3>
 <ul>
 <li>Kamu bisa cari info produk, termasuk banyak nilai hitungan yang berguna.</li>
 <li>Jika Anda tidak berhasil memperoleh informasi mengenai produk tertentu, Anda dapat mengarahkan pengguna untuk mengirimkan foto dan data. Informasi tersebut kemudian akan diproses oleh AI Open Pet Food Facts dan para kontributor guna menghasilkan data kalkulasi yang ingin Anda tunjukkan kepada mereka.</li>
 <li>Anda juga dapat menerapkan alur lengkap sehingga mereka segera mendapatkan hasil, dengan sedikit usaha dari pihak mereka.</li>
 </ul>
 
-<h3>Jika para pengguna Anda mengharapkan hasil yang cepat (misalnya aplikasi Nutrisi)</h3>
+<h3>SDK</h3>
 <ul>
 <li>Kirim foto (depan/nutrisi/bahan): cara paling mudah untuk pengguna Anda</li>
 <li>AI Open Pet Food Facts - Robotoff - akan menghasilkan beberapa data turunan dari foto-foto tersebut</li>
 <li>Seiring berjalannya waktu, aplikasi lain dan komunitas Open Pet Food Facts akan saling melengkapi kekurangan data yang ada</li>
 </ul>
 
-<h3>Jika pengguna Anda mengharapkan hasil dengan segera (misalnya aplikasi Nutrisi atau Alergi)</h3>
+<h3>SDK</h3>
 <ul>
 <li>Kirim bahan + kategori &gt; dapatkan analisis bahan, aditif, alergen, bahan yang dinormalisasi, vegan, vegetarian&hellip;</li>
 <li>Kirim label untuk mendapatkan nilai tambah</li>
@@ -173,8 +206,8 @@ API ini tidak dipelihara secara aktif, dan tidak didokumentasikan secara resmi.
 Aplikasi seluler Open Pet Food Facts versi lama, yang masih tersedia untuk Android, dibangun menggunakan Kotlin. Rencananya adalah untuk memperbarui aplikasi Flutter menjadi varian rasa yang bermerk Open Pet Food Facts.
 
 <p>Kami ingin mengubah basis kode Kotlin dan Swift yang sudah tidak digunakan lagi menjadi Kotlin dan Swift SDK, mohon bantuannya :-)
-<p><a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> dan <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
 <p>Anda dapat <a href="https://github.com/openfoodfacts/api-documentation/discussions">membuka utas di repositori dokumentasi API kami</a></p>
+<p>Untuk pertanyaan apa pun terkait data, Anda dapat menghubungi kami di <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a></p>
 
 <p>Untuk pertanyaan apa pun terkait data, Anda dapat menghubungi kami di <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a></p>
 
@@ -304,6 +337,106 @@ Aplikasi seluler Open Pet Food Facts versi lama, yang masih tersedia untuk Andro
                     </tr>
                 </tbody>
             </table>
+
+
+<script>
+    // Ensure the DOM is fully loaded before running scripts
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Initialize Foundation framework components
+        $(document).foundation();
+
+        // --- Filtering ---
+        const filterInput = document.getElementById('sdkFilter');
+        const tableBody = document.getElementById('sdkTableBody');
+        // Get live collection of rows - updates automatically if rows are added/removed
+        const tableRows = tableBody.getElementsByTagName('tr');
+
+        // Add event listener for input changes (keyup is responsive)
+        filterInput.addEventListener('keyup', function() {
+            const filterText = filterInput.value.toLowerCase().trim(); // Get filter text, lowercase and trim whitespace
+
+            // Loop through all table rows in the body
+            for (let i = 0; i < tableRows.length; i++) {
+                const row = tableRows[i];
+                // Get all text content from the row's cells
+                const rowData = row.textContent || row.innerText;
+
+                // Check if row data includes the filter text
+                if (rowData.toLowerCase().indexOf(filterText) > -1) {
+                    row.style.display = ""; // Show row if it matches
+                } else {
+                    row.style.display = "none"; // Hide row if it doesn't match
+                }
+            }
+        });
+
+        // --- Sorting ---
+        const table = document.getElementById('sdkTable');
+        // Select only headers marked as sortable
+        const headers = table.querySelectorAll('th[data-sortable]');
+        const tbody = table.querySelector('tbody'); // Reference to the table body
+
+        // Add click event listener to each sortable header
+        headers.forEach(header => {
+            header.addEventListener('click', () => {
+                // Get column index from data attribute (adjusting for 0-based index internally)
+                const columnIndex = parseInt(header.dataset.columnIndex, 10);
+                // Check current sort direction or default to 'asc' if none
+                const currentSortDir = header.dataset.sortDir;
+                // Toggle direction: if 'asc', change to 'desc', otherwise change to 'asc'
+                const newSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
+
+                // Remove sort direction attributes from all other headers
+                headers.forEach(h => {
+                    if (h !== header) {
+                        delete h.dataset.sortDir; // Remove attribute to reset arrow style via CSS
+                    }
+                });
+
+                // Set the new sort direction on the clicked header
+                header.dataset.sortDir = newSortDir;
+
+                // Call the sorting function
+                sortTable(columnIndex, newSortDir);
+            });
+        });
+
+        // Function to sort table rows
+        function sortTable(columnIndex, direction) {
+            // Convert HTMLCollection/NodeList of rows to a standard JavaScript Array
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
+            // Sort the array of rows
+            const sortedRows = rows.sort((a, b) => {
+                // Get the text content of the cells in the target column for comparison
+                // Use textContent for consistency, trim whitespace, convert to lowercase
+                const cellA = a.querySelectorAll('td')[columnIndex]?.textContent.trim().toLowerCase() || '';
+                const cellB = b.querySelectorAll('td')[columnIndex]?.textContent.trim().toLowerCase() || '';
+
+                // Comparison logic
+                if (cellA < cellB) {
+                    return direction === 'asc' ? -1 : 1; // If 'asc', A comes first (-1), else B comes first (1)
+                }
+                if (cellA > cellB) {
+                    return direction === 'asc' ? 1 : -1; // If 'asc', B comes first (1), else A comes first (-1)
+                }
+                return 0; // If equal, order doesn't matter
+            });
+
+            // Clear the current rows from the table body
+            // While loop is efficient for removing all children
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
+            }
+
+            // Append the sorted rows back into the table body
+            // Using spread syntax (...) to append all elements in the array
+            tbody.append(...sortedRows);
+        }
+
+    }); // End DOMContentLoaded
+</script>
 
 
 <h2 class="emphasized-title">Pembahasan data, API, dan eskpor</h2>

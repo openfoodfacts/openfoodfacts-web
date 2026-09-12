@@ -1,23 +1,304 @@
-<div class="panel callout">
-	<h3>安裝 Open Food Facts 手機 app</h3>
-	<img src="https://static.openfoodfacts.org/images/misc/nutriscore-biscuits-e.800x600.jpg" alt="Open Food FactsモバイルアプリのNutriScore">
-	<p><em>在 Open Food Facts app 獲得 Nutri-score!</em></p>
-<p>食品をスキャンし、ニュートリスコアの栄養等級、超加工食品の NOVA グループ、アレルゲン警告を取得し、食品添加物を解読するには、無料の Open Food Facts アプリをインストールしてください。</p>
-<div class="small-12 medium-7 medium-offset-5 column">
-                <a data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&amp;hl=ja&amp;utm_source=off&amp;utm_campaign=search_and_links_promo_ja" title="Google Playで「Food Facts」を開く">
-                <img src="/images/misc/playstore/img/ja_get.svg" loading="lazy" alt="Google Playで入手可能" width="120" height="40"></a>
-                <a href="https://f-droid.org/packages/openfoodfacts.github.scrachx.openfood" title="F-Droidで食品情報を開く">
-                <img src="/images/misc/f-droid/get-it-on-ja.png" loading="lazy" alt="F-Droidで利用可能" height="40" width="120"></a>
-                <a href="https://github.com/openfoodfacts/smooth-app/releases/latest" title="GithubでFood Factsアプリを開く">
-                <img src="/images/misc/app-landing-page/download-apk/download-apk_en.svg" loading="lazy" alt="APKをダウンロード" height="40" width="120"></a>
-                <a data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948?l=ja&amp;utm_source=off&amp;utm_campaign=search_and_links_promo_ja" title="Apple App StoreでFood Factsを開く">
-                <img src="/images/misc/appstore/black/appstore_JP.svg" loading="lazy" alt="App Storeで入手可能" width="120" height="40"></a>
-            </div>
-<br><br>
-<div class="small-3 small-centered column">
-	<p>携帯電話にないですか？ アプリをダウンロードするには、携帯電話からこの QR コードをスキャンしてください。</p>
-	<img src="/images/misc/app-landing-page/qrcode_en.svg" width="180" height="180" alt="https://world.openfoodfacts.org/open-food-facts-mobile-app にリンクする QR コード">
-</div>
+<style>
+.off-app-promo {
+    background: linear-gradient(135deg, #FAF7F2 0%, #F5EFEB 100%);
+    border: 1px solid #E8DDD2;
+    border-radius: 20px;
+    padding: 2rem 2.25rem;
+    margin: 2rem 0;
+    box-shadow: 0 8px 24px rgba(184, 84, 25, 0.06), 0 2px 6px rgba(0, 0, 0, 0.03);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #2D3748;
+    position: relative;
+    overflow: hidden;
+    clear: both;
+    box-sizing: border-box;
+}
+.off-app-promo * {
+    box-sizing: border-box;
+}
+.off-app-promo::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(238, 129, 0, 0.12) 0%, rgba(238, 129, 0, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+.off-app-promo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+}
+.off-app-promo-content {
+    flex: 1 1 420px;
+    min-width: 280px;
+}
+.off-app-promo-visual {
+    flex: 0 1 290px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.off-app-promo-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #FFF4E5;
+    color: #B85419;
+    border: 1px solid #FCD4A4;
+    padding: 0.3rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+}
+.off-app-promo-title {
+    font-size: 1.6rem;
+    line-height: 1.25;
+    font-weight: 800;
+    color: #1A202C;
+    margin: 0 0 0.65rem 0;
+}
+.off-app-promo-title .highlight {
+    color: #E05A1E;
+    white-space: nowrap;
+}
+.off-app-promo-desc {
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: #4A5568;
+    margin: 0 0 1.2rem 0;
+}
+.off-app-promo-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem 1rem;
+    margin: 0 0 1.35rem 0;
+    padding: 0;
+    list-style: none;
+}
+.off-app-promo-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    color: #2D3748;
+    line-height: 1.35;
+}
+.off-app-promo-feature-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #E05A1E;
+}
+.off-app-promo-feature-icon svg {
+    width: 18px;
+    height: 18px;
+}
+.off-app-promo-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 1.1rem;
+}
+.off-app-promo-btn {
+    display: inline-block;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+    text-decoration: none;
+    line-height: 0;
+}
+.off-app-promo-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.92;
+}
+.off-app-promo-btn img {
+    height: 38px;
+    width: auto;
+    display: block;
+}
+.off-app-promo-trust {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    font-size: 0.82rem;
+    color: #718096;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+.off-app-promo-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.off-app-promo-trust-item .stars {
+    color: #F59E0B;
+    font-size: 0.95rem;
+    letter-spacing: -1px;
+}
+.off-app-promo-phone-wrap {
+    max-width: 200px;
+    margin: 0 auto;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.12));
+    transition: transform 0.25s ease;
+}
+.off-app-promo-phone-wrap:hover {
+    transform: scale(1.02) translateY(-3px);
+}
+.off-app-promo-phone-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.off-app-promo-qr-wrap {
+    margin-top: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+}
+.off-app-promo-qr-box {
+    background: #FFFFFF;
+    padding: 6px;
+    border-radius: 10px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: inline-block;
+}
+.off-app-promo-qr-box img {
+    width: 85px;
+    height: 85px;
+    display: block;
+}
+.off-app-promo-qr-label {
+    font-size: 0.76rem;
+    color: #718096;
+    max-width: 170px;
+    text-align: center;
+    line-height: 1.25;
+}
+@media (max-width: 768px) {
+    .off-app-promo {
+        padding: 1.5rem 1.25rem;
+        margin: 1.5rem 0;
+        border-radius: 16px;
+    }
+    .off-app-promo-title {
+        font-size: 1.35rem;
+    }
+    .off-app-promo-features {
+        grid-template-columns: 1fr;
+    }
+    .off-app-promo-visual {
+        flex: 1 1 100%;
+        order: -1;
+        margin-bottom: 0.25rem;
+    }
+    .off-app-promo-phone-wrap {
+        max-width: 150px;
+    }
+    .off-app-promo-qr-wrap {
+        display: none;
+    }
+}
+</style>
 
-<p> ありがとう！</p>
+<div class="off-app-promo">
+    <div class="off-app-promo-grid">
+        <div class="off-app-promo-content">
+            <div class="off-app-promo-tag">
+                📱 Free &amp; Independent App
+            </div>
+            <h3 class="off-app-promo-title">
+                Make healthier food choices <span class="highlight">in a single scan</span>
+            </h3>
+            <p class="off-app-promo-desc">
+                Install the free Open Food Facts app to instantly decode nutrition, additives, and environmental impact while grocery shopping or at home.
+            </p>
+
+            <ul class="off-app-promo-features">
+                <li class="off-app-promo-feature">
+                    <span class="off-app-promo-feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+                    </span>
+                    <span><strong>Instant Barcode Scanner:</strong> Nutri-Score, NOVA, and Green-Score in milliseconds.</span>
+                </li>
+                <li class="off-app-promo-feature">
+                    <span class="off-app-promo-feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+                    </span>
+                    <span><strong>Healthier Alternatives:</strong> Instantly discover better-rated options for low-grade products.</span>
+                </li>
+                <li class="off-app-promo-feature">
+                    <span class="off-app-promo-feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    </span>
+                    <span><strong>Personal Alerts:</strong> Flag allergens, excess salt/sugar, palm oil, or dietary restrictions.</span>
+                </li>
+                <li class="off-app-promo-feature">
+                    <span class="off-app-promo-feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </span>
+                    <span><strong>100% Free &amp; Non-Profit:</strong> No ads, no commercial influence, open source and private.</span>
+                </li>
+            </ul>
+
+            <div class="off-app-promo-buttons">
+                <a class="off-app-promo-btn" data-app-store="google" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&amp;hl=en&amp;utm_source=off&amp;utm_campaign=search_and_links_promo_en" title="Google Playで「Food Facts」を開く">
+                    <img src="/images/misc/playstore/img/en_get.svg" alt="Google Playで入手可能" width="135" height="40" loading="lazy">
+                </a>
+                <a class="off-app-promo-btn" data-app-store="apple" href="https://apps.apple.com/app/open-food-facts/id588797948?l=en&amp;utm_source=off&amp;utm_campaign=search_and_links_promo_en" title="Apple App StoreでFood Factsを開く">
+                    <img src="/images/misc/appstore/black/appstore_JP.svg" alt="App Storeで入手可能" width="135" height="40" loading="lazy">
+                </a>
+                <a class="off-app-promo-btn" href="https://f-droid.org/packages/openfoodfacts.github.scrachx.openfood" title="F-Droidで食品情報を開く">
+                    <img src="/images/misc/f-droid/get-it-on-en.png" alt="F-Droidで利用可能" width="135" height="40" loading="lazy">
+                </a>
+                <a class="off-app-promo-btn" href="https://github.com/openfoodfacts/smooth-app/releases/latest" title="Open Food Facts app on GitHub">
+                    <img src="/images/misc/app-landing-page/download-apk/download-apk_en.svg" alt="APKをダウンロード" width="135" height="40" loading="lazy">
+                </a>
+            </div>
+
+            <div class="off-app-promo-trust">
+                <div class="off-app-promo-trust-item">
+                    <span class="stars" aria-hidden="true">★★★★★</span>
+                    <span><strong>4.7/5</strong> rating</span>
+                </div>
+                <div class="off-app-promo-trust-item">
+                    <span>👥 <strong>10M+</strong> downloads</span>
+                </div>
+                <div class="off-app-promo-trust-item">
+                    <span>✨ <strong>100% Free</strong> &amp; Ad-Free</span>
+                </div>
+                <div class="off-app-promo-trust-item">
+                    <span>🔒 <strong>No tracking</strong></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="off-app-promo-visual">
+            <div class="off-app-promo-phone-wrap">
+                <img src="/images/misc/app-landing-page/mobile-app-preview/mobile-app-preview_en.svg" alt="Open Food Facts Mobile App" loading="lazy" onerror="this.src='/images/misc/app-landing-page/mobile-app-preview/mobile-app-preview_en.svg'">
+            </div>
+            <div class="off-app-promo-qr-wrap">
+                <div class="off-app-promo-qr-box">
+                    <img src="/images/misc/app-landing-page/qrcode_en.svg" alt="QR-Code linking to Open Food Facts mobile app" width="85" height="85" loading="lazy">
+                </div>
+                <div class="off-app-promo-qr-label">
+                    Scan with your phone to download the app
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
