@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.5.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.4.1...v1.5.0) (2026-09-12)
+
+
+### Features
+
+* add symlinks for the Nutri-Score ([#958](https://github.com/openfoodfacts/openfoodfacts-web/issues/958)) ([1ffcc4f](https://github.com/openfoodfacts/openfoodfacts-web/commit/1ffcc4f427feb584ab1f23511c5391270fe586d4))
+* hr cherrypick ([#954](https://github.com/openfoodfacts/openfoodfacts-web/issues/954)) ([f69f4b1](https://github.com/openfoodfacts/openfoodfacts-web/commit/f69f4b10aedf60434659eb20ba2bd547af0bee5e))
+
+
+### Bug Fixes
+
+* developers ([356b72e](https://github.com/openfoodfacts/openfoodfacts-web/commit/356b72e217344bc36ab256d0cac0f1a393410127))
+* facets, obsolete links and more ([#962](https://github.com/openfoodfacts/openfoodfacts-web/issues/962)) ([59ed04e](https://github.com/openfoodfacts/openfoodfacts-web/commit/59ed04e43577f1feca43214371ccfbfb941fa79a))
+* fixes for the Playstore ([#955](https://github.com/openfoodfacts/openfoodfacts-web/issues/955)) ([4c7d412](https://github.com/openfoodfacts/openfoodfacts-web/commit/4c7d4125d94832cdfd9e02190ddc91a22b9a60ae))
+* improve the Licence user journey ([#957](https://github.com/openfoodfacts/openfoodfacts-web/issues/957)) ([360508d](https://github.com/openfoodfacts/openfoodfacts-web/commit/360508dcdde9076ad7964830df98e6d19e0173ee))
+* **press:** repair broken includes, modernize logos, and restore app screenshots across translations ([dbf931b](https://github.com/openfoodfacts/openfoodfacts-web/commit/dbf931b090a924a27055173d08ffb79432761677))
+* reuses updates ([1c96914](https://github.com/openfoodfacts/openfoodfacts-web/commit/1c96914b40dc34ce01c64943b02e2475449102b8))
+* Update open-food-facts-mobile-app.html ([108f02a](https://github.com/openfoodfacts/openfoodfacts-web/commit/108f02a30e5aa1ac2838184198a5922defa78b5e))
+* Update open-food-facts-mobile-app.html ([2bbe076](https://github.com/openfoodfacts/openfoodfacts-web/commit/2bbe0763b883c061cc0d694b65ffe99874d66ff6))
+* Update open-food-facts-mobile-app.html ([3402c5a](https://github.com/openfoodfacts/openfoodfacts-web/commit/3402c5ad0a81042cdcae863146501c38c1f3bde7))
+* Update open-pet-food-facts-mobile-app.html ([6b40c68](https://github.com/openfoodfacts/openfoodfacts-web/commit/6b40c685722e07388eaaeba587e2c58098e3c814))
+* Update open-products-facts-mobile-app.html ([a71cde5](https://github.com/openfoodfacts/openfoodfacts-web/commit/a71cde53956d7cb709c10bc7ce62368f9ebb7a61))
+
 ## [1.4.1](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.4.0...v1.4.1) (2026-08-14)
 
 
