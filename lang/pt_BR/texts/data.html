@@ -20,12 +20,6 @@ especialmente a atribuição e a repartição sob a mesma condição de trabalho
 <h3>Despejo MongoDB</h3>
 
 <p>Os dados de todos os produtos estão disponíveis em um despejo de banco de dados do MongoDB.</p>
-<!--
-<h4>Why you'd want to use it: </h4>
-<ul>
- <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
-</ul>
-</p>-->
 <dl>
  <dt>Hiperligação</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
@@ -58,12 +52,12 @@ especialmente a atribuição e a repartição sob a mesma condição de trabalho
 
 <p>Uma versão simplificada do dump JSONL também está disponível no formato <a href="https://parquet.apache.org/">Parquet</a>. Durante a conversão, filtramos colunas que contêm informações duplicadas, são usadas para depuração interna ou que são simplesmente irrelevantes para os usuários.</p>
     
-<p>O formato Parquet provou ser útil:<p> 
+<p>O formato Parquet provou ser útil:</p> 
 
 <ul>
-<li>Os dados são organizados por coluna, e não por linha, o que economiza espaço de armazenamento e acelera as consultas de análise, por exemplo, você pode selecionar apenas as colunas que você se importa, otimizando o desempenho das consultas, mesmo em computadores de entrada.</li>
+<li>Os dados são organizados por coluna em vez de linhas, o que economiza espaço de armazenamento e acelera as consultas analíticas. Ou seja, você pode selecionar apenas as colunas de que precisa, otimizando o desempenho das consultas, mesmo em computadores de entrada.</li>
 <li>Compressão e descompressão de dados altamente eficientes, o que o torna ideal para armazenar e compartilhar grandes conjuntos de dados de qualquer tipo,</li>
-<li>Suporta tipos de dados complexos e estruturas de dados aninhadas avançadas.</li>
+<li>Oferece suporte a tipos de dados complexos e estruturas de dados aninhadas avançadas.</li>
 </ul>
 
 <p>O conjunto de dados está disponível no <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, um ecossistema colaborativo de aprendizado de máquina onde desenvolvedores e pesquisadores podem compartilhar modelos e conjuntos de dados.</p>
@@ -74,7 +68,7 @@ especialmente a atribuição e a repartição sob a mesma condição de trabalho
  </dd>
 </dl>
 
-</p>Encontre mais informações na <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, incluindo diretrizes para reutilização de dados e exemplos de consultas para começar.</p>
+<p>Encontre mais informações na <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, incluindo diretrizes para reutilização de dados e exemplos de consultas para começar.</p>
 
 <h3>Exportação de dados RDF</h3>
 <p>Os dados de todos os produtos, ou de alguns dos produtos, podem ser baixados no formato CSV (legível com OpenOffice, Excel e muitos outros softwares de planilhas)
@@ -126,22 +120,22 @@ Esta API não é ativamente mantida e não está oficialmente documentada.
 <h3>Princípios gerais para deixar seus usuários felizes</h3>
 <ul>
 <li>Você pode pesquisar informações sobre produtos, incluindo muitos valores calculados úteis.</li>
-<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
-<li>Pode também implementar o fluxo completo para que recebam imediatamente o resultado com algum esforço do seu lado.</li>
+<li>Se você não conseguir obter informações sobre um produto específico, pode pedir que seu usuário envie fotos e dados, que serão processados pela IA do Open Food Facts e colaboradores para obter o resultado computado que você deseja mostrar-lhe.</li>
+<li>Você também pode implementar o fluxo completo para eles obterem o resultado imediatamente, com pouco esforço da parte deles.</li>
 </ul>
 
 <h3>Se os usuários esperam imediatamente um resultado (por exemplo, aplicativos de nutrição)</h3>
 <ul>
-<li>Enviar fotos (frente/nutrição/ingredientes): coisa mais indolor para seus usuários</li>
-<li>O Open Food Facts IA - Robotoff - irá gerar alguns dados derivados das fotos</li>
+<li>Enviar fotos (frente/tabela nutricional/ingredientes): a opção que dá menos trabalho aos seus usuários</li>
+<li>A IA do Open Food Facts - Robotoff - irá gerar alguns dados derivados das fotos</li>
 <li>Ao longo do tempo, outros aplicativos, e a comunidade do Open Food Facts preencherão as lacunas de dados</li>
 </ul>
 
 <h3>Se os seus usuários não esperam resultados imediatamente (ex., apps de inventário)</h3>
 <ul>
-<li>Envie informações nutricionais + categoria &gt; obtenha Nutri-Score</li>
-<li>Envie ingredientes &gt; obtenha o grupo NOVA (sobre ultraprocessamento de alimentos), aditivos, alérgenos, ingredientes normalizados, vegan, vegetariano&hellip;</li>
-<li>Envie categoria + rótulos &gt; em breve obtenha o Eco-Score (sobre impacto ambiental)</li>
+<li>Enviar a tabela nutricional + categoria&gt; receba o Nutri-Score</li>
+<li>Enviar os ingredientes &gt; obter o grupo NOVA (sobre o ultraprocessamento dos alimentos), aditivos, alérgenos, ingredientes normalizados, vegano, vegetariano&hellip;</li>
+<li>Enviar a categoria + rótulos &gt; obtenha o Eco-score (sobre impacto ambiental)</li>
 </ul>
 
 <h3>Aplicativo móvel Android/iPhone/Flutter</h3>
@@ -149,15 +143,15 @@ Esta API não é ativamente mantida e não está oficialmente documentada.
 <p>O código para o aplicativo móvel oficial do Open Food Facts está disponível no GitHub
 <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
 <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
-<a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>
+<a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
 
-<p>We look to turn the deprecated Kotlin and Swift codebases into Kotlin and Swift SDKs, help welcome :-)</p>
+<p>Queremos transformar as bases de código obsoletas do Kotlin e do Swift em SDKs do Kotlin e do Swift. Qualquer ajuda é bem-vinda :-)</p>
 <p>O aplicativo permite que os usuários digitalizem o código de barras dos produtos, para visualizar as informações do produto e tirar e enviar fotos e dados dos produtos que faltam.</p>
 <p>Está convidado a reutilizar o código (é open source) e nos ajudar a melhorá-lo, para todos, no planeta inteiro.</p>
 
 <h3>SDKs</h3>
 <!-- TODO: Install locally to get icons -->
-<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">-->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"> -->
 
             <div class="grid-x">
                 <div class="cell small-12 medium-6 large-4">
@@ -199,7 +193,7 @@ Esta API não é ativamente mantida e não está oficialmente documentada.
                     </tr>
                      <tr>
                         <td data-label="Icon"><i class="devicon-go-plain"></i></td>
-                        <td data-label="Language / Framework">Go</td>
+                        <td data-label="Language / Framework">Ir</td>
                         <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-go" target="_blank" rel="noopener noreferrer">GitHub</a></td>
                         <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C14LGGCUV" target="_blank" rel="noopener noreferrer">Canal do Slack</a></td>
                     </tr>
@@ -222,9 +216,9 @@ Esta API não é ativamente mantida e não está oficialmente documentada.
                         <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9" target="_blank" rel="noopener noreferrer">Canal do Slack</a></td>
                     </tr>
                      <tr>
-                        <td data-label="Icon"><i class="devicon-nodejs-plain"></i></td>
-                        <td data-label="Language / Framework">NodeJS</td>
-                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-nodejs" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Icon"><i class="devicon-javascript-plain"></i></td>
+                        <td data-label="Language / Framework">JavaScript</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-js" target="_blank" rel="noopener noreferrer">GitHub</a></td>
                         <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1JQQ28P8" target="_blank" rel="noopener noreferrer">Canal do Slack</a></td>
                     </tr>
                      <tr>

@@ -1,7 +1,7 @@
 <h1 class="emphasized-title">Gegevens</h1>
 
 <h2 class="emphasized-title">Voorwaarden voor hergebruik</h2>
-<p>De Open Food Facts-database is beschikbaar onder de <a href="https://opendatacommons.org/licenses/odbl/1.0/"> Open Database-licentie </a>. De individuele inhoud van de database is beschikbaar onder de <a href="https://opendatacommons.org/licenses/dbcl/1.0/"> database-inhoudslicentie </a>. De productfoto's zijn beschikbaar onder de <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en"> Creative Commons Naamsvermelding Gelijk delen </a> licentie.
+<p>De Open Food Facts-database is beschikbaar onder de <a href="https://opendatacommons.org/licenses/odbl/1.0/"> Open Database-licentie </a>. De individuele inhoud van de database is beschikbaar onder de <a href="https://opendatacommons.org/licenses/dbcl/1.0/"> database-inhoudslicentie </a>. De productfoto's zijn beschikbaar onder de <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.nl"> Creative Commons Naamsvermelding Gelijk delen </a> licentie.
 De foto's kunnen grafische elementen bevatten die onderhevig zijn aan auteursrechten of andere rechten, die in sommige gevallen kunnen worden gereproduceerd (citaatrechten of redelijk gebruik).</p>
 
 <p>Lees alsjeblieft <a href="https://world.openfoodfacts.org/terms-of-use">Voorwaarden voor gebruik en hergebruik</a> voordat u de gegevens opnieuw gebruikt.</p>
@@ -19,12 +19,6 @@ De foto's kunnen grafische elementen bevatten die onderhevig zijn aan auteursrec
 <h3>MongoDB-dump</h3>
 
 <p>Alle productdata is beschikbaar in een MongoDB-databasedump.</p>
-<!--
-<h4>Why you'd want to use it: </h4>
-<ul>
- <li>This is more comprehensive than CSV exports, if you are looking to advanced use cases.</li>
-</ul>
-</p>-->
 <dl>
  <dt>Link</dt>
  <dd><a href="https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz">https://static.openfoodfacts.org/data/openfoodfacts-mongodbdump.gz</a></dd>
@@ -57,7 +51,7 @@ De foto's kunnen grafische elementen bevatten die onderhevig zijn aan auteursrec
 
 <p>Een vereenvoudigde versie van de JSONL dump is ook beschikbaar in het <a href="https://parquet.apache.org/">Parquet formaat</a>. Tijdens de convertering hebben we kolommen gefilterd die dubbele informatie bevatten, gebruikt worden voor interne debugging of simpelweg irrelevant zijn voor gebruikers.</p>
     
-<p>Het Parquet-formaat blijkt handig te zijn:<p> 
+<p>Het Parquet-formaat blijkt handig te zijn:</p> 
 
 <ul>
 <li>Gegevens worden georganiseerd per kolom, in plaats van per rij, wat opslagruimte bespaart en analysequery's versnelt, d.w.z. u kunt alleen de kolommen selecteren die u belangrijk vindt, waardoor de queryprestaties worden geoptimaliseerd, zelfs op instapcomputers.</li>
@@ -73,7 +67,7 @@ De foto's kunnen grafische elementen bevatten die onderhevig zijn aan auteursrec
  </dd>
 </dl>
 
-</p>Meer informatie vindt u in de <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, inclusief richtlijnen voor hergebruik van gegevens en voorbeeldquery's om aan de slag te gaan.</p>
+<p>Meer informatie vindt u in de <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">Wiki</a>, inclusief richtlijnen voor hergebruik van gegevens en voorbeeldquery's om aan de slag te gaan.</p>
 
 <h3>CSV-gegevens exporteren</h3>
 <p>Gegevens van alle producten, of een deel van de producten, kunnen worden gedownload in CSV-formaat (leesbaar met LibreOffice, Excel en vele andere software)
@@ -124,28 +118,28 @@ Deze API wordt niet actief onderhouden en is niet officieel gedocumenteerd.
 
 <h3>Algemene principes om uw gebruikers blij te maken</h3>
 <ul>
-<li>Je kunt op zoek gaan naar productinformatie, inclusief veel nuttige berekende productwaarden.</li>
-<li>DART: <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub</a></li>
-<li>Je kunt ook de volledige flow implementeren zodat ze met enige moeite direct resultaat krijgen.</li>
+<li>Je kunt op zoek gaan naar productinformatie, inclusief veel nuttig berekende productwaarden.</li>
+<li>Als je geen informatie over een specifiek product kunt vinden, kun je je gebruiker vragen foto’s en gegevens op te sturen. Deze worden vervolgens verwerkt door de AI van Open Food Facts en door bijdragers, zodat je het berekende resultaat kunt weergeven dat je hen wilt laten zien.</li>
+<li>Je kunt het hele proces ook zo inrichten dat ze met een beetje moeite van hun kant meteen het resultaat krijgen.</li>
 </ul>
 
 <h3>Als jouw gebruikers niet onmiddellijk een resultaat verwachten (bijvoorbeeld inventaris-apps)</h3>
 <ul>
-<li>Foto's indienen (voorkant/voeding/ingrediënten): het gemakkelijkst voor uw gebruikers</li>
-<li>De Open Food Facts - AI Robotoff - zal gegevens uit de foto's afleiden</li>
+<li>Stuur foto's in (voorkant/voedingswaarde/ingrediënten): dit is de gemakkelijkste manier voor je gebruikers</li>
+<li>De Open Food Facts AI - Robotoff - zal enkele afgeleide gegevens van de foto's genereren</li>
 <li>Na verloop van tijd zullen andere apps en de Open Food Facts-community de lacunes in de gegevens opvullen</li>
 </ul>
 
 <h3>Als jouw gebruikers direct een resultaat verwachten (bijvoorbeeld Voedingswaarden- apps)</h3>
 <ul>
-<li>Stuur voedingswaarden en categorie &gt; krijg de Nutri-Score</li>
+<li>Verstuur voedingswaarden en categorie &gt; krijg de Nutri-Score</li>
 <li>Verstuur ingrediënten &gt; krijg de NOVA-groep (over voedsel ultra-bewerking), additieven, allergenen, genormaliseerde ingrediënten, vegan, vegetarisch&hellip;</li>
-<li>Voer categorie en labels in &gt; krijg binnenkort de Eco-Score (over milieu-impact)</li>
+<li>Verstuur categorie en labels &gt; krijg binnenkort de Eco-Score (over milieu-impact)</li>
 </ul>
 
 <h3>Mobiele Android- en iPhone-app</h3>
 
-<p>De code voor de mobiele app Open Food Facts is beschikbaar op GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> en <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).
+<p>De code voor de mobiele app Open Food Facts is beschikbaar op GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> en <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).</p>
 
 <p>We willen de verouderde Kotlin- en Swift-codebases omzetten in Kotlin- en Swift-SDK's. Hulp is welkom :-)</p>
 <p>De app staat gebruikers toe om de barcode van producten te scannen, om de productinformatie te bekijken en om foto's en gegevens te bekijken en te verzenden voor ontbrekende producten.</p>
@@ -153,7 +147,7 @@ Deze API wordt niet actief onderhouden en is niet officieel gedocumenteerd.
 
 <h3>SDK's</h3>
 <!-- TODO: Install locally to get icons -->
-<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">-->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"> -->
 
             <div class="grid-x">
                 <div class="cell small-12 medium-6 large-4">
@@ -218,9 +212,9 @@ Deze API wordt niet actief onderhouden en is niet officieel gedocumenteerd.
                         <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C045VU7NXS9" target="_blank" rel="noopener noreferrer">Slack-kanaal</a></td>
                     </tr>
                      <tr>
-                        <td data-label="Icon"><i class="devicon-nodejs-plain"></i></td>
-                        <td data-label="Language / Framework">NodeJS</td>
-                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-nodejs" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                        <td data-label="Icon"><i class="devicon-javascript-plain"></i></td>
+                        <td data-label="Language / Framework">JavaScript</td>
+                        <td data-label="Resources"><a href="https://github.com/openfoodfacts/openfoodfacts-js" target="_blank" rel="noopener noreferrer">GitHub</a></td>
                         <td data-label="Discussion"><a href="https://app.slack.com/client/T02KVRT1Q/C1JQQ28P8" target="_blank" rel="noopener noreferrer">Slack-kanaal</a></td>
                     </tr>
                      <tr>
