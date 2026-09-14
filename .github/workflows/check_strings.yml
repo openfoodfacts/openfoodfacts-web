@@ -1,4 +1,6 @@
 name: Check Forbidden Strings in index.html
+permissions:
+  contents: read
 
 on:
   push:
@@ -8,13 +10,16 @@ on:
     paths:
       - 'lang/**/texts/index.html'
 
+permissions:
+  contents: read
+
 jobs:
   check_strings:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Install prerequisites
         run: sudo apt-get install -y grep
