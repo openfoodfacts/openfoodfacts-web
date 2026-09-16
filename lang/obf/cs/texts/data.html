@@ -26,8 +26,7 @@ Mohou obsahovat grafické prvky podléhající autorským právům nebo jiným p
 <h3>Be on the legal side: The technical route to compliance</h3>
 <p>We want everyone to succeed with their projects while keeping data open for everyone! To ensure your application or reuse complies with the license and our infrastructure policies, please follow this technical checklist (see also our <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/tutorials/license-be-on-the-legal-side/">license compliance tutorial</a>):</p>
 <ul>
- <li><strong>Include a descriptive HTTP User-Agent:</strong> Always send a specific <code>User-Agent</code> header with your API calls, including your app name, version, and a contact email or URL (e.g., <code>User-Agent: YourAppName/1.0 (contact@example.com - https://example.com)</code>). This ensures we can get in touch with you if an issue arises instead of having to block your IP address.</li>
- <li><strong>Respect fair API usage (1 call = 1 user scan):</strong> The live API is meant for interactive queries triggered by real users. It is strictly forbidden to scrape or mass-crawl the live API.</li>
+ <li>If you want to use the API conforms strictly to <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/">the instructions given in the API documentation</a><li>
  <li><strong>Use bulk exports for offline, analytical, or caching needs:</strong> If you need access to all products or want to run complex queries, please download the nightly MongoDB dumps, CSV, or Parquet exports (described below) or build a <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/tutorials/creating-a-local-cache-of-open-food-facts-data/">local cache</a>.</li>
  <li><strong>Contribute back (Share-Alike in practice):</strong> In the spirit of the ODbL Share-Alike obligation, if your app allows users to add new products, update nutrition/ingredients, or submit photos, please send those contributions back to Open Beauty Facts via our API or SDKs. This ensures everyone benefits from continuous data improvements.</li>
  <li><strong>Prominent UI attribution:</strong> Clearly attribute Open Beauty Facts in your app or website UI (for example, on product pages, search screens, and in the "About" or "Settings" sections) with clickable links back to Open Beauty Facts and the ODbL license.</li>
@@ -73,7 +72,7 @@ Mohou obsahovat grafické prvky podléhající autorským právům nebo jiným p
 
 <p>Denní delta exporty jsou poskytovány za předchozích 14 dní. Seznam aktuálně dostupných delta souborů naleznete na adrese <a href="https://static.openbeautyfacts.org/data/delta/index.txt">https://static.openbeautyfacts.org/data/delta/index.txt</a>.</p>
 <p>Každý řádek představuje soubor, který je k dispozici na <code>https://static.openbeautyfacts.org/data/delta/{filename}</code>.</p>
-<p>Ukázalo se, že formát Parquet je vhodný:</p>
+<p>Soubor dat je k dispozici na <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, kolaborativním ekosystému strojového učení, kde mohou vývojáři a výzkumníci sdílet modely a datové sady.</p>
 <p>Vezměte prosím na vědomí, že vzhledem k povaze <code>mongoexport</code>vám delta soubory nemohou říci o smazaných produktech. Chcete-li odebrat odstraněné produkty z databáze, musíte importovat celý výpis MongoDB.</p>
 
 <h3>Export dat RDF</h3>
@@ -156,6 +155,8 @@ Mohou obsahovat grafické prvky podléhající autorským právům nebo jiným p
 <a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - nová dokumentace OpenAPI - Work in Progress</a>
  </li>
 </ul>
+
+[[texts/api-donation-include.html]]
 <h3 class="emphasized-title">Obecné zásady, aby byli vaši uživatelé spokojeni</h3>
 Těšíme se na dokončení dokumentace k API, přidání případů užití a automatizaci generování SDK. Pokud jste znalci OpenAPI, rádi si necháme pomoct.
 <!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
@@ -169,11 +170,11 @@ Těšíme se na dokončení dokumentace k API, přidání případů užití a a
 
 <p>API můžete používat i v produkčních aplikacích, pokud 1 volání API = 1 skutečné skenování uživatelem.
 Jakýkoli pokus o scraping databáze pomocí API bude s největší pravděpodobností zablokován, protože kompletní denní exporty jsou k dispozici na této stránce.</p>
-<p>Můžete se podívat na <a href="https://support.openfoodfacts.org/help/fr-fr/12">nejčastější dotazy týkající se API a exportů dat</a> a <a href="https://support.openfoodfacts.org/help/fr-fr">běžné otázky týkající se Open Food Facts</a></p>
+<p>Snažíme se z deprecated Kotlin a Swift codebases udělat Kotlin a Swift SDK, pomoc vítána :-)</p>
 <p>Kód pro mobilní aplikaci Open Beauty Facts je k dispozici na GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> a <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).</p>
 
 <h3 class="emphasized-title">Obecné zásady, aby byli vaši uživatelé spokojeni</h3>
-<p>Snažíme se z deprecated Kotlin a Swift codebases udělat Kotlin a Swift SDK, pomoc vítána :-)</p>
+<p>Můžete <a href="https://github.com/openfoodfacts/api-documentation/discussions">otevřít vlákno v našem úložišti dokumentace API</a></p>
 <p>Můžete <a href="https://github.com/openfoodfacts/api-documentation/discussions">otevřít vlákno v našem úložišti dokumentace API</a></p>
 Toto API není aktivně udržováno a není oficiálně zdokumentováno.
 
