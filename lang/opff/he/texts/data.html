@@ -51,7 +51,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>מידע על השדות השונים להיטל ה־MongoDB ומערכי הייצוא ב־CSV זמין ב־<a href="https://static.openpetfoodfacts.org/data/data-fields.txt">https://world.openpetfoodfacts.org/data/data-fields.txt</a></p>
 
-<h3>יצוא נתונים של MongoDB</h3>
+<h3>יצוא נתונים ב־CSV</h3>
 
 <p>נתוני כל המוצרים שלנו זמינים במאגר ייצור נתונים של MongoDB.</p>
 <!--
@@ -87,7 +87,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 </dl>
 
 
-<h3>יצוא נתונים ב־CSV</h3>
+<h3>עקרונות כלליים</h3>
 
 <p>The dataset is available on <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, a collaborative Machine Learning ecosystem where developers and researchers can share models and datasets.</p>
 
@@ -111,7 +111,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>דרך הולמת לנצל את מסד הנתונים לרעה היא להשתמש ב־DuckDB, כלי ניתוחי פנים תהליכי שתוכנן לעבד כמויות גדולות של נתונים בשברירי שנייה. אפשר לקרוא את <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">הרשומה בבלוג שלנו</a> בה אנו חוקרים ומעבדים את מסד הנתונים של Open Pet Food Facts עם DuckDB</p>
 
-<h3>יצוא נתונים ב־CSV</h3>
+<h3>דרושה עזרה עם OpenAPI</h3>
 <p>הנתונים של כל המוצרים או חלקם, ניתנים להורדה בתבנית CSV (נתמכת על ידי LibreOffice, Excel ועוד תוכנות גיליונות נתונים) דרך <a href="https://world.openpetfoodfacts.org/cgi/search.pl">טופס החיפוש המתקדם</a>.</p>
 
 <dl>
@@ -121,7 +121,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>קידוד הקובץ הוא Unicode UTF-8. התו המפריד בין שדות הוא &lt;tab&gt; (טאב).</p>
 
-<h3>עקרונות כלליים</h3>
+<h3>תרומה לשיפור תיעוד ה־API וה־OpenAPI שלנו</h3>
 <p>מסד הנתונים זמין גם בתצורת RDF. אפשר לקרוא את ה<a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">הכרזה בצרפתית</a>.</p>
 
 <dl>
@@ -129,7 +129,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
  <dd><a href="https://world.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.rdf.gz">https://world.openpetfoodfacts.org/data/en.openpetfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
-<h3>דרושה עזרה עם OpenAPI</h3>
+<h3>XML API (לא נתמך)</h3>
 <p>אפשר להוריד את כל התמונות ואת תוצאות המרת תמונה לטקסט מהשרת שלך או מ־AWS (דרך התוכנית AWS Open Data). אפשר לפנות ל<a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/">תיעוד שלנו</a> כדי ללמוד עוד על איך להוריד תמונות.</p>
 
 
@@ -142,14 +142,14 @@ Products images are available under the <a href="https://creativecommons.org/lic
 <p>URL to read data for a product: https://world.openpetfoodfacts.org/api/v3/product/<em>[barcode]</em>.json</p>
 
 <p>לדוגמה: <a href="https://world.openpetfoodfacts.org/api/v3/product/737628064502.json">https://il.openpetfoodfacts.org/api/v3/product/737628064502.json</a></p>
-<p>לדוגמה: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+<p>דוגמה: <a href="https://world.openbeautyfacts.org/api/v2/product/737628064502.xml">https://world.openbeautyfacts.org/api/v2/product/737628064502.xml</a></p>
 
 <ul>
  <li>
 <a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - תיעוד OpenAPI חדש - עובדים על זה כרגע</a>
  </li>
 </ul>
-<h3 class="emphasized-title">API ניסיוני עם XML</h3>
+<h3 class="emphasized-title">אם המשתמשים שלך לא מצפים לתוצאות מיידית (למשל: יישומוני מאגרים)</h3>
 אנו נשמח מאוד לסיים את תיעוד ה־API, להוסיף מקרי בוחן ולייצר אוטומציה של יצירת SDK. אם OpenAPI זה הצד החזק שלך, מאוד נשמח לקבל עזרה.
 <!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
@@ -162,14 +162,11 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>אנו מזמינים אותך להשתמש ב־API למטרות פעילות מבצעית, כל עוד כל קריאת API שוות ערך לסריקה אמתית של משתמש.
 כל ניסיון לדלות את מסד הנתונים כולו דרך ה־API ייחסם כיוון שתוצאי ייצוא מלאים יומיים זמינים בעמוד זה ממש.</p>
-<p>כמו כן, שליחת כותרות HTTP עם קריאות ה־API שלך היא דרך מצוינת בה נוכל ליצור אתך קשר במקרה שיש תקלות כלשהן.</p>
-<p>הם יאפשרו לך לצרוך נתונים, כמו גם לאפשר למשתמשים שלך לתרום נתונים חדשים</p>
+<p>אנחנו שוקלים להפוך את בסיסי הקוד של Kotlin ו־Swift ל־SDKs של Kotlin ו־Swift, נשמח לעזרה :-)</p>
+<p>הקוד של היישומונים הרשמיים של Open Beauty Facts זמין ב־GitHub ‏(<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>,‏ <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> ו־<a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).</p>
 
-<h3 class="emphasized-title">עקרונות כלליים כדי לשמח את המשתמשים שלך</h3>
-<p>הקוד של היישומונים הרשמיים של Open Food Facts זמין ב־GitHub
- <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
+<h3 class="emphasized-title">אם המשתמשים שלך מצפים לתוצאות מיידית (למשל: יישומוני תזונה)</h3>
+<p>אפשר <a href="https://github.com/openfoodfacts/api-documentation/discussions">לפתוח שרשור במאגר תיעוד ה־API שלנו</a></p>
 <p>הם יאפשרו לך לצרוך נתונים, כמו גם לאפשר למשתמשים שלך לתרום נתונים חדשים</p>
 ה־API הזה לא מתוחזק באופן פעיל, ולא מתועד רשמית.
 
@@ -178,14 +175,14 @@ Products images are available under the <a href="https://creativecommons.org/lic
 <p>כנראה שיש לנו מעטפת לשפת הפיתוח המועדפת עליך. אם יש לנו, ניתן להשתמש בה ולשפר אותה. אם אין לנו, ניתן לעזור ביצירתה.</p>
 <p>אנו מזמינים אותך לעשות שימוש חוזר בקוד המקור (הפתוח) ולסייע לנו לשפר אותו, למען כולם, בכל רחבי העולם.</p>
 
-<h3>אם המשתמשים שלך לא מצפים לתוצאות מיידית (למשל: יישומוני מאגרים)</h3>
+<h3>יישומון Android/iPhone/Flutter לניידים</h3>
 <ul>
 <li>אפשר לחפש מידע על מוצרים, כולל מגוון ערכים שימושיים שחושבו לפי נוסחאות.</li>
 <li>If you can't get the information on a specific product, you can get your user to send photos and data, that will then be processed by Open Pet Food Facts AI and contributors to get the computed result you want to show them.</li>
 <li>אפשר גם לממש את כל הרצף כדי לקבל את התוצאות מיידית עם השקעה מסוימת מהצד שלהם.</li>
 </ul>
 
-<h3>אם המשתמשים שלך מצפים לתוצאות מיידית (למשל: יישומוני תזונה)</h3>
+<h3>ערכות SDK</h3>
 <ul>
 <li>להגיש תמונות (חזית/ערכים תזונתיים/רכיבים): הדבר הכי נוח למשתמשים שלך</li>
 <li>The Open Pet Food Facts AI - Robotoff - will generate some derived data from the photos</li>
