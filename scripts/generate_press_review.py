@@ -27,8 +27,10 @@ merged = load_press_items()
 print(f"Loaded {len(merged)} press review items!")
 
 # Generate HTML Template function
-def build_html(lang="fr"):
+def build_html(lang="fr", items=None):
     is_fr = (lang == "fr")
+    if items is None:
+        items = merged
     
     t_title = "📰 Revue de presse Open Food Facts" if is_fr else "📰 Open Food Facts in the Press"
     t_subtitle = "Toutes les mentions dans les médias, radios, télés et publications de 2012 à aujourd'hui." if is_fr else "All press, radio, TV, and media coverage of Open Food Facts from 2012 to today."
@@ -67,10 +69,10 @@ def build_html(lang="fr"):
     t_read_btn = "Consulter la source" if is_fr else "View Source"
 
     # Collect available years
-    years = sorted(list(set(int(item["date"][:4]) for item in merged if item.get("date") and len(item["date"]) >= 4)), reverse=True)
+    years = sorted(list(set(int(item["date"][:4]) for item in items if item.get("date") and len(item["date"]) >= 4)), reverse=True)
     year_options = "".join(f'<option value="{y}">{y}</option>' for y in years)
 
-    data_json = json.dumps(merged, ensure_ascii=False)
+    data_json = json.dumps(items, ensure_ascii=False)
 
     return f"""<style>
 .press-review-header {{
