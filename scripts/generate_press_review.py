@@ -1,193 +1,30 @@
 #!/usr/bin/env python3
-import csv, re, json, os
+import glob, json, os, re
 from urllib.parse import urlparse
+import yaml
 
-# 1. Load CSV items
-csv_items = []
-with open("data/press-review.csv", "r", encoding="utf-8") as f:
-    for row in csv.DictReader(f):
-        csv_items.append(row)
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+PRESS_DIR = os.path.join(REPO_ROOT, "data", "press-review")
+MERGED_JSON = os.path.join(REPO_ROOT, "data", "press-review-merged.json")
 
-# 2. Load old HTML items
-with open("lang/fr/texts/revue-de-presse-fr.html", "r", encoding="utf-8") as f:
-    content = f.read()
+def load_press_items():
+    if os.path.isdir(PRESS_DIR) and os.listdir(PRESS_DIR):
+        yaml_files = sorted(glob.glob(os.path.join(PRESS_DIR, "*.yaml")) + glob.glob(os.path.join(PRESS_DIR, "*.yml")))
+        items = []
+        for yf in yaml_files:
+            with open(yf, "r", encoding="utf-8") as f:
+                data = yaml.safe_load(f)
+                if isinstance(data, dict):
+                    items.append(data)
+        items.sort(key=lambda x: (str(x.get("date", "2000-01-01")), str(x.get("title", ""))), reverse=True)
+        return items
+    elif os.path.exists(MERGED_JSON):
+        with open(MERGED_JSON, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return []
 
-table_match = re.search(r"<table id=\"press_table\">(.*?)</table>", content, re.DOTALL)
-html_items = []
-if table_match:
-    rows = re.findall(r"<tr>(.*?)</tr>", table_match.group(1), re.DOTALL)
-    for r in rows:
-        if "<th>" in r: continue
-        tds = re.findall(r"<td[^>]*>(.*?)</td>", r, re.DOTALL)
-        if len(tds) >= 4:
-            media_type = re.sub("<[^<]+?>", "", tds[0]).strip()
-            title_td = tds[1].strip()
-            source = re.sub("<[^<]+?>", "", tds[2]).strip()
-            date = re.sub("<[^<]+?>", "", tds[3]).strip()
-            link_m = re.search(r"href=[\"\x27]([^\"]+)[\"\x27]", title_td)
-            link = link_m.group(1).strip() if link_m else ""
-            title = re.sub("<[^<]+?>", "", title_td).strip()
-            title = re.sub(r"\s*-\s*$", "", title)
-            html_items.append({
-                "type": media_type, "title": title, "link": link, "source": source, "date": date
-            })
-
-def norm_url(u):
-    if not u: return ""
-    u = u.strip().rstrip("/")
-    u = re.sub(r"^https?://(www\.)?", "", u)
-    return u.lower()
-
-csv_by_url = {norm_url(r["Link"]): r for r in csv_items if r.get("Link")}
-csv_by_title = {r["Title"].strip().lower(): r for r in csv_items if r.get("Title")}
-
-def clean_media_type(t):
-    t_low = t.lower()
-    if any(k in t_low for k in ["podcast", "radio"]):
-        return "podcast"
-    elif any(k in t_low for k in ["vidéo", "video", "tv", "web-conférence"]):
-        return "video"
-    elif any(k in t_low for k in ["rapport", "publication", "fiche", "lexique", "livre", "pdf", "communiqué"]):
-        return "study"
-    else:
-        return "article"
-
-merged = []
-
-for r in csv_items:
-    link = r.get("Link", "").strip()
-    domain = urlparse(link).netloc.lower().replace("www.", "") if link else ""
-    date_str = r.get("Date", "").strip()
-    
-    title = r.get("Title", "").strip()
-    if not date_str:
-        if "lexique" in title.lower():
-            date_str = "2018-05-15"
-        elif "yuka" in title.lower():
-            date_str = "2018-06-01"
-        elif "étiquettes" in title.lower():
-            date_str = "2017-10-18"
-        else:
-            date_str = "2018-01-01"
-    elif len(date_str) == 4:
-        date_str = f"{date_str}-01-01"
-    elif len(date_str) == 7:
-        date_str = f"{date_str}-01"
-        
-    source = r.get("Name of the Source", "").strip() or domain or "Presse"
-    
-    merged.append({
-        "date": date_str,
-        "source": source,
-        "title": title,
-        "link": link,
-        "domain": domain,
-        "type": clean_media_type(r.get("Nature source", "") or r.get("Support", "")),
-        "raw_type": r.get("Nature source", "").strip() or r.get("Support", "").strip() or "Article",
-        "lang": r.get("langue", "").strip().lower() or "fr",
-        "country": r.get("country", "").strip().lower() or "fra",
-        "author": r.get("Author", "").strip(),
-        "topic": r.get("Topic", "").strip(),
-        "verbatim": r.get("Verbatim", "").strip(),
-        "selected": bool(r.get("Selected ?", "").strip()),
-        "origin": "csv"
-    })
-
-# Add unique HTML items
-for h in html_items:
-    u = norm_url(h["link"])
-    t = h["title"].strip().lower()
-    if u and u in csv_by_url: continue
-    if t and t in csv_by_title: continue
-    
-    link = h["link"]
-    domain = urlparse(link).netloc.lower().replace("www.", "") if link else ""
-    d_raw = h["date"]
-    d_norm = ""
-    
-    m = re.search(r"(\d{1,2})/(\d{1,2})/(\d{4})", d_raw)
-    if m:
-        day = int(m.group(1))
-        month = int(m.group(2))
-        year = int(m.group(3))
-        if year < 2010:
-            url_m = re.search(r"/(\d{4})/", link)
-            if url_m:
-                d_norm = f"{url_m.group(1)}-01-01"
-            else:
-                d_norm = "2018-01-01"
-        else:
-            d_norm = f"{year:04d}-{month:02d}-{day:02d}"
-    else:
-        m_yr = re.search(r"(\d{4})", d_raw)
-        if m_yr:
-            y = m_yr.group(1)
-            dl = d_raw.lower()
-            if "janv" in dl: d_norm = f"{y}-01-01"
-            elif "févr" in dl: d_norm = f"{y}-02-01"
-            elif "mars" in dl: d_norm = f"{y}-03-01"
-            elif "avr" in dl: d_norm = f"{y}-04-01"
-            elif "mai" in dl: d_norm = f"{y}-05-01"
-            elif "juin" in dl: d_norm = f"{y}-06-01"
-            elif "juil" in dl: d_norm = f"{y}-07-01"
-            elif "août" in dl or "aout" in dl: d_norm = f"{y}-08-01"
-            elif "sept" in dl: d_norm = f"{y}-09-01"
-            elif "oct" in dl: d_norm = f"{y}-10-01"
-            elif "nov" in dl: d_norm = f"{y}-11-01"
-            elif "déc" in dl: d_norm = f"{y}-12-01"
-            else: d_norm = f"{y}-01-01"
-        else:
-            m_in_title = re.search(r"(\d{1,2})/(\d{1,2})/(\d{4})", h["title"])
-            if m_in_title:
-                d_norm = f"{int(m_in_title.group(3)):04d}-{int(m_in_title.group(2)):02d}-{int(m_in_title.group(1)):02d}"
-            else:
-                d_norm = "2012-06-01"
-                
-    source = h["source"] or domain or "Presse"
-    lang = "fr"
-    country = "fra"
-    if domain.endswith(".es") or "minutos.es" in domain:
-        lang = "es"
-        country = "esp"
-    elif domain.endswith(".ch") or "tdg.ch" in domain or "rts.ch" in domain:
-        country = "che"
-    elif domain.endswith(".be") or "lesoir.be" in domain:
-        country = "bel"
-    elif domain.endswith(".de"):
-        lang = "de"
-        country = "deu"
-    elif domain.endswith(".it"):
-        lang = "it"
-        country = "ita"
-    elif domain.endswith(".co.uk") or domain.endswith(".uk") or "theguardian" in domain:
-        lang = "en"
-        country = "gbr"
-        
-    merged.append({
-        "date": d_norm,
-        "source": source,
-        "title": h["title"],
-        "link": link,
-        "domain": domain,
-        "type": clean_media_type(h["type"]),
-        "raw_type": h["type"] or "Article",
-        "lang": lang,
-        "country": country,
-        "author": "",
-        "topic": "",
-        "verbatim": "",
-        "selected": False,
-        "origin": "html"
-    })
-
-# Sort newest first
-merged.sort(key=lambda x: x["date"], reverse=True)
-
-# Save JSON data
-with open("data/press-review-merged.json", "w", encoding="utf-8") as f:
-    json.dump(merged, f, ensure_ascii=False, indent=2)
-
-print(f"Loaded and normalized {len(merged)} press review items!")
+merged = load_press_items()
+print(f"Loaded {len(merged)} press review items!")
 
 # Generate HTML Template function
 def build_html(lang="fr"):
