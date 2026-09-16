@@ -26,8 +26,7 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
 <h3>Be on the legal side: The technical route to compliance</h3>
 <p>We want everyone to succeed with their projects while keeping data open for everyone! To ensure your application or reuse complies with the license and our infrastructure policies, please follow this technical checklist (see also our <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/tutorials/license-be-on-the-legal-side/">license compliance tutorial</a>):</p>
 <ul>
- <li><strong>Include a descriptive HTTP User-Agent:</strong> Always send a specific <code>User-Agent</code> header with your API calls, including your app name, version, and a contact email or URL (e.g., <code>User-Agent: YourAppName/1.0 (contact@example.com - https://example.com)</code>). This ensures we can get in touch with you if an issue arises instead of having to block your IP address.</li>
- <li><strong>Respect fair API usage (1 call = 1 user scan):</strong> The live API is meant for interactive queries triggered by real users. It is strictly forbidden to scrape or mass-crawl the live API.</li>
+ <li>If you want to use the API conforms strictly to <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/">the instructions given in the API documentation</a><li>
  <li><strong>Use bulk exports for offline, analytical, or caching needs:</strong> If you need access to all products or want to run complex queries, please download the nightly MongoDB dumps, CSV, or Parquet exports (described below) or build a <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/tutorials/creating-a-local-cache-of-open-food-facts-data/">local cache</a>.</li>
  <li><strong>Contribute back (Share-Alike in practice):</strong> In the spirit of the ODbL Share-Alike obligation, if your app allows users to add new products, update nutrition/ingredients, or submit photos, please send those contributions back to Open Products Facts via our API or SDKs. This ensures everyone benefits from continuous data improvements.</li>
  <li><strong>Prominent UI attribution:</strong> Clearly attribute Open Products Facts in your app or website UI (for example, on product pages, search screens, and in the "About" or "Settings" sections) with clickable links back to Open Products Facts and the ODbL license.</li>
@@ -73,7 +72,7 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
 
 <p>Ekspor delta harian disediakan selama periode 14 hari sebelumnya. Daftar file delta yang saat ini tersedia dapat ditemukan di <a href="https://static.openproductsfacts.org/data/delta/index.txt">https://static.openproductsfacts.org/data/delta/index.txt</a>.</p>
 <p>Setiap baris mewakili file yang tersedia di <code>https://static.openproductsfacts.org/data/delta/{filename}</code>.</p>
-<p>Format Parket telah terbukti praktis:</p>
+<p>Kumpulan data tersebut tersedia di <a href="https://huggingface.co/datasets/openfoodfacts/product-database">Hugging Face</a>, sebuah ekosistem Pembelajaran Mesin kolaboratif tempat para pengembang dan peneliti dapat berbagi model dan kumpulan data.</p>
 <p>Harap dicatat bahwa karena sifat <code>mongoexport</code>, berkas delta tidak dapat memberi tahu Anda tentang produk - produk yang dihapus. Untuk menghilangkan produk - produk yang dihapus dari basis data Anda, Anda akan harus mengimpor dump MongoDB lengkap.</p>
 
 <h3>Ekspor data JSONL</h3>
@@ -150,6 +149,8 @@ Mereka mungkin berisi unsur - unsur grafis yang tunduk pada hak cipta atau hak l
 <a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - dokumentasi OpenAPI baru - Sedang dalam Proses</a>
  </li>
 </ul>
+
+[[texts/api-donation-include.html]]
 <h3 class="emphasized-title">Jika para pengguna Anda tidak mengharapkan hasil segera (misalnya aplikasi Inventori)</h3>
 Kami ingin sekali menyelesaikan dokumentasi API, menambahkan kasus penggunaan, dan mengotomatiskan pembuatan SDK. Jika Anda adalah seorang ahli OpenAPI, Anda sangat dipersilakan untuk membantu.
 <!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
@@ -163,11 +164,11 @@ Kami ingin sekali menyelesaikan dokumentasi API, menambahkan kasus penggunaan, d
 
 <p>Anda dipersilahkan untuk menggunakan API untuk kasus - kasus produksi, selama 1 pemanggilan API = 1 pemindaian nyata oleh pengguna.
 Upaya apapun untuk mengikis basis data menggunakan API akan sangat mungkin diblokir, karena ekspor harian lengkap tersedia di halaman ini.</p>
-<p>Anda dapat melihat <a href="https://support.openfoodfacts.org/help/fr-fr/12">pertanyaan umum yang sering ditanyakan tentang API dan Ekspor Data</a> dan <a href="https://support.openfoodfacts.org/help/fr-fr">pertanyaan umum tentang Open Food Facts</a></p>
+<p>Kami ingin mengubah basis kode Kotlin dan Swift yang sudah tidak digunakan lagi menjadi Kotlin dan Swift SDK, mohon bantuannya :-)</p>
 <p>Kode untuk aplikasi seluler Open Beauty Products Facts tersedia di GitHub (<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>, <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> dan <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).</p>
 
 <h3 class="emphasized-title">Jika para pengguna Anda mengharapkan hasil yang cepat (misalnya aplikasi Nutrisi)</h3>
-<p>Kami ingin mengubah basis kode Kotlin dan Swift yang sudah tidak digunakan lagi menjadi Kotlin dan Swift SDK, mohon bantuannya :-)</p>
+<p>Anda dapat <a href="https://github.com/openfoodfacts/api-documentation/discussions">membuka utas di repositori dokumentasi API kami</a></p>
 <p>Anda dapat <a href="https://github.com/openfoodfacts/api-documentation/discussions">membuka utas di repositori dokumentasi API kami</a></p>
 API ini tidak dipelihara secara aktif, dan tidak didokumentasikan secara resmi.
 
