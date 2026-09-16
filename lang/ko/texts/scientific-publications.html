@@ -1,185 +1,1214 @@
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2>과학 출판물</h2>
-		<h4 class="subheader">연구에서의 식품 정보 공개: 연구자를 위한 출판물, 인용 및 자료</h4>
-	</div>
+<style>
+.sci-header {
+  margin: 1.75rem 0 1.25rem;
+}
+.sci-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+  margin: 1.25rem 0 1.5rem;
+}
+.sci-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  vertical-align: middle !important;
+  text-decoration: none !important;
+}
+
+/* Ecosystem Impact Hero Bar */
+.sci-impact-hero {
+  background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%);
+  border: 1px solid #bbf7d0;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.25rem auto 1.75rem;
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1.25rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+}
+.sci-stat-item {
+  text-align: center;
+  flex: 1 1 160px;
+}
+.sci-stat-number {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: #047857;
+  line-height: 1.1;
+  margin-bottom: 0.2rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+.sci-stat-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.15rem;
+}
+.sci-stat-sub {
+  font-size: 0.76rem;
+  color: #64748b;
+}
+.sci-stat-divider {
+  width: 1px;
+  height: 44px;
+  background: #cbd5e1;
+  display: none;
+}
+@media (min-width: 768px) {
+  .sci-stat-divider {
+    display: block;
+  }
+}
+
+/* Callout Banner */
+.sci-banner {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #0284c7;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.25rem auto 1.75rem;
+  max-width: 1200px;
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+.sci-banner-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+.sci-banner-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0369a1;
+  margin: 0;
+}
+.sci-banner-text {
+  font-size: 0.92rem;
+  color: #334155;
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+.sci-banner-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+.sci-chip-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.sci-chip-link:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+}
+
+/* Drawers */
+.sci-drawer {
+  display: none;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  text-align: left;
+}
+.sci-drawer.open {
+  display: block;
+  animation: sciFade 0.25s ease-out;
+}
+@keyframes sciFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.sci-drawer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin: 1.25rem 0;
+}
+.sci-drawer-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sci-drawer-card h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+.sci-drawer-card p {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.45;
+  margin: 0 0 1rem;
+}
+
+/* Filter Bar */
+.sci-filters-bar {
+  max-width: 1200px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.sci-search-wrap {
+  flex: 1 1 320px;
+  position: relative;
+}
+.sci-search-input {
+  width: 100% !important;
+  padding: 0.65rem 1rem 0.65rem 2.5rem !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 24px !important;
+  font-size: 0.95rem !important;
+  background: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+  margin-bottom: 0 !important;
+}
+.sci-search-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+  font-size: 1.15rem;
+}
+.sci-filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+.sci-select {
+  padding: 0.45rem 2rem 0.45rem 0.85rem !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 20px !important;
+  font-size: 0.88rem !important;
+  background: #ffffff !important;
+  color: #1e293b !important;
+  cursor: pointer;
+  margin-bottom: 0 !important;
+  height: auto !important;
+}
+
+/* Quick Topic Chips */
+.topic-chips-bar {
+  max-width: 1200px;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+.topic-chips-bar .chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 9999px;
+  padding: 0.38rem 0.85rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.topic-chips-bar .chip-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+.topic-chips-bar .chip-btn.active {
+  background: #0284c7;
+  border-color: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(2,132,199,0.25);
+}
+
+/* Multi Filter Panel */
+.multi-filter-panel {
+  display: none;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto 1.5rem;
+  text-align: left;
+}
+.multi-filter-panel.open {
+  display: block;
+  animation: sciFade 0.2s ease-out;
+}
+.multi-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+.multi-filter-col h4 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.6rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.3rem;
+}
+.filter-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.84rem;
+  color: #334155;
+  margin-bottom: 0.35rem;
+  cursor: pointer;
+}
+.filter-checkbox-label input {
+  margin: 0 !important;
+}
+
+/* Stats and Count */
+.sci-stats {
+  max-width: 1200px;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.92rem;
+  color: #64748b;
+}
+.sci-count {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Grid & Cards */
+.sci-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto 2.5rem;
+}
+.sci-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+.sci-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+  border-color: #cbd5e1;
+}
+.sci-card.highlighted {
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 3px rgba(2,132,199,0.2), 0 10px 22px rgba(0,0,0,0.08) !important;
+}
+.sci-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.sci-card-year {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #0284c7;
+  background: #e0f2fe;
+  padding: 0.15rem 0.55rem;
+  border-radius: 12px;
+}
+.sci-card-citations {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #b45309;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  padding: 0.15rem 0.55rem;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.sci-card-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.45rem;
+  line-height: 1.35;
+}
+.sci-card-title a {
+  color: inherit;
+  text-decoration: none;
+}
+.sci-card-title a:hover {
+  color: #0284c7;
+  text-decoration: underline;
+}
+.sci-card-authors {
+  font-size: 0.86rem;
+  color: #475569;
+  margin-bottom: 0.35rem;
+  line-height: 1.4;
+}
+.sci-card-journal {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+.sci-card-excerpt {
+  background: #f8fafc;
+  border-left: 3px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.82rem;
+  color: #334155;
+  line-height: 1.45;
+  margin: 0 0 0.85rem;
+  font-style: italic;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.sci-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+.sci-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.18rem 0.5rem;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #475569;
+}
+.sci-tag-theme { background: #ecfdf5; color: #047857; }
+.sci-tag-geo { background: #eff6ff; color: #1d4ed8; }
+
+.sci-card-footer {
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.sci-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.sci-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.28rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  transition: all 0.15s ease;
+}
+.sci-link-btn:hover {
+  background: #f8fafc;
+  color: #0284c7;
+  border-color: #0284c7;
+}
+.sci-details-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.28rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid #0284c7;
+  background: #0284c7;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.sci-details-btn:hover {
+  background: #0369a1;
+  border-color: #0369a1;
+  color: #ffffff;
+}
+
+/* Modal Overlay & Dialog */
+.sci-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  overflow-y: auto;
+}
+.sci-modal-overlay.open {
+  display: flex;
+  animation: sciModalFadeIn 0.2s ease-out;
+}
+@keyframes sciModalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.sci-modal-container {
+  background: #ffffff;
+  border-radius: 18px;
+  max-width: 720px;
+  width: 100%;
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.22);
+  text-align: left;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.sci-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #94a3b8;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+}
+.sci-modal-close:hover {
+  color: #0f172a;
+  background: #f1f5f9;
+}
+.sci-citation-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1.25rem 0;
+  font-family: monospace;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  position: relative;
+}
+.sci-copy-icon-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+</style>
+
+<div class="sci-header text-center">
+  <h1 class="title-2 emphasized-title">🔬 Scientific Publications Citing Open Food Facts</h1>
+  <h4 class="subheader">Explore academic research, epidemiological studies, and machine learning breakthroughs powered by Open Food Facts open data.</h4>
+  
+  <div class="sci-actions">
+    <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?title=%5BPublication%5D+New+Scientific+Paper%3A+&labels=science%2Cdocumentation&body=%23%23%23+%F0%9F%93%96+Paper+Title%0A%3C%21--+Enter+full+article+title+--%3E%0A%0A%23%23%23+%F0%9F%91%A8%E2%80%8D%F0%9F%94%AC+Authors+%26+Journal%0A-+Authors%3A+%0A-+Journal+%2F+Conference%3A+%0A-+Year%3A+%0A-+DOI%3A+%0A-+URL%3A+%0A%0A%23%23%23+%F0%9F%94%AC+Open+Food+Facts+Usage+%26+Findings%0A%3C%21--+How+did+this+study+use+Open+Food+Facts+data%3F+--%3E%0A" target="_blank" rel="noopener noreferrer" class="button round primary small sci-btn">
+      <span class="material-icons">add_circle</span> 🚀 Submit a Publication
+    </a>
+    <a href="https://github.com/openfoodfacts/openfoodfacts-web/tree/main/data/scientific_publications" target="_blank" rel="noopener noreferrer" class="button round secondary small sci-btn">
+      <span class="material-icons">edit_note</span> ✏️ Propose an Edit (PR)
+    </a>
+    <a href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22open+food+facts%22+OR+%22openfoodfacts%22&btnG=" target="_blank" rel="noopener noreferrer" class="button round secondary small sci-btn">
+      <span class="material-icons">school</span> 🎓 Google Scholar
+    </a>
+    <button type="button" class="button round secondary small sci-btn" onclick="toggleSciDrawer('citeDrawer')">
+      <span class="material-icons">format_quote</span> 📖 How to Cite OFF
+    </button>
+    <button type="button" class="button round secondary small sci-btn" onclick="toggleSciDrawer('resourcesDrawer')">
+      <span class="material-icons">dataset</span> 📚 Researcher Resources
+    </button>
+    <a href="https://link.openfoodfacts.org/form-web-sci-en" target="_blank" rel="noopener noreferrer" class="button round small sci-btn" style="background: #0284c7; border-color: #0284c7; color: #ffffff;">
+      <span class="material-icons">videocam</span> 🎥 Researcher Webinars
+    </a>
+  </div>
 </div>
 
-<div class="row">
-	<div class="large-12 columns">
-		<p>2012년 이후, 오픈 푸드 팩츠는 영양, 환경, 공중 보건 및 기타 여러 분야의 연구에 식품 데이터를 활용하는 전 세계 연구자들에게 귀중한 자료가 되었습니다. 저희 공개 데이터베이스는 수백 편의 과학 논문에서 인용되었습니다.</p>
-	</div>
+<!-- Impact Hero Stats Bar -->
+<div class="sci-impact-hero">
+  <div class="sci-stat-item">
+    <div class="sci-stat-number">129+</div>
+    <div class="sci-stat-label">Indexed Publications</div>
+    <div class="sci-stat-sub">Curated in this showcase</div>
+  </div>
+  <div class="sci-stat-divider"></div>
+  <div class="sci-stat-item">
+    <div class="sci-stat-number">4,522+</div>
+    <div class="sci-stat-label">Cumulative Citations</div>
+    <div class="sci-stat-sub">Academic impact & reach</div>
+  </div>
+  <div class="sci-stat-divider"></div>
+  <div class="sci-stat-item">
+    <div class="sci-stat-number">600+</div>
+    <div class="sci-stat-label">Google Scholar Papers</div>
+    <div class="sci-stat-sub">Since 2012</div>
+  </div>
+  <div class="sci-stat-divider"></div>
+  <div class="sci-stat-item">
+    <div class="sci-stat-number">100%</div>
+    <div class="sci-stat-label">Open Science & ODbL</div>
+    <div class="sci-stat-sub">Freely accessible open data</div>
+  </div>
 </div>
 
-<div class="row text-center">
-	<div class="panel callout">
-		<h3>연구자를 위한 자료</h3>
-		<p>연구 프로젝트의 일환으로 Open Food Facts를 사용하고 있거나 사용을 고려하고 계신가요?</p>
-		<p>궁금한 점이 있으면 <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>로 알려주세요.</p>
-		<p>저희는 연구팀과 협력하여 어떻게 연구를 지원할 수 있을지 모색하게 되어 기쁩니다.</p>
-	</div>
+<!-- Callout Banner for Research Teams -->
+<div class="sci-banner">
+  <div class="sci-banner-header">
+    <span class="material-icons" style="color: #0284c7; font-size: 1.6rem;">biotech</span>
+    <h3>📢 Conducting research with Open Food Facts? Partner with us!</h3>
+  </div>
+  <p class="sci-banner-text">We support academic and clinical research teams (epidemiology, NLP, nutritional profiling, consumer behavior) with custom data extracts, API access, and targeted scan campaigns.</p>
+  <div class="sci-banner-links">
+    <a href="mailto:contact@openfoodfacts.org" class="sci-chip-link">✉️ contact@openfoodfacts.org</a>
+    <a href="/data" class="sci-chip-link">💾 Download Database Dumps</a>
+    <a href="https://wiki.openfoodfacts.org/Open_Food_Facts_and_Science" target="_blank" rel="noopener noreferrer" class="sci-chip-link">📖 Science Wiki</a>
+    <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?title=%5BPublication%5D+New+Scientific+Paper%3A+&labels=science%2Cdocumentation" target="_blank" rel="noopener noreferrer" class="sci-chip-link">🚀 Submit Your Publication</a>
+  </div>
 </div>
 
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2>Open Food Facts를 인용한 출판물</h2>
-		<h4 class="subheader">저희 데이터베이스를 참조한 과학 논문을 살펴보세요.</h4>
-	</div>
+<!-- Drawer: How to Cite Open Food Facts -->
+<div class="sci-drawer" id="citeDrawer">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="margin: 0; font-size: 1.25rem; color: #0f172a;">How to Cite Open Food Facts in Academic Publications</h3>
+    <button type="button" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;" onclick="toggleSciDrawer('citeDrawer')">&times;</button>
+  </div>
+  <p style="font-size: 0.92rem; color: #475569; margin: 0.5rem 0 1rem;">If you use Open Food Facts in your research, please cite our database and specify the snapshot date according to the ODbL license.</p>
+  
+  <div class="sci-drawer-grid">
+    <div class="sci-drawer-card">
+      <h4>Dataset Citation (APA Style)</h4>
+      <p style="background: #f1f5f9; padding: 0.75rem; border-radius: 8px; font-family: monospace; font-size: 0.82rem;">식품 정보 보기. (2025). 식품 정보 공개 데이터베이스 [데이터 세트]. 출처: https://world.openfoodfacts.org/data</p>
+    </div>
+    <div class="sci-drawer-card">
+      <h4>BibTeX Entry</h4>
+      <pre style="background: #f1f5f9; padding: 0.75rem; border-radius: 8px; font-size: 0.78rem; overflow-x: auto;">@misc{openfoodfacts_dataset,
+  author = {{Open Food Facts}},
+  title = {Open Food Facts Database},
+  year = {2025},
+  url = {https://world.openfoodfacts.org/data},
+  note = {Open Database License (ODbL)}
+}</pre>
+    </div>
+  </div>
 </div>
 
-<div class="row">
-	<div class="large-12 columns">
-		<p>Open Food Facts는 600편 이상의 과학 논문에서 인용되었습니다. 아래 링크를 통해 Open Food Facts 및 관련 프로젝트를 인용한 출판물을 찾아보실 수 있습니다.</p>
-		
-		<div class="panel">
-			<h4>구글 학술 검색</h4>
-			<ul>
-				<li><a href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22open+food+facts%22&btnG=" target="_blank" rel="noopener">"Open Food Facts"를 인용한 기사</a></li>
-				<li><a href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22openfoodfacts%22&btnG=" target="_blank" rel="noopener">"OpenFoodFacts"를 인용한 기사</a></li>
-				<li><a href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22o펜+뷰티+팩트%22&btnG=" target="_blank" rel="noopener">"Open Beauty Facts"를 인용한 기사</a></li>
-				<li><a href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22openbeautyfacts%22&btnG=" target="_blank" rel="noopener">"OpenBeautyFacts"를 인용한 기사</a></li>
-				<li><a href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22o펜+음식+상식%22+또는+%22o펜+음식상식%22+또는+%22o펜+뷰티+상식%22+또는+%22o펜+뷰티상식%22&btnG=" target="_blank" rel="noopener">모든 Open *Facts 프로젝트 (통합 검색)</a></li>
-			</ul>
-		</div>
-	</div>
+<!-- Drawer: Resources for Researchers -->
+<div class="sci-drawer" id="resourcesDrawer">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="margin: 0; font-size: 1.25rem; color: #0f172a;">Resources & Data Access for Researchers</h3>
+    <button type="button" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;" onclick="toggleSciDrawer('resourcesDrawer')">&times;</button>
+  </div>
+  <div class="sci-drawer-grid">
+    <div class="sci-drawer-card">
+      <div>
+        <h4>📦 Full Database Dumps</h4>
+        <p>Daily database snapshots in JSONL, CSV, MongoDB dumps, and Parquet for big-data and statistical analyses.</p>
+      </div>
+      <a href="/data" class="button small primary sci-btn">Access Data Page &rarr;</a>
+    </div>
+    <div class="sci-drawer-card">
+      <div>
+        <h4>🔌 REST API & SDKs</h4>
+        <p>Direct query access using official SDKs in Python (openfoodfacts-python), R, Dart, and JavaScript.</p>
+      </div>
+      <a href="https://wiki.openfoodfacts.org/API" target="_blank" rel="noopener noreferrer" class="button small secondary sci-btn">API Documentation &rarr;</a>
+    </div>
+    <div class="sci-drawer-card">
+      <div>
+        <h4>⚖️ Open Licensing (ODbL)</h4>
+        <p>Database contents available under Open Database License (ODbL) and images under Creative Commons CC-BY-SA.</p>
+      </div>
+      <a href="/terms-of-use" class="button small secondary sci-btn">Terms of Use &rarr;</a>
+    </div>
+  </div>
 </div>
 
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2>주요 연구 분야</h2>
-		<h4 class="subheader">저희 데이터는 다양한 연구 분야를 지원합니다.</h4>
-	</div>
+<!-- Quick Topic Filter Chips -->
+<div class="topic-chips-bar">
+  <button type="button" class="chip-btn active" onclick="selectSciTheme(this, 'all')">🌟 All Articles</button>
+  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'nutrition')">🥗 Nutrition & Nutri-Score</button>
+  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'ultra_processed')">🏭 NOVA & Ultra-Processed</button>
+  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'additives')">🧪 Additives & Emulsifiers</button>
+  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'computer_science')">🤖 AI & Data Science</button>
+  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'environment')">♻️ Environment & Eco-Score</button>
+  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'labeling')">🏷️ Labeling & Policy</button>
+  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'halal_kosher')">🕊️ Halal / Kosher</button>
+  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'allergies')">⚠️ Allergies</button>
 </div>
 
-<div class="row">
-	<div class="medium-4 columns">
-		<div class="panel">
-			<h4>영양 및 공중 보건</h4>
-			<p>연구자들은 저희 데이터베이스를 활용하여 영양 품질, 식품 구성 및 공중 보건 개입에 대한 연구를 진행합니다. Open Food Facts 데이터는 Nutri-Score 연구 및 평가에 매우 중요한 역할을 해왔습니다.</p>
-		</div>
-	</div>
-	<div class="medium-4 columns">
-		<div class="panel">
-			<h4>환경 영향</h4>
-			<p>식품의 탄소 발자국, 에코스코어 및 환경 지속 가능성에 대한 연구는 당사의 포괄적인 제품 정보 데이터베이스를 통해 많은 도움을 받을 수 있습니다.</p>
-		</div>
-	</div>
-	<div class="medium-4 columns">
-		<div class="panel">
-			<h4>식품 가공</h4>
-			<p>NOVA 분류를 활용한 초가공식품 연구는 저희가 제공하는 상세한 성분 목록과 가공 정보에 기반합니다.</p>
-		</div>
-	</div>
+<!-- Filter Bar -->
+<div class="sci-filters-bar">
+  <div class="sci-search-wrap">
+    <span class="material-icons sci-search-icon">search</span>
+    <input type="text" id="sciSearch" class="sci-search-input" placeholder="🔍 Search by title, author, journal, excerpt, keywords..." oninput="applySciFilters()">
+  </div>
+
+  <div class="sci-filter-controls">
+    <select id="sciSort" class="sci-select" onchange="applySciFilters()">
+      <option value="recent">📅 Most Recent First</option>
+      <option value="citations">⭐ Most Cited First</option>
+      <option value="usage">🔬 Deep OFF Integration</option>
+      <option value="title">Title (A-Z)</option>
+      <option value="journal">Journal / Conference (A-Z)</option>
+    </select>
+
+    <select id="sciYear" class="sci-select" onchange="applySciFilters()">
+      <option value="all">All Years</option>
+      <option value="2025">2025</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option>
+    </select>
+
+    <button type="button" class="button secondary small" style="margin: 0; border-radius: 20px; font-weight: 600;" onclick="toggleMultiFilterPanel()">
+      <span class="material-icons" style="font-size: 15px; vertical-align: -2px;">tune</span> Advanced Filters
+    </button>
+  </div>
 </div>
 
-<div class="row">
-	<div class="medium-4 columns">
-		<div class="panel">
-			<h4>컴퓨터 과학 및 인공지능</h4>
-			<p>머신러닝, 이미지 인식, 자연어 처리 및 데이터 과학 프로젝트는 당사의 공개 데이터 세트와 이미지를 활용합니다.</p>
-		</div>
-	</div>
-	<div class="medium-4 columns">
-		<div class="panel">
-			<h4>소비자 행동</h4>
-			<p>식품 선택, 라벨링 효과 및 식품 산업의 투명성을 조사하는 연구에서는 오픈 푸드 팩츠(Open Food Facts) 데이터를 활용합니다.</p>
-		</div>
-	</div>
-	<div class="medium-4 columns">
-		<div class="panel">
-			<h4>식품 정책</h4>
-			<p>정책 입안자와 연구원들은 당사의 투명한 데이터베이스를 활용하여 식품 규정, 라벨링 요건 및 업계 관행을 분석합니다.</p>
-		</div>
-	</div>
+<!-- Multi-Criteria Checkbox Panel -->
+<div class="multi-filter-panel" id="multiFilterPanel">
+  <div class="multi-filter-grid">
+    <div class="multi-filter-col">
+      <h4>Publication Type</h4>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_type" value="paper" onchange="applySciFilters()"> 📄 Journal Article</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_type" value="conference" onchange="applySciFilters()"> 🎤 Conference Proceedings</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_type" value="study" onchange="applySciFilters()"> 📊 Study / Report</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_type" value="thesis" onchange="applySciFilters()"> 🎓 Thesis / Dissertation</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_type" value="review" onchange="applySciFilters()"> 📑 Review Article</label>
+    </div>
+
+    <div class="multi-filter-col">
+      <h4>Reach & Citations</h4>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_cit" value="cit_10" onchange="applySciFilters()"> ⭐ 10+ citations</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_cit" value="cit_50" onchange="applySciFilters()"> 🌟 50+ citations</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_cit" value="cit_100" onchange="applySciFilters()"> 🏆 100+ citations</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_cit" value="has_doi" onchange="applySciFilters()"> 🔗 Has DOI link</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_cit" value="has_pdf" onchange="applySciFilters()"> 📑 Open Access PDF</label>
+    </div>
+
+    <div class="multi-filter-col">
+      <h4>Research Geography</h4>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_country" value="fra" onchange="applySciFilters()"> 🇫🇷 France</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_country" value="usa" onchange="applySciFilters()"> 🇺🇸 USA</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_country" value="deu" onchange="applySciFilters()"> 🇩🇪 Germany</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_country" value="esp" onchange="applySciFilters()"> 🇪🇸 Spain</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_country" value="ita" onchange="applySciFilters()"> 🇮🇹 Italy</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_country" value="bel" onchange="applySciFilters()"> 🇧🇪 Belgium</label>
+    </div>
+  </div>
+  <div style="margin-top: 1rem; text-align: right;">
+    <button type="button" class="button secondary small" onclick="resetSciFilters()" style="margin: 0;">Clear all criteria</button>
+  </div>
 </div>
 
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2>연구자를 위한 자료</h2>
-		<h4 class="subheader">Open Food Facts 사용 및 인용 방법</h4>
-	</div>
+<!-- Stats and Count -->
+<div class="sci-stats">
+  <div class="sci-count" id="sciCount">Loading publications...</div>
+  <button type="button" class="button secondary small" onclick="resetSciFilters()" style="margin: 0;">Reset All</button>
 </div>
 
-<div class="row">
-	<div class="large-12 columns">
-		<h3>데이터 접근</h3>
-		<p>Open Food Facts는 다양한 방식으로 데이터에 접근할 수 있도록 지원합니다.</p>
-		<ul>
-			<li><strong>데이터베이스 내보내기:</strong> 다양한 형식으로 전체 데이터베이스 덤프를 다운로드하세요. 자세한 내용은 <a href="/data">데이터 페이지</a> 를 참조하세요.</li>
-			<li><strong>API:</strong> 포괄적인 API를 통해 데이터베이스를 프로그래밍 방식으로 조회하세요. <a href="https://wiki.openfoodfacts.org/API" target="_blank" rel="noopener">API 문서</a></li>
-			<li><strong>검색 인터페이스:</strong> 고급 검색 및 필터링 기능을 통해 웹사이트에서 직접 제품을 탐색해 보세요.</li>
-		</ul>
+<!-- Publication Grid -->
+<div class="sci-grid" id="sciGrid"></div>
 
-		<h3>오픈 푸드 팩츠(Open Food Facts)를 인용함</h3>
-		<p>연구에 Open Food Facts를 사용하는 경우, 적절하게 출처를 인용해 주십시오. 다음은 권장되는 인용 형식입니다.</p>
-		<div class="panel">
-			<p><strong>웹사이트 인용:</strong></p>
-			<p>식품 정보 보기. (년도). 식품 정보 보기 - 세계. 출처: https://world.openfoodfacts.org</p>
-			<br>
-			<p><strong>데이터셋 인용:</strong></p>
-			<p>식품 정보 보기. (년도). 식품 정보 공개 데이터베이스 [데이터 세트]. 출처: https://world.openfoodfacts.org/data</p>
-		</div>
-
-		<h3>라이선스</h3>
-		<p>저희 데이터는 공개되어 있으며 자유롭게 재사용하실 수 있습니다.</p>
-		<ul>
-			<li>이 데이터베이스는 <a href="https://opendatacommons.org/licenses/odbl/1.0/" target="_blank" rel="noopener">오픈 데이터베이스 라이선스(ODbL)</a>에 따라 이용할 수 있습니다.</li>
-			<li>데이터베이스 콘텐츠는 <a href="https://opendatacommons.org/licenses/dbcl/1.0/" target="_blank" rel="noopener">데이터베이스 콘텐츠 라이선스(DbCL)</a>에 따라 보호됩니다.</li>
-			<li>제품 이미지는 <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.ko" target="_blank" rel="noopener">크리에이티브 커먼즈 저작자표시-동일조건변경허락(CC BY-SA 3.0)</a>라이선스 하에 이용 가능합니다.</li>
-		</ul>
-		<p>자세한 내용은 <a href="/terms-of-use">이용 및 재사용 약관</a> 을 참조하십시오.</p>
-
-		<h3>Data Quality</h3>
-		<p>크라우드소싱 데이터베이스의 특성상 데이터 품질이 다양할 수 있습니다. Open Food Facts를 연구 목적으로 사용할 때:</p>
-		<ul>
-			<li>데이터 완전성 점수 또는 데이터 품질 지표를 기준으로 필터링하는 것을 고려해 보세요.</li>
-			<li>정확성이 필수적인 경우 핵심 데이터 포인트를 검증하십시오.</li>
-			<li>데이터 범위에 지리적 및 시간적 편향이 있을 수 있음을 유의하십시오.</li>
-			<li>연구 데이터 품질 평가에 도움이 필요하시면 저희에게 연락주세요.</li>
-		</ul>
-
-		<h3>저희와 협력하세요</h3>
-		<p>저희는 연구팀과의 협력을 환영합니다.</p>
-		<ul>
-			<li><strong>데이터 요구 사항:</strong> 특정 데이터가 필요하거나 데이터베이스 구조 개선이 필요한 경우 알려주세요.</li>
-			<li><strong>스캔 파티:</strong> 연구 지역 또는 제품 카테고리에 맞는 타겟 데이터 수집 캠페인을 구성하세요</li>
-			<li><strong>결과 공유:</strong> 여러분의 연구 결과를 커뮤니티와 공유하고 지식 발전에 기여해 주세요</li>
-			<li><strong>도구 개발:</strong> 연구자와 소비자 모두에게 도움이 되는 도구 개발에 협력하세요</li>
-		</ul>
-		<p>협업 기회에 대해 논의하려면 <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a> 로 문의해 주세요.</p>
-	</div>
+<!-- Load More Pagination Bar -->
+<div id="sciLoadMoreWrap" style="display: none; justify-content: center; gap: 0.75rem; margin: 2rem 0 3.5rem;">
+  <button type="button" id="sciLoadMoreBtn" class="button round primary sci-btn" onclick="loadMoreSciCards()"></button>
+  <button type="button" class="button round secondary sci-btn" onclick="showAllSciCards()">Show all</button>
 </div>
 
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2>연구 영향</h2>
-	</div>
+<!-- Publication Details & Citation Modal -->
+<div id="sciModalOverlay" class="sci-modal-overlay" onclick="onSciModalBackdropClick(event)">
+  <div class="sci-modal-container" role="dialog" aria-modal="true">
+    <button type="button" class="sci-modal-close" onclick="closeSciModal()">&times;</button>
+    
+    <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 0.75rem;">
+      <span id="modalYearBadge" class="sci-card-year"></span>
+      <span id="modalCitBadge" class="sci-card-citations" style="display: none;"></span>
+      <span id="modalTypeBadge" class="sci-tag"></span>
+    </div>
+
+    <h2 id="modalTitle" style="font-size: 1.35rem; font-weight: 800; color: #0f172a; margin: 0 0 0.5rem; line-height: 1.35;"></h2>
+    <div id="modalAuthors" style="font-size: 0.95rem; color: #475569; margin-bottom: 0.4rem; font-weight: 600;"></div>
+    <div id="modalJournal" style="font-size: 0.9rem; font-style: italic; color: #64748b; margin-bottom: 1rem;"></div>
+
+    <!-- Excerpt with Open Food Facts Context -->
+    <div id="modalExcerptWrap" style="display: none;">
+      <div style="font-weight: 700; font-size: 0.88rem; color: #0f172a; margin-bottom: 0.35rem;">Excerpt referencing Open Food Facts:</div>
+      <div id="modalExcerpt" class="sci-card-excerpt" style="-webkit-line-clamp: unset; font-size: 0.88rem; padding: 0.85rem 1rem;"></div>
+    </div>
+
+    <!-- Links Grid -->
+    <div style="display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.25rem 0;" id="modalLinksGrid"></div>
+
+    <!-- Citation Box (BibTeX) -->
+    <div style="margin-top: 1.25rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+        <span style="font-weight: 700; font-size: 0.88rem; color: #0f172a;">BibTeX Entry:</span>
+        <button type="button" class="button small secondary" style="margin: 0; padding: 0.2rem 0.6rem; font-size: 0.78rem;" onclick="copyBibtex()"><span class="material-icons" style="font-size: 14px; vertical-align: -2px;">content_copy</span> Copy BibTeX</button>
+      </div>
+      <div id="modalBibtex" class="sci-citation-box"></div>
+    </div>
+
+    <!-- APA Citation Box -->
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+        <span style="font-weight: 700; font-size: 0.88rem; color: #0f172a;">Citation (APA Style):</span>
+        <button type="button" class="button small secondary" style="margin: 0; padding: 0.2rem 0.6rem; font-size: 0.78rem;" onclick="copyApa()"><span class="material-icons" style="font-size: 14px; vertical-align: -2px;">content_copy</span> Copy APA</button>
+      </div>
+      <div id="modalApa" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.85rem; color: #334155;"></div>
+    </div>
+
+    <!-- Propose edit box -->
+    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 1rem; margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;">
+      <div style="display: flex; align-items: center; gap: 6px; font-size: 0.86rem; color: #166534;">
+        <span class="material-icons" style="font-size: 18px; color: #16a34a;">edit_note</span>
+        <span>Notice inaccurate information or are you the author? Propose an update on GitHub.</span>
+      </div>
+      <a id="modalEditLink" href="https://github.com/openfoodfacts/openfoodfacts-web/tree/main/data/scientific_publications" target="_blank" rel="noopener noreferrer" class="button small secondary sci-btn" style="align-self: flex-start;">
+        <span class="material-icons" style="font-size: 14px;">edit</span> Edit this YAML on GitHub
+      </a>
+    </div>
+  </div>
 </div>
 
-<div class="row">
-	<div class="large-12 columns">
-		<p>Open Food Facts는 과학 연구 및 공중 보건에 상당한 기여를 해왔습니다.</p>
-		<ul>
-			<li>600편 이상의 과학 논문이 저희 데이터베이스를 인용했습니다.</li>
-			<li>프랑스의 EREN, 브라질의 USP, 벨기에의 리에주 대학교를 포함한 주요 연구팀들이 저희 데이터를 활용했습니다.</li>
-			<li>저희 데이터베이스는 정책 변화 및 공중 보건 권고안으로 이어지는 연구를 지원해 왔습니다.</li>
-			<li>우리는 국가 간 비교와 식품 품질 및 영양에 대한 글로벌 연구를 가능하게 했습니다.</li>
-		</ul>
-	</div>
-</div>
+<script>
+const IS_FR = false;
+const PUBLICATIONS_DATA = [{"id": "2025-ravandi-grocerydb-prevalence-of-processed-food-in", "title": "Grocerydb: Prevalence of processed food in grocery stores", "authors": ["Babak Ravandi", "Gordana Ispirova", "Michael Sebek", "Peter Mehler", "Albert-László Barabási", "Giulia Menichetti"], "journal": "medRxiv", "year": 2025, "month": 1, "doi": "10.1101/2022.04.23.22274217", "url": "https://pubmed.ncbi.nlm.nih.gov/38883708/", "num_citations": 9, "themes": ["computer_science"], "type": "paper", "usage_score": 2, "excerpt": "Comparison with USDA FoodData Central and Open Food Facts Databases\nGroceryDB is matched with the USDA FoodData Central Global Branded Food Products Database (BFPD) according to the product name and the ingredient lists. We find that BFPD only covered 44% of the products in GroceryDB with a Similarity Score ≥ 0.95 (Figure S4A). We performed that same analysis with OpenFoodFacts (OFF), finding OFF only covers 38% of GroceryDB (Figure S4B).", "featured": false, "bibtex": "@article{2025-ravandi-grocerydb-prevalence-of-processed-food-in,\n  title = {Grocerydb: Prevalence of processed food in grocery stores},\n  author = {Babak Ravandi and Gordana Ispirova and Michael Sebek and Peter Mehler and Albert-László Barabási and Giulia Menichetti},\n  journal = {medRxiv},\n  year = {2025},\n  doi = {10.1101/2022.04.23.22274217},\n}", "apa": "Babak Ravandi et al. (2025). Grocerydb: Prevalence of processed food in grocery stores. _medRxiv_. https://doi.org/10.1101/2022.04.23.22274217"}, {"id": "2025-gauthier-digitalization-and-power-shift-in-the-foo", "title": "Digitalization and power shift in the food market", "authors": ["C Gauthier", "F Bally"], "journal": "Journal of Business Research", "year": 2025, "month": 1, "volume": "186", "doi": "10.1016/j.jbusres.2024.115039", "url": "https://www.sciencedirect.com/science/article/abs/pii/S0148296324005435?via%3Dihub", "num_citations": 5, "themes": ["consumer_empowerment"], "type": "paper", "featured": false, "bibtex": "@article{2025-gauthier-digitalization-and-power-shift-in-the-foo,\n  title = {Digitalization and power shift in the food market},\n  author = {C Gauthier and F Bally},\n  journal = {Journal of Business Research},\n  year = {2025},\n  volume = {186},\n  doi = {10.1016/j.jbusres.2024.115039},\n}", "apa": "C Gauthier, F Bally (2025). Digitalization and power shift in the food market. _Journal of Business Research_, 186. https://doi.org/10.1016/j.jbusres.2024.115039"}, {"id": "2025-ali-fuzzy-logic-based-barcode-scanning-system-for", "title": "Fuzzy logic-based barcode scanning system for food products halal identification", "authors": ["NR Mavani MA Ismail N Abd Rahman JM Ali"], "journal": "Food Control", "year": 2025, "num_citations": 4, "themes": ["halal_kosher"], "type": "paper", "featured": false, "bibtex": "@article{2025-ali-fuzzy-logic-based-barcode-scanning-system-for,\n  title = {Fuzzy logic-based barcode scanning system for food products halal identification},\n  author = {NR Mavani MA Ismail N Abd Rahman JM Ali},\n  journal = {Food Control},\n  year = {2025},\n}", "apa": "NR Mavani MA Ismail N Abd Rahman JM Ali (2025). Fuzzy logic-based barcode scanning system for food products halal identification. _Food Control_."}, {"id": "2025-nordstrom-impact-of-different-carbon-labels-on-con", "title": "Impact of different carbon labels on consumer inference", "authors": ["AK Edenbrandt D Asioli J Nordström"], "journal": "Journal of Cleaner Production", "year": 2025, "num_citations": 2, "themes": ["labeling", "environment"], "type": "paper", "country": "fra", "featured": false, "bibtex": "@article{2025-nordstrom-impact-of-different-carbon-labels-on-con,\n  title = {Impact of different carbon labels on consumer inference},\n  author = {AK Edenbrandt D Asioli J Nordström},\n  journal = {Journal of Cleaner Production},\n  year = {2025},\n}", "apa": "AK Edenbrandt D Asioli J Nordström (2025). Impact of different carbon labels on consumer inference. _Journal of Cleaner Production_."}, {"id": "2025-ravandi-prevalence-of-processed-foods-in-major-us", "title": "Prevalence of processed foods in major US grocery stores", "authors": ["Babak Ravandi", "Gordana Ispirova", "Michael Sebek", "Peter Mehler", "Albert-László Barabási", "Giulia Menichetti"], "journal": "Nature Food", "year": 2025, "month": 1, "volume": "6", "pages": "296-308", "doi": "10.1038/s43016-024-01095-7", "url": "https://www.nature.com/articles/s43016-024-01095-7", "num_citations": 2, "themes": ["ultra_processed"], "type": "paper", "featured": false, "bibtex": "@article{2025-ravandi-prevalence-of-processed-foods-in-major-us,\n  title = {Prevalence of processed foods in major US grocery stores},\n  author = {Babak Ravandi and Gordana Ispirova and Michael Sebek and Peter Mehler and Albert-László Barabási and Giulia Menichetti},\n  journal = {Nature Food},\n  year = {2025},\n  volume = {6},\n  pages = {296-308},\n  doi = {10.1038/s43016-024-01095-7},\n}", "apa": "Babak Ravandi et al. (2025). Prevalence of processed foods in major US grocery stores. _Nature Food_, 6, 296-308. https://doi.org/10.1038/s43016-024-01095-7"}, {"id": "2025-grana-barber-a-barcode-benchmarking-repository", "title": "Barber: A barcode benchmarking repository", "authors": ["E Vezzali F Bolelli S Santi C Grana"], "journal": "International Conference on Pattern Recognition", "year": 2025, "num_citations": 1, "themes": ["computer_science"], "type": "conference", "featured": false, "bibtex": "@article{2025-grana-barber-a-barcode-benchmarking-repository,\n  title = {Barber: A barcode benchmarking repository},\n  author = {E Vezzali F Bolelli S Santi C Grana},\n  journal = {International Conference on Pattern Recognition},\n  year = {2025},\n}", "apa": "E Vezzali F Bolelli S Santi C Grana (2025). Barber: A barcode benchmarking repository. _International Conference on Pattern Recognition_."}, {"id": "2025-ruz-efecto-de-un-programa-de-actividad-fisica-y-e", "title": "Efecto de un programa de actividad física y educación nutricional para la mejora de habits saludables en educación primaria", "authors": ["LN Cobo GV Bravo RP Ruz"], "journal": "Retos: nuevas tendencias", "year": 2025, "num_citations": 1, "themes": ["physical_activity"], "type": "paper", "featured": false, "bibtex": "@article{2025-ruz-efecto-de-un-programa-de-actividad-fisica-y-e,\n  title = {Efecto de un programa de actividad física y educación nutricional para la mejora de habits saludables en educación primaria},\n  author = {LN Cobo GV Bravo RP Ruz},\n  journal = {Retos: nuevas tendencias},\n  year = {2025},\n}", "apa": "LN Cobo GV Bravo RP Ruz (2025). Efecto de un programa de actividad física y educación nutricional para la mejora de habits saludables en educación primaria. _Retos: nuevas tendencias_."}, {"id": "2025-hung-effectiveness-of-the-eco-score-food-label-an", "title": "Effectiveness of the Eco-score food label: An information experiment combined with Nutri-score label in Belgium", "authors": ["J Berden Y Hung"], "journal": "Appetite", "year": 2025, "num_citations": 1, "themes": ["labeling", "environment"], "type": "paper", "country": "bel", "featured": false, "bibtex": "@article{2025-hung-effectiveness-of-the-eco-score-food-label-an,\n  title = {Effectiveness of the Eco-score food label: An information experiment combined with Nutri-score label in Belgium},\n  author = {J Berden Y Hung},\n  journal = {Appetite},\n  year = {2025},\n}", "apa": "J Berden Y Hung (2025). Effectiveness of the Eco-score food label: An information experiment combined with Nutri-score label in Belgium. _Appetite_."}, {"id": "2025-hoque-ai-driven-personalized-nutrition-apps-and-pl", "title": "AI-Driven Personalized Nutrition Apps and Platforms for Enhanced Diet and Wellness", "authors": ["G Prasad M Padhiary A Hoque"], "journal": "Food in the Metaverse", "year": 2025, "themes": ["nutrition", "mobile_apps"], "type": "paper", "featured": false, "bibtex": "@article{2025-hoque-ai-driven-personalized-nutrition-apps-and-pl,\n  title = {AI-Driven Personalized Nutrition Apps and Platforms for Enhanced Diet and Wellness},\n  author = {G Prasad M Padhiary A Hoque},\n  journal = {Food in the Metaverse},\n  year = {2025},\n}", "apa": "G Prasad M Padhiary A Hoque (2025). AI-Driven Personalized Nutrition Apps and Platforms for Enhanced Diet and Wellness. _Food in the Metaverse_."}, {"id": "2025-meunier-annexe-1-la-methode-de-la-prospective-agri", "title": "Annexe 1. La méthode de la prospective «Agriculture européenne sans pesticides en 2050»", "authors": ["O Mora C Le Mouël C Meunier"], "journal": "Vers une agriculture européenne sans pesticides", "year": 2025, "themes": ["agriculture"], "type": "paper", "featured": false, "bibtex": "@article{2025-meunier-annexe-1-la-methode-de-la-prospective-agri,\n  title = {Annexe 1. La méthode de la prospective «Agriculture européenne sans pesticides en 2050»},\n  author = {O Mora C Le Mouël C Meunier},\n  journal = {Vers une agriculture européenne sans pesticides},\n  year = {2025},\n}", "apa": "O Mora C Le Mouël C Meunier (2025). Annexe 1. La méthode de la prospective «Agriculture européenne sans pesticides en 2050». _Vers une agriculture européenne sans pesticides_."}, {"id": "2025-spiteri-assessing-the-quantities-of-legume-based-p", "title": "Assessing the quantities of legume-based products: a dataset of conversion coefficients into a comparable dry-legume equivalent unit", "authors": ["Marine Spiteri", "Lola Pedrini", "Agathe Thierry", "Valérie Orozco", "Olivier de Mouzon", "Zohra Bouamra-Mechemache"], "journal": "Data in Brief", "year": 2025, "month": 2, "volume": "58", "doi": "10.1016/j.dib.2024.111222", "url": "https://www.sciencedirect.com/science/article/pii/S2352340924011843", "themes": ["nutrition"], "type": "paper", "country": "fr", "usage_score": 3, "excerpt": "We then search for the occurrence of leading brand product on the Open Food Facts database", "featured": true, "bibtex": "@article{2025-spiteri-assessing-the-quantities-of-legume-based-p,\n  title = {Assessing the quantities of legume-based products: a dataset of conversion coefficients into a comparable dry-legume equivalent unit},\n  author = {Marine Spiteri and Lola Pedrini and Agathe Thierry and Valérie Orozco and Olivier de Mouzon and Zohra Bouamra-Mechemache},\n  journal = {Data in Brief},\n  year = {2025},\n  volume = {58},\n  doi = {10.1016/j.dib.2024.111222},\n}", "apa": "Marine Spiteri et al. (2025). Assessing the quantities of legume-based products: a dataset of conversion coefficients into a comparable dry-legume equivalent unit. _Data in Brief_, 58. https://doi.org/10.1016/j.dib.2024.111222"}, {"id": "2025-meunier-des-chaines-de-valeur-pour-une-agriculture", "title": "Des chaînes de valeur pour une agriculture sans pesticides chimiques en 2050", "authors": ["L Paresys O Mora JA Berne C Meunier"], "journal": "Vers une agriculture européenne", "year": 2025, "themes": ["agriculture"], "type": "paper", "featured": false, "bibtex": "@article{2025-meunier-des-chaines-de-valeur-pour-une-agriculture,\n  title = {Des chaînes de valeur pour une agriculture sans pesticides chimiques en 2050},\n  author = {L Paresys O Mora JA Berne C Meunier},\n  journal = {Vers une agriculture européenne},\n  year = {2025},\n}", "apa": "L Paresys O Mora JA Berne C Meunier (2025). Des chaînes de valeur pour une agriculture sans pesticides chimiques en 2050. _Vers une agriculture européenne_."}, {"id": "2025-marcon-development-and-validation-of-a-nutrient-pr", "title": "Development and Validation of a Nutrient Profiling Model for Shopping Baskets: The Grocery Basket Score (GBS)", "authors": ["Sandro Marcon", "André Naef", "David Faeh", "Paul Windisch"], "journal": "medRxiv", "year": 2025, "doi": "10.1101/2025.01.03.25319947", "url": "https://www.medrxiv.org/content/10.1101/2025.01.03.25319947v2", "themes": ["nutrition"], "type": "paper", "usage_score": 3, "excerpt": "... For the validation against the Nutri-Score, we retrieved food items from the Open Food Facts database.", "featured": true, "bibtex": "@article{2025-marcon-development-and-validation-of-a-nutrient-pr,\n  title = {Development and Validation of a Nutrient Profiling Model for Shopping Baskets: The Grocery Basket Score (GBS)},\n  author = {Sandro Marcon and André Naef and David Faeh and Paul Windisch},\n  journal = {medRxiv},\n  year = {2025},\n  doi = {10.1101/2025.01.03.25319947},\n}", "apa": "Sandro Marcon et al. (2025). Development and Validation of a Nutrient Profiling Model for Shopping Baskets: The Grocery Basket Score (GBS). _medRxiv_. https://doi.org/10.1101/2025.01.03.25319947"}, {"id": "2025-windisch-development-and-validation-of-a-nutrient", "title": "Development and Validation of a Nutrient Profiling Model for Shopping Baskets: The Grocery Basket Score (GBS)", "authors": ["S Marcon A Naef D Faeh P Windisch"], "journal": "medRxiv", "year": 2025, "themes": ["nutrition", "nutrient_profiling"], "type": "paper", "featured": false, "bibtex": "@article{2025-windisch-development-and-validation-of-a-nutrient,\n  title = {Development and Validation of a Nutrient Profiling Model for Shopping Baskets: The Grocery Basket Score (GBS)},\n  author = {S Marcon A Naef D Faeh P Windisch},\n  journal = {medRxiv},\n  year = {2025},\n}", "apa": "S Marcon A Naef D Faeh P Windisch (2025). Development and Validation of a Nutrient Profiling Model for Shopping Baskets: The Grocery Basket Score (GBS). _medRxiv_."}, {"id": "2025-fernandes-do-researchers-use-the-list-of-ingredien", "title": "Do researchers use the list of ingredients to analyze the health and nutritional properties of packaged foods? A scoping review", "authors": ["MVS Kraemer AC Fernandes"], "journal": "Nutrition and Dietetics", "year": 2025, "themes": ["food_ingredients"], "type": "study", "featured": false, "bibtex": "@article{2025-fernandes-do-researchers-use-the-list-of-ingredien,\n  title = {Do researchers use the list of ingredients to analyze the health and nutritional properties of packaged foods? A scoping review},\n  author = {MVS Kraemer AC Fernandes},\n  journal = {Nutrition and Dietetics},\n  year = {2025},\n}", "apa": "MVS Kraemer AC Fernandes (2025). Do researchers use the list of ingredients to analyze the health and nutritional properties of packaged foods? A scoping review. _Nutrition and Dietetics_."}, {"id": "2025-meijaaard-does-palm-oil-really-rule-the-supermarke", "title": "Does Palm Oil Really Rule the Supermarket?", "authors": ["E Meijaard K Carlson D Sheil S Zaini E Meijaaard"], "journal": "preprints.org", "year": 2025, "themes": ["palm_oil"], "type": "paper", "featured": false, "bibtex": "@article{2025-meijaaard-does-palm-oil-really-rule-the-supermarke,\n  title = {Does Palm Oil Really Rule the Supermarket?},\n  author = {E Meijaard K Carlson D Sheil S Zaini E Meijaaard},\n  journal = {preprints.org},\n  year = {2025},\n}", "apa": "E Meijaard K Carlson D Sheil S Zaini E Meijaaard (2025). Does Palm Oil Really Rule the Supermarket?. _preprints.org_."}, {"id": "2025-cruz-efecto-del-recubrimiento-comestible-de-aislad", "title": "Efecto del recubrimiento comestible de aislado proteico de bazo de vacuno y aloe vera sobre la calidad de chorizo", "authors": ["KA Romero Romero JP Garro De La Cruz"], "year": 2025, "themes": ["food_preservation"], "type": "paper", "featured": false, "bibtex": "@article{2025-cruz-efecto-del-recubrimiento-comestible-de-aislad,\n  title = {Efecto del recubrimiento comestible de aislado proteico de bazo de vacuno y aloe vera sobre la calidad de chorizo},\n  author = {KA Romero Romero JP Garro De La Cruz},\n  year = {2025},\n}", "apa": "KA Romero Romero JP Garro De La Cruz (2025). Efecto del recubrimiento comestible de aislado proteico de bazo de vacuno y aloe vera sobre la calidad de chorizo. ."}, {"id": "2025-dohle-evaluating-the-multi-faceted-effect-of-concu", "title": "Evaluating the multi-faceted effect of concurrent front-of-pack nutrition and ecolabels on food evaluation", "authors": ["QR Dervishi S Dohle"], "journal": "Food Quality and Preference", "year": 2025, "themes": ["nutrition", "labeling"], "type": "paper", "featured": false, "bibtex": "@article{2025-dohle-evaluating-the-multi-faceted-effect-of-concu,\n  title = {Evaluating the multi-faceted effect of concurrent front-of-pack nutrition and ecolabels on food evaluation},\n  author = {QR Dervishi S Dohle},\n  journal = {Food Quality and Preference},\n  year = {2025},\n}", "apa": "QR Dervishi S Dohle (2025). Evaluating the multi-faceted effect of concurrent front-of-pack nutrition and ecolabels on food evaluation. _Food Quality and Preference_."}, {"id": "2025-hasenbohler-food-additive-mixtures-and-type-2-diab", "title": "Food additive mixtures and type 2 diabetes incidence: Results from the NutriNet-Santé prospective cohort", "authors": ["M Payen de la Garanderie A Hasenbohler"], "journal": "PLoS", "year": 2025, "themes": ["additives"], "type": "paper", "featured": false, "bibtex": "@article{2025-hasenbohler-food-additive-mixtures-and-type-2-diab,\n  title = {Food additive mixtures and type 2 diabetes incidence: Results from the NutriNet-Santé prospective cohort},\n  author = {M Payen de la Garanderie A Hasenbohler},\n  journal = {PLoS},\n  year = {2025},\n}", "apa": "M Payen de la Garanderie A Hasenbohler (2025). Food additive mixtures and type 2 diabetes incidence: Results from the NutriNet-Santé prospective cohort. _PLoS_."}, {"id": "2025-okotto-okotto-food-classifications-provide-an-appr", "title": "Food classifications provide an approximate packaging indicator to support monitoring of mismanaged plastic waste", "authors": ["M Dzodzomenyo M Asamoah J Okotto-Okotto"], "journal": "Scientific Reports", "year": 2025, "themes": ["environment"], "type": "paper", "featured": false, "bibtex": "@article{2025-okotto-okotto-food-classifications-provide-an-appr,\n  title = {Food classifications provide an approximate packaging indicator to support monitoring of mismanaged plastic waste},\n  author = {M Dzodzomenyo M Asamoah J Okotto-Okotto},\n  journal = {Scientific Reports},\n  year = {2025},\n}", "apa": "M Dzodzomenyo M Asamoah J Okotto-Okotto (2025). Food classifications provide an approximate packaging indicator to support monitoring of mismanaged plastic waste. _Scientific Reports_."}, {"id": "2025-beaulieu-food-level-predictors-of-liking-and-hedon", "title": "Food-Level Predictors of Liking and Hedonic Overeating: Putting Ultra-Processed Foods in Context", "authors": ["G FINLAYSON R Allen A Baaij K Beaulieu"], "journal": "SSRN", "year": 2025, "themes": ["food_reward"], "type": "paper", "featured": false, "bibtex": "@article{2025-beaulieu-food-level-predictors-of-liking-and-hedon,\n  title = {Food-Level Predictors of Liking and Hedonic Overeating: Putting Ultra-Processed Foods in Context},\n  author = {G FINLAYSON R Allen A Baaij K Beaulieu},\n  journal = {SSRN},\n  year = {2025},\n}", "apa": "G FINLAYSON R Allen A Baaij K Beaulieu (2025). Food-Level Predictors of Liking and Hedonic Overeating: Putting Ultra-Processed Foods in Context. _SSRN_."}, {"id": "2025-antille-foodcoach-fully-automated-diet-counseling", "title": "FoodCoach: Fully Automated Diet Counseling", "authors": ["J Wu S Mayer S Pilz YS Antille"], "journal": "IEEE Journal", "year": 2025, "themes": ["diet_counseling"], "type": "paper", "featured": false, "bibtex": "@article{2025-antille-foodcoach-fully-automated-diet-counseling,\n  title = {FoodCoach: Fully Automated Diet Counseling},\n  author = {J Wu S Mayer S Pilz YS Antille},\n  journal = {IEEE Journal},\n  year = {2025},\n}", "apa": "J Wu S Mayer S Pilz YS Antille (2025). FoodCoach: Fully Automated Diet Counseling. _IEEE Journal_."}, {"id": "2025-hilal-healthinspector-a-novel-approach-to-calculat", "title": "HealthInspector: A Novel Approach to Calculating Harm Scores for Food Products Based on Chemical Composition and Nutritional Profiles", "authors": ["A Jaison R Kumar R Kanna AM Hilal"], "journal": "Journal of Artificial Intelligence", "year": 2025, "themes": ["food_health_scoring"], "type": "paper", "featured": false, "bibtex": "@article{2025-hilal-healthinspector-a-novel-approach-to-calculat,\n  title = {HealthInspector: A Novel Approach to Calculating Harm Scores for Food Products Based on Chemical Composition and Nutritional Profiles},\n  author = {A Jaison R Kumar R Kanna AM Hilal},\n  journal = {Journal of Artificial Intelligence},\n  year = {2025},\n}", "apa": "A Jaison R Kumar R Kanna AM Hilal (2025). HealthInspector: A Novel Approach to Calculating Harm Scores for Food Products Based on Chemical Composition and Nutritional Profiles. _Journal of Artificial Intelligence_."}, {"id": "2025-azizah-implementasi-aplikasi-mobile-pengukur-kadar", "title": "IMPLEMENTASI APLIKASI MOBILE PENGUKUR KADAR KALORI BERBASIS ANDROID MENGGUNAKAN METODE PROTOTYPE", "authors": ["S Abdullah INTA Putra NA Azizah"], "journal": "journal.eng.unila.ac.id", "year": 2025, "themes": ["mobile_apps"], "type": "paper", "featured": false, "bibtex": "@article{2025-azizah-implementasi-aplikasi-mobile-pengukur-kadar,\n  title = {IMPLEMENTASI APLIKASI MOBILE PENGUKUR KADAR KALORI BERBASIS ANDROID MENGGUNAKAN METODE PROTOTYPE},\n  author = {S Abdullah INTA Putra NA Azizah},\n  journal = {journal.eng.unila.ac.id},\n  year = {2025},\n}", "apa": "S Abdullah INTA Putra NA Azizah (2025). IMPLEMENTASI APLIKASI MOBILE PENGUKUR KADAR KALORI BERBASIS ANDROID MENGGUNAKAN METODE PROTOTYPE. _journal.eng.unila.ac.id_."}, {"id": "2025-bronselaer-improving-data-cleaning-by-learning-fro", "title": "Improving data cleaning by learning from unstructured textual data", "authors": ["R Nasfi G De Tré A Bronselaer"], "journal": "IEEE Access", "year": 2025, "themes": ["computer_science"], "type": "paper", "featured": false, "bibtex": "@article{2025-bronselaer-improving-data-cleaning-by-learning-fro,\n  title = {Improving data cleaning by learning from unstructured textual data},\n  author = {R Nasfi G De Tré A Bronselaer},\n  journal = {IEEE Access},\n  year = {2025},\n}", "apa": "R Nasfi G De Tré A Bronselaer (2025). Improving data cleaning by learning from unstructured textual data. _IEEE Access_."}, {"id": "2025-bekhit-integrity-challenges-in-halal-meat-supply-c", "title": "Integrity Challenges in Halal Meat Supply Chain: Potential Industry 4.0 Technologies as Catalysts for Resolution", "authors": ["RM Ellahi LC Wood M Khan AEDA Bekhit"], "journal": "Foods", "year": 2025, "themes": ["halal_kosher"], "type": "paper", "featured": false, "bibtex": "@article{2025-bekhit-integrity-challenges-in-halal-meat-supply-c,\n  title = {Integrity Challenges in Halal Meat Supply Chain: Potential Industry 4.0 Technologies as Catalysts for Resolution},\n  author = {RM Ellahi LC Wood M Khan AEDA Bekhit},\n  journal = {Foods},\n  year = {2025},\n}", "apa": "RM Ellahi LC Wood M Khan AEDA Bekhit (2025). Integrity Challenges in Halal Meat Supply Chain: Potential Industry 4.0 Technologies as Catalysts for Resolution. _Foods_."}, {"id": "2025-delepine-l-objectif-europeen-ne-doit-pas-etre-de-c", "title": "L'objectif européen ne doit pas être de copier les Big Tech américaines", "authors": ["I Régnauld J Delépine"], "journal": "Alternatives Économiques", "year": 2025, "themes": ["digital_platforms"], "type": "paper", "featured": false, "bibtex": "@article{2025-delepine-l-objectif-europeen-ne-doit-pas-etre-de-c,\n  title = {L'objectif européen ne doit pas être de copier les Big Tech américaines},\n  author = {I Régnauld J Delépine},\n  journal = {Alternatives Économiques},\n  year = {2025},\n}", "apa": "I Régnauld J Delépine (2025). L'objectif européen ne doit pas être de copier les Big Tech américaines. _Alternatives Économiques_."}, {"id": "2025-ronge-l-economie-circulaire-dans-la-grande-distrib", "title": "L'économie circulaire dans la grande distribution en Belgique-le cas des emballages", "authors": ["M Vernier Y De Ronge"], "year": 2025, "themes": ["environment", "economy"], "type": "paper", "country": "bel", "featured": false, "bibtex": "@article{2025-ronge-l-economie-circulaire-dans-la-grande-distrib,\n  title = {L'économie circulaire dans la grande distribution en Belgique-le cas des emballages},\n  author = {M Vernier Y De Ronge},\n  year = {2025},\n}", "apa": "M Vernier Y De Ronge (2025). L'économie circulaire dans la grande distribution en Belgique-le cas des emballages. ."}, {"id": "2025-meerendre-le-nutri-score-et-son-impact-sur-le-cons", "title": "Le Nutri-Score et son impact sur le consommateur en Belgique", "authors": ["T de Hemptinne N Kervyn de Meerendré"], "year": 2025, "themes": ["nutrition", "nutrient_profiling"], "type": "paper", "country": "bel", "featured": false, "bibtex": "@article{2025-meerendre-le-nutri-score-et-son-impact-sur-le-cons,\n  title = {Le Nutri-Score et son impact sur le consommateur en Belgique},\n  author = {T de Hemptinne N Kervyn de Meerendré},\n  year = {2025},\n}", "apa": "T de Hemptinne N Kervyn de Meerendré (2025). Le Nutri-Score et son impact sur le consommateur en Belgique. ."}, {"id": "2025-vecchio-low-income-consumers-perceptions-of-ultra", "title": "Low-income consumers' perceptions of ultra-processed foods", "authors": ["S Sapio G Caso A Annunziata R Vecchio"], "journal": "Food Quality and Preference", "year": 2025, "themes": ["ultra_processed"], "type": "paper", "featured": false, "bibtex": "@article{2025-vecchio-low-income-consumers-perceptions-of-ultra,\n  title = {Low-income consumers' perceptions of ultra-processed foods},\n  author = {S Sapio G Caso A Annunziata R Vecchio},\n  journal = {Food Quality and Preference},\n  year = {2025},\n}", "apa": "S Sapio G Caso A Annunziata R Vecchio (2025). Low-income consumers' perceptions of ultra-processed foods. _Food Quality and Preference_."}, {"id": "2025-munoz-lopez-modelo-para-la-estructuracion-y-clasif", "title": "Modelo para la estructuración y clasificación de datos no estructurados usando técnicas de Procesamiento de Lenguaje Natural: un caso de estudio en el ámbito de alimentos", "authors": ["P Muñoz-López"], "year": 2025, "themes": ["food_classification"], "type": "paper", "country": "usa", "featured": false, "bibtex": "@article{2025-munoz-lopez-modelo-para-la-estructuracion-y-clasif,\n  title = {Modelo para la estructuración y clasificación de datos no estructurados usando técnicas de Procesamiento de Lenguaje Natural: un caso de estudio en el ámbito de alimentos},\n  author = {P Muñoz-López},\n  year = {2025},\n}", "apa": "P Muñoz-López (2025). Modelo para la estructuración y clasificación de datos no estructurados usando técnicas de Procesamiento de Lenguaje Natural: un caso de estudio en el ámbito de alimentos. ."}, {"id": "2025-eftimov-neurosymbolic-methods-for-food-computing", "title": "Neurosymbolic Methods for Food Computing", "authors": ["G Cenikj M Dragoni T Eftimov"], "journal": "Neurosymbolic AI", "year": 2025, "themes": ["computer_science"], "type": "paper", "featured": false, "bibtex": "@article{2025-eftimov-neurosymbolic-methods-for-food-computing,\n  title = {Neurosymbolic Methods for Food Computing},\n  author = {G Cenikj M Dragoni T Eftimov},\n  journal = {Neurosymbolic AI},\n  year = {2025},\n}", "apa": "G Cenikj M Dragoni T Eftimov (2025). Neurosymbolic Methods for Food Computing. _Neurosymbolic AI_."}, {"id": "2025-klasen-nutridiary-a-smartphone-based-dietary-recor", "title": "NutriDiary, a Smartphone-Based Dietary Record App: Description and Usability Evaluation", "authors": ["L Klasen", "SAJ Koch", "ME Benz", "J Conrad", "U Alexy", "K Blaszkiewicz", "I Andone", "U Nöthlings"], "journal": "JMIR Human Factors", "year": 2025, "volume": "12", "doi": "10.2196/62776", "url": "https://humanfactors.jmir.org/2025/1/e62776/", "themes": ["diet_tracking"], "type": "paper", "country": "usa", "usage_score": 2, "featured": false, "bibtex": "@article{2025-klasen-nutridiary-a-smartphone-based-dietary-recor,\n  title = {NutriDiary, a Smartphone-Based Dietary Record App: Description and Usability Evaluation},\n  author = {L Klasen and SAJ Koch and ME Benz and J Conrad and U Alexy and K Blaszkiewicz and I Andone and U Nöthlings},\n  journal = {JMIR Human Factors},\n  year = {2025},\n  volume = {12},\n  doi = {10.2196/62776},\n}", "apa": "L Klasen et al. (2025). NutriDiary, a Smartphone-Based Dietary Record App: Description and Usability Evaluation. _JMIR Human Factors_, 12. https://doi.org/10.2196/62776"}, {"id": "2025-garattini-product-labels-and-advertising-are-consu", "title": "Product labels and advertising: are consumers protected or misled?", "authors": ["P Fantozzi S Garattini"], "journal": "Rivista Italiana di Food Science", "year": 2025, "themes": ["labeling"], "type": "paper", "featured": false, "bibtex": "@article{2025-garattini-product-labels-and-advertising-are-consu,\n  title = {Product labels and advertising: are consumers protected or misled?},\n  author = {P Fantozzi S Garattini},\n  journal = {Rivista Italiana di Food Science},\n  year = {2025},\n}", "apa": "P Fantozzi S Garattini (2025). Product labels and advertising: are consumers protected or misled?. _Rivista Italiana di Food Science_."}, {"id": "2025-contreras-manzano-product-reformulation-in-non-alc", "title": "Product reformulation in non-alcoholic beverages and foods after the implementation of front-of-pack warning labels in Mexico", "authors": ["JC Salgado LS Pedraza A Contreras-Manzano"], "journal": "PLoS", "year": 2025, "themes": ["labeling"], "type": "paper", "featured": false, "bibtex": "@article{2025-contreras-manzano-product-reformulation-in-non-alc,\n  title = {Product reformulation in non-alcoholic beverages and foods after the implementation of front-of-pack warning labels in Mexico},\n  author = {JC Salgado LS Pedraza A Contreras-Manzano},\n  journal = {PLoS},\n  year = {2025},\n}", "apa": "JC Salgado LS Pedraza A Contreras-Manzano (2025). Product reformulation in non-alcoholic beverages and foods after the implementation of front-of-pack warning labels in Mexico. _PLoS_."}, {"id": "2025-raja-projecte-ux-coconutrition-creacio-d-un-protot", "title": "Projecte UX:\" CocoNutrition\"–Creació d'un prototip d'una app mòvil a partir del disseny UX/UI centrat en l'usuari", "authors": ["C Bastida Raja"], "year": 2025, "themes": ["mobile_apps"], "type": "paper", "featured": false, "bibtex": "@article{2025-raja-projecte-ux-coconutrition-creacio-d-un-protot,\n  title = {Projecte UX:\" CocoNutrition\"–Creació d'un prototip d'una app mòvil a partir del disseny UX/UI centrat en l'usuari},\n  author = {C Bastida Raja},\n  year = {2025},\n}", "apa": "C Bastida Raja (2025). Projecte UX:\" CocoNutrition\"–Creació d'un prototip d'una app mòvil a partir del disseny UX/UI centrat en l'usuari. ."}, {"id": "2025-karr-preservez-votre-famille-des-polluants", "title": "Préservez votre famille des polluants!", "authors": ["G Karr"], "journal": "De Boeck Supérieur", "year": 2025, "themes": ["pollution"], "type": "paper", "featured": false, "bibtex": "@article{2025-karr-preservez-votre-famille-des-polluants,\n  title = {Préservez votre famille des polluants!},\n  author = {G Karr},\n  journal = {De Boeck Supérieur},\n  year = {2025},\n}", "apa": "G Karr (2025). Préservez votre famille des polluants!. _De Boeck Supérieur_."}, {"id": "2025-flavourings-reevaluation-of-citric-acid-esters-of", "title": "Re‐evaluation of citric acid esters of mono‐and diglycerides of fatty acids (E 472c) as a food additive in foods for infants below 16 weeks of age and follow‐up of its re-evaluation", "authors": ["EFSA Panel on Food Additives and Flavourings"], "journal": "EFSA Journal", "year": 2025, "themes": ["additives"], "type": "paper", "featured": false, "bibtex": "@article{2025-flavourings-reevaluation-of-citric-acid-esters-of,\n  title = {Re‐evaluation of citric acid esters of mono‐and diglycerides of fatty acids (E 472c) as a food additive in foods for infants below 16 weeks of age and follow‐up of its re-evaluation},\n  author = {EFSA Panel on Food Additives and Flavourings},\n  journal = {EFSA Journal},\n  year = {2025},\n}", "apa": "EFSA Panel on Food Additives and Flavourings (2025). Re‐evaluation of citric acid esters of mono‐and diglycerides of fatty acids (E 472c) as a food additive in foods for infants below 16 weeks of age and follow‐up of its re-evaluation. _EFSA Journal_."}, {"id": "2025-braaksma-trade-offs-in-the-collaborative-design-of", "title": "Trade-offs in the collaborative design of a B2B eco-label for the European railway sector", "authors": ["C Cannappah W Haanstra AJJ Braaksma"], "journal": "Procedia CIRP", "year": 2025, "themes": ["labeling", "environment"], "type": "paper", "featured": false, "bibtex": "@article{2025-braaksma-trade-offs-in-the-collaborative-design-of,\n  title = {Trade-offs in the collaborative design of a B2B eco-label for the European railway sector},\n  author = {C Cannappah W Haanstra AJJ Braaksma},\n  journal = {Procedia CIRP},\n  year = {2025},\n}", "apa": "C Cannappah W Haanstra AJJ Braaksma (2025). Trade-offs in the collaborative design of a B2B eco-label for the European railway sector. _Procedia CIRP_."}, {"id": "2025-laporte-when-food-scanner-apps-outperform-frontofp", "title": "When Food Scanner Apps Outperform Front‐of‐Pack Nutrition Labels", "authors": ["C Cornudet M Laporte"], "journal": "Psychology & Marketing", "year": 2025, "themes": ["mobile_apps"], "type": "paper", "featured": false, "bibtex": "@article{2025-laporte-when-food-scanner-apps-outperform-frontofp,\n  title = {When Food Scanner Apps Outperform Front‐of‐Pack Nutrition Labels},\n  author = {C Cornudet M Laporte},\n  journal = {Psychology & Marketing},\n  year = {2025},\n}", "apa": "C Cornudet M Laporte (2025). When Food Scanner Apps Outperform Front‐of‐Pack Nutrition Labels. _Psychology & Marketing_."}, {"id": "2025-bergerremy-when-food-scanner-apps-outperform-front", "title": "When Food Scanner Apps Outperform Front‐of‐Pack Nutrition Labels: A Conditional Process Model to Foster Healthier Food Choices in Times of Growing Distrust", "authors": ["C Cornudet ME Laporte F Berger‐Remy"], "journal": "Psychology & Marketing", "year": 2025, "themes": ["mobile_apps"], "type": "paper", "featured": false, "bibtex": "@article{2025-bergerremy-when-food-scanner-apps-outperform-front,\n  title = {When Food Scanner Apps Outperform Front‐of‐Pack Nutrition Labels: A Conditional Process Model to Foster Healthier Food Choices in Times of Growing Distrust},\n  author = {C Cornudet ME Laporte F Berger‐Remy},\n  journal = {Psychology & Marketing},\n  year = {2025},\n}", "apa": "C Cornudet ME Laporte F Berger‐Remy (2025). When Food Scanner Apps Outperform Front‐of‐Pack Nutrition Labels: A Conditional Process Model to Foster Healthier Food Choices in Times of Growing Distrust. _Psychology & Marketing_."}, {"id": "2025-publication", "title": "Оцінювання рейтингу товару за його штрих-кодом", "authors": ["ВЗ Лютан ТО Коротєєва"], "journal": "Scientific Bulletin of UNFU", "year": 2025, "themes": ["product_evaluation"], "type": "paper", "featured": false, "bibtex": "@article{2025-publication,\n  title = {Оцінювання рейтингу товару за його штрих-кодом},\n  author = {ВЗ Лютан ТО Коротєєва},\n  journal = {Scientific Bulletin of UNFU},\n  year = {2025},\n}", "apa": "ВЗ Лютан ТО Коротєєва (2025). Оцінювання рейтингу товару за його штрих-кодом. _Scientific Bulletin of UNFU_."}, {"id": "2025-publication-2", "title": "Розробка програмного забезпечення з системою персоналізованих рекомендацій харчування для людей із цукровим діабетом", "authors": ["КЮ Алісова"], "year": 2025, "themes": ["nutrition"], "type": "paper", "featured": false, "bibtex": "@article{2025-publication-2,\n  title = {Розробка програмного забезпечення з системою персоналізованих рекомендацій харчування для людей із цукровим діабетом},\n  author = {КЮ Алісова},\n  year = {2025},\n}", "apa": "КЮ Алісова (2025). Розробка програмного забезпечення з системою персоналізованих рекомендацій харчування для людей із цукровим діабетом. ."}, {"id": "2024-salame-food-additive-emulsifiers-and-the-risk-of-t", "title": "Food additive emulsifiers and the risk of type 2 diabetes: analysis of data from the NutriNet-Santé prospective cohort study", "authors": ["Clara Salame", "Guillaume Javaux", "Laury Sellem", "Emilie Viennois", "Fabien Szabo de Edelenyi", "Cédric Agaësse", "et al."], "journal": "The Lancet Diabetes & Endocrinology", "year": 2024, "month": 5, "volume": "12", "pages": "339-349", "doi": "10.1016/S2213-8587(24)00086-X", "url": "https://www.thelancet.com/journals/landia/article/PIIS2213-8587(24)00086-X/fulltext?ref=dailydevbytes.com", "num_citations": 38, "themes": ["nutrition"], "type": "paper", "usage_score": 3, "excerpt": "The NutriNet-Santé study is the first to precisely evaluate both qualitative and quantitative exposures to food additives, using detailed and repeated 24 h dietary records, links to multiple food composition databases (the French Observatory of Food Quality [OQALI], Open Food Facts, the Global New Products Database [GNPD], EFSA, and General Standard For Food Additives [GSFA]), ad-hoc laboratory assays, and dynamic matching to account for reformulations of industrial food items over time.27", "featured": true, "bibtex": "@article{2024-salame-food-additive-emulsifiers-and-the-risk-of-t,\n  title = {Food additive emulsifiers and the risk of type 2 diabetes: analysis of data from the NutriNet-Santé prospective cohort study},\n  author = {Clara Salame and Guillaume Javaux and Laury Sellem and Emilie Viennois and Fabien Szabo de Edelenyi and Cédric Agaësse and et al.},\n  journal = {The Lancet Diabetes & Endocrinology},\n  year = {2024},\n  volume = {12},\n  pages = {339-349},\n  doi = {10.1016/S2213-8587(24)00086-X},\n}", "apa": "Clara Salame et al. (2024). Food additive emulsifiers and the risk of type 2 diabetes: analysis of data from the NutriNet-Santé prospective cohort study. _The Lancet Diabetes & Endocrinology_, 12, 339-349. https://doi.org/10.1016/S2213-8587(24)00086-X"}, {"id": "2024-merz-nutri-score-2023-update", "title": "Nutri-score 2023 update", "authors": ["B. Merz", "E. Temme", "H. et al. Alexiou"], "journal": "Nature Food", "year": 2024, "month": 2, "volume": "5", "pages": "102-110", "doi": "10.1038/s43016-024-00920-3", "url": "https://www.nature.com/articles/s43016-024-00920-3", "num_citations": 35, "themes": ["nutrition"], "type": "paper", "usage_score": 3, "featured": true, "bibtex": "@article{2024-merz-nutri-score-2023-update,\n  title = {Nutri-score 2023 update},\n  author = {B. Merz and E. Temme and H. et al. Alexiou},\n  journal = {Nature Food},\n  year = {2024},\n  volume = {5},\n  pages = {102-110},\n  doi = {10.1038/s43016-024-00920-3},\n}", "apa": "B. Merz, E. Temme, H. et al. Alexiou (2024). Nutri-score 2023 update. _Nature Food_, 5, 102-110. https://doi.org/10.1038/s43016-024-00920-3"}, {"id": "2024-sellem-food-additive-emulsifiers-and-cancer-risk-r", "title": "Food additive emulsifiers and cancer risk: Results from the French prospective NutriNet-Santé cohort", "authors": ["Laury Sellem", "Bernard Srour", "Guillaume Javaux", "Eloi Chazelas", "Benoit Chassaing", "Emilie Viennois", "Charlotte Debras", "Nathalie Druesne-Pecollo", "Younes Esseddik", "Fabien Szabo de Edelenyi", "Nathalie Arnault", "Cédric Agaësse", "Alexandre De Sa", "Mathilde Touvier", "& al."], "journal": "PLoS", "year": 2024, "month": 2, "doi": "10.1371/journal.pmed.1004338", "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1004338&", "num_citations": 28, "themes": ["nutrition"], "type": "paper", "country": "fra", "usage_score": 3, "excerpt": "Briefly, each food item consumed and reported in a specific dietary record was matched against 3 databases to assess the presence of any food additive: Observatoire de la qualité de l’alimentation (OQALI) [40], a national database whose management has been entrusted to the National Institute of Agricultural and Environment Research (INRAE) and the French food safety authority (Agence Nationale Sécurité Sanitaire de l’Alimentation, de l’environnement et du travail—ANSES) to characterise the quality of the food supply, Open Food Facts, an open collaborative database of food products marketed worldwide [16], and Mintel Global New Products Database (GNPD) [41], an online database of innovative food products in the world.", "featured": true, "bibtex": "@article{2024-sellem-food-additive-emulsifiers-and-cancer-risk-r,\n  title = {Food additive emulsifiers and cancer risk: Results from the French prospective NutriNet-Santé cohort},\n  author = {Laury Sellem and Bernard Srour and Guillaume Javaux and Eloi Chazelas and Benoit Chassaing and Emilie Viennois and Charlotte Debras and Nathalie Druesne-Pecollo and Younes Esseddik and Fabien Szabo de Edelenyi and Nathalie Arnault and Cédric Agaësse and Alexandre De Sa and Mathilde Touvier and & al.},\n  journal = {PLoS},\n  year = {2024},\n  doi = {10.1371/journal.pmed.1004338},\n}", "apa": "Laury Sellem et al. (2024). Food additive emulsifiers and cancer risk: Results from the French prospective NutriNet-Santé cohort. _PLoS_. https://doi.org/10.1371/journal.pmed.1004338"}, {"id": "2024-brichacek-ultra-processed-foods-a-narrative-review", "title": "Ultra-processed foods: a narrative review of the impact on the human gut microbiome and variations in classification methods", "authors": ["AL Brichacek", "M Florkowski", "E Abiona", "KM Frank"], "journal": "Nutrients", "year": 2024, "month": 6, "doi": "10.3390/nu16111738", "url": "https://www.mdpi.com/2072-6643/16/11/1738", "num_citations": 21, "themes": ["nutrition"], "type": "review", "usage_score": 2, "excerpt": "… Some uncertain foods were classified using the most common brands in the Italian Food\ncomposition Database with the Open Food Facts database. Discrepancies in classification were …", "featured": true, "bibtex": "@article{2024-brichacek-ultra-processed-foods-a-narrative-review,\n  title = {Ultra-processed foods: a narrative review of the impact on the human gut microbiome and variations in classification methods},\n  author = {AL Brichacek and M Florkowski and E Abiona and KM Frank},\n  journal = {Nutrients},\n  year = {2024},\n  doi = {10.3390/nu16111738},\n}", "apa": "AL Brichacek et al. (2024). Ultra-processed foods: a narrative review of the impact on the human gut microbiome and variations in classification methods. _Nutrients_. https://doi.org/10.3390/nu16111738"}, {"id": "2024-b-complementarity-between-the-updated-version-o", "title": "Complementarity between the updated version of the front-of-pack nutrition label Nutri-Score and the food-processing NOVA classification", "authors": ["Sarda B", "Kesse-Guyot E", "Deschamps V", "Ducrot P", "Galan P", "Hercberg S", "et al."], "journal": "Public Health Nutrition", "year": 2024, "month": 2, "doi": "10.1017/S1368980024000296", "url": "https://www.cambridge.org/core/journals/public-health-nutrition/article/complementarity-between-the-updated-version-of-the-frontofpack-nutrition-label-nutriscore-and-the-foodprocessing-nova-classification/38D3F972F1F2414E3856E29FE09D35E8", "num_citations": 10, "themes": ["nutrition", "labeling"], "type": "paper", "usage_score": 4, "excerpt": "The use of the OpenFoodFacts database allowed us to have access to a wide range of prepacked products with 129 950 products analysed, with their corresponding NOVA classification.", "featured": true, "bibtex": "@article{2024-b-complementarity-between-the-updated-version-o,\n  title = {Complementarity between the updated version of the front-of-pack nutrition label Nutri-Score and the food-processing NOVA classification},\n  author = {Sarda B and Kesse-Guyot E and Deschamps V and Ducrot P and Galan P and Hercberg S and et al.},\n  journal = {Public Health Nutrition},\n  year = {2024},\n  doi = {10.1017/S1368980024000296},\n}", "apa": "Sarda B et al. (2024). Complementarity between the updated version of the front-of-pack nutrition label Nutri-Score and the food-processing NOVA classification. _Public Health Nutrition_. https://doi.org/10.1017/S1368980024000296"}, {"id": "2024-jurkenbeck-nutri-score-and-eco-score-consumers-tra", "title": "Nutri-Score and Eco-Score: Consumers' trade-offs when facing two sustainability labels", "authors": ["K Jürkenbeck", "L Sanchez-Siles", "M Siegrist"], "journal": "Food Quality and Preference", "year": 2024, "doi": "10.1016/j.foodqual.2024.105200", "url": "https://www.sciencedirect.com/science/article/pii/S0950329324001022", "num_citations": 10, "themes": ["nutrition"], "type": "paper", "usage_score": 1, "excerpt": "Currently, products in the food database “Open food facts” are already listed with both, the Eco-Score and the Nutri-Score (Open food facts, 2023).", "featured": true, "bibtex": "@article{2024-jurkenbeck-nutri-score-and-eco-score-consumers-tra,\n  title = {Nutri-Score and Eco-Score: Consumers' trade-offs when facing two sustainability labels},\n  author = {K Jürkenbeck and L Sanchez-Siles and M Siegrist},\n  journal = {Food Quality and Preference},\n  year = {2024},\n  doi = {10.1016/j.foodqual.2024.105200},\n}", "apa": "K Jürkenbeck, L Sanchez-Siles, M Siegrist (2024). Nutri-Score and Eco-Score: Consumers' trade-offs when facing two sustainability labels. _Food Quality and Preference_. https://doi.org/10.1016/j.foodqual.2024.105200"}, {"id": "2024-deschasaux-tangu-nutritional-quality-of-diet-chara", "title": "Nutritional quality of diet characterized by the Nutri-Score profiling system and cardiovascular disease risk: a prospective study in 7 European countries", "authors": ["Mélanie Deschasaux-Tangu", "Inge Huybrechtsb", "Chantal Julia", "Serge Hercberg", "Barthélémy Sardaa", "Morgane Fialon & al."], "journal": "The Lancet Regional Health Europe", "year": 2024, "month": 11, "doi": "10.1016/j.lanepe.2024.101006", "url": "https://www.thelancet.com/journals/lanepe/article/PIIS2666-7762(24)00173-X/fulltext", "num_citations": 10, "themes": ["nutrition"], "type": "paper", "usage_score": 3, "featured": true, "bibtex": "@article{2024-deschasaux-tangu-nutritional-quality-of-diet-chara,\n  title = {Nutritional quality of diet characterized by the Nutri-Score profiling system and cardiovascular disease risk: a prospective study in 7 European countries},\n  author = {Mélanie Deschasaux-Tangu and Inge Huybrechtsb and Chantal Julia and Serge Hercberg and Barthélémy Sardaa and Morgane Fialon & al.},\n  journal = {The Lancet Regional Health Europe},\n  year = {2024},\n  doi = {10.1016/j.lanepe.2024.101006},\n}", "apa": "Mélanie Deschasaux-Tangu et al. (2024). Nutritional quality of diet characterized by the Nutri-Score profiling system and cardiovascular disease risk: a prospective study in 7 European countries. _The Lancet Regional Health Europe_. https://doi.org/10.1016/j.lanepe.2024.101006"}, {"id": "2024-sarda-consistency-of-the-initial-and-updated-versi", "title": "Consistency of the initial and updated version of the Nutri-score with food-based dietary guidelines: a French perspective", "authors": ["Barthelemy Sarda", "Emmanuelle Kesse-Guyot", "Valérie Deschamps", "Pauline Ducrot", "Pilar Galan", "Serge Hercberg", "Melanie Deschasaux-Tanguy", "Bernard Srour", "Leopold K Fezeu", "Mathilde Touvier", "Chantal Julia"], "journal": "The Journal of Nutrition", "year": 2024, "month": 3, "volume": "154", "pages": "1027-1038", "doi": "10.1016/j.tjnut.2024.01.029", "url": "https://www.sciencedirect.com/science/article/pii/S002231662400049X", "num_citations": 8, "themes": ["nutrition"], "type": "paper", "country": "fra", "usage_score": 4, "featured": true, "bibtex": "@article{2024-sarda-consistency-of-the-initial-and-updated-versi,\n  title = {Consistency of the initial and updated version of the Nutri-score with food-based dietary guidelines: a French perspective},\n  author = {Barthelemy Sarda and Emmanuelle Kesse-Guyot and Valérie Deschamps and Pauline Ducrot and Pilar Galan and Serge Hercberg and Melanie Deschasaux-Tanguy and Bernard Srour and Leopold K Fezeu and Mathilde Touvier and Chantal Julia},\n  journal = {The Journal of Nutrition},\n  year = {2024},\n  volume = {154},\n  pages = {1027-1038},\n  doi = {10.1016/j.tjnut.2024.01.029},\n}", "apa": "Barthelemy Sarda et al. (2024). Consistency of the initial and updated version of the Nutri-score with food-based dietary guidelines: a French perspective. _The Journal of Nutrition_, 154, 1027-1038. https://doi.org/10.1016/j.tjnut.2024.01.029"}, {"id": "2024-holliday-use-of-the-who-nutrient-profile-model-for", "title": "Use of the WHO Nutrient Profile Model for food marketing regulation in Germany: feasibility and public health implications", "authors": ["N Holliday", "A Leibinger", "O Huizinga", "C Klinger", "E Okanmelu", "K Geffert", "E Rehfuess", "P Philipsborn"], "journal": "Obesity Facts", "year": 2024, "month": 4, "volume": "17", "doi": "10.1159/000534542", "url": "https://karger.com/ofa/article/17/2/109/869906/Use-of-the-WHO-Nutrient-Profile-Model-for-Food", "num_citations": 3, "themes": ["nutrition", "nutrient_profiling"], "type": "paper", "country": "deu", "usage_score": 4, "excerpt": "Methods: We applied the WHO NPM to a random sample of 660 food and beverage products across 22 product categories on the German market drawn from Open Food Facts, a publicly available product database.", "featured": true, "bibtex": "@article{2024-holliday-use-of-the-who-nutrient-profile-model-for,\n  title = {Use of the WHO Nutrient Profile Model for food marketing regulation in Germany: feasibility and public health implications},\n  author = {N Holliday and A Leibinger and O Huizinga and C Klinger and E Okanmelu and K Geffert and E Rehfuess and P Philipsborn},\n  journal = {Obesity Facts},\n  year = {2024},\n  volume = {17},\n  doi = {10.1159/000534542},\n}", "apa": "N Holliday et al. (2024). Use of the WHO Nutrient Profile Model for food marketing regulation in Germany: feasibility and public health implications. _Obesity Facts_, 17. https://doi.org/10.1159/000534542"}, {"id": "2024-sridonpai-automated-artificial-intelligencebased-t", "title": "Automated Artificial Intelligence–Based Thai Food Dietary Assessment System: Development and Validation", "authors": ["P Chotwanvirat A Prachansuwan P Sridonpai"], "journal": "Current Developments in Nutrition", "year": 2024, "url": "https://www.sciencedirect.com/science/article/pii/S247529912400088X", "num_citations": 2, "themes": ["dietary_assessment"], "type": "paper", "featured": false, "bibtex": "@article{2024-sridonpai-automated-artificial-intelligencebased-t,\n  title = {Automated Artificial Intelligence–Based Thai Food Dietary Assessment System: Development and Validation},\n  author = {P Chotwanvirat A Prachansuwan P Sridonpai},\n  journal = {Current Developments in Nutrition},\n  year = {2024},\n}", "apa": "P Chotwanvirat A Prachansuwan P Sridonpai (2024). Automated Artificial Intelligence–Based Thai Food Dietary Assessment System: Development and Validation. _Current Developments in Nutrition_."}, {"id": "2024-seljak-nutrigreen-image-dataset-a-collection-of-an", "title": "NutriGreen image dataset: a collection of annotated nutrition organic and vegan food products", "authors": ["J Drole I Pravst T Eftimov B Koroušić Seljak"], "journal": "Frontiers in nutrition", "year": 2024, "num_citations": 2, "themes": ["computer_science"], "type": "paper", "featured": false, "bibtex": "@article{2024-seljak-nutrigreen-image-dataset-a-collection-of-an,\n  title = {NutriGreen image dataset: a collection of annotated nutrition organic and vegan food products},\n  author = {J Drole I Pravst T Eftimov B Koroušić Seljak},\n  journal = {Frontiers in nutrition},\n  year = {2024},\n}", "apa": "J Drole I Pravst T Eftimov B Koroušić Seljak (2024). NutriGreen image dataset: a collection of annotated nutrition organic and vegan food products. _Frontiers in nutrition_."}, {"id": "2024-tyagi-artificial-intelligence-cyber-security-and-v", "title": "Artificial Intelligence Cyber Security and Vedic Scripture Approaches for Sustainable Consumption in Global Food Legislature Perspective", "authors": ["S Sharma Y Kadayat R Tyagi"], "journal": "International Conference", "year": 2024, "num_citations": 1, "themes": ["food_legislation"], "type": "conference", "featured": false, "bibtex": "@article{2024-tyagi-artificial-intelligence-cyber-security-and-v,\n  title = {Artificial Intelligence Cyber Security and Vedic Scripture Approaches for Sustainable Consumption in Global Food Legislature Perspective},\n  author = {S Sharma Y Kadayat R Tyagi},\n  journal = {International Conference},\n  year = {2024},\n}", "apa": "S Sharma Y Kadayat R Tyagi (2024). Artificial Intelligence Cyber Security and Vedic Scripture Approaches for Sustainable Consumption in Global Food Legislature Perspective. _International Conference_."}, {"id": "2024-mcelhinney-development-and-optimisation-of-convolu", "title": "Development and Optimisation of Convolutional Neural Networks (CNNs) to predict the nutrition and sustainability scores of foods from crowd sourced images", "authors": ["C McElhinney"], "year": 2024, "num_citations": 1, "themes": ["computer_science"], "type": "paper", "featured": false, "bibtex": "@article{2024-mcelhinney-development-and-optimisation-of-convolu,\n  title = {Development and Optimisation of Convolutional Neural Networks (CNNs) to predict the nutrition and sustainability scores of foods from crowd sourced images},\n  author = {C McElhinney},\n  year = {2024},\n}", "apa": "C McElhinney (2024). Development and Optimisation of Convolutional Neural Networks (CNNs) to predict the nutrition and sustainability scores of foods from crowd sourced images. ."}, {"id": "2024-elangovan-information-extraction-from-product-labe", "title": "Information Extraction from Product Labels: A Machine Vision Approach", "authors": ["H Seitaj V Elangovan"], "journal": "International Journal of Artificial Intelligence", "year": 2024, "num_citations": 1, "themes": ["labeling"], "type": "paper", "featured": false, "bibtex": "@article{2024-elangovan-information-extraction-from-product-labe,\n  title = {Information Extraction from Product Labels: A Machine Vision Approach},\n  author = {H Seitaj V Elangovan},\n  journal = {International Journal of Artificial Intelligence},\n  year = {2024},\n}", "apa": "H Seitaj V Elangovan (2024). Information Extraction from Product Labels: A Machine Vision Approach. _International Journal of Artificial Intelligence_."}, {"id": "2024-velkov-a-mobile-scanner-app-allergen-detection-nut", "title": "A Mobile Scanner App: allergen detection nutrition information retrieval and food expiry tracking", "authors": ["I Velkov"], "year": 2024, "themes": ["food_scanning"], "type": "paper", "featured": false, "bibtex": "@article{2024-velkov-a-mobile-scanner-app-allergen-detection-nut,\n  title = {A Mobile Scanner App: allergen detection nutrition information retrieval and food expiry tracking},\n  author = {I Velkov},\n  year = {2024},\n}", "apa": "I Velkov (2024). A Mobile Scanner App: allergen detection nutrition information retrieval and food expiry tracking. ."}, {"id": "2024-yang-application-design-for-food-allergy-managemen", "title": "Application Design for Food Allergy Management", "authors": ["JU Han NB Kim YW Lee BS Yang"], "journal": "The Journal of The Korean Institute of Communication Sciences", "year": 2024, "themes": ["allergies"], "type": "paper", "featured": false, "bibtex": "@article{2024-yang-application-design-for-food-allergy-managemen,\n  title = {Application Design for Food Allergy Management},\n  author = {JU Han NB Kim YW Lee BS Yang},\n  journal = {The Journal of The Korean Institute of Communication Sciences},\n  year = {2024},\n}", "apa": "JU Han NB Kim YW Lee BS Yang (2024). Application Design for Food Allergy Management. _The Journal of The Korean Institute of Communication Sciences_."}, {"id": "2024-ducrot-coherence-de-la-version-initiale-et-de-la-v", "title": "Cohérence de la version initiale et de la version actualisée du Nutri-Score avec les recommandations alimentaires: une perspective française", "authors": ["B Sarda E Kesse-Guyot V Deschamps P Ducrot"], "journal": "Étude NutriNet-Santé", "year": 2024, "themes": ["nutrition", "nutrient_profiling"], "type": "paper", "featured": false, "bibtex": "@article{2024-ducrot-coherence-de-la-version-initiale-et-de-la-v,\n  title = {Cohérence de la version initiale et de la version actualisée du Nutri-Score avec les recommandations alimentaires: une perspective française},\n  author = {B Sarda E Kesse-Guyot V Deschamps P Ducrot},\n  journal = {Étude NutriNet-Santé},\n  year = {2024},\n}", "apa": "B Sarda E Kesse-Guyot V Deschamps P Ducrot (2024). Cohérence de la version initiale et de la version actualisée du Nutri-Score avec les recommandations alimentaires: une perspective française. _Étude NutriNet-Santé_."}, {"id": "2024-meerendre-l-utilisation-d-une-application-mobile-e", "title": "L'utilisation d'une application mobile encourage-t-elle les consommateurs à modifier leurs habitudes pour adopter une alimentation durable?", "authors": ["A Lebrun N Kervyn de Meerendré"], "year": 2024, "themes": ["sustainable_consumption"], "type": "paper", "featured": false, "bibtex": "@article{2024-meerendre-l-utilisation-d-une-application-mobile-e,\n  title = {L'utilisation d'une application mobile encourage-t-elle les consommateurs à modifier leurs habitudes pour adopter une alimentation durable?},\n  author = {A Lebrun N Kervyn de Meerendré},\n  year = {2024},\n}", "apa": "A Lebrun N Kervyn de Meerendré (2024). L'utilisation d'une application mobile encourage-t-elle les consommateurs à modifier leurs habitudes pour adopter une alimentation durable?. ."}, {"id": "2024-krahmer-leaf-predicting-the-environmental-impact-o", "title": "LEAF: Predicting the Environmental Impact of Food Products based on their Name", "authors": ["B Krahmer"], "journal": "Proceedings of the 1st Workshop on Natural Language Processing", "year": 2024, "themes": ["environment"], "type": "conference", "featured": false, "bibtex": "@article{2024-krahmer-leaf-predicting-the-environmental-impact-o,\n  title = {LEAF: Predicting the Environmental Impact of Food Products based on their Name},\n  author = {B Krahmer},\n  journal = {Proceedings of the 1st Workshop on Natural Language Processing},\n  year = {2024},\n}", "apa": "B Krahmer (2024). LEAF: Predicting the Environmental Impact of Food Products based on their Name. _Proceedings of the 1st Workshop on Natural Language Processing_."}, {"id": "2024-clarke-measures-of-reading-ease-and-nova-food-proc", "title": "Measures of Reading Ease and NOVA Food Processing Classification on Ingredients Lists in the United States", "authors": ["K Cooper A Ankrum MA Clarke"], "journal": "IEEE Conference", "year": 2024, "themes": ["labeling"], "type": "conference", "country": "usa", "featured": false, "bibtex": "@article{2024-clarke-measures-of-reading-ease-and-nova-food-proc,\n  title = {Measures of Reading Ease and NOVA Food Processing Classification on Ingredients Lists in the United States},\n  author = {K Cooper A Ankrum MA Clarke},\n  journal = {IEEE Conference},\n  year = {2024},\n}", "apa": "K Cooper A Ankrum MA Clarke (2024). Measures of Reading Ease and NOVA Food Processing Classification on Ingredients Lists in the United States. _IEEE Conference_."}, {"id": "2024-tan-mobile-application-for-real-time-food-image-s", "title": "Mobile application for real-time food image segmentation and nutritional guidance at grocery store", "authors": ["CL Tan"], "journal": "Universiti Tunku Abdul Rahman", "year": 2024, "themes": ["computer_science"], "type": "paper", "featured": false, "bibtex": "@article{2024-tan-mobile-application-for-real-time-food-image-s,\n  title = {Mobile application for real-time food image segmentation and nutritional guidance at grocery store},\n  author = {CL Tan},\n  journal = {Universiti Tunku Abdul Rahman},\n  year = {2024},\n}", "apa": "CL Tan (2024). Mobile application for real-time food image segmentation and nutritional guidance at grocery store. _Universiti Tunku Abdul Rahman_."}, {"id": "2024-salvatierra-mynutritionapp", "title": "MyNutritionApp", "authors": ["R Alvarez Salvatierra"], "year": 2024, "themes": ["nutrition", "mobile_apps"], "type": "paper", "featured": false, "bibtex": "@article{2024-salvatierra-mynutritionapp,\n  title = {MyNutritionApp},\n  author = {R Alvarez Salvatierra},\n  year = {2024},\n}", "apa": "R Alvarez Salvatierra (2024). MyNutritionApp. ."}, {"id": "2024-ha-recipecart-a-food-leftovers-solution", "title": "RecipeCart: A Food Leftovers Solution", "authors": ["D Ha Q Nguyen B Ha"], "journal": "University of Central Florida", "year": 2024, "themes": ["food_waste"], "type": "paper", "featured": false, "bibtex": "@article{2024-ha-recipecart-a-food-leftovers-solution,\n  title = {RecipeCart: A Food Leftovers Solution},\n  author = {D Ha Q Nguyen B Ha},\n  journal = {University of Central Florida},\n  year = {2024},\n}", "apa": "D Ha Q Nguyen B Ha (2024). RecipeCart: A Food Leftovers Solution. _University of Central Florida_."}, {"id": "2024-mcdonnell-ultra-processed-food-intake-and-dietary", "title": "Ultra-processed food intake and dietary insufficiencies are common in adults with Crohn's Disease in remission. The INTICO 2 Study", "authors": ["C Westoby V Katarachia M McDonnell"], "journal": "Journal of Crohn's and Colitis", "year": 2024, "themes": ["inflammatory_disease"], "type": "paper", "featured": false, "bibtex": "@article{2024-mcdonnell-ultra-processed-food-intake-and-dietary,\n  title = {Ultra-processed food intake and dietary insufficiencies are common in adults with Crohn's Disease in remission. The INTICO 2 Study},\n  author = {C Westoby V Katarachia M McDonnell},\n  journal = {Journal of Crohn's and Colitis},\n  year = {2024},\n}", "apa": "C Westoby V Katarachia M McDonnell (2024). Ultra-processed food intake and dietary insufficiencies are common in adults with Crohn's Disease in remission. The INTICO 2 Study. _Journal of Crohn's and Colitis_."}, {"id": "2023-menichetti-machine-learning-prediction-of-the-degr", "title": "Machine learning prediction of the degree of food processing", "authors": ["G. Menichetti", "B. Ravandi", "D. et al. Mozaffarian"], "journal": "Nature Communications", "year": 2023, "month": 4, "doi": "10.1038/s41467-023-37457-1", "url": "https://doi.org/10.1038/s41467-023-37457-1", "num_citations": 87, "themes": ["computer_science"], "type": "paper", "country": "usa", "usage_score": 3, "excerpt": "... We, therefore, relied on Open Food Facts, that compiles an extensive list of food additives, including artificial colors, artificial flavors, and emulsifiers55, to test the FPro’s ability to absorb information on additives. From the Open Food Facts website we collected 233,831 nutritional records, annotated with NOVA labels according to a heuristic described in ref. ...", "featured": true, "bibtex": "@article{2023-menichetti-machine-learning-prediction-of-the-degr,\n  title = {Machine learning prediction of the degree of food processing},\n  author = {G. Menichetti and B. Ravandi and D. et al. Mozaffarian},\n  journal = {Nature Communications},\n  year = {2023},\n  doi = {10.1038/s41467-023-37457-1},\n}", "apa": "G. Menichetti, B. Ravandi, D. et al. Mozaffarian (2023). Machine learning prediction of the degree of food processing. _Nature Communications_. https://doi.org/10.1038/s41467-023-37457-1"}, {"id": "2023-chang-food-allergy-labeling-laws-international-gui", "title": "Food Allergy Labeling Laws: International Guidelines for Residents and Travelers", "authors": ["F. Chang", "L. & Chang Eng", "C."], "journal": "Clinical Reviews in Allergy & Immunology", "year": 2023, "month": 5, "doi": "10.1007/s12016-023-08960-6", "url": "https://doi.org/10.1007/s12016-023-08960-6", "num_citations": 29, "themes": ["nutrition"], "type": "paper", "country": "usa", "usage_score": 1, "featured": true, "bibtex": "@article{2023-chang-food-allergy-labeling-laws-international-gui,\n  title = {Food Allergy Labeling Laws: International Guidelines for Residents and Travelers},\n  author = {F. Chang and L. & Chang Eng and C.},\n  journal = {Clinical Reviews in Allergy & Immunology},\n  year = {2023},\n  doi = {10.1007/s12016-023-08960-6},\n}", "apa": "F. Chang, L. & Chang Eng, C. (2023). Food Allergy Labeling Laws: International Guidelines for Residents and Travelers. _Clinical Reviews in Allergy & Immunology_. https://doi.org/10.1007/s12016-023-08960-6"}, {"id": "2023-rodriguez-martin-characterizing-meat-and-milk-dair", "title": "Characterizing Meat- and Milk/Dairy-like Vegetarian Foods and Their Counterparts Based on Nutrient Profiling and Food Labels", "authors": ["Rodríguez-Martín", "N.M.; Córdoba", "P.; Sarriá", "B.; Verardo", "V.; Pedroche", "J.; Alcalá-Santiago", "Á.; García-Villanova", "B.; Molina-Montes", "E."], "journal": "Foods", "year": 2023, "doi": "10.3390/foods12061151", "url": "https://www.mdpi.com/2304-8158/12/6/1151", "num_citations": 21, "themes": ["nutrition"], "type": "paper", "usage_score": 4, "featured": true, "bibtex": "@article{2023-rodriguez-martin-characterizing-meat-and-milk-dair,\n  title = {Characterizing Meat- and Milk/Dairy-like Vegetarian Foods and Their Counterparts Based on Nutrient Profiling and Food Labels},\n  author = {Rodríguez-Martín and N.M.; Córdoba and P.; Sarriá and B.; Verardo and V.; Pedroche and J.; Alcalá-Santiago and Á.; García-Villanova and B.; Molina-Montes and E.},\n  journal = {Foods},\n  year = {2023},\n  doi = {10.3390/foods12061151},\n}", "apa": "Rodríguez-Martín et al. (2023). Characterizing Meat- and Milk/Dairy-like Vegetarian Foods and Their Counterparts Based on Nutrient Profiling and Food Labels. _Foods_. https://doi.org/10.3390/foods12061151"}, {"id": "2023-michels-salience-transparency-and-self-nudging-a-d", "title": "Salience, transparency, and self-nudging: a digital nudge to promote healthier food product choices", "authors": ["L. Michels", "J. Ochmann", "K. Schmitt", "S. Laumer", "V. & Tiefenbeck"], "journal": "European Journal of Information Systems", "year": 2023, "month": 6, "doi": "10.1080/0960085X.2023.2229787", "url": "https://www.tandfonline.com/doi/abs/10.1080/0960085X.2023.2229787", "num_citations": 17, "themes": ["nutrition"], "type": "paper", "usage_score": 3, "excerpt": "… Every food product was assigned its true Nutri-Score calculated based on the Open Food Facts database and selected such that in each category, three products had a Nutri-Score of B (…", "featured": true, "bibtex": "@article{2023-michels-salience-transparency-and-self-nudging-a-d,\n  title = {Salience, transparency, and self-nudging: a digital nudge to promote healthier food product choices},\n  author = {L. Michels and J. Ochmann and K. Schmitt and S. Laumer and V. & Tiefenbeck},\n  journal = {European Journal of Information Systems},\n  year = {2023},\n  doi = {10.1080/0960085X.2023.2229787},\n}", "apa": "L. Michels et al. (2023). Salience, transparency, and self-nudging: a digital nudge to promote healthier food product choices. _European Journal of Information Systems_. https://doi.org/10.1080/0960085X.2023.2229787"}, {"id": "2023-bonaccio-ultraprocessed-food-consumption-is-associ", "title": "Ultraprocessed food consumption is associated with all-cause and cardiovascular mortality in participants with type 2 diabetes independent of diet quality: a prospective observational cohort study", "authors": ["Marialaura Bonaccio", "Augusto Di Castelnuovo", "Simona Costanzo", "Emilia Ruggiero", "Simona Esposito", "Mariarosaria Persichillo", "Chiara Cerletti", "Maria Benedetta Donati", "Giovanni de Gaetano", "Licia Iacoviello"], "journal": "The American Journal of Clinical Nutrition", "year": 2023, "doi": "10.1016/j.ajcnut.2023.07.004", "url": "https://doi.org/10.1016/j.ajcnut.2023.07.004", "num_citations": 14, "themes": ["nutrition"], "type": "paper", "usage_score": 3, "excerpt": "we matched the most commonly consumed food brands as listed in the Italian Food Composition Database [29] with the Open Food Facts database that provides the ranking of foods using the Nova system [31]; in such a way, we could estimate the proportion of ultraprocessed products from the same category or consumed for the same purpose.", "featured": true, "bibtex": "@article{2023-bonaccio-ultraprocessed-food-consumption-is-associ,\n  title = {Ultraprocessed food consumption is associated with all-cause and cardiovascular mortality in participants with type 2 diabetes independent of diet quality: a prospective observational cohort study},\n  author = {Marialaura Bonaccio and Augusto Di Castelnuovo and Simona Costanzo and Emilia Ruggiero and Simona Esposito and Mariarosaria Persichillo and Chiara Cerletti and Maria Benedetta Donati and Giovanni de Gaetano and Licia Iacoviello},\n  journal = {The American Journal of Clinical Nutrition},\n  year = {2023},\n  doi = {10.1016/j.ajcnut.2023.07.004},\n}", "apa": "Marialaura Bonaccio et al. (2023). Ultraprocessed food consumption is associated with all-cause and cardiovascular mortality in participants with type 2 diabetes independent of diet quality: a prospective observational cohort study. _The American Journal of Clinical Nutrition_. https://doi.org/10.1016/j.ajcnut.2023.07.004"}, {"id": "2023-falbe-food-and-beverage-environments-at-store-chec", "title": "Food and Beverage Environments at Store Checkouts in California: Mostly Unhealthy Products", "authors": ["Jennifer Falbe", "Samantha Marinello", "Ethan C. Wolf", "Sarah E. Solar", "Rebecca M. Schermbeck", "Andrea A. Pipito", "Lisa M. Powell"], "journal": "Current Developments in Nutrition", "year": 2023, "month": 6, "doi": "10.1016/j.cdnut.2023.100075", "url": "https://doi.org/10.1016/j.cdnut.2023.100075", "num_citations": 9, "themes": ["nutrition"], "type": "paper", "country": "usa", "usage_score": 2, "excerpt": "... Nutrient information was collected for each distinct product (i.e., brand, flavor, and size) observed across facings from the following sources, in order of availability: manufacturer’s website, food retailer websites, and publicly accessible databases like the United States Department of Agriculture National Database/Food Data Central and Open Food Facts. ...", "featured": false, "bibtex": "@article{2023-falbe-food-and-beverage-environments-at-store-chec,\n  title = {Food and Beverage Environments at Store Checkouts in California: Mostly Unhealthy Products},\n  author = {Jennifer Falbe and Samantha Marinello and Ethan C. Wolf and Sarah E. Solar and Rebecca M. Schermbeck and Andrea A. Pipito and Lisa M. Powell},\n  journal = {Current Developments in Nutrition},\n  year = {2023},\n  doi = {10.1016/j.cdnut.2023.100075},\n}", "apa": "Jennifer Falbe et al. (2023). Food and Beverage Environments at Store Checkouts in California: Mostly Unhealthy Products. _Current Developments in Nutrition_. https://doi.org/10.1016/j.cdnut.2023.100075"}, {"id": "2022-bolhuis-consumer-awareness-of-the-degree-of-indust", "title": "Consumer awareness of the degree of industrial food processing and the association with healthiness—a pilot study", "authors": ["D Bolhuis", "AC Mosca", "N Pellegrini"], "journal": "Nutrients", "year": 2022, "month": 10, "doi": "10.3390/nu14204438", "url": "https://www.mdpi.com/2072-6643/14/20/4438", "num_citations": 32, "themes": ["nutrition"], "type": "paper", "usage_score": 3, "excerpt": "Food Products Selection\nFood product selection was conducted via assessment of the most frequently consumed food groups in The Netherlands [30], Italy [31], and Brazil [32], according to national consumption data. For each food product, the NOVA category and the Nutri-Score were determined via Open Food Facts (https://world.openfoodfacts.org/ assessed on 20 October 2022)", "featured": true, "bibtex": "@article{2022-bolhuis-consumer-awareness-of-the-degree-of-indust,\n  title = {Consumer awareness of the degree of industrial food processing and the association with healthiness—a pilot study},\n  author = {D Bolhuis and AC Mosca and N Pellegrini},\n  journal = {Nutrients},\n  year = {2022},\n  doi = {10.3390/nu14204438},\n}", "apa": "D Bolhuis, AC Mosca, N Pellegrini (2022). Consumer awareness of the degree of industrial food processing and the association with healthiness—a pilot study. _Nutrients_. https://doi.org/10.3390/nu14204438"}, {"id": "2022-howe-open-science-online-grocery-a-tool-for-studyi", "title": "Open Science Online Grocery: A Tool for Studying Choice Context and Food Choice", "authors": ["Holly S. Howe", "Peter A. Ubel", "and Gavan J. Fitzsimons"], "journal": "Journal of the Association for Consumer Research", "year": 2022, "month": 10, "volume": "7", "doi": "10.1086/720449", "url": "https://www.journals.uchicago.edu/doi/full/10.1086/720449", "num_citations": 26, "themes": ["nutrition"], "type": "paper", "usage_score": 2, "featured": true, "bibtex": "@article{2022-howe-open-science-online-grocery-a-tool-for-studyi,\n  title = {Open Science Online Grocery: A Tool for Studying Choice Context and Food Choice},\n  author = {Holly S. Howe and Peter A. Ubel and and Gavan J. Fitzsimons},\n  journal = {Journal of the Association for Consumer Research},\n  year = {2022},\n  volume = {7},\n  doi = {10.1086/720449},\n}", "apa": "Holly S. Howe, Peter A. Ubel, and Gavan J. Fitzsimons (2022). Open Science Online Grocery: A Tool for Studying Choice Context and Food Choice. _Journal of the Association for Consumer Research_, 7. https://doi.org/10.1086/720449"}, {"id": "2022-vandevijvere-benchmarking-the-nutrition-related-co", "title": "Benchmarking the nutrition-related commitments and practices of major French food companies", "authors": ["Iris Van Dam & Stefanie Vandevijvere"], "journal": "BMC Public Health", "year": 2022, "month": 7, "volume": "22", "doi": "10.1186/s12889-022-13780-y", "url": "https://link.springer.com/article/10.1186/s12889-022-13780-y", "num_citations": 10, "themes": ["nutrition"], "type": "paper", "country": "fra", "usage_score": 3, "featured": true, "bibtex": "@article{2022-vandevijvere-benchmarking-the-nutrition-related-co,\n  title = {Benchmarking the nutrition-related commitments and practices of major French food companies},\n  author = {Iris Van Dam & Stefanie Vandevijvere},\n  journal = {BMC Public Health},\n  year = {2022},\n  volume = {22},\n  doi = {10.1186/s12889-022-13780-y},\n}", "apa": "Iris Van Dam & Stefanie Vandevijvere (2022). Benchmarking the nutrition-related commitments and practices of major French food companies. _BMC Public Health_, 22. https://doi.org/10.1186/s12889-022-13780-y"}, {"id": "2022-tseng-sensory-related-industrial-additives-in-the", "title": "Sensory-Related Industrial Additives in the US Packaged Food Supply", "authors": ["Marilyn Tseng", "Camille J. Grigsby", "Abigail Austin", "Samir Amin", "Aydin Nazmi"], "journal": "Frontiers in Nutrition", "year": 2022, "month": 1, "volume": "8", "doi": "10.3389/fnut.2021.762814", "url": "https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2021.762814/full", "num_citations": 10, "themes": ["nutrition"], "type": "paper", "usage_score": 2, "excerpt": "To evaluate the completeness and accuracy of our search, we compared our search results to data from Open Food Facts (27).", "featured": true, "bibtex": "@article{2022-tseng-sensory-related-industrial-additives-in-the,\n  title = {Sensory-Related Industrial Additives in the US Packaged Food Supply},\n  author = {Marilyn Tseng and Camille J. Grigsby and Abigail Austin and Samir Amin and Aydin Nazmi},\n  journal = {Frontiers in Nutrition},\n  year = {2022},\n  volume = {8},\n  doi = {10.3389/fnut.2021.762814},\n}", "apa": "Marilyn Tseng et al. (2022). Sensory-Related Industrial Additives in the US Packaged Food Supply. _Frontiers in Nutrition_, 8. https://doi.org/10.3389/fnut.2021.762814"}, {"id": "2022-hohn-healthy-food-traditions-nutritional-quality-a", "title": "Healthy Food Traditions? Nutritional Quality and Food Composition of EU Geographical Indications", "authors": ["Gero Laurenz Höhn", "Martijn Huysmans and Christophe Crombez"], "journal": "LICOS Centre for Institutions and Economic Performance", "year": 2022, "url": "https://lirias.kuleuven.be/retrieve/685447", "num_citations": 4, "themes": ["nutrition"], "type": "paper", "usage_score": 4, "excerpt": "Thus, we base our quantitative analyses on the extensive French open-access database of Open Food Facts (OFF) (OFF 2021), which grants access to thousands of observations, including more than 1,200 products representing seventy-nine GIs from ten countries.", "featured": true, "bibtex": "@article{2022-hohn-healthy-food-traditions-nutritional-quality-a,\n  title = {Healthy Food Traditions? Nutritional Quality and Food Composition of EU Geographical Indications},\n  author = {Gero Laurenz Höhn and Martijn Huysmans and Christophe Crombez},\n  journal = {LICOS Centre for Institutions and Economic Performance},\n  year = {2022},\n}", "apa": "Gero Laurenz Höhn, Martijn Huysmans and Christophe Crombez (2022). Healthy Food Traditions? Nutritional Quality and Food Composition of EU Geographical Indications. _LICOS Centre for Institutions and Economic Performance_."}, {"id": "2022-coste-pefap-estimating-the-environmental-footprint", "title": "PEFAP: Estimating the environmental footprint of food products from packaging data", "authors": ["Gustave Coste", "and Arnaud Hélias"], "journal": "The Journal of Open Source Software", "year": 2022, "month": 5, "volume": "7", "doi": "10.21105/joss.03329", "url": "https://joss.theoj.org/papers/10.21105/joss.03329", "url_pdf": "https://joss.theoj.org/papers/10.21105/joss.03329.pdf", "num_citations": 1, "themes": ["environment"], "type": "paper", "usage_score": 4, "featured": true, "bibtex": "@article{2022-coste-pefap-estimating-the-environmental-footprint,\n  title = {PEFAP: Estimating the environmental footprint of food products from packaging data},\n  author = {Gustave Coste and and Arnaud Hélias},\n  journal = {The Journal of Open Source Software},\n  year = {2022},\n  volume = {7},\n  doi = {10.21105/joss.03329},\n}", "apa": "Gustave Coste, and Arnaud Hélias (2022). PEFAP: Estimating the environmental footprint of food products from packaging data. _The Journal of Open Source Software_, 7. https://doi.org/10.21105/joss.03329"}, {"id": "2022-galiana-fuzzy-matching-on-big-data-an-illustration", "title": "Fuzzy matching on big-data: An illustration with scanner data and crowdsourced nutritional data", "authors": ["Lino Galiana", "Milena Suarez Castillo"], "year": 2022, "doi": "doi.org/10.1145/3524458.3547244", "url": "https://doi.org/doi.org/10.1145/3524458.3547244", "url_pdf": "https://www.linogaliana.fr/pdf/JMS2022/S28_2_ACTE_GALIANA_JMS2022.pdf", "themes": ["computer_science"], "type": "paper", "usage_score": 4, "featured": true, "bibtex": "@article{2022-galiana-fuzzy-matching-on-big-data-an-illustration,\n  title = {Fuzzy matching on big-data: An illustration with scanner data and crowdsourced nutritional data},\n  author = {Lino Galiana and Milena Suarez Castillo},\n  year = {2022},\n  doi = {doi.org/10.1145/3524458.3547244},\n}", "apa": "Lino Galiana, Milena Suarez Castillo (2022). Fuzzy matching on big-data: An illustration with scanner data and crowdsourced nutritional data. . https://doi.org/doi.org/10.1145/3524458.3547244"}, {"id": "2022-ferreiro-the-food-traffic-light-that-gives-a-green", "title": "The food traffic light that gives a green light to ultra-processed foods: visual data mining", "authors": ["Carmen Romero Ferreiro", "Pilar Cancelas Navia", "David Lora Pablos"], "journal": "Jornadas_Cientificas_de_Estudiantes_de_la_SEB", "year": 2022, "url_pdf": "http://www.biometricsociety.net/wp-content/uploads/VI_Jornadas_Cientificas_de_Estudiantes_de_la_SEB_Book_of_abstracts.pdf#page=53", "themes": ["nutrition"], "type": "paper", "usage_score": 4, "featured": true, "bibtex": "@article{2022-ferreiro-the-food-traffic-light-that-gives-a-green,\n  title = {The food traffic light that gives a green light to ultra-processed foods: visual data mining},\n  author = {Carmen Romero Ferreiro and Pilar Cancelas Navia and David Lora Pablos},\n  journal = {Jornadas_Cientificas_de_Estudiantes_de_la_SEB},\n  year = {2022},\n}", "apa": "Carmen Romero Ferreiro, Pilar Cancelas Navia, David Lora Pablos (2022). The food traffic light that gives a green light to ultra-processed foods: visual data mining. _Jornadas_Cientificas_de_Estudiantes_de_la_SEB_."}, {"id": "2021-ferreiro-two-dimensions-of-nutritional-value-nutri", "title": "Two Dimensions of Nutritional Value: Nutri-Score and NOVA", "authors": ["Romero Ferreiro", "C.; Lora Pablos", "D.; Gómez de la Cámara", "A."], "journal": "Nutrients", "year": 2021, "month": 8, "volume": "13", "doi": "10.3390/nu13082783", "url": "https://www.mdpi.com/2072-6643/13/8/2783", "num_citations": 113, "themes": ["nutrition"], "type": "paper", "usage_score": 4, "excerpt": "The aim of this study is to compare the nutritional quality (as assessed by Nutri-Score) and the ultra-processing (as assessed by the NOVA classification) of foods in the Open Food Facts database.", "featured": true, "bibtex": "@article{2021-ferreiro-two-dimensions-of-nutritional-value-nutri,\n  title = {Two Dimensions of Nutritional Value: Nutri-Score and NOVA},\n  author = {Romero Ferreiro and C.; Lora Pablos and D.; Gómez de la Cámara and A.},\n  journal = {Nutrients},\n  year = {2021},\n  volume = {13},\n  doi = {10.3390/nu13082783},\n}", "apa": "Romero Ferreiro et al. (2021). Two Dimensions of Nutritional Value: Nutri-Score and NOVA. _Nutrients_, 13. https://doi.org/10.3390/nu13082783"}, {"id": "2021-chazelas-exposure-to-food-additive-mixtures-in-106", "title": "Exposure to food additive mixtures in 106,000 French adults from the NutriNet-Santé cohort", "authors": ["Eloi Chazelas", "Nathalie Druesne-Pecollo", "Younes Esseddik", "Fabien Szabo de Edelenyi", "Cédric Agaesse", "Alexandre De Sa", "Rebecca Lutchia", "Pauline Rebouillat", "Bernard Srour", "Charlotte Debras", "Gaëlle Wendeu-Foyet", "Inge Huybrechts", "Fabrice Pierre", "Xavier Coumoul", "Chantal Julia", "Emmanuelle Kesse-Guyot", "Benjamin Allès", "Pilar Galan", "Serge Hercberg", "Mélanie Deschasaux-Tanguy & Mathilde Touvier"], "journal": "Scientific Reports", "year": 2021, "month": 10, "volume": "11", "doi": "10.1038/s41598-021-98496-6", "url": "https://www.nature.com/articles/s41598-021-98496-6", "num_citations": 74, "themes": ["nutrition"], "type": "paper", "country": "fra", "usage_score": 3, "excerpt": "... Qualitative information (as presence/absence) of each additive in food products was determined using 3 large-scale composition databases (OQALI, Open Food Facts, GNPD), accounting for the date of consumption of the product. ...", "featured": true, "bibtex": "@article{2021-chazelas-exposure-to-food-additive-mixtures-in-106,\n  title = {Exposure to food additive mixtures in 106,000 French adults from the NutriNet-Santé cohort},\n  author = {Eloi Chazelas and Nathalie Druesne-Pecollo and Younes Esseddik and Fabien Szabo de Edelenyi and Cédric Agaesse and Alexandre De Sa and Rebecca Lutchia and Pauline Rebouillat and Bernard Srour and Charlotte Debras and Gaëlle Wendeu-Foyet and Inge Huybrechts and Fabrice Pierre and Xavier Coumoul and Chantal Julia and Emmanuelle Kesse-Guyot and Benjamin Allès and Pilar Galan and Serge Hercberg and Mélanie Deschasaux-Tanguy & Mathilde Touvier},\n  journal = {Scientific Reports},\n  year = {2021},\n  volume = {11},\n  doi = {10.1038/s41598-021-98496-6},\n}", "apa": "Eloi Chazelas et al. (2021). Exposure to food additive mixtures in 106,000 French adults from the NutriNet-Santé cohort. _Scientific Reports_, 11. https://doi.org/10.1038/s41598-021-98496-6"}, {"id": "2021-rakhmawati-linked-open-data-for-halal-food-product", "title": "Linked open data for halal food products", "authors": ["Nur Aini Rakhmawati", "Jauhar Fatawi", "Ahmad Choirun Najib", "Azmi Adi Firmansyah"], "journal": "Journal of King Saud University - Computer and Information Sciences", "year": 2021, "month": 7, "volume": "33", "pages": "728-739", "doi": "10.1016/j.jksuci.2019.04.004", "url": "https://www.sciencedirect.com/science/article/pii/S1319157818312680", "num_citations": 44, "themes": ["computer_science"], "type": "paper", "usage_score": 3, "excerpt": "We introduce a halal vocabulary which extends two food vocabularies. Then, collected data from LPPOM MUI, E-Number, Open Food Facts are transformed to RDF.", "featured": true, "bibtex": "@article{2021-rakhmawati-linked-open-data-for-halal-food-product,\n  title = {Linked open data for halal food products},\n  author = {Nur Aini Rakhmawati and Jauhar Fatawi and Ahmad Choirun Najib and Azmi Adi Firmansyah},\n  journal = {Journal of King Saud University - Computer and Information Sciences},\n  year = {2021},\n  volume = {33},\n  pages = {728-739},\n  doi = {10.1016/j.jksuci.2019.04.004},\n}", "apa": "Nur Aini Rakhmawati et al. (2021). Linked open data for halal food products. _Journal of King Saud University - Computer and Information Sciences_, 33, 728-739. https://doi.org/10.1016/j.jksuci.2019.04.004"}, {"id": "2021-mahmud-api-change-impact-analysis-for-android-apps", "title": "Api change impact analysis for android apps", "authors": ["Tarek Mahmud", "Mujahid Khan", "Jihan Rouijel", "Meiru Che", "Guowei Yang"], "journal": "IEEE", "year": 2021, "doi": "10.1109/COMPSAC51774.2021.00122", "url": "https://ieeexplore.ieee.org/abstract/document/9529796", "num_citations": 12, "themes": ["nutrition"], "type": "paper", "usage_score": 2, "featured": true, "bibtex": "@article{2021-mahmud-api-change-impact-analysis-for-android-apps,\n  title = {Api change impact analysis for android apps},\n  author = {Tarek Mahmud and Mujahid Khan and Jihan Rouijel and Meiru Che and Guowei Yang},\n  journal = {IEEE},\n  year = {2021},\n  doi = {10.1109/COMPSAC51774.2021.00122},\n}", "apa": "Tarek Mahmud et al. (2021). Api change impact analysis for android apps. _IEEE_. https://doi.org/10.1109/COMPSAC51774.2021.00122"}, {"id": "2021-jannah-food-ingredients-similarity-based-on-concep", "title": "Food ingredients similarity based on conceptual and textual similarity", "authors": ["N.A. RakhmawatiandM. Jannah"], "journal": "Journal of King Saud University - Computer and Information Sciences", "year": 2021, "url": "https://journal.its.ac.id/index.php/hr/article/view/107/38", "url_pdf": "https://journal.its.ac.id/index.php/hr/article/view/107/38", "num_citations": 6, "themes": ["nutrition"], "type": "paper", "usage_score": 4, "excerpt": "Open Food Facts provides a database of food products such as product names, compositions, and additives, where everyone can contribute to add the data or reuse the existing data. The open food facts data are dirty and needs to be processed before storing the data to our system. To reduce redundancy in food ingredients data, we measure the similarity of ingredient food using two similarities: the conceptual similarity and textual similarity.", "featured": true, "bibtex": "@article{2021-jannah-food-ingredients-similarity-based-on-concep,\n  title = {Food ingredients similarity based on conceptual and textual similarity},\n  author = {N.A. RakhmawatiandM. Jannah},\n  journal = {Journal of King Saud University - Computer and Information Sciences},\n  year = {2021},\n}", "apa": "N.A. RakhmawatiandM. Jannah (2021). Food ingredients similarity based on conceptual and textual similarity. _Journal of King Saud University - Computer and Information Sciences_."}, {"id": "2021-lele-pilot-research-on-improving-consumer-health-l", "title": "Pilot Research on Improving Consumer Health Literacy in Food Labels by Measuring the Prevalence & Occurrence of Similar Ingredients", "authors": ["Sachi Lele", "Kathryn Cooper"], "journal": "IEEE International Conference on Bioinformatics and Biomedicine (BIBM)", "year": 2021, "url": "https://ieeexplore.ieee.org/abstract/document/9669591/metrics#metrics", "num_citations": 2, "themes": ["nutrition"], "type": "conference", "usage_score": 4, "excerpt": "We created distribution graphs of ingredients with the highest occurrences from two databases, USDA FoodData Central and Open Food Facts, and prevalence scripts to compare the proportion of ingredients with their synonyms.", "featured": true, "bibtex": "@article{2021-lele-pilot-research-on-improving-consumer-health-l,\n  title = {Pilot Research on Improving Consumer Health Literacy in Food Labels by Measuring the Prevalence & Occurrence of Similar Ingredients},\n  author = {Sachi Lele and Kathryn Cooper},\n  journal = {IEEE International Conference on Bioinformatics and Biomedicine (BIBM)},\n  year = {2021},\n}", "apa": "Sachi Lele, Kathryn Cooper (2021). Pilot Research on Improving Consumer Health Literacy in Food Labels by Measuring the Prevalence & Occurrence of Similar Ingredients. _IEEE International Conference on Bioinformatics and Biomedicine (BIBM)_."}, {"id": "2021-ngu-ultra-processed-food-know-it-when-we-see-it", "title": "Ultra-processed Food: Know it when we see it?", "authors": ["Guneet Kohli and Jason Ngu"], "year": 2021, "url_pdf": "https://www.researchgate.net/profile/Marilyn-Tseng/project/Exploring-the-use-of-NOVA-in-the-US/attachment/62969ff5c98bc742eb1d29b6/AS:1161935911432192@1654038517287/download/Senior+Project+Report+Final.pdf?context=projectUpdatesLog", "themes": ["nutrition"], "type": "paper", "usage_score": 4, "featured": true, "bibtex": "@article{2021-ngu-ultra-processed-food-know-it-when-we-see-it,\n  title = {Ultra-processed Food: Know it when we see it?},\n  author = {Guneet Kohli and Jason Ngu},\n  year = {2021},\n}", "apa": "Guneet Kohli and Jason Ngu (2021). Ultra-processed Food: Know it when we see it?. ."}, {"id": "2020-fardet-ultra-processed-foods-and-food-system-susta", "title": "Ultra-Processed Foods and Food System Sustainability: What Are the Links?", "authors": ["A Fardet", "E Rock"], "journal": "Sustainability", "year": 2020, "doi": "10.3390/su12156280", "url": "https://www.mdpi.com/2071-1050/12/15/6280", "url_pdf": "https://www.mdpi.com/2071-1050/12/15/6280/pdf", "num_citations": 226, "themes": ["nutrition"], "type": "paper", "usage_score": 3, "featured": true, "bibtex": "@article{2020-fardet-ultra-processed-foods-and-food-system-susta,\n  title = {Ultra-Processed Foods and Food System Sustainability: What Are the Links?},\n  author = {A Fardet and E Rock},\n  journal = {Sustainability},\n  year = {2020},\n  doi = {10.3390/su12156280},\n}", "apa": "A Fardet, E Rock (2020). Ultra-Processed Foods and Food System Sustainability: What Are the Links?. _Sustainability_. https://doi.org/10.3390/su12156280"}, {"id": "2020-chazelas-food-additives-distribution-and-co-occurr", "title": "Food additives: distribution and co-occurrence in 126,000 food products of the French market", "authors": ["E. Chazelas", "M. Deschasaux", "B. et al. Srour"], "journal": "Scientific reports", "year": 2020, "month": 3, "doi": "10.1038/s41598-020-60948-w", "url": "https://www.nature.com/articles/s41598-020-60948-w", "num_citations": 141, "themes": ["nutrition"], "type": "paper", "country": "fra", "usage_score": 4, "excerpt": "... The 690,499 foods referenced in the FrenchOpen Food Facts database (https://world.openfoodfacts.org/, retrieved on 20 June 2020) make it possibleto determine an initial approximation of the frequency of these main ingredients/additives in UPFs(Tables 1 and 2). This database is today the most comprehensive one about packaged foods, and thatgives the list of ingredients for most registered foods. Notably, this database has been previously usedfor retrieving lists of additives from approximatively 126,000 foods ...", "featured": true, "bibtex": "@article{2020-chazelas-food-additives-distribution-and-co-occurr,\n  title = {Food additives: distribution and co-occurrence in 126,000 food products of the French market},\n  author = {E. Chazelas and M. Deschasaux and B. et al. Srour},\n  journal = {Scientific reports},\n  year = {2020},\n  doi = {10.1038/s41598-020-60948-w},\n}", "apa": "E. Chazelas, M. Deschasaux, B. et al. Srour (2020). Food additives: distribution and co-occurrence in 126,000 food products of the French market. _Scientific reports_. https://doi.org/10.1038/s41598-020-60948-w"}, {"id": "2020-l-performance-of-the-front-of-pack-nutrition-la", "title": "Performance of the Front-of-Pack Nutrition Label Nutri-Score to Discriminate the Nutritional Quality of Foods Products: A Comparative Study across 8 European Countries", "authors": ["Dréano-Trécant L", "Egnell M", "Hercberg S", "Galan P", "Soudon J", "Fialon M", "Touvier M", "Kesse-Guyot E", "Julia C."], "journal": "Nutrients", "year": 2020, "volume": "12(5), 1303", "doi": "10.3390/nu12051303", "url": "https://www.mdpi.com/2072-6643/12/5/1303", "url_pdf": "https://www.mdpi.com/2072-6643/12/5/1303/pdf", "num_citations": 125, "themes": ["nutrition"], "type": "paper", "usage_score": 2, "excerpt": "A scientific report has also suggested a good discriminating performance of the Nutri-Score for the food offered in Belgium, Italy, Netherlands, Spain, Sweden, Switzerland and United Kingdom, using the data from the Open Food Facts database, a collaborative online project gathering food composition data on manufactured foods from many countries worldwide [36].", "featured": true, "bibtex": "@article{2020-l-performance-of-the-front-of-pack-nutrition-la,\n  title = {Performance of the Front-of-Pack Nutrition Label Nutri-Score to Discriminate the Nutritional Quality of Foods Products: A Comparative Study across 8 European Countries},\n  author = {Dréano-Trécant L and Egnell M and Hercberg S and Galan P and Soudon J and Fialon M and Touvier M and Kesse-Guyot E and Julia C.},\n  journal = {Nutrients},\n  year = {2020},\n  volume = {12(5), 1303},\n  doi = {10.3390/nu12051303},\n}", "apa": "Dréano-Trécant L et al. (2020). Performance of the Front-of-Pack Nutrition Label Nutri-Score to Discriminate the Nutritional Quality of Foods Products: A Comparative Study across 8 European Countries. _Nutrients_, 12(5), 1303. https://doi.org/10.3390/nu12051303"}, {"id": "2020-powell-the-impact-of-the-cook-county-il-sweetened", "title": "The impact of the Cook County, IL, Sweetened Beverage Tax on beverage prices", "authors": ["LM Powell", "J Leider", "PT Léger"], "journal": "Economics & Human Biology", "year": 2020, "month": 5, "doi": "10.1016/j.ehb.2020.100855", "url": "https://www.sciencedirect.com/science/article/pii/S1570677X19302230", "num_citations": 28, "themes": ["environment", "economy"], "type": "paper", "usage_score": 3, "featured": true, "bibtex": "@article{2020-powell-the-impact-of-the-cook-county-il-sweetened,\n  title = {The impact of the Cook County, IL, Sweetened Beverage Tax on beverage prices},\n  author = {LM Powell and J Leider and PT Léger},\n  journal = {Economics & Human Biology},\n  year = {2020},\n  doi = {10.1016/j.ehb.2020.100855},\n}", "apa": "LM Powell, J Leider, PT Léger (2020). The impact of the Cook County, IL, Sweetened Beverage Tax on beverage prices. _Economics & Human Biology_. https://doi.org/10.1016/j.ehb.2020.100855"}, {"id": "2020-philippine-au-croisement-du-marketing-et-de-la-com", "title": "Au croisement du marketing et de la comptabilité: l’essor des activités d’évaluation et de contrôle par le consommateur", "authors": ["Loupiac Philippine", "Bluntz Clarence"], "journal": "L'état du management 2020", "year": 2020, "url": "https://www.cairn.info/l-etat-du-management-2020--9782348059025-page-18.htm", "num_citations": 3, "themes": ["management"], "type": "paper", "usage_score": 2, "featured": false, "bibtex": "@article{2020-philippine-au-croisement-du-marketing-et-de-la-com,\n  title = {Au croisement du marketing et de la comptabilité: l’essor des activités d’évaluation et de contrôle par le consommateur},\n  author = {Loupiac Philippine and Bluntz Clarence},\n  journal = {L'état du management 2020},\n  year = {2020},\n}", "apa": "Loupiac Philippine, Bluntz Clarence (2020). Au croisement du marketing et de la comptabilité: l’essor des activités d’évaluation et de contrôle par le consommateur. _L'état du management 2020_."}, {"id": "2020-escalon-exposition-des-enfants-et-des-adolescents", "title": "Exposition des enfants et des adolescents à la publicité pour des produits gras, sucrés, salés", "authors": ["Escalon", "Hélène", "Serry", "Anne-Juliette", "Resche", "Chloé"], "year": 2020, "url": "https://www.santepubliquefrance.fr/determinants-de-sante/nutrition-et-activite-physique/documents/rapport-synthese/exposition-des-enfants-et-des-adolescents-a-la-publicite-pour-des-produits-gras-sucres-sales?utm_medium=email&_hsmi=90600722&_hsenc=p2ANqtz-8Jkr4Fw1sFeFypNeDyla6cqXY_7Ac521F1cEF4XqHus6JQuudBCUByyCmcG3Iw26MrQrKStNIZokyg92W4XzO6Gn8Oyw&utm_content=90600722&utm_source=hs_email", "url_pdf": "https://www.santepubliquefrance.fr/content/download/262836/2654777", "num_citations": 3, "themes": ["public_health"], "type": "study", "usage_score": 4, "featured": true, "bibtex": "@article{2020-escalon-exposition-des-enfants-et-des-adolescents,\n  title = {Exposition des enfants et des adolescents à la publicité pour des produits gras, sucrés, salés},\n  author = {Escalon and Hélène and Serry and Anne-Juliette and Resche and Chloé},\n  year = {2020},\n}", "apa": "Escalon et al. (2020). Exposition des enfants et des adolescents à la publicité pour des produits gras, sucrés, salés. ."}, {"id": "2020-delhomme-improving-food-choices-through-nutrition", "title": "Improving Food Choices Through Nutrition Labelling: Towards a Common ‘Nutri-Score’ Scheme Across the EU", "authors": ["V Delhomme"], "year": 2020, "url": "https://aei.pitt.edu/102705/", "num_citations": 2, "themes": ["nutrition"], "type": "paper", "usage_score": 0, "featured": false, "bibtex": "@article{2020-delhomme-improving-food-choices-through-nutrition,\n  title = {Improving Food Choices Through Nutrition Labelling: Towards a Common ‘Nutri-Score’ Scheme Across the EU},\n  author = {V Delhomme},\n  year = {2020},\n}", "apa": "V Delhomme (2020). Improving Food Choices Through Nutrition Labelling: Towards a Common ‘Nutri-Score’ Scheme Across the EU. ."}, {"id": "2020-coordinator-report-of-the-scientific-committee-of", "title": "Report of the Scientific Committee of the Spanish Agency for Food Safety and Nutrition (AESAN) on the implementation in Spain of the Nutri-Score information system regarding the nutritional quality of food products", "authors": ["Montaña Cámara Hurtado (Coordinator)", "Carlos Alonso Calleja", "Rosa María Giner Pons", "Elena Gon-\nzález Fandos", "Jordi Mañes Vinuesa", "José Alfredo Martínez Hernández", "Esther López García", "Victoria\nMoreno-Arribas", "María del Puy Portillo Baquedano", "David Rodríguez Lázaro", "Magdalena Rafecas\nMartínez", "Marta García Solano (AESAN)", "Enrique Gutiérrez González (AESAN) and Mª José Yusta\nBoyo (AESAN)"], "year": 2020, "month": 3, "num_citations": 1, "themes": ["nutrition"], "type": "paper", "country": "esp", "usage_score": 1, "excerpt": "Using the Open Food Facts database on the composition of foods, which includes food regularly consumed by the French general public, the classification of food and drinks was consistent with nutritional recommendations: 95.4 % of fruit and vegetables were classified into the first quintile of distribution (letter A), while 86 % of “sugary snacks” were classified in the fourth and fifth quintiles (letters D and E). [...] These findings are complementary to studies conducted in other food databases such as Open Food Facts providing data on multiple industrial foods of different brands.", "featured": false, "bibtex": "@article{2020-coordinator-report-of-the-scientific-committee-of,\n  title = {Report of the Scientific Committee of the Spanish Agency for Food Safety and Nutrition (AESAN) on the implementation in Spain of the Nutri-Score information system regarding the nutritional quality of food products},\n  author = {Montaña Cámara Hurtado (Coordinator) and Carlos Alonso Calleja and Rosa María Giner Pons and Elena Gon-\nzález Fandos and Jordi Mañes Vinuesa and José Alfredo Martínez Hernández and Esther López García and Victoria\nMoreno-Arribas and María del Puy Portillo Baquedano and David Rodríguez Lázaro and Magdalena Rafecas\nMartínez and Marta García Solano (AESAN) and Enrique Gutiérrez González (AESAN) and Mª José Yusta\nBoyo (AESAN)},\n  year = {2020},\n}", "apa": "Montaña Cámara Hurtado (Coordinator) et al. (2020). Report of the Scientific Committee of the Spanish Agency for Food Safety and Nutrition (AESAN) on the implementation in Spain of the Nutri-Score information system regarding the nutritional quality of food products. ."}, {"id": "2020-luongo-estimating-diet-costs-bridging-the-gap-betw", "title": "Estimating diet costs: Bridging the gap between food supply price databases and dietary intake data", "authors": ["G Luongo", "V Tarasuk", "Y Yi", "CL Mah"], "journal": "European Journal of Public Health", "year": 2020, "month": 9, "volume": "30", "url": "https://academic.oup.com/eurpub/article/30/Supplement_5/ckaa165.900/5915177", "themes": ["nutrition"], "type": "paper", "featured": false, "bibtex": "@article{2020-luongo-estimating-diet-costs-bridging-the-gap-betw,\n  title = {Estimating diet costs: Bridging the gap between food supply price databases and dietary intake data},\n  author = {G Luongo and V Tarasuk and Y Yi and CL Mah},\n  journal = {European Journal of Public Health},\n  year = {2020},\n  volume = {30},\n}", "apa": "G Luongo et al. (2020). Estimating diet costs: Bridging the gap between food supply price databases and dietary intake data. _European Journal of Public Health_, 30."}, {"id": "2020-chandon-four-ways-foods-claim-to-be-healthy", "title": "Four Ways Foods Claim to Be ‘Healthy’", "authors": ["Chandon", "Pierre"], "year": 2020, "url_pdf": "https://sightandlife.org/wp-content/uploads/2020/03/SightandLifeMagazine_2020_Consumer_Insights_Four-Ways-Foods-Claim-to-Be-Healthy.pdf", "themes": ["nutrition"], "type": "study", "usage_score": 3, "featured": true, "bibtex": "@article{2020-chandon-four-ways-foods-claim-to-be-healthy,\n  title = {Four Ways Foods Claim to Be ‘Healthy’},\n  author = {Chandon and Pierre},\n  year = {2020},\n}", "apa": "Chandon, Pierre (2020). Four Ways Foods Claim to Be ‘Healthy’. ."}, {"id": "2019-monteiro-ultra-processed-foods-what-they-are-and-h", "title": "Ultra-processed foods: what they are and how to identify them", "authors": ["Carlos A Monteiro", "Geoffrey Cannon", "Renata B Levy", "Jean-Claude Moubarac", "Maria LC Louzada", "Fernanda Rauber", "Neha Khandpur", "Gustavo Cediel", "Daniela Neri and Euridice Martinez-Steele"], "journal": "Public Health Nutrition", "year": 2019, "month": 4, "volume": "22", "doi": "10.1017/s1368980018003762", "url": "https://www.cambridge.org/core/journals/public-health-nutrition/article/ultraprocessed-foods-what-they-are-and-how-to-identify-them/E6D744D714B1FF09D5BCA3E74D53A185#", "num_citations": 2392, "themes": ["nutrition"], "type": "paper", "usage_score": 0, "excerpt": "A cell phone app created by the non-profit organization Open Food Facts, based in France, already enables consumers to identify among more than 145 000 packaged products the more than 75 000 that are ultra-processed", "featured": true, "bibtex": "@article{2019-monteiro-ultra-processed-foods-what-they-are-and-h,\n  title = {Ultra-processed foods: what they are and how to identify them},\n  author = {Carlos A Monteiro and Geoffrey Cannon and Renata B Levy and Jean-Claude Moubarac and Maria LC Louzada and Fernanda Rauber and Neha Khandpur and Gustavo Cediel and Daniela Neri and Euridice Martinez-Steele},\n  journal = {Public Health Nutrition},\n  year = {2019},\n  volume = {22},\n  doi = {10.1017/s1368980018003762},\n}", "apa": "Carlos A Monteiro et al. (2019). Ultra-processed foods: what they are and how to identify them. _Public Health Nutrition_, 22. https://doi.org/10.1017/s1368980018003762"}, {"id": "2019-andre-healthy-through-presence-or-absence-nature-o", "title": "Healthy through presence or absence, nature or science?: A framework for understanding front-of-package food claims", "authors": ["Q André", "P Chandon", "K Haws"], "journal": "Journal of Public Policy &", "year": 2019, "doi": "10.1177/0743915618824332", "url": "https://journals.sagepub.com/doi/full/10.1177/0743915618824332", "num_citations": 143, "themes": ["nutrition"], "type": "paper", "usage_score": 3, "excerpt": "… OpenFoodFacts contains detailed information on commercial food products at the\nstockkeeping-unit level, including the claims, mentions, and labels written on the package. It also …", "featured": true, "bibtex": "@article{2019-andre-healthy-through-presence-or-absence-nature-o,\n  title = {Healthy through presence or absence, nature or science?: A framework for understanding front-of-package food claims},\n  author = {Q André and P Chandon and K Haws},\n  journal = {Journal of Public Policy &},\n  year = {2019},\n  doi = {10.1177/0743915618824332},\n}", "apa": "Q André, P Chandon, K Haws (2019). Healthy through presence or absence, nature or science?: A framework for understanding front-of-package food claims. _Journal of Public Policy &_. https://doi.org/10.1177/0743915618824332"}, {"id": "2019-edelenyi-ability-of-the-nutri-score-front-of-pack", "title": "Ability of the Nutri-Score front-of-pack nutrition label to discriminate the nutritional quality of foods in the German food market and consistency with nutritional recommendations", "authors": ["F. Szabo de Edelenyi", "M. Egnell", "P. et al. Galan"], "journal": "Archives Public Health", "year": 2019, "month": 6, "volume": "77, 28", "doi": "10.1186%2Fs13690-019-0357-x", "url": "https://link.springer.com/article/10.1186/s13690-019-0357-x", "num_citations": 117, "themes": ["nutrition"], "type": "paper", "country": "deu", "usage_score": 4, "excerpt": "Nutritional composition of 8587 usual foods available on the German market collected from the web-based collaborative project Open Food Facts, were retrieved. Data were collected from 2012 to 2019, with regular updates each time a product is scanned again by a contributor.", "featured": true, "bibtex": "@article{2019-edelenyi-ability-of-the-nutri-score-front-of-pack,\n  title = {Ability of the Nutri-Score front-of-pack nutrition label to discriminate the nutritional quality of foods in the German food market and consistency with nutritional recommendations},\n  author = {F. Szabo de Edelenyi and M. Egnell and P. et al. Galan},\n  journal = {Archives Public Health},\n  year = {2019},\n  volume = {77, 28},\n  doi = {10.1186%2Fs13690-019-0357-x},\n}", "apa": "F. Szabo de Edelenyi, M. Egnell, P. et al. Galan (2019). Ability of the Nutri-Score front-of-pack nutrition label to discriminate the nutritional quality of foods in the German food market and consistency with nutritional recommendations. _Archives Public Health_, 77, 28. https://doi.org/10.1186%2Fs13690-019-0357-x"}, {"id": "2019-fuchs-towards-identification-of-packaged-products", "title": "Towards identification of packaged products via computer vision: Convolutional neural networks for object detection and image classification in retail environments", "authors": ["K Fuchs", "T Grundmann", "E Fleisch"], "journal": "IoT '19: Proceedings of the 9th International Conference on the Internet of Things", "year": 2019, "doi": "10.1145/3365871.3365899", "url": "https://dl.acm.org/doi/abs/10.1145/3365871.3365899", "num_citations": 59, "themes": ["computer_science"], "type": "conference", "featured": true, "bibtex": "@article{2019-fuchs-towards-identification-of-packaged-products,\n  title = {Towards identification of packaged products via computer vision: Convolutional neural networks for object detection and image classification in retail environments},\n  author = {K Fuchs and T Grundmann and E Fleisch},\n  journal = {IoT '19: Proceedings of the 9th International Conference on the Internet of Things},\n  year = {2019},\n  doi = {10.1145/3365871.3365899},\n}", "apa": "K Fuchs, T Grundmann, E Fleisch (2019). Towards identification of packaged products via computer vision: Convolutional neural networks for object detection and image classification in retail environments. _IoT '19: Proceedings of the 9th International Conference on the Internet of Things_. https://doi.org/10.1145/3365871.3365899"}, {"id": "2019-edelenyi-ability-of-the-front-of-pack-nutrition-la", "title": "Ability of the front-of-pack nutrition label Nutri-Score to discriminate nutritional quality of food products in 7 European countries (Spain, Switzerland, Belgium, Italy, UK, Netherlands and Sweden) and consistency with nutritional recommendations", "authors": ["F. Szabo de Edelenyi", "M. Egnell", "P. et al. Galan"], "year": 2019, "url_pdf": "https://solidarites-sante.gouv.fr/IMG/pdf/rapport_eren_off_7_countries.pdf", "themes": ["nutrition"], "type": "paper", "country": "bel", "usage_score": 4, "featured": true, "bibtex": "@article{2019-edelenyi-ability-of-the-front-of-pack-nutrition-la,\n  title = {Ability of the front-of-pack nutrition label Nutri-Score to discriminate nutritional quality of food products in 7 European countries (Spain, Switzerland, Belgium, Italy, UK, Netherlands and Sweden) and consistency with nutritional recommendations},\n  author = {F. Szabo de Edelenyi and M. Egnell and P. et al. Galan},\n  year = {2019},\n}", "apa": "F. Szabo de Edelenyi, M. Egnell, P. et al. Galan (2019). Ability of the front-of-pack nutrition label Nutri-Score to discriminate nutritional quality of food products in 7 European countries (Spain, Switzerland, Belgium, Italy, UK, Netherlands and Sweden) and consistency with nutritional recommendations. ."}, {"id": "2019-goude-identifier-la-consommation-des-nourritures-d", "title": "Identifier la consommation des nourritures de l’estran par l’homme", "authors": ["Gwenaëlle Goude"], "journal": "Les nouvelles de l'archéologie", "year": 2019, "pages": "33-38", "doi": "doi.org/10.4000/nda.6461", "url": "https://journals.openedition.org/nda/6461", "themes": ["archeology"], "type": "paper", "usage_score": 1, "featured": false, "bibtex": "@article{2019-goude-identifier-la-consommation-des-nourritures-d,\n  title = {Identifier la consommation des nourritures de l’estran par l’homme},\n  author = {Gwenaëlle Goude},\n  journal = {Les nouvelles de l'archéologie},\n  year = {2019},\n  pages = {33-38},\n  doi = {doi.org/10.4000/nda.6461},\n}", "apa": "Gwenaëlle Goude (2019). Identifier la consommation des nourritures de l’estran par l’homme. _Les nouvelles de l'archéologie_, 33-38. https://doi.org/doi.org/10.4000/nda.6461"}, {"id": "2019-armengaud-limpact-des-groupes-de-pression-sur-lagr", "title": "L’impact des groupes de pression sur l’agro-industrie française", "authors": ["Claire ARMENGAUD", "Angélique GUETTIER", "Benoit JACQ", "Gilles LALLEMAND", "Maxence TETTAMANTI"], "year": 2019, "url_pdf": "https://infoguerre.fr/wp-content/uploads/2020/01/ImpactdesgroupesdepressionsurindustrieagroFrance.pdf", "themes": ["environment", "economy"], "type": "study", "usage_score": 3, "featured": true, "bibtex": "@article{2019-armengaud-limpact-des-groupes-de-pression-sur-lagr,\n  title = {L’impact des groupes de pression sur l’agro-industrie française},\n  author = {Claire ARMENGAUD and Angélique GUETTIER and Benoit JACQ and Gilles LALLEMAND and Maxence TETTAMANTI},\n  year = {2019},\n}", "apa": "Claire ARMENGAUD et al. (2019). L’impact des groupes de pression sur l’agro-industrie française. ."}, {"id": "2018-rakhmawati-auto-halal-detection-products-based-on", "title": "Auto halal detection products based on euclidian distance and cosine similarity", "authors": ["Nur Aini Rakhmawati", "Azmi Adi Firmansyah", "Pradita Maulidya Effendi", "Rosyid Abdillah and Taufiq Agung Cahyono"], "journal": "International Journal on Advanced Science, Engineering and Information Technology", "year": 2018, "volume": "vol. 8, no. 4-2", "pages": "1706-1711", "doi": "10.18517/ijaseit.8.4-2.7083", "url": "https://doi.org/10.18517/ijaseit.8.4-2.7083", "url_pdf": "https://core.ac.uk/download/pdf/296918848.pdf", "num_citations": 15, "themes": ["nutrition"], "type": "paper", "usage_score": 3, "featured": true, "bibtex": "@article{2018-rakhmawati-auto-halal-detection-products-based-on,\n  title = {Auto halal detection products based on euclidian distance and cosine similarity},\n  author = {Nur Aini Rakhmawati and Azmi Adi Firmansyah and Pradita Maulidya Effendi and Rosyid Abdillah and Taufiq Agung Cahyono},\n  journal = {International Journal on Advanced Science, Engineering and Information Technology},\n  year = {2018},\n  volume = {vol. 8, no. 4-2},\n  pages = {1706-1711},\n  doi = {10.18517/ijaseit.8.4-2.7083},\n}", "apa": "Nur Aini Rakhmawati et al. (2018). Auto halal detection products based on euclidian distance and cosine similarity. _International Journal on Advanced Science, Engineering and Information Technology_, vol. 8, no. 4-2, 1706-1711. https://doi.org/10.18517/ijaseit.8.4-2.7083"}, {"id": "2018-lazzari-foodrepo-an-open-food-repository-of-barcod", "title": "FoodRepo: An Open Food Repository of Barcoded Food Products", "authors": ["Gianrocco Lazzari", "Yannis Jaquet", "Djilani J. Kebaili", "Laura Symul", "Marcel Salathé*"], "journal": "Frontiers in Nutrition", "year": 2018, "doi": "10.3389/fnut.2018.00057", "url": "https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2018.00057/full", "num_citations": 9, "themes": ["computer_science"], "type": "paper", "usage_score": 0, "excerpt": "A few databases of barcoded products already exist, for example Open Food Facts (20) or the USDA Food Composition Databases.", "featured": false, "bibtex": "@article{2018-lazzari-foodrepo-an-open-food-repository-of-barcod,\n  title = {FoodRepo: An Open Food Repository of Barcoded Food Products},\n  author = {Gianrocco Lazzari and Yannis Jaquet and Djilani J. Kebaili and Laura Symul and Marcel Salathé*},\n  journal = {Frontiers in Nutrition},\n  year = {2018},\n  doi = {10.3389/fnut.2018.00057},\n}", "apa": "Gianrocco Lazzari et al. (2018). FoodRepo: An Open Food Repository of Barcoded Food Products. _Frontiers in Nutrition_. https://doi.org/10.3389/fnut.2018.00057"}, {"id": "2018-incel-etiket-system-for-tracking-the-contents-of-t", "title": "Etiket: System for tracking the contents of the packaged food products", "authors": ["ÖD İncel", "M Incel"], "year": 2018, "doi": "10.12962/j22759970.v1i2.107", "url": "http://scholar.google.com/https://ieeexplore.ieee.org/abstract/document/8404786/", "num_citations": 2, "themes": ["nutrition"], "type": "paper", "usage_score": 0, "excerpt": "… ücretleri talep edilmektedir. Örnekler arasında; simpleupc.com gibi siteler yeralmaktadır. Bu veri tabanlarına bir alternatif de kullanıcılar tarafından oluşturulmuşaçık veri tabanlarıdır (http://world.openfoodfacts.org/) . Bu tip veri …", "featured": false, "bibtex": "@article{2018-incel-etiket-system-for-tracking-the-contents-of-t,\n  title = {Etiket: System for tracking the contents of the packaged food products},\n  author = {ÖD İncel and M Incel},\n  year = {2018},\n  doi = {10.12962/j22759970.v1i2.107},\n}", "apa": "ÖD İncel, M Incel (2018). Etiket: System for tracking the contents of the packaged food products. . https://doi.org/10.12962/j22759970.v1i2.107"}, {"id": "2018-peugeot-internet-est-il-un-bien-commun", "title": "Internet est-il un (bien) commun?", "authors": ["Valérie Peugeot"], "journal": "Annales des Mines - Enjeux numériques", "year": 2018, "volume": "4", "url": "https://stm.cairn.info/revue-enjeux-numeriques-2018-4-page-12?lang=fr", "url_pdf": "http://www.annales.org/edit/enjeux-numeriques/2018/en-2018-04/2018-12-3.pdf", "themes": ["digital_humanities"], "type": "paper", "usage_score": 0, "featured": false, "bibtex": "@article{2018-peugeot-internet-est-il-un-bien-commun,\n  title = {Internet est-il un (bien) commun?},\n  author = {Valérie Peugeot},\n  journal = {Annales des Mines - Enjeux numériques},\n  year = {2018},\n  volume = {4},\n}", "apa": "Valérie Peugeot (2018). Internet est-il un (bien) commun?. _Annales des Mines - Enjeux numériques_, 4."}, {"id": "2018-phara-an-augmented-reality-grocery-store-assi", "title": "PHARA: an augmented reality grocery store assistant", "authors": [], "year": 2018, "url": "http://scholar.google.com/https://dl.acm.org/citation.cfm?id=3236161", "num_citations": 0, "themes": ["nutrition"], "type": "paper", "excerpt": "Page 1. PHARA: an Augmented Reality Grocery Store Assistant Francisco Gutiérrez KU LeuvenCelestijnenlaan 200A, 3001 Leuven, Belgium francisco.gutierrez@kuleuven.be Nyi Nyi HtunKU Leuven Celestijnenlaan 200A, 3001 Leuven, Belgium nyinyi.htun@kuleuven.be …", "featured": false, "bibtex": "@article{2018-phara-an-augmented-reality-grocery-store-assi,\n  title = {PHARA: an augmented reality grocery store assistant},\n  author = {Open Food Facts},\n  year = {2018},\n}", "apa": "Open Food Facts (2018). PHARA: an augmented reality grocery store assistant. ."}, {"id": "2017-julia-nutri-score-evidence-of-the-effectiveness-of", "title": "Nutri-Score: Evidence of the effectiveness of the French front-of-pack nutrition label", "authors": ["C Julia", "S Hercberg"], "year": 2017, "doi": "10.4455/eu.2017.048", "url": "https://www.ernaehrungs-umschau.de/fileadmin/Ernaehrungs-Umschau/pdfs/pdf_2017/12_17/EU12_2017_WuF_Nutriscore_englisch.pdf", "url_pdf": "https://www.ernaehrungs-umschau.de/fileadmin/Ernaehrungs-Umschau/pdfs/pdf_2017/12_17/EU12_2017_WuF_Nutriscore_englisch.pdf", "num_citations": 147, "themes": ["nutrition"], "type": "paper", "country": "fra", "usage_score": 2, "excerpt": "The feasibility and discriminant capacity of the FSA score were confirmed when applying it to a food composition database reflecting foods as sold in France, the Open Food Facts database.", "featured": true, "bibtex": "@article{2017-julia-nutri-score-evidence-of-the-effectiveness-of,\n  title = {Nutri-Score: Evidence of the effectiveness of the French front-of-pack nutrition label},\n  author = {C Julia and S Hercberg},\n  year = {2017},\n  doi = {10.4455/eu.2017.048},\n}", "apa": "C Julia, S Hercberg (2017). Nutri-Score: Evidence of the effectiveness of the French front-of-pack nutrition label. . https://doi.org/10.4455/eu.2017.048"}, {"id": "2017-petit-are-large-portions-always-bad-using-the-delb", "title": "Are large portions always bad? Using the Delboeuf illusion on food packaging to nudge consumer behavior", "authors": ["O. Petit", "C. & Spence Velasco", "C."], "journal": "Marketing Letters", "year": 2017, "doi": "10.1007/s11002-018-9473-6", "url": "http://scholar.google.com/https://link.springer.com/article/10.1007/s11002-018-9473-6", "num_citations": 57, "themes": ["psychology"], "type": "paper", "usage_score": 1, "excerpt": "… Showing food items on a plate on the front of the packaging is quite common for some products(eg, frozen pizza ≈ 41.5%, cereals ≈ 87.5%; see openfoodfacts.org/).2 The plate is generallysmall-rimmed (in 98.5% of cases); thus, people perceive the portion larger than it …", "featured": true, "bibtex": "@article{2017-petit-are-large-portions-always-bad-using-the-delb,\n  title = {Are large portions always bad? Using the Delboeuf illusion on food packaging to nudge consumer behavior},\n  author = {O. Petit and C. & Spence Velasco and C.},\n  journal = {Marketing Letters},\n  year = {2017},\n  doi = {10.1007/s11002-018-9473-6},\n}", "apa": "O. Petit, C. & Spence Velasco, C. (2017). Are large portions always bad? Using the Delboeuf illusion on food packaging to nudge consumer behavior. _Marketing Letters_. https://doi.org/10.1007/s11002-018-9473-6"}, {"id": "2017-combet-testing-the-capacity-of-a-multi-nutrient-pr", "title": "Testing the capacity of a multi-nutrient profiling system to guide food and beverage reformulation: results from five national food composition databases", "authors": ["Emilie Combet", "Antonis Vlassopoulos", "Famke Mölenberg", "Mathilde Gressier", "Lisa Privet", "Craig Wratten", "Sahar Sharif", "Florent Vieux", "Undine Lehmann and\nGabriel Masset"], "journal": "Nutrients", "year": 2017, "month": 4, "doi": "10.3390/nu9040406", "url": "https://www.mdpi.com/2072-6643/9/4/406", "num_citations": 25, "themes": ["nutrition"], "type": "paper", "usage_score": 1, "excerpt": "Nutrient profiling ranks foods based on their nutrient composition, with applications in multipleaspects of food policy. We tested the capacity of a category-specific model developed for productreformulation to improve the average nutrient content of foods, using five national food …", "featured": true, "bibtex": "@article{2017-combet-testing-the-capacity-of-a-multi-nutrient-pr,\n  title = {Testing the capacity of a multi-nutrient profiling system to guide food and beverage reformulation: results from five national food composition databases},\n  author = {Emilie Combet and Antonis Vlassopoulos and Famke Mölenberg and Mathilde Gressier and Lisa Privet and Craig Wratten and Sahar Sharif and Florent Vieux and Undine Lehmann and\nGabriel Masset},\n  journal = {Nutrients},\n  year = {2017},\n  doi = {10.3390/nu9040406},\n}", "apa": "Emilie Combet et al. (2017). Testing the capacity of a multi-nutrient profiling system to guide food and beverage reformulation: results from five national food composition databases. _Nutrients_. https://doi.org/10.3390/nu9040406"}, {"id": "2017-brown-concepts-and-procedures-for-mapping-food-and", "title": "Concepts and procedures for mapping food and health research infrastructure: New insights from the EuroDISH project", "authors": ["Kerry A. Brown", "Lada Timotijević", "Marjolein Geurts", "Johanne L. Arentoft", "Rosalie A.M. Dhonukshe-Rutten", "Léopold Fezeu", "Paul Finglas", "Martine Laville", "Giuditta Perozzi", "Marga Ocké", "Krijn Poppe", "Nadia Slimani", "Harriette M. Snoek", "Inge Tetens", "Pieter van't Veer", "Cécile Vors", "Karin L. Zimmermann"], "journal": "Trends in Food Science & Technology", "year": 2017, "month": 5, "volume": "63", "pages": "113-131", "doi": "10.1016/j.tifs.2017.03.006", "url": "https://www.sciencedirect.com/science/article/abs/pii/S0924224415301825", "num_citations": 17, "themes": ["nutrition"], "type": "paper", "featured": true, "bibtex": "@article{2017-brown-concepts-and-procedures-for-mapping-food-and,\n  title = {Concepts and procedures for mapping food and health research infrastructure: New insights from the EuroDISH project},\n  author = {Kerry A. Brown and Lada Timotijević and Marjolein Geurts and Johanne L. Arentoft and Rosalie A.M. Dhonukshe-Rutten and Léopold Fezeu and Paul Finglas and Martine Laville and Giuditta Perozzi and Marga Ocké and Krijn Poppe and Nadia Slimani and Harriette M. Snoek and Inge Tetens and Pieter van't Veer and Cécile Vors and Karin L. Zimmermann},\n  journal = {Trends in Food Science & Technology},\n  year = {2017},\n  volume = {63},\n  pages = {113-131},\n  doi = {10.1016/j.tifs.2017.03.006},\n}", "apa": "Kerry A. Brown et al. (2017). Concepts and procedures for mapping food and health research infrastructure: New insights from the EuroDISH project. _Trends in Food Science & Technology_, 63, 113-131. https://doi.org/10.1016/j.tifs.2017.03.006"}, {"id": "2017-phara-a-personal-health-augmented-reality-ass", "title": "PHARA: a personal health augmented reality assistant to support decision-making at grocery stores", "authors": [], "year": 2017, "url": "http://scholar.google.com/https://www.researchgate.net/profile/Bernd_Ludwig/publication/319277385_Second_Workshop_on_Health_Recommender_Systems_HealthRecSys_2017/links/5a1bd27ea6fdcc50adec9d31/Second-Workshop-on-Health-Recommender-Systems-HealthRecSys-2017.pdf#page=17", "num_citations": 2, "themes": ["nutrition"], "type": "paper", "excerpt": "… products. Many alternatives rely on a simpli ed nutrition labelling system to helpconsumers make healthier food choices. A prominent example is the ve-colour nutritionlabel/nutri-score 1h ps://world. openfoodfacts. org/ 10 Page 18 …", "featured": false, "bibtex": "@article{2017-phara-a-personal-health-augmented-reality-ass,\n  title = {PHARA: a personal health augmented reality assistant to support decision-making at grocery stores},\n  author = {Open Food Facts},\n  year = {2017},\n}", "apa": "Open Food Facts (2017). PHARA: a personal health augmented reality assistant to support decision-making at grocery stores. ."}, {"id": "2016-jund-the-freiburg-groceries-dataset", "title": "The Freiburg Groceries Dataset", "authors": ["Philipp Jund", "Nichola Abdo", "Andreas Eitel", "Wolfram Burgard"], "journal": "arXiv", "year": 2016, "month": 11, "doi": "10.48550/arXiv.1611.05799", "url": "https://arxiv.org/abs/1611.05799", "num_citations": 96, "themes": ["computer_science"], "type": "paper", "usage_score": 1, "excerpt": "… For example, sources such as the OpenFoodFacts dataset or images available on the websitesof grocery stores typically consider one or two views of each item [9]. Other datasets includemultiple view points of each product but consider only a small number of ob- jects …", "featured": true, "bibtex": "@article{2016-jund-the-freiburg-groceries-dataset,\n  title = {The Freiburg Groceries Dataset},\n  author = {Philipp Jund and Nichola Abdo and Andreas Eitel and Wolfram Burgard},\n  journal = {arXiv},\n  year = {2016},\n  doi = {10.48550/arXiv.1611.05799},\n}", "apa": "Philipp Jund et al. (2016). The Freiburg Groceries Dataset. _arXiv_. https://doi.org/10.48550/arXiv.1611.05799"}, {"id": "2016-kwon-smart-refrigerator-for-healthcare-using-food", "title": "Smart Refrigerator for Healthcare Using Food Image Classification", "authors": ["Taein Kwon", "Eunjeong Park", "Hyukjae Chang"], "journal": "BCB '16: Proceedings of the 7th ACM International Conference on Bioinformatics, Computational Biology, and Health Informatics", "year": 2016, "pages": "483-484", "doi": "10.1145/2975167.2985644", "url": "https://dl.acm.org/doi/abs/10.1145/2975167.2985644", "num_citations": 19, "themes": ["computer_science"], "type": "conference", "usage_score": 3, "excerpt": "… We will use Fast-Food Image Dataset [1] and Open Food Facts [2] and test various detectionalgorithms than RGB object detection in future studies … 289–292. [2] “Open Food Facts.” [Online].Available: http://openfoodfacts.org. [Accessed: 27-Jun-2016].", "featured": true, "bibtex": "@article{2016-kwon-smart-refrigerator-for-healthcare-using-food,\n  title = {Smart Refrigerator for Healthcare Using Food Image Classification},\n  author = {Taein Kwon and Eunjeong Park and Hyukjae Chang},\n  journal = {BCB '16: Proceedings of the 7th ACM International Conference on Bioinformatics, Computational Biology, and Health Informatics},\n  year = {2016},\n  pages = {483-484},\n  doi = {10.1145/2975167.2985644},\n}", "apa": "Taein Kwon, Eunjeong Park, Hyukjae Chang (2016). Smart Refrigerator for Healthcare Using Food Image Classification. _BCB '16: Proceedings of the 7th ACM International Conference on Bioinformatics, Computational Biology, and Health Informatics_, 483-484. https://doi.org/10.1145/2975167.2985644"}, {"id": "2016-efthymiou-minoan-er-progressive-entity-resolution", "title": "Minoan ER: Progressive Entity Resolution in the Web of Data", "authors": ["Vasilis Efthymiou", "Kostas Stefanidis", "Vassilis Christophides"], "journal": "19th International Conference on Extending Database Technology, EDBT 2016,", "year": 2016, "month": 3, "doi": "10.5441/002/edbt.2016.79", "url": "https://inria.hal.science/hal-01411910/", "num_citations": 18, "themes": ["computer_science"], "type": "conference", "usage_score": 1, "excerpt": "… Thus, the majority of KBs are sparsely linked, while their popularity in links is heavily skewed.Sparsely interlinked KBs appear in the periphery of the LOD cloud (eg, Open Food Facts, Bio2RDF), while heavily interlinked ones lie at the center (eg, DBpedia, GeoNames) …", "featured": true, "bibtex": "@article{2016-efthymiou-minoan-er-progressive-entity-resolution,\n  title = {Minoan ER: Progressive Entity Resolution in the Web of Data},\n  author = {Vasilis Efthymiou and Kostas Stefanidis and Vassilis Christophides},\n  journal = {19th International Conference on Extending Database Technology, EDBT 2016,},\n  year = {2016},\n  doi = {10.5441/002/edbt.2016.79},\n}", "apa": "Vasilis Efthymiou, Kostas Stefanidis, Vassilis Christophides (2016). Minoan ER: Progressive Entity Resolution in the Web of Data. _19th International Conference on Extending Database Technology, EDBT 2016,_. https://doi.org/10.5441/002/edbt.2016.79"}, {"id": "2016-dolejsova-deciphering-a-meal-through-open-source-s", "title": "Deciphering a meal through open source standards: Soylent and the rise of diet hackers", "authors": ["Marketa Dolejšová"], "journal": "CHI EA '16: Proceedings of the 2016 CHI Conference Extended Abstracts on Human Factors in Computing Systems", "year": 2016, "month": 5, "pages": "436-448", "doi": "10.1145/2851581.2892586", "url": "https://dl.acm.org/doi/abs/10.1145/2851581.2892586", "num_citations": 14, "themes": ["nutrition"], "type": "conference", "excerpt": "Page 1. Deciphering a Meal through Open Source Standards: soylent and the Rise of Diet HackersAbstract A life without food - a leitmotiv of science fiction dystopias is becoming a voluntary choicefor thousands of people consuming the powdered food replacement soylent …", "featured": true, "bibtex": "@article{2016-dolejsova-deciphering-a-meal-through-open-source-s,\n  title = {Deciphering a meal through open source standards: Soylent and the rise of diet hackers},\n  author = {Marketa Dolejšová},\n  journal = {CHI EA '16: Proceedings of the 2016 CHI Conference Extended Abstracts on Human Factors in Computing Systems},\n  year = {2016},\n  pages = {436-448},\n  doi = {10.1145/2851581.2892586},\n}", "apa": "Marketa Dolejšová (2016). Deciphering a meal through open source standards: Soylent and the rise of diet hackers. _CHI EA '16: Proceedings of the 2016 CHI Conference Extended Abstracts on Human Factors in Computing Systems_, 436-448. https://doi.org/10.1145/2851581.2892586"}, {"id": "2016-kumar-calnag-effortless-multiuser-calorie-tracking", "title": "CalNag: effortless multiuser calorie tracking", "authors": ["N Kumar", "C Lopez", "CM Caldeira", "S Pethe", "B Si", "A Kobsa"], "year": 2016, "month": 3, "doi": "10.1109/PERCOMW.2016.7457051", "url": "https://ieeexplore.ieee.org/abstract/document/7457051", "num_citations": 7, "themes": ["nutrition"], "type": "paper", "usage_score": 2, "excerpt": "… Bob immediately receives a notification on the attached display as well as his mobile phonealerting him about the presence of peanuts in the food. CalNag had compared Bob's dietaryrestrictions with the open food facts database and found a match …", "featured": false, "bibtex": "@article{2016-kumar-calnag-effortless-multiuser-calorie-tracking,\n  title = {CalNag: effortless multiuser calorie tracking},\n  author = {N Kumar and C Lopez and CM Caldeira and S Pethe and B Si and A Kobsa},\n  year = {2016},\n  doi = {10.1109/PERCOMW.2016.7457051},\n}", "apa": "N Kumar et al. (2016). CalNag: effortless multiuser calorie tracking. . https://doi.org/10.1109/PERCOMW.2016.7457051"}, {"id": "2016-karlsson-product-classification-a-hierarchical-app", "title": "Product Classification-A Hierarchical Approach", "authors": ["M Karlsson", "A Karlstedt"], "journal": "LU-CS-EX 2016-31", "year": 2016, "url": "http://lup.lub.lu.se/student-papers/record/8889613", "num_citations": 6, "themes": ["nutrition"], "type": "paper", "usage_score": 2, "excerpt": "… 18 3 Data collection 21 3.1 Opendatasets . . . . . 21 3.1.1 Icecat . . . . . 21 3.1.2 OpenFoodFacts . .. . . 22 3.1.3 OpenProductData . . . . . 22 3.2 Labellingdata …", "featured": false, "bibtex": "@article{2016-karlsson-product-classification-a-hierarchical-app,\n  title = {Product Classification-A Hierarchical Approach},\n  author = {M Karlsson and A Karlstedt},\n  journal = {LU-CS-EX 2016-31},\n  year = {2016},\n}", "apa": "M Karlsson, A Karlstedt (2016). Product Classification-A Hierarchical Approach. _LU-CS-EX 2016-31_."}, {"id": "2016-dorier-impact-du-colorant-alimentaire-e171-et-de-n", "title": "Impact du colorant alimentaire E171 et de nanoparticules de dioxyde de titane sur des modèles cellulaires, in vitro, d'épithélium intestinal", "authors": ["Marie Dorier"], "year": 2016, "url": "https://theses.hal.science/tel-01690732/", "url_pdf": "https://tel.archives-ouvertes.fr/tel-01690732/document", "num_citations": 1, "themes": ["nutrition"], "type": "paper", "usage_score": 1, "excerpt": "En mars 2015, 109 produits contenant du E171 et vendus en France étaient répertoriés par la base de données Open Food Facts", "featured": false, "bibtex": "@article{2016-dorier-impact-du-colorant-alimentaire-e171-et-de-n,\n  title = {Impact du colorant alimentaire E171 et de nanoparticules de dioxyde de titane sur des modèles cellulaires, in vitro, d'épithélium intestinal},\n  author = {Marie Dorier},\n  year = {2016},\n}", "apa": "Marie Dorier (2016). Impact du colorant alimentaire E171 et de nanoparticules de dioxyde de titane sur des modèles cellulaires, in vitro, d'épithélium intestinal. ."}, {"id": "2016-zitnik-the-infinite-mixtures-of-food-products", "title": "The infinite mixtures of food products", "authors": ["M Zitnik"], "journal": "XRDS: Crossroads, The ACM Magazine for Students", "year": 2016, "url": "http://scholar.google.com/https://dl.acm.org/citation.cfm?id=2983445", "themes": ["nutrition"], "type": "paper", "usage_score": 3, "excerpt": "… THE OPEN FOOD FACTS The Open Food Facts (http://world. openfoodfacts.org) is a collaborative,free, and open database of food products from around the world. For the purpose of this columnwe retrieved data for 2,776 food products sold in the United States …", "featured": true, "bibtex": "@article{2016-zitnik-the-infinite-mixtures-of-food-products,\n  title = {The infinite mixtures of food products},\n  author = {M Zitnik},\n  journal = {XRDS: Crossroads, The ACM Magazine for Students},\n  year = {2016},\n}", "apa": "M Zitnik (2016). The infinite mixtures of food products. _XRDS: Crossroads, The ACM Magazine for Students_."}, {"id": "2015-boulos-towards-an-internet-of-food-food-ontologies", "title": "Towards an “Internet of Food”: food ontologies for the internet of things", "authors": ["BOULOS", "Maged N. Kamel", "YASSINE", "Abdulslam", "SHIRMOHAMMADI", "Shervin", "et al."], "journal": "Future Internet", "year": 2015, "volume": "vol. 7, n°4", "pages": "372-392", "doi": "10.3390/fi7040372", "url": "https://www.mdpi.com/1999-5903/7/4/372", "num_citations": 94, "themes": ["computer_science"], "type": "paper", "usage_score": 2, "excerpt": "… In this paper, we review a number of “food ontologies”, such as the Food ProductsOntology/FOODpedia (by Kolchin and Zamula), Open Food Facts (by Gigandet et al.), FoodWiki(Ontology-driven Mobile Safe Food Consumption System by Celik), FOODS-Diabetes Edition …", "featured": true, "bibtex": "@article{2015-boulos-towards-an-internet-of-food-food-ontologies,\n  title = {Towards an “Internet of Food”: food ontologies for the internet of things},\n  author = {BOULOS and Maged N. Kamel and YASSINE and Abdulslam and SHIRMOHAMMADI and Shervin and et al.},\n  journal = {Future Internet},\n  year = {2015},\n  volume = {vol. 7, n°4},\n  pages = {372-392},\n  doi = {10.3390/fi7040372},\n}", "apa": "BOULOS et al. (2015). Towards an “Internet of Food”: food ontologies for the internet of things. _Future Internet_, vol. 7, n°4, 372-392. https://doi.org/10.3390/fi7040372"}, {"id": "2015-julia-discriminating-nutritional-quality-of-foods", "title": "Discriminating nutritional quality of foods using the 5-Color nutrition label in the French food market: consistency with nutritional recommendations", "authors": ["C. Julia", "P. Ducrot", "S. et al. Péneau"], "journal": "Nutrition Journal", "year": 2015, "volume": "14", "doi": "10.1186/s12937-015-0090-4", "url": "http://scholar.google.com/https://nutritionj.biomedcentral.com/articles/10.1186/s12937-015-0090-4", "num_citations": 24, "themes": ["nutrition"], "type": "paper", "country": "fra", "usage_score": 4, "excerpt": "… Methods. Nutritional composition of 7777 foods available on the French market collected fromthe web-based collaborative project Open Food Facts were retrieved … Food composition datawas retrieved from the Open Food Facts project database (http://world.openfoodfacts.org/) …", "featured": true, "bibtex": "@article{2015-julia-discriminating-nutritional-quality-of-foods,\n  title = {Discriminating nutritional quality of foods using the 5-Color nutrition label in the French food market: consistency with nutritional recommendations},\n  author = {C. Julia and P. Ducrot and S. et al. Péneau},\n  journal = {Nutrition Journal},\n  year = {2015},\n  volume = {14},\n  doi = {10.1186/s12937-015-0090-4},\n}", "apa": "C. Julia, P. Ducrot, S. et al. Péneau (2015). Discriminating nutritional quality of foods using the 5-Color nutrition label in the French food market: consistency with nutritional recommendations. _Nutrition Journal_, 14. https://doi.org/10.1186/s12937-015-0090-4"}, {"id": "2015-julia-application-aux-produits-disponibles-sur-le", "title": "Application aux produits disponibles sur le marché français du profil nutritionnel associé au système 5 couleurs (5-C): cohérence avec les repères de consommation du PNNS", "authors": ["C. Julia", "S. Péneau", "P. Ducrot", "V. et al Deschamps"], "journal": "Cahiers de Nutrition et de Diététique", "year": 2015, "volume": "vol. 50, issue 4", "pages": "189-201", "doi": "10.1016/j.cnd.2015.06.002", "url": "http://scholar.google.com/https://www.sciencedirect.com/science/article/pii/S0007996015001017", "num_citations": 4, "themes": ["nutrition"], "type": "paper", "usage_score": 4, "excerpt": "… Les données de composition nutritionnelle proviennent de la base de données Open Food Facts(http://world.openfoodfacts.org/), un projet collaboratif en ligne collectant des informations surla composition nutritionnelle des aliments, à partir des données d'étiquetage …", "featured": true, "bibtex": "@article{2015-julia-application-aux-produits-disponibles-sur-le,\n  title = {Application aux produits disponibles sur le marché français du profil nutritionnel associé au système 5 couleurs (5-C): cohérence avec les repères de consommation du PNNS},\n  author = {C. Julia and S. Péneau and P. Ducrot and V. et al Deschamps},\n  journal = {Cahiers de Nutrition et de Diététique},\n  year = {2015},\n  volume = {vol. 50, issue 4},\n  pages = {189-201},\n  doi = {10.1016/j.cnd.2015.06.002},\n}", "apa": "C. Julia et al. (2015). Application aux produits disponibles sur le marché français du profil nutritionnel associé au système 5 couleurs (5-C): cohérence avec les repères de consommation du PNNS. _Cahiers de Nutrition et de Diététique_, vol. 50, issue 4, 189-201. https://doi.org/10.1016/j.cnd.2015.06.002"}, {"id": "2014-roger-evidence-of-the-presence-of-genetically-modi", "title": "Evidence of the Presence of Genetically Modified Foods in the Sudano-Sahelian Zones of Cameroon", "authors": ["Djoulde Darman Roger", "Sobda Gone"], "journal": "Food and Nutrition Sciences", "year": 2014, "month": 2, "volume": "5", "doi": "10.4236/fns.2014.510102", "url": "https://www.scirp.org/html/8-2701045_45604.htm", "url_pdf": "http://scholar.google.com/https://www.researchgate.net/profile/Roger_Djoulde/publication/262046969_Evidence_of_the_Presence_of_Genetically_Modified_Foods_in_the_Sudano-Sahelian_Zones_of_Cameroon/links/0a85e5367b32cad8c8000000.pdf", "num_citations": 5, "themes": ["nutrition"], "type": "paper", "usage_score": 2, "excerpt": "… corn flour http://www.mexgrocer.com/2440.html http://fr.openfoodfacts.org Maïs à Eclater auFour-Pop corn/Newmans Own … Post Oreo's Marshmalow/ France Corn and soya flourhttp://idsgn.org/posts/ritz-and-oreo-go-retro/ http://fr.openfoodfacts.org Oils Huile de Soja MAUREL …", "featured": false, "bibtex": "@article{2014-roger-evidence-of-the-presence-of-genetically-modi,\n  title = {Evidence of the Presence of Genetically Modified Foods in the Sudano-Sahelian Zones of Cameroon},\n  author = {Djoulde Darman Roger and Sobda Gone},\n  journal = {Food and Nutrition Sciences},\n  year = {2014},\n  volume = {5},\n  doi = {10.4236/fns.2014.510102},\n}", "apa": "Djoulde Darman Roger, Sobda Gone (2014). Evidence of the Presence of Genetically Modified Foods in the Sudano-Sahelian Zones of Cameroon. _Food and Nutrition Sciences_, 5. https://doi.org/10.4236/fns.2014.510102"}, {"id": "2013-food-product-ontology-initial-implementation", "title": "Food product ontology: Initial implementation of a vocabulary for describing food products", "authors": [], "year": 2013, "url": "http://scholar.google.com/https://fruct.org/publications/abstract14/files/Kol_21.pdf", "url_pdf": "http://scholar.google.com/https://fruct.org/publications/abstract14/files/Kol_21.pdf", "num_citations": 13, "themes": ["computer_science"], "type": "paper", "excerpt": "… Another effort[11] that was presented in LIRMM ontologies publishing platform is a food ontologybuilt from scratch and used in Open Food Facts1 project. Open Food Facts project aims to createa free, open and collaborative database of food products from the entire world …", "featured": true, "bibtex": "@article{2013-food-product-ontology-initial-implementation,\n  title = {Food product ontology: Initial implementation of a vocabulary for describing food products},\n  author = {Open Food Facts},\n  year = {2013},\n}", "apa": "Open Food Facts (2013). Food product ontology: Initial implementation of a vocabulary for describing food products. ."}, {"id": "2013-publishing-linked-data-requires-more-than-jus", "title": "Publishing Linked Data Requires More than Just Using a Tool", "authors": [], "year": 2013, "url": "http://scholar.google.com/https://www.researchgate.net/profile/Ghislain_Atemezing/publication/269390791_Publishing_Linked_Data_Requires_More_than_Just_Using_a_Tool/links/54882c150cf289302e2f4619/Publishing-Linked-Data-Requires-More-than-Just-Using-a-Tool.pdf", "url_pdf": "http://scholar.google.com/https://www.researchgate.net/profile/Ghislain_Atemezing/publication/269390791_Publishing_Linked_Data_Requires_More_than_Just_Using_a_Tool/links/54882c150cf289302e2f4619/Publishing-Linked-Data-Requires-More-than-Just-Using-a-Tool.pdf", "num_citations": 1, "themes": ["computer_science"], "type": "paper", "excerpt": "… their raw data as Linked Data. The camp leads to publish the catalog of the city ofMontpellier in RDF using DCAT10 , and Open Food Facts data in RDF11 and thefood vocabulary12. We list here some recommendations that …", "featured": false, "bibtex": "@article{2013-publishing-linked-data-requires-more-than-jus,\n  title = {Publishing Linked Data Requires More than Just Using a Tool},\n  author = {Open Food Facts},\n  year = {2013},\n}", "apa": "Open Food Facts (2013). Publishing Linked Data Requires More than Just Using a Tool. ."}];
 
-<div class="row text-center">
-	<div class="panel callout">
-		<h3>계속 연락하세요</h3>
-		<p><strong>과학자를 위한 웹 세미나</strong></p>
-		<p>저희는 연구자들을 위해 프랑스어와 영어로 웹 세미나를 개최하여 Open Food Facts와 연구에서의 활용 방안에 대해 논의합니다.</p>
-		<a href="https://link.openfoodfacts.org/form-web-sci-en" class="button">등록 (영어)</a>
-		<a href="https://link.openfoodfacts.org/form-web-sci-fr" class="button">등록 (프랑스어)</a>
-	</div>
-</div>
+const THEME_LABELS = {
+  "nutrition": IS_FR ? "🥗 Nutrition" : "🥗 Nutrition",
+  "nutrient_profiling": IS_FR ? "🎯 Profilage nutritionnel" : "🎯 Nutrient Profiling",
+  "ultra_processed": IS_FR ? "🏭 Ultra-transformé (NOVA)" : "🏭 Ultra-Processed (NOVA)",
+  "additives": IS_FR ? "🧪 Additifs" : "🧪 Additives",
+  "labeling": IS_FR ? "🏷️ Étiquetage" : "🏷️ Labeling",
+  "computer_science": IS_FR ? "🤖 IA & Data Science" : "🤖 AI & Data Science",
+  "environment": IS_FR ? "♻️ Environnement" : "♻️ Environment",
+  "halal_kosher": "🕊️ Halal / Kosher",
+  "allergies": IS_FR ? "⚠️ Allergies" : "⚠️ Allergies",
+  "mobile_apps": IS_FR ? "📱 Applications" : "📱 Mobile Apps",
+  "economy": IS_FR ? "💶 Économie" : "💶 Economy",
+  "digital_platforms": IS_FR ? "🌐 Plateformes" : "🌐 Digital Platforms"
+};
 
-<div class="row">
-	<div class="large-12 columns">
-		<p class="text-center"><em>Open Food Facts: 2012년부터 과학에 기반하여 과학 발전에 기여해 왔습니다.</em></p>
-	</div>
-</div>
+const COUNTRY_FLAGS = {
+  "fra": "🇫🇷 France",
+  "usa": "🇺🇸 USA",
+  "deu": "🇩🇪 " + (IS_FR ? "Allemagne" : "Germany"),
+  "esp": "🇪🇸 " + (IS_FR ? "Espagne" : "Spain"),
+  "ita": "🇮🇹 " + (IS_FR ? "Italie" : "Italy"),
+  "bel": "🇧🇪 " + (IS_FR ? "Belgique" : "Belgium"),
+  "che": "🇨🇭 " + (IS_FR ? "Suisse" : "Switzerland"),
+  "gbr": "🇬🇧 UK"
+};
+
+let selectedQuickTheme = "all";
+let currentFilteredList = [];
+let displayedCount = 0;
+const PAGE_SIZE = 36;
+
+function toggleSciDrawer(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle("open");
+}
+
+function toggleMultiFilterPanel() {
+  const p = document.getElementById("multiFilterPanel");
+  if (p) p.classList.toggle("open");
+}
+
+function selectSciTheme(btn, themeVal) {
+  selectedQuickTheme = themeVal;
+  document.querySelectorAll(".topic-chips-bar .chip-btn").forEach(el => el.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  applySciFilters();
+}
+
+function getCheckedValues(name) {
+  return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(el => el.value);
+}
+
+function resetSciFilters() {
+  document.getElementById("sciSearch").value = "";
+  document.getElementById("sciSort").value = "recent";
+  document.getElementById("sciYear").value = "all";
+  document.querySelectorAll('input[name="filter_type"]').forEach(el => el.checked = false);
+  document.querySelectorAll('input[name="filter_cit"]').forEach(el => el.checked = false);
+  document.querySelectorAll('input[name="filter_country"]').forEach(el => el.checked = false);
+  selectSciTheme(document.querySelector(".topic-chips-bar .chip-btn"), "all");
+}
+
+function applySciFilters() {
+  const q = document.getElementById("sciSearch").value.toLowerCase().trim();
+  const sortVal = document.getElementById("sciSort").value;
+  const yearVal = document.getElementById("sciYear").value;
+
+  const checkedTypes = getCheckedValues("filter_type");
+  const checkedCits = getCheckedValues("filter_cit");
+  const checkedCountries = getCheckedValues("filter_country");
+
+  let filtered = PUBLICATIONS_DATA.filter(p => {
+    // Quick theme chip
+    if (selectedQuickTheme !== "all") {
+      const themes = p.themes || [];
+      if (!themes.includes(selectedQuickTheme)) return false;
+    }
+
+    // Year
+    if (yearVal !== "all" && String(p.year) !== yearVal) {
+      return false;
+    }
+
+    // Publication Type
+    if (checkedTypes.length > 0) {
+      const pType = p.type || "paper";
+      if (!checkedTypes.includes(pType)) return false;
+    }
+
+    // Reach / Citations checkboxes
+    if (checkedCits.length > 0) {
+      for (const c of checkedCits) {
+        if (c === "cit_10" && (p.num_citations || 0) < 10) return false;
+        if (c === "cit_50" && (p.num_citations || 0) < 50) return false;
+        if (c === "cit_100" && (p.num_citations || 0) < 100) return false;
+        if (c === "has_doi" && !p.doi) return false;
+        if (c === "has_pdf" && !p.url_pdf) return false;
+      }
+    }
+
+    // Country
+    if (checkedCountries.length > 0) {
+      if (!p.country || !checkedCountries.includes(p.country.toLowerCase())) return false;
+    }
+
+    // Search query
+    if (q) {
+      const authors = (p.authors || []).join(" ").toLowerCase();
+      const title = (p.title || "").toLowerCase();
+      const journal = (p.journal || "").toLowerCase();
+      const excerpt = (p.excerpt || "").toLowerCase();
+      const doi = (p.doi || "").toLowerCase();
+      if (!title.includes(q) && !authors.includes(q) && !journal.includes(q) && !excerpt.includes(q) && !doi.includes(q)) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+
+  // Sort
+  filtered.sort((a, b) => {
+    if (sortVal === "recent") {
+      return (b.year || 0) - (a.year || 0) || (b.num_citations || 0) - (a.num_citations || 0);
+    } else if (sortVal === "citations") {
+      return (b.num_citations || 0) - (a.num_citations || 0) || (b.year || 0) - (a.year || 0);
+    } else if (sortVal === "usage") {
+      return (b.usage_score || 0) - (a.usage_score || 0) || (b.num_citations || 0) - (a.num_citations || 0);
+    } else if (sortVal === "title") {
+      return (a.title || "").localeCompare(b.title || "");
+    } else if (sortVal === "journal") {
+      return (a.journal || "").localeCompare(b.journal || "");
+    }
+    return 0;
+  });
+
+  renderSciList(filtered);
+}
+
+function renderSciCard(p) {
+  const yearBadge = p.year ? '<span class="sci-card-year">' + p.year + '</span>' : '';
+  const citBadge = (p.num_citations !== null && p.num_citations !== undefined && p.num_citations > 0)
+    ? '<span class="sci-card-citations" title="' + p.num_citations + ' ' + (IS_FR ? "citations académiques" : "citations") + '">⭐ ' + p.num_citations + ' ' + (IS_FR ? "cit." : "cit.") + '</span>'
+    : '';
+
+  const authorsStr = (p.authors && p.authors.length > 3)
+    ? p.authors.slice(0, 3).join(", ") + " et al."
+    : (p.authors || []).join(", ");
+
+  const excerptHtml = p.excerpt
+    ? '<div class="sci-card-excerpt" title="' + (IS_FR ? "Extrait mentionnant Open Food Facts" : "Excerpt mentioning Open Food Facts") + '">' + p.excerpt + '</div>'
+    : '';
+
+  const tags = [];
+  if (p.themes) {
+    p.themes.slice(0, 2).forEach(t => {
+      tags.push('<span class="sci-tag sci-tag-theme">' + (THEME_LABELS[t] || t) + '</span>');
+    });
+  }
+  if (p.country && COUNTRY_FLAGS[p.country.toLowerCase()]) {
+    tags.push('<span class="sci-tag sci-tag-geo">' + COUNTRY_FLAGS[p.country.toLowerCase()] + '</span>');
+  }
+
+  const links = [];
+  if (p.doi) {
+    links.push('<a class="sci-link-btn" href="https://doi.org/' + encodeURIComponent(p.doi) + '" target="_blank" rel="noopener noreferrer" title="DOI Resolver">🔗 DOI</a>');
+  } else if (p.url) {
+    links.push('<a class="sci-link-btn" href="' + p.url + '" target="_blank" rel="noopener noreferrer" title="Publisher Link">🌐 ' + (IS_FR ? "Article" : "Article") + '</a>');
+  }
+  if (p.url_pdf) {
+    links.push('<a class="sci-link-btn" href="' + p.url_pdf + '" target="_blank" rel="noopener noreferrer" title="Open PDF">📄 PDF</a>');
+  }
+
+  return '<div class="sci-card" id="pub-' + p.id + '">' +
+    '<div>' +
+      '<div class="sci-card-header">' +
+        yearBadge +
+        citBadge +
+      '</div>' +
+      '<h3 class="sci-card-title"><a href="javascript:void(0)" onclick="openSciModal(\'' + p.id + '\')">' + p.title + '</a></h3>' +
+      '<div class="sci-card-authors">' + authorsStr + '</div>' +
+      (p.journal ? '<div class="sci-card-journal">' + p.journal + (p.volume ? ', ' + p.volume : '') + (p.pages ? ', ' + p.pages : '') + '</div>' : '') +
+      excerptHtml +
+      '<div class="sci-tags-row">' + tags.join(" ") + '</div>' +
+    '</div>' +
+    '<div class="sci-card-footer">' +
+      '<div class="sci-card-links">' + links.join(" ") + '</div>' +
+      '<button type="button" class="sci-details-btn" onclick="openSciModal(\'' + p.id + '\')">' + (IS_FR ? "Détails & Citer" : "Details & Cite") + ' &rarr;</button>' +
+    '</div>' +
+  '</div>';
+}
+
+function renderSciList(list) {
+  currentFilteredList = list;
+  displayedCount = Math.min(list.length, PAGE_SIZE);
+
+  const grid = document.getElementById("sciGrid");
+  const count = document.getElementById("sciCount");
+  const loadMoreWrap = document.getElementById("sciLoadMoreWrap");
+
+  if (!list.length) {
+    grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: #64748b; font-size: 1.1rem;">' +
+      (IS_FR ? "Aucune publication ne correspond à vos filtres." : "No publications found matching your criteria.") + '</div>';
+    count.textContent = IS_FR ? "0 publication" : "0 publications";
+    if (loadMoreWrap) loadMoreWrap.style.display = "none";
+    return;
+  }
+
+  grid.innerHTML = list.slice(0, displayedCount).map(renderSciCard).join("");
+  updateSciCountAndLoadMore();
+}
+
+function loadMoreSciCards() {
+  if (displayedCount >= currentFilteredList.length) return;
+  const nextBatch = currentFilteredList.slice(displayedCount, displayedCount + PAGE_SIZE);
+  const grid = document.getElementById("sciGrid");
+  const temp = document.createElement("div");
+  temp.innerHTML = nextBatch.map(renderSciCard).join("");
+  while (temp.firstChild) {
+    grid.appendChild(temp.firstChild);
+  }
+  displayedCount += nextBatch.length;
+  updateSciCountAndLoadMore();
+}
+
+function showAllSciCards() {
+  if (displayedCount >= currentFilteredList.length) return;
+  const remaining = currentFilteredList.slice(displayedCount);
+  const grid = document.getElementById("sciGrid");
+  const temp = document.createElement("div");
+  temp.innerHTML = remaining.map(renderSciCard).join("");
+  while (temp.firstChild) {
+    grid.appendChild(temp.firstChild);
+  }
+  displayedCount = currentFilteredList.length;
+  updateSciCountAndLoadMore();
+}
+
+function updateSciCountAndLoadMore() {
+  const count = document.getElementById("sciCount");
+  const loadMoreWrap = document.getElementById("sciLoadMoreWrap");
+  const loadMoreBtn = document.getElementById("sciLoadMoreBtn");
+
+  const total = currentFilteredList.length;
+  if (displayedCount < total) {
+    count.textContent = IS_FR
+      ? "Affichage de " + displayedCount + " sur " + total + " publications (" + PUBLICATIONS_DATA.length + " au total)"
+      : "Showing " + displayedCount + " of " + total + " publications (" + PUBLICATIONS_DATA.length + " total)";
+    if (loadMoreWrap) loadMoreWrap.style.display = "flex";
+    if (loadMoreBtn) {
+      const remaining = total - displayedCount;
+      const step = Math.min(PAGE_SIZE, remaining);
+      loadMoreBtn.textContent = IS_FR ? "Afficher plus d'articles (+" + step + ")" : "Load More Articles (+" + step + ")";
+    }
+  } else {
+    count.textContent = IS_FR
+      ? "Affichage de " + total + " sur " + PUBLICATIONS_DATA.length + " publications"
+      : "Showing " + total + " of " + PUBLICATIONS_DATA.length + " publications";
+    if (loadMoreWrap) loadMoreWrap.style.display = "none";
+  }
+}
+
+let activePubForModal = null;
+
+function openSciModal(id) {
+  const p = PUBLICATIONS_DATA.find(x => x.id === id);
+  if (!p) return;
+  activePubForModal = p;
+
+  const modal = document.getElementById("sciModalOverlay");
+  document.getElementById("modalTitle").textContent = p.title || "";
+  document.getElementById("modalAuthors").textContent = (p.authors || []).join(", ");
+  
+  let journalInfo = p.journal || "";
+  if (p.volume) journalInfo += ", Vol. " + p.volume;
+  if (p.pages) journalInfo += ", pp. " + p.pages;
+  document.getElementById("modalJournal").textContent = journalInfo;
+
+  document.getElementById("modalYearBadge").textContent = p.year || "";
+  
+  const citBadge = document.getElementById("modalCitBadge");
+  if (p.num_citations) {
+    citBadge.textContent = "⭐ " + p.num_citations + " citations";
+    citBadge.style.display = "inline-flex";
+  } else {
+    citBadge.style.display = "none";
+  }
+
+  document.getElementById("modalTypeBadge").textContent = (p.type || "paper").toUpperCase();
+
+  const excerptWrap = document.getElementById("modalExcerptWrap");
+  if (p.excerpt) {
+    document.getElementById("modalExcerpt").textContent = p.excerpt;
+    excerptWrap.style.display = "block";
+  } else {
+    excerptWrap.style.display = "none";
+  }
+
+  // Links
+  const linksGrid = document.getElementById("modalLinksGrid");
+  const links = [];
+  if (p.doi) {
+    links.push('<a class="button small primary sci-btn" href="https://doi.org/' + encodeURIComponent(p.doi) + '" target="_blank" rel="noopener noreferrer"><span class="material-icons" style="font-size: 15px;">link</span> DOI Link</a>');
+  }
+  if (p.url && (!p.doi || p.url.indexOf(p.doi) === -1)) {
+    links.push('<a class="button small secondary sci-btn" href="' + p.url + '" target="_blank" rel="noopener noreferrer"><span class="material-icons" style="font-size: 15px;">language</span> ' + (IS_FR ? "Page de l'article" : "Publisher Article") + '</a>');
+  }
+  if (p.url_pdf) {
+    links.push('<a class="button small secondary sci-btn" href="' + p.url_pdf + '" target="_blank" rel="noopener noreferrer"><span class="material-icons" style="font-size: 15px;">picture_as_pdf</span> PDF</a>');
+  }
+  linksGrid.innerHTML = links.join(" ");
+
+  // BibTeX & APA
+  document.getElementById("modalBibtex").textContent = p.bibtex || "";
+  document.getElementById("modalApa").textContent = p.apa || "";
+
+  // Edit Link
+  const editLink = document.getElementById("modalEditLink");
+  editLink.href = "https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/scientific_publications/" + p.id + ".yaml";
+
+  // Highlight card
+  document.querySelectorAll(".sci-card").forEach(c => c.classList.remove("highlighted"));
+  const card = document.getElementById("pub-" + p.id);
+  if (card) card.classList.add("highlighted");
+
+  history.replaceState(null, null, "#" + p.id);
+  modal.classList.add("open");
+}
+
+function closeSciModal() {
+  const modal = document.getElementById("sciModalOverlay");
+  modal.classList.remove("open");
+  history.replaceState(null, null, window.location.pathname + window.location.search);
+}
+
+function onSciModalBackdropClick(event) {
+  if (event.target.id === "sciModalOverlay") {
+    closeSciModal();
+  }
+}
+
+function copyBibtex() {
+  if (!activePubForModal) return;
+  navigator.clipboard.writeText(activePubForModal.bibtex || "").then(() => {
+    alert(IS_FR ? "Notice BibTeX copiée !" : "BibTeX entry copied to clipboard!");
+  });
+}
+
+function copyApa() {
+  if (!activePubForModal) return;
+  navigator.clipboard.writeText(activePubForModal.apa || "").then(() => {
+    alert(IS_FR ? "Citation APA copiée !" : "APA citation copied to clipboard!");
+  });
+}
+
+window.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    closeSciModal();
+  }
+});
+
+function checkHash() {
+  const hash = window.location.hash.replace(/^#pub-|^#/, "");
+  if (hash) {
+    openSciModal(hash);
+  }
+}
+
+// Initialize
+applySciFilters();
+window.addEventListener("load", checkHash);
+window.addEventListener("hashchange", checkHash);
+</script>
