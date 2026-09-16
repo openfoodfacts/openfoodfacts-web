@@ -51,7 +51,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>ניתן למצוא מידע על השדות השונים של אוספי ה־MongoDB ותוצרי ה־CSV בכתובת <a href="https://static.openfoodfacts.org/data/data-fields.txt">https://world.openfoodfacts.org/data/data-fields.txt</a></p>
 
-<h3>יצוא נתונים של MongoDB</h3>
+<h3>יצוא נתונים ב־CSV</h3>
 
 <p>נתוני כל המוצרים שלנו זמינים במאגר ייצור נתונים של MongoDB.</p>
 <dl>
@@ -66,7 +66,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 <h4>ייצוא הבדלים</h4>
 
 <p>ייצוא הבדלים יומי מסופק עבור 14 הימים האחרונים. ניתן למצוא את רשימת קובצי ההבדלים הזמינים כעת תחת <a href="https://static.openfoodfacts.org/data/delta/index.txt">https://static.openfoodfacts.org/data/delta/index.txt</a>.</p>
-<p>כל שורה מייצגת קובץ שזמין תחת <code>https://static.openfoodfacts.org/data/delta/{filename}</code>.</p>
+<p>תבנית פרקט/Parquet הוכחה כשימושית:</p>
 <p>שם הקובץ מכיל חותמות זמן יוניקס של השינוי הראשון והאחרון שכלול בקובץ ה־JSON כדי שניתן יהיה לייבא את קובצי ההבדלים (לאחר חילוץ) באמצעות <code>mongoimport</code> בסדר אלפביתי.</p>
 <p>נא לשים לב שטבעו של <code>mongoexport</code> מאלץ מצב שבו קובצי השינויים לא יכולים לספר לך על מוצרים שנמחקו. כדי להסיר מוצרים שנמחקו ממסד הנתונים שלך, יהיה עליך לייבא את ההיטל המלא של MongoDB.</p>
 
@@ -82,7 +82,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>דרך הולמת לנצל את מסד הנתונים לרעה היא להשתמש ב־DuckDB, כלי ניתוחי פנים תהליכי שתוכנן לעבד כמויות גדולות של נתונים בשברירי שנייה. אפשר לקרוא את <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">הרשומה בבלוג שלנו</a> בה אנו חוקרים ומעבדים את מסד הנתונים של Open Food Facts עם DuckDB</p>
 
-<h3>יצוא נתונים ב־CSV</h3>
+<h3>עקרונות כלליים</h3>
 
 <p>גרסה מפושטת של היטל ה־JSONL זמין גם ב<a href="https://parquet.apache.org/">תצורת פרקט/Parquet</a>. במהלך ההמרה, סיננו עמודות שמכילות פרטים כפולים, כאלה שמשמשים לניפוי שגיאות פנימי או שהם פשוט לא מעניינים את המשתמשים.</p>
     
@@ -104,7 +104,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>אפשר למצוא מידע ב<a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">וויקי</a>, כולל הנחיות לגזירת נתונים ושאילתות לדוגמה למתחילים.</p>
 
-<h3>יצוא נתונים ב־CSV</h3>
+<h3>דרושה עזרה עם OpenAPI</h3>
 <p>הנתונים של כל המוצרים או חלקם, ניתנים להורדה בתבנית CSV (נתמכת על ידי LibreOffice, Excel ועוד תוכנות גיליונות נתונים) דרך <a href="https://world.openfoodfacts.org/cgi/search.pl">טופס החיפוש המתקדם</a>.</p>
 
 <dl>
@@ -117,7 +117,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>קידוד הקובץ הוא Unicode UTF-8. התו המפריד בין שדות הוא &lt;tab&gt; (טאב).</p>
 
-<h3>עקרונות כלליים</h3>
+<h3>תרומה לשיפור תיעוד ה־API וה־OpenAPI שלנו</h3>
 <p>מסד הנתונים זמין גם בתסדיר RDF (ניסיוני, לא מתוחזק באופן פעיל יותר). אפשר לקרוא את ה<a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">הכרזה בצרפתית</a>.</p>
 
 <dl>
@@ -125,29 +125,26 @@ Products images are available under the <a href="https://creativecommons.org/lic
  <dd><a href="https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz">https://world.openfoodfacts.org/data/en.openfoodfacts.org.products.rdf.gz</a></dd>
 </dl>
 
-<h3>דרושה עזרה עם OpenAPI</h3>
+<h3>XML API (לא נתמך)</h3>
 <p>אפשר להוריד את כל התמונות ואת תוצאות המרת תמונה לטקסט מהשרת שלך או מ־AWS (דרך התוכנית AWS Open Data). 
 <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/" class="button rounded">אפשר לעיין בתיעוד שלנו כדי ללמוד עוד איך להוריד תמונות</a></p>
 
 <h2 class="emphasized-title">תיעוד OpenAPI ל־API בתצורת JSON</h2>
 <p>API בתצורת JSON גם כן זמין לטובת קריאת נתונים על מוצר. ה־API הזה במיוחד משמש את היישומון לניידים של Open Food Facts.</p>
 <p>אנו משפרים את ה־API עם הזמן אך אנו מקפידים מאוד לשמור על תאימות לאחור. נא <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20Data%20reuse">ליצור קשר</a> אם הוא משמש אותך, כדי שנוכל לעדכן על שינויים אפשריים.</p>
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/api/" class="button rounded">Discover our API</a>
+<a href="https://openfoodfacts.github.io/openfoodfacts-server/api/" class="button rounded">למידע נוסף על ה־API שלנו</a>
 
 [[texts/api-donation-include.html]]
 
-<h3 class="emphasized-title">תרומה לשיפור תיעוד ה־API וה־OpenAPI שלנו</h3>
+<h3 class="emphasized-title">אם המשתמשים שלך לא מצפים לתוצאות מיידית (למשל: יישומוני מאגרים)</h3>
 <p>אנו נשמח מאוד לסיים את תיעוד ה־API, להוסיף מקרי בוחן ולייצר אוטומציה של יצירת SDK. אם OpenAPI זה הצד החזק שלך, מאוד נשמח לקבל עזרה.</p>
 
 <p>אנו מזמינים אותך להשתמש ב־API למטרות פעילות מבצעית, כל עוד כל קריאת API שוות ערך לסריקה אמתית של משתמש.
 כל ניסיון לדלות את מסד הנתונים כולו דרך ה־API ייחסם כיוון שתוצאי ייצוא מלאים יומיים זמינים בעמוד זה ממש.</p>
-<p>כמו כן, שליחת כותרות HTTP עם קריאות ה־API שלך היא דרך מצוינת בה נוכל ליצור אתך קשר במקרה שיש תקלות כלשהן.</p>
+<p>אנחנו שוקלים להפוך את בסיסי הקוד של Kotlin ו־Swift ל־SDKs של Kotlin ו־Swift, נשמח לעזרה :-)</p>
 
-<h3 class="emphasized-title">XML API (לא נתמך)</h3>
-<p>הקוד של היישומונים הרשמיים של Open Food Facts זמין ב־GitHub
- <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
+<h3 class="emphasized-title">אם המשתמשים שלך מצפים לתוצאות מיידית (למשל: יישומוני תזונה)</h3>
+<p>אפשר <a href="https://github.com/openfoodfacts/api-documentation/discussions">לפתוח שרשור במאגר תיעוד ה־API שלנו</a></p>
 <p>לדוגמה: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
 ה־API הזה לא מתוחזק באופן פעיל, ולא מתועד רשמית.
 
@@ -155,21 +152,21 @@ Products images are available under the <a href="https://creativecommons.org/lic
 <p>כנראה שיש לנו מעטפת לשפת הפיתוח המועדפת עליך. אם יש לנו, ניתן להשתמש בה ולשפר אותה. אם אין לנו, ניתן לעזור ביצירתה.</p>
 <p>אנו מזמינים אותך לעשות שימוש חוזר בקוד המקור (הפתוח) ולסייע לנו לשפר אותו, למען כולם, בכל רחבי העולם.</p>
 
-<h3>אם המשתמשים שלך לא מצפים לתוצאות מיידית (למשל: יישומוני מאגרים)</h3>
+<h3>יישומון Android/iPhone/Flutter לניידים</h3>
 <ul>
 <li>אפשר לחפש מידע על מוצרים, כולל מגוון ערכים שימושיים שחושבו לפי נוסחאות.</li>
 <li>אם לא הצלחת לקבל מידע על מוצר מסוים, אפשר להנפיק חשבון משתמש כדי לשלוח תמונות ונתונים, אלו יעובדו על ידי הבינה המלאכותית של Open Food Facts והמתנדבים כדי לקבל תוצאות שעברו חישוב עם נוסחאות להצגה.</li>
 <li>אפשר גם לממש את כל הרצף כדי לקבל את התוצאות מיידית עם השקעה מסוימת מהצד שלהם.</li>
 </ul>
 
-<h3>אם המשתמשים שלך מצפים לתוצאות מיידית (למשל: יישומוני תזונה)</h3>
+<h3>ערכות SDK</h3>
 <ul>
 <li>להגיש תמונות (חזית/ערכים תזונתיים/רכיבים): הדבר הכי נוח למשתמשים שלך</li>
 <li>הבינה המלאכותית של Open Food Facts - תייצר נתוני נגזרת מהתמונות</li>
 <li>לאורך הזמן, יישומים אחרים, וקהילת Open Food Facts ימלאו את הנתונים החסרים</li>
 </ul>
 
-<h3>יישומון Android/iPhone/Flutter לניידים</h3>
+<h3>ערכות SDK</h3>
 <ul>
 <li>יש להגיש ערכים תזונתיים + קטגוריה כדי לקבל את ה־Nutri-Score</li>
 <li>מגישים רכיבים &gt; מקבלים קבוצת NOVA (על אולטרה עיבוד של מזון), תוספים, מעוררי רגישות, רכיבים מיוצבים, צמחונות, טבעונות&hellip;</li>
@@ -178,7 +175,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <h3>ערכות SDK</h3>
 
-<p>אפשר לעיין ב<a href="https://support.openfoodfacts.org/help/fr-fr/12">שו״ת הנפוצות על API וייצוא נתונים</a> ו<a href="https://support.openfoodfacts.org/help/fr-fr">שאלות נפוצות על Open Food Facts</a></p>
+<p>אפשר <a href="https://github.com/openfoodfacts/openfoodfacts-server/discussions">לפתוח שרשור במאגר תיעוד ה־API שלנו</a></p>
 
 <p>אנחנו שוקלים להפוך את בסיסי הקוד של Kotlin ו־Swift ל־SDKs של Kotlin ו־Swift, נשמח לעזרה :-)</p>
 <p>אפשר <a href="https://github.com/openfoodfacts/api-documentation/discussions">לפתוח שרשור במאגר תיעוד ה־API שלנו</a></p>
@@ -417,6 +414,4 @@ Products images are available under the <a href="https://creativecommons.org/lic
 <p>אפשר לעיין ב<a href="https://support.openfoodfacts.org/help/fr-fr/12">שו״ת הנפוצות על API וייצוא נתונים</a> ו<a href="https://support.openfoodfacts.org/help/fr-fr">שאלות נפוצות על Open Food Facts</a></p>
 <p>ניתן <a href="https://slack.openfoodfacts.org">להצטרף לחדר ה־Slack של Open Food Facts</a> שזו הדרך המועדפת לשאול שאלות ולדבר על ה־API</a>. נא <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">לשאול את השאלות שלך בערוץ ‎#api</a></p>
 <p>אפשר <a href="https://github.com/openfoodfacts/openfoodfacts-server/discussions">לפתוח שרשור במאגר תיעוד ה־API שלנו</a>
-<p>For any question regarding the data, you can contact us at <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>
-
-[[texts/edit-page-include.html]]
+<p>לכל שאלה בנוגע לנתונים, ניתן ליצור אתנו קשר בכתובת <a href="mailto:reuse@openfoodfacts.org">contact@openfoodfacts.org</a>
