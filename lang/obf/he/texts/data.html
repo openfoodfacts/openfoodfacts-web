@@ -26,8 +26,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 <h3>Be on the legal side: The technical route to compliance</h3>
 <p>We want everyone to succeed with their projects while keeping data open for everyone! To ensure your application or reuse complies with the license and our infrastructure policies, please follow this technical checklist (see also our <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/tutorials/license-be-on-the-legal-side/">license compliance tutorial</a>):</p>
 <ul>
- <li><strong>Include a descriptive HTTP User-Agent:</strong> Always send a specific <code>User-Agent</code> header with your API calls, including your app name, version, and a contact email or URL (e.g., <code>User-Agent: YourAppName/1.0 (contact@example.com - https://example.com)</code>). This ensures we can get in touch with you if an issue arises instead of having to block your IP address.</li>
- <li><strong>Respect fair API usage (1 call = 1 user scan):</strong> The live API is meant for interactive queries triggered by real users. It is strictly forbidden to scrape or mass-crawl the live API.</li>
+ <li>If you want to use the API conforms strictly to <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/">the instructions given in the API documentation</a><li>
  <li><strong>Use bulk exports for offline, analytical, or caching needs:</strong> If you need access to all products or want to run complex queries, please download the nightly MongoDB dumps, CSV, or Parquet exports (described below) or build a <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/tutorials/creating-a-local-cache-of-open-food-facts-data/">local cache</a>.</li>
  <li><strong>Contribute back (Share-Alike in practice):</strong> In the spirit of the ODbL Share-Alike obligation, if your app allows users to add new products, update nutrition/ingredients, or submit photos, please send those contributions back to Open Beauty Facts via our API or SDKs. This ensures everyone benefits from continuous data improvements.</li>
  <li><strong>Prominent UI attribution:</strong> Clearly attribute Open Beauty Facts in your app or website UI (for example, on product pages, search screens, and in the "About" or "Settings" sections) with clickable links back to Open Beauty Facts and the ODbL license.</li>
@@ -51,7 +50,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>מידע על השדות השונים להיטל ה־MongoDB ומערכי הייצוא ב־CSV זמין ב־<a href="https://static.openbeautyfacts.org/data/data-fields.txt">https://world.openbeautyfacts.org/data/data-fields.txt</a></p>
 
-<h3>יצוא נתונים של MongoDB</h3>
+<h3>יצוא נתונים ב־CSV</h3>
 
 <p>נתוני כל המוצרים שלנו זמינים במאגר ייצור נתונים של MongoDB.</p>
 <!--
@@ -89,7 +88,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 <p>דרך הולמת לנצל את מסד הנתונים לרעה היא להשתמש ב־DuckDB, כלי ניתוחי פנים תהליכי שתוכנן לעבד כמויות גדולות של נתונים בשברירי שנייה. אפשר לקרוא את <a href="https://blog.openfoodfacts.org/en/news/food-transparency-in-the-palm-of-your-hand-explore-the-largest-open-food-database-using-duckdb-%f0%9f%a6%86x%f0%9f%8d%8a">הרשומה בבלוג שלנו</a> בה אנו חוקרים ומעבדים את מסד הנתונים של Open Beauty Facts עם DuckDB</p>
 
 
-<h3>יצוא נתונים ב־CSV</h3>
+<h3>עקרונות כלליים</h3>
 
 <p>גרסה מפושטת של היטל ה־JSONL זמין גם ב<a href="https://parquet.apache.org/">תצורת פרקט/Parquet</a>. במהלך ההמרה, סיננו עמודות שמכילות פרטים כפולים, כאלה שמשמשים לניפוי שגיאות פנימי או שהם פשוט לא מעניינים את המשתמשים.</p>
     
@@ -112,7 +111,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 </p>אפשר למצוא מידע ב<a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data#Parquet_file_hosted_on_Hugging_Face_.28beta.29">וויקי</a>, כולל הנחיות לגזירת נתונים ושאילתות לדוגמה למתחילים.</p>
 
 
-<h3>יצוא נתונים ב־CSV</h3>
+<h3>דרושה עזרה עם OpenAPI</h3>
 <p>הנתונים של כל המוצרים או חלקם, ניתנים להורדה בתבנית CSV (נתמכת על ידי LibreOffice, Excel ועוד תוכנות גיליונות נתונים) דרך <a href="https://world.openbeautyfacts.org/cgi/search.pl">טופס החיפוש המתקדם</a>.</p>
 
 <dl>
@@ -125,7 +124,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>קידוד הקובץ הוא Unicode UTF-8. התו המפריד בין שדות הוא &lt;tab&gt; (טאב).</p>
 
-<h3>עקרונות כלליים</h3>
+<h3>תרומה לשיפור תיעוד ה־API וה־OpenAPI שלנו</h3>
 <p>מסד הנתונים זמין גם בתסדיר RDF (ניסיוני, לא מתוחזק באופן פעיל יותר). אפשר לקרוא את ה<a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">הכרזה בצרפתית</a>.</p>
 
 <dl>
@@ -133,7 +132,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
  <dd><a href="https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf.gz">https://world.openbeautyfacts.org/data/en.openbeautyfacts.org.products.rdf.gz</a></dd>
 </dl>
 
-<h3>דרושה עזרה עם OpenAPI</h3>
+<h3>XML API (לא נתמך)</h3>
 <p>אפשר להוריד את כל התמונות ואת תוצאות המרת תמונה לטקסט מהשרת שלך או מ־AWS (דרך התוכנית AWS Open Data). 
 <a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/" class="button rounded">אפשר לעיין בתיעוד שלנו כדי ללמוד עוד איך להוריד תמונות</a></p>
 
@@ -143,17 +142,22 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>אנו משפרים את ה־API עם הזמן אך אנו מקפידים מאוד לשמור על תאימות לאחור. נשמח <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Beauty%20Facts%20Data%20reuse">לשמוע ממך</a> אם זה משמש אותך כדי שנוכל לספר לך על שינויים אפשריים.</p>
 
-<p>כתובת לקריאת נתוני מוצר: https://il.openbeautyfacts.org/api/v2/product/<em>[barcode]</em>.json</p>
+<p>הם יאפשרו לך לצרוך נתונים, כמו גם לאפשר למשתמשים שלך לתרום נתונים חדשים</p>
 
-<p>היישומון ל־Android פותח ב־Kotlin.</p>
-<p>לדוגמה: <a href="https://world.openfoodfacts.org/api/v2/product/737628064502.xml">https://world.openfoodfacts.org/api/v2/product/737628064502.xml</a></p>
+<p>הקוד של היישומונים הרשמיים של Open Food Facts זמין ב־GitHub
+ <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
+ <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
+<p>דוגמה: <a href="https://world.openbeautyfacts.org/api/v2/product/737628064502.xml">https://world.openbeautyfacts.org/api/v2/product/737628064502.xml</a></p>
 
 <ul>
  <li>
 <a href="https://openfoodfacts.github.io/openfoodfacts-server/reference/api/">API V3 - תיעוד OpenAPI חדש - עובדים על זה כרגע</a>
  </li>
 </ul>
-<h3 class="emphasized-title">API ניסיוני עם XML</h3>
+
+[[texts/api-donation-include.html]]
+<h3 class="emphasized-title">אם המשתמשים שלך לא מצפים לתוצאות מיידית (למשל: יישומוני מאגרים)</h3>
 אנו נשמח מאוד לסיים את תיעוד ה־API, להוסיף מקרי בוחן ולייצר אוטומציה של יצירת SDK. אם OpenAPI זה הצד החזק שלך, מאוד נשמח לקבל עזרה.
 <!-- TODO, should we remove them or put them simply in a deprecated, collapsed accordion
 <li>
@@ -166,15 +170,12 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>אנו מזמינים אותך להשתמש ב־API למטרות פעילות מבצעית, כל עוד כל קריאת API שוות ערך לסריקה אמתית של משתמש.
 כל ניסיון לדלות את מסד הנתונים כולו דרך ה־API ייחסם כיוון שתוצאי ייצוא מלאים יומיים זמינים בעמוד זה ממש.</p>
-<p>כמו כן, שליחת כותרות HTTP עם קריאות ה־API שלך היא דרך מצוינת בה נוכל ליצור אתך קשר במקרה שיש תקלות כלשהן.</p>
-<p>הם יאפשרו לך לצרוך נתונים, כמו גם לאפשר למשתמשים שלך לתרום נתונים חדשים</p>
+<p>אנחנו שוקלים להפוך את בסיסי הקוד של Kotlin ו־Swift ל־SDKs של Kotlin ו־Swift, נשמח לעזרה :-)</p>
+<p>הקוד של היישומונים הרשמיים של Open Beauty Facts זמין ב־GitHub ‏(<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>,‏ <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> ו־<a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).</p>
 
-<h3 class="emphasized-title">עקרונות כלליים כדי לשמח את המשתמשים שלך</h3>
-<p>הקוד של היישומונים הרשמיים של Open Food Facts זמין ב־GitHub
- <a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a>
- <a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a></p>
-<p>דוגמה: <a href="https://world.openbeautyfacts.org/api/v2/product/737628064502.xml">https://world.openbeautyfacts.org/api/v2/product/737628064502.xml</a></p>
+<h3 class="emphasized-title">אם המשתמשים שלך מצפים לתוצאות מיידית (למשל: יישומוני תזונה)</h3>
+<p>אפשר <a href="https://github.com/openfoodfacts/api-documentation/discussions">לפתוח שרשור במאגר תיעוד ה־API שלנו</a></p>
+<p>אפשר <a href="https://github.com/openfoodfacts/api-documentation/discussions">לפתוח שרשור במאגר תיעוד ה־API שלנו</a></p>
 ה־API הזה לא מתוחזק באופן פעיל, ולא מתועד רשמית.
 
 
@@ -182,21 +183,21 @@ Products images are available under the <a href="https://creativecommons.org/lic
 <p>כנראה שיש לנו מעטפת לשפת הפיתוח המועדפת עליך. אם יש לנו, ניתן להשתמש בה ולשפר אותה. אם אין לנו, ניתן לעזור ביצירתה.</p>
 <p>אנו מזמינים אותך לעשות שימוש חוזר בקוד המקור (הפתוח) ולסייע לנו לשפר אותו, למען כולם, בכל רחבי העולם.</p>
 
-<h3>אם המשתמשים שלך לא מצפים לתוצאות מיידית (למשל: יישומוני מאגרים)</h3>
+<h3>יישומון Android/iPhone/Flutter לניידים</h3>
 <ul>
 <li>אפשר לחפש מידע על מוצרים, כולל מגוון ערכים שימושיים שחושבו לפי נוסחאות.</li>
 <li>DART:‏ <a href="https://github.com/openfoodfacts/openfoodfacts-dart">GitHub (Open Food Facts בלבד כרגע)</a></li>
 <li>אפשר גם לממש את כל הרצף כדי לקבל את התוצאות מיידית עם השקעה מסוימת מהצד שלהם.</li>
 </ul>
 
-<h3>אם המשתמשים שלך מצפים לתוצאות מיידית (למשל: יישומוני תזונה)</h3>
+<h3>ערכות SDK</h3>
 <ul>
 <li>להגיש תמונות (חזית/ערכים תזונתיים/רכיבים): הדבר הכי נוח למשתמשים שלך</li>
 <li>רובוט הבינה המלאכותית של Open Beauty Facts -‏ Robotoff - יגזור נתונים מהתמונות</li>
 <li>עם הזמן, יישומונים אחרים וקהילת Open Beauty Facts ימלאו את פערי הנתונים</li>
 </ul>
 
-<h3>אם המשתמשים שלך מצפים לתוצאות מיידית (למשל: יישומוני אלרגיות)</h3>
+<h3>ערכות SDK</h3>
 <ul>
 <li>מגישים רכיבים + קטגוריה &gt; מקבלים ניתוח רכיבים, תוספים, מעוררי רגישות, רכיבים מנורמלים, צמחונות, טבעונות&hellip;</li>
 <li>אפשר להגיש תוויות לשיפור הערך המוסף</li>
@@ -206,7 +207,7 @@ Products images are available under the <a href="https://creativecommons.org/lic
 
 <p>הקוד של היישומונים הרשמיים של Open Beauty Facts זמין ב־GitHub ‏(<a href="https://github.com/openfoodfacts/smooth-app">Flutter</a>,‏ <a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Kotlin Android</a> ו־<a href="https://github.com/openfoodfacts/openfoodfacts-ios">Swift iOS</a>).
 
-<p>אנחנו שוקלים להפוך את בסיסי הקוד של Kotlin ו־Swift ל־SDKs של Kotlin ו־Swift, נשמח לעזרה :-)</p>
+<p>אפשר <a href="https://github.com/openfoodfacts/openfoodfacts-server/discussions">לפתוח שרשור במאגר תיעוד ה־API שלנו</a></p>
 <p>אפשר <a href="https://github.com/openfoodfacts/api-documentation/discussions">לפתוח שרשור במאגר תיעוד ה־API שלנו</a></p>
 
 <p>לכל שאלה בנוגע לנתונים, ניתן ליצור אתנו קשר בכתובת <a href="mailto:reuse@openfoodfacts.org">contact@openfoodfacts.org</a></p>
