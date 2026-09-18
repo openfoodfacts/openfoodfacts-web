@@ -50,7 +50,7 @@
 
 <h2 class="emphasized-title">Open Beauty Factsデータのエクスポート</h2>
 
-<p>データベースのダンプとエクスポートは毎晩生成されます。 データベースは非常に大きいため、エクスポートのフレーバーに応じて、データのさまざまな使用方法 <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data"></a>見つけることができます。</p>
+<p>データベースのダンプとエクスポートは毎晩生成されます。データベースは非常に大きいため、エクスポートのフレーバーに応じて、データのさまざまな使用方法 <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data"></a>見つけることができます。</p>
 
 <p>MongoDB ダンプと CSV エクスポートのさまざまなフィールドに関する情報は、 <a href="https://static.openbeautyfacts.org/data/data-fields.txt">https://world.openbeautyfacts.org/data/data-fields.txt</a>で入手できます。</p>
 
@@ -78,11 +78,11 @@
  <a href="https://static.openbeautyfacts.org/data/delta/index.txt">https://static.openbeautyfacts.org/data/delta/index.txt</a>.</p>
 <p>各行は、 <code>https://static.openbeautyfacts.org/data/delta/{filename}</code>で入手可能なファイルを表します。</p>
 <p>ファイル名には、JSON ファイルに含まれる最初の変更と最後の変更の UNIX タイムスタンプが含まれているため、デルタ ファイルは (抽出後に) <code>mongoimport</code> を使用してアルファベット順にインポートできます。</p>
-<p><code>mongoexport</code>の性質上、デルタ ファイルでは削除された製品に関する情報を取得できないことに注意してください。 削除された製品をデータベースから削除するには、MongoDB ダンプ全体をインポートする必要があります。</p>
+<p><code>mongoexport</code>の性質上、デルタ ファイルでは削除された製品に関する情報を取得できないことに注意してください。削除された製品をデータベースから削除するには、MongoDB ダンプ全体をインポートする必要があります。</p>
 
 <h3>CSVデータのエクスポート</h3>
 
-<p>データベース全体は、各行が JSON オブジェクトである <a href="https://jsonlines.org/">JSONL 形式</a> (LDJSON または NDJSON と呼ばれることもあります) でも利用できます。 これは MongoDB エクスポートと同じデータを表します。 ファイルは gzip で圧縮されています。</p>
+<p>データベース全体は、各行が JSON オブジェクトである <a href="https://jsonlines.org/">JSONL 形式</a> (LDJSON または NDJSON と呼ばれることもあります) でも利用できます。これは MongoDB エクスポートと同じデータを表します。ファイルは gzip で圧縮されています。</p>
 
 <dl>
  <dt>リンク</dt>
@@ -95,7 +95,7 @@
 
 <h3>Hugging FaceでのParquetデータエクスポート</h3>
 
-<p>JSONL ダンプの簡略化されたバージョンは、 <a href="https://parquet.apache.org/">Parquet 形式</a>でも利用できます。 変換中に、重複した情報を含む列、内部デバッグに使用される列、またはユーザーにとって無関係な列をフィルターしました。</p>
+<p>JSONL ダンプの簡略化されたバージョンは、 <a href="https://parquet.apache.org/">Parquet 形式</a>でも利用できます。変換中に、重複した情報を含む列、内部デバッグに使用される列、またはユーザーにとって無関係な列をフィルターしました。</p>
     
 <p>Parquet 形式は便利であることが証明されています。<p> 
 
@@ -128,10 +128,10 @@
  <dd>その他すべての製品: <a href="https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz">https://static.openproductsfacts.org/data/en.openproductsfacts.org.products.csv.gz</a></dd>
 </dl>
 
-<p>ファイルのエンコーディングは Unicode UTF-8 です。 フィールドを区切る文字は &lt;tab&gt; (タブ) です。</p>
+<p>ファイルのエンコーディングは Unicode UTF-8 です。フィールドを区切る文字は &lt;tab&gt; (タブ) です。</p>
 
 <h3>RDFデータのエクスポート</h3>
-<p>データベースは RDF 形式でも利用できます (これは実験段階であり、現在は積極的にメンテナンスされていません)。 <a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">のお知らせはフランス語</a>で読むことができます。</p>
+<p>データベースは RDF 形式でも利用できます (これは実験段階であり、現在は積極的にメンテナンスされていません)。<a href="https://blog.openfoodfacts.org/fr/news/des-donnees-libres-et-liees-export-rdf-des-donnees">のお知らせはフランス語</a>で読むことができます。</p>
 
 <dl>
  <dt>リンク</dt>
@@ -139,12 +139,11 @@
 </dl>
 
 <h3>画像データのエクスポート</h3>
-<p>すべての画像と OCR 結果は、当社のサーバーから、または AWS (AWS オープンデータプログラム経由) からダウンロードできます。 
-<a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/" class="button rounded">画像のダウンロード方法の詳細については、ドキュメントをご覧ください</a></p>
+<p>すべての画像と OCR 結果は、当社のサーバーから、または AWS (AWS オープンデータプログラム経由) からダウンロードできます。<a href="https://openfoodfacts.github.io/openfoodfacts-server/api/how-to-download-images/" class="button rounded">画像のダウンロード方法の詳細については、ドキュメントをご覧ください</a></p>
 
 <h2 class="emphasized-title">ライブ JSON および XML API</h2>
 
-<p>製品のデータを読み取るための JSON API も利用できます。 この API は、特に iPhone および Android 向けの Open Beauty Facts モバイル アプリで使用されます。</p>
+<p>製品のデータを読み取るための JSON API も利用できます。この API は、特に iPhone および Android 向けの Open Beauty Facts モバイル アプリで使用されます。</p>
 
 <p>私たちはAPIの残業を改善しますが、後方互換性を保つように注意しています。 Please tell us if you use it, so that we can tell you about potential changes.</p>
 
@@ -173,8 +172,7 @@
 
 <p>1 回の API 呼び出し = ユーザーによる 1 回の実際のスキャンである限り、本番環境で API を自由に使用できます。
 完全な毎日のエクスポートがこのページで利用できるため、API を使用してデータベースをスクレイピングする試みはブロックされる可能性が非常に高くなります。
-完全な毎日のエクスポートがこのページで利用できるため、API を使用してデータベースをスクレイピングする試みはブロックされる可能性が非常に高くなります。
-完全な毎日のエクスポートがこのページで利用できるため、API を使用してデータベースをスクレイピングする試みはブロックされる可能性が非常に高くなります。</p>
+完全な毎日のエクスポートがこのページで利用できるため、API を使用してデータベースをスクレイピングする試みはブロックされる可能性が非常に高くなります。完全な毎日のエクスポートがこのページで利用できるため、API を使用してデータベースをスクレイピングする試みはブロックされる可能性が非常に高くなります。</p>
 <p>また、API 呼び出しで HTTP ヘッダーを送信すると、問題が発生した場合に連絡を取ることができます。</p>
 <p>何か不明な点や質問がある場合(愚かな質問はありません) お気軽に Slack の #api チャンネルでお問い合わせください :-)</p>
 
@@ -185,7 +183,7 @@
 
 
 <h2 class="emphasized-title">ラッパーとSDK</h2>
-<p>あなたのお気に入りのプログラミング言語用のラッパーがおそらくあるでしょう。 もしそうなら、それを使用して改善することができます。 もしそうでないなら、あなたがそれを作るのを手伝うことができます。</p>
+<p>あなたのお気に入りのプログラミング言語用のラッパーがおそらくあるでしょう。もしそうなら、それを使用して改善することができます。もしそうでないなら、あなたがそれを作るのを手伝うことができます。</p>
 <p>データの消費だけでなく、ユーザーが新しいデータを投稿できるようにもなります</p>
 
 <h3>ユーザーを満足させるための一般原則</h3>
@@ -450,6 +448,6 @@ The app allows users to scan the barcode of products, to view the product inform
 <h2 class="emphasized-title">データ、API、エクスポートについて議論する</h2>
 
 <p><a href="https://support.openfoodfacts.org/help/fr-fr/12">APIとデータエクスポートに関するよくある質問</a> と <a href="https://support.openfoodfacts.org/help/fr-fr">Open Food Factsに関するよくある質問</a>をご覧ください。</p>
-<p><a href="https://slack.openfoodfacts.org">Open Beauty Facts Slack チャットルーム</a> に参加できます。 これは、質問したり API について話し合ったりするための推奨される方法です</a>。 <a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ご質問は #api チャンネル</a>までお寄せください</p>
+<p><a href="https://slack.openfoodfacts.org">Open Beauty Facts Slack チャットルーム</a> に参加できます。 これは、質問したり API について話し合ったりするための推奨される方法です</a>。<a href="https://app.slack.com/client/T02KVRT1Q/C043X1X90">ご質問は #api チャンネル</a>までお寄せください</p>
 <p>https://github.com/openfoodfacts/openfoodfacts-server/discussions
 <p>データに関するご質問は、 <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>までお問い合わせください。
