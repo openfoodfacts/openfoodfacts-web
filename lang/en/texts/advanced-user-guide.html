@@ -2,9 +2,24 @@
 <style>
 /* ==========================================================================
    Open Food Facts Advanced Contributor Guide - Modern Responsive Styles
+   Full Light & Dark Mode Support with Accessible Contrast
    ========================================================================== */
 
-:root {
+/* ---------------- Light Theme Tokens (Default) ---------------- */
+:root,
+[data-theme="light"] {
+  --guide-bg: #f8fafc;
+  --guide-surface: #ffffff;
+  --guide-surface-alt: #f1f5f9;
+  --guide-border: #e2e8f0;
+  --guide-border-hover: #cbd5e1;
+  --guide-border-subtle: #f1f5f9;
+
+  --guide-text-primary: #0f172a;
+  --guide-text-secondary: #334155;
+  --guide-text-muted: #64748b;
+  --guide-text-inverse: #ffffff;
+
   --guide-green-900: #064e3b;
   --guide-green-800: #065f46;
   --guide-green-700: #047857;
@@ -13,33 +28,44 @@
   --guide-green-100: #d1fae5;
   --guide-green-50: #ecfdf5;
 
-  --guide-blue-700: #1d4ed8;
-  --guide-blue-600: #2563eb;
-  --guide-blue-50: #eff6ff;
+  --guide-link: #047857;
+  --guide-link-hover: #065f46;
 
-  --guide-amber-700: #b45309;
-  --guide-amber-600: #d97706;
-  --guide-amber-100: #fef3c7;
-  --guide-amber-50: #fffbeb;
+  /* Badges */
+  --guide-badge-green-bg: #d1fae5;
+  --guide-badge-green-text: #065f46;
+  --guide-badge-blue-bg: #dbeafe;
+  --guide-badge-blue-text: #1e40af;
+  --guide-badge-amber-bg: #fef3c7;
+  --guide-badge-amber-text: #92400e;
+  --guide-badge-neutral-bg: #f1f5f9;
+  --guide-badge-neutral-text: #334155;
 
-  --guide-slate-900: #0f172a;
-  --guide-slate-800: #1e293b;
-  --guide-slate-700: #334155;
-  --guide-slate-600: #475569;
-  --guide-slate-500: #64748b;
-  --guide-slate-200: #e2e8f0;
-  --guide-slate-100: #f1f5f9;
-  --guide-slate-50: #f8fafc;
+  /* Callouts */
+  --guide-callout-tip-bg: #eff6ff;
+  --guide-callout-tip-border: #bfdbfe;
+  --guide-callout-tip-text: #1e293b;
+  --guide-callout-tip-title: #1d4ed8;
 
-  --guide-surface: #ffffff;
-  --guide-bg: #f8fafc;
-  --guide-border: #e2e8f0;
-  --guide-border-hover: #cbd5e1;
+  --guide-callout-important-bg: #fffbeb;
+  --guide-callout-important-border: #fde68a;
+  --guide-callout-important-text: #1e293b;
+  --guide-callout-important-title: #b45309;
 
-  --guide-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --guide-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.05);
-  --guide-shadow-md: 0 6px 18px rgba(0, 0, 0, 0.06);
-  --guide-shadow-hover: 0 10px 24px rgba(4, 120, 87, 0.09);
+  --guide-callout-note-bg: #f8fafc;
+  --guide-callout-note-border: #e2e8f0;
+  --guide-callout-note-text: #334155;
+
+  /* Code Blocks */
+  --guide-code-bg: #f1f5f9;
+  --guide-code-border: #cbd5e1;
+  --guide-code-text: #0f172a;
+
+  /* Shadows */
+  --guide-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --guide-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.06);
+  --guide-shadow-md: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --guide-shadow-hover: 0 10px 24px rgba(4, 120, 87, 0.12);
 
   --guide-radius-sm: 8px;
   --guide-radius-md: 12px;
@@ -47,36 +73,172 @@
   --guide-radius-pill: 9999px;
 }
 
+/* ---------------- Dark Theme Tokens via Media Query ---------------- */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --guide-surface: #1e293b;
-    --guide-bg: #0f172a;
-    --guide-border: #334155;
-    --guide-border-hover: #475569;
-    --guide-slate-900: #f8fafc;
-    --guide-slate-800: #f1f5f9;
-    --guide-slate-700: #e2e8f0;
-    --guide-slate-600: #cbd5e1;
-    --guide-slate-500: #94a3b8;
-    --guide-slate-100: #1e293b;
-    --guide-slate-50: #0f172a;
-    --guide-blue-50: #1e3a8a;
-    --guide-green-50: #064e3b;
-    --guide-amber-50: #451a03;
+  :root:not([data-theme="light"]),
+  .guide-wrapper:not([data-theme="light"]) {
+    --guide-bg: #0b0f19;
+    --guide-surface: #151c2c;
+    --guide-surface-alt: #1e293b;
+    --guide-border: #243048;
+    --guide-border-hover: #3b4b68;
+    --guide-border-subtle: #1e293b;
+
+    --guide-text-primary: #f8fafc;
+    --guide-text-secondary: #cbd5e1;
+    --guide-text-muted: #94a3b8;
+    --guide-text-inverse: #0f172a;
+
+    --guide-green-900: #022c22;
+    --guide-green-800: #064e3b;
+    --guide-green-700: #047857;
+    --guide-green-600: #059669;
+    --guide-green-500: #10b981;
+    --guide-green-100: rgba(16, 185, 129, 0.2);
+    --guide-green-50: rgba(6, 78, 59, 0.4);
+
+    --guide-link: #34d399;
+    --guide-link-hover: #6ee7b7;
+
+    /* Badges */
+    --guide-badge-green-bg: rgba(16, 185, 129, 0.2);
+    --guide-badge-green-text: #6ee7b7;
+    --guide-badge-blue-bg: rgba(59, 130, 246, 0.2);
+    --guide-badge-blue-text: #93c5fd;
+    --guide-badge-amber-bg: rgba(245, 158, 11, 0.2);
+    --guide-badge-amber-text: #fcd34d;
+    --guide-badge-neutral-bg: rgba(148, 163, 184, 0.2);
+    --guide-badge-neutral-text: #e2e8f0;
+
+    /* Callouts */
+    --guide-callout-tip-bg: rgba(30, 58, 138, 0.35);
+    --guide-callout-tip-border: rgba(96, 165, 250, 0.4);
+    --guide-callout-tip-text: #e2e8f0;
+    --guide-callout-tip-title: #93c5fd;
+
+    --guide-callout-important-bg: rgba(120, 53, 15, 0.35);
+    --guide-callout-important-border: rgba(251, 191, 36, 0.4);
+    --guide-callout-important-text: #fef3c7;
+    --guide-callout-important-title: #fcd34d;
+
+    --guide-callout-note-bg: rgba(30, 41, 59, 0.6);
+    --guide-callout-note-border: rgba(71, 85, 105, 0.5);
+    --guide-callout-note-text: #cbd5e1;
+
+    /* Code Blocks */
+    --guide-code-bg: #0f172a;
+    --guide-code-border: #334155;
+    --guide-code-text: #6ee7b7;
+
+    /* Shadows */
+    --guide-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --guide-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.4);
+    --guide-shadow-md: 0 6px 18px rgba(0, 0, 0, 0.5);
+    --guide-shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.6);
   }
+}
+
+/* ---------------- Explicit Dark Theme Attribute ---------------- */
+:root[data-theme="dark"],
+html.dark,
+body.dark,
+body.dark-mode,
+.guide-wrapper[data-theme="dark"] {
+  --guide-bg: #0b0f19;
+  --guide-surface: #151c2c;
+  --guide-surface-alt: #1e293b;
+  --guide-border: #243048;
+  --guide-border-hover: #3b4b68;
+  --guide-border-subtle: #1e293b;
+
+  --guide-text-primary: #f8fafc;
+  --guide-text-secondary: #cbd5e1;
+  --guide-text-muted: #94a3b8;
+  --guide-text-inverse: #0f172a;
+
+  --guide-green-900: #022c22;
+  --guide-green-800: #064e3b;
+  --guide-green-700: #047857;
+  --guide-green-600: #059669;
+  --guide-green-500: #10b981;
+  --guide-green-100: rgba(16, 185, 129, 0.2);
+  --guide-green-50: rgba(6, 78, 59, 0.4);
+
+  --guide-link: #34d399;
+  --guide-link-hover: #6ee7b7;
+
+  /* Badges */
+  --guide-badge-green-bg: rgba(16, 185, 129, 0.2);
+  --guide-badge-green-text: #6ee7b7;
+  --guide-badge-blue-bg: rgba(59, 130, 246, 0.2);
+  --guide-badge-blue-text: #93c5fd;
+  --guide-badge-amber-bg: rgba(245, 158, 11, 0.2);
+  --guide-badge-amber-text: #fcd34d;
+  --guide-badge-neutral-bg: rgba(148, 163, 184, 0.2);
+  --guide-badge-neutral-text: #e2e8f0;
+
+  /* Callouts */
+  --guide-callout-tip-bg: rgba(30, 58, 138, 0.35);
+  --guide-callout-tip-border: rgba(96, 165, 250, 0.4);
+  --guide-callout-tip-text: #e2e8f0;
+  --guide-callout-tip-title: #93c5fd;
+
+  --guide-callout-important-bg: rgba(120, 53, 15, 0.35);
+  --guide-callout-important-border: rgba(251, 191, 36, 0.4);
+  --guide-callout-important-text: #fef3c7;
+  --guide-callout-important-title: #fcd34d;
+
+  --guide-callout-note-bg: rgba(30, 41, 59, 0.6);
+  --guide-callout-note-border: rgba(71, 85, 105, 0.5);
+  --guide-callout-note-text: #cbd5e1;
+
+  /* Code Blocks */
+  --guide-code-bg: #0f172a;
+  --guide-code-border: #334155;
+  --guide-code-text: #6ee7b7;
+
+  /* Shadows */
+  --guide-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --guide-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.4);
+  --guide-shadow-md: 0 6px 18px rgba(0, 0, 0, 0.5);
+  --guide-shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.6);
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+/* Self-contained Guide Wrapper ensures background is never transparent */
 .guide-wrapper {
   max-width: 1240px;
   margin: 0 auto;
   padding: 1.5rem 1rem 4rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: var(--guide-slate-800);
+  background-color: var(--guide-bg);
+  color: var(--guide-text-primary);
   line-height: 1.65;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  border-radius: var(--guide-radius-lg);
+}
+
+/* Links inside Guide Wrapper */
+.guide-wrapper a {
+  color: var(--guide-link);
+  transition: color 0.15s ease;
+}
+
+.guide-wrapper a:hover {
+  color: var(--guide-link-hover);
+}
+
+.guide-wrapper code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.88em;
+  background-color: var(--guide-code-bg);
+  color: var(--guide-code-text);
+  border: 1px solid var(--guide-code-border);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
 }
 
 /* ==========================================================================
@@ -92,6 +254,7 @@ html {
   box-shadow: var(--guide-shadow-md);
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .guide-hero::after {
@@ -106,21 +269,63 @@ html {
   pointer-events: none;
 }
 
+.guide-hero-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
 .guide-hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
   padding: 0.35rem 0.9rem;
   border-radius: var(--guide-radius-pill);
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.02em;
-  margin-bottom: 1rem;
+}
+
+/* Theme Switcher in Hero */
+.guide-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--guide-radius-pill);
+  padding: 3px;
+  gap: 2px;
+}
+
+.guide-theme-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0.28rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: var(--guide-radius-pill);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.guide-theme-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.guide-theme-btn.active {
+  background: #ffffff;
+  color: #064e3b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .guide-hero-title {
@@ -135,9 +340,9 @@ html {
 .guide-hero-subtitle {
   font-size: 1.15rem;
   max-width: 780px;
-  margin: 0 0 1.5rem;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.5;
+  margin: 0 0 1.75rem;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.55;
 }
 
 .guide-hero-actions {
@@ -146,37 +351,47 @@ html {
   gap: 0.85rem;
 }
 
-.guide-hero-btn {
+/* Hero Action Buttons - forced explicit high contrast */
+.guide-hero a.guide-hero-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #ffffff;
-  color: var(--guide-green-900);
+  background: #ffffff !important;
+  color: #064e3b !important;
   padding: 0.65rem 1.25rem;
   border-radius: var(--guide-radius-pill);
   font-weight: 700;
   font-size: 0.95rem;
-  text-decoration: none;
+  text-decoration: none !important;
   transition: all 0.2s ease;
-  box-shadow: var(--guide-shadow-sm);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.guide-hero-btn:hover {
-  background: var(--guide-green-50);
-  color: var(--guide-green-800);
+.guide-hero a.guide-hero-btn:hover {
+  background: #f0fdf4 !important;
+  color: #065f46 !important;
   transform: translateY(-2px);
-  text-decoration: none;
 }
 
-.guide-hero-btn-secondary {
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+.guide-hero a.guide-hero-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--guide-radius-pill);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
 }
 
-.guide-hero-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.25);
-  color: #ffffff;
+.guide-hero a.guide-hero-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.28) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
 }
 
 /* ==========================================================================
@@ -223,7 +438,7 @@ html {
 .guide-toc-header {
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--guide-green-800);
+  color: var(--guide-text-primary);
   margin: 0 0 0.85rem;
   display: flex;
   align-items: center;
@@ -244,17 +459,17 @@ html {
 
 .guide-toc-item > a {
   display: block;
-  padding: 0.35rem 0.65rem;
+  padding: 0.4rem 0.65rem;
   border-radius: var(--guide-radius-sm);
-  color: var(--guide-slate-700);
+  color: var(--guide-text-secondary) !important;
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: none !important;
   transition: all 0.15s ease;
 }
 
 .guide-toc-item > a:hover {
-  background: var(--guide-slate-100);
-  color: var(--guide-green-700);
+  background: var(--guide-surface-alt);
+  color: var(--guide-link) !important;
 }
 
 .guide-toc-sublist {
@@ -269,17 +484,17 @@ html {
 
 .guide-toc-sublist a {
   display: block;
-  padding: 0.2rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   border-radius: var(--guide-radius-sm);
-  color: var(--guide-slate-600);
-  font-size: 0.83rem;
-  text-decoration: none;
+  color: var(--guide-text-muted) !important;
+  font-size: 0.85rem;
+  text-decoration: none !important;
   transition: all 0.15s ease;
 }
 
 .guide-toc-sublist a:hover {
-  color: var(--guide-green-700);
-  background: var(--guide-slate-100);
+  color: var(--guide-link) !important;
+  background: var(--guide-surface-alt);
 }
 
 /* ==========================================================================
@@ -312,7 +527,7 @@ html {
   height: 40px;
   border-radius: var(--guide-radius-md);
   background: var(--guide-green-100);
-  color: var(--guide-green-800);
+  color: var(--guide-link);
   font-size: 1.25rem;
   flex-shrink: 0;
 }
@@ -320,9 +535,15 @@ html {
 .guide-section-title {
   font-size: 1.75rem;
   font-weight: 800;
-  color: var(--guide-slate-900);
+  color: var(--guide-text-primary);
   margin: 0;
   letter-spacing: -0.015em;
+}
+
+.guide-intro-note {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  color: var(--guide-text-secondary);
 }
 
 .guide-card {
@@ -332,6 +553,7 @@ html {
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: var(--guide-shadow-sm);
+  color: var(--guide-text-primary);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -343,7 +565,7 @@ html {
 .guide-card-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--guide-slate-900);
+  color: var(--guide-text-primary);
   margin: 0 0 0.85rem;
   display: flex;
   align-items: center;
@@ -352,8 +574,8 @@ html {
 }
 
 .guide-card-title a {
-  color: inherit;
-  text-decoration: none;
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
 /* ==========================================================================
@@ -364,7 +586,7 @@ html {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.2rem 0.6rem;
+  padding: 0.22rem 0.65rem;
   font-size: 0.78rem;
   font-weight: 700;
   border-radius: var(--guide-radius-pill);
@@ -373,23 +595,27 @@ html {
 }
 
 .guide-badge-green {
-  background: var(--guide-green-100);
-  color: var(--guide-green-800);
+  background: var(--guide-badge-green-bg);
+  color: var(--guide-badge-green-text);
+  border: 1px solid rgba(16, 185, 129, 0.25);
 }
 
 .guide-badge-blue {
-  background: var(--guide-blue-50);
-  color: var(--guide-blue-700);
+  background: var(--guide-badge-blue-bg);
+  color: var(--guide-badge-blue-text);
+  border: 1px solid rgba(59, 130, 246, 0.25);
 }
 
 .guide-badge-amber {
-  background: var(--guide-amber-100);
-  color: var(--guide-amber-700);
+  background: var(--guide-badge-amber-bg);
+  color: var(--guide-badge-amber-text);
+  border: 1px solid rgba(245, 158, 11, 0.25);
 }
 
 .guide-badge-neutral {
-  background: var(--guide-slate-100);
-  color: var(--guide-slate-700);
+  background: var(--guide-badge-neutral-bg);
+  color: var(--guide-badge-neutral-text);
+  border: 1px solid var(--guide-border);
 }
 
 /* ==========================================================================
@@ -398,19 +624,19 @@ html {
 
 .guide-callout {
   border-radius: var(--guide-radius-md);
-  padding: 1rem 1.25rem;
+  padding: 1.1rem 1.35rem;
   margin: 1.25rem 0;
   display: flex;
   align-items: flex-start;
-  gap: 0.85rem;
-  line-height: 1.55;
+  gap: 0.95rem;
+  line-height: 1.6;
   font-size: 0.95rem;
 }
 
 .guide-callout-icon {
   font-size: 1.35rem;
   flex-shrink: 0;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 .guide-callout-body {
@@ -418,27 +644,27 @@ html {
 }
 
 .guide-callout-tip {
-  background: var(--guide-blue-50);
-  border: 1px solid rgba(37, 99, 235, 0.2);
-  color: var(--guide-slate-800);
+  background: var(--guide-callout-tip-bg);
+  border: 1px solid var(--guide-callout-tip-border);
+  color: var(--guide-callout-tip-text);
 }
 .guide-callout-tip strong {
-  color: var(--guide-blue-700);
+  color: var(--guide-callout-tip-title);
 }
 
 .guide-callout-important {
-  background: var(--guide-amber-50);
-  border: 1px solid rgba(217, 119, 6, 0.3);
-  color: var(--guide-slate-800);
+  background: var(--guide-callout-important-bg);
+  border: 1px solid var(--guide-callout-important-border);
+  color: var(--guide-callout-important-text);
 }
 .guide-callout-important strong {
-  color: var(--guide-amber-700);
+  color: var(--guide-callout-important-title);
 }
 
 .guide-callout-note {
-  background: var(--guide-slate-100);
-  border: 1px solid var(--guide-border);
-  color: var(--guide-slate-700);
+  background: var(--guide-callout-note-bg);
+  border: 1px solid var(--guide-callout-note-border);
+  color: var(--guide-callout-note-text);
 }
 
 /* ==========================================================================
@@ -450,9 +676,10 @@ html {
   background: var(--guide-surface);
   border: 1px solid var(--guide-border);
   border-radius: var(--guide-radius-md);
-  padding: 1.5rem 1.5rem 1.75rem;
+  padding: 1.6rem 1.6rem 1.85rem;
   margin-bottom: 1.75rem;
   box-shadow: var(--guide-shadow-sm);
+  color: var(--guide-text-primary);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   scroll-margin-top: 3rem;
 }
@@ -488,7 +715,7 @@ html {
 .step-title {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--guide-slate-900);
+  color: var(--guide-text-primary);
   margin: 0;
 }
 
@@ -509,6 +736,7 @@ html {
   height: auto;
   border-radius: var(--guide-radius-sm);
   border: 1px solid var(--guide-border);
+  background: var(--guide-surface);
   box-shadow: var(--guide-shadow-xs);
   transition: transform 0.2s ease;
 }
@@ -518,9 +746,9 @@ html {
 }
 
 .guide-figcaption {
-  margin-top: 0.5rem;
+  margin-top: 0.55rem;
   font-size: 0.85rem;
-  color: var(--guide-slate-500);
+  color: var(--guide-text-muted);
   font-style: italic;
   max-width: 540px;
   text-align: center;
@@ -547,7 +775,7 @@ html {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-  background: var(--guide-slate-50);
+  background: var(--guide-surface-alt);
   border: 1px solid var(--guide-border);
   border-radius: var(--guide-radius-md);
   padding: 1.25rem;
@@ -571,7 +799,7 @@ html {
   font-weight: 700;
   font-size: 0.88rem;
   margin-bottom: 0.5rem;
-  color: var(--guide-slate-600);
+  color: var(--guide-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -593,12 +821,6 @@ html {
   }
 }
 
-@media (min-width: 992px) {
-  .guide-grid-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 .project-card {
   background: var(--guide-surface);
   border: 1px solid var(--guide-border);
@@ -608,6 +830,7 @@ html {
   flex-direction: column;
   gap: 0.65rem;
   box-shadow: var(--guide-shadow-sm);
+  color: var(--guide-text-primary);
   transition: all 0.2s ease;
 }
 
@@ -620,25 +843,25 @@ html {
 .project-card-title {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--guide-green-800);
+  color: var(--guide-text-primary);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .project-card-title a {
-  color: inherit;
-  text-decoration: none;
+  color: var(--guide-text-primary) !important;
+  text-decoration: none !important;
 }
 
 .project-card-title a:hover {
-  color: var(--guide-green-600);
+  color: var(--guide-link) !important;
 }
 
 .project-card p {
   margin: 0;
   font-size: 0.92rem;
-  color: var(--guide-slate-600);
+  color: var(--guide-text-secondary);
 }
 
 /* ==========================================================================
@@ -647,7 +870,7 @@ html {
 
 .field-item {
   border-bottom: 1px solid var(--guide-border);
-  padding: 1.25rem 0;
+  padding: 1.35rem 0;
   scroll-margin-top: 3rem;
 }
 
@@ -667,23 +890,24 @@ html {
 .field-title {
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--guide-slate-900);
+  color: var(--guide-text-primary);
   margin: 0;
 }
 
 .field-description {
   font-size: 0.95rem;
-  color: var(--guide-slate-700);
+  color: var(--guide-text-secondary);
   margin-bottom: 0.75rem;
 }
 
 .field-examples {
-  background: var(--guide-slate-50);
+  background: var(--guide-surface-alt);
   border: 1px solid var(--guide-border);
   border-radius: var(--guide-radius-sm);
   padding: 0.85rem 1rem;
   margin: 0.75rem 0;
   font-size: 0.9rem;
+  color: var(--guide-text-primary);
 }
 
 .field-examples ul {
@@ -704,15 +928,15 @@ html {
   bottom: 2rem;
   right: 2rem;
   background: var(--guide-green-700);
-  color: #ffffff;
+  color: #ffffff !important;
   width: 44px;
   height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  text-decoration: none !important;
   font-size: 1.25rem;
   transition: all 0.2s ease;
   z-index: 100;
@@ -720,18 +944,28 @@ html {
 
 .guide-back-to-top:hover {
   background: var(--guide-green-600);
-  color: #ffffff;
+  color: #ffffff !important;
   transform: translateY(-3px);
 }
 </style>
 
-<div class="guide-wrapper">
+<div class="guide-wrapper" id="guide-app-root">
 
   <!-- Hero Banner -->
   <header class="guide-hero" id="top">
-    <div class="guide-hero-badge">
-      <span>📖</span> Contributor Documentation
+    <div class="guide-hero-topbar">
+      <div class="guide-hero-badge">
+        <span>📖</span> Contributor Documentation
+      </div>
+
+      <!-- Interactive Theme Switcher -->
+      <div class="guide-theme-toggle" role="group" aria-label="Color theme selector">
+        <button type="button" class="guide-theme-btn active" data-theme-val="auto" title="Follow system theme">💻 Auto</button>
+        <button type="button" class="guide-theme-btn" data-theme-val="light" title="Force light mode">☀️ Light</button>
+        <button type="button" class="guide-theme-btn" data-theme-val="dark" title="Force dark mode">🌙 Dark</button>
+      </div>
     </div>
+
     <h1 class="guide-hero-title">Open Food Facts Contributor Guide</h1>
     <p class="guide-hero-subtitle">
       A comprehensive guide for Open Food Facts contributors. Learn the core principles,
@@ -741,10 +975,10 @@ html {
       <a class="guide-hero-btn" href="#Step-by-step-example">
         <span>🚀</span> Start Step-by-Step Guide
       </a>
-      <a class="guide-hero-btn guide-hero-btn-secondary" href="#Each-field-in-details">
+      <a class="guide-hero-btn-secondary" href="#Each-field-in-details">
         <span>📋</span> Field Reference
       </a>
-      <a class="guide-hero-btn guide-hero-btn-secondary" href="https://slack.openfoodfacts.org/">
+      <a class="guide-hero-btn-secondary" href="https://slack.openfoodfacts.org/" target="_blank" rel="noopener">
         <span>💬</span> Join Our Slack
       </a>
     </div>
@@ -1005,7 +1239,7 @@ html {
           </p>
 
           <div id="Basic-rules">
-            <h4 style="font-size: 1.05rem; font-weight: 700; margin-top: 1.25rem;">Basic Principles</h4>
+            <h4 style="font-size: 1.05rem; font-weight: 700; margin-top: 1.25rem; color: var(--guide-text-primary);">Basic Principles</h4>
             <ul>
               <li>
                 <strong>Strict Package Fidelity:</strong> Enter only information explicitly printed on the package.
@@ -1029,7 +1263,7 @@ html {
           <h2 class="guide-section-title">5. Step-by-Step Example</h2>
         </div>
 
-        <p style="margin-bottom: 1.5rem; font-size: 1.05rem; color: var(--guide-slate-600);">
+        <p class="guide-intro-note">
           Walk through the complete lifecycle of uploading and enriching a product on the Open Food Facts website:
         </p>
 
@@ -1538,3 +1772,51 @@ html {
   <a href="#top" class="guide-back-to-top" title="Back to top" aria-label="Back to top">↑</a>
 
 </div>
+
+<script>
+/* Theme Toggle Management with LocalStorage and prefers-color-scheme listener */
+(function() {
+  const root = document.getElementById('guide-app-root');
+  const buttons = document.querySelectorAll('.guide-theme-btn');
+  if (!root || !buttons.length) return;
+
+  function getStoredTheme() {
+    try {
+      return localStorage.getItem('off_guide_theme') || 'auto';
+    } catch(e) {
+      return 'auto';
+    }
+  }
+
+  function applyTheme(theme) {
+    if (theme === 'auto') {
+      root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', theme);
+    }
+
+    buttons.forEach(btn => {
+      const val = btn.getAttribute('data-theme-val');
+      if (val === theme) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    try {
+      localStorage.setItem('off_guide_theme', theme);
+    } catch(e) {}
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const chosen = this.getAttribute('data-theme-val');
+      applyTheme(chosen);
+    });
+  });
+
+  // Initialize from storage or default
+  applyTheme(getStoredTheme());
+})();
+</script>
