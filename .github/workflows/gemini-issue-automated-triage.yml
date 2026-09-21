@@ -44,7 +44,7 @@ jobs:
 
     steps:
       - name: 'Checkout repository'
-        uses: 'actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0' # ratchet:actions/checkout@v4
+        uses: 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' # ratchet:actions/checkout@v4
 
       - name: 'Generate GitHub App Token'
         id: 'generate_token'
@@ -56,7 +56,7 @@ jobs:
           private-key: '${{ secrets.APP_PRIVATE_KEY }}'
 
       - name: 'Run Gemini Issue Triage'
-        uses: 'google-github-actions/run-gemini-cli@v0'
+        uses: 'google-github-actions/run-gemini-cli@f77273f4c914e4bf38440cf36a0369cb64a37489' # v0
         id: 'gemini_issue_triage'
         env:
           GITHUB_TOKEN: '${{ steps.generate_token.outputs.token || secrets.GITHUB_TOKEN }}'

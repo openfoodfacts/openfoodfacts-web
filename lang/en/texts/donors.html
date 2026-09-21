@@ -1,0 +1,1233 @@
+<!-- no side column -->
+
+<style type="text/css">
+  /* Donors Wall & Impact Page Styles */
+  #donors-page {
+    --dw-teal: #116a64;
+    --dw-teal-dark: #0b4945;
+    --dw-teal-light: #eaf5f4;
+    --dw-teal-border: #b2dedb;
+    --dw-brown: #341100;
+    --dw-brown-light: #f5ebe6;
+    --dw-cream: #faf6f0;
+    --dw-orange: #d9531e;
+    --dw-orange-light: #fff2eb;
+    --dw-card-bg: #ffffff;
+    --dw-border: #e6dfd8;
+    --dw-text: #212529;
+    --dw-text-muted: #5a626a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--dw-text);
+    line-height: 1.6;
+    margin: 0 auto;
+    padding-bottom: 3rem;
+  }
+
+  /* Hero Section - Streamlined vertical padding */
+  #donors-page .dw-hero {
+    background: linear-gradient(145deg, #f7f2ed 0%, #edf7f6 100%);
+    border-radius: 20px;
+    padding: 2.25rem 1.75rem;
+    margin: 1rem 0 1.75rem 0;
+    text-align: center;
+    border: 1px solid var(--dw-border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #donors-page .dw-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--dw-teal-light);
+    color: var(--dw-teal-dark);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--dw-teal-border);
+    margin-bottom: 1rem;
+  }
+
+  #donors-page .dw-hero h1 {
+    font-size: 2.35rem;
+    font-weight: 800;
+    color: var(--dw-brown);
+    line-height: 1.2;
+    margin: 0 auto 0.85rem auto;
+    max-width: 860px;
+  }
+
+  #donors-page .dw-hero h1 span.highlight {
+    color: var(--dw-teal);
+    position: relative;
+  }
+
+  #donors-page .dw-hero p.dw-subtitle {
+    font-size: 1.15rem;
+    color: var(--dw-text-muted);
+    max-width: 760px;
+    margin: 0 auto 1.5rem auto;
+  }
+
+  /* Impact Counters Bar */
+  #donors-page .dw-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #donors-page .dw-stat-card {
+    background: #ffffff;
+    border: 1px solid var(--dw-border);
+    border-radius: 14px;
+    padding: 0.9rem 0.75rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  #donors-page .dw-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  #donors-page .dw-stat-card .dw-stat-num {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--dw-brown);
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
+  }
+
+  #donors-page .dw-stat-card .dw-stat-label {
+    font-size: 0.78rem;
+    color: var(--dw-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Main Donors Wall & Widgets Section */
+  #donors-page .dw-wall-section {
+    background: #ffffff;
+    border: 2px solid var(--dw-teal-border);
+    border-radius: 20px;
+    padding: 2rem 1.75rem 1.5rem 1.75rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 24px rgba(17, 106, 100, 0.06);
+  }
+
+  #donors-page .dw-wall-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 1.75rem auto;
+  }
+
+  #donors-page .dw-wall-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--dw-teal-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  #donors-page .dw-wall-header p {
+    font-size: 1.05rem;
+    color: var(--dw-text-muted);
+    margin-bottom: 0;
+  }
+
+  #donors-page .dw-widgets-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  #donors-page .dw-widget-col-action {
+    flex: 1 1 340px;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  #donors-page .dw-widget-col-wall {
+    flex: 1 1 480px;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #donors-page .dw-meter-box {
+    background: var(--dw-cream);
+    border: 1px solid var(--dw-border);
+    border-radius: 16px;
+    padding: 1.25rem 1.25rem 1rem 1.25rem;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  }
+
+  #donors-page .dw-meter-box h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--dw-brown);
+    margin-bottom: 0.4rem;
+  }
+
+  #donors-page .dw-meter-box p {
+    font-size: 0.88rem;
+    color: var(--dw-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  #donors-page .dw-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--dw-teal);
+    color: #ffffff !important;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(17, 106, 100, 0.25);
+    width: 100%;
+    max-width: 320px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #donors-page .dw-btn-primary:hover {
+    background: var(--dw-teal-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(17, 106, 100, 0.35);
+    color: #ffffff !important;
+  }
+
+  #donors-page .dw-tax-notice {
+    font-size: 0.82rem;
+    color: var(--dw-text-muted);
+    text-align: center;
+    line-height: 1.4;
+    background: #ffffff;
+    border: 1px dashed var(--dw-border);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    width: 100%;
+  }
+
+  #donors-page .dw-tax-notice strong {
+    color: var(--dw-brown);
+  }
+
+  /* Auto-Scrolling Donor Wall Styles */
+  #donors-page .dw-wall-embed-box {
+    background: #ffffff;
+    border: 1px solid var(--dw-teal-border);
+    border-radius: 16px;
+    padding: 1.25rem 1rem 0.75rem 1rem;
+    width: 100%;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  #donors-page .dw-wall-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding: 0 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  #donors-page .dw-wall-title-row h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--dw-teal);
+    margin: 0;
+  }
+
+  #donors-page .dw-wall-sub {
+    font-size: 0.82rem;
+    color: var(--dw-text-muted);
+    margin: 0;
+  }
+
+  #donors-page .dw-autoscroll-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--dw-teal-dark);
+    background: var(--dw-teal-light);
+    border: 1px solid var(--dw-teal-border);
+    border-radius: 999px;
+    padding: 0.2rem 0.65rem;
+  }
+
+  #donors-page .dw-pulse-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background-color: var(--dw-teal);
+    border-radius: 50%;
+    animation: dw-pulse 2s infinite ease-in-out;
+  }
+
+  @keyframes dw-pulse {
+    0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(17, 106, 100, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 5px rgba(17, 106, 100, 0); }
+    100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(17, 106, 100, 0); }
+  }
+
+  #donors-page .dw-autoscroll-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fdfdfd;
+    border: 1px solid var(--dw-border);
+  }
+
+  /* Compact Viewport: exactly 340px high to avoid huge vertical space */
+  #donors-page .dw-scroll-viewport {
+    height: 340px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.25rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Soft fade gradients on top and bottom of scrolling wall */
+  #donors-page .dw-scroll-fade-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  #donors-page .dw-scroll-fade-bottom {
+    position: absolute;
+    bottom: 34px;
+    left: 0;
+    right: 0;
+    height: 24px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  #donors-page .dw-autoscroll-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0.75rem;
+    background: #f8f6f3;
+    border-top: 1px solid var(--dw-border);
+    font-size: 0.76rem;
+    color: var(--dw-text-muted);
+    position: relative;
+    z-index: 4;
+  }
+
+  #donors-page .dw-scroll-btn {
+    background: #ffffff;
+    border: 1px solid var(--dw-border);
+    border-radius: 6px;
+    padding: 0.2rem 0.55rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--dw-brown);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  #donors-page .dw-scroll-btn:hover {
+    background: var(--dw-teal-light);
+    border-color: var(--dw-teal-border);
+    color: var(--dw-teal-dark);
+  }
+
+  /* Direct Advocacy Jump Pill */
+  #donors-page .dw-jump-bar {
+    text-align: center;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(17, 106, 100, 0.15);
+  }
+
+  #donors-page .dw-jump-advocacy {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--dw-teal) !important;
+    text-decoration: none;
+    padding: 0.45rem 1.1rem;
+    background: var(--dw-teal-light);
+    border: 1px solid var(--dw-teal-border);
+    border-radius: 999px;
+    transition: all 0.2s ease;
+  }
+
+  #donors-page .dw-jump-advocacy:hover {
+    background: var(--dw-teal);
+    color: #ffffff !important;
+    transform: translateY(-1px);
+  }
+
+  /* Section Headings */
+  #donors-page .dw-section-title {
+    text-align: center;
+    margin: 2.75rem auto 2rem auto;
+    max-width: 820px;
+  }
+
+  #donors-page .dw-section-title h2 {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: var(--dw-brown);
+    margin-bottom: 0.6rem;
+  }
+
+  #donors-page .dw-section-title p {
+    font-size: 1.1rem;
+    color: var(--dw-text-muted);
+  }
+
+  /* Achievements Grid */
+  #donors-page .dw-achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  #donors-page .dw-card {
+    background: var(--dw-card-bg);
+    border: 1px solid var(--dw-border);
+    border-radius: 18px;
+    padding: 1.75rem;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #donors-page .dw-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    border-color: var(--dw-teal-border);
+  }
+
+  #donors-page .dw-card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: var(--dw-teal-light);
+    color: var(--dw-teal-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  #donors-page .dw-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dw-brown);
+    margin-bottom: 0.6rem;
+  }
+
+  #donors-page .dw-card p {
+    font-size: 0.95rem;
+    color: var(--dw-text-muted);
+    line-height: 1.55;
+    flex-grow: 1;
+  }
+
+  #donors-page .dw-card .dw-card-tag {
+    margin-top: 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--dw-teal);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  /* Financial Transparency & Reports Banner */
+  #donors-page .dw-transparency-box {
+    background: linear-gradient(135deg, #fbf7f4 0%, #f4ede6 100%);
+    border: 1px solid var(--dw-border);
+    border-radius: 20px;
+    padding: 2.5rem 1.75rem;
+    margin-bottom: 3rem;
+  }
+
+  #donors-page .dw-transparency-content {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  #donors-page .dw-transparency-content h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--dw-brown);
+    margin-bottom: 0.75rem;
+    text-align: center;
+  }
+
+  #donors-page .dw-transparency-lead {
+    font-size: 1.1rem;
+    color: var(--dw-text-muted);
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto 2rem auto;
+  }
+
+  #donors-page .dw-transparency-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  #donors-page .dw-transparency-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 1.5rem;
+    border: 1px solid var(--dw-border);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  }
+
+  #donors-page .dw-transparency-card h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dw-teal-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  #donors-page .dw-transparency-card p {
+    font-size: 0.9rem;
+    color: var(--dw-text-muted);
+    margin-bottom: 0;
+  }
+
+  #donors-page .dw-report-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  #donors-page .dw-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #ffffff;
+    color: var(--dw-brown) !important;
+    border: 2px solid var(--dw-brown);
+    font-size: 0.92rem;
+    font-weight: 700;
+    padding: 0.65rem 1.3rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  #donors-page .dw-btn-outline:hover {
+    background: var(--dw-brown);
+    color: #ffffff !important;
+    transform: translateY(-2px);
+  }
+
+  /* UN SDGs Section */
+  #donors-page .dw-sdg-section {
+    background: #ffffff;
+    border: 1px solid var(--dw-border);
+    border-radius: 18px;
+    padding: 2.25rem 1.75rem;
+    margin-bottom: 3rem;
+  }
+
+  #donors-page .dw-sdg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  #donors-page .dw-sdg-card {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--dw-border);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  }
+
+  #donors-page .dw-sdg-header {
+    color: #ffffff;
+    padding: 0.8rem 0.9rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  #donors-page .dw-sdg-num {
+    font-size: 1.25rem;
+    font-weight: 900;
+    opacity: 0.9;
+  }
+
+  #donors-page .dw-sdg-body {
+    background: #ffffff;
+    padding: 0.9rem;
+    font-size: 0.85rem;
+    color: var(--dw-text-muted);
+    flex-grow: 1;
+  }
+
+  /* FAQ Accordion / Grid */
+  #donors-page .dw-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  #donors-page .dw-faq-card {
+    background: #ffffff;
+    border: 1px solid var(--dw-border);
+    border-radius: 14px;
+    padding: 1.5rem;
+  }
+
+  #donors-page .dw-faq-card h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dw-brown);
+    margin-bottom: 0.5rem;
+  }
+
+  #donors-page .dw-faq-card p {
+    font-size: 0.92rem;
+    color: var(--dw-text-muted);
+    margin: 0;
+  }
+
+  /* Final CTA banner */
+  #donors-page .dw-final-cta {
+    background: linear-gradient(135deg, var(--dw-teal-dark) 0%, var(--dw-teal) 100%);
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 3rem 1.75rem;
+    text-align: center;
+  }
+
+  #donors-page .dw-final-cta h2 {
+    color: #ffffff;
+    font-size: 2.1rem;
+    font-weight: 800;
+    margin-bottom: 0.85rem;
+  }
+
+  #donors-page .dw-final-cta p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.15rem;
+    max-width: 680px;
+    margin: 0 auto 1.75rem auto;
+  }
+
+  #donors-page .dw-btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #ffffff;
+    color: var(--dw-teal-dark) !important;
+    font-size: 1.1rem;
+    font-weight: 800;
+    padding: 0.85rem 2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  }
+
+  #donors-page .dw-btn-white:hover {
+    background: #fdf7f4;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+  }
+
+  @media (max-width: 767px) {
+    #donors-page .dw-hero {
+      padding: 1.75rem 1rem;
+    }
+    #donors-page .dw-hero h1 {
+      font-size: 1.85rem;
+    }
+    #donors-page .dw-wall-section {
+      padding: 1.5rem 1rem;
+    }
+    #donors-page .dw-wall-header h2 {
+      font-size: 1.6rem;
+    }
+    #donors-page .dw-section-title h2 {
+      font-size: 1.6rem;
+    }
+    #donors-page .dw-achievements-grid,
+    #donors-page .dw-faq-grid {
+      grid-template-columns: 1fr;
+    }
+    #donors-page .dw-scroll-viewport {
+      height: 310px;
+    }
+  }
+</style>
+
+<div id="donors-page">
+  <!-- 1. HERO SECTION -->
+  <section class="dw-hero">
+    <div class="dw-badge">
+      <span>🤝 Citizen-Powered Food Transparency</span>
+    </div>
+    <h1>Thank you to our <span class="highlight">Donors &amp; Supporters</span></h1>
+    <p class="dw-subtitle">
+      Open Food Facts belongs to everyone. We refuse advertising and reject food industry funding to guarantee strict independence. Every barcode scanned, server kept running, and Nutri-Score calculated is powered by citizens like you.
+    </p>
+
+    <!-- Impact Stats -->
+    <div class="dw-stats-grid">
+      <div class="dw-stat-card">
+        <div class="dw-stat-num">4M+</div>
+        <div class="dw-stat-label">Products Decoded</div>
+      </div>
+      <div class="dw-stat-card">
+        <div class="dw-stat-num">150+</div>
+        <div class="dw-stat-label">Countries Active</div>
+      </div>
+      <div class="dw-stat-card">
+        <div class="dw-stat-num">6M+</div>
+        <div class="dw-stat-label">Monthly Citizens</div>
+      </div>
+      <div class="dw-stat-card">
+        <div class="dw-stat-num">100%</div>
+        <div class="dw-stat-label">Free &amp; Open Data</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. LIVE DONORBOX WIDGETS SECTION (WALL & METER) -->
+  <section class="dw-wall-section">
+    <div class="dw-wall-header">
+      <h2>The Community Wall of Donors</h2>
+      <p>
+        Here are the passionate individuals from all over the world who make this commons possible. Join the movement, leave a message for our team and community, and see your name on the wall!
+      </p>
+    </div>
+
+    <!-- Donorbox Widget Script -->
+    <script src="https://donorbox.org/widget.js" paypalExpress="true"></script>
+
+    <div class="dw-widgets-layout">
+      <!-- Left Column: Meter & Call-to-Action -->
+      <div class="dw-widget-col-action">
+        <div class="dw-meter-box">
+          <h3>Help Open Food Facts Stay Afloat</h3>
+          <p>Support server costs, mobile app enhancements, and free open data for everyone.</p>
+          <!-- Donation Meter Iframe -->
+          <iframe
+            height="93px"
+            width="100%"
+            src="https://donorbox.org/embed/help-open-food-facts-stay-afloat?donation_meter_color=%23116a64&only_donation_meter=true&preview=true"
+            style="max-width: 332px; min-width: 250px; min-height: 90px; max-height: none !important;"
+            seamless="seamless"
+            name="donorbox"
+            frameborder="0"
+            scrolling="no"
+            title="Open Food Facts Donation Meter"
+          ></iframe>
+        </div>
+
+        <a
+          href="https://donorbox.org/help-open-food-facts-stay-afloat"
+          class="dw-btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ❤️ Join the Donor Wall
+        </a>
+
+        <div class="dw-tax-notice">
+          <strong>Tax-deductible in France (66%):</strong> A donation of €50 costs you only €17 after tax reduction. Tax receipts are issued automatically by our non-profit association.
+        </div>
+      </div>
+
+      <!-- Right Column: Auto-Scrolling Donors Wall Embed -->
+      <div class="dw-widget-col-wall">
+        <div class="dw-wall-embed-box">
+          <div class="dw-wall-title-row">
+            <div>
+              <h3>Recent Contributions &amp; Messages</h3>
+              <p class="dw-wall-sub">Live feed of citizens keeping the project alive and free</p>
+            </div>
+            <div class="dw-autoscroll-badge">
+              <span class="dw-pulse-dot"></span> Auto-scrolling
+            </div>
+          </div>
+
+          <div class="dw-autoscroll-wrapper" id="dw-wall-autoscroll-container">
+            <div class="dw-scroll-fade-top" aria-hidden="true"></div>
+
+            <div
+              class="dw-scroll-viewport"
+              id="dw-scroll-viewport"
+              tabindex="0"
+              role="region"
+              aria-label="Auto-scrolling list of donors and messages. Scroll manually or pause anytime."
+            >
+              <!-- Donor Wall Iframe -->
+              <iframe
+                height="93px"
+                width="100%"
+                src="https://donorbox.org/embed/help-open-food-facts-stay-afloat?donor_wall_color=%23116a64&only_donor_wall=true"
+                style="width: 100%; max-width: 500px; min-width: 310px; min-height: 345px;"
+                seamless="seamless"
+                name="donorbox"
+                frameborder="0"
+                scrolling="no"
+                title="Open Food Facts Donors Wall"
+                id="dw-donorbox-iframe"
+              ></iframe>
+            </div>
+
+            <div class="dw-scroll-fade-bottom" aria-hidden="true"></div>
+
+            <div class="dw-autoscroll-controls">
+              <span class="dw-autoscroll-hint">Hover or scroll to pause</span>
+              <button
+                type="button"
+                id="dw-scroll-toggle-btn"
+                class="dw-scroll-btn"
+                aria-label="Pause auto-scroll"
+              >
+                <span id="dw-scroll-btn-text">⏸ Pause</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Direct link to Advocacy to reduce perceived gap -->
+    <div class="dw-jump-bar">
+      <a href="#advocacy" class="dw-jump-advocacy">
+        ↓ See what your money achieves: 6 concrete impacts
+      </a>
+    </div>
+  </section>
+
+  <!-- 3. CONCRETE ACHIEVEMENTS: WHAT YOUR MONEY MAKES POSSIBLE (ADVOCACY) -->
+  <section id="advocacy">
+    <div class="dw-section-title">
+      <h2>What Your Donations Achieve</h2>
+      <p>
+        When you give to Open Food Facts, your contribution is invested directly into free, open public goods that protect consumer health and the environment.
+      </p>
+    </div>
+
+    <div class="dw-achievements-grid">
+      <!-- Achievement 1: Infrastructure -->
+      <div class="dw-card">
+        <div class="dw-card-icon">🖥️</div>
+        <h3>100% Independent Infrastructure</h3>
+        <p>
+          Our database handles millions of barcode queries every single day across 150+ countries. Your donations pay for high-speed cloud servers, backups, automated image processing, and DDoS defense—without selling user data or showing ads.
+        </p>
+        <span class="dw-card-tag">✓ 99.9% Core Service Uptime</span>
+      </div>
+
+      <!-- Achievement 2: The Mobile App -->
+      <div class="dw-card">
+        <div class="dw-card-icon">📱</div>
+        <h3>The Free, Ad-Free Mobile App</h3>
+        <p>
+          Continuous improvements to the Open Food Facts mobile application on iOS and Android: lightning-fast barcode scanning, offline mode, personal allergen filters, and transparent Nutri-Score and Green-Score computation.
+        </p>
+        <span class="dw-card-tag">✓ Ad-Free &amp; Privacy-First</span>
+      </div>
+
+      <!-- Achievement 3: Open Prices Observatory -->
+      <div class="dw-card">
+        <div class="dw-card-icon">🏷️</div>
+        <h3>Open Prices &amp; Inflation Tracking</h3>
+        <p>
+          We recently launched Open Prices to empower consumers to track retail prices, detect shrinkflation, and build an open price database across supermarkets so people can eat well without overpaying.
+        </p>
+        <span class="dw-card-tag">✓ Fighting Food Inflation</span>
+      </div>
+
+      <!-- Achievement 4: Independent Science -->
+      <div class="dw-card">
+        <div class="dw-card-icon">🔬</div>
+        <h3>Public Health Research &amp; Nutri-Score</h3>
+        <p>
+          We work closely with independent public health researchers (including Inserm and EREN). Our open database has fueled over 100 scientific publications on ultra-processed foods (NOVA), food additives, and cardiovascular health.
+        </p>
+        <span class="dw-card-tag">✓ 100+ Scientific Papers Powered</span>
+      </div>
+
+      <!-- Achievement 5: Green-Score / Environmental Impact -->
+      <div class="dw-card">
+        <div class="dw-card-icon">🌱</div>
+        <h3>Green-Score for Climate Action</h3>
+        <p>
+          Computing the ecological impact of over 600,000 foods using life cycle analysis (Agribalyse), biodiversity impacts, packaging recyclability, and agricultural methods to promote sustainable eating.
+        </p>
+        <span class="dw-card-tag">✓ Environmental Transparency</span>
+      </div>
+
+      <!-- Achievement 6: Free Open Data Commons -->
+      <div class="dw-card">
+        <div class="dw-card-icon">🌐</div>
+        <h3>Powering 1,200+ Third-Party Apps</h3>
+        <p>
+          Because all our data is published under the Open Database License (ODbL), thousands of developers, dieticians, educators, and startups use our free API to build innovations that improve our food system.
+        </p>
+        <span class="dw-card-tag">✓ Public Good for Humanity</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. TRANSPARENCY & ANNUAL REPORTS -->
+  <section class="dw-transparency-box">
+    <div class="dw-transparency-content">
+      <h2>Full Financial Transparency</h2>
+      <p class="dw-transparency-lead">
+        Open Food Facts is a non-profit association (Loi 1901) governed democratically by its members. We believe radical transparency is the only way to deserve your trust.
+      </p>
+
+      <div class="dw-transparency-columns">
+        <div class="dw-transparency-card">
+          <h4>⚖️ 100% Industry Independence</h4>
+          <p>
+            We strictly refuse funding, donations, or sponsorships from food companies or commercial brands. Our analyses and data can never be bought.
+          </p>
+        </div>
+
+        <div class="dw-transparency-card">
+          <h4>📊 Why Unrestricted Citizen Donations Matter</h4>
+          <p>
+            While institutional grants cover specific temporary development projects, unrestricted monthly citizen donations pay for daily server hosting, database maintenance, moderation tools, and core stability.
+          </p>
+        </div>
+
+        <div class="dw-transparency-card">
+          <h4>📑 Audited &amp; Open Accounts</h4>
+          <p>
+            Our annual financial balance sheets and activity reports are presented and voted on during our yearly General Assembly, and published openly on our blog.
+          </p>
+        </div>
+      </div>
+
+      <!-- Links to Recent Activity Reports -->
+      <div class="text-center">
+        <p style="font-weight: 700; margin-bottom: 1rem; color: var(--dw-brown);">
+          Read our official Activity Reports and General Assembly Retrospectives on the Blog:
+        </p>
+        <div class="dw-report-links">
+          <a
+            href="https://blog.openfoodfacts.org/en/news/at-the-heart-of-our-association-a-look-back-at-the-last-general-assembly"
+            class="dw-btn-outline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            📖 Annual Activity Report &amp; General Assembly Retrospective →
+          </a>
+          <a
+            href="/partners"
+            class="dw-btn-outline"
+          >
+            🏛️ Institutional &amp; Foundation Partners Overview →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. UN SUSTAINABLE DEVELOPMENT GOALS -->
+  <section class="dw-sdg-section">
+    <div class="text-center" style="max-width: 760px; margin: 0 auto;">
+      <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--dw-brown); margin-bottom: 0.5rem;">
+        Advancing the UN Sustainable Development Goals
+      </h3>
+      <p style="color: var(--dw-text-muted); font-size: 1.05rem;">
+        Recognized by the UN-endorsed Digital Public Goods Alliance, Open Food Facts directly advances key global goals through open citizen science:
+      </p>
+    </div>
+
+    <div class="dw-sdg-grid">
+      <div class="dw-sdg-card">
+        <div class="dw-sdg-header" style="background-color: #DDA63A;">
+          <span class="dw-sdg-num">2</span>
+          <span>Zero Hunger</span>
+        </div>
+        <div class="dw-sdg-body">
+          Promoting nutrition security, better food choices, and democratic access to product information for all.
+        </div>
+      </div>
+
+      <div class="dw-sdg-card">
+        <div class="dw-sdg-header" style="background-color: #4C9F38;">
+          <span class="dw-sdg-num">3</span>
+          <span>Good Health &amp; Well-being</span>
+        </div>
+        <div class="dw-sdg-body">
+          Combating diet-related non-communicable diseases by decoding salt, sugar, ultra-processing, and harmful additives.
+        </div>
+      </div>
+
+      <div class="dw-sdg-card">
+        <div class="dw-sdg-header" style="background-color: #BF8B2E;">
+          <span class="dw-sdg-num">12</span>
+          <span>Responsible Consumption</span>
+        </div>
+        <div class="dw-sdg-body">
+          Empowering millions of consumers with transparent data on recycling, packaging, and origins to incentivize honest producers.
+        </div>
+      </div>
+
+      <div class="dw-sdg-card">
+        <div class="dw-sdg-header" style="background-color: #3F7E44;">
+          <span class="dw-sdg-num">13</span>
+          <span>Climate Action</span>
+        </div>
+        <div class="dw-sdg-body">
+          Calculating the carbon footprint and ecological impact of food via Green-Score to encourage climate-conscious diets.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. FREQUENTLY ASKED QUESTIONS FOR DONORS -->
+  <section>
+    <div class="dw-section-title">
+      <h2>Frequently Asked Questions</h2>
+      <p>Everything you need to know about supporting Open Food Facts.</p>
+    </div>
+
+    <div class="dw-faq-grid">
+      <div class="dw-faq-card">
+        <h4>Is my donation tax-deductible?</h4>
+        <p>
+          Yes! If you are a French taxpayer, donations to the Open Food Facts association qualify for a <strong>66% income tax reduction</strong> (within the legal limit of 20% of taxable income). Your tax receipt is generated and emailed automatically through Donorbox.
+        </p>
+      </div>
+
+      <div class="dw-faq-card">
+        <h4>Can I make a monthly donation?</h4>
+        <p>
+          Yes, and monthly recurring donations are the most helpful form of support! Even €3, €5, or €10 per month gives our team the predictable budget needed to maintain our cloud infrastructure and plan continuous improvements.
+        </p>
+      </div>
+
+      <div class="dw-faq-card">
+        <h4>Can I remain anonymous on the wall?</h4>
+        <p>
+          Absolutely. In the Donorbox form, you can choose to show your full name, show only your first name, hide the donation amount, or remain completely anonymous.
+        </p>
+      </div>
+
+      <div class="dw-faq-card">
+        <h4>Which payment methods are accepted?</h4>
+        <p>
+          You can securely donate with credit/debit card (Visa, Mastercard, Amex), PayPal Express, Apple Pay, Google Pay, or SEPA bank transfer.
+        </p>
+      </div>
+
+      <div class="dw-faq-card">
+        <h4>Why do you decline food brand sponsorships?</h4>
+        <p>
+          Our mission is to provide unbiased, scientific, and transparent food facts. To maintain total credibility with consumers, health authorities, and scientists, our financing must remain completely independent of the food industry.
+        </p>
+      </div>
+
+      <div class="dw-faq-card">
+        <h4>How else can I help Open Food Facts?</h4>
+        <p>
+          In addition to donating, you can download our free mobile app and scan barcodes in your kitchen or store, add missing ingredient lists, participate in data verification, help translate the app, or contribute open source code!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. FINAL CALL TO ACTION -->
+  <section class="dw-final-cta">
+    <h2>Help us keep food transparency alive for millions</h2>
+    <p>
+      Whether you give once or support us each month, you become a guardian of public health and open data. Join thousands of citizens making a tangible difference today.
+    </p>
+    <a
+      href="https://donorbox.org/help-open-food-facts-stay-afloat"
+      class="dw-btn-white"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      ❤️ Support Open Food Facts Now
+    </a>
+  </section>
+</div>
+
+<!-- Auto-Scroll Script for Donor Wall -->
+<script>
+  (function () {
+    var viewport = document.getElementById('dw-scroll-viewport');
+    var toggleBtn = document.getElementById('dw-scroll-toggle-btn');
+    var toggleText = document.getElementById('dw-scroll-btn-text');
+    if (!viewport) return;
+
+    var isPaused = false;
+    var isHovered = false;
+    var isManualInteracting = false;
+    var scrollSpeed = 0.45; // Smooth readable speed (~27px per second)
+    var interactionTimeout = null;
+    var resetTimeout = null;
+
+    // Accessibility check: prefers-reduced-motion
+    var motionQuery =
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (motionQuery && motionQuery.matches) {
+      isPaused = true;
+      if (toggleText) toggleText.textContent = '▶ Auto-scroll';
+    }
+
+    function scrollStep() {
+      if (!isPaused && !isHovered && !isManualInteracting) {
+        var maxScroll = viewport.scrollHeight - viewport.clientHeight;
+        if (maxScroll > 15) {
+          viewport.scrollTop += scrollSpeed;
+          if (viewport.scrollTop >= maxScroll - 2) {
+            // Pause at the bottom before gently looping back to top
+            isPaused = true;
+            clearTimeout(resetTimeout);
+            resetTimeout = setTimeout(function () {
+              viewport.scrollTo({ top: 0, behavior: 'smooth' });
+              setTimeout(function () {
+                if (
+                  !(motionQuery && motionQuery.matches) &&
+                  toggleText &&
+                  toggleText.textContent !== '▶ Resume'
+                ) {
+                  isPaused = false;
+                }
+              }, 1200);
+            }, 3500);
+          }
+        }
+      }
+      requestAnimationFrame(scrollStep);
+    }
+    requestAnimationFrame(scrollStep);
+
+    // Pause on hover
+    var wrapper = document.getElementById('dw-wall-autoscroll-container') || viewport.parentElement;
+    wrapper.addEventListener('mouseenter', function () {
+      isHovered = true;
+    });
+    wrapper.addEventListener('mouseleave', function () {
+      isHovered = false;
+    });
+
+    // Touch events for mobile/tablet
+    wrapper.addEventListener(
+      'touchstart',
+      function () {
+        isHovered = true;
+      },
+      { passive: true }
+    );
+    wrapper.addEventListener(
+      'touchend',
+      function () {
+        setTimeout(function () {
+          isHovered = false;
+        }, 2000);
+      },
+      { passive: true }
+    );
+
+    // Pause on manual mouse wheel or key navigation
+    viewport.addEventListener(
+      'wheel',
+      function () {
+        isManualInteracting = true;
+        clearTimeout(interactionTimeout);
+        interactionTimeout = setTimeout(function () {
+          isManualInteracting = false;
+        }, 2500);
+      },
+      { passive: true }
+    );
+
+    viewport.addEventListener('keydown', function (e) {
+      if (
+        e.key === 'ArrowDown' ||
+        e.key === 'ArrowUp' ||
+        e.key === 'PageDown' ||
+        e.key === 'PageUp'
+      ) {
+        isManualInteracting = true;
+        clearTimeout(interactionTimeout);
+        interactionTimeout = setTimeout(function () {
+          isManualInteracting = false;
+        }, 2500);
+      }
+    });
+
+    // Toggle button
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        isPaused = !isPaused;
+        if (isPaused) {
+          toggleText.textContent = '▶ Resume';
+          toggleBtn.setAttribute('aria-label', 'Resume auto-scroll');
+        } else {
+          toggleText.textContent = '⏸ Pause';
+          toggleBtn.setAttribute('aria-label', 'Pause auto-scroll');
+        }
+      });
+    }
+  })();
+</script>

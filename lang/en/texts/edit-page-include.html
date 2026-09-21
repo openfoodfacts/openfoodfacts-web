@@ -1,0 +1,140 @@
+<!-- Include: Edit page -->
+<style>
+.off-edit-page-bar {
+  margin: 2rem 0 1rem 0;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  clear: both;
+}
+.off-edit-page-bar * {
+  box-sizing: border-box;
+}
+.off-edit-page-link {
+  font-size: 0.8rem;
+  color: #64748b !important;
+  text-decoration: underline !important;
+  transition: color 0.15s ease;
+}
+.off-edit-page-link:hover,
+.off-edit-page-link:focus {
+  color: #0f172a !important;
+}
+.off-edit-page-sep {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  user-select: none;
+}
+</style>
+
+<div class="off-edit-page-bar" id="off-edit-page-card">
+  <a id="off-edit-page-btn" class="off-edit-page-link" href="https://github.com/openfoodfacts/openfoodfacts-web" target="_blank" rel="nofollow noopener noreferrer">Edit this page</a>
+  <span id="off-edit-page-sep" class="off-edit-page-sep" style="display: none;">&bull;</span>
+  <a id="off-edit-page-en-link" class="off-edit-page-link" href="#" target="_blank" rel="nofollow noopener noreferrer" style="display: none;">Edit original English version</a>
+</div>
+
+<script>
+(function() {
+  var card = document.getElementById('off-edit-page-card');
+  if (!card) return;
+
+  // Pages that must not be editable (legal & governance)
+  var nonEditablePages = [
+    'terms-of-use',
+    'code-of-conduct',
+    'legal',
+    'privacy'
+  ];
+
+  // 1. Determine page slug
+  var pageSlug = '';
+  var canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical && canonical.href) {
+    try {
+      var canUrl = new URL(canonical.href, window.location.origin);
+      var parts = canUrl.pathname.replace(/^\/+|\/+$/g, '').split('/');
+      pageSlug = parts[parts.length - 1] || '';
+    } catch (e) {}
+  }
+
+  if (!pageSlug) {
+    var pathParts = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
+    pageSlug = pathParts[pathParts.length - 1] || '';
+  }
+
+  // Remove .html if present
+  pageSlug = pageSlug.replace(/\.html$/, '');
+
+  // Treat root or empty as index
+  if (!pageSlug) {
+    pageSlug = 'index';
+  }
+
+  // Guard: hide widget on non-editable pages
+  if (nonEditablePages.indexOf(pageSlug) !== -1) {
+    card.style.display = 'none';
+    return;
+  }
+
+  // 2. Determine language
+  var lang = (document.documentElement.getAttribute('lang') || '').toLowerCase().trim();
+  if (!lang) {
+    var hostParts = window.location.hostname.split('.');
+    if (hostParts.length > 2) {
+      var sub = hostParts[0].replace(/^world-/, '');
+      if (sub && sub !== 'world' && sub !== 'www' && sub !== 'static') {
+        lang = sub;
+      }
+    }
+  }
+  if (!lang) {
+    lang = 'en';
+  }
+
+  // 3. Map language to repo folder name
+  var langFolder = lang;
+  var localeMapping = {
+    'zh-hk': 'zh_HK',
+    'zh-cn': 'zh_CN',
+    'en-au': 'en_AU',
+    'en-gb': 'en_GB',
+    'pt-br': 'pt_BR',
+    'pt-pt': 'pt_PT',
+    'nl-be': 'nl_BE',
+    'nl-nl': 'nl_NL',
+    'zh-tw': 'zh_TW',
+    'sr-cs': 'sr_CS',
+    'sr-rs': 'sr_RS',
+    'kmr-tr': 'kmr_TR'
+  };
+
+  if (localeMapping[lang]) {
+    langFolder = localeMapping[lang];
+  } else if (lang.indexOf('-') !== -1) {
+    var p = lang.split('-');
+    langFolder = p[0].toLowerCase() + '_' + p[1].toUpperCase();
+  }
+
+  // 4. Update action links
+  var baseUrl = 'https://github.com/openfoodfacts/openfoodfacts-web/blob/main/lang/';
+  var btn = document.getElementById('off-edit-page-btn');
+  if (btn) {
+    btn.href = baseUrl + langFolder + '/texts/' + pageSlug + '.html';
+  }
+
+  var enLink = document.getElementById('off-edit-page-en-link');
+  var sep = document.getElementById('off-edit-page-sep');
+  if (enLink && langFolder !== 'en') {
+    enLink.href = baseUrl + 'en/texts/' + pageSlug + '.html';
+    enLink.style.display = 'inline';
+    if (sep) {
+      sep.style.display = 'inline';
+    }
+  }
+})();
+</script>

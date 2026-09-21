@@ -1,1007 +1,1822 @@
-<style type="text/css">
-  .simple-bold {
-    font-weight: bold;
+<!-- no side column -->
+<style>
+/* ==========================================================================
+   Open Food Facts Advanced Contributor Guide - Modern Responsive Styles
+   Full Light & Dark Mode Support with Accessible Contrast
+   ========================================================================== */
+
+/* ---------------- Light Theme Tokens (Default) ---------------- */
+:root,
+[data-theme="light"] {
+  --guide-bg: #f8fafc;
+  --guide-surface: #ffffff;
+  --guide-surface-alt: #f1f5f9;
+  --guide-border: #e2e8f0;
+  --guide-border-hover: #cbd5e1;
+  --guide-border-subtle: #f1f5f9;
+
+  --guide-text-primary: #0f172a;
+  --guide-text-secondary: #334155;
+  --guide-text-muted: #64748b;
+  --guide-text-inverse: #ffffff;
+
+  --guide-green-900: #064e3b;
+  --guide-green-800: #065f46;
+  --guide-green-700: #047857;
+  --guide-green-600: #059669;
+  --guide-green-500: #10b981;
+  --guide-green-100: #d1fae5;
+  --guide-green-50: #ecfdf5;
+
+  --guide-link: #047857;
+  --guide-link-hover: #065f46;
+
+  /* Badges */
+  --guide-badge-green-bg: #d1fae5;
+  --guide-badge-green-text: #065f46;
+  --guide-badge-blue-bg: #dbeafe;
+  --guide-badge-blue-text: #1e40af;
+  --guide-badge-amber-bg: #fef3c7;
+  --guide-badge-amber-text: #92400e;
+  --guide-badge-neutral-bg: #f1f5f9;
+  --guide-badge-neutral-text: #334155;
+
+  /* Callouts */
+  --guide-callout-tip-bg: #eff6ff;
+  --guide-callout-tip-border: #bfdbfe;
+  --guide-callout-tip-text: #1e293b;
+  --guide-callout-tip-title: #1d4ed8;
+
+  --guide-callout-important-bg: #fffbeb;
+  --guide-callout-important-border: #fde68a;
+  --guide-callout-important-text: #1e293b;
+  --guide-callout-important-title: #b45309;
+
+  --guide-callout-note-bg: #f8fafc;
+  --guide-callout-note-border: #e2e8f0;
+  --guide-callout-note-text: #334155;
+
+  /* Code Blocks */
+  --guide-code-bg: #f1f5f9;
+  --guide-code-border: #cbd5e1;
+  --guide-code-text: #0f172a;
+
+  /* Shadows */
+  --guide-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --guide-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.06);
+  --guide-shadow-md: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --guide-shadow-hover: 0 10px 24px rgba(4, 120, 87, 0.12);
+
+  --guide-radius-sm: 8px;
+  --guide-radius-md: 12px;
+  --guide-radius-lg: 16px;
+  --guide-radius-pill: 9999px;
+}
+
+/* ---------------- Dark Theme Tokens via Media Query ---------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]),
+  .guide-wrapper:not([data-theme="light"]) {
+    --guide-bg: #0b0f19;
+    --guide-surface: #151c2c;
+    --guide-surface-alt: #1e293b;
+    --guide-border: #243048;
+    --guide-border-hover: #3b4b68;
+    --guide-border-subtle: #1e293b;
+
+    --guide-text-primary: #f8fafc;
+    --guide-text-secondary: #cbd5e1;
+    --guide-text-muted: #94a3b8;
+    --guide-text-inverse: #0f172a;
+
+    --guide-green-900: #022c22;
+    --guide-green-800: #064e3b;
+    --guide-green-700: #047857;
+    --guide-green-600: #059669;
+    --guide-green-500: #10b981;
+    --guide-green-100: rgba(16, 185, 129, 0.2);
+    --guide-green-50: rgba(6, 78, 59, 0.4);
+
+    --guide-link: #34d399;
+    --guide-link-hover: #6ee7b7;
+
+    /* Badges */
+    --guide-badge-green-bg: rgba(16, 185, 129, 0.2);
+    --guide-badge-green-text: #6ee7b7;
+    --guide-badge-blue-bg: rgba(59, 130, 246, 0.2);
+    --guide-badge-blue-text: #93c5fd;
+    --guide-badge-amber-bg: rgba(245, 158, 11, 0.2);
+    --guide-badge-amber-text: #fcd34d;
+    --guide-badge-neutral-bg: rgba(148, 163, 184, 0.2);
+    --guide-badge-neutral-text: #e2e8f0;
+
+    /* Callouts */
+    --guide-callout-tip-bg: rgba(30, 58, 138, 0.35);
+    --guide-callout-tip-border: rgba(96, 165, 250, 0.4);
+    --guide-callout-tip-text: #e2e8f0;
+    --guide-callout-tip-title: #93c5fd;
+
+    --guide-callout-important-bg: rgba(120, 53, 15, 0.35);
+    --guide-callout-important-border: rgba(251, 191, 36, 0.4);
+    --guide-callout-important-text: #fef3c7;
+    --guide-callout-important-title: #fcd34d;
+
+    --guide-callout-note-bg: rgba(30, 41, 59, 0.6);
+    --guide-callout-note-border: rgba(71, 85, 105, 0.5);
+    --guide-callout-note-text: #cbd5e1;
+
+    /* Code Blocks */
+    --guide-code-bg: #0f172a;
+    --guide-code-border: #334155;
+    --guide-code-text: #6ee7b7;
+
+    /* Shadows */
+    --guide-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --guide-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.4);
+    --guide-shadow-md: 0 6px 18px rgba(0, 0, 0, 0.5);
+    --guide-shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.6);
   }
-  .image {
-    margin-left: 0px;
-    margin-top: 0px;
-    transform: rotate(0rad) translateZ(0px);
-    -webkit-transform: rotate(0rad) translateZ(0px);
+}
+
+/* ---------------- Explicit Dark Theme Attribute ---------------- */
+:root[data-theme="dark"],
+html.dark,
+body.dark,
+body.dark-mode,
+.guide-wrapper[data-theme="dark"] {
+  --guide-bg: #0b0f19;
+  --guide-surface: #151c2c;
+  --guide-surface-alt: #1e293b;
+  --guide-border: #243048;
+  --guide-border-hover: #3b4b68;
+  --guide-border-subtle: #1e293b;
+
+  --guide-text-primary: #f8fafc;
+  --guide-text-secondary: #cbd5e1;
+  --guide-text-muted: #94a3b8;
+  --guide-text-inverse: #0f172a;
+
+  --guide-green-900: #022c22;
+  --guide-green-800: #064e3b;
+  --guide-green-700: #047857;
+  --guide-green-600: #059669;
+  --guide-green-500: #10b981;
+  --guide-green-100: rgba(16, 185, 129, 0.2);
+  --guide-green-50: rgba(6, 78, 59, 0.4);
+
+  --guide-link: #34d399;
+  --guide-link-hover: #6ee7b7;
+
+  /* Badges */
+  --guide-badge-green-bg: rgba(16, 185, 129, 0.2);
+  --guide-badge-green-text: #6ee7b7;
+  --guide-badge-blue-bg: rgba(59, 130, 246, 0.2);
+  --guide-badge-blue-text: #93c5fd;
+  --guide-badge-amber-bg: rgba(245, 158, 11, 0.2);
+  --guide-badge-amber-text: #fcd34d;
+  --guide-badge-neutral-bg: rgba(148, 163, 184, 0.2);
+  --guide-badge-neutral-text: #e2e8f0;
+
+  /* Callouts */
+  --guide-callout-tip-bg: rgba(30, 58, 138, 0.35);
+  --guide-callout-tip-border: rgba(96, 165, 250, 0.4);
+  --guide-callout-tip-text: #e2e8f0;
+  --guide-callout-tip-title: #93c5fd;
+
+  --guide-callout-important-bg: rgba(120, 53, 15, 0.35);
+  --guide-callout-important-border: rgba(251, 191, 36, 0.4);
+  --guide-callout-important-text: #fef3c7;
+  --guide-callout-important-title: #fcd34d;
+
+  --guide-callout-note-bg: rgba(30, 41, 59, 0.6);
+  --guide-callout-note-border: rgba(71, 85, 105, 0.5);
+  --guide-callout-note-text: #cbd5e1;
+
+  /* Code Blocks */
+  --guide-code-bg: #0f172a;
+  --guide-code-border: #334155;
+  --guide-code-text: #6ee7b7;
+
+  /* Shadows */
+  --guide-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --guide-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.4);
+  --guide-shadow-md: 0 6px 18px rgba(0, 0, 0, 0.5);
+  --guide-shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.6);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Self-contained Guide Wrapper ensures background is never transparent */
+.guide-wrapper {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: var(--guide-bg);
+  color: var(--guide-text-primary);
+  line-height: 1.65;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  border-radius: var(--guide-radius-lg);
+}
+
+/* Links inside Guide Wrapper */
+.guide-wrapper a {
+  color: var(--guide-link);
+  transition: color 0.15s ease;
+}
+
+.guide-wrapper a:hover {
+  color: var(--guide-link-hover);
+}
+
+.guide-wrapper code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.88em;
+  background-color: var(--guide-code-bg);
+  color: var(--guide-code-text);
+  border: 1px solid var(--guide-code-border);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   Hero Header
+   ========================================================================== */
+
+.guide-hero {
+  background: linear-gradient(135deg, #064e3b 0%, #065f46 60%, #047857 100%);
+  color: #ffffff;
+  border-radius: var(--guide-radius-lg);
+  padding: 2.75rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--guide-shadow-md);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.guide-hero::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.guide-hero-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.guide-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--guide-radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Theme Switcher in Hero */
+.guide-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--guide-radius-pill);
+  padding: 3px;
+  gap: 2px;
+}
+
+.guide-theme-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0.28rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: var(--guide-radius-pill);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.guide-theme-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.guide-theme-btn.active {
+  background: #ffffff;
+  color: #064e3b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.guide-hero-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.guide-hero-subtitle {
+  font-size: 1.15rem;
+  max-width: 780px;
+  margin: 0 0 1.75rem;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.55;
+}
+
+.guide-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+/* Hero Action Buttons - forced explicit high contrast */
+.guide-hero a.guide-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff !important;
+  color: #064e3b !important;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--guide-radius-pill);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.guide-hero a.guide-hero-btn:hover {
+  background: #f0fdf4 !important;
+  color: #065f46 !important;
+  transform: translateY(-2px);
+}
+
+.guide-hero a.guide-hero-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--guide-radius-pill);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+
+.guide-hero a.guide-hero-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.28) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Documentation Two-Column Layout
+   ========================================================================== */
+
+.guide-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 992px) {
+  .guide-layout {
+    grid-template-columns: 290px minmax(0, 1fr);
+    gap: 2.5rem;
   }
+}
+
+/* Sidebar Table of Contents */
+.guide-sidebar {
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .guide-sidebar {
+    position: sticky;
+    top: 1.5rem;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+}
+
+.guide-toc-card {
+  background: var(--guide-surface);
+  border: 1px solid var(--guide-border);
+  border-radius: var(--guide-radius-md);
+  box-shadow: var(--guide-shadow-sm);
+  padding: 1.25rem;
+}
+
+.guide-toc-header {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--guide-text-primary);
+  margin: 0 0 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--guide-border);
+}
+
+.guide-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.guide-toc-item > a {
+  display: block;
+  padding: 0.4rem 0.65rem;
+  border-radius: var(--guide-radius-sm);
+  color: var(--guide-text-secondary) !important;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: all 0.15s ease;
+}
+
+.guide-toc-item > a:hover {
+  background: var(--guide-surface-alt);
+  color: var(--guide-link) !important;
+}
+
+.guide-toc-sublist {
+  list-style: none;
+  padding-left: 0.85rem;
+  margin: 0.25rem 0 0.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 2px solid var(--guide-border);
+}
+
+.guide-toc-sublist a {
+  display: block;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--guide-radius-sm);
+  color: var(--guide-text-muted) !important;
+  font-size: 0.85rem;
+  text-decoration: none !important;
+  transition: all 0.15s ease;
+}
+
+.guide-toc-sublist a:hover {
+  color: var(--guide-link) !important;
+  background: var(--guide-surface-alt);
+}
+
+/* ==========================================================================
+   Main Content Sections & Cards
+   ========================================================================== */
+
+.guide-main {
+  min-width: 0;
+}
+
+.guide-section {
+  scroll-margin-top: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.guide-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--guide-border);
+}
+
+.guide-section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--guide-radius-md);
+  background: var(--guide-green-100);
+  color: var(--guide-link);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.guide-section-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--guide-text-primary);
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+.guide-intro-note {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  color: var(--guide-text-secondary);
+}
+
+.guide-card {
+  background: var(--guide-surface);
+  border: 1px solid var(--guide-border);
+  border-radius: var(--guide-radius-md);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--guide-shadow-sm);
+  color: var(--guide-text-primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.guide-card:hover {
+  border-color: var(--guide-border-hover);
+  box-shadow: var(--guide-shadow-md);
+}
+
+.guide-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--guide-text-primary);
+  margin: 0 0 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  scroll-margin-top: 3rem;
+}
+
+.guide-card-title a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+/* ==========================================================================
+   Pills, Badges & Tags
+   ========================================================================== */
+
+.guide-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: var(--guide-radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.guide-badge-green {
+  background: var(--guide-badge-green-bg);
+  color: var(--guide-badge-green-text);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.guide-badge-blue {
+  background: var(--guide-badge-blue-bg);
+  color: var(--guide-badge-blue-text);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.guide-badge-amber {
+  background: var(--guide-badge-amber-bg);
+  color: var(--guide-badge-amber-text);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.guide-badge-neutral {
+  background: var(--guide-badge-neutral-bg);
+  color: var(--guide-badge-neutral-text);
+  border: 1px solid var(--guide-border);
+}
+
+/* ==========================================================================
+   Callout Boxes (Tips, Warnings, Notes)
+   ========================================================================== */
+
+.guide-callout {
+  border-radius: var(--guide-radius-md);
+  padding: 1.1rem 1.35rem;
+  margin: 1.25rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.95rem;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.guide-callout-icon {
+  font-size: 1.35rem;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.guide-callout-body {
+  flex: 1;
+}
+
+.guide-callout-tip {
+  background: var(--guide-callout-tip-bg);
+  border: 1px solid var(--guide-callout-tip-border);
+  color: var(--guide-callout-tip-text);
+}
+.guide-callout-tip strong {
+  color: var(--guide-callout-tip-title);
+}
+
+.guide-callout-important {
+  background: var(--guide-callout-important-bg);
+  border: 1px solid var(--guide-callout-important-border);
+  color: var(--guide-callout-important-text);
+}
+.guide-callout-important strong {
+  color: var(--guide-callout-important-title);
+}
+
+.guide-callout-note {
+  background: var(--guide-callout-note-bg);
+  border: 1px solid var(--guide-callout-note-border);
+  color: var(--guide-callout-note-text);
+}
+
+/* ==========================================================================
+   Step-by-Step Cards & Process
+   ========================================================================== */
+
+.step-card {
+  position: relative;
+  background: var(--guide-surface);
+  border: 1px solid var(--guide-border);
+  border-radius: var(--guide-radius-md);
+  padding: 1.6rem 1.6rem 1.85rem;
+  margin-bottom: 1.75rem;
+  box-shadow: var(--guide-shadow-sm);
+  color: var(--guide-text-primary);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  scroll-margin-top: 3rem;
+}
+
+.step-card:hover {
+  border-color: var(--guide-green-500);
+  box-shadow: var(--guide-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--guide-green-700);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(4, 120, 87, 0.3);
+}
+
+.step-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--guide-text-primary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Responsive Figures & Image Displays
+   ========================================================================== */
+
+.guide-figure {
+  margin: 1.25rem auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.guide-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--guide-radius-sm);
+  border: 1px solid var(--guide-border);
+  background: var(--guide-surface);
+  box-shadow: var(--guide-shadow-xs);
+  transition: transform 0.2s ease;
+}
+
+.guide-figure img:hover {
+  transform: scale(1.01);
+}
+
+.guide-figcaption {
+  margin-top: 0.55rem;
+  font-size: 0.85rem;
+  color: var(--guide-text-muted);
+  font-style: italic;
+  max-width: 540px;
+  text-align: center;
+}
+
+/* Multi-image grid */
+.guide-image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 1.25rem 0;
+}
+
+.guide-image-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+}
+
+.guide-comparison {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  background: var(--guide-surface-alt);
+  border: 1px solid var(--guide-border);
+  border-radius: var(--guide-radius-md);
+  padding: 1.25rem;
+  margin: 1.25rem 0;
+}
+
+@media (min-width: 640px) {
+  .guide-comparison {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.guide-comparison-pane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.guide-comparison-label {
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 0.5rem;
+  color: var(--guide-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ==========================================================================
+   Sister Projects & Resources Grids
+   ========================================================================== */
+
+.guide-grid-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin: 1.25rem 0;
+}
+
+@media (min-width: 640px) {
+  .guide-grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.project-card {
+  background: var(--guide-surface);
+  border: 1px solid var(--guide-border);
+  border-radius: var(--guide-radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  box-shadow: var(--guide-shadow-sm);
+  color: var(--guide-text-primary);
+  transition: all 0.2s ease;
+}
+
+.project-card:hover {
+  border-color: var(--guide-green-500);
+  box-shadow: var(--guide-shadow-md);
+  transform: translateY(-2px);
+}
+
+.project-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--guide-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-card-title a {
+  color: var(--guide-text-primary) !important;
+  text-decoration: none !important;
+}
+
+.project-card-title a:hover {
+  color: var(--guide-link) !important;
+}
+
+.project-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--guide-text-secondary);
+}
+
+/* ==========================================================================
+   Field Detail Item Component
+   ========================================================================== */
+
+.field-item {
+  border-bottom: 1px solid var(--guide-border);
+  padding: 1.35rem 0;
+  scroll-margin-top: 3rem;
+}
+
+.field-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.field-item-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.field-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--guide-text-primary);
+  margin: 0;
+}
+
+.field-description {
+  font-size: 0.95rem;
+  color: var(--guide-text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.field-examples {
+  background: var(--guide-surface-alt);
+  border: 1px solid var(--guide-border);
+  border-radius: var(--guide-radius-sm);
+  padding: 0.85rem 1rem;
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
+  color: var(--guide-text-primary);
+}
+
+.field-examples ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.field-examples li {
+  margin-bottom: 0.25rem;
+}
+
+/* ==========================================================================
+   Floating Back-to-Top Button
+   ========================================================================== */
+
+.guide-back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--guide-green-700);
+  color: #ffffff !important;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  text-decoration: none !important;
+  font-size: 1.25rem;
+  transition: all 0.2s ease;
+  z-index: 100;
+}
+
+.guide-back-to-top:hover {
+  background: var(--guide-green-600);
+  color: #ffffff !important;
+  transform: translateY(-3px);
+}
 </style>
 
-<h1>User Guide</h1>
+<div class="guide-wrapper" id="guide-app-root">
 
-<p>A simple guide for Open Food Facts contributors</p>
+  <!-- Hero Banner -->
+  <header class="guide-hero" id="top">
+    <div class="guide-hero-topbar">
+      <div class="guide-hero-badge">
+        <span>📖</span> Contributor Documentation
+      </div>
 
-<p>This document includes an overview of Open Food Facts user interfaces, rules,
-processes, step by step guides, useful links and other information related to
-the project.</p>
+      <!-- Interactive Theme Switcher -->
+      <div class="guide-theme-toggle" role="group" aria-label="Color theme selector">
+        <button type="button" class="guide-theme-btn active" data-theme-val="auto" title="Follow system theme">💻 Auto</button>
+        <button type="button" class="guide-theme-btn" data-theme-val="light" title="Force light mode">☀️ Light</button>
+        <button type="button" class="guide-theme-btn" data-theme-val="dark" title="Force dark mode">🌙 Dark</button>
+      </div>
+    </div>
 
-<h3 style="color: #2e75b5; font-weight: bold;">
-  <a id="table-of-contents">Table of Contents</a>
-</h3>
+    <h1 class="guide-hero-title">Open Food Facts Contributor Guide</h1>
+    <p class="guide-hero-subtitle">
+      A comprehensive guide for Open Food Facts contributors. Learn the core principles,
+      interfaces, step-by-step product completion workflows, and data conventions.
+    </p>
+    <div class="guide-hero-actions">
+      <a class="guide-hero-btn" href="#Step-by-step-example">
+        <span>🚀</span> Start Step-by-Step Guide
+      </a>
+      <a class="guide-hero-btn-secondary" href="#Each-field-in-details">
+        <span>📋</span> Field Reference
+      </a>
+      <a class="guide-hero-btn-secondary" href="https://slack.openfoodfacts.org/" target="_blank" rel="noopener">
+        <span>💬</span> Join Our Slack
+      </a>
+    </div>
+  </header>
 
-<ul>
-  <li>
-    <a href="#General">
-      <span class="simple-bold">General</span>
-    </a>
-    <ul>
-      <li>
-        <a href="#Introduction">
-          <span class="simple-bold">Introduction</span>
-        </a>
-      </li>
-      <li>
-        <a href="#Sister-projects">
-          <span class="simple-bold">Sister projects</span>
-        </a>
-      </li>
-      <li>
-        <a href="#Resources">
-          <span class="simple-bold">Resources</span>
-        </a>
-      </li>
-    </ul>
-  </li>
+  <!-- Two-Column Responsive Layout -->
+  <div class="guide-layout">
 
-  <li>
-    <a href="#Open-Food-Facts-contributors-overview">
-      <span class="simple-bold">Open Food Facts contributors overview</span>
-    </a>
-  </li>
-
-  <li>
-    <a href="#Open-Food-Facts-101">
-      <span class="simple-bold">Open Food Facts 101</span>
-    </a>
-  </li>
-
-  <li>
-    <a href="#The-app">
-      <span class="simple-bold">The &lsquo;app&rsquo;.</span>
-    </a>
-  </li>
-
-  <li>
-    <a href="#The-website">
-      <span class="simple-bold">The website</span>
-    </a>
-    <ul>
-      <li>
-        <a href="#Basic-rules">
-          <span class="simple-bold">Basic rules</span>
-        </a>
-      </li>
-      <li>
-        <a href="#Useful link">
-          <span class="simple-bold">Useful links</span>
-        </a>
-      </li>
-    </ul>
-  </li>
-
-  <li>
-    <a href="#Step by step example">
-      <span class="simple-bold">Step by step example</span>
-    </a>
-  </li>
-
-  <li>
-    <a href="#Each field in details">
-      <span class="simple-bold">Each field in details</span>
-    </a>
-    <ul>
-      <li>
-        <a href="#Main language">
-          <span class="simple-bold">Main language</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#Manage images">
-          <span class="simple-bold">Manage images</span>
-        </a>
-      </li>
-      <li>
-        <a href="#Product picture">
-          <span class="simple-bold">Product picture</span>
-        </a>
-        <ul>
-          <li>
-            <a href="#Add Language">Add Language</a>
+    <!-- Sticky Navigation Sidebar -->
+    <aside class="guide-sidebar">
+      <nav class="guide-toc-card" aria-label="Table of contents">
+        <div class="guide-toc-header">
+          <span>📑</span> Contents
+        </div>
+        <ul class="guide-toc-list">
+          <li class="guide-toc-item">
+            <a href="#General">1. General</a>
+            <ul class="guide-toc-sublist">
+              <li><a href="#Introduction">Introduction</a></li>
+              <li><a href="#Sister-projects">Sister Projects</a></li>
+              <li><a href="#Resources">Resources &amp; Slack</a></li>
+            </ul>
           </li>
-          <li>
-            <a href="#Front picture">Front picture</a>
+          <li class="guide-toc-item">
+            <a href="#Open-Food-Facts-contributors-overview">2. Contributors Overview</a>
+          </li>
+          <li class="guide-toc-item">
+            <a href="#Open-Food-Facts-101">3. Open Food Facts 101</a>
+          </li>
+          <li class="guide-toc-item">
+            <a href="#The-app-and-website">4. Apps &amp; Website</a>
+            <ul class="guide-toc-sublist">
+              <li><a href="#The-app">The Mobile Apps</a></li>
+              <li><a href="#The-website">The Website</a></li>
+              <li><a href="#Basic-rules">Basic Rules</a></li>
+            </ul>
+          </li>
+          <li class="guide-toc-item">
+            <a href="#Step-by-step-example">5. Step-by-Step Example</a>
+            <ul class="guide-toc-sublist">
+              <li><a href="#step-1">Step 1: Login &amp; Scan</a></li>
+              <li><a href="#step-2">Step 2: Find Product</a></li>
+              <li><a href="#step-3">Step 3: Front Picture</a></li>
+              <li><a href="#step-4">Step 4: General Info</a></li>
+              <li><a href="#step-5">Step 5: Ingredients</a></li>
+              <li><a href="#step-6">Step 6: Nutrition Facts</a></li>
+              <li><a href="#step-7">Step 7: Save &amp; Review</a></li>
+            </ul>
+          </li>
+          <li class="guide-toc-item">
+            <a href="#Each-field-in-details">6. Field Reference</a>
+            <ul class="guide-toc-sublist">
+              <li><a href="#Main-language">Language &amp; Photos</a></li>
+              <li><a href="#Product-characteristics">Characteristics</a></li>
+              <li><a href="#Ingredients">Ingredients</a></li>
+              <li><a href="#Nutrition-facts">Nutrition Facts</a></li>
+            </ul>
+          </li>
+          <li class="guide-toc-item">
+            <a href="#Miscellaneous">7. Useful Links</a>
           </li>
         </ul>
-      </li>
-      <li>
-        <a href="#Product characteristics">
-          <span class="simple-bold">Product characteristics</span>
-        </a>
-        <ul>
-          <li>
-            <a href="#Product name">Product name</a>
-          </li>
-          <li>
-            <a href="#Common name">Common name</a>
-          </li>
-          <li>
-            <a href="#Quantity">Quantity</a>
-          </li>
-          <li>
-            <a href="#Packaging">Packaging</a>
-          </li>
-          <li>
-            <a href="#Brands">Brands</a>
-          </li>
-          <li>
-            <a href="#Categories">Categories</a>
-          </li>
-          <li>
-            <a href="#Labels, certifications, awards"
-              >Labels, certifications, awards</a
-            >
-          </li>
-          <li>
-            <a href="#Origin of ingredients">Origin of ingredients</a>
-          </li>
-          <li>
-            <a href="#Manufacturing or processing places"
-              >Manufacturing or processing places</a
-            >
-          </li>
-          <li>
-            <a href="#EMB code">EMB code</a>
-          </li>
-          <li>
-            <a
-              href="#Link to the product page on the official site of the producer"
-              >Link to the product page on the official site of the producer</a
-            >
-          </li>
-          <li>
-            <a href="#Best before date">Best before date</a>
-          </li>
-          <li>
-            <a href="#City, state and country where purchased"
-              >City, state and country where purchased</a
-            >
-          </li>
-          <li>
-            <a href="#Stores">Stores</a>
-          </li>
-          <li>
-            <a href="#Countries where sold">Countries where sold</a>
-          </li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="#Ingredients">
-          <span class="simple-bold">Ingredients</span>
-        </a>
-      </li>
-      <li>
-        <a href="#Nutrition facts">
-          <span class="simple-bold">Nutrition facts</span>
-        </a>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <a href="#Miscellaneous">
-      <span class="simple-bold">Miscellaneous</span>
-    </a>
-    <ul>
-      <li>
-        <a href="#Useful links">
-          <span class="simple-bold">Useful links</span>
-        </a>
-        <ul>
-          <li>
-            <a href="#Products you added a picture to"
-              >Products you added a picture to</a
-            >
-          </li>
-          <li>
-            <a href="#Products you edited">Products you edited</a>
-          </li>
-          <li>
-            <a href="#Informer">Informer</a>
-          </li>
-          <li>
-            <a href="#Noteworthy products">Noteworthy products</a>
-          </li>
-          <li>
-            <a href="#Useful queries">Useful queries</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2><a id="General">General</a></h2>
-
-<h3><a id="Introduction">Introduction</a></h3>
-<p>
-  Open Food Facts is an open data initiative which aims to gather data on food
-  products. All the data is published under an open data licence which allows
-  anyone to re-use the data and build new apps, services and products on top of
-  it. There are now more than 30 re-uses for things we could not have imagined,
-  from health and fitness apps, special diet apps, to connected objects,
-  scientific studies, and press investigations.
-</p>
-<p>
-  Two main sets of data that the project aims to gather are the nutrition facts
-  - energy, amount of fat, proteins, etc. - and the ingredients, however other
-  interesting data such as labels (bio, suitable for vegetarians, AOC, others)
-  should be recorded. Having said that, the keen contributor- whether new to the
-  project or experienced - may be sometimes confused on how to enter the data in
-  the most correct way. This manual aims to be used as a reference that the
-  contributor can come back to when needed.
-</p>
-<a href="#table-of-contents">Up to the table of contents</a><br />
-
-<h2><a id="Sister projects"></a>Sister projects</h2>
-
-<p>
-  <a href="about:blank">
-    <span style="color: #0563c1;">Open Beauty Facts</span></a
-  >: Open Beauty Facts gathers data on cosmetic products from around the world.
-</p>
-<p>
-  <a href="https://combiendesucres.fr/">
-    <span style="color: #0563c1;">Combien de SUCRES?</span></a
-  >: A game (in French) to challenge you to guess how much sugar is in food
-  products.
-</p>
-<p>
-  <a href="https://howmuchsugar.in/"
-    ><span style="color: #0563c1;">How much SUGAR? In</span></a
-  >: A game (in English) to challenge yyou to guess how much sugar is in food
-  products.
-</p>
-<p>
-  <a href="https://madenear.me/">
-    <span style="color: #0563c1;">Made Near Me</span></a
-  >: <em>Made Near Me</em> shows on a map where the food products you eat every
-  day are made, transformed and/or packaged.
-</p>
-<p>
-  <a href="https://cestemballepresdechezvous.fr/">
-    <span style="color: #0563c1;"
-      >C&rsquo;est emball&eacute; pr&egrave;s de chez vous</span
-    ></a
-  >: Same as
-
-  <span style="font-style: italic;">Made Near Me</span>, in the French language.
-</p>
-<a href="#table-of-contents">Up to the table of contents</a>
-
-<h2><a id="Resources">Resources</a></h2>
-
-<p>
-  <a href="https://slack.openfoodfacts.org/">
-    <span style="color: #0563c1;">Open Food Facts slack</span></a
-  >: Collaboration tool used by Open Food Facts contributors to discuss any kind
-  of issue related to the project. This collaboration tool is based on channels.
-  There are channels based on many topics, such as French (#fr), Open Food Facts
-  core development (#productopener), China (#china), iOS (#ios), Android
-  (#android), &hellip;
-</p>
-<a href="#table-of-contents">Up to the table of contents</a>
-<h2>
-  <a id="Open Food Facts contributors overview"
-    >Open Food Facts contributors overview</a
-  >
-</h2>
-
-<p>
-  People who want to contribute to the Open Food Facts database can do so in
-  many ways:
-</p>
-<ul>
-  <li>
-    Using the mobile apps to take pictures and enter basic information of
-    products
-  </li>
-  <li>Using the openfoodfacts.org website in cases such as:</li>
-  <ul>
-    <li>
-      Adding additional information that can&rsquo;t be added using the mobile
-      apps
-    </li>
-    <li>adding a product that doesn&rsquo;t have a bar code</li>
-    <li>
-      adding a product by uploading pictures, including the picture of the
-      barcode.
-    </li>
-    <li>using the mass upload tool to upload several products in one go.</li>
-  </ul>
-</ul>
-<a href="#table-of-contents">Up to the table of contents</a>
-
-<h2><a id="Open Food Facts 101">Open Food Facts 101</a></h2>
-
-<p>
-  When using the Open Food Facts mobile application (Android, iOS, Windows -
-  insert links) the recommended way is to:
-</p>
-<ul>
-  <li class="simple-bold">scan the product&rsquo;s barcode</li>
-  <li class="simple-bold">take pictures of:</li>
-  <ul>
-    <li>the front of the product</li>
-    <li>the ingredients</li>
-    <li>the nutrition facts</li>
-  </ul>
-</ul>
-<p>
-  Once those three pictures are taken the most valuable information is already
-  sent to Open Food Facts servers.
-</p>
-<p>
-  For those who want/can do more, take a picture of any other additional
-  information available on the package such as:
-</p>
-<ul>
-  <li>
-    labels: Bio, suitable for vegetarian, fins friendly, free range, &hellip;
-  </li>
-  <li>Packaging code</li>
-  <li>official website of the product/producer</li>
-  <li>any other relevant data</li>
-</ul>
-<ul>
-  <strong>press the save button.</strong>
-</ul>
-<p>
-  <span style="text-decoration: underline;">Note:</span> it is recommended to
-  use the mobile application, as well as the website, being logged in, that way
-  the contributor will be able to easily retrieved their products and edit them
-  later on.
-</p>
-
-<a href="#table-of-contents">Up to the table of contents</a>
-
-<h2><a id="The app">The &lsquo;app&rsquo;.</a></h2>
-
-<p>
-  Open Food Facts has mobile applications for iOS, Android and Windows phones.
-</p>
-
-<h2><a id="The website">The website</a></h2>
-
-<p>
-  Once a contributor has used the mobile application to enter the basic data,
-  they may go to openfoodfacts.org to edit the product they added and complete
-  all fields.
-</p>
-
-<h3><a id="Basic rules">Basic rules</a></h3>
-
-<ul>
-  <li>Only the data available on the package should be added.</li>
-</ul>
-<ul>
-  <li>
-    3 pictures are key: front, nutrition facts, ingredients. However other
-    pictures which display information such as labels (Bio, Free Range,
-    vegetarian&hellip;), EMB code, manufacturing location, etc. would be useful
-    for tracking purposes. More pictures the better, don&rsquo;t be shy adding
-    pictures.
-  </li>
-  <li>
-    Once pictures are added it is great to go to the openfoodfacts.org website
-    to type the information, however it is not mandatory, any information is
-    good information. If you do not have time to type the information you
-    shouldn&rsquo;t feel guilty, the pictures are already of great help.
-  </li>
-</ul>
-
-<h3><a id="Useful links">Useful links</a></h3>
-
-<h2><a id="Step by step example">Step by step example</a></h2>
-
-<p>
-  <span style="font-style: italic;"
-    >Here is an overview of the process to add a product to the Open Food Facts
-    database. Most of the fields to fill in are pretty much self-explanatory,
-    however go to section 7 for details and tips on each of the fields available
-    on the web interface.</span
-  >
-</p>
-<ul>
-  <li>
-    <strong>Make sure you are logged in</strong>
-    <p>
-      Using the app while logged in will allow you to easily track the products
-      you added or edited on OpenFoodFacts.org website.
-    </p>
-    <p>Scan three, or more, pictures with your phone</p>
-    <img
-      alt="https://world.openfoodfacts.org/images/products/500/016/911/6531/front_en.8.400.jpg"
-      src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image11.jpg"
-      style="width: 168.11px; height: 283.34px; margin-left: -0.00px; margin-top: -0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-      title=""
-    />
-    <img
-      alt="https://world.openfoodfacts.org/images/products/500/016/911/6531/2.jpg"
-      src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image10.jpg"
-      style="width: 215.04px; height: 287.33px; margin-left: -0.00px; margin-top: -0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-      title=""
-    />
-    <img
-      alt="https://world.openfoodfacts.org/images/products/500/016/911/6531/3.jpg"
-      src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image13.jpg"
-      style="width: 224.92px; height: 300.63px; margin-left: -0.00px; margin-top: -8.33px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-      title=""
-    />
-  </li>
-  <li>
-    <strong>Look for &lsquo;your&rsquo; product</strong>
-    <p>
-      On xx.openfoodfacts.org, where xx is a country code such as uk, fr, cn,
-      &hellip;, or &lsquo;word&rsquo;, click on the &lsquo;Products you added
-      that need to be completed&rsquo; link
-    </p>
-    <img
-      alt=""
-      src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image12.png"
-      style="width: 325.33px; height: 89.33px; "
-      class="image-prop"
-      title=""
-    />
-    <p>
-      This will display the list of products you added when logged in. Go click
-      on the product you want to complete.
-    </p>
-    <p>
-      <span style="text-decoration: underline;">Note:</span> the list of
-      Products you added that need to be completed is displayed only if you are
-      logged in to openfoodfacts.org.
-    </p>
-  </li>
-
-  <li>
-    <strong>Front picture</strong>
-
-    <p>
-      Select the front picture then, using the mouse cursor, select the area of
-      interest to remove the uninteresting background. For instance:
-    </p>
-    <img
-      alt=""
-      src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image14.png"
-      style="width: 305.81px; height: 515.24px; "
-      class="image-prop"
-      title=""
-    />
-    <p>
-      After cropping the picture and clicked on &lsquo;Validate and/or resize
-      image&rsquo; button the new front picture will be:
-    </p>
-    <img
-      alt="https://world.openfoodfacts.org/images/products/500/016/911/6531/front_en.8.400.jpg"
-      src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image11.jpg"
-      style="width: 213.26px; height: 359.43px; margin-left: -0.00px; margin-top: -0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-      title=""
-    />
-    <p>
-      Checking the &lsquo;Normalize colors&rsquo; button is usually efficient as
-      it makes the image sharper in most cases.
-    </p>
-  </li>
-  <li>
-    <strong>Fill the general information</strong>
-    <p>
-      Fill the information as displayed on the packaging, try to fill as much
-      information as available. For instance:
-    </p>
-    <img
-      alt=""
-      src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image16.png"
-      style="width: 601.33px; height: 223.80px; "
-      class="image-prop"
-      title=""
-    />
-    <p>
-      The full name, as displayed on the packaging, was filled. In the
-      &lsquo;common name&rsquo; section try to put a name as used in the common
-      language. It is fine to leave the field blank if no common name seems to
-      be relevant to you.
-    </p>
-    <p>
-      Do note that some fields are normalised, this is useful to ensure as much
-      consistency across all products.
-    </p>
-    <img
-      alt=""
-      src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image15.png"
-      style="width: 601.33px; height: 323.07px; "
-      class="image-prop"
-      title=""
-    />
-    <p>
-      For such fields, start typing words that seem relevant to you and select
-      the most appropriate(s) entry(ies) for the product you are editing.
-    </p>
-  </li>
-  <li>
-    <strong>Ingredients</strong>
-    <p>
-      Select the image and crop it to show only the relevant information as you
-      did for Step 4:.
-    </p>
-    <p>
-      Type all the ingredients as displayed on the package, however use coma as
-      a separator. On some products &lsquo;;&rsquo;, &lsquo;-&lsquo;, or
-      anything else are used as separator, instead use a coma &lsquo;,&rsquo;.
-    </p>
-    <img
-      alt=""
-      src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image6.png"
-      style="width: 601.33px; height: 223.27px; "
-      class="image-prop"
-      title=""
-    />
-    <p>
-      When allergens are highlighted on the product, surround the ingredient
-      with the underscore character as highlighted in the image above. This
-      allows the app, Open Food facts one or third parties, to alert users who
-      need such information.
-    </p>
-    <img
-      alt=""
-      src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image7.png"
-      style="width: 601.33px; height: 187.67px; "
-      class="image-prop"
-      title=""
-    />
-    <p>
-      <span style="color: #ff0000; font-weight: bold;">Tip:</span>after saving
-      the Ingredients image, if it doesn&rsquo;t show above the input text box,
-      but instead it is displayed on the right of the original image, then
-      slightly resize your browser window (make it smaller) until the image is
-      displayed above the input text box. This might make it easier to type the
-      information depending on your screen size and resolution.
-    </p>
-    <p>From:</p>
-    <img
-      alt=""
-      src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image17.png"
-      style="width: 297.73px; height: 313.05px; "
-      class="image-prop"
-      title=""
-    />
-    <p>To:</p>
-    <img
-      alt=""
-      src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image18.png"
-      style="width: 210.17px; height: 558.78px; "
-      class="image-prop"
-      title=""
-    />
-  </li>
-  <li>
-    <strong>Nutrition facts</strong>
-    <p>
-      If available, type the nutrition facts as displayed on the packaging,
-      otherwise check the &lsquo;Nutrition facts are not specified on the
-      product&rsquo; box.
-    </p>
-  </li>
-
-  <li>
-    <strong>Save and review </strong>
-
-    <p>
-      Once it is all done, click on the save button. You&rsquo;ll be redirected
-      to a page confirming that the document was correctly saved.
-    </p>
-    <img
-      alt=""
-      src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image19.png"
-      style="width: 280.71px; height: 200.35px; "
-      class="image-prop"
-      title=""
-    />
-    <p>
-      Click on &lsquo;See the product page&rsquo; to review the information. If
-      everything looks OK, you are done! Thanks for contributing.
-    </p>
-  </li>
-</ul>
-
-<h2><a id="Each field in details">Each field in details</a></h2>
-
-<h3><a id="Main language">Main language</a></h3>
-
-<p>
-  If the mobile application you use is set with the same language as the product
-  you enter than you should be fine. However, if the language is not the right
-  one, you can change it using the drop down list.
-</p>
-<img
-  alt=""
-  src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image20.png"
-  style="width: 601.33px; height: 278.73px; "
-  class="image-prop"
-  title=""
-/>
-<p>
-  <span style="color: #44546a; font-style: italic;"
-    >Figure 1: Change the main language</span
-  >
-</p>
-
-<h3><a id="Manage images">Manage images</a></h3>
-
-<img
-  alt=""
-  src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image21.png"
-  style="width: 601.33px; height: 328.80px; "
-  class="image-prop"
-  title=""
-/>
-<p>
-  <span style="color: #44546a; font-style: italic;"
-    >Figure 2: Manage images</span
-  >
-</p>
-<p>
-  Here you can delete images as well as copy, or move, images from one product
-  to another product in case pictures were mixed up or any other special case.
-</p>
-
-<h3><a id="Product picture">Product picture</a></h3>
-
-<h4><a id="Add Language">Add Language</a></h4>
-
-<p>
-  If the product already exists in one language and you are adding data in
-  another language from the same product/barcode, click on the &lsquo;add
-  language&rsquo; button and edit the data with the right language tab chosen.
-</p>
-
-<h4><a id="Front picture">Front picture</a></h4>
-
-<p>
-  Select the front picture then, using the mouse cursor, select the area of
-  interest to remove the uninteresting background. For instance:
-</p>
-<img
-  alt=""
-  src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image14.png"
-  style="width: 305.81px; height: 515.24px; "
-  class="image-prop"
-  title=""
-/>
-<p>
-  After cropping the picture and clicked on &lsquo;Validate and/or resize
-  image&rsquo; button the new front picture will be:
-</p>
-<img
-  alt="https://world.openfoodfacts.org/images/products/500/016/911/6531/front_en.8.400.jpg"
-  src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image11.jpg"
-  style="width: 207.24px; height: 349.29px; margin-left: -0.00px; margin-top: -0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-  title=""
-/>
-<p>
-  Checking the &lsquo;Normalize colors&rsquo; button is usually efficient as it
-  makes the image sharper in most cases.
-</p>
-
-<h3><a id="Product characteristics">Product characteristics</a></h3>
-
-<h4><a id="Product name">Product name</a></h4>
-
-<p>Enter the product name as displayed on the packaging.</p>
-
-<h4><a id="Common name">Common name</a></h4>
-
-<p>Enter a name as used in day to day life. Leave blank if irrelevant.</p>
-
-<h4><a id="Quantity">Quantity</a></h4>
-
-<p>Enter the quantity with the unit. Here are some examples:</p>
-<ul>
-  <li><span class="simple-bold">400g</span>: simple case.</li>
-  <li>
-    <span class="simple-bold">400g(235g)</span>: in some cases, you may see:
-    total weight 400g, 235g when dried.
-  </li>
-  <li>
-    <span class="simple-bold">6</span>: when there is no unit available, for
-    instance with eggs.
-  </li>
-  <li>
-    <span class="simple-bold">180 capsules</span>: dietary supplements often
-    don&rsquo;t display the weight but instead show the number of capsules in
-    the box.
-  </li>
-</ul>
-<img
-  alt=""
-  src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image1.png"
-  style="width: 178.64px; height: 223.95px; margin-left: -21.57px; margin-top: -19.41px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-  title=""
-/>
-
-<h4><a id="Packaging">Packaging</a></h4>
-
-<p>
-  In the ideal case the information is displayed on the packaging, in that case
-  you just need to type what is displayed. For instance, &lsquo;Sleeve
-  board&rsquo; and &lsquo;plastic tray&rsquo;.
-</p>
-<p>
-  When the information is not displayed try to put the most accurate information
-  possible&nbsp;
-</p>
-
-<h4><a id="Brands">Brands</a></h4>
-
-<p>
-  Type the brands as displayed on the packaging. Sometimes products seem to have
-  multiple brands, in that case it is OK to type more than one brand.
-</p>
-
-<h4><a id="Categories">Categories</a></h4>
-
-<p>
-  Categories are normalised, start typing a word and a list of suggestions will
-  appear. Most categories should already be present so there is, in most cases,
-  no need to enter a new category. It is better to try to stick to the existing
-  categories where possible.
-</p>
-<img
-  alt=""
-  src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image15.png"
-  style="width: 601.33px; height: 323.07px; "
-  class="image-prop"
-  title=""
-/>
-<p>
-  You may want to try different combination of word to find the right category.
-  For instance, you may start typing &lsquo;red w&rsquo; to list red wines,
-  instead of typing &lsquo;wine&rsquo;. In case of doubt you can ask on
-
-  <a href="https://openfoodfacts.slack.com/messages/general/">
-    <span style="color: #0563c1;">slack</span>
-  </a>
-  in the #general channel.
-</p>
-<h4>
-  <a id="Labels, certifications, awards">Labels, certifications, awards</a>
-</h4>
-
-<p>
-  This field is also normalised, same as for Categories you should start typing
-  the category name, as displayed on the packaging, and the system should
-  auto-complete the name for you.
-</p>
-
-<h4><a id="Origin of ingredients">Origin of ingredients</a></h4>
-
-<p>
-  As usual, enter the information as displayed on the label. For instance, if
-  you see &lsquo;made in Austria&rsquo;, type &lsquo;Austria&rsquo;. Leave blank
-  if there is no information displayed.
-</p>
-
-<h4>
-  <a id="Manufacturing or processing places"
-    >Manufacturing or processing places</a
-  >
-</h4>
-
-<p>same as for Origin of ingredients.</p>
-
-<h4><a id="EMB code">EMB code</a></h4>
-
-<p>
-  In Europe, code in an ellipse with the 2 country initials followed by a number
-  and CE.
-</p>
-<p>
-  For eggs you may see two packaging codes which are not EMB codes, please enter
-  them. Here is an example of such information:
-</p>
-<img
-  alt=""
-  src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image2.png"
-  style="width: 172.00px; height: 165.33px; "
-  class="image-prop"
-  title=""
-/>
-<img
-  alt=""
-  src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image3.png"
-  style="width: 416.06px; height: 152.68px; "
-  class="image-prop"
-  title=""
-/>
-<p>Figure 3: 1UK21006 &amp; 1UK1000L</p>
-<p>
-  The image is blurry due t the poor quality of the camera&rsquo;s author,
-  however the information was entered that way:
-</p>
-<img
-  alt=""
-  src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image4.png"
-  style="width: 285.33px; height: 108.00px; "
-  class="image-prop"
-  title=""
-/>
-
-<h4>
-  <a id="Link to the product page on the official site of the producer"></a>Link
-  to the product page on the official site of the producer
-</h4>
-
-<h4><a id="Best before date"></a>Best before date</h4>
-
-<p>
-  This field is not yet normalised; however, the recommended format is:
-  &lt;DDMMMYYYY&gt;.&nbsp;
-</p>
-<p>Example: 02NOV2016</p>
-
-<h4>
-  <a id="City, state and country where purchase"></a>City, state and country
-  where purchased
-</h4>
-
-<p>
-  Country, city, state, borough, or any other relevant geographical data where
-  you bought or scanned the product.
-</p>
-<img
-  alt=""
-  src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image5.png"
-  style="width: 481.23px; height: 121.17px; "
-  class="image-prop"
-  title=""
-/>
-
-<h4><a id="Stores"></a>Stores</h4>
-<h4><a id="Countries where sold"></a>Countries where sold</h4>
-
-<p>
-  Enter the country where you bought or scanned the product.
-
-  <span class="simple-bold">Do not guess </span>where it is available. Because
-  of product has ingredients in German, French and Dutch does not mean that it
-  is sold in The Netherlands. It could be a product sold only in Luxembourg. As
-  for all other fields, only input the data you know is 100% right.
-</p>
-
-<h3><a id="Ingredients"></a>Ingredients</h3>
-
-<p>
-  Select the image and crop it to show only the relevant information as you did
-  for Step 3:.
-</p>
-<p>
-  Type all the ingredients as displayed on the package, however use coma as a
-  separator. On some products &lsquo;;&rsquo;, &lsquo;-&lsquo;, or anything else
-  are used as separator, instead use a coma &lsquo;,&rsquo;.
-</p>
-<img
-  alt=""
-  src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image6.png"
-  style="width: 601.33px; height: 223.27px; "
-  class="image-prop"
-  title=""
-/>
-<p>
-  <span class="simple-bold">Important</span>: When allergens are highlighted on
-  the product, surround the ingredient with the underscore character as
-  highlighted in the image above. This allows apps, Open Food facts one or third
-  parties, to alert users who need such information.
-</p>
-<p>
-  <span style="color: #ff0000; font-weight: bold;">Tip:</span>after saving the
-  Ingredients image, if it doesn&rsquo;t show above the input text box, but
-  instead it is displayed on the right of the original image, then slightly
-  resize your browser window (make it smaller) until the image is displayed
-  above the input text box. This might make it easier to type the information
-  depending on your screen size and resolution.
-</p>
-
-<h3><a id="Nutrition facts"></a>Nutrition facts</h3>
-
-<p>
-  If available, type the nutrition facts as displayed on the packaging,
-  otherwise check the &lsquo;Nutrition facts are not specified on the
-  product&rsquo; box.
-</p>
-<p>
-  If a nutrient is not pre-listed just start typing it and Open Food Fact system
-  will autocomplete it for you as most nutrients are normalised (note: not fully
-  available for all for all languages).
-</p>
-<img
-  alt=""
-  src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image8.png"
-  style="width: 601.33px; height: 362.33px; "
-  class="image-prop"
-  title=""
-/>
-
-<h2><a id="Miscellaneous"></a>Miscellaneous</h2>
-
-<h3><a id="Useful links"></a>Useful links</h3>
-
-<h4>
-  <a id="Products you added a picture to"></a>Products you added a picture to
-</h4>
-
-<p>
-  <a href="https://world.openfoodfacts.org/photographer/USERNAME">
-    <span style="color: #0563c1;"
-      >https://world.openfoodfacts.org/photographer/USERNAME</span
-    >
-  </a>
-</p>
-<p>
-  <a href="https://world.openfoodfacts.org/photographer/bcatelin/entry-dates">
-    <span style="color: #0563c1;"
-      >https://world.openfoodfacts.org/photographer/bcatelin/entry-dates</span
-    >
-  </a>
-</p>
-
-<h4><a id="Products you edited"></a>Products you edited</h4>
-
-<p>
-  <a href="https://world.openfoodfacts.org/editor/bcatelin">
-    <span style="color: #0563c1;"
-      >https://world.openfoodfacts.org/editor/bcatelin</span
-    >
-  </a>
-</p>
-
-<h4><a id="Informer"></a>Informer</h4>
-
-<p>
-  <a href="https://world.openfoodfacts.org/informer/bcatelin/">
-    <span style="color: #0563c1;"
-      >https://world.openfoodfacts.org/informer/bcatelin/</span
-    >
-  </a>
-</p>
-<p>Note: not sure what&rsquo;s the difference with editor</p>
-
-<h4><a id="Noteworthy products"></a>Noteworthy products</h4>
-
-<p>
-  <a href="https://en.wiki.openfoodfacts.org/Noteworthy_Products">
-    <span style="color: #0563c1;"
-      >https://en.wiki.openfoodfacts.org/Noteworthy_Products</span
-    > </a
-  >: sometimes products have rather &lsquo;-non-standard&rsquo; information
-  which makes it difficult to type the information. When that occurs simply go
-  to this page and add the product to the list.
-</p>
-
-<h4><a id="Useful queries"></a>Useful queries</h4>
-
-<p>
-  <a href="https://en.wiki.openfoodfacts.org/Useful_queries">
-    <span style="color: #0563c1;">Useful queries - Open Food Facts EN</span>
-  </a>
-  : a page where you could find many queries of the
-
-  <a href="https://world.openfoodfacts.org/cgi/search.pl">
-    <span style="color: #0563c1;">search tool</span> </a
-  >. It is a good place to find queries you may want to use as a template for
-  your own ones.
-</p>
-
-<a href="#table-of-contents">Up to the table of contents</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="guide-main">
+
+      <!-- Section 1: General -->
+      <section class="guide-section" id="General">
+        <div class="guide-section-header">
+          <div class="guide-section-icon">🌐</div>
+          <h2 class="guide-section-title">1. General</h2>
+        </div>
+
+        <div class="guide-card" id="Introduction">
+          <h3 class="guide-card-title">Introduction</h3>
+          <p>
+            <strong>Open Food Facts</strong> is a collaborative, non-profit open data initiative
+            gathering information on food products worldwide. All data is published under an open data
+            licence (ODbL), allowing anyone to freely reuse it to build innovative applications,
+            services, scientific research, and health tools.
+          </p>
+          <p>
+            Today, there are hundreds of re-uses—from health and diet calculators to connected devices,
+            epidemiological research, and investigative journalism.
+          </p>
+          <p>
+            The two core sets of information gathered are <strong>nutrition facts</strong> (energy, fat, sugars,
+            proteins, etc.) and <strong>ingredients</strong>, complemented by data such as labels (organic,
+            vegetarian, AOC, fair trade, etc.), packaging codes, and origins. Whether you are a newcomer or
+            an experienced contributor, this guide serves as your reference to input high-quality data.
+          </p>
+        </div>
+
+        <!-- Sister Projects -->
+        <div class="guide-card" id="Sister-projects">
+          <h3 class="guide-card-title">Sister Projects</h3>
+          <p>Open Food Facts' open database model powers multiple sibling transparency projects:</p>
+
+          <div class="guide-grid-cards">
+            <div class="project-card">
+              <div class="project-card-title">
+                <a href="https://world.openbeautyfacts.org" target="_blank" rel="noopener">Open Beauty Facts ↗</a>
+                <span class="guide-badge guide-badge-blue">Cosmetics</span>
+              </div>
+              <p>Collects ingredient and packaging data for cosmetics, perfumes, and personal care items worldwide.</p>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-title">
+                <a href="https://madenear.me/" target="_blank" rel="noopener">Made Near Me ↗</a>
+                <span class="guide-badge guide-badge-green">Origin</span>
+              </div>
+              <p>Visualizes on an interactive map where food products you consume are manufactured, transformed, or packaged.</p>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-title">
+                <a href="https://cestemballepresdechezvous.fr/" target="_blank" rel="noopener">C'est emballé près de chez vous ↗</a>
+                <span class="guide-badge guide-badge-green">Origin FR</span>
+              </div>
+              <p>The French-language edition of <em>Made Near Me</em>, tracking local manufacturing and packing codes.</p>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-title">
+                <a href="https://howmuchsugar.in/" target="_blank" rel="noopener">How much SUGAR? ↗</a>
+                <span class="guide-badge guide-badge-amber">Game</span>
+              </div>
+              <p>An educational game challenging players to guess the sugar quantity in common food products (also available in French at <a href="https://combiendesucres.fr/" target="_blank" rel="noopener">Combien de SUCRES?</a>).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resources -->
+        <div class="guide-card" id="Resources">
+          <h3 class="guide-card-title">Resources &amp; Community</h3>
+          <p>
+            Join the contributor community on our active Slack workspace to ask questions, discuss product categorizations, and coordinate with developers and translators:
+          </p>
+          <div class="guide-callout guide-callout-tip">
+            <div class="guide-callout-icon">💬</div>
+            <div class="guide-callout-body">
+              <strong>Open Food Facts Slack:</strong> Join via
+              <a href="https://slack.openfoodfacts.org/" target="_blank" rel="noopener">slack.openfoodfacts.org</a>.
+              Popular channels include:
+              <code>#fr</code> (French discussions),
+              <code>#general</code> (General questions &amp; categorization help),
+              <code>#productopener</code> (Server &amp; core development),
+              <code>#ios</code> and <code>#android</code> (Mobile apps), and regional channels.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Contributors Overview -->
+      <section class="guide-section" id="Open-Food-Facts-contributors-overview">
+        <div class="guide-section-header">
+          <div class="guide-section-icon">👥</div>
+          <h2 class="guide-section-title">2. Contributors Overview</h2>
+        </div>
+
+        <div class="guide-card">
+          <p>Citizens and organizations contribute to the Open Food Facts database in multiple complementary ways:</p>
+          <ul>
+            <li>
+              <strong>Mobile Applications (Android &amp; iOS):</strong> Quickly scan barcodes in stores or at home, snap photos, and add initial product data.
+            </li>
+            <li>
+              <strong>Web Platform (<a href="https://world.openfoodfacts.org">openfoodfacts.org</a>):</strong>
+              Ideal for advanced tasks:
+              <ul>
+                <li>Adding comprehensive product information not readily editable on mobile apps</li>
+                <li>Adding products without barcodes (fruits, vegetables, bulk items, local bakery goods)</li>
+                <li>Batch photo uploads from high-resolution digital cameras</li>
+                <li>Using mass upload tools to import catalogs or contributor collections</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 3: Open Food Facts 101 -->
+      <section class="guide-section" id="Open-Food-Facts-101">
+        <div class="guide-section-header">
+          <div class="guide-section-icon">⚡</div>
+          <h2 class="guide-section-title">3. Open Food Facts 101</h2>
+        </div>
+
+        <div class="guide-card">
+          <p>When contributing via mobile app or web, follow this essential 3-step photography rule:</p>
+
+          <div class="guide-callout guide-callout-tip">
+            <div class="guide-callout-icon">📸</div>
+            <div class="guide-callout-body">
+              <strong>The 3 Essential Photos:</strong>
+              <ol style="margin: 0.35rem 0 0; padding-left: 1.25rem;">
+                <li><strong>Front of package:</strong> Shows the brand, product title, and net quantity clearly.</li>
+                <li><strong>Ingredients list:</strong> Captures the full text including highlighted allergens.</li>
+                <li><strong>Nutrition facts table:</strong> Captures values per 100g/100ml and per serving.</li>
+              </ol>
+            </div>
+          </div>
+
+          <p>
+            Once these three photos are uploaded, the essential information is safely stored on Open Food Facts
+            servers. Our automated optical character recognition (OCR) and contributor community can extract data even
+            if you don't type it right away!
+          </p>
+
+          <p>If you have a few extra moments, take photos of additional package details:</p>
+          <ul>
+            <li><strong>Labels &amp; Certifications:</strong> Organic (Bio), Fair Trade, Nutri-Score, vegetarian/vegan seals.</li>
+            <li><strong>Packaging &amp; Traceability Codes:</strong> EMB / health marks, QR codes, manufacturer addresses.</li>
+            <li><strong>Official URLs:</strong> Manufacturer websites or customer service contact info.</li>
+          </ul>
+
+          <div class="guide-callout guide-callout-important">
+            <div class="guide-callout-icon">💡</div>
+            <div class="guide-callout-body">
+              <strong>Stay Logged In:</strong> Always ensure you are signed into your Open Food Facts account
+              both in the app and on the website. This lets you track your personal contribution history, earns contributor
+              badges, and makes it easy to find and complete your products later.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Apps & Website -->
+      <section class="guide-section" id="The-app-and-website">
+        <div class="guide-section-header">
+          <div class="guide-section-icon">📱</div>
+          <h2 class="guide-section-title">4. The App &amp; Website</h2>
+        </div>
+
+        <div class="guide-card" id="The-app">
+          <h3 class="guide-card-title">The Mobile Apps</h3>
+          <p>
+            Open Food Facts offers official native apps for iOS and Android. They are open source, ad-free,
+            and privacy-respecting.
+          </p>
+          <div class="guide-hero-actions" style="margin-top: 0.5rem;">
+            <a class="guide-hero-btn" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner" target="_blank" rel="noopener">
+              Get Android App ↗
+            </a>
+            <a class="guide-hero-btn" href="https://apps.apple.com/app/open-food-facts/id588797948" target="_blank" rel="noopener">
+              Get iOS App ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="guide-card" id="The-website">
+          <h3 class="guide-card-title">The Website</h3>
+          <p>
+            After scanning initial items on mobile, visit <a href="https://world.openfoodfacts.org">openfoodfacts.org</a>
+            to complete fields, verify automated text recognition, and curate product details.
+          </p>
+
+          <div id="Basic-rules">
+            <h4 style="font-size: 1.05rem; font-weight: 700; margin-top: 1.25rem; color: var(--guide-text-primary);">Basic Principles</h4>
+            <ul>
+              <li>
+                <strong>Strict Package Fidelity:</strong> Enter only information explicitly printed on the package.
+                Do not guess ingredients or extrapolate origins.
+              </li>
+              <li>
+                <strong>Photos are paramount:</strong> High-resolution, unedited photos allow everyone to verify and improve data over time.
+              </li>
+              <li>
+                <strong>Every contribution counts:</strong> If you only have time to take photos, that is already tremendously valuable!
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Step-by-Step Example -->
+      <section class="guide-section" id="Step-by-step-example">
+        <div class="guide-section-header">
+          <div class="guide-section-icon">🪜</div>
+          <h2 class="guide-section-title">5. Step-by-Step Example</h2>
+        </div>
+
+        <p class="guide-intro-note">
+          Walk through the complete lifecycle of uploading and enriching a product on the Open Food Facts website:
+        </p>
+
+        <!-- Step 1 -->
+        <article class="step-card" id="step-1">
+          <div class="step-header">
+            <span class="step-number">1</span>
+            <h3 class="step-title">Log in and capture photos with your phone</h3>
+          </div>
+          <p>
+            Ensure you are logged into your account in the Open Food Facts mobile application. Scan the barcode,
+            then capture clear photos of the front, nutrition table, and ingredients list.
+          </p>
+          <div class="guide-image-grid">
+            <div class="guide-image-grid-item">
+              <figure class="guide-figure">
+                <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image11.jpg" alt="Front packaging photo" style="max-height: 260px;" loading="lazy">
+                <figcaption class="guide-figcaption">Front of product</figcaption>
+              </figure>
+            </div>
+            <div class="guide-image-grid-item">
+              <figure class="guide-figure">
+                <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image10.jpg" alt="Ingredients list photo" style="max-height: 260px;" loading="lazy">
+                <figcaption class="guide-figcaption">Ingredients panel</figcaption>
+              </figure>
+            </div>
+            <div class="guide-image-grid-item">
+              <figure class="guide-figure">
+                <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image13.jpg" alt="Nutrition table photo" style="max-height: 260px;" loading="lazy">
+                <figcaption class="guide-figcaption">Nutrition table</figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- Step 2 -->
+        <article class="step-card" id="step-2">
+          <div class="step-header">
+            <span class="step-number">2</span>
+            <h3 class="step-title">Find your uploaded product on the website</h3>
+          </div>
+          <p>
+            Open <a href="https://world.openfoodfacts.org">openfoodfacts.org</a> in your browser. When logged in,
+            click on the link <strong>&ldquo;Products you added that need to be completed&rdquo;</strong> in the navigation header or user menu.
+          </p>
+          <figure class="guide-figure">
+            <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image12.png" alt="Products needing completion link" style="max-width: 360px;" loading="lazy">
+            <figcaption class="guide-figcaption">Access your incomplete products directly from your user dashboard</figcaption>
+          </figure>
+          <p>
+            Click on the product card you wish to complete to open its editing form.
+          </p>
+        </article>
+
+        <!-- Step 3 -->
+        <article class="step-card" id="step-3">
+          <div class="step-header">
+            <span class="step-number">3</span>
+            <h3 class="step-title">Crop and normalize the front photo</h3>
+          </div>
+          <p>
+            Select the front photo in the photo management interface. Using your mouse, drag the selection handles
+            to enclose only the product, excluding distracting table surfaces or background clutter:
+          </p>
+          <figure class="guide-figure">
+            <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image14.png" alt="Cropping tool demonstration" style="max-width: 380px;" loading="lazy">
+            <figcaption class="guide-figcaption">Crop handles allow framing the product cleanly</figcaption>
+          </figure>
+          <p>
+            Click <strong>&ldquo;Validate and/or resize image&rdquo;</strong>. Enabling the <strong>&ldquo;Normalize colors&rdquo;</strong>
+            checkbox enhances contrast and readability for most cameras.
+          </p>
+          <figure class="guide-figure">
+            <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image11.jpg" alt="Final cropped front photo" style="max-height: 300px;" loading="lazy">
+            <figcaption class="guide-figcaption">Resulting clean, cropped front visual</figcaption>
+          </figure>
+        </article>
+
+        <!-- Step 4 -->
+        <article class="step-card" id="step-4">
+          <div class="step-header">
+            <span class="step-number">4</span>
+            <h3 class="step-title">Fill in general product information</h3>
+          </div>
+          <p>
+            Enter details exactly as printed on the package. Fill in as many fields as available:
+          </p>
+          <figure class="guide-figure">
+            <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image16.png" alt="General characteristics form" style="max-width: 620px;" loading="lazy">
+            <figcaption class="guide-figcaption">Product title, common name, quantity, and brand fields</figcaption>
+          </figure>
+          <p>
+            Enter the commercial name in <strong>Product name</strong>. If relevant, add everyday colloquial terms
+            in <strong>Common name</strong> (or leave blank if unnecessary).
+          </p>
+          <div class="guide-callout guide-callout-tip">
+            <div class="guide-callout-icon">✨</div>
+            <div class="guide-callout-body">
+              <strong>Normalized Autocomplete Fields:</strong> Fields such as <em>Categories</em> and <em>Labels</em>
+              are normalized across languages. Start typing a keyword to select standard entries from the drop-down suggestion list:
+            </div>
+          </div>
+          <figure class="guide-figure">
+            <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image15.png" alt="Autocomplete dropdown in categories" style="max-width: 620px;" loading="lazy">
+            <figcaption class="guide-figcaption">Choose from existing standardized categories whenever possible</figcaption>
+          </figure>
+        </article>
+
+        <!-- Step 5 -->
+        <article class="step-card" id="step-5">
+          <div class="step-header">
+            <span class="step-number">5</span>
+            <h3 class="step-title">Crop and transcribe the ingredients</h3>
+          </div>
+          <p>
+            Crop the ingredients photo so the text is sharp and legible. Type all ingredients, respecting two key formatting rules:
+          </p>
+          <div class="guide-callout guide-callout-important">
+            <div class="guide-callout-icon">⚠️</div>
+            <div class="guide-callout-body">
+              <strong>Formatting Rules for Ingredients:</strong>
+              <ul style="margin: 0.35rem 0 0; padding-left: 1.25rem;">
+                <li><strong>Comma separator:</strong> Always separate ingredients with commas (<code>,</code>), even if the package uses dashes, bullet points, or semicolons.</li>
+                <li><strong>Allergen highlighting:</strong> When allergens are in bold, uppercase, or italics on packaging, wrap the allergen name with underscores (e.g., <code>_wheat flour_</code>, <code>_skimmed milk_</code>).</li>
+              </ul>
+            </div>
+          </div>
+          <figure class="guide-figure">
+            <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image6.png" alt="Ingredients text entry with allergen formatting" style="max-width: 620px;" loading="lazy">
+            <figcaption class="guide-figcaption">Ingredients field with underscores around allergens</figcaption>
+          </figure>
+          <figure class="guide-figure">
+            <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image7.png" alt="Allergen detection alert preview" style="max-width: 620px;" loading="lazy">
+            <figcaption class="guide-figcaption">Underscores enable automatic allergen recognition across our apps</figcaption>
+          </figure>
+
+          <!-- Tip Layout comparison -->
+          <div class="guide-callout guide-callout-tip">
+            <div class="guide-callout-icon">💡</div>
+            <div class="guide-callout-body">
+              <strong>Layout Tip for Side-by-Side Transcription:</strong> If the crop appears side-by-side or below
+              the text box depending on your monitor resolution, adjust your browser width slightly so the photo sits
+              directly adjacent to or above the text input for easiest side-by-side typing:
+            </div>
+          </div>
+
+          <div class="guide-comparison">
+            <div class="guide-comparison-pane">
+              <span class="guide-comparison-label">Before (Side layout)</span>
+              <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image17.png" alt="Wide layout" style="max-width: 260px;" loading="lazy">
+            </div>
+            <div class="guide-comparison-pane">
+              <span class="guide-comparison-label">After (Stacked layout)</span>
+              <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image18.png" alt="Responsive stacked layout" style="max-width: 200px;" loading="lazy">
+            </div>
+          </div>
+        </article>
+
+        <!-- Step 6 -->
+        <article class="step-card" id="step-6">
+          <div class="step-header">
+            <span class="step-number">6</span>
+            <h3 class="step-title">Enter nutrition facts</h3>
+          </div>
+          <p>
+            Transcribe the nutrition values (Energy, Fat, Saturated Fat, Carbohydrates, Sugars, Proteins, Salt, Fiber)
+            as printed on the table.
+          </p>
+          <p>
+            If the product does not specify nutritional values (e.g., vinegar, table salt, culinary herbs, spices, or certain alcoholic beverages),
+            tick the box <strong>&ldquo;Nutrition facts are not specified on the product&rdquo;</strong>.
+          </p>
+        </article>
+
+        <!-- Step 7 -->
+        <article class="step-card" id="step-7">
+          <div class="step-header">
+            <span class="step-number">7</span>
+            <h3 class="step-title">Save and review the product page</h3>
+          </div>
+          <p>
+            Click the <strong>Save</strong> button at the bottom of the form. A confirmation banner will confirm the successful save.
+          </p>
+          <figure class="guide-figure">
+            <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image19.png" alt="Save confirmation dialog" style="max-width: 320px;" loading="lazy">
+            <figcaption class="guide-figcaption">Confirmation dialog upon saving</figcaption>
+          </figure>
+          <p>
+            Click <strong>&ldquo;See the product page&rdquo;</strong> to inspect the computed Nutri-Score, Eco-Score, NOVA group, and
+            check for any transcription errors. Congratulations, your contribution is live! 🎉
+          </p>
+        </article>
+      </section>
+
+      <!-- Section 6: Detailed Field Reference -->
+      <section class="guide-section" id="Each-field-in-details">
+        <div class="guide-section-header">
+          <div class="guide-section-icon">📋</div>
+          <h2 class="guide-section-title">6. Each Field in Detail</h2>
+        </div>
+
+        <!-- Language & Image Management -->
+        <div class="guide-card">
+          <h3 class="guide-card-title">Language &amp; Photo Management</h3>
+
+          <div class="field-item" id="Main-language">
+            <div class="field-item-header">
+              <h4 class="field-title">Main Language</h4>
+              <span class="guide-badge guide-badge-blue">Configuration</span>
+            </div>
+            <div class="field-description">
+              Sets the primary language of the packaging text. If your mobile app uploaded data in another language,
+              switch to the correct language using the drop-down selector before editing textual fields.
+            </div>
+            <figure class="guide-figure">
+              <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image20.png" alt="Main language selector" style="max-width: 600px;" loading="lazy">
+              <figcaption class="guide-figcaption">Figure 1: Changing the primary packaging language</figcaption>
+            </figure>
+          </div>
+
+          <div class="field-item" id="Manage-images">
+            <div class="field-item-header">
+              <h4 class="field-title">Manage Images</h4>
+              <span class="guide-badge guide-badge-neutral">Media Tools</span>
+            </div>
+            <div class="field-description">
+              Allows you to view all uploaded raw photos, delete duplicates, re-orient rotated images, or copy/move photos between barcodes if pictures were mistakenly submitted to the wrong product.
+            </div>
+            <figure class="guide-figure">
+              <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image21.png" alt="Image management console" style="max-width: 600px;" loading="lazy">
+              <figcaption class="guide-figcaption">Figure 2: The image management console</figcaption>
+            </figure>
+          </div>
+
+          <div class="field-item" id="Add-Language">
+            <div class="field-item-header">
+              <h4 class="field-title">Add Language (Multilingual Products)</h4>
+              <span class="guide-badge guide-badge-green">Multilingual</span>
+            </div>
+            <div class="field-description">
+              Many products display multilingual packaging (e.g., French/Dutch in Belgium or English/Spanish in the US).
+              Click <strong>&ldquo;Add Language&rdquo;</strong> to add dedicated language tabs for the title, generic name, and ingredients without creating duplicate products.
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Characteristics -->
+        <div class="guide-card" id="Product-characteristics">
+          <h3 class="guide-card-title">Product Characteristics</h3>
+
+          <div class="field-item" id="Product-name">
+            <div class="field-item-header">
+              <h4 class="field-title">Product Name</h4>
+              <span class="guide-badge guide-badge-green">Essential</span>
+            </div>
+            <div class="field-description">
+              The primary commercial title printed prominently on the package (e.g. <em>&ldquo;Choco Crispy Flakes&rdquo;</em>).
+            </div>
+          </div>
+
+          <div class="field-item" id="Common-name">
+            <div class="field-item-header">
+              <h4 class="field-title">Common Name / Generic Name</h4>
+              <span class="guide-badge guide-badge-neutral">Optional</span>
+            </div>
+            <div class="field-description">
+              The standard regulatory or descriptive descriptor of the food (e.g. <em>&ldquo;Toasted rice flakes with cocoa&rdquo;</em>).
+              Leave blank if no specific common descriptor appears on the box.
+            </div>
+          </div>
+
+          <div class="field-item" id="Quantity">
+            <div class="field-item-header">
+              <h4 class="field-title">Quantity</h4>
+              <span class="guide-badge guide-badge-green">Measurement</span>
+            </div>
+            <div class="field-description">
+              Net quantity with unit of measurement. Common patterns:
+            </div>
+            <div class="field-examples">
+              <strong>Examples:</strong>
+              <ul>
+                <li><code>400 g</code> or <code>1 L</code>: Standard net weight/volume.</li>
+                <li><code>400 g (drained: 235 g)</code>: Canned goods with net and drained weights.</li>
+                <li><code>6</code>: Count-based products without weight (e.g., fresh eggs).</li>
+                <li><code>180 capsules</code>: Dietary supplements or tea capsules.</li>
+              </ul>
+            </div>
+            <figure class="guide-figure">
+              <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image1.png" alt="Quantity examples" style="max-height: 180px;" loading="lazy">
+              <figcaption class="guide-figcaption">Quantity declaration example</figcaption>
+            </figure>
+          </div>
+
+          <div class="field-item" id="Packaging">
+            <div class="field-item-header">
+              <h4 class="field-title">Packaging</h4>
+              <span class="guide-badge guide-badge-blue">Eco-Score</span>
+            </div>
+            <div class="field-description">
+              Packaging components and materials (e.g., <em>&ldquo;Cardboard box&rdquo;</em>, <em>&ldquo;Plastic tray&rdquo;</em>, <em>&ldquo;Aluminium foil&rdquo;</em>).
+              This directly impacts the Eco-Score packaging score.
+            </div>
+          </div>
+
+          <div class="field-item" id="Brands">
+            <div class="field-item-header">
+              <h4 class="field-title">Brands</h4>
+              <span class="guide-badge guide-badge-green">Essential</span>
+            </div>
+            <div class="field-description">
+              Brand names as printed on the packaging. Multiple brands can be separated by commas (e.g., store brand and sub-brand).
+            </div>
+          </div>
+
+          <div class="field-item" id="Categories">
+            <div class="field-item-header">
+              <h4 class="field-title">Categories</h4>
+              <span class="guide-badge guide-badge-amber">Taxonomy</span>
+            </div>
+            <div class="field-description">
+              Categories are standardized. Select suggestions from the autocomplete drop-down list. Choosing the most specific
+              category (e.g., <em>&ldquo;Dark chocolates with hazelnuts&rdquo;</em> rather than just <em>&ldquo;Chocolates&rdquo;</em>)
+              ensures accurate Nutri-Score calculation.
+            </div>
+            <div class="guide-callout guide-callout-tip">
+              <div class="guide-callout-icon">💡</div>
+              <div class="guide-callout-body">
+                Need categorization guidance? Ask fellow contributors in the <code>#general</code> channel on
+                <a href="https://slack.openfoodfacts.org/" target="_blank" rel="noopener">Open Food Facts Slack</a>.
+              </div>
+            </div>
+          </div>
+
+          <div class="field-item" id="Labels">
+            <div class="field-item-header">
+              <h4 class="field-title">Labels, Certifications &amp; Awards</h4>
+              <span class="guide-badge guide-badge-amber">Taxonomy</span>
+            </div>
+            <div class="field-description">
+              Quality marks, environmental certificates, dietary seals, and origins (e.g., <em>Organic</em>, <em>EU Organic</em>, <em>Fairtrade</em>, <em>Halal</em>, <em>Kosher</em>, <em>Gluten-free</em>, <em>Nutriscore Grade A</em>).
+              Start typing to pick verified labels from the taxonomy.
+            </div>
+          </div>
+
+          <div class="field-item" id="Origins">
+            <div class="field-item-header">
+              <h4 class="field-title">Origin of Ingredients &amp; Processing Places</h4>
+              <span class="guide-badge guide-badge-neutral">Traceability</span>
+            </div>
+            <div class="field-description">
+              Enter origin indications explicitly printed on the package (e.g., <em>&ldquo;Milk from Brittany, France&rdquo;</em>, <em>&ldquo;Manufactured in Spain&rdquo;</em>).
+              Leave blank if no explicit geographical origin is mentioned.
+            </div>
+          </div>
+
+          <div class="field-item" id="EMB-code">
+            <div class="field-item-header">
+              <h4 class="field-title">EMB Code / Health Mark / Factory Code</h4>
+              <span class="guide-badge guide-badge-neutral">Traceability</span>
+            </div>
+            <div class="field-description">
+              In the European Union, the oval sanitary mark containing country code, department/region, and factory approval number (e.g., <code>FR 29.039.020 CE</code>).
+              For eggs, producer codes indicate farming method and country (e.g., <code>1UK21006</code>, <code>0FR12345</code>).
+            </div>
+            <div class="guide-image-grid">
+              <figure class="guide-figure">
+                <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image2.png" alt="Egg packing code visual" style="max-height: 120px;" loading="lazy">
+              </figure>
+              <figure class="guide-figure">
+                <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image3.png" alt="Egg code detail" style="max-height: 120px;" loading="lazy">
+                <figcaption class="guide-figcaption">Figure 3: Egg producer &amp; packing codes</figcaption>
+              </figure>
+              <figure class="guide-figure">
+                <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image4.png" alt="Entered code in system" style="max-height: 90px;" loading="lazy">
+              </figure>
+            </div>
+          </div>
+
+          <div class="field-item" id="Producer-link">
+            <div class="field-item-header">
+              <h4 class="field-title">Official Product URL</h4>
+              <span class="guide-badge guide-badge-neutral">Reference</span>
+            </div>
+            <div class="field-description">
+              URL to the product's official page on the manufacturer's website.
+            </div>
+          </div>
+
+          <div class="field-item" id="Best-before-date">
+            <div class="field-item-header">
+              <h4 class="field-title">Best Before Date / Expiry</h4>
+              <span class="guide-badge guide-badge-blue">Date Format</span>
+            </div>
+            <div class="field-description">
+              The recommended standardized entry format is: <code>&lt;DDMMMYYYY&gt;</code> (for example: <code>02NOV2026</code>).
+            </div>
+          </div>
+
+          <div class="field-item" id="Purchase-places">
+            <div class="field-item-header">
+              <h4 class="field-title">City, State &amp; Store of Purchase</h4>
+              <span class="guide-badge guide-badge-neutral">Local Data</span>
+            </div>
+            <div class="field-description">
+              Store brand (e.g. <em>Tesco</em>, <em>Carrefour</em>, <em>Monoprix</em>) and geographical location where you purchased or scanned the item.
+            </div>
+            <figure class="guide-figure">
+              <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image5.png" alt="Purchase location fields" style="max-width: 480px;" loading="lazy">
+              <figcaption class="guide-figcaption">Recording store and purchase location details</figcaption>
+            </figure>
+          </div>
+
+          <div class="field-item" id="Countries-where-sold">
+            <div class="field-item-header">
+              <h4 class="field-title">Countries Where Sold</h4>
+              <span class="guide-badge guide-badge-amber">Do Not Guess</span>
+            </div>
+            <div class="field-description">
+              Indicate only countries where you know the product is sold. <strong>Do not guess:</strong> multilingual text
+              does not guarantee commercial distribution in every corresponding nation (e.g., Swiss packaging may include
+              German, French, and Italian without being sold in Germany, France, or Italy).
+            </div>
+          </div>
+        </div>
+
+        <!-- Ingredients Section -->
+        <div class="guide-card" id="Ingredients">
+          <h3 class="guide-card-title">Ingredients Field Conventions</h3>
+          <p>
+            The ingredients list enables automated additive detection, allergen alerts, and ultra-processing (NOVA) scoring:
+          </p>
+          <ul>
+            <li><strong>Separate ingredients with commas:</strong> Even if packaging uses bullet points, dashes, or semicolons.</li>
+            <li><strong>Wrap allergens with underscores:</strong> For example, <code>_wheat flour_</code>, <code>_soy lecithin_</code>, <code>_peanuts_</code>.</li>
+            <li><strong>Transcribe percentages:</strong> Retain percentage figures (e.g., <em>&ldquo;strawberries (15%)&rdquo;</em>) to assist Nutri-Score &amp; fruit/vegetable proportion calculations.</li>
+          </ul>
+        </div>
+
+        <!-- Nutrition Section -->
+        <div class="guide-card" id="Nutrition-facts">
+          <h3 class="guide-card-title">Nutrition Facts Table</h3>
+          <p>
+            Enter nutritional data per 100g or 100ml. If non-standard nutrients are present on the packaging
+            (such as specific vitamins, calcium, magnesium, omega-3, or polyols), start typing in the nutrient field to select the normalized nutrient name:
+          </p>
+          <figure class="guide-figure">
+            <img src="https://static.openfoodfacts.org/images/misc/advanced-user-guide/image8.png" alt="Nutrition facts entry form" style="max-width: 600px;" loading="lazy">
+            <figcaption class="guide-figcaption">Nutrition table input with autocomplete for vitamins and minerals</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Section 7: Miscellaneous & Useful Links -->
+      <section class="guide-section" id="Miscellaneous">
+        <div class="guide-section-header">
+          <div class="guide-section-icon">🔗</div>
+          <h2 class="guide-section-title">7. Useful Contributor Links</h2>
+        </div>
+
+        <div class="guide-card">
+          <p>Handy shortcuts to track your contributions and explore queries:</p>
+
+          <div class="guide-grid-cards">
+            <div class="project-card">
+              <div class="project-card-title">
+                <span>📸 Photos You Added</span>
+                <span class="guide-badge guide-badge-blue">Personal</span>
+              </div>
+              <p>View photos you contributed by replacing <code>USERNAME</code> with your handle:</p>
+              <p><code>https://world.openfoodfacts.org/photographer/USERNAME</code></p>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-title">
+                <span>✏️ Products You Edited</span>
+                <span class="guide-badge guide-badge-blue">Personal</span>
+              </div>
+              <p>Inspect all products you created or modified:</p>
+              <p><code>https://world.openfoodfacts.org/editor/USERNAME</code></p>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-title">
+                <a href="https://en.wiki.openfoodfacts.org/Noteworthy_Products" target="_blank" rel="noopener">Noteworthy Products Wiki ↗</a>
+                <span class="guide-badge guide-badge-neutral">Wiki</span>
+              </div>
+              <p>Products with atypical labels, rare ingredients, or packaging anomalies requiring discussion.</p>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-title">
+                <a href="https://en.wiki.openfoodfacts.org/Useful_queries" target="_blank" rel="noopener">Useful Search Queries ↗</a>
+                <span class="guide-badge guide-badge-green">Search</span>
+              </div>
+              <p>Curated list of advanced search filters for the <a href="https://world.openfoodfacts.org/cgi/search.pl" target="_blank" rel="noopener">Open Food Facts search engine</a>.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Floating Back to Top Button -->
+  <a href="#top" class="guide-back-to-top" title="Back to top" aria-label="Back to top">↑</a>
+
+</div>
+
+<script>
+/* Theme Toggle Management with LocalStorage and prefers-color-scheme listener */
+(function() {
+  const root = document.getElementById('guide-app-root');
+  const buttons = document.querySelectorAll('.guide-theme-btn');
+  if (!root || !buttons.length) return;
+
+  function getStoredTheme() {
+    try {
+      return localStorage.getItem('off_guide_theme') || 'auto';
+    } catch(e) {
+      return 'auto';
+    }
+  }
+
+  function applyTheme(theme) {
+    if (theme === 'auto') {
+      root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', theme);
+    }
+
+    buttons.forEach(btn => {
+      const val = btn.getAttribute('data-theme-val');
+      if (val === theme) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    try {
+      localStorage.setItem('off_guide_theme', theme);
+    } catch(e) {}
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const chosen = this.getAttribute('data-theme-val');
+      applyTheme(chosen);
+    });
+  });
+
+  // Initialize from storage or default
+  applyTheme(getStoredTheme());
+})();
+</script>

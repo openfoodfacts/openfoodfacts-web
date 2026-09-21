@@ -1,0 +1,203 @@
+<!-- Include: Call to donations for API reusers -->
+<style>
+.off-api-donation-card {
+  margin: 1.75rem 0 2rem 0;
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(135deg, #fffbf9 0%, #fdf2f8 100%);
+  border: 1.5px solid #fbcfe8;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(219, 39, 119, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #1e293b;
+  box-sizing: border-box;
+  clear: both;
+}
+.off-api-donation-card * {
+  box-sizing: border-box;
+}
+.off-api-donation-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+.off-api-donation-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #be185d;
+  background: #fce7f3;
+  border: 1px solid #fbcfe8;
+  border-radius: 9999px;
+  line-height: 1.4;
+}
+.off-api-donation-badge svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+.off-api-donation-title {
+  margin: 0.25rem 0 0.65rem 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #831843;
+  line-height: 1.35;
+}
+.off-api-donation-body {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #334155;
+  margin-bottom: 1.25rem;
+}
+.off-api-donation-body p {
+  margin: 0 0 0.6rem 0;
+}
+.off-api-donation-body p:last-child {
+  margin-bottom: 0;
+}
+.off-api-donation-body strong {
+  color: #0f172a;
+}
+.off-api-donation-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+.off-api-donation-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: all 0.18s ease-in-out;
+  cursor: pointer;
+}
+.off-api-donation-btn-primary {
+  background: #db2777;
+  color: #ffffff !important;
+  border: 1.5px solid #db2777;
+  box-shadow: 0 2px 6px rgba(219, 39, 119, 0.25);
+}
+.off-api-donation-btn-primary:hover,
+.off-api-donation-btn-primary:focus {
+  background: #be185d;
+  border-color: #be185d;
+  color: #ffffff !important;
+  box-shadow: 0 4px 10px rgba(190, 24, 93, 0.35);
+  transform: translateY(-1px);
+}
+.off-api-donation-btn-secondary {
+  background: #ffffff;
+  color: #db2777 !important;
+  border: 1.5px solid #db2777;
+}
+.off-api-donation-btn-secondary:hover,
+.off-api-donation-btn-secondary:focus {
+  background: #fdf2f8;
+  border-color: #be185d;
+  color: #be185d !important;
+  transform: translateY(-1px);
+}
+.off-api-donation-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+.off-api-donation-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid #fbcfe8;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+.off-api-donation-footer a {
+  color: #9d174d;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+.off-api-donation-footer a:hover {
+  color: #831843;
+}
+.off-api-donation-footer-note {
+  margin-left: auto;
+  font-style: italic;
+  color: #94a3b8;
+}
+@media (max-width: 640px) {
+  .off-api-donation-card {
+    padding: 1.2rem 1rem;
+  }
+  .off-api-donation-title {
+    font-size: 1.12rem;
+  }
+  .off-api-donation-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+  }
+  .off-api-donation-btn {
+    width: 100%;
+    text-align: center;
+  }
+  .off-api-donation-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+  .off-api-donation-footer-note {
+    margin-left: 0;
+  }
+}
+</style>
+
+<div class="off-api-donation-card" id="off-api-donation-card" role="region" aria-label="Support Open Food Facts API">
+  <div class="off-api-donation-header">
+    <span class="off-api-donation-badge">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      Digital Commons &bull; Non-Profit NGO
+    </span>
+  </div>
+
+  <h3 class="off-api-donation-title">Benefiting from our API? Support the infrastructure that powers your project</h3>
+
+  <div class="off-api-donation-body">
+    <p>Open Food Facts is an independent, non-profit digital commons built for public benefit. We provide our database and API <strong>100% free of charge and open to all</strong>, without commercial paywalls or advertising.</p>
+    <p>Serving millions of real-time queries daily incurs real costs in servers, database clusters, bandwidth, and maintenance. If your application, startup, research project, or company saves time and builds value with our API, please consider supporting Open Food Facts financially. Your contribution keeps our open infrastructure fast, resilient, and freely accessible to everyone worldwide.</p>
+  </div>
+
+  <div class="off-api-donation-actions">
+    <a href="https://donate.openfoodfacts.org/?utm_source=openfoodfacts&amp;utm_medium=web&amp;utm_campaign=api_data_page" target="_blank" rel="noopener noreferrer" class="off-api-donation-btn off-api-donation-btn-primary">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      <span>Support with a Donation</span>
+    </a>
+    <a href="mailto:reuse@openfoodfacts.org?subject=Open%20Food%20Facts%20API%20Sponsorship&amp;body=Hello%20Open%20Food%20Facts%20team%2C%0A%0AWe%20are%20using%20the%20Open%20Food%20Facts%20API%20in%20our%20project%20and%20would%20like%20to%20discuss%20supporting%20your%20infrastructure%20as%20an%20API%20sponsor.%0A%0AOrganization%20%2F%20Company%3A%20%0AWebsite%20%2F%20App%3A%20%0AEstimated%20API%20usage%3A%20%0A%0ABest%20regards" class="off-api-donation-btn off-api-donation-btn-secondary">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+      <span>Become an API Sponsor</span>
+    </a>
+  </div>
+
+  <div class="off-api-donation-footer">
+    <span>✨ <a href="/reuses">Discover the Reuses Showcase</a></span>
+    <span>🏷️ <a href="https://wiki.openfoodfacts.org/ODBL_License#Attribution_guidelines" target="_blank" rel="noopener noreferrer">Attribution Guidelines</a></span>
+    <span>💬 <a href="https://slack.openfoodfacts.org" target="_blank" rel="noopener noreferrer">Join #api on Slack</a></span>
+    <span class="off-api-donation-footer-note">Donations are tax-deductible where eligible</span>
+  </div>
+</div>
