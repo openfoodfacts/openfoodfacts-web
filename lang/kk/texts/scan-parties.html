@@ -1,106 +1,1991 @@
-<!doctype html>
-<html class="no-js" lang="kk">
-   <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Scan Party</title>
-      <meta name="description" content="Open Food Facts contributors open data for 600 000 food products and launch a worldwide scan party!" />
-      <link rel="stylesheet" href="css/foundation.css" />
-      <link rel="shortcut icon" type="image/png" href="sp.png" />
-      <meta property="fb:app_id" content="219331381518041" />
-      <meta property="og:type" content="food"/>
-      <meta property="og:title" content="Open Food Facts - Scan Party"/>
-      <meta property="og:url" content="https://scan.party"/>
-      <meta property="og:image" content="https://scan.party/scanparty.2000x1500.png"/>
-      <meta property="og:description" content="Open Food Facts contributors open data for 600 000 food products and launch a worldwide scan party!"/>
-      <script src="js/vendor/modernizr.js"></script>
-      <style type="text/css" media="all">
-      </style>
-   </head>
-   <body>
-      <div class="row">
-         <div class="large-12 columns">
-            <h1>It's Scan Party Time!</h1>
-         </div>
+<style>
+/* Scoped styles for Scan Party page - adhering to Open Food Facts clean white/slate design system */
+.sp-page {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  font-family: inherit;
+  color: #0f172a;
+}
+
+.sp-header {
+  margin: 1.5rem 0 1.25rem;
+  text-align: center;
+}
+.sp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: #fff7ed;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+}
+.sp-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ea580c;
+  animation: spPulse 2s infinite;
+}
+@keyframes spPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.sp-title {
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.2;
+  margin: 0 0 0.85rem;
+}
+.sp-title-highlight {
+  color: #ea580c;
+}
+.sp-lead {
+  font-size: 1.05rem;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 860px;
+  margin: 0 auto 1.5rem;
+}
+
+.sp-actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+  margin: 1.25rem 0 1.75rem;
+}
+.sp-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  font-weight: 700 !important;
+  font-size: 0.88rem !important;
+  padding: 0.55rem 1.15rem !important;
+  border-radius: 10px !important;
+  text-decoration: none !important;
+  transition: all 0.15s ease !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+}
+.sp-btn-primary {
+  background: #ea580c !important;
+  color: #ffffff !important;
+  border: 1px solid #ea580c !important;
+}
+.sp-btn-primary:hover {
+  background: #c2410c !important;
+  border-color: #c2410c !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.25) !important;
+}
+.sp-btn-secondary {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border: 1px solid #cbd5e1 !important;
+}
+.sp-btn-secondary:hover {
+  background: #f8fafc !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
+.sp-btn-emerald {
+  background: #16a34a !important;
+  color: #ffffff !important;
+  border: 1px solid #16a34a !important;
+}
+.sp-btn-emerald:hover {
+  background: #15803d !important;
+  border-color: #15803d !important;
+  color: #ffffff !important;
+}
+
+.sp-impact-hero {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.25rem auto 2.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+.sp-stat-item {
+  text-align: center;
+  flex: 1 1 150px;
+}
+.sp-stat-number {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: #ea580c;
+  line-height: 1.1;
+  margin-bottom: 0.2rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+.sp-stat-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.15rem;
+}
+.sp-stat-sub {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+.sp-stat-divider {
+  width: 1px;
+  height: 44px;
+  background: #e2e8f0;
+  display: none;
+}
+@media (min-width: 768px) {
+  .sp-stat-divider {
+    display: block;
+  }
+}
+
+.sp-hero-photo-wrap {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 1.25rem;
+  margin: 1.5rem auto 2.5rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+.sp-main-photo-frame {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0f172a;
+  aspect-ratio: 16 / 9;
+  max-height: 480px;
+}
+.sp-main-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.sp-main-photo-frame:hover .sp-main-photo-img {
+  transform: scale(1.02);
+}
+.sp-photo-overlay-top {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.sp-photo-overlay-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.6) 60%, transparent 100%);
+  padding: 1.5rem 1.25rem 1rem;
+  color: #ffffff;
+  text-align: left;
+}
+.sp-photo-overlay-tag {
+  color: #fb923c;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.sp-photo-overlay-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0 0 0.35rem;
+  color: #ffffff;
+}
+.sp-photo-overlay-desc {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin: 0;
+  line-height: 1.45;
+}
+.sp-thumbs-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.65rem;
+  margin-top: 0.85rem;
+}
+.sp-thumb-btn {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  padding: 0;
+  background: #0f172a;
+  cursor: pointer;
+  height: 64px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.sp-thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+}
+.sp-thumb-btn.active {
+  border-color: #ea580c;
+  box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.35);
+}
+.sp-thumb-btn.active img, .sp-thumb-btn:hover img {
+  opacity: 1;
+}
+
+.sp-tribute-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+}
+.sp-tribute-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.sp-tribute-header h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+}
+.sp-tribute-header p {
+  font-size: 0.95rem;
+  color: #475569;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+.sp-tribute-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.sp-tribute-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.sp-tribute-img-wrap {
+  height: 180px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+.sp-tribute-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.sp-tribute-card:hover .sp-tribute-img {
+  transform: scale(1.03);
+}
+.sp-tribute-body {
+  padding: 1rem;
+  flex: 1;
+}
+.sp-tribute-body h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.35rem;
+}
+.sp-tribute-body p {
+  font-size: 0.84rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.45;
+}
+.sp-tribute-invite {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+}
+.sp-tribute-invite-grid {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ea580c;
+  margin: 0.65rem 0;
+}
+
+.sp-section {
+  margin: 3rem 0;
+  text-align: left;
+}
+.sp-section-center {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+.sp-section-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+}
+.sp-section-subtitle {
+  font-size: 1rem;
+  color: #475569;
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+.sp-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+.sp-pillar-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.sp-pillar-card:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+}
+.sp-pillar-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+}
+.sp-icon-orange { background: #fff7ed; color: #ea580c; }
+.sp-icon-emerald { background: #f0fdf4; color: #16a34a; }
+.sp-icon-blue { background: #eff6ff; color: #0284c7; }
+.sp-icon-purple { background: #faf5ff; color: #7c3aed; }
+.sp-pillar-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+}
+.sp-pillar-card p {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sp-workflows-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.sp-wf-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+}
+.sp-wf-card.highlight {
+  border-color: #cbd5e1;
+}
+.sp-wf-top-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+.sp-badge-live { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+.sp-badge-offline { background: #eff6ff; color: #0369a1; border: 1px solid #bae6fd; }
+.sp-wf-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+}
+.sp-wf-desc {
+  font-size: 0.9rem;
+  color: #475569;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+.sp-wf-steps {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.sp-wf-step {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: 0.85rem;
+}
+.sp-wf-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ea580c;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.sp-wf-num-blue {
+  background: #0284c7;
+}
+.sp-wf-step strong {
+  color: #0f172a;
+  display: block;
+}
+.sp-wf-step span {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.sp-seq-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1.75rem 0 2.5rem;
+}
+.sp-seq-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.sp-seq-header h4 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+.sp-seq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.85rem;
+}
+.sp-seq-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 1rem;
+  position: relative;
+  text-align: left;
+}
+.sp-seq-card.primary-anchor {
+  border: 2px solid #ea580c;
+}
+.sp-seq-pill {
+  position: absolute;
+  top: -9px;
+  left: 10px;
+  background: #ea580c;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.sp-seq-card h5 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0.4rem 0 0.25rem;
+}
+.sp-seq-card p {
+  font-size: 0.76rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.sp-sim-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 1.75rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+}
+.sp-sim-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+.sp-shelf-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.sp-prod-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+.sp-prod-card:hover, .sp-prod-card.active {
+  background: #fff7ed;
+  border-color: #ea580c;
+  transform: translateX(4px);
+}
+.sp-prod-emoji {
+  font-size: 1.8rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.35rem 0.55rem;
+}
+.sp-prod-info h5 {
+  margin: 0 0 0.15rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+.sp-prod-info p {
+  margin: 0 0 0.25rem;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+.sp-prod-ean {
+  font-family: monospace;
+  font-size: 0.72rem;
+  background: #e2e8f0;
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: #334155;
+}
+
+.sp-inspector {
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sp-inspector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+.sp-inspector-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sp-inspector-prod-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0 0 0.25rem;
+  color: #ffffff;
+}
+.sp-inspector-scores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+.sp-score-box {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 0.65rem 0.35rem;
+  text-align: center;
+}
+.sp-score-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.sp-score-val {
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+.sp-progress-box {
+  margin-top: 1rem;
+  border-top: 1px solid #334155;
+  padding-top: 0.85rem;
+}
+.sp-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  margin-bottom: 0.45rem;
+  color: #cbd5e1;
+}
+.sp-progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: #334155;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.sp-progress-bar-fill {
+  height: 100%;
+  background: #ea580c;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.sp-kit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+.sp-kit-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+.sp-kit-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+}
+.sp-kit-card p {
+  font-size: 0.84rem;
+  color: #64748b;
+  margin: 0 0 1rem;
+  line-height: 1.45;
+}
+
+.sp-checklist-wrap {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+.sp-check-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+.sp-check-label {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  transition: all 0.15s ease;
+}
+.sp-check-label:hover {
+  border-color: #ea580c;
+  background: #fff7ed;
+}
+.sp-check-label input {
+  width: 18px;
+  height: 18px;
+  accent-color: #ea580c;
+  cursor: pointer;
+}
+.sp-check-label.done {
+  text-decoration: line-through;
+  color: #94a3b8;
+  background: #f1f5f9;
+}
+
+.sp-dir-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  margin: 1.5rem 0;
+}
+.sp-filter-tabs {
+  display: inline-flex;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 3px;
+  gap: 3px;
+}
+.sp-filter-tab {
+  border: none;
+  background: transparent;
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.sp-filter-tab.active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+}
+.sp-search-input {
+  padding: 0.5rem 0.85rem !important;
+  border-radius: 8px !important;
+  border: 1px solid #cbd5e1 !important;
+  font-size: 0.88rem !important;
+  max-width: 280px;
+  margin: 0 !important;
+}
+
+.sp-events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+.sp-event-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.sp-event-card:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+}
+.sp-event-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+}
+.sp-event-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+}
+.sp-badge-upcoming { background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; }
+.sp-badge-past { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+.sp-event-date {
+  font-size: 0.78rem;
+  color: #64748b;
+  font-weight: 600;
+}
+.sp-event-title {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.35rem;
+}
+.sp-event-loc {
+  font-size: 0.84rem;
+  color: #475569;
+  font-weight: 600;
+  margin-bottom: 0.65rem;
+}
+.sp-event-desc {
+  font-size: 0.84rem;
+  color: #64748b;
+  margin-bottom: 0.85rem;
+  line-height: 1.45;
+}
+.sp-event-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+.sp-event-tag {
+  font-size: 0.68rem;
+  background: #f8fafc;
+  color: #475569;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+.sp-event-footer {
+  border-top: 1px solid #f1f5f9;
+  padding-top: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sp-declare-banner {
+  background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%);
+  border: 1px solid #bbf7d0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+.sp-declare-banner h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #166534;
+  margin: 0 0 0.35rem;
+}
+.sp-declare-banner p {
+  font-size: 0.92rem;
+  color: #14532d;
+  margin: 0 0 1rem;
+}
+.sp-declare-drawer {
+  display: none;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+.sp-declare-drawer.open {
+  display: block;
+}
+
+.sp-partner-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.75rem;
+  margin: 2.5rem 0 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+.sp-partner-badge-col {
+  flex: 0 0 auto;
+}
+.sp-partner-logo-box {
+  width: 140px;
+  height: 80px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem;
+}
+.sp-partner-logo-text {
+  font-weight: 900;
+  font-size: 1rem;
+  color: #b91c1c;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.sp-partner-logo-sub {
+  font-size: 0.65rem;
+  color: #475569;
+  font-weight: 600;
+}
+.sp-partner-text-col {
+  flex: 1 1 300px;
+}
+.sp-partner-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ea580c;
+  letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.sp-partner-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+}
+.sp-partner-desc {
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.55;
+  margin: 0 0 0.65rem;
+}
+.sp-partner-link {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #ea580c;
+  text-decoration: none;
+}
+.sp-partner-link:hover {
+  text-decoration: underline;
+}
+
+.sp-community-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0 2.5rem;
+}
+.sp-comm-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.35rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sp-comm-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.35rem;
+}
+.sp-comm-card p {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin: 0 0 1rem;
+}
+</style>
+
+<div class="sp-page">
+  
+  <canvas id="sp-confetti-canvas" style="position: fixed; inset: 0; pointer-events: none; z-index: 99999; width: 100%; height: 100%;"></canvas>
+
+  <!-- Top Hero Header -->
+  <div class="sp-header">
+    <div class="sp-badge">
+      <span class="sp-badge-dot"></span>
+      <span>Open Food Facts Ecosystem • Participatory Citizen Science</span>
+    </div>
+    
+    <h1 class="sp-title">
+      Gather. Scan.<br/>
+      <span class="sp-title-highlight">Democratize Food Data.</span>
+    </h1>
+
+    <p class="sp-lead">
+      A <strong>Scan Party</strong> is a collaborative, hands-on gathering where citizens, volunteers, and food advocates meet in local supermarkets, cooperative grocery stores, or community spaces to scan barcodes, capture ingredients, nutrition facts, and packaging specs directly for <strong>Open Food Facts</strong>.
+    </p>
+
+    <!-- Quick action links -->
+    <div class="sp-actions-bar">
+      <a href="#events" class="sp-btn sp-btn-primary">
+        🚀 Submit / Host a Party
+      </a>
+      <a href="#marketing" class="sp-btn sp-btn-secondary">
+        📦 Host Toolkit & Canva Flyers
+      </a>
+      <a href="#workflows" class="sp-btn sp-btn-secondary">
+        📱 2 Ways to Scan
+      </a>
+      <a href="#simulator" class="sp-btn sp-btn-secondary">
+        🎮 Scan Playground
+      </a>
+      <a href="#events" class="sp-btn sp-btn-secondary">
+        📅 Events Directory
+      </a>
+    </div>
+  </div>
+
+  <!-- Impact Statistics Hero Bar -->
+  <div class="sp-impact-hero">
+    <div class="sp-stat-item">
+      <div class="sp-stat-number">3,8M+</div>
+      <div class="sp-stat-label">Open Products</div>
+      <div class="sp-stat-sub">In public database</div>
+    </div>
+    <div class="sp-stat-divider"></div>
+    <div class="sp-stat-item">
+      <div class="sp-stat-number">100%</div>
+      <div class="sp-stat-label">Free & Open Source</div>
+      <div class="sp-stat-sub">Global public commons</div>
+    </div>
+    <div class="sp-stat-divider"></div>
+    <div class="sp-stat-item">
+      <div class="sp-stat-number">180+</div>
+      <div class="sp-stat-label">Countries Impacted</div>
+      <div class="sp-stat-sub">Worldwide reach</div>
+    </div>
+    <div class="sp-stat-divider"></div>
+    <div class="sp-stat-item">
+      <div class="sp-stat-number">15 000+</div>
+      <div class="sp-stat-label">Citizen Contributors</div>
+      <div class="sp-stat-sub">Active worldwide</div>
+    </div>
+  </div>
+
+  <!-- Interactive Hero Contributor Photo Showcase -->
+  <div class="sp-hero-photo-wrap">
+    <div class="sp-main-photo-frame">
+      <img id="sp-hero-photo-img" 
+           src="https://world.openfoodfacts.org/images/misc/scanparty-off-general-meeting-20150620.jpg" 
+           alt="Open Food Facts Scan Party Gathering" 
+           class="sp-main-photo-img" />
+      
+      <div class="sp-photo-overlay-top">
+        <span style="color: #22c55e;">●</span>
+        <span id="sp-hero-photo-loc">Paris, France (2015)</span>
       </div>
-      <div class="row">
-         <div class="medium-6 columns">
-            <img src="https://world.openfoodfacts.org/images/misc/50k.640x480.png" alt="600k food products in open data" />
-         </div>
-         <div class="medium-6 columns">
-            <h3>Open Food Facts contributors open data for 50 000 food products and launch a worldwide scan party!</h3>
-            <p>In 3 years, <a href="https://world.openfoodfacts.org/contributors">15000 contributors</a> from around the world have opened the data for <a href="https://world.openfoodfacts.org/">600 000 food products</a>
-               from <a href="https://world.openfoodfacts.org/countries">134 countries</a> by scanning their barcodes and taking pictures of their ingredients lists and nutrition facts tables.
-            </p>
-            <p>All the data is available in open data under the Open Database Licence (ODbL) and can be reused by anyone and for any use.</p>
-            <p>The scan party has barely started, install our <a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=kk">Android</a>,
-               <a href="https://apps.apple.com/app/open-food-facts/id588797948">iPhone</a> or
-               <a href="https://www.microsoft.com/p/openfoodfacts/9nblggh0dkqr">Windows Phone</a> app and <b>join us!</b>
-            </p>
-         </div>
+
+      <div class="sp-photo-overlay-bottom">
+        <span class="sp-photo-overlay-tag" id="sp-hero-photo-tag">Historical Gathering</span>
+        <h4 class="sp-photo-overlay-title" id="sp-hero-photo-title">1st OFF General Assembly in Paris</h4>
+        <p class="sp-photo-overlay-desc" id="sp-hero-photo-desc">Pioneering contributors scanning and cataloging products together in Paris back in 2015.</p>
       </div>
-      <div class="row" style="margin-top:2rem">
-         <div class="large-12 columns">
-            <h1>Opening food products... everywhere we scan!</h1>
-            <p>We would like to collect pictures of Open Food Facts contributors in action from all over the world. Send us pictures of you scanning products, of your favorite food store, of the inside of your fridge etc.
-               so that we can publish them here!
-            </p>
-         </div>
+    </div>
+
+    <!-- Switcher Thumbnails -->
+    <div class="sp-thumbs-row">
+      <button type="button" onclick="switchSpHeroPhoto(0)" class="sp-thumb-btn active" id="sp-thumb-0" title="Paris Assembly 2015">
+        <img src="https://world.openfoodfacts.org/images/misc/scanparty-off-general-meeting-20150620.jpg" alt="Paris Assembly 2015" />
+      </button>
+      <button type="button" onclick="switchSpHeroPhoto(1)" class="sp-thumb-btn" id="sp-thumb-1" title="Lyon Asian Market 2015">
+        <img src="https://world.openfoodfacts.org/images/misc/scanparty-lyon-20150601.jpg" alt="Lyon Asian Market 2015" />
+      </button>
+      <button type="button" onclick="switchSpHeroPhoto(2)" class="sp-thumb-btn" id="sp-thumb-2" title="Marie-Claire in Spain 2015">
+        <img src="https://world.openfoodfacts.org/images/misc/marie-claire-scan-spain.jpg" alt="Marie-Claire Spain" />
+      </button>
+      <button type="button" onclick="switchSpHeroPhoto(3)" class="sp-thumb-btn" id="sp-thumb-3" title="Yes They Scan Banner">
+        <img src="https://world.openfoodfacts.org/images/misc/scanparty.640x480.png" alt="Scan Party Banner" />
+      </button>
+      <button type="button" onclick="switchSpHeroPhoto(4)" class="sp-thumb-btn" id="sp-thumb-4" title="Coop Supermarket Workshop">
+        <img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=400&q=80" alt="Coop Workshop" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Historical Contributors Tribute Box (Preserving Heart-Warming Photos) -->
+  <div class="sp-tribute-box">
+    <div class="sp-tribute-header">
+      <h3>❤️ Heart-Warming Energy: Yes They Scan!</h3>
+      <p>Since the earliest days of Open Food Facts, scan parties have been powered by kind, passionate people determined to bring food transparency to everyone.</p>
+    </div>
+
+    <div class="sp-tribute-cards">
+      <div class="sp-tribute-card">
+        <div class="sp-tribute-img-wrap">
+          <img src="https://world.openfoodfacts.org/images/misc/scanparty-off-general-meeting-20150620.jpg" alt="1st Assembly Paris" class="sp-tribute-img" />
+        </div>
+        <div class="sp-tribute-body">
+          <h4>1st General Assembly in Paris</h4>
+          <p>June 20, 2015: First collective scan gathering during the founding assembly of Open Food Facts in Paris.</p>
+        </div>
       </div>
-      <div class="row" style="margin-top:2rem">
-         <div class="large-6 columns">
-            <h2>Yes they scan!</h2>
-            <p>Use the <a href="https://twitter.com/search?q=%23scanparty">#scanparty</a> hashtag on Twitter and/or send us your pictures to <a href="mailto:scanparty@openfoodfacts.org">scanparty@openfoodfacts.org</a></p>
-            <img src="https://world.openfoodfacts.org/images/misc/scanparty.640x480.png" alt="Scan party" />
-         </div>
-         <div class="large-6 columns">
-            <a class="twitter-timeline" width="1000" href="/OpenFoodFacts/timelines/616553921876742145" data-widget-id="616554932188147712">Scan Party</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>		
-         </div>
+
+      <div class="sp-tribute-card">
+        <div class="sp-tribute-img-wrap">
+          <img src="https://world.openfoodfacts.org/images/misc/scanparty-lyon-20150601.jpg" alt="Lyon Chinese store" class="sp-tribute-img" />
+        </div>
+        <div class="sp-tribute-body">
+          <h4>Impromptu Scan Party in Lyon</h4>
+          <p>June 2015: Spontaneous expedition in an Asian grocery store to decode and index dozens of specialties.</p>
+        </div>
       </div>
-      <div class="row" style="margin-top:2rem">
-         <h1>The scan-do attitude is spreading!</h1>
-         <div class="medium-4 columns">
-            <img src="https://world.openfoodfacts.org/images/misc/scanparty-off-general-meeting-20150620.jpg" alt="General assembly in Paris" /><br/>
-            <p>Scanning products at the 1st Open Food Facts association general assembly in Paris - June 20th 2015</p>
-         </div>
-         <div class="medium-4 columns">
-            <img src="https://world.openfoodfacts.org/images/misc/scanparty-lyon-20150601.jpg" alt="50k food products in open data" />
-            <p>Impromptu scan party in a Chinese food store in Lyon, France in June 2015</p>
-         </div>
-         <div class="medium-4 columns">
-            <img src="https://world.openfoodfacts.org/images/misc/marie-claire-scan-spain.jpg" alt="Marie-Claire" />
-            <p>Marie-Claire, one of the very first OFF contributors, hunts for barcodes in a Spanish supermarket</p>
-         </div>
+
+      <div class="sp-tribute-card">
+        <div class="sp-tribute-img-wrap">
+          <img src="https://world.openfoodfacts.org/images/misc/marie-claire-scan-spain.jpg" alt="Marie-Claire Spain" class="sp-tribute-img" />
+        </div>
+        <div class="sp-tribute-body">
+          <h4>Marie-Claire, Pioneer Contributor</h4>
+          <p>Hunting barcodes in Spain after cataloging over 200 products before the public launch of Open Food Facts!</p>
+        </div>
       </div>
-      <div class="row"  style="margin-top:2rem;">
-         <h1>Joining us next...</h1>
-         <div class="medium-4 columns">You? :-)</div>
-         <div class="medium-4 columns">Your family? :-)</div>
-         <div class="medium-4 columns">Your friends? :-)</div>
+    </div>
+
+    <div class="sp-tribute-invite">
+      <div style="font-weight: 700; color: #9a3412;">Joining us next...</div>
+      <div class="sp-tribute-invite-grid">
+        <span>You? :-)</span>
+        <span>Your family? :-)</span>
+        <span>Your friends? :-)</span>
       </div>
-      <div class="row"  style="margin-top:2rem;margin-bottom:2rem;">
-         <div class="small-12 columns">
-            <p><a href="https://world.openfoodfacts.org/discover">Discover</a> and <a href="https://world.openfoodfacts.org/contribute">Contribute</a>!</p>
-            <p>
-               Join us on <a href="https://slack.openfoodfacts.org">Slack</a>: <script async defer src="https://slack.openfoodfacts.org/slackin.js"></script>
-            </p>
-         </div>
+      <p style="font-size: 0.88rem; color: #7c2d12; margin: 0.35rem 0 0;">
+        Share your scan party photos with <strong>#scanparty</strong> or send them to <a href='mailto:scanparty@openfoodfacts.org'>scanparty@openfoodfacts.org</a>!
+      </p>
+    </div>
+  </div>
+
+  <!-- Concept & Mission -->
+  <div class="sp-section" id="about">
+    <div class="sp-section-center">
+      <div class="sp-badge">Concept & Mission</div>
+      <h2 class="sp-section-title">What is a Scan Party?</h2>
+      <p class="sp-section-subtitle">A fun, educational, and impactful workshop combining social teamwork with citizen science: decipher food labels while enriching the world's largest open food commons.</p>
+    </div>
+
+    <div class="sp-pillars-grid">
+      <div class="sp-pillar-card">
+        <div class="sp-pillar-icon sp-icon-orange">📊</div>
+        <h4>Enrich Open Food Facts</h4>
+        <p>Add new products and refresh ingredient lists, nutrition tables, and recyclable packaging specs.</p>
       </div>
-      <script src="js/vendor/jquery.js"></script>
-      <script src="js/foundation.min.js"></script>
-      <script>
-         $(document).foundation();
-      </script>
-      <script>
-         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-         
-         ga('create', 'UA-31851927-9', 'auto');
-         ga('send', 'pageview');
-         
-      </script>
-   </body>
-</html>
+
+      <div class="sp-pillar-card">
+        <div class="sp-pillar-icon sp-icon-emerald">🛡️</div>
+        <h4>Empower Consumers</h4>
+        <p>Provide verified, transparent facts to help everyone make healthier and more sustainable food choices.</p>
+      </div>
+
+      <div class="sp-pillar-card">
+        <div class="sp-pillar-icon sp-icon-blue">🤝</div>
+        <h4>Promote Collaboration</h4>
+        <p>Connect neighbors, students, coworkers, and co-op members through engaging, collaborative teamwork.</p>
+      </div>
+
+      <div class="sp-pillar-card">
+        <div class="sp-pillar-icon sp-icon-purple">🌱</div>
+        <h4>Raise Food Literacy</h4>
+        <p>Demystify Nutri-Score, Eco-Score, NOVA ultra-processing groups, and additive classifications.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 Scanning Workflows -->
+  <div class="sp-section" id="workflows">
+    <div class="sp-section-center">
+      <div class="sp-badge">2 Flexible Workflows</div>
+      <h2 class="sp-section-title">2 Ways to Run Your Scan Party</h2>
+      <p class="sp-section-subtitle">Whether you have high-speed Wi-Fi in a classroom or zero cellular reception in a supermarket basement, Open Food Facts has you covered!</p>
+    </div>
+
+    <div class="sp-workflows-grid">
+      <!-- Workflow 1 -->
+      <div class="sp-wf-card highlight">
+        <div>
+          <span class="sp-wf-top-badge sp-badge-live">Best with Wi-Fi / 4G</span>
+          <h3 class="sp-wf-title">Method 1: Live Mobile App Scanning</h3>
+          <p class="sp-wf-desc">Participants install the free Open Food Facts mobile app, scan items, and add photos directly on their phones.</p>
+
+          <ul class="sp-wf-steps">
+            <li class="sp-wf-step">
+              <span class="sp-wf-num">1</span>
+              <div>
+                <strong>Install Free App</strong>
+                <span>Available on iOS and Android without ads or paywalls.</span>
+              </div>
+            </li>
+            <li class="sp-wf-step">
+              <span class="sp-wf-num">2</span>
+              <div>
+                <strong>Pair Up Participants</strong>
+                <span>One person handles products, the second scans barcodes and captures labels.</span>
+              </div>
+            </li>
+            <li class="sp-wf-step">
+              <span class="sp-wf-num">3</span>
+              <div>
+                <strong>Capture 4 Key Angles</strong>
+                <span>Front packaging, ingredients list, nutrition table, and recycling specs.</span>
+              </div>
+            </li>
+            <li class="sp-wf-step">
+              <span class="sp-wf-num">4</span>
+              <div>
+                <strong>Instant AI & Score Calculation</strong>
+                <span>Built-in OCR extracts text and computes Nutri-Score & Eco-Score on the spot!</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <a href="https://world.openfoodfacts.org/open-food-facts-mobile-app" target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-primary" style="width: 100%;">
+          📱 Download Open Food Facts App
+        </a>
+      </div>
+
+      <!-- Workflow 2 -->
+      <div class="sp-wf-card">
+        <div>
+          <span class="sp-wf-top-badge sp-badge-offline">No Wi-Fi Needed!</span>
+          <h3 class="sp-wf-title">Method 2: Offline Photos & Producer Import</h3>
+          <p class="sp-wf-desc">When scanning in basements with no Wi-Fi, take photos using standard camera phones following the barcode anchor sequence, then bulk upload the folder to the Producer Platform!</p>
+
+          <ul class="sp-wf-steps">
+            <li class="sp-wf-step">
+              <span class="sp-wf-num sp-wf-num-blue">1</span>
+              <div>
+                <strong>Sequential Camera Photos</strong>
+                <span>Use standard camera phones to snap clear photos.</span>
+              </div>
+            </li>
+            <li class="sp-wf-step">
+              <span class="sp-wf-num sp-wf-num-blue">2</span>
+              <div>
+                <strong>Barcode Photo First</strong>
+                <span>The barcode photo serves as the separator delimiter for automatic pairing.</span>
+              </div>
+            </li>
+            <li class="sp-wf-step">
+              <span class="sp-wf-num sp-wf-num-blue">3</span>
+              <div>
+                <strong>Collect Photo Folders</strong>
+                <span>Gather photo folders onto the host laptop after the event.</span>
+              </div>
+            </li>
+            <li class="sp-wf-step">
+              <span class="sp-wf-num sp-wf-num-blue">4</span>
+              <div>
+                <strong>Drag & Drop Bulk Upload</strong>
+                <span>Upload the complete folder to pro.openfoodfacts.org for batch processing!</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <a href="https://pro.openfoodfacts.org" target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-secondary" style="width: 100%; border-color: #0284c7; color: #0284c7;">
+          🌐 Visit Producer Platform (pro.openfoodfacts.org)
+        </a>
+      </div>
+    </div>
+
+    <!-- Barcode Anchor Sequence Diagram -->
+    <div class="sp-seq-box">
+      <div class="sp-seq-header">
+        <h4>The 'Barcode Anchor' Photo Sequence Protocol</h4>
+        <span style="font-size: 0.78rem; font-weight: 700; color: #ea580c; background: #fff7ed; padding: 0.25rem 0.65rem; border-radius: 6px; border: 1px solid #fed7aa;">
+          Ordre strict obligatoire
+        </span>
+      </div>
+      <p style="font-size: 0.86rem; color: #64748b; margin: 0 0 1rem; line-height: 1.45;">
+        For offline scanning, follow this strict sequence for each product: the barcode photo acts as the delimiter so the system correctly groups consecutive packaging photos.
+      </p>
+
+      <div class="sp-seq-grid">
+        <div class="sp-seq-card primary-anchor">
+          <span class="sp-seq-pill">Step 1 • Anchor</span>
+          <div style="font-size: 1.4rem; color: #ea580c; margin-bottom: 0.2rem;">📶</div>
+          <h5>1. Barcode Photo</h5>
+          <p>Flat and sharp with visible digits (acts as delimiter).</p>
+        </div>
+
+        <div class="sp-seq-card">
+          <div style="font-size: 1.4rem; color: #0284c7; margin-bottom: 0.2rem;">📦</div>
+          <h5>2. Front Packaging</h5>
+          <p>Product name, brand, logos, and net weight/volume.</p>
+        </div>
+
+        <div class="sp-seq-card">
+          <div style="font-size: 1.4rem; color: #16a34a; margin-bottom: 0.2rem;">📋</div>
+          <h5>3. Ingredients List</h5>
+          <p>Full ingredients list and allergen statements.</p>
+        </div>
+
+        <div class="sp-seq-card">
+          <div style="font-size: 1.4rem; color: #7c3aed; margin-bottom: 0.2rem;">🥗</div>
+          <h5>4. Nutrition Table</h5>
+          <p>Values per 100g / 100ml (calories, sugars, fats, salt).</p>
+        </div>
+
+        <div class="sp-seq-card">
+          <div style="font-size: 1.4rem; color: #eab308; margin-bottom: 0.2rem;">♻️</div>
+          <h5>5. Packaging & Eco</h5>
+          <p>Recycling symbols (Triman), material types (PET, HDPE, PP).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Playground Simulator -->
+  <div class="sp-section" id="simulator">
+    <div class="sp-section-center">
+      <div class="sp-badge">Interactive Playground</div>
+      <h2 class="sp-section-title">Scan Party Simulator</h2>
+      <p class="sp-section-subtitle">Click items on the shelf to see barcode scanning and score calculation in real time!</p>
+    </div>
+
+    <div class="sp-sim-box">
+      <div class="sp-sim-layout">
+        <!-- Store Shelf -->
+        <div>
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #64748b; margin: 0 0 0.75rem; text-transform: uppercase;">
+            Store Shelf Products:
+          </h4>
+
+          <div class="sp-shelf-items" id="sp-shelf-container">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Live Database Inspector -->
+        <div class="sp-inspector">
+          <div>
+            <div class="sp-inspector-header">
+              <span class="sp-inspector-title">
+                <span>🚀</span> Live Open Food Facts Inspector
+              </span>
+              <span id="sp-sim-time" style="font-size: 0.75rem; color: #94a3b8; font-family: monospace;">Ready</span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1rem;">
+              <span id="sp-sim-icon" style="font-size: 2.2rem; background: #1e293b; padding: 0.35rem 0.65rem; border-radius: 8px;">🛒</span>
+              <div>
+                <h3 class="sp-inspector-prod-title" id="sp-sim-title">Sélectionnez un produit</h3>
+                <p id="sp-sim-brand" style="margin: 0; font-size: 0.84rem; color: #94a3b8;">Cliquez sur un article à gauche pour tester le scan</p>
+              </div>
+            </div>
+
+            <div class="sp-inspector-scores">
+              <div class="sp-score-box">
+                <span class="sp-score-label">Nutri-Score</span>
+                <span class="sp-score-val" id="sp-sim-nutri" style="color: #22c55e;">--</span>
+              </div>
+              <div class="sp-score-box">
+                <span class="sp-score-label">Groupe NOVA</span>
+                <span class="sp-score-val" id="sp-sim-nova" style="color: #fb923c;">--</span>
+              </div>
+              <div class="sp-score-box">
+                <span class="sp-score-label">Éco-Score</span>
+                <span class="sp-score-val" id="sp-sim-eco" style="color: #4ade80;">--</span>
+              </div>
+            </div>
+
+            <div style="background: #1e293b; border-radius: 8px; padding: 0.75rem; font-size: 0.78rem; space-y: 0.35rem; color: #cbd5e1;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                <span style="color: #94a3b8;">Code-barres (EAN) :</span>
+                <span id="sp-sim-code" style="font-family: monospace; color: #ffffff;">--</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: #94a3b8;">Emballage :</span>
+                <span id="sp-sim-pkg" style="color: #ffffff;">--</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress goal -->
+          <div class="sp-progress-box">
+            <div class="sp-progress-labels">
+              <span>Scan Party Goal Progress:</span>
+              <strong id="sp-sim-counter" style="color: #ea580c;">0 / 50 scans</strong>
+            </div>
+            <div class="sp-progress-bar-bg">
+              <div id="sp-sim-progress" class="sp-progress-bar-fill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Host Toolkit & Marketing Resources -->
+  <div class="sp-section" id="marketing">
+    <div class="sp-section-center">
+      <div class="sp-badge">Host Resources & Kit</div>
+      <h2 class="sp-section-title">Host Toolkit & Marketing Materials</h2>
+      <p class="sp-section-subtitle">Everything you need to prepare, promote, and host your local Scan Party with ease:</p>
+    </div>
+
+    <div class="sp-kit-grid">
+      <div class="sp-kit-card">
+        <div>
+          <div style="font-size: 1.8rem; margin-bottom: 0.75rem;">🎨</div>
+          <h4>Canva Poster Templates</h4>
+          <p>Customizable A4 posters, social media banners, and printable sign-up sheets in Canva.</p>
+        </div>
+        <a href="https://www.canva.com/folder/FAFOYPM6xn8" target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-secondary" style="width: 100%; border-color: #7c3aed; color: #7c3aed;">
+          🎨 Open Canva Design Folder
+        </a>
+      </div>
+
+      <div class="sp-kit-card">
+        <div>
+          <div style="font-size: 1.8rem; margin-bottom: 0.75rem;">📕</div>
+          <h4>PDF Host Handbook</h4>
+          <p>A comprehensive 12-page step-by-step handbook covering store outreach, room setup, and team facilitation.</p>
+        </div>
+        <a href="https://drive.google.com/file/d/1xqtjqvJrwuqxZYQ_8Zd5EQXp0n1PrjFs/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-secondary" style="width: 100%; border-color: #dc2626; color: #dc2626;">
+          📥 Download PDF Guide
+        </a>
+      </div>
+
+      <div class="sp-kit-card">
+        <div>
+          <div style="font-size: 1.8rem; margin-bottom: 0.75rem;">📰</div>
+          <h4>Workshop Guide Article (EN)</h4>
+          <p>Comprehensive blog post guide: 'Organise a scan party / participative workshop!'</p>
+        </div>
+        <a href="https://blog.openfoodfacts.org/en/news/organise-a-scan-party-participative-workshop" target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-secondary" style="width: 100%; border-color: #ea580c; color: #ea580c;">
+          🌐 Read Article (EN)
+        </a>
+      </div>
+
+      <div class="sp-kit-card">
+        <div>
+          <div style="font-size: 1.8rem; margin-bottom: 0.75rem;">🇫🇷</div>
+          <h4>French Workshop Article</h4>
+          <p>Official French announcement & guide: 'Organisez une scan party emballages'.</p>
+        </div>
+        <a href="https://blog.openfoodfacts.org/fr/news/organisez-une-scan-party-emballages" target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-secondary" style="width: 100%; border-color: #0284c7; color: #0284c7;">
+          🌐 Read Article (FR)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Host Organizer Checklist -->
+  <div class="sp-checklist-wrap">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+      <div>
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin: 0 0 0.25rem;">
+          📋 Interactive Host Checklist
+        </h3>
+        <p style="font-size: 0.88rem; color: #64748b; margin: 0;">Track your preparation progress step-by-step to ensure a smooth, rewarding workshop:</p>
+      </div>
+      <span id="sp-checklist-status" style="font-weight: 800; font-size: 0.84rem; color: #ea580c; background: #fff7ed; padding: 0.35rem 0.75rem; border-radius: 9999px; border: 1px solid #fed7aa;">
+        0 / 6 complétées
+      </span>
+    </div>
+
+    <div class="sp-check-items" id="sp-checklist-items">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+
+  <!-- Events Directory & Declare Your Own -->
+  <div class="sp-section" id="events">
+    <div class="sp-section-center">
+      <div class="sp-badge">Global Network</div>
+      <h2 class="sp-section-title">Scan Parties Directory</h2>
+      <p class="sp-section-subtitle">Explore upcoming gatherings and historical scan parties from around the world:</p>
+    </div>
+
+    <!-- Declare Your Own Scan Party Callout Banner -->
+    <div class="sp-declare-banner">
+      <h3>📢 Hosting a Scan Party? Get it listed here!</h3>
+      <p>Add your scan party in 1 click via a pre-filled GitHub issue or a Pull Request, just like reuses and scientific papers.</p>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
+        <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?title=%5BScan+Party%5D+New+Event%3A+&labels=scan-party%2Cevent&body=%23%23%23+%F0%9F%8E%89+Scan+Party+Title%0A%3C%21--+Enter+event+title+--%3E%0A%0A%23%23%23+%F0%9F%93%85+Date+%26+Time%0A-+Date%3A+%0A-+Start+Time%3A+%0A%0A%23%23%23+%F0%9F%93%8D+Location+%26+Venue%0A-+Venue+Name%3A+%0A-+City%3A+%0A-+Country%3A+%0A%0A%23%23%23+%F0%9F%91%A4+Organizer%0A-+Organizer+Name+%2F+Organization%3A+%0A-+Contact+Email+%2F+Slack+handle%3A+%0A%0A%23%23%23+%F0%9F%93%9D+Description%0A%3C%21--+Describe+the+scan+party%2C+target+store%2C+or+focus+--%3E%0A%0A%23%23%23+%F0%9F%94%97+Registration+%2F+Recap+Link%0A-+Link%3A+%0A" 
+           target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-primary">
+          🚀 Submit via GitHub (1-Click)
+        </a>
+        <a href="https://github.com/openfoodfacts/openfoodfacts-web/tree/main/data/scan_parties" 
+           target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-secondary" style="border-color: #16a34a; color: #16a34a;">
+          ✏️ Propose a YAML file (PR)
+        </a>
+        <button type="button" onclick="toggleSpDeclareDrawer()" class="sp-btn sp-btn-secondary">
+          📋 Online YAML Generator
+        </button>
+      </div>
+
+      <!-- Generator Drawer -->
+      <div class="sp-declare-drawer" id="sp-declare-drawer">
+        <h4 style="font-size: 1.05rem; font-weight: 800; color: #0f172a; margin: 0 0 0.85rem;">
+          Générer une fiche d'atelier YAML
+        </h4>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.85rem; margin-bottom: 1rem;">
+          <input type="text" id="gen-title" placeholder="Titre de la Scan Party" style="padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem;">
+          <input type="text" id="gen-city" placeholder="Ville & Pays (ex: Lyon, France)" style="padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem;">
+          <input type="text" id="gen-venue" placeholder="Lieu / Magasin (ex: Biomonde Rennes)" style="padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem;">
+          <input type="text" id="gen-date" placeholder="Date (ex: Novembre 2024)" style="padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem;">
+        </div>
+        <textarea id="gen-desc" placeholder="Courte description de l'atelier..." style="width: 100%; height: 70px; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem; margin-bottom: 0.85rem;"></textarea>
+        
+        <div style="display: flex; gap: 0.65rem;">
+          <button type="button" onclick="generateSpYaml()" class="sp-btn sp-btn-primary">
+            📋 Générer & Copier le YAML
+          </button>
+          <button type="button" onclick="toggleSpDeclareDrawer()" class="sp-btn sp-btn-secondary">
+            Fermer
+          </button>
+        </div>
+        <pre id="gen-output" style="display: none; background: #0f172a; color: #a5f3fc; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: 0.78rem; overflow-x: auto;"></pre>
+      </div>
+    </div>
+
+    <!-- Filter Controls -->
+    <div class="sp-dir-controls">
+      <div class="sp-filter-tabs">
+        <button type="button" class="sp-filter-tab active" id="tab-all" onclick="filterSpEvents('all')">All Events</button>
+        <button type="button" class="sp-filter-tab" id="tab-upcoming" onclick="filterSpEvents('upcoming')">Upcoming</button>
+        <button type="button" class="sp-filter-tab" id="tab-past" onclick="filterSpEvents('past')">Past Events</button>
+      </div>
+
+      <input type="search" id="sp-event-search" class="sp-search-input" placeholder="🔍 Filter by city, venue, country..." oninput="searchSpEvents()">
+    </div>
+
+    <!-- Dynamic Events Grid -->
+    <div class="sp-events-grid" id="sp-events-container">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <!-- Community & Slack Section -->
+  <div class="sp-section" id="community">
+    <div class="sp-section-center">
+      <h2 class="sp-section-title">Connect with the Community</h2>
+      <p class="sp-section-subtitle">Need guidance, ideas, or venue advice? Connect directly with organizers and OFF staff:</p>
+    </div>
+
+    <div class="sp-community-grid">
+      <div class="sp-comm-card">
+        <div>
+          <div style="font-size: 2rem; color: #16a34a; margin-bottom: 0.5rem;">💬</div>
+          <h4>Canal Slack International</h4>
+          <p>Join #scanparty on the official Slack for global coordination and tips.</p>
+        </div>
+        <a href="https://openfoodfacts.slack.com/messages/C037DFCLU/" target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-emerald" style="width: 100%;">
+          Rejoindre #scanparty
+        </a>
+      </div>
+
+      <div class="sp-comm-card">
+        <div>
+          <div style="font-size: 2rem; color: #0284c7; margin-bottom: 0.5rem;">🇫🇷</div>
+          <h4>Canal Slack Francophone</h4>
+          <p>Join #scanparty_fr to collaborate with French-speaking organizers.</p>
+        </div>
+        <a href="https://openfoodfacts.slack.com/messages/C1C8216TF/" target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-secondary" style="width: 100%; border-color: #0284c7; color: #0284c7;">
+          Rejoindre #scanparty_fr
+        </a>
+      </div>
+
+      <div class="sp-comm-card">
+        <div>
+          <div style="font-size: 2rem; color: #ea580c; margin-bottom: 0.5rem;">✉️</div>
+          <h4>Community Lead Support</h4>
+          <p>Reach out to Gala (Community Lead) for assistance, materials, or introductions.</p>
+        </div>
+        <a href="mailto:gala@openfoodfacts.org" class="sp-btn sp-btn-primary" style="width: 100%;">
+          Contacter Gala (Communauté)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dedicated Supporting Partner Section: Fondation de France -->
+  <div class="sp-partner-section">
+    <div class="sp-partner-badge-col">
+      <a href="https://www.fondationdefrance.org/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+        <div class="sp-partner-logo-box">
+          <span class="sp-partner-logo-text">Fondation<br/>de France</span>
+          <span class="sp-partner-logo-sub">Toutes les envies d'agir</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="sp-partner-text-col">
+      <span class="sp-partner-tag">Supporting Partner</span>
+      <h3 class="sp-partner-title">Supported by Fondation de France</h3>
+      <p class="sp-partner-desc">
+        Open Food Facts warmly thanks the <strong>Fondation de France</strong> for its generous support of citizen participatory science, civic engagement, and open food data democratization for healthier and more sustainable food systems.
+      </p>
+      <a href="https://www.fondationdefrance.org/" target="_blank" rel="noopener noreferrer" class="sp-partner-link">
+        Learn more about Fondation de France &rarr;
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Client-Side Runtime for Interactive Features -->
+<script>
+const SP_EVENTS = [{"id": "la-melting-coop-lyon-2024", "title": "La Melting Coop Scan Party", "type": "upcoming", "status": "upcoming", "date": "November 2024", "start_date": "2024-11-16", "location": "Lyon, France", "city": "Lyon", "country": "fra", "venue": "La Melting Coop Store", "organizer": "La Melting Coop & Open Food Facts Lyon Chapter", "description": "Join fellow cooperators to scan incoming seasonal groceries, enrich packaging specifications, and learn how open food data empowers consumers.", "image": "https://world.openfoodfacts.org/images/misc/scanparty-lyon-20150601.jpg", "image_caption": "Community scan party in Lyon", "products_scanned": null, "participants_count": null, "link": null, "tags": ["coop", "lyon", "upcoming", "citizen-science"]}, {"id": "biomonde-rennes-2024", "title": "Biomonde Rennes Organic Scan Party", "type": "upcoming", "status": "upcoming", "date": "November 2024", "start_date": "2024-11-23", "location": "Rennes, France", "city": "Rennes", "country": "fra", "venue": "Biomonde Organic Grocery", "organizer": "Breton Food Data Enthusiasts", "description": "A collaborative Saturday workshop scanning organic and regional Brittany products, checking labels for additives and certifying recyclable packagings.", "image": null, "image_caption": null, "products_scanned": null, "participants_count": null, "link": null, "tags": ["organic", "rennes", "upcoming", "bio"]}, {"id": "cayenne-guyana-2024", "title": "Cayenne French Guiana Scan Party", "type": "past", "status": "completed", "date": "June 2024", "start_date": "2024-06-12", "location": "French Guiana", "city": "Cayenne", "country": "guf", "venue": "Cayenne City Center & Local Grocers", "organizer": "Local Guyanese Community & Open Food Facts", "description": "A milestone scan party in French Guiana to document local Caribbean and Amazonian food products, tropical preserves, and regional dietary specifics.", "image": null, "image_caption": null, "products_scanned": 280, "participants_count": 20, "link": "https://blog.openfoodfacts.org/fr/news/une-scan-party-a-cayenne", "tags": ["french-guiana", "overseas", "tropical-food", "diversity"]}, {"id": "lelefan-grenoble-2024", "title": "L'Eléfàn Grenoble Scan Party", "type": "past", "status": "completed", "date": "March 2024", "start_date": "2024-03-23", "location": "Grenoble, France", "city": "Grenoble", "country": "fra", "venue": "L'Eléfàn Cooperative Supermarket", "organizer": "L'Eléfàn Members & Open Food Facts", "description": "Cooperative supermarket scan day focused on bulk and local products, adding regional producers and nutritional tables to Open Food Facts.", "image": null, "image_caption": null, "products_scanned": 190, "participants_count": 14, "link": null, "tags": ["coop", "grenoble", "local-food"]}, {"id": "climate-academy-paris-2023", "title": "Climate Academy Food Packaging Workshop", "type": "past", "status": "completed", "date": "November 2023", "start_date": "2023-11-20", "location": "Paris, France", "city": "Paris", "country": "fra", "venue": "Académie du Climat (Paris 4e)", "organizer": "Open Food Facts & Climate Academy", "description": "Hands-on workshop collecting packaging specs, recycling symbols, and material weights to calculate accurate Eco-Scores for thousands of items.", "image": "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80", "image_caption": "Participatory workshop collecting complete packaging materials and weight specifications", "products_scanned": 240, "participants_count": 22, "link": "https://blog.openfoodfacts.org/fr/news/organisez-une-scan-party-emballages", "tags": ["climate", "packaging", "eco-score", "workshop"]}, {"id": "les-400-coop-2023", "title": "Les 400 Coop Scan Party", "type": "past", "status": "completed", "date": "October 2023", "start_date": "2023-10-14", "location": "France", "city": "Paris Region", "country": "fra", "venue": "Les 400 Coop Cooperative Supermarket", "organizer": "Gala (Community Manager) & Les 400 Coop", "description": "A lively participatory workshop in a cooperative supermarket, training member-shoppers on Nutri-Score, Eco-Score, and barcode photographing.", "image": "https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=800&q=80", "image_caption": "Shoppers collaboratively mapping nutritional values and environmental metrics in-store", "products_scanned": 320, "participants_count": 18, "link": "https://blog.openfoodfacts.org/fr/news/scan-party-dans-un-supermarche-cooperatif-les-400-coop", "tags": ["coop", "cooperative", "eco-score", "packaging"]}, {"id": "franprix-paris-2016", "title": "Franprix Supermarket Scan Party", "type": "past", "status": "completed", "date": "May 2016", "start_date": "2016-05-18", "location": "Paris, France", "city": "Paris", "country": "fra", "venue": "Franprix Supermarket", "organizer": "Paris Open Food Facts Chapter", "description": "Collaborative grocery store scan session organized in central Paris with a collaborative Framapad pad for real-time tracking of scanned aisles.", "image": null, "image_caption": null, "products_scanned": 210, "participants_count": 12, "link": "https://annuel.framapad.org/p/OFF_Scanparty_Franprix_Mai_2016", "tags": ["supermarket", "paris", "grocery"]}, {"id": "organic-winery-scan-party-2015", "title": "Organic Winery Scan Party", "type": "past", "status": "completed", "date": "Autumn 2015", "start_date": "2015-10-15", "location": "France", "city": "Bordeaux Region", "country": "fra", "venue": "Local Organic Vineyard & Cellar", "organizer": "Open Food Facts Contributors", "description": "Following the Journées OFF event, contributors organized a themed scan party dedicated to organic wines, regional grape varieties, and sulfites declarations.", "image": null, "image_caption": null, "products_scanned": 65, "participants_count": 8, "link": null, "tags": ["organic", "wine", "regional"]}, {"id": "marie-claire-spain-2015", "title": "Supermarket Barcode Hunt with Marie-Claire", "type": "past", "status": "completed", "date": "Summer 2015", "start_date": "2015-07-01", "location": "Spain", "city": "Costa Brava", "country": "esp", "venue": "Local Spanish Supermarket", "organizer": "Marie-Claire Saint Maux", "description": "Marie-Claire, one of the earliest and most dedicated OFF contributors who scanned over 200 products before launch, hunting for new barcodes in Spain.", "image": "https://world.openfoodfacts.org/images/misc/marie-claire-scan-spain.jpg", "image_caption": "Marie-Claire, one of the very first OFF contributors, hunts for barcodes in a Spanish supermarket", "products_scanned": 150, "participants_count": 2, "link": "https://world.openfoodfacts.org/who-we-are", "tags": ["pioneers", "international", "spain", "historical"]}, {"id": "1st-off-general-assembly-paris-2015", "title": "1st OFF General Assembly Scan Party", "type": "past", "status": "completed", "date": "June 20, 2015", "start_date": "2015-06-20", "location": "Paris, France", "city": "Paris", "country": "fra", "venue": "Open Food Facts General Assembly (XWiki Offices)", "organizer": "Open Food Facts Community", "description": "Pioneering Open Food Facts contributors gathering during the very first general assembly to scan products and map ingredients together in Paris.", "image": "https://world.openfoodfacts.org/images/misc/scanparty-off-general-meeting-20150620.jpg", "image_caption": "Scanning products at the 1st Open Food Facts association general assembly in Paris — June 20th 2015", "products_scanned": 120, "participants_count": 25, "link": "https://world.openfoodfacts.org/who-we-are", "tags": ["general-assembly", "historical", "community"]}, {"id": "impromptu-chinese-market-lyon-2015", "title": "Impromptu Asian Grocery Scan Party", "type": "past", "status": "completed", "date": "June 1, 2015", "start_date": "2015-06-01", "location": "Lyon, France", "city": "Lyon", "country": "fra", "venue": "Asian Specialty Grocery Store", "organizer": "Open Food Facts Volunteers", "description": "Spontaneous scan party in an Asian supermarket in Lyon, deciphering multilingual packaging, ingredient lists, and international barcodes for Open Food Facts.", "image": "https://world.openfoodfacts.org/images/misc/scanparty-lyon-20150601.jpg", "image_caption": "Impromptu scan party in a Chinese food store in Lyon, France in June 2015", "products_scanned": 85, "participants_count": 6, "link": null, "tags": ["international", "specialty-food", "lyon", "historical"]}, {"id": "paris-scan-party-night-2014", "title": "Paris Scan Party Night", "type": "past", "status": "completed", "date": "May 22, 2014", "start_date": "2014-05-22", "location": "Paris, France", "city": "Paris", "country": "fra", "venue": "Paris City Center", "organizer": "Open Food Facts Community", "description": "An evening scan party gathering open data enthusiasts in Paris to scan supermarket shelves and discuss food label transparency.", "image": "https://world.openfoodfacts.org/images/misc/scanparty.640x480.png", "image_caption": "Yes they scan! Paris Scan Party Night banner", "products_scanned": 110, "participants_count": 15, "link": "https://blog.openfoodfacts.org/fr/news/vous-etes-libres-ce-soir-scan-party-le-22-mai-a-paris", "tags": ["meetup", "paris", "historical"]}];
+const SP_HERO_PHOTOS = [{"url": "https://world.openfoodfacts.org/images/misc/scanparty-off-general-meeting-20150620.jpg", "title": "1st OFF General Assembly in Paris", "loc": "Paris, France (2015)", "tag": "Historical Gathering", "desc": "Pioneering contributors scanning and cataloging products together in Paris back in 2015."}, {"url": "https://world.openfoodfacts.org/images/misc/scanparty-lyon-20150601.jpg", "title": "Impromptu Asian Grocery Scan Party in Lyon", "loc": "Lyon, France (2015)", "tag": "Field Expedition", "desc": "Deciphering international packaging, multilingual lists, and specialty food labels."}, {"url": "https://world.openfoodfacts.org/images/misc/marie-claire-scan-spain.jpg", "title": "Marie-Claire Hunting Barcodes in Spain", "loc": "Spain (2015)", "tag": "Pioneer Contributor", "desc": "Marie-Claire added over 200 products before the public launch of Open Food Facts!"}, {"url": "https://world.openfoodfacts.org/images/misc/scanparty.640x480.png", "title": "Yes They Scan! Landmark Rallying Banner", "loc": "Global Movement", "tag": "Volunteer Spirit", "desc": "The landmark visual celebrating the worldwide energy of citizen barcode scanners."}, {"url": "https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=800&q=80", "title": "Cooperative Supermarket Scan Workshop", "loc": "France", "tag": "Co-op Workshop", "desc": "Shoppers collaboratively mapping nutritional values and environmental metrics in-store."}];
+const SP_SAMPLE_PRODUCTS = [{"id": 1, "name": "Organic Hazelnut Chocolate Spread", "brand": "Bio Terroir", "barcode": "3017620422003", "icon": "🌰", "nutri": "E", "nutriColor": "#ef4444", "nova": "4", "eco": "C", "packaging": "Glass Jar & Aluminum Lid"}, {"id": 2, "name": "Oat Milk Unsweetened 1L", "brand": "Green Harvest", "barcode": "7350041864009", "icon": "🥛", "nutri": "A", "nutriColor": "#22c55e", "nova": "1", "eco": "A", "packaging": "Tetra Pak Carton"}, {"id": 3, "name": "Artisan Dark Chocolate 85%", "brand": "Cacao Libre", "barcode": "7613035821102", "icon": "🍫", "nutri": "B", "nutriColor": "#84cc16", "nova": "2", "eco": "B", "packaging": "Recycled Paper & Foil"}, {"id": 4, "name": "Sparkling Lemon Kombucha", "brand": "Pure Bubbles", "barcode": "3270190201104", "icon": "🍹", "nutri": "B", "nutriColor": "#84cc16", "nova": "3", "eco": "A", "packaging": "Returnable Glass Bottle"}];
+const SP_CHECKLIST = [{"id": 1, "text": "Contact the store or venue to agree on date and time"}, {"id": 2, "text": "Download Canva flyers and print welcoming signage"}, {"id": 3, "text": "Select workflow: Live Mobile App or Offline Anchor Photos"}, {"id": 4, "text": "Announce on Slack (#scanparty / #scanparty_fr) and social media"}, {"id": 5, "text": "Pair participants: one handles products, one scans/photographs"}, {"id": 6, "text": "Post-event: bulk upload photos to pro.openfoodfacts.org and celebrate!"}];
+
+let spCurrentFilter = "all";
+let spSimScans = 0;
+let spCheckedTasks = new Set();
+
+function switchSpHeroPhoto(index) {
+  const photo = SP_HERO_PHOTOS[index];
+  if (!photo) return;
+
+  const img = document.getElementById("sp-hero-photo-img");
+  const loc = document.getElementById("sp-hero-photo-loc");
+  const tag = document.getElementById("sp-hero-photo-tag");
+  const title = document.getElementById("sp-hero-photo-title");
+  const desc = document.getElementById("sp-hero-photo-desc");
+
+  if (img) img.src = photo.url;
+  if (loc) loc.innerText = photo.loc;
+  if (tag) tag.innerText = photo.tag;
+  if (title) title.innerText = photo.title;
+  if (desc) desc.innerText = photo.desc;
+
+  [0, 1, 2, 3, 4].forEach(i => {
+    const thumb = document.getElementById("sp-thumb-" + i);
+    if (thumb) {
+      if (i === index) thumb.classList.add("active");
+      else thumb.classList.remove("active");
+    }
+  });
+}
+
+function renderSpSimulator() {
+  const container = document.getElementById("sp-shelf-container");
+  if (!container) return;
+
+  container.innerHTML = SP_SAMPLE_PRODUCTS.map(p => `
+    <div class="sp-prod-card" onclick="scanSpProduct(${p.id})" id="sp-prod-${p.id}">
+      <span class="sp-prod-emoji">${p.icon}</span>
+      <div class="sp-prod-info">
+        <h5>${p.name}</h5>
+        <p>${p.brand}</p>
+        <span class="sp-prod-ean">${p.barcode}</span>
+      </div>
+      <span style="margin-left: auto; font-size: 0.78rem; font-weight: 700; color: #ea580c;">
+        Scan this product &rarr;
+      </span>
+    </div>
+  `).join("");
+
+  scanSpProduct(1);
+}
+
+function scanSpProduct(id) {
+  const item = SP_SAMPLE_PRODUCTS.find(p => p.id === id);
+  if (!item) return;
+
+  spSimScans++;
+
+  SP_SAMPLE_PRODUCTS.forEach(p => {
+    const el = document.getElementById("sp-prod-" + p.id);
+    if (el) {
+      if (p.id === id) el.classList.add("active");
+      else el.classList.remove("active");
+    }
+  });
+
+  document.getElementById("sp-sim-icon").innerText = item.icon;
+  document.getElementById("sp-sim-title").innerText = item.name;
+  document.getElementById("sp-sim-brand").innerText = item.brand;
+  document.getElementById("sp-sim-code").innerText = item.barcode;
+  document.getElementById("sp-sim-pkg").innerText = item.packaging;
+  
+  const nutriEl = document.getElementById("sp-sim-nutri");
+  nutriEl.innerText = item.nutri;
+  nutriEl.style.color = item.nutriColor;
+
+  document.getElementById("sp-sim-nova").innerText = "Groupe " + item.nova;
+  document.getElementById("sp-sim-eco").innerText = "Classe " + item.eco;
+
+  const now = new Date();
+  document.getElementById("sp-sim-time").innerText = now.toLocaleTimeString();
+
+  const target = 50;
+  const current = Math.min(spSimScans * 10, target);
+  const pct = Math.min((current / target) * 100, 100);
+
+  document.getElementById("sp-sim-counter").innerText = current + " / " + target + " scans";
+  document.getElementById("sp-sim-progress").style.width = pct + "%";
+
+  triggerSpConfetti();
+}
+
+function renderSpChecklist() {
+  const container = document.getElementById("sp-checklist-items");
+  if (!container) return;
+
+  container.innerHTML = SP_CHECKLIST.map(item => `
+    <label class="sp-check-label ${spCheckedTasks.has(item.id) ? 'done' : ''}" id="chk-lbl-${item.id}">
+      <input type="checkbox" ${spCheckedTasks.has(item.id) ? 'checked' : ''} onchange="toggleSpChecklistItem(${item.id})" />
+      <span>${item.text}</span>
+    </label>
+  `).join("");
+
+  updateSpChecklistProgress();
+}
+
+function toggleSpChecklistItem(id) {
+  if (spCheckedTasks.has(id)) {
+    spCheckedTasks.delete(id);
+  } else {
+    spCheckedTasks.add(id);
+  }
+  renderSpChecklist();
+}
+
+function updateSpChecklistProgress() {
+  const el = document.getElementById("sp-checklist-status");
+  if (el) {
+    el.innerText = spCheckedTasks.size + " / " + SP_CHECKLIST.length + " complétées";
+  }
+  if (spCheckedTasks.size === SP_CHECKLIST.length && SP_CHECKLIST.length > 0) {
+    triggerSpConfetti();
+  }
+}
+
+function renderSpEvents(filter = "all", searchQuery = "") {
+  const container = document.getElementById("sp-events-container");
+  if (!container) return;
+
+  const q = (searchQuery || "").toLowerCase().trim();
+
+  const filtered = SP_EVENTS.filter(e => {
+    if (filter === "upcoming" && e.type !== "upcoming") return false;
+    if (filter === "past" && e.type !== "past") return false;
+    if (q) {
+      const haystack = (e.title + " " + e.location + " " + (e.city || "") + " " + e.venue + " " + e.description).toLowerCase();
+      if (!haystack.includes(q)) return false;
+    }
+    return true;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div style="grid-column: 1 / -1; padding: 2rem; text-align: center; color: #64748b; background: #f8fafc; border-radius: 12px; border: 1px dashed #cbd5e1;">
+        Aucun atelier ne correspond à votre recherche. Vous pouvez déclarer le vôtre dès maintenant !
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = filtered.map(e => `
+    <div class="sp-event-card">
+      <div>
+        <div class="sp-event-top">
+          <span class="sp-event-badge ${e.type === 'upcoming' ? 'sp-badge-upcoming' : 'sp-badge-past'}">
+            ${e.type === 'upcoming' ? 'À venir' : 'Édition passée'}
+          </span>
+          <span class="sp-event-date">📅 ${e.date}</span>
+        </div>
+
+        <h4 class="sp-event-title">${e.title}</h4>
+        <div class="sp-event-loc">📍 ${e.location} — ${e.venue}</div>
+        <p class="sp-event-desc">${e.description}</p>
+
+        ${e.tags && e.tags.length ? `
+          <div class="sp-event-tags">
+            ${e.tags.map(t => `<span class="sp-event-tag">#` + t + `</span>`).join('')}
+          </div>
+        ` : ''}
+      </div>
+
+      <div class="sp-event-footer">
+        ${e.link ? `
+          <a href="${e.link}" target="_blank" rel="noopener noreferrer" style="font-size: 0.82rem; font-weight: 700; color: #ea580c; text-decoration: none;">
+            Lire le compte-rendu &rarr;
+          </a>
+        ` : `
+          <span style="font-size: 0.78rem; color: #94a3b8;">Atelier communautaire</span>
+        `}
+        ${e.products_scanned ? `<span style="font-size: 0.78rem; font-weight: 700; color: #16a34a;">✨ ` + e.products_scanned + ` produits</span>` : ''}
+      </div>
+    </div>
+  `).join("");
+}
+
+function filterSpEvents(tab) {
+  spCurrentFilter = tab;
+  ['all', 'upcoming', 'past'].forEach(t => {
+    const el = document.getElementById("tab-" + t);
+    if (el) {
+      if (t === tab) el.classList.add('active');
+      else el.classList.remove('active');
+    }
+  });
+  const search = document.getElementById("sp-event-search");
+  renderSpEvents(tab, search ? search.value : "");
+}
+
+function searchSpEvents() {
+  const search = document.getElementById("sp-event-search");
+  renderSpEvents(spCurrentFilter, search ? search.value : "");
+}
+
+function toggleSpDeclareDrawer() {
+  const el = document.getElementById("sp-declare-drawer");
+  if (el) el.classList.toggle("open");
+}
+
+function generateSpYaml() {
+  const title = (document.getElementById("gen-title").value || "Mon atelier Scan Party").trim();
+  const city = (document.getElementById("gen-city").value || "Paris, France").trim();
+  const venue = (document.getElementById("gen-venue").value || "Supermarché local").trim();
+  const date = (document.getElementById("gen-date").value || "Novembre 2024").trim();
+  const desc = (document.getElementById("gen-desc").value || "Atelier citoyen de scan d'aliments.").trim();
+
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+  const yamlContent = "id: " + (slug || "nouvelle-scan-party") + "\n" +
+"title: " + title + "\n" +
+"type: upcoming\n" +
+"status: upcoming\n" +
+"date: \"" + date + "\"\n" +
+"start_date: \"" + new Date().toISOString().split('T')[0] + "\"\n" +
+"location: \"" + city + "\"\n" +
+"city: \"" + city.split(',')[0].trim() + "\"\n" +
+"country: \"fra\"\n" +
+"venue: \"" + venue + "\"\n" +
+"organizer: \"Collectif citoyen\"\n" +
+"description: \"" + desc + "\"\n" +
+"image: null\n" +
+"image_caption: null\n" +
+"products_scanned: null\n" +
+"participants_count: null\n" +
+"link: null\n" +
+"tags:\n" +
+"  - scanparty\n" +
+"  - citizen-science\n";
+
+  const pre = document.getElementById("gen-output");
+  if (pre) {
+    pre.style.display = "block";
+    pre.innerText = yamlContent;
+  }
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(yamlContent).then(() => {
+      alert("YAML généré et copié dans le presse-papiers ! Vous pouvez le coller dans une Pull Request sur data/scan_parties/.");
+    }).catch(() => {
+      alert("YAML généré ci-dessous !");
+    });
+  } else {
+    alert("YAML généré ci-dessous !");
+  }
+}
+
+function triggerSpConfetti() {
+  const canvas = document.getElementById('sp-confetti-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  const dpr = window.devicePixelRatio || 1;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  canvas.width = width * dpr;
+  canvas.height = height * dpr;
+  ctx.scale(dpr, dpr);
+
+  const particles = [];
+  const colors = ['#ea580c', '#16a34a', '#0284c7', '#7c3aed', '#f59e0b'];
+
+  for (let i = 0; i < 25; i++) {
+    particles.push({
+      x: width * 0.7 + (Math.random() - 0.5) * 80,
+      y: height * 0.6 + (Math.random() - 0.5) * 40,
+      vx: (Math.random() - 0.5) * 8,
+      vy: Math.random() * -6 - 3,
+      size: Math.random() * 7 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 1
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    let active = false;
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.25;
+      p.alpha -= 0.02;
+
+      if (p.alpha > 0) {
+        active = true;
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, p.alpha);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+        ctx.restore();
+      }
+    });
+
+    if (active) requestAnimationFrame(animate);
+    else ctx.clearRect(0, 0, width, height);
+  }
+
+  animate();
+}
+
+// Initialize
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    renderSpSimulator();
+    renderSpChecklist();
+    renderSpEvents('all');
+  });
+} else {
+  renderSpSimulator();
+  renderSpChecklist();
+  renderSpEvents('all');
+}
+</script>
