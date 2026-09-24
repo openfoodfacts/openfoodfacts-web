@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.1](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.5.0...v1.5.1) (2026-09-24)
+
+
+### Bug Fixes
+
+* permissions for .github/workflows/push.yml ([#969](https://github.com/openfoodfacts/openfoodfacts-web/issues/969)) ([66c1a75](https://github.com/openfoodfacts/openfoodfacts-web/commit/66c1a758e2f0cda56877a693e61756b1048ee275))
+* permissions for release-please.yml ([#967](https://github.com/openfoodfacts/openfoodfacts-web/issues/967)) ([144f3b0](https://github.com/openfoodfacts/openfoodfacts-web/commit/144f3b08e52013d054d6c9650495f8066f5d0162))
+
 ## [1.5.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.4.1...v1.5.0) (2026-09-16)
 
 
