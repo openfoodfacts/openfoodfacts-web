@@ -1,0 +1,948 @@
+<!-- Green-Score Methodology & Calculation Guide -->
+<!-- Revamped from the historical Eco-Score documentation, aligned with https://docs.score-environnemental.com/ -->
+<style>
+  :root {
+    --off-espresso: #341100;
+    --off-espresso-mid: #473526;
+    --off-cream: #f9f8f6;
+    --off-peach-tint: #ece0db;
+    --off-orange: #ed8857;
+    --off-green: #209552;
+    --off-green-light: #e8f5e9;
+    --off-green-dark: #1b5e20;
+    --off-blue: #1976d2;
+    --off-macchiato: #85746c;
+    --off-border: #e2e8f0;
+    --off-surface: #ffffff;
+    --off-text-muted: #64748b;
+    --off-radius-pill: 999px;
+    --off-radius-card: 18px;
+  }
+
+  .gsm-container {
+    font-family: "Plus Jakarta Sans", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--off-espresso);
+    max-width: 1240px;
+    margin: 0 auto 3rem auto;
+    padding: 0 1rem;
+    line-height: 1.6;
+    box-sizing: border-box;
+  }
+
+  .gsm-container *,
+  .gsm-container *::before,
+  .gsm-container *::after {
+    box-sizing: border-box;
+  }
+
+  /* Hero Header */
+  .gsm-hero {
+    background: linear-gradient(180deg, #ffffff 0%, var(--off-cream) 100%);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 24px;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 2.5rem;
+    box-shadow: 0 10px 30px rgba(52, 17, 0, 0.05);
+    text-align: center;
+  }
+
+  .gsm-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--off-green-light);
+    color: var(--off-green-dark);
+    border: 1px solid #c8e6c9;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    border-radius: var(--off-radius-pill);
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .gsm-hero h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--off-espresso);
+    margin: 0 0 1rem 0;
+  }
+
+  .gsm-hero p.lead {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    color: var(--off-espresso-mid);
+    max-width: 840px;
+    margin: 0 auto 1.75rem auto;
+  }
+
+  .gsm-meta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+    font-size: 0.9rem;
+    color: var(--off-macchiato);
+    border-top: 1px solid var(--off-peach-tint);
+    padding-top: 1.25rem;
+  }
+
+  .gsm-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* Table of Contents Nav */
+  .gsm-toc {
+    background: #ffffff;
+    border: 1px solid var(--off-border);
+    border-radius: var(--off-radius-card);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  }
+
+  .gsm-toc-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .gsm-toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .gsm-toc-grid a {
+    color: var(--off-espresso);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .gsm-toc-grid a:hover {
+    color: var(--off-green);
+    text-decoration: underline;
+  }
+
+  /* Card Layout & Content Sections */
+  .gsm-section {
+    background: #ffffff;
+    border: 1px solid var(--off-border);
+    border-radius: var(--off-radius-card);
+    padding: clamp(1.75rem, 3vw, 2.75rem);
+    margin-bottom: 2.25rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  }
+
+  .gsm-section h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 800;
+    color: var(--off-espresso);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .gsm-section h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--off-espresso-mid);
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Formula Callout Box */
+  .gsm-formula-card {
+    background: linear-gradient(135deg, #f0fdf4 0%, #e8f5e9 100%);
+    border: 2px solid #bbf7d0;
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+
+  .gsm-formula-math {
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-weight: 800;
+    color: #14532d;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .gsm-formula-caption {
+    font-size: 0.9rem;
+    color: #166534;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* Badges & Grade Tiers */
+  .gsm-tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0.85rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .gsm-tier-card {
+    border-radius: 14px;
+    padding: 1.1rem 0.75rem;
+    text-align: center;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .gsm-tier-letter {
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+
+  .gsm-tier-range {
+    font-size: 0.85rem;
+    font-weight: 700;
+    opacity: 0.95;
+  }
+
+  .gsm-tier-desc {
+    font-size: 0.72rem;
+    opacity: 0.85;
+    margin-top: 0.25rem;
+  }
+
+  .tier-a-plus { background: #00602f; }
+  .tier-a { background: #038141; }
+  .tier-b { background: #85bb2f; color: #1e3a12; }
+  .tier-c { background: #fecb02; color: #3d2c00; }
+  .tier-d { background: #ee8100; }
+  .tier-e { background: #e63e11; }
+  .tier-f { background: #8b0000; }
+
+  /* Info / Callout Boxes */
+  .gsm-callout {
+    background: #f8fafc;
+    border-left: 4px solid var(--off-orange);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 12px 12px 0;
+    margin: 1.25rem 0;
+    font-size: 0.95rem;
+  }
+
+  .gsm-callout.info {
+    border-left-color: var(--off-blue);
+    background: #f0f7ff;
+  }
+
+  .gsm-callout.success {
+    border-left-color: var(--off-green);
+    background: #f0fdf4;
+  }
+
+  .gsm-callout.warning {
+    border-left-color: #d97706;
+    background: #fffbeb;
+  }
+
+  /* Data Tables */
+  .gsm-table-wrap {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-radius: 12px;
+    border: 1px solid var(--off-border);
+  }
+
+  .gsm-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    text-align: left;
+    background: #ffffff;
+  }
+
+  .gsm-table th {
+    background: var(--off-cream);
+    color: var(--off-espresso);
+    font-weight: 700;
+    padding: 0.85rem 1rem;
+    border-bottom: 2px solid var(--off-border);
+  }
+
+  .gsm-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--off-border);
+    color: var(--off-espresso-mid);
+  }
+
+  .gsm-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .gsm-table tr:nth-child(even) td {
+    background: #fcfcfc;
+  }
+
+  .gsm-table .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+
+  /* Grid of indicator cards */
+  .gsm-ind-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+  }
+
+  .gsm-ind-card {
+    background: #ffffff;
+    border: 1px solid var(--off-border);
+    border-radius: 14px;
+    padding: 1.25rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .gsm-ind-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    border-color: #cbd5e1;
+  }
+
+  .gsm-ind-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+
+  .gsm-ind-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--off-espresso);
+    margin: 0;
+  }
+
+  .gsm-ind-points {
+    font-size: 0.82rem;
+    font-weight: 800;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--off-radius-pill);
+    white-space: nowrap;
+  }
+
+  .pts-bonus {
+    background: #e8f5e9;
+    color: #1b5e20;
+    border: 1px solid #c8e6c9;
+  }
+
+  .pts-malus {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+  }
+
+  .pts-neutral {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+  }
+
+  .gsm-ind-desc {
+    font-size: 0.88rem;
+    color: var(--off-text-muted);
+    margin-bottom: 0.75rem;
+    flex-grow: 1;
+  }
+
+  /* Two Column Layout */
+  .gsm-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 850px) {
+    .gsm-cols {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* CTA Buttons */
+  .gsm-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .gsm-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--off-radius-pill);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+  }
+
+  .gsm-btn-primary {
+    background: var(--off-green);
+    color: #ffffff !important;
+  }
+
+  .gsm-btn-primary:hover {
+    background: #177a42;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(32, 149, 82, 0.3);
+  }
+
+  .gsm-btn-secondary {
+    background: #ffffff;
+    color: var(--off-espresso) !important;
+    border: 1px solid var(--off-border);
+  }
+
+  .gsm-btn-secondary:hover {
+    background: var(--off-cream);
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+  }
+</style>
+
+<div class="gsm-container">
+
+  <!-- Hero Header -->
+  <header class="gsm-hero">
+    <div class="gsm-eyebrow">🌱 Open Food Transparency</div>
+    <h1>Green-Score Methodology &amp; Calculation</h1>
+    <p class="lead">
+      The comprehensive technical reference for calculating the Green-Score (formerly Eco-Score): measuring the environmental footprint of food products from farm to fork, based on Life Cycle Analysis (Agribalyse v3) and product-specific environmental modulators.
+    </p>
+    <div class="gsm-meta-bar">
+      <span class="gsm-meta-item">🏛️ <strong>Reference:</strong> <a href="https://docs.score-environnemental.com/" target="_blank" rel="noopener noreferrer">docs.score-environnemental.com</a></span>
+      <span class="gsm-meta-item">📊 <strong>LCA Database:</strong> ADEME &amp; INRAE Agribalyse v3</span>
+      <span class="gsm-meta-item">⚖️ <strong>License:</strong> 100% Free Open Standard</span>
+      <span class="gsm-meta-item">🔄 <strong>Status:</strong> Active Scientific Standard</span>
+    </div>
+  </header>
+
+  <!-- Table of Contents -->
+  <nav class="gsm-toc" aria-label="Table of Contents">
+    <div class="gsm-toc-title">📋 Table of Contents</div>
+    <ul class="gsm-toc-grid">
+      <li><a href="#overview">1. General Architecture</a></li>
+      <li><a href="#lca-agribalyse">2. Life Cycle Assessment (Agribalyse)</a></li>
+      <li><a href="#pef-indicators">3. 16 PEF Impact Indicators &amp; Weights</a></li>
+      <li><a href="#normalization">4. Single Score Normalization Formulas</a></li>
+      <li><a href="#production-systems">5. Agricultural Labels &amp; Practices</a></li>
+      <li><a href="#local-sourcing">6. Local Sourcing &amp; Transport Mix</a></li>
+      <li><a href="#environmental-policy">7. Producing Country Policy (EPI)</a></li>
+      <li><a href="#packaging-circularity">8. Packaging Circularity &amp; Recycling</a></li>
+      <li><a href="#threatened-species">9. Threatened Species &amp; Palm Oil</a></li>
+      <li><a href="#recipes-methodology">10. Prepared Meals &amp; Catering Recipes</a></li>
+      <li><a href="#governance-license">11. Governance, Verification &amp; Licensing</a></li>
+    </ul>
+  </nav>
+
+  <!-- Section 1: Overview -->
+  <section id="overview" class="gsm-section">
+    <h2>1. General Architecture of the Green-Score</h2>
+    <p>
+      The <strong>Green-Score</strong> is an environmental rating system designed to guide consumers, retailers, and food manufacturers toward a more sustainable food supply. It summarizes the overall ecological impact of a food product onto an intuitive score from <strong>0 to 100</strong>, mapped into letter grades from <strong>A+ to F</strong> (or <strong>A to E</strong> on standard retail packaging).
+    </p>
+
+    <!-- Formula Box -->
+    <div class="gsm-formula-card">
+      <div class="gsm-formula-math">
+        Green-Score = LCA Category Benchmark (0–100) + Bonuses (up to +25) &minus; Penalties (up to &minus;25)
+      </div>
+      <div class="gsm-formula-caption">
+        Bounded strictly between [0, 100]. A product's score starts from the Life Cycle Analysis of its category, and is modulated by its unique agricultural practices, packaging recyclability, geographic origin, and biodiversity impacts.
+      </div>
+    </div>
+
+    <!-- Tiers Grid -->
+    <h3>Rating Tiers &amp; Score Thresholds</h3>
+    <div class="gsm-tiers-grid">
+      <div class="gsm-tier-card tier-a-plus">
+        <span class="gsm-tier-letter">A+</span>
+        <span class="gsm-tier-range">90 – 100 pts</span>
+        <span class="gsm-tier-desc">Exceptional (Recipes)</span>
+      </div>
+      <div class="gsm-tier-card tier-a">
+        <span class="gsm-tier-letter">A</span>
+        <span class="gsm-tier-range">80 – 100 pts</span>
+        <span class="gsm-tier-desc">Very Low Impact</span>
+      </div>
+      <div class="gsm-tier-card tier-b">
+        <span class="gsm-tier-letter">B</span>
+        <span class="gsm-tier-range">60 – 79 pts</span>
+        <span class="gsm-tier-desc">Low Impact</span>
+      </div>
+      <div class="gsm-tier-card tier-c">
+        <span class="gsm-tier-letter">C</span>
+        <span class="gsm-tier-range">40 – 59 pts</span>
+        <span class="gsm-tier-desc">Moderate Impact</span>
+      </div>
+      <div class="gsm-tier-card tier-d">
+        <span class="gsm-tier-letter">D</span>
+        <span class="gsm-tier-range">20 – 39 pts</span>
+        <span class="gsm-tier-desc">High Impact</span>
+      </div>
+      <div class="gsm-tier-card tier-e">
+        <span class="gsm-tier-letter">E</span>
+        <span class="gsm-tier-range">0 – 19 pts</span>
+        <span class="gsm-tier-desc">Very High Impact</span>
+      </div>
+      <div class="gsm-tier-card tier-f">
+        <span class="gsm-tier-letter">F</span>
+        <span class="gsm-tier-range">&lt; 0 pts</span>
+        <span class="gsm-tier-desc">Critical Impact</span>
+      </div>
+    </div>
+
+    <div class="gsm-callout warning">
+      <strong>Special Exclusion:</strong> Natural mineral waters, spring waters, and soft drinks are currently outside the Green-Score scope, as applying category LCA benchmarks to plain bottled beverages could generate misleading conclusions regarding tap water alternatives and packaging trade-offs.
+    </div>
+  </section>
+
+  <!-- Section 2: LCA & Agribalyse -->
+  <section id="lca-agribalyse" class="gsm-section">
+    <h2>2. Baseline: Life Cycle Assessment (Agribalyse v3)</h2>
+    <p>
+      The foundation of the Green-Score is built on standardized <strong>Life Cycle Assessment (LCA)</strong> data from the French national <strong>AGRIBALYSE®</strong> program, developed by ADEME (the French Agency for Ecological Transition) and INRAE (National Research Institute for Agriculture, Food and Environment).
+    </p>
+    <p>
+      Agribalyse compiles rigorous multi-step, multi-criteria environmental assessments for over <strong>2,500 food product categories</strong> (linked to the CIQUAL nutritional database). It quantifies emissions and resource consumption across the entire life cycle:
+    </p>
+    <ul>
+      <li><strong>Agricultural production:</strong> Farm machinery, fertilizers, pesticides, livestock enteric fermentation, manure management, and land occupation.</li>
+      <li><strong>Food processing:</strong> Energy consumption, water use, industrial refrigeration, and factory emissions.</li>
+      <li><strong>Packaging:</strong> Raw material extraction, manufacturing, and transport of containers.</li>
+      <li><strong>Logistics &amp; Transport:</strong> Freight from farms to processing facilities and wholesale distribution centers.</li>
+      <li><strong>Retail &amp; Supermarkets:</strong> Store lighting, refrigeration gas leakage, and warehousing.</li>
+      <li><strong>Consumer phase &amp; End of life:</strong> Cooking, domestic chilling, and waste water/packaging disposal.</li>
+    </ul>
+
+    <div class="gsm-callout info">
+      <strong>Category Level vs. Product Level:</strong> Because baseline Agribalyse LCA figures represent statistical category averages (e.g. all chocolate chip cookies share the same initial baseline), the Green-Score applies <strong>complementary indicators (bonuses and penalties)</strong> to differentiate individual products based on their actual ingredient origins, certifications, and packaging materials.
+    </div>
+  </section>
+
+  <!-- Section 3: 16 PEF Indicators -->
+  <section id="pef-indicators" class="gsm-section">
+    <h2>3. The 16 Environmental Impact Indicators &amp; Weightings</h2>
+    <p>
+      In accordance with the European Commission's <strong>Product Environmental Footprint (PEF)</strong> methodology, the Agribalyse LCA tracks 16 distinct midpoint environmental indicators across air, water, and soil.
+    </p>
+    <p>
+      These 16 indicators are aggregated into a single score using a consensus weighting system derived from a dual consultation of <strong>2,400 European citizens</strong> and <strong>518 international environmental scientists</strong> across 48 countries:
+    </p>
+
+    <div class="gsm-table-wrap">
+      <table class="gsm-table">
+        <thead>
+          <tr>
+            <th>Compartment</th>
+            <th>Environmental Impact Indicator</th>
+            <th>Scientific Focus</th>
+            <th class="num">Weight</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Air / Climate</td>
+            <td><strong>Climate change (CO₂ eq.)</strong></td>
+            <td>Global greenhouse gas emissions impacting the biosphere</td>
+            <td class="num"><strong>21.06%</strong></td>
+          </tr>
+          <tr>
+            <td>Air</td>
+            <td><strong>Fine particulate matter emissions</strong></td>
+            <td>Inhalable particulates (PM2.5) impacting respiratory human health</td>
+            <td class="num">8.96%</td>
+          </tr>
+          <tr>
+            <td>Water</td>
+            <td><strong>Water resource depletion</strong></td>
+            <td>Consumption of fresh water accounting for local regional water scarcity</td>
+            <td class="num">8.51%</td>
+          </tr>
+          <tr>
+            <td>Soil / Energy</td>
+            <td><strong>Fossil resource depletion</strong></td>
+            <td>Consumption of finite non-renewable energy stocks (oil, gas, coal, uranium)</td>
+            <td class="num">8.32%</td>
+          </tr>
+          <tr>
+            <td>Soil</td>
+            <td><strong>Land use &amp; soil degradation</strong></td>
+            <td>Occupation and transformation of natural habitats affecting biodiversity</td>
+            <td class="num">7.94%</td>
+          </tr>
+          <tr>
+            <td>Soil / Minerals</td>
+            <td><strong>Mineral resource depletion</strong></td>
+            <td>Extraction of scarce minerals, ores, copper, potassium, and rare earths</td>
+            <td class="num">7.55%</td>
+          </tr>
+          <tr>
+            <td>Air</td>
+            <td><strong>Stratospheric ozone depletion</strong></td>
+            <td>CFC-equivalent emissions weakening the UV atmospheric shield</td>
+            <td class="num">6.31%</td>
+          </tr>
+          <tr>
+            <td>Air / Soil</td>
+            <td><strong>Terrestrial acidification</strong></td>
+            <td>Chemical emissions (SO₂, NOₓ, NH₃) causing acid rain and soil imbalance</td>
+            <td class="num">6.20%</td>
+          </tr>
+          <tr>
+            <td>Air / Soil</td>
+            <td><strong>Ionizing radiation</strong></td>
+            <td>Radioactive impacts from nuclear electricity production</td>
+            <td class="num">5.01%</td>
+          </tr>
+          <tr>
+            <td>Air</td>
+            <td><strong>Photochemical ozone formation</strong></td>
+            <td>Ground-level smog creation harmful to plant and human respiration</td>
+            <td class="num">4.78%</td>
+          </tr>
+          <tr>
+            <td>Soil</td>
+            <td><strong>Terrestrial eutrophication</strong></td>
+            <td>Excess reactive nitrogen deposition degrading wild ecosystems</td>
+            <td class="num">3.71%</td>
+          </tr>
+          <tr>
+            <td>Water</td>
+            <td><strong>Marine eutrophication</strong></td>
+            <td>Nitrogen runoff into coastal waters producing toxic algal blooms</td>
+            <td class="num">2.96%</td>
+          </tr>
+          <tr>
+            <td>Water</td>
+            <td><strong>Freshwater eutrophication</strong></td>
+            <td>Phosphorus enrichment leading to lake and river hypoxia (dead zones)</td>
+            <td class="num">2.80%</td>
+          </tr>
+          <tr>
+            <td>Human Health</td>
+            <td><strong>Carcinogenic human toxicity</strong></td>
+            <td>Exposure to toxic compounds correlated with increased cancer risks</td>
+            <td class="num">2.13%</td>
+          </tr>
+          <tr>
+            <td>Water</td>
+            <td><strong>Freshwater ecotoxicity</strong></td>
+            <td>Chemical toxicity impacting aquatic flora and fauna</td>
+            <td class="num">1.92%</td>
+          </tr>
+          <tr>
+            <td>Human Health</td>
+            <td><strong>Non-carcinogenic human toxicity</strong></td>
+            <td>Chemical pollution causing non-cancer systemic toxic effects</td>
+            <td class="num">1.84%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section 4: Normalization -->
+  <section id="normalization" class="gsm-section">
+    <h2>4. Normalization: Converting the Single Score to 0–100</h2>
+    <p>
+      The 16 weighted indicators produce a raw <strong>Single Score</strong> (expressed in millipoints, <em>mPt</em>, per kilogram of food as consumed). Because environmental impacts follow a non-linear power distribution (where red meat or air-freighted foods can have dozens of times the impact of seasonal tubers or legumes), the raw score is normalized onto an intuitive 0–100 scale using a <strong>logarithmic transformation</strong>.
+    </p>
+
+    <div class="gsm-cols">
+      <div class="gsm-callout success">
+        <h3>General Food Products Formula</h3>
+        <p>For all standard solid food categories, where \(x\) is the Single Score in millipoints per kg (mPt/kg):</p>
+        <div class="gsm-formula-math" style="font-size: 1.15rem;">
+          Score<sub>LCA</sub> = &minus;25 &times; ln(100 &times; x + 1) + 100
+        </div>
+        <p><small>The result is strictly bounded within the interval [0, 100]. A lower single score yields a higher Green-Score.</small></p>
+      </div>
+
+      <div class="gsm-callout info">
+        <h3>Liquid Beverages Formula</h3>
+        <p>Because beverages are consumed in significantly higher volumes per portion (200–500ml vs 50–100g), their scaling curve is adjusted:</p>
+        <div class="gsm-formula-math" style="font-size: 1.15rem;">
+          Score<sub>LCA</sub> = &minus;36 &times; ln(100 &times; x + 1) + 150
+        </div>
+        <p><small>Applies to milk, plant-based milks, fruit juices, and vegetable drinks. Strictly bounded within [0, 100].</small></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Complementary Modulators -->
+  <section id="production-systems" class="gsm-section">
+    <h2>5. Complementary Indicator: Production Systems &amp; Labels</h2>
+    <p>
+      Standard LCA databases do not fully capture agricultural externalities such as biodiversity protection, topsoil erosion prevention, hedgerow preservation, and synthetic pesticide reduction. To reward virtuous farming practices, products certified with recognized environmental labels receive a bonus from <strong>+5 to +20 points</strong>:
+    </p>
+
+    <div class="gsm-ind-grid">
+      <div class="gsm-ind-card">
+        <div class="gsm-ind-header">
+          <h4 class="gsm-ind-title">Group 1: Organic &amp; Biodynamic</h4>
+          <span class="gsm-ind-points pts-bonus">+20 points</span>
+        </div>
+        <div class="gsm-ind-desc">
+          Strict ban on synthetic pesticides and mineral nitrogen fertilizers, demanding crop rotations, soil regeneration, and high animal welfare standards.
+        </div>
+        <small><strong>Eligible:</strong> AB (Agriculture Biologique), EU Organic Leaf, Demeter, Bio Cohérence, Nature &amp; Progrès.</small>
+      </div>
+
+      <div class="gsm-ind-card">
+        <div class="gsm-ind-header">
+          <h4 class="gsm-ind-title">Group 2: Agroecological Standards</h4>
+          <span class="gsm-ind-points pts-bonus">+15 points</span>
+        </div>
+        <div class="gsm-ind-desc">
+          Recognized agroecological schemes guaranteeing targeted environmental criteria, pesticide limits, and sustainable supply chains.
+        </div>
+        <small><strong>Eligible:</strong> Label Rouge, Rainforest Alliance, UTZ, Fairtrade / Max Havelaar.</small>
+      </div>
+
+      <div class="gsm-ind-card">
+        <div class="gsm-ind-header">
+          <h4 class="gsm-ind-title">Group 3: Sustainable Transitions</h4>
+          <span class="gsm-ind-points pts-bonus">+10 points</span>
+        </div>
+        <div class="gsm-ind-desc">
+          Certifications promoting farm biodiversity infrastructures, sustainable fishing quotas, or low-pesticide integrated pest management.
+        </div>
+        <small><strong>Eligible:</strong> HVE (Haute Valeur Environnementale Level 3), Bleu Blanc Coeur, MSC (Marine Stewardship Council), ASC (Aquaculture Stewardship Council).</small>
+      </div>
+    </div>
+
+    <div class="gsm-callout info">
+      <strong>Cumulative Rule:</strong> If a product combines multiple labels, bonuses are summed up to a strict maximum ceiling of <strong>+20 points</strong> (with the restriction that MSC and ASC marine labels cannot be accumulated with one another).
+    </div>
+  </section>
+
+  <!-- Section 6: Local Sourcing & Transport -->
+  <section id="local-sourcing" class="gsm-section">
+    <h2>6. Local Sourcing &amp; Transportation Footprint</h2>
+    <p>
+      Agribalyse averages assume generic trade flows. The Green-Score collects the specific country of origin for each ingredient in the recipe and calculates a fine-grained <strong>Transport Score (0 to 100)</strong> based on real geodesic distances, freight modes, and CO₂ emissions factors from the ADEME Carbon Database:
+    </p>
+
+    <div class="gsm-formula-card">
+      <div class="gsm-formula-math">
+        Transport Bonus = 0.15 &times; &sum; (a<sub>i</sub> &times; p<sub>i</sub>)
+      </div>
+      <div class="gsm-formula-caption">
+        Where \(a_i\) is the transport score of the origin country/fishing area for ingredient \(i\), and \(p_i\) is its percentage in the recipe (&sum; \(p_i\) = 100%). Yields a bonus between <strong>0 and +15 points</strong>.
+      </div>
+    </div>
+
+    <div class="gsm-cols">
+      <div>
+        <h3>Modal Mix Assumptions</h3>
+        <ul>
+          <li><strong>European trade:</strong> Weighted mix of road freight, electrified rail, and short-sea shipping (Eurostat trade statistics).</li>
+          <li><strong>Non-European imports:</strong> 100% maritime cargo freight (container ships), plus domestic road legs between farms, ports, and national logistics hubs.</li>
+          <li><strong>Air freight:</strong> Excluded from standard retail averages due to low volume (0.1%), but heavily penalized if detected.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>ADEME Carbon Database Emission Factors</h3>
+        <ul>
+          <li><strong>Road freight (heavy truck):</strong> 162.7 g CO₂e / tonne-km</li>
+          <li><strong>Maritime freight (container vessel):</strong> 10.1 g CO₂e / tonne-km</li>
+          <li><strong>Rail freight (French electrified network):</strong> 4.2 g CO₂e / tonne-km</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Environmental Policy -->
+  <section id="environmental-policy" class="gsm-section">
+    <h2>7. Environmental Policy of the Producing Country (EPI)</h2>
+    <p>
+      To reflect the national regulatory framework of the countries where ingredients are grown (water discharge rules, renewable energy transition, pesticide restrictions, and biodiversity protection), the Green-Score incorporates the <strong>Environmental Performance Index (EPI)</strong> produced biennially by Yale and Columbia Universities:
+    </p>
+
+    <div class="gsm-formula-card">
+      <div class="gsm-formula-math">
+        Origin Score = [(EPI<sub>country</sub> &minus; EPI<sub>avg</sub>) / (EPI<sub>max</sub> &minus; EPI<sub>avg</sub>)] &times; 100
+      </div>
+      <div class="gsm-formula-caption">
+        Normalized so that the top-performing nation (EPI<sub>max</sub> = Denmark, ~82.5) receives 100/100, while countries at or below the world average (EPI<sub>avg</sub> = 46.6) receive 0.
+      </div>
+    </div>
+
+    <p>
+      The weighted origin score is translated into a net modifier between <strong>&minus;5 and +5 points</strong>:
+    </p>
+    <div class="gsm-formula-card" style="background: #f8fafc; border-color: #cbd5e1;">
+      <div class="gsm-formula-math" style="color: var(--off-espresso);">
+        Environmental Policy Modulator = (Weighted Origin Score / 10) &minus; 5
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Packaging Circularity -->
+  <section id="packaging-circularity" class="gsm-section">
+    <h2>8. Packaging Circularity &amp; End-of-Life</h2>
+    <p>
+      Packaging contributes significantly to global resource depletion, ocean microplastic pollution, and landfill accumulation. The Green-Score assesses each packaging component across two dimensions:
+    </p>
+
+    <div class="gsm-cols">
+      <div class="gsm-callout info">
+        <h3>Upstream Score (Raw Materials)</h3>
+        <p>Evaluates resource sourcing from 0 to 100:</p>
+        <div class="gsm-formula-math" style="font-size: 1.05rem;">
+          Score<sub>Up</sub> = A&times;1.0 + B&times;0.75 + C&times;0.5 + D&times;0
+        </div>
+        <ul>
+          <li><strong>A:</strong> Recycled materials (e.g. 100% rPET, recycled cardboard)</li>
+          <li><strong>B:</strong> Sustainable renewable (e.g. FSC/PEFC wood/paper)</li>
+          <li><strong>C:</strong> Non-certified renewable (standard biobased plastic)</li>
+          <li><strong>D:</strong> Virgin non-renewable (virgin fossil plastics, aluminum, virgin glass)</li>
+        </ul>
+      </div>
+
+      <div class="gsm-callout info">
+        <h3>Downstream Score (End of Life)</h3>
+        <p>Evaluates circular waste handling from 0 to 100:</p>
+        <div class="gsm-formula-math" style="font-size: 1.05rem;">
+          Score<sub>Down</sub> = A&times;1.0 + B&times;0.5 + C&times;0
+        </div>
+        <ul>
+          <li><strong>A:</strong> 100% Recyclable across municipal sorting bins (steel, glass, PET bottles, cardboard)</li>
+          <li><strong>B:</strong> Home/Industrial biodegradable (raw wood, cork)</li>
+          <li><strong>C:</strong> Incineration or landfill disposal (multilayers, unrecyclable composite plastics)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gsm-formula-card">
+      <div class="gsm-formula-math">
+        Packaging Penalty = &minus;15 &times; [1 &minus; (Score<sub>Up</sub> + Score<sub>Down</sub>) / 200]
+      </div>
+      <div class="gsm-formula-caption">
+        Results in a penalty from <strong>0 to &minus;15 points</strong>. Highly recyclable packaging with recycled content receives 0 penalty, while complex non-recyclable multi-plastics receive the full &minus;15 penalty.
+      </div>
+    </div>
+
+    <div class="gsm-callout warning">
+      <strong>Crucial Packaging Eligibility Gate:</strong> Regardless of its total numerical score out of 100, <strong>a product can NEVER receive a Green-Score A unless all its packaging elements are fully recyclable or biodegradable</strong>. Non-recyclable packaging automatically caps the product at grade B or lower.
+    </div>
+  </section>
+
+  <!-- Section 9: Threatened Species -->
+  <section id="threatened-species" class="gsm-section">
+    <h2>9. Threatened Species &amp; Deforestation Penalties</h2>
+    <p>
+      Certain agricultural and fishery commodities pose critical threats to planetary biodiversity. The Green-Score implements strict safeguards against overfishing and rainforest destruction:
+    </p>
+
+    <div class="gsm-ind-grid">
+      <div class="gsm-ind-card">
+        <div class="gsm-ind-header">
+          <h4 class="gsm-ind-title">Overfished Marine Species</h4>
+          <span class="gsm-ind-points pts-malus">Capped at Grade E</span>
+        </div>
+        <div class="gsm-ind-desc">
+          For products containing &ge; 30% wild fish, crustacean, or mollusk content, stock status is cross-referenced with FAO fishing areas and scientific recommendations from <strong>Ethic Ocean, WWF, and IFREMER</strong>.
+        </div>
+        <small>If the stock is critically depleted or overexploited in that FAO zone, the product automatically receives a <strong>Green-Score E</strong>, overriding all other calculations.</small>
+      </div>
+
+      <div class="gsm-ind-card">
+        <div class="gsm-ind-header">
+          <h4 class="gsm-ind-title">Palm Oil &amp; Deforestation</h4>
+          <span class="gsm-ind-points pts-malus">&minus;10 points</span>
+        </div>
+        <div class="gsm-ind-desc">
+          Oil palm monocultures in Southeast Asia represent a prime cause of tropical deforestation and habitat loss for endangered primates, tigers, and birds.
+        </div>
+        <small>A <strong>&minus;10 points penalty</strong> is automatically applied unless the palm oil is certified 100% <strong>RSPO Segregated (SG)</strong> or <strong>Identity Preserved (IP)</strong>.</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 10: Prepared Meals & Recipes -->
+  <section id="recipes-methodology" class="gsm-section">
+    <h2>10. Prepared Meals &amp; Catering Recipes</h2>
+    <p>
+      For multi-ingredient recipes, prepared dishes, and institutional catering menus, the Green-Score is calculated through ingredient-weighted aggregation:
+    </p>
+    <ul>
+      <li><strong>Recipe LCA:</strong> The sum of individual ingredient LCAs weighted by their mass fraction in the recipe: \(\text{LCA}_{\text{dish}} = \sum (\text{LCA}_i \times m_i / M_{\text{total}})\).</li>
+      <li><strong>Seasonality Modulator:</strong> For fresh produce (e.g. heated greenhouse winter tomatoes vs. seasonal field crops), recipes prepared out of season receive specific penalties.</li>
+      <li><strong>Packaging &amp; Service:</strong> Catering dishes served in reusable washable crockery receive zero packaging penalty, whereas single-use containers incur proportional penalties.</li>
+    </ul>
+  </section>
+
+  <!-- Section 11: Governance, Verification & Open License -->
+  <section id="governance-license" class="gsm-section">
+    <h2>11. Governance, Independent Verification &amp; Open License</h2>
+    <p>
+      The Green-Score was initiated by an open consortium of digital actors committed to food transparency, including <strong>Open Food Facts, Yuka, Marmiton, ScanUp, ECO2 Initiative, La Fourche</strong>, and dozens of collaborating partners.
+    </p>
+    <div class="gsm-cols">
+      <div>
+        <h3>100% Free &amp; Open Standard</h3>
+        <p>
+          The Green-Score methodology, documentation, and source code are entirely open and accessible to all. No royalties or commercial licensing fees are charged for displaying the score. Any manufacturer, retailer, or application developer can compute and display the Green-Score.
+        </p>
+      </div>
+      <div>
+        <h3>Independent Verification Bodies</h3>
+        <p>
+          To ensure consumer trust and prevent greenwashing, manufacturers displaying the Green-Score on packaging undergo verification by accredited independent third-party audit organizations conforming to the official reference rules.
+        </p>
+      </div>
+    </div>
+
+    <!-- Actions CTA -->
+    <div class="gsm-btn-group">
+      <a href="https://docs.score-environnemental.com/" target="_blank" rel="noopener noreferrer" class="gsm-btn gsm-btn-primary">
+        🌐 Official Consortium Documentation (docs.score-environnemental.com) ➔
+      </a>
+      <a href="/scores-and-methodologies" class="gsm-btn gsm-btn-secondary">
+        📊 Back to Guides, Scores &amp; Methodologies Hub
+      </a>
+      <a href="/green-score" class="gsm-btn gsm-btn-secondary">
+        🍏 Green-Score Consumer Guide
+      </a>
+      <a href="https://agribalyse.ademe.fr/" target="_blank" rel="noopener noreferrer" class="gsm-btn gsm-btn-secondary">
+        🔬 ADEME Agribalyse Database
+      </a>
+    </div>
+  </section>
+
+</div>
