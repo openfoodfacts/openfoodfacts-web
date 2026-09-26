@@ -35,12 +35,18 @@ https://translate.openfoodfacts.org
 * Deployment to production is still manual
 
 ## Requirements
-* Do not hotlink ressources like images, JS or CSS. They need to be commited to the repository. Please organize resources in folders.
+* Do not hotlink resources like images, JS or CSS. They need to be committed to the repository. Please organize resources in folders.
 
 
 ## Deployment
 
+### Pre-prod (.net)
+* Merged PR are deployed automatically to pre-prod.
+
 ### Actual prod (no docker)
+#### Request a deployment
+* You'll need to wait for deployment in production if you're not in a hurry. Otherwise, you can request it in the #product-opener channel
+#### How to deploy
 
 1. Move the `/lang` dir from openfoodfacts-server to openfoodfacts-resources (or maybe to make things even cleaner, to a new repo openfoodfacts-web. It's unclear if everything in openfoodfacts-resources is supposed to be available as-is on the web server).
 

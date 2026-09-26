@@ -1,614 +1,1519 @@
-<style type="text/css">
-	.blue-title-bar {
-    background-color:#09f;
-    padding:1%;
-    color:#fff;
-    font-weight:bold;
-}
-  
-	figure {
-    border: thin #c0c0c0 solid;
-    display: flex;
-    flex-flow: column;
-    padding: 5px;
-    max-width: 220px;
-    margin: auto;
+<style>
+/* ==========================================================================
+   Open Food Facts - Update a Product from the Mobile App
+   Modern Scoped Design System
+   ========================================================================== */
+
+:root {
+  --uap-primary: #1976d2;
+  --uap-primary-dark: #0d47a1;
+  --uap-primary-light: #e3f2fd;
+  --uap-secondary: #ff7900;
+  --uap-green: #059669;
+  --uap-green-light: #ecfdf5;
+  --uap-green-border: #a7f3d0;
+  --uap-amber: #d97706;
+  --uap-amber-light: #fffbeb;
+  --uap-surface: #ffffff;
+  --uap-surface-alt: #f8fafc;
+  --uap-border: #e2e8f0;
+  --uap-card-border: #e2e8f0;
+  --uap-text-primary: #0f172a;
+  --uap-text-secondary: #334155;
+  --uap-text-muted: #64748b;
+  --uap-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --uap-shadow-md: 0 4px 14px rgba(0, 0, 0, 0.07);
+  --uap-shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --uap-radius-lg: 18px;
+  --uap-radius-md: 12px;
+  --uap-radius-sm: 8px;
+  --uap-radius-pill: 9999px;
 }
 
-img {
-    max-width: 220px;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --uap-primary: #38bdf8;
+    --uap-primary-dark: #0284c7;
+    --uap-primary-light: #082f49;
+    --uap-surface: #1e293b;
+    --uap-surface-alt: #0f172a;
+    --uap-border: #334155;
+    --uap-card-border: #334155;
+    --uap-text-primary: #f8fafc;
+    --uap-text-secondary: #cbd5e1;
+    --uap-text-muted: #94a3b8;
+    --uap-green-light: #064e3b;
+    --uap-green-border: #047857;
+    --uap-amber-light: #451a03;
+  }
 }
 
-figcaption {
-    background-color: #222;
-    color: #fff;
-    font: italic smaller sans-serif;
-    padding: 3px;
-    text-align: center;
+.uap-page-wrapper {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+  color: var(--uap-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+}
+
+/* ---------------- Hero Section ---------------- */
+.uap-hero {
+  background: linear-gradient(135deg, #eef6ff 0%, #ffffff 50%, #fff7ed 100%);
+  border: 1px solid var(--uap-card-border);
+  border-radius: var(--uap-radius-lg);
+  padding: 2.75rem 2.25rem;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--uap-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .uap-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+}
+
+.uap-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.uap-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--uap-primary-light);
+  color: var(--uap-primary);
+  border: 1px solid rgba(25, 118, 210, 0.2);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--uap-radius-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.uap-hero-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--uap-text-primary);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.uap-hero-title .highlight {
+  color: #1976d2;
+}
+
+.uap-hero-desc {
+  font-size: 1.15rem;
+  color: var(--uap-text-secondary);
+  line-height: 1.6;
+  max-width: 820px;
+  margin: 0;
+}
+
+.uap-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.uap-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--uap-radius-pill);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.uap-btn-primary {
+  background: #1976d2;
+  color: #ffffff !important;
+  box-shadow: 0 3px 10px rgba(25, 118, 210, 0.3);
+}
+
+.uap-btn-primary:hover {
+  background: #1565c0;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(25, 118, 210, 0.4);
+}
+
+.uap-btn-outline {
+  background: var(--uap-surface);
+  color: var(--uap-text-primary) !important;
+  border: 1px solid var(--uap-border);
+  box-shadow: var(--uap-shadow-sm);
+}
+
+.uap-btn-outline:hover {
+  background: var(--uap-surface-alt);
+  transform: translateY(-1px);
+}
+
+/* ---------------- Table of Contents / Quick Jump ---------------- */
+.uap-toc-card {
+  background: var(--uap-surface);
+  border: 1px solid var(--uap-card-border);
+  border-radius: var(--uap-radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2.75rem;
+  box-shadow: var(--uap-shadow-sm);
+}
+
+.uap-toc-title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--uap-text-muted);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.uap-toc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.uap-toc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--uap-surface-alt);
+  border: 1px solid var(--uap-border);
+  border-radius: var(--uap-radius-pill);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--uap-text-secondary);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.uap-toc-link:hover {
+  color: var(--uap-primary);
+  border-color: var(--uap-primary);
+  background: var(--uap-primary-light);
+}
+
+/* ---------------- Section Headers ---------------- */
+.uap-section-header {
+  margin: 3.5rem 0 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--uap-border);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.uap-section-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--uap-text-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.uap-step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #1976d2;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.uap-section-subtitle {
+  color: var(--uap-text-secondary);
+  font-size: 1.05rem;
+  margin: 0 0 1.5rem;
+  line-height: 1.55;
+}
+
+/* ---------------- Grid & Cards ---------------- */
+.uap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.25rem;
+}
+
+.uap-card {
+  background: var(--uap-surface);
+  border: 1px solid var(--uap-card-border);
+  border-radius: var(--uap-radius-md);
+  overflow: hidden;
+  box-shadow: var(--uap-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.uap-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--uap-shadow-md);
+}
+
+.uap-card-visual {
+  position: relative;
+  background: var(--uap-surface-alt);
+  border-bottom: 1px solid var(--uap-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.85rem;
+  min-height: 280px;
+}
+
+.uap-card-visual img {
+  max-width: 100%;
+  height: auto;
+  max-height: 380px;
+  object-fit: contain;
+  border-radius: var(--uap-radius-sm);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.uap-card-body {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.uap-card-step-num {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--uap-primary);
+}
+
+.uap-card-caption {
+  font-size: 0.94rem;
+  color: var(--uap-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ---------------- Callout & Tips ---------------- */
+.uap-callout {
+  border-radius: var(--uap-radius-md);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  box-shadow: var(--uap-shadow-sm);
+}
+
+.uap-callout-info {
+  background: var(--uap-primary-light);
+  border: 1px solid rgba(25, 118, 210, 0.25);
+  color: var(--uap-text-primary);
+}
+
+.uap-callout-tip {
+  background: var(--uap-green-light);
+  border: 1px solid var(--uap-green-border);
+  color: var(--uap-text-primary);
+}
+
+.uap-callout-warning {
+  background: var(--uap-amber-light);
+  border: 1px solid rgba(217, 119, 6, 0.25);
+  color: var(--uap-text-primary);
+}
+
+.uap-callout-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.uap-callout-content {
+  flex-grow: 1;
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.uap-callout-content strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+
+.uap-callout-content p {
+  margin: 0;
+}
+
+/* ---------------- Checklist Box ---------------- */
+.uap-checklist-card {
+  background: var(--uap-surface);
+  border: 1px solid var(--uap-card-border);
+  border-left: 4px solid var(--uap-green);
+  border-radius: var(--uap-radius-md);
+  padding: 1.5rem;
+  margin: 1.75rem 0;
+  box-shadow: var(--uap-shadow-sm);
+}
+
+.uap-checklist-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--uap-text-primary);
+  margin: 0 0 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.uap-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.uap-checklist li {
+  position: relative;
+  padding-left: 1.75rem;
+  font-size: 0.98rem;
+  color: var(--uap-text-secondary);
+  line-height: 1.5;
+}
+
+.uap-checklist li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--uap-green);
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+/* ---------------- Footer Banner ---------------- */
+.uap-footer-banner {
+  background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
+  color: #ffffff;
+  border-radius: var(--uap-radius-lg);
+  padding: 2.5rem 2rem;
+  margin-top: 4rem;
+  text-align: center;
+  box-shadow: var(--uap-shadow-lg);
+}
+
+.uap-footer-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.85rem;
+}
+
+.uap-footer-desc {
+  font-size: 1.15rem;
+  max-width: 650px;
+  margin: 0 auto 1.75rem;
+  opacity: 0.92;
+  line-height: 1.6;
+}
+
+.uap-footer-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.uap-footer-actions .uap-btn {
+  background: #ffffff;
+  color: #0d47a1 !important;
+  font-weight: 700;
+}
+
+.uap-footer-actions .uap-btn:hover {
+  background: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------------- Responsive Adjustments ---------------- */
+@media (max-width: 768px) {
+  .uap-hero {
+    padding: 1.75rem 1.25rem;
+  }
+  .uap-hero-title {
+    font-size: 1.85rem;
+  }
+  .uap-grid {
+    grid-template-columns: 1fr;
+  }
+  .uap-card-visual {
+    min-height: 240px;
+  }
+  .uap-section-title {
+    font-size: 1.4rem;
+  }
 }
 </style>
 
-<h1>Update a product from the Android mobile app</h1>
-<!-- Robotoff -->
-<h3 class="blue-title-bar">Answer questions to help complete products</h3>
-<div class="row">
-<div class="small-12 medium-4 columns">
-	<figure>
-	    <img src="/images/misc/mobile-app-help/android-fr-robotoff-question-inline.png"
-	         alt="">
-	    <figcaption>If you are logged into your Open Food Facts account, you might be a blue question in the full product page. Just tap on it to answer it.</figcaption>
-	</figure>
+<div class="uap-page-wrapper">
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <header class="uap-hero">
+    <div class="uap-badge-row">
+      <span class="uap-badge-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2zm0-10h2v8h-2z"/>
+        </svg>
+        Contributor Guide
+      </span>
+      <span class="uap-badge-pill" style="background: #e0f2fe; color: #0369a1; border-color: #bae6fd;">
+        Android &amp; iOS
+      </span>
+    </div>
+
+    <h1 class="uap-hero-title">
+      Update a product from the <span class="highlight">mobile app</span>
+    </h1>
+
+    <p class="uap-hero-desc">
+      Empower consumers worldwide with open food data! Learn how to quickly answer AI validation questions, update packaging photos, extract ingredients using automatic OCR, and edit nutrition facts directly from the Open Food Facts mobile application.
+    </p>
+
+    <div class="uap-hero-ctas">
+      <a class="uap-btn uap-btn-primary" href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M3 20.5v-17c0-.83.67-1.5 1.5-1.5.38 0 .74.14 1.01.41L18.44 14.5l-2.45 2.45L3.41 4.37c-.27-.27-.41-.63-.41-1.01zM19.86 15.91l2.45-2.45c.57-.57.57-1.49 0-2.06L4.5 1.59l11.49 11.49 3.87 2.83zM3 3.5v17l11.49-11.49L3 3.5z"/>
+        </svg>
+        Google Play
+      </a>
+      <a class="uap-btn uap-btn-outline" href="https://f-droid.org/packages/openfoodfacts.github.scrachx.openfood" target="_blank" rel="noopener">
+        F-Droid
+      </a>
+      <a class="uap-btn uap-btn-outline" href="https://apps.apple.com/app/open-food-facts/id588797948" target="_blank" rel="noopener">
+        App Store
+      </a>
+      <a class="uap-btn uap-btn-outline" href="https://android.openfoodfacts.org/" target="_blank" rel="noopener">
+        Get Android APK
+      </a>
+    </div>
+  </header>
+
+  <!-- ==================== QUICK JUMP NAVIGATION ==================== -->
+  <nav class="uap-toc-card" aria-label="Table of Contents">
+    <div class="uap-toc-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+      </svg>
+      Quick Jump
+    </div>
+    <div class="uap-toc-links">
+      <a class="uap-toc-link" href="#quick-contributions">⚡ Quick Contributions</a>
+      <a class="uap-toc-link" href="#step-1-inspect">1. Check Mismatch</a>
+      <a class="uap-toc-link" href="#step-2-front-photo">2. Front Photo</a>
+      <a class="uap-toc-link" href="#step-3-ingredients-photo">3. Ingredients Photo</a>
+      <a class="uap-toc-link" href="#step-4-nutrition-photo">4. Nutrition Photo</a>
+      <a class="uap-toc-link" href="#step-5-edit-mode">5. Edit Mode &amp; OCR</a>
+      <a class="uap-toc-link" href="#step-6-nutrition-facts">6. Nutrition Facts</a>
+      <a class="uap-toc-link" href="#step-7-save-edits">7. Save Edits</a>
+    </div>
+  </nav>
+
+  <!-- ==================== PART 1: QUICK CONTRIBUTIONS ==================== -->
+  <section id="quick-contributions">
+    <div class="uap-section-header">
+      <h2 class="uap-section-title">
+        <span class="uap-step-badge">⚡</span>
+        Quick Micro-Contributions
+      </h2>
+    </div>
+    <p class="uap-section-subtitle">
+      Even if you only have 30 seconds, you can make an immediate impact by answering AI validation questions or selecting and re-cropping photos from the community gallery.
+    </p>
+
+    <!-- Sub-section: Robotoff Questions -->
+    <h3 style="font-size: 1.3rem; margin: 1.5rem 0 0.75rem; color: var(--uap-text-primary);">
+      Answer questions to help complete products (Robotoff AI)
+    </h3>
+    <div class="uap-grid">
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-robotoff-question-inline.png"
+               alt="Screenshot of an inline blue question in the Open Food Facts mobile app"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 1</span>
+          <p class="uap-card-caption">
+            When logged into your Open Food Facts account, you may see a blue question card on the product sheet. Tap it to answer.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-robotoff-question-popup.png"
+               alt="Screenshot of the Robotoff question dialog showing Yes, No, and Not sure buttons"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 2</span>
+          <p class="uap-card-caption">
+            The question will appear with three choices: press <strong>"Not sure"</strong> if in doubt, <strong>"No"</strong> if incorrect, and <strong>"Yes"</strong> if you are certain.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-robotoff-question-result.png"
+               alt="Screenshot showing Nutri-Score computed thanks to category validation"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 3</span>
+          <p class="uap-card-caption">
+            By validating the suggested food category, Open Food Facts can instantly calculate and display the product's Nutri-Score!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-section: Recropping existing photos -->
+    <h3 style="font-size: 1.3rem; margin: 2rem 0 0.75rem; color: var(--uap-text-primary);">
+      Recropping a previously uploaded photo from the gallery
+    </h3>
+    <div class="uap-grid">
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-no-ingredients-photo.png"
+               alt="Screenshot showing missing ingredients photo and search icon"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Gallery Search</span>
+          <p class="uap-card-caption">
+            If no ingredients photo is selected, check if another photo (like the front packaging) already contains it. Tap the magnifying glass icon to view all uploaded photos.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-gallery-select.png"
+               alt="Screenshot of the photo gallery selecting an existing image"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Photo Selection</span>
+          <p class="uap-card-caption">
+            In the photo gallery, browse all uploaded pictures for this product and tap the one that best captures the missing information.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-ingredients-selected.png"
+               alt="Screenshot confirming the selected photo with a green checkmark"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Validate Selection</span>
+          <p class="uap-card-caption">
+            The photo is now designated as the ingredients photo for that language. Tap <strong>✓</strong> to confirm your selection.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-section: Adjusting Crop & Rotation -->
+    <h3 style="font-size: 1.3rem; margin: 2rem 0 0.75rem; color: var(--uap-text-primary);">
+      Adjusting the crop and orientation of existing pictures
+    </h3>
+    <div class="uap-grid">
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-badly-cropped-nutrition.png"
+               alt="Screenshot showing an awkwardly cropped nutrition table"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Identify Issue</span>
+          <p class="uap-card-caption">
+            If a photo is poorly cropped or includes extraneous text, tap on the picture to enter the cropping tool.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-zoom-nutrition.png"
+               alt="Screenshot tapping the crop button"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Enter Crop Tool</span>
+          <p class="uap-card-caption">
+            Tap the crop button to adjust the selection box around the nutrition facts or ingredients list.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-nutrition-cropped.png"
+               alt="Screenshot adjusting bounding box handles and rotation"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Adjust Handles</span>
+          <p class="uap-card-caption">
+            Use the four white corner handles to resize the bounding box. If near the edge of your screen, use the rotate button to orient the area toward the center, then rotate back.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-cropped-nutrition-results.png"
+               alt="Screenshot showing the newly cropped clean nutrition table"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Completed Crop</span>
+          <p class="uap-card-caption">
+            Congratulations! The nutrition image is now sharply framed, allowing text extraction to run smoothly.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Gallery Crop Results -->
+    <div class="uap-grid">
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-select-image-confirm.png"
+               alt="Screenshot confirming the cropped image selection"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Confirmation</span>
+          <p class="uap-card-caption">
+            Confirm your cropped image to replace the blurry or poorly framed previous version.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-ingredients-cropped.png"
+               alt="Screenshot showing tight crop on ingredients text"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Tight Crop</span>
+          <p class="uap-card-caption">
+            Crop closely around the ingredients block to ensure the OCR engine won't extract unrelated marketing slogans.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-ingredients-result.png"
+               alt="Screenshot showing successfully adjusted ingredient photo"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Result</span>
+          <p class="uap-card-caption">
+            The cropped section of the packaging now provides a dedicated, high-quality ingredients photo.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/mobile-app-help/android-fr-uploading.png"
+               alt="Screenshot showing cropping instructions being uploaded"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Background Sync</span>
+          <p class="uap-card-caption">
+            Cropping instructions and images are uploaded to the Open Food Facts servers seamlessly in the background.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PART 2: FULL PRODUCT UPDATE WALKTHROUGH ==================== -->
+  <div class="uap-callout uap-callout-info">
+    <div class="uap-callout-icon">💡</div>
+    <div class="uap-callout-content">
+      <strong>Complete Product Update Walkthrough</strong>
+      <p>Follow the numbered steps below to perform a complete product refresh when you have a physical product in hand with updated packaging or new ingredients.</p>
+    </div>
+  </div>
+
+  <!-- STEP 1: CHECK FOR MISMATCH -->
+  <section id="step-1-inspect">
+    <div class="uap-section-header">
+      <h2 class="uap-section-title">
+        <span class="uap-step-badge">1</span>
+        Check for Photo or Data Mismatch
+      </h2>
+    </div>
+    <p class="uap-section-subtitle">
+      Scan any product with the barcode scanner. Check if the current front photo matches your packaging. Slide up the product card to inspect nutrition facts, ingredients, and categories.
+    </p>
+
+    <div class="uap-grid">
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/1-product-update-fr-1-scan.png"
+               alt="Screenshot scanning a product barcode in Open Food Facts app"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 1.1</span>
+          <p class="uap-card-caption">
+            Scan the barcode. If you spot differences between the app and the physical product, take new photos to empower the entire community!
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/2-product-update-fr-2-mismatch.png"
+               alt="Screenshot sliding up product card to compare packaging"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 1.2</span>
+          <p class="uap-card-caption">
+            Slide up the product summary card to open the complete product details page.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/3-product-update-fr-3-slideup.png"
+               alt="Screenshot opening photo edit mode from product page"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 1.3</span>
+          <p class="uap-card-caption">
+            Tap directly on the product photo to enter the photo management and update screen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 2: FRONT PHOTO -->
+  <section id="step-2-front-photo">
+    <div class="uap-section-header">
+      <h2 class="uap-section-title">
+        <span class="uap-step-badge">2</span>
+        Take a New Front Photo
+      </h2>
+    </div>
+    <p class="uap-section-subtitle">
+      Capture a crisp, well-lit photo of the main packaging face. Avoid shadows and personal items in the frame.
+    </p>
+
+    <div class="uap-grid">
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/4-product-update-fr-4-photo-edit.png"
+               alt="Screenshot tapping the camera icon to capture front photo"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 2.1</span>
+          <p class="uap-card-caption">
+            Tap the camera icon under the Front Photo placeholder to launch the camera viewfinder.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/5-product-update-fr-5-take-new-front-photo.png"
+               alt="Screenshot capturing front packaging on clean background"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 2.2</span>
+          <p class="uap-card-caption">
+            Frame the product neatly against a neutral or white background whenever possible.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/6-product-update-fr-6-validate-new-front-photo.png"
+               alt="Screenshot validating the newly taken photo"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 2.3</span>
+          <p class="uap-card-caption">
+            Review the sharpness and readability. Once satisfied, tap the checkmark to confirm.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/7-product-update-fr-7-crop-new-front-photo.png"
+               alt="Screenshot cropping the front photo"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 2.4</span>
+          <p class="uap-card-caption">
+            Adjust the crop handles. Prefer a slightly generous crop to ensure no badges, weights, or brands are cut off.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/8-product-update-fr-8-uploading-new-front-photo.png"
+               alt="Screenshot showing upload progress indicator"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 2.5</span>
+          <p class="uap-card-caption">
+            A spinning indicator confirms upload. You do not need to wait—you can immediately move on to the ingredients!
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/9-product-update-fr-9-new-front-photo-ready.png"
+               alt="Screenshot showing front photo updated"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 2.6</span>
+          <p class="uap-card-caption">
+            The new front photo is now live and associated with the product.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 3: INGREDIENTS PHOTO -->
+  <section id="step-3-ingredients-photo">
+    <div class="uap-section-header">
+      <h2 class="uap-section-title">
+        <span class="uap-step-badge">3</span>
+        Take and Crop Ingredients Photo
+      </h2>
+    </div>
+    <p class="uap-section-subtitle">
+      Ingredients photos require a precise, high-contrast crop because they are used directly by the automatic optical character recognition (OCR) engine.
+    </p>
+
+    <div class="uap-grid">
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/10-product-update-fr-10-ingredients-photo.png"
+               alt="Screenshot selecting ingredients photo tab"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 3.1</span>
+          <p class="uap-card-caption">
+            Tap the camera icon for Ingredients. Good lighting is essential for accurate character recognition.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/11-product-update-fr-11-take-new-ingredient-photo.png"
+               alt="Screenshot capturing ingredients text"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 3.2</span>
+          <p class="uap-card-caption">
+            Take a clear photo of the ingredients list. If the packaging has multiple languages, capture them all—you can crop each language individually.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/15-product-update-fr-171209-crop-new-ingredients-photo.png"
+               alt="Screenshot cropping ingredients bounding box"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 3.3</span>
+          <p class="uap-card-caption">
+            Use the four white handles to frame the ingredients text closely. You can rotate the image with ↪️ and ↩️ if needed.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/16-product-update-fr-171216-crop-ingredients-fr.png"
+               alt="Screenshot rotating picture to reach screen edge handles"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Pro Tip</span>
+          <p class="uap-card-caption">
+            If edge handles are hard to drag on your screen, rotate the image 90°, adjust the top handles easily, and then rotate back!
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/17-product-update-fr-171229-crop-ingredients-fr-2.png"
+               alt="Screenshot validating ingredients crop"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 3.4</span>
+          <p class="uap-card-caption">
+            Once the crop covers just the ingredients list, tap <strong>✓</strong> to confirm.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/18-product-update-fr-171237-language-dropdown-ingredients-fr.png"
+               alt="Screenshot using the language dropdown menu"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Multilingual</span>
+          <p class="uap-card-caption">
+            For products with multilingual packaging, select additional languages using the "Languages" dropdown menu.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/19-product-update-fr-171242-ingredients-nl-nothing-selected.png"
+               alt="Screenshot showing missing language warning in dropdown"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Language Check</span>
+          <p class="uap-card-caption">
+            If a selected language has no photo yet, the dropdown appears highlighted in yellow with a reminder note.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/23-product-update-fr-171315-crop-ingredients-nl.png"
+               alt="Screenshot cropping ingredients in Dutch"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Second Language</span>
+          <p class="uap-card-caption">
+            Re-use the same packaging photo to crop specifically on the second language list (e.g. Dutch, German, Spanish).
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/24-product-update-fr-171320-crop-ingredients-nl-result.png"
+               alt="Screenshot showing multilingual ingredients validated"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Complete</span>
+          <p class="uap-card-caption">
+            Great job! You have added localized ingredient lists for speakers of multiple languages.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 4: NUTRITION PHOTO -->
+  <section id="step-4-nutrition-photo">
+    <div class="uap-section-header">
+      <h2 class="uap-section-title">
+        <span class="uap-step-badge">4</span>
+        Take a New Nutrition Photo
+      </h2>
+    </div>
+    <p class="uap-section-subtitle">
+      Nutrition tables are often multilingual. A single clear photo encompassing the entire nutrition table is usually sufficient for all languages.
+    </p>
+
+    <div class="uap-grid">
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/25-product-update-fr-171332-outdated-nutrition-table.png"
+               alt="Screenshot tapping take photo for nutrition table"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 4.1</span>
+          <p class="uap-card-caption">
+            Select the Nutrition tab and tap the camera icon to start capturing the table.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/26-product-update-fr-171341-new-nutrition-table-viewfinder.png"
+               alt="Screenshot centering viewfinder on nutrition table"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 4.2</span>
+          <p class="uap-card-caption">
+            Align your camera directly perpendicular to the nutrition table to avoid distortion.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/27-product-update-fr-171352-new-nutrition-table-viewfinder-validate.png"
+               alt="Screenshot confirming nutrition photo"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 4.3</span>
+          <p class="uap-card-caption">
+            Ensure energy values (kJ/kcal), fats, carbs, sugars, fiber, proteins, and salt are all legible.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/28-product-update-fr-171404-new-nutrition-table-crop-nutrition.png"
+               alt="Screenshot cropping nutrition table box"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 4.4</span>
+          <p class="uap-card-caption">
+            Crop neatly to include both the nutrient names and the values per 100g and per portion.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/29-product-update-fr-171411-new-nutrition-table-finished.png"
+               alt="Screenshot completed nutrition crop"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 4.5</span>
+          <p class="uap-card-caption">
+            The cropped nutrition table is saved and ready for automated analysis.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/31-product-update-fr-171454-updated-product.png"
+               alt="Screenshot showing all photos updated"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Photos Ready</span>
+          <p class="uap-card-caption">
+            All photos are now refreshed! Tap the back arrow in the upper corner to return to the product screen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 5: EDIT MODE & OCR -->
+  <section id="step-5-edit-mode">
+    <div class="uap-section-header">
+      <h2 class="uap-section-title">
+        <span class="uap-step-badge">5</span>
+        Enter Edit Mode &amp; Extract Ingredients via OCR
+      </h2>
+    </div>
+    <p class="uap-section-subtitle">
+      With new photos uploaded, make sure the text and numerical values reflect the physical packaging. Use automatic OCR to extract the ingredients in seconds!
+    </p>
+
+    <div class="uap-grid">
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/30-product-update-fr-171421-check-if-the-nutrition-has-changed.png"
+               alt="Screenshot comparing nutrition values against photo"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 5.1</span>
+          <p class="uap-card-caption">
+            Inspect the Nutrition tab to see if recipe values have changed. Tap any photo to zoom in.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/32-product-update-fr-171502-check-if-the-ingredients-have-changed.png"
+               alt="Screenshot inspecting ingredients tab"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 5.2</span>
+          <p class="uap-card-caption">
+            Navigate to the Ingredients tab to compare the listed ingredients with your packaging.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/3-product-update-fr-3-slideup.png"
+               alt="Screenshot tapping Edit on Summary tab"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 5.3</span>
+          <p class="uap-card-caption">
+            Tap <strong>"Edit"</strong> on the Summary tab to enter editing mode for data fields.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/33-product-update-fr-171526-long-press.png"
+               alt="Screenshot long pressing old ingredients"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 5.4</span>
+          <p class="uap-card-caption">
+            In the Ingredients section, long press on the existing ingredients text to show selection cursors.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/34-product-update-fr-171537-select-all-ingredients.png"
+               alt="Screenshot tapping Select All in text menu"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 5.5</span>
+          <p class="uap-card-caption">
+            From the context popup menu, tap the three dots (⋮) and tap <strong>"Select all"</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/35-product-update-fr-171541-select-the-old-ingredient-list-to-delete-it-by-long-pressing-it.png"
+               alt="Screenshot tapping Cut to delete old text"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 5.6</span>
+          <p class="uap-card-caption">
+            Tap <strong>"Cut"</strong> or backspace to remove the outdated ingredient text.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/36-product-update-fr-171552-extract-ingredients-button.png"
+               alt="Screenshot tapping Extract ingredients button"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 5.7</span>
+          <p class="uap-card-caption">
+            Once the field is empty, the <strong>"Extract ingredients"</strong> button appears. Tap it to trigger OCR!
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/38-product-update-fr-171603-ingredients-extracted-but-not-corrected.png"
+               alt="Screenshot showing raw extracted OCR text"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 5.8</span>
+          <p class="uap-card-caption">
+            The extracted text appears automatically. It often contains prefixes or suffixes from surrounding packaging text.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/39-product-update-fr-171613-remove-the-superfluous-ingredients-at-the-start.png"
+               alt="Screenshot cutting superfluous text at the beginning"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 5.9</span>
+          <p class="uap-card-caption">
+            Select and delete any prefix text (such as "Ingredients:" or marketing slogans) at the start of the list.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/41-product-update-fr-171636-remove-the-superfluous-ingredients-at-the-end.png"
+               alt="Screenshot cutting superfluous text at the end"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 5.10</span>
+          <p class="uap-card-caption">
+            Select and remove any trailing text (e.g. barcode numbers, manufacturer addresses, or storage instructions).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- OCR Quality Checklist -->
+    <div class="uap-checklist-card">
+      <h3 class="uap-checklist-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#059669" aria-hidden="true">
+          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        </svg>
+        Crucial OCR Verification Checklist
+      </h3>
+      <ul class="uap-checklist">
+        <li><strong>Asterisks (*):</strong> Check special markers (such as organic asterisks). Verify that OCR has not mistranscribed them as apostrophes, commas, or letters.</li>
+        <li><strong>Punctuation &amp; Commas:</strong> Verify that commas properly separate distinct ingredients (e.g. "salt, pepper" not "salt pepper").</li>
+        <li><strong>Percentages:</strong> Verify numbers and percentage signs (e.g. "cocoa butter 32%").</li>
+        <li><strong>Typos:</strong> Correct any minor spelling errors or unrecognized characters before validating.</li>
+      </ul>
+    </div>
+
+    <div class="uap-grid">
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/42-product-update-fr-171659-ingredients-looks-good.png"
+               alt="Screenshot tapping This looks Good button"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 5.11</span>
+          <p class="uap-card-caption">
+            When everything is verified, tap <strong>"This looks Good"</strong>. <em>(Note: "Too bad, ignore" will discard the extraction).</em>
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/43-product-update-fr-171702-validated-ingredients.png"
+               alt="Screenshot showing validated ingredients with green check"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 5.12</span>
+          <p class="uap-card-caption">
+            A green checkmark appears confirming validation. <em>Be careful: your edits are not yet permanently saved!</em>
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/44-product-update-fr-171707-validated-ingredients-next.png"
+               alt="Screenshot showing Next button to proceed to nutrition"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 5.13</span>
+          <p class="uap-card-caption">
+            Tap the back arrow to save ingredients immediately, or tap <strong>"Next"</strong> at the bottom to continue to Nutrition Facts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 6: NUTRITION FACTS -->
+  <section id="step-6-nutrition-facts">
+    <div class="uap-section-header">
+      <h2 class="uap-section-title">
+        <span class="uap-step-badge">6</span>
+        Update Nutrition Facts
+      </h2>
+    </div>
+    <p class="uap-section-subtitle">
+      Adjust numerical nutrient values as indicated on the packaging.
+    </p>
+
+    <div class="uap-grid">
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/46-product-update-fr-171719-update-nutrition-facts.png"
+               alt="Screenshot entering nutritional values in fields"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 6.1</span>
+          <p class="uap-card-caption">
+            Double check values per 100g / 100mL versus per portion. You can specify the exact portion size (e.g. "30g" or "2 biscuits").
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/46-product-update-fr-171719-update-nutrition-facts.png"
+               alt="Screenshot specifying units and toggling nutrition availability"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 6.2</span>
+          <p class="uap-card-caption">
+            At the top, you can also toggle the switch if the product legally does not carry nutritional information (e.g. coffee, tea, table salt).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 7: SAVE EDITS -->
+  <section id="step-7-save-edits">
+    <div class="uap-section-header">
+      <h2 class="uap-section-title">
+        <span class="uap-step-badge">7</span>
+        Save Your Edits
+      </h2>
+    </div>
+    <p class="uap-section-subtitle">
+      Finish your update and submit your valuable contributions to the global database.
+    </p>
+
+    <div class="uap-grid">
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/52-product-update-fr-171827-save-edits.png"
+               alt="Screenshot tapping green Save edits button"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 7.1</span>
+          <p class="uap-card-caption">
+            Scroll to the bottom of the Nutrition tab and tap the green <strong>"Save edits"</strong> button.
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/53-product-update-fr-171831-update-successful.png"
+               alt="Screenshot showing green update successful notification banner"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 7.2</span>
+          <p class="uap-card-caption">
+            A confirmation banner confirms that your updates were successfully synchronized with Open Food Facts!
+          </p>
+        </div>
+      </div>
+
+      <div class="uap-card">
+        <div class="uap-card-visual">
+          <img src="/images/texts/update-a-product-from-the-mobile-app/54-product-update-fr-171833-updated-products.png"
+               alt="Screenshot of the fully updated product sheet"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="uap-card-body">
+          <span class="uap-card-step-num">Step 7.3</span>
+          <p class="uap-card-caption">
+            The updated product sheet is now live, and Nutri-Score, Eco-Score, and NOVA scores are immediately re-evaluated.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER / CONGRATS ==================== -->
+  <div class="uap-footer-banner">
+    <h2 class="uap-footer-title">🎉 Congratulations!</h2>
+    <p class="uap-footer-desc">
+      You've completed your product update. Every photo, ingredient correction, and nutrition fact you provide helps millions of citizens make healthier and more sustainable food choices every day.
+    </p>
+    <div class="uap-footer-actions">
+      <a class="uap-btn" href="https://world.openfoodfacts.org/contribute">
+        Learn More Ways to Contribute
+      </a>
+      <a class="uap-btn" href="https://android.openfoodfacts.org/">
+        Get the Open Food Facts App
+      </a>
+    </div>
+  </div>
+
 </div>
-
-<div class="small-12 medium-4 columns">
-	<figure>
-	    <img src="/images/misc/mobile-app-help/android-fr-robotoff-question-popup.png"
-	         alt="">
-	    <figcaption>The question will appear in full along with 3 possible answers. Press "Not sure" if you have any doubt, "No" if it's not correct and "Yes" if you are sure that it is correct.</figcaption>
-	</figure>
-</div>
-
-<div class="small-12 medium-4 columns">
-	<figure>
-	    <img src="/images/misc/mobile-app-help/android-fr-robotoff-question-result.png"
-	         alt="">
-	    <figcaption>Thanks to the food category you have just validated by answering the question, Open Food Facts was able to compute the Nutri-Score of the product.</figcaption>
-	</figure>
-</div>
-</div>
-
-<!-- Ingredients -->
-<h3 class="blue-title-bar">Recropping a previously uploaded photo to add a missing ingredient picture</h3>
-<div class="row">
-<div class="small-12 medium-6 columns">
-	<figure>
-	    <img src="/images/misc/mobile-app-help/android-fr-gallery-select.png"
-	         alt="">
-	    <figcaption>In the product photo gallery, you can see all the pictures ever uploaded for this product. Tap on one to select it as the ingredients photo.</figcaption>
-	</figure>
-</div>
-
-<div class="small-12 medium-6 columns">
-	<figure>
-	    <img src="/images/misc/mobile-app-help/android-fr-ingredients-selected.png"
-	         alt="">
-	    <figcaption>The photo is now selected as the ingredients photo for French. Press on ✓ to validate it.</figcaption>
-	</figure>
-</div>
-<div class="small-12 medium-6 columns">
-	<figure>
-	    <img src="/images/misc/mobile-app-help/android-fr-no-ingredients-photo.png"
-	         alt="">
-	    <figcaption>No photo is yet selected for the ingredients in French. In that case the from photo also seems to contain ingredients. Tap on the icon with a magnifying glass to select one ingredient photo from the already uploaded photos (we’ll re-use the front photo).</figcaption>
-	</figure>
-</div>
-</div>
-
-<!-- Nutrition -->
-<h3 class="blue-title-bar">Adjusting the crop of a nutrition picture</h3>
-<div class="row">
-	<div class="small-12 medium-3 columns">
-		<figure>
-		    <img src="/images/misc/mobile-app-help/android-fr-badly-cropped-nutrition.png"
-		         alt="">
-		    <figcaption>The photo of a nutrition is poorly cropped and includes an ingredients list. Tap on the picture to crop it properly.</figcaption>
-		</figure>
-	</div>
-
-	<div class="small-12 medium-3 columns">
-		<figure>
-		    <img src="/images/misc/mobile-app-help/android-fr-zoom-nutrition.png"
-		         alt="">
-		    <figcaption>Click on the cropping button to adjust the image for nutrition.</figcaption>
-		</figure>
-	</div>
-
-	<div class="small-12 medium-3 columns">
-		<figure>
-		    <img src="/images/misc/mobile-app-help/android-fr-nutrition-cropped.png"
-		         alt="">
-		    <figcaption>You can use the 4 white corners to resize the bounding box. If you have trouble moving the corners due to the edge of the screen, you can use the rotate button to adjust the corner and then rotate back.</figcaption>
-		</figure>
-	</div>
-
-	<div class="small-12 medium-3 columns">
-		<figure>
-		    <img src="/images/misc/mobile-app-help/android-fr-cropped-nutrition-results.png"
-		         alt="">
-		    <figcaption>Congratulations, you have adjusted the nutrition picture.</figcaption>
-		</figure>
-	</div>
-
-</div>
-
-<div class="row">
-	<div class="small-12 medium-6 columns">
-		<figure>
-		    <img src="/images/misc/mobile-app-help/android-fr-cropped-nutrition.png"
-		         alt="">
-		    <figcaption></figcaption>
-		</figure>
-	</div>
-
-
-	<div class="small-12 medium-6 columns">
-		<figure>
-		    <img src="/images/misc/mobile-app-help/android-fr-select-image-confirm.png"
-		         alt="">
-		    <figcaption></figcaption>
-		</figure>
-	</div>
-	<div class="small-12 medium-6 columns">
-		<figure>
-		    <img src="/images/misc/mobile-app-help/android-fr-ingredients-cropped.png"
-		         alt="">
-		    <figcaption></figcaption>
-		</figure>
-	</div>
-
-</div>
-
-<div class="row">
-
-	<div class="small-12 medium-6 columns">
-		<figure>
-		    <img src="/images/misc/mobile-app-help/android-fr-ingredients-result.png"
-		         alt="">
-		    <figcaption>Congratulations, you have adjusted the ingredient picture.</figcaption>
-		</figure>
-	</div>
-
-	<div class="small-12 medium-6 columns">
-		<figure>
-		    <img src="/images/misc/mobile-app-help/android-fr-ingredients-results.png"
-		         alt="">
-		    <figcaption>The cropped version of the front photo now constitutes a very good ingredient photo.</figcaption>
-		</figure>
-	</div>
-
-	<div class="small-12 medium-6 columns">
-		<figure>
-		    <img src="/images/misc/mobile-app-help/android-fr-uploading.png"
-		         alt="">
-		    <figcaption>The cropped instruction for the nutrition table are being sent to the server.</figcaption>
-		</figure>
-	</div>
-</div>
-
-<!-- Take a photo -->
-<h3 class="blue-title-bar">Take missing photos</h3>
-<div class="row">
-<div class="small-12 medium-6 columns">
-	<figure>
-	    <img src="/images/misc/mobile-app-help/android-fr-take-a-photo.png"
-	         alt="">
-	    <figcaption>Due to the collaborative nature of open food facts,  some photos may be missing.  just click on the take photo icon to take part in food transparency.</figcaption>
-	</figure>
-</div>
-</div>
-
-<p class="callout panel">You need the Android Open Food Facts app to update a product that way. You can get it <a href="https://android.openfoodfacts.org/">there</a>.</figcaption>
-
-
-<h3 class="blue-title-bar">1. Check for any photo or data mismatch</h3>
-<p>Scan any product using its barcode. Check if the front photo seems to match the current packaging. You can slide up to compare all the values and photos.</p>
-<div class="row">
-<div class="small-12 medium-6 columns">
-	<figure>
-	    <img src="/images/misc/update-a-product-from-the-mobile-app/1-product-update-fr-1-scan.png"
-	         alt="">
-	    <figcaption>If you find any mismatch, it would be great to update the product by providing new photos and new data.  If you don't have time to change the data, new photos will be great, since it will empower another contributor to do it without having the product in his or her hands.</figcaption>
-	</figure>
-</div>
-
-</div>
-<h3 class="blue-title-bar">Open the product to send new photos</h3>
-
-<div class="row">
-	<div class="small-12 medium-6 columns">
-		<figure>
-   			<img src="/images/misc/update-a-product-from-the-mobile-app/2-product-update-fr-2-mismatch.png" alt="">
-    		<figcaption>Slide up the card to get the full product.
-    		</figcaption>
-		</figure>
-	</div>
-
-	<div class="small-12 medium-6 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/3-product-update-fr-3-slideup.png">
-		<figcaption>Tap on the photo to open the photo edit mode. If this is the first time you open the photo edit mode, you will see a small tutorial.</figcaption>
-	</figure>
-	</div>
-</div>
-<h3 class="blue-title-bar">Take a new front photo</h3>
-<div class="row">
-	<div class="small-12 medium-4 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/4-product-update-fr-4-photo-edit.png">
-		<figcaption>Tap on the little camera icon to take a new front photo. </figcaption>
-	</figure>
-	</div>
-	<div class="small-12 medium-4 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/5-product-update-fr-5-take-new-front-photo.png">
-		<figcaption>Try to avoid any personal details and if you can take the photo on a white background, all the better.</figcaption>
-	</figure>
-	</div>
-	<div class="small-12 medium-4 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/6-product-update-fr-6-validate-new-front-photo.png">
-		<figcaption>Once you are happy with a photo, validate it.</figcaption>
-		
-		
-	</div>
-
-</div>
-
-<p>Open Food Facts will propose to crop the photo. Prefer a wide crop to a narrow crop as this can be adjusted later by you or another contributor. We don’t have to lose any valuable product information.</p>
-
-<div class="row">
-	<div class="small-12 medium-4 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/7-product-update-fr-7-crop-new-front-photo.png">
-		<figcaption>Once you are happy with the crop, tap on “Validate”.</figcaption>
-	</figure></div>
-
-	<div class="small-12 medium-4 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/8-product-update-fr-8-uploading-new-front-photo.png">
-		<figcaption>You should see a little spinning icon at the bottom during the photo upload.  You can move to ingredients without waiting for the upload to complete.</figcaption>
-	</figure>
-	</div>
-	<div class="small-12 medium-4 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/9-product-update-fr-9-new-front-photo-ready.png">
-			<figcaption>Once the upload completes, the new photo should appear.</figcaption>
-		</figure>
-	</div>
-</div>
-
-<h3 class="blue-title-bar">Take a new ingredients photo</h3>
-<div class="row">
-	<div class="small-12 medium-4 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/10-product-update-fr-10-ingredients-photo.png">
-			<figcaption>Do the same process again with the ingredients photo.  For ingredients, a precise crop is more important as it will be used to perform automatic text extraction, known as OCR.</figcaption>
-		</figure>
-	</div>
-	<div class="small-12 medium-4 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/11-product-update-fr-11-take-new-ingredient-photo.png">
-			<figcaption>Take a new photo of the ingredients. You can take all languages at the same time, you'll have the opportunity to crop them later</figcaption>
-		</figure>
-	</div>
-<!-- <div class="row"> -->
-<!-- 	<div class="small-12 medium-6 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/12-product-update-fr-12-crop-new-ingredients-photo.png">
-			<figcaption>The app lets you crop the ingredient picture using the little white handles at the 4 corners of the photo. You can also rotate it using ↪️ and ↩️</figcaption>
-			
-		</figure>
-	</div> -->
-	<!-- <div class="small-12 medium-6 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/13-product-update-fr-171151-crop-new-ingredients-photo.png">
-			<figcaption></figcaption>
-		</figure>
-	</div> -->
-<!-- </div>
-<div class="row"> -->
-<!-- 	<div class="small-12 medium-6 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/14-product-update-fr-171204-crop-new-ingredients-photo.png">
-			<figcaption>You can also crop the ingredient picture on existing photos using the little white handles at the 4 corners of the photo. You can also rotate it using ↪️ and ↩️</figcaption>
-		</figure>
-	</div> -->
-
-	<div class="small-12 medium-4 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/15-product-update-fr-171209-crop-new-ingredients-photo.png">
-			<figcaption>The app lets you crop the ingredient picture using the little white handles at the 4 corners of the photo. You can also rotate it using ↪️ and ↩️</figcaption>
-		</figure>
-	</div>
-
-</div>
-<div class="row">
-	<div class="small-12 medium-3 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/16-product-update-fr-171216-crop-ingredients-fr.png">
-			<figcaption>Hint: if you have a hard time cropping from the edge of your screen, you can rotate the picture and crop from the top. Once you are satisfied with a crop, you can rotate it back in the right orientation.</figcaption>
-		</figure>
-	</div>
-	<div class="small-12 medium-3 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/17-product-update-fr-171229-crop-ingredients-fr-2.png">
-			<figcaption>Once the crop is done, you can click on ✓</figcaption>
-		</figure>
-	</div>
-	<div class="small-12 medium-3 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/18-product-update-fr-171237-language-dropdown-ingredients-fr.png">
-			<figcaption>If a product has multiple languages for the ingredients list, you can add all those languages using the drop down menu called “Languages”.</figcaption>
-		</figure>
-	</div>
-	<div class="small-12 medium-3 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/19-product-update-fr-171242-ingredients-nl-nothing-selected.png">
-			<figcaption>Repeat the photo taking process for each language. If no photo for the language is selected, you will see the drop down appear in yellow, as well as a little message below. Make sure that the photo you are taking is in the right language when compared to the dropdown.</figcaption>
-		</figure>
-	</div>
-</div>
-<p class="callout panel">Hint: If you are in a rush, you can take a wide photo of all the ingredients in all languages and it will be possible to crop more precisely later in all languages, even if you have thrown away the packaging.</p>
-<!-- <div class="row"> -->
-<!-- 	<div class="small-12 medium-6 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/20-product-update-fr-171250-take-nl-ingredients-photo.png">
-			<figcaption>Center on the nutrition table</figcaption>
-		</figure>
-	</div> -->
-	<!-- 	
-	<div class="small-12 medium-6 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/21-product-update-fr-171254-nl-ingredients-photo-nothing.png">
-	</figure></div> -->
-<!-- 	<div class="small-12 medium-6 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/22-product-update-fr-171257-take-nl-ingredients-photo.png">
-		</figure>
-	</div> -->
-<!-- </div> -->
-<div class="row">
-	<div class="small-12 medium-6 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/23-product-update-fr-171315-crop-ingredients-nl.png">
-			<figcaption>Crop on the ingredient list on the new language you are doing</figcaption>
-		</figure>
-	</div>
-	<div class="small-12 medium-6 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/24-product-update-fr-171320-crop-ingredients-nl-result.png">
-		<figcaption>Well done, you've added an ingredient list in another language !</figcaption>
-	</div>
-</div>
-
-<h3 class="blue-title-bar">Take a new nutrition photo</h3>
-<p>You can now repeat the process with the nutrition table. Usually nutrition tables are multilingual. So you can limit yourself to the main language of the product. If the nutrition table is in the form of a separate text, you can of course make a different photo crop for each language.</p>
-<div class="row">
-	<div class="small-12 medium-3 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/25-product-update-fr-171332-outdated-nutrition-table.png">
-			<figcaption>Click on take a photo</figcaption>
-		</figure>
-	</div>
-
-	<div class="small-12 medium-3 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/26-product-update-fr-171341-new-nutrition-table-viewfinder.png">
-			<figcaption>Center on the nutrition table</figcaption>
-		</figure>
-	</div>
-
-	<div class="small-12 medium-3 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/27-product-update-fr-171352-new-nutrition-table-viewfinder-validate.png">
-			<figcaption>Validate your photo once you're happy with it</figcaption>
-		</figure>
-	</div>
-
-	<div class="small-12 medium-3 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/28-product-update-fr-171404-new-nutrition-table-crop-nutrition.png">
-		<figcaption>Crop on the nutrition table</figcaption>
-	</figure>
-	</div>
-</div>
-<div class="row">
-	<div class="small-12 medium-3 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/29-product-update-fr-171411-new-nutrition-table-finished.png">
-			<figcaption>Well done !</figcaption>
-		</figure>
-	</div>
-</div>
-
-<h3 class="blue-title-bar">Well done !</h3>
-
-<div class="row">
-	<figure>
-	<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/31-product-update-fr-171454-updated-product.png">
-	<figcaption>We have now updated all the photos. Well done ! You can go back to the product by tapping on the back row on the top right of the screen.</figcaption>
-	</figure>
-</div>
-
-<h3 class="blue-title-bar">5. Updating outdated nutrition values and ingredient lists.</h3>
-
-<p>Now we need to make sure that the values for ingredients and nutrition are consistent with the new photos we took.</p>
-
-<div class="row">
-	
-	<div class="small-12 medium-6 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/30-product-update-fr-171421-check-if-the-nutrition-has-changed.png">
-		<figcaption>Navigate to the nutrition table and compare values with the packaging you still have it. Otherwise, you can tap on the nutrition photo to zoom it.</figcaption>
-	</figure></div>
-	<div class="small-12 medium-6 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/32-product-update-fr-171502-check-if-the-ingredients-have-changed.png">
-		<figcaption>Navigate to the “Ingredients” tab to compare the ingredients to what is on the packaging. Similarly, you can tap on the nutrition photo to zoom it.</figcaption>
-	</figure></div>
-	
-</div>
-
-<h3 class="blue-title-bar">Opening the edit mode</h3>
-
-<div class="row">
-	<div class="small-12 medium-6 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/3-product-update-fr-3-slideup.png">
-		<figcaption>If you need to make adjustments for values, you can tap on “Edit” on the “Summary” tab.</figcaption>
-	</figure>
-	</div>
-</div>
-
-<h3 class="blue-title-bar">Updating ingredients by performing a new text extraction</h3>
-
-<div class="row">
-	<div class="small-12 medium-6 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/33-product-update-fr-171526-long-press.png">
-		<figcaption>Navigate to the “Ingredients” section and long press on the current ingredients to select part of them.</figcaption>
-	</figure></div>
-	<div class="small-12 medium-6 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/34-product-update-fr-171537-select-all-ingredients.png">
-			<figcaption>Then using the Pop-Up menu that just appeared, tap on the 3 little dots, and then tap on “Select all”.</figcaption>
-		</figure>
-	</div>
-</div>
-<p class="callout panel">Alternatively, you can use the 2 circular cursors that appeared to select all the ingredients, but by experience, that is more complex to do.</p>
-<div class="row">
-	<div class="small-12 medium-4 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/35-product-update-fr-171541-select-the-old-ingredient-list-to-delete-it-by-long-pressing-it.png">
-		<figcaption>Click on "Cut" to remove the ingredients.</figcaption>
-	</figure>
-</div>
-	<div class="small-12 medium-4 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/36-product-update-fr-171552-extract-ingredients-button.png">
-		<figcaption>You should see the “Extract ingredients” button appear.  Tap on it to perform the automatic text extraction.</figcaption>
-	</figure>
-</div>
-	<div class="small-12 medium-4 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/38-product-update-fr-171603-ingredients-extracted-but-not-corrected.png">
-		<figcaption>When the text extraction is complete, you should see the extracted text appear.  There might be some extra information before and after the ingredients, that we need to remove that before validating the list of ingredients.</figcaption>
-	</figure>
-</div>
-<!-- 	<div class="small-12 medium-6 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/37-product-update-fr-171557.png">
-		<figcaption>37-product-update-fr-171557.png</figcaption>
-		
-		
-	</figure></div> -->
-</div>
-<div class="row">
-	<div class="small-12 medium-6 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/39-product-update-fr-171613-remove-the-superfluous-ingredients-at-the-start.png">
-			<figcaption>Long press and select the extra text before using the cursors and use “Cut” to remove it.</figcaption>
-		</figure>
-	</div>
-	<div class="small-12 medium-6 columns">
-		<figure>
-			<!-- <img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/40-product-update-fr-171632-remove-the-superfluous-ingredients-at-the-end.png"> -->
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/41-product-update-fr-171636-remove-the-superfluous-ingredients-at-the-end.png">
-			<figcaption>Long press and select the extra text after using the cursors after and use “Cut” to remove it.</figcaption>
-		</figure>
-	</div>
-</div>
-
-<h3 class="blue-title-bar">Checking the ingredients carefully before validating them</h3>
-		<p>Then check carefully but each ingredient matches what's on the packaging or on the photo. Again you can tap the photo to zoom it.</p> 
-		<ul>
-			<li>Take extra care about the little stars that may indicate specific things about the ingredients. Ensure that the OCR hasn't converted it to an apostrophe or something else.</li>
-			<li>Ensure that commas have been properly transcribed.</li> 
-			<li>Ensure that there is no missing ingredient or typo.</li>
-		</ul>
-	<div class="row">
-
-
-	<div class="small-12 medium-6 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/42-product-update-fr-171659-ingredients-looks-good.png">
-			<figcaption>Once you are satisfied, you can tap on “This looks Good”. Tapping on “Too bad, ignore the ingredients” will delete everything.</figcaption>
-		</figure>
-	</div>
-	<div class="small-12 medium-6 columns">
-		<figure>
-			<img alt="" src="/images/misc/update-a-product-from-the-mobile-app/43-product-update-fr-171702-validated-ingredients.png">
-			<figcaption>Once you have the ingredients, you should see a little green check next to it.</figcaption>
-		</figure>
-	</div>
-</div>
-<p class="callout panel">Be careful: at this point, the ingredients haven't been saved !</p>
-
-<h3 class="blue-title-bar">Saving immediately your work, or moving on to editing nutrition</h3>
-<p>To save them you have two options:</p>
-<div class="row">
-	<div class="small-12 medium-6 columns">
-		<figure>
-			<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/44-product-update-fr-171707-validated-ingredients-next.png">
-			<figcaption>
-				<ol>
-					<li>You can tap on the back arrow on the top right of your screen and confirm.</li>
-					<li>You can scroll to the bottom of your screen and tap on “Next”. This will take you to the Nutrition tab. The “Save” button is at the bottom of the Nutrition tab.</li>
-				</ol>
-			</figcaption>
-		</figure>
-	</div>
-	<div class="small-12 medium-6 columns">
-		<ul>
-			<li>The top arrow makes sense if you want to just edit the ingredients.</li>
-			<li>Going to the nutrition tab makes sense if you need to adjust values there as well.</li>
-		</ul>
-
-	</div>
-</div>
-
-<!-- <div class="row">
-
-	<div class="small-12 medium-6 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/45-product-update-fr-171712-correct-ingredients.png">
-	</div>
-</div> -->
-
-<h3 class="blue-title-bar">Updating nutrition</h3>
-
-<div class="row">
-	<div class="small-12 medium-6 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/46-product-update-fr-171719-update-nutrition-facts.png">
-		<figcaption>You can adjust the nutrition values as needed.  Please be careful about units and whether the product information is “per proportion” or “per 100g/mL”.</figcaption>
-	</figure></div>
-	<div class="small-12 medium-6 columns">
-	<figure>
-		<!-- TODO image where we can see no nutrition facts -->
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/46-product-update-fr-171719-update-nutrition-facts.png">
-		<figcaption>The portion size is just below the choice between “per 100g/100mL” and “per portion”.</figcaption>
-		<figcaption>At the very top, you also have the option to indicate that the product doesn't have any nutrition information, if that is the case.</figcaption>
-	</div>
-</div>
-
-
-<!-- <img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/47-product-update-fr-171742-update-nutrition-facts.png">
-<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/48-product-update-fr-171745-update-nutrition-facts.png">
-<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/49-product-update-fr-171747-update-nutrition-facts.png">
-<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/50-product-update-fr-171808-update-nutrition-facts.png">
-<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/51-product-update-fr-171816-update-nutrition-facts.png"> -->
-
-<h3 class="blue-title-bar">Saving your edits</h3>
-<div class="row">
-	<div class="small-12 medium-4 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/52-product-update-fr-171827-save-edits.png">
-		<figcaption>Once you are happy, you can tap on the green button called “Save edits”.<br>Tapping the back arrow and validating your changes will have the same result.</figcaption>
-	</figure></div>
-	<div class="small-12 medium-4 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/53-product-update-fr-171831-update-successful.png">
-		<figcaption>After your update is successful, you should see a green confirmation and updated scores and analysis if relevant.</figcaption>
-	</figure>
-	</div>
-	<div class="small-12 medium-4 columns">
-	<figure>
-		<img  alt="" src="/images/misc/update-a-product-from-the-mobile-app/54-product-update-fr-171833-updated-products.png">
-		<figcaption>The updated information is now visible.</figcaption>
-	</div>
-</div>
-
-<h3 class="blue-title-bar">Well done !</h3>
-
-<p>Congratulations, you've done your first product update on Open Food Facts using mobile !</p>
