@@ -1,5 +1,5 @@
 <!-- no side column -->
-<title>Infrastructure, Systems &amp; Bot Defense - Open Food Facts</title>
+<title>Infrastruktur, system &amp; skydd mot robotar – Open Food Facts</title>
 
 <style>
 .dev-infra-section {
@@ -214,9 +214,9 @@
 
 <div class="dev-infra-section" id="dev-infrastructure">
     <div class="section-header">
-        <h2>Infrastructure, Systems &amp; Bot Defense</h2>
+        <h2>Infrastruktur, system &amp; skydd mot robotar</h2>
         <p class="lead">
-            Open Food Facts serves hundreds of millions of monthly requests as a global open data commons. Our volunteer and staff infrastructure team manages high availability, multi-datacenter clusters, and the critical front-line battle against rogue scrapers and aggressive AI crawler bots.
+            Open Food Facts hanterar hundratals miljoner anrop varje månad som en global allmänning för öppna data. Vårt infrastrukturteam av volontärer och anställda sköter hög tillgänglighet, kluster i flera datacenter och det viktiga frontlinjearbetet mot missbrukande skrapningsrobotar och aggressiva AI-sökrobotar.
         </p>
     </div>
 
@@ -224,29 +224,29 @@
     <div class="dev-challenge-banner">
         <div class="dev-challenge-grid">
             <div>
-                <h3>🤖 Taming Scrapers &amp; Aggressive AI Crawlers</h3>
+                <h3>🤖 Tämja skrapningsrobotar &amp; aggressiva AI-sökrobotar</h3>
                 <p>
-                    Open Food Facts is 100% open: our entire database is freely downloadable via daily bulk dumps at <a href="/data" style="color: #be123c; font-weight: 700; text-decoration: underline;">/data</a>. Yet commercial scrapers and AI crawler bots frequently hammer live web pages, heavy search facets, and image servers with hundreds of thousands of unthrottled requests.
+                    Open Food Facts är helt öppet: hela vår databas kan hämtas fritt som dagliga fullständiga utdrag på <a href="/data" style="color: #be123c; font-weight: 700; text-decoration: underline;">/data</a>. Ändå överbelastar kommersiella skrapningsrobotar och AI-sökrobotar ofta webbsidor, resurskrävande sökfasetter och bildservrar med hundratusentals anrop utan hastighetsbegränsning.
                 </p>
                 <ul class="dev-challenge-perks">
-                    <li><strong>Burst Traffic Mitigation:</strong> Preventing uncoordinated scrapers from evading caches and exhausting database workers.</li>
-                    <li><strong>Guarding Public Access:</strong> Ensuring that mobile app users in grocery aisles and active contributors experience sub-second response times without 504 gateway errors.</li>
-                    <li><strong>Educating Reusers:</strong> Directing data consumers to our free bulk exports (JSON, CSV, Parquet) rather than harvesting HTML pages.</li>
+                    <li><strong>Begränsa trafiktoppar:</strong> Förhindra att osamordnade skrapningsrobotar kringgår cachelagring och förbrukar databasens arbetsprocesser.</li>
+                    <li><strong>Skydda allmänhetens åtkomst:</strong> Säkerställa att appanvändare i matbutiken och aktiva bidragsgivare får svarstider under en sekund utan 504-gatewayfel.</li>
+                    <li><strong>Informera återanvändare:</strong> Hänvisa dataanvändare till våra fria massexporter (JSON, CSV, Parquet) i stället för att samla in HTML-sidor.</li>
                 </ul>
                 <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
                     <a href="https://github.com/openfoodfacts/openfoodfacts-infrastructure" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
-                        openfoodfacts-infrastructure on GitHub
+                        openfoodfacts-infrastructure på GitHub
                     </a>
                     <a href="https://openfoodfacts.slack.com/messages/C07B88X4X/" class="btn-dev-action btn-slack-action" target="_blank" rel="noopener noreferrer">
-                        #infrastructure on Slack
+                        #infrastructure på Slack
                     </a>
                 </div>
             </div>
             <div style="text-align: center;">
                 <div style="background: #ffffff; border-radius: 12px; padding: 1.5rem; border: 1px solid #fecdd3; box-shadow: 0 4px 12px rgba(225, 29, 72, 0.08);">
                     <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">🛑 🧱 ⚡</div>
-                    <div style="font-weight: 700; color: #111827; margin-bottom: 0.25rem;">Multi-Tier Defense</div>
-                    <p style="font-size: 0.85rem; color: #6b7280; margin: 0;">Nginx Rate Limiting • Fail2ban &amp; nftables • Edge Caching • Upptime Monitoring</p>
+                    <div style="font-weight: 700; color: #111827; margin-bottom: 0.25rem;">Skydd i flera lager</div>
+                    <p style="font-size: 0.85rem; color: #6b7280; margin: 0;">Anropsbegränsning i Nginx • Fail2ban &amp; nftables • Cachelagring vid nätverkets kant • Övervakning med Upptime</p>
                 </div>
             </div>
         </div>
@@ -259,28 +259,28 @@
             <div class="dev-infra-card-header">
                 <div class="dev-infra-card-icon">⚡</div>
                 <div class="dev-infra-card-title">
-                    <h3>Nginx Reverse Proxy &amp; Throttling</h3>
+                    <h3>Omvänd proxy &amp; trafikbegränsning med Nginx</h3>
                     <div class="dev-tech-tags">
                         <span class="dev-tech-tag">Nginx</span>
-                        <span class="dev-tech-tag">Rate Limiting</span>
-                        <span class="dev-tech-tag">Microcaching</span>
+                        <span class="dev-tech-tag">Anropsbegränsning</span>
+                        <span class="dev-tech-tag">Mikrocachelagring</span>
                     </div>
                 </div>
             </div>
             <div class="dev-infra-card-body">
                 <p>
-                    All external traffic traverses specialized Nginx reverse proxies designed to withstand massive bursts and isolate critical endpoints.
+                    All extern trafik passerar specialiserade omvända Nginx-proxyservrar som är utformade för att tåla kraftiga trafiktoppar och isolera kritiska slutpunkter.
                 </p>
                 <ul class="dev-infra-card-features">
-                    <li>Dynamic rate limiting per IP and per endpoint to throttle unbuffered burst requests</li>
-                    <li>Image rate limiting and caching across dedicated static nodes</li>
-                    <li>Country-level traffic shaping and microcaching for hot catalog queries</li>
-                    <li>Nginx reverse proxy configurations managed collaboratively in Git</li>
+                    <li>Dynamisk anropsbegränsning per IP-adress och slutpunkt för att begränsa obuffrade anrop vid trafiktoppar</li>
+                    <li>Begränsning av bildanrop och cachelagring på särskilda noder för statiskt innehåll</li>
+                    <li>Trafikstyrning per land och mikrocachelagring för vanliga katalogfrågor</li>
+                    <li>Konfigurationer för omvänd Nginx-proxy hanteras gemensamt i Git</li>
                 </ul>
             </div>
             <div class="dev-card-actions">
                 <a href="https://openfoodfacts.github.io/openfoodfacts-infrastructure/explanation/nginx-reverse-proxy/" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
-                    Nginx Architecture Docs
+                    Dokumentation om Nginx-arkitekturen
                 </a>
             </div>
         </div>
@@ -290,7 +290,7 @@
             <div class="dev-infra-card-header">
                 <div class="dev-infra-card-icon" style="background: #fef2f2; color: #dc2626;">🛡️</div>
                 <div class="dev-infra-card-title">
-                    <h3>Fail2ban &amp; Firewall Jails</h3>
+                    <h3>Fail2ban &amp; brandväggens blockeringsregler</h3>
                     <div class="dev-tech-tags">
                         <span class="dev-tech-tag">fail2ban</span>
                         <span class="dev-tech-tag">nftables</span>
@@ -300,18 +300,18 @@
             </div>
             <div class="dev-infra-card-body">
                 <p>
-                    Automated and persistent bot mitigation to drop malicious scanners and non-compliant scrapers at the kernel network layer.
+                    Automatiskt och beständigt robotskydd som stoppar skadliga skannrar och skrapningsrobotar som bryter mot reglerna, direkt i kärnans nätverkslager.
                 </p>
                 <ul class="dev-infra-card-features">
-                    <li>Automated <code>nginx-botsearch</code> filters to trap blind vulnerability and exploit probes</li>
-                    <li>Custom <code>nginx-manual-ban</code> persistent jails using SQLite storage surviving reboots</li>
-                    <li>Real-time traffic aggregation scripts (<code>concatenate_by_ip.pl</code>) for rapid incident response</li>
-                    <li>CIDR range banning for rogue cloud bot subnets</li>
+                    <li>Automatiska <code>nginx-botsearch</code> -filter som fångar blinda sökningar efter sårbarheter och angreppsmöjligheter</li>
+                    <li>Anpassade beständiga <code>nginx-manual-ban</code> -regler med SQLite-lagring som överlever omstarter</li>
+                    <li>Skript för trafiksammanställning i realtid (<code>concatenate_by_ip.pl</code>) för snabb incidenthantering</li>
+                    <li>Blockering av CIDR-intervall för missbrukande robotars undernät i molnet</li>
                 </ul>
             </div>
             <div class="dev-card-actions">
                 <a href="https://openfoodfacts.github.io/openfoodfacts-infrastructure/how-to/how-to-mitigate-crawlers-on-prod/" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
-                    Crawler Mitigation Guide
+                    Guide till skydd mot sökrobotar
                 </a>
             </div>
         </div>
@@ -321,7 +321,7 @@
             <div class="dev-infra-card-header">
                 <div class="dev-infra-card-icon" style="background: #f5f3ff; color: #7c3aed;">🖥️</div>
                 <div class="dev-infra-card-title">
-                    <h3>Proxmox VE &amp; ZFS Cluster</h3>
+                    <h3>Kluster med Proxmox VE &amp; ZFS</h3>
                     <div class="dev-tech-tags">
                         <span class="dev-tech-tag">Proxmox VE</span>
                         <span class="dev-tech-tag">ZFS</span>
@@ -331,17 +331,17 @@
             </div>
             <div class="dev-infra-card-body">
                 <p>
-                    Open Food Facts runs on bare-metal physical servers orchestrated with Proxmox VE, hosting virtual machines and lightweight LXC containers.
+                    Open Food Facts körs på fysiska servrar som samordnas med Proxmox VE och är värdar för virtuella maskiner och resurssnåla LXC-containrar.
                 </p>
                 <ul class="dev-infra-card-features">
-                    <li>Automated ZFS replication across datacenters (OVH, Free, Moji) for disaster resilience</li>
-                    <li>Docker and Docker Compose environments for containerized microservices</li>
-                    <li>Server configuration managed declaratively through Git repositories</li>
+                    <li>Automatisk ZFS-replikering mellan datacenter (OVH, Free, Moji) för motståndskraft vid katastrofer</li>
+                    <li>Docker- och Docker Compose-miljöer för containerbaserade mikrotjänster</li>
+                    <li>Serverkonfiguration hanteras deklarativt via Git-kodarkiv</li>
                 </ul>
             </div>
             <div class="dev-card-actions">
                 <a href="https://openfoodfacts.github.io/openfoodfacts-infrastructure/explanation/proxmox/" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
-                    Proxmox Documentation
+                    Proxmox-dokumentation
                 </a>
             </div>
         </div>
@@ -351,7 +351,7 @@
             <div class="dev-infra-card-header">
                 <div class="dev-infra-card-icon" style="background: #ecfdf5; color: #059669;">📈</div>
                 <div class="dev-infra-card-title">
-                    <h3>Observability &amp; Upptime</h3>
+                    <h3>Observerbarhet &amp; Upptime</h3>
                     <div class="dev-tech-tags">
                         <span class="dev-tech-tag">Prometheus</span>
                         <span class="dev-tech-tag">Grafana</span>
@@ -361,17 +361,17 @@
             </div>
             <div class="dev-infra-card-body">
                 <p>
-                    Full-stack monitoring gives our ops engineers real-time visibility into latency, throughput, error rates, and system anomalies.
+                    Övervakning av hela systemet ger våra drifttekniker insyn i svarstider, genomströmning, felfrekvens och systemavvikelser i realtid.
                 </p>
                 <ul class="dev-infra-card-features">
-                    <li>Transparent public status page powered by Upptime at status.openfoodfacts.org</li>
-                    <li>Prometheus metrics exporters for system, database, and cache metrics</li>
-                    <li>Grafana dashboards for real-time traffic monitoring and incident post-mortems</li>
+                    <li>Öppen statussida med Upptime på status.openfoodfacts.org</li>
+                    <li>Prometheus-exportörer för mätvärden från system, databaser och cacheminnen</li>
+                    <li>Grafana-paneler för trafikövervakning i realtid och efteranalyser av incidenter</li>
                 </ul>
             </div>
             <div class="dev-card-actions">
                 <a href="https://status.openfoodfacts.org/" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
-                    Live Status Page
+                    Aktuell statussida
                 </a>
             </div>
         </div>
@@ -379,19 +379,19 @@
 
     <!-- Monthly Meeting Box -->
     <div class="dev-infra-sync-box">
-        <h3>📅 Join Our Monthly Infrastructure Meeting</h3>
+        <h3>📅 Delta i vårt månatliga infrastrukturmöte</h3>
         <p>
-            The infrastructure team e-meets monthly on the <strong>second Thursday of every month at 18:00 CET / Paris time</strong>. Sysadmins, DevOps, SREs, network engineers, and security enthusiasts of all experience levels are warmly invited to join, share ideas, and help maintain an open internet infrastructure.
+            Infrastrukturteamet träffas digitalt <strong>den andra torsdagen varje månad kl. 18.00 CET / Paristid</strong>. Systemadministratörer, DevOps-ingenjörer, SRE:er, nätverksingenjörer och säkerhetsintresserade på alla erfarenhetsnivåer är varmt välkomna att delta, dela idéer och hjälpa till att underhålla en öppen internetinfrastruktur.
         </p>
         <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
             <a href="https://meet.google.com/ybq-dwuk-pvi" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
                 📹 Google Meet: meet.google.com/ybq-dwuk-pvi
             </a>
             <a href="https://openfoodfacts.github.io/openfoodfacts-infrastructure/" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
-                Infra Docs &amp; Post-Mortems
+                Infrastrukturdokumentation &amp; incidentanalyser
             </a>
             <a href="https://openfoodfacts.slack.com/messages/C07B88X4X/" class="btn-dev-action btn-slack-action" target="_blank" rel="noopener noreferrer">
-                #infrastructure on Slack
+                #infrastructure på Slack
             </a>
         </div>
     </div>
