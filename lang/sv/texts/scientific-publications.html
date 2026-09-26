@@ -691,15 +691,15 @@
 
 <!-- Quick Topic Filter Chips -->
 <div class="topic-chips-bar">
-  <button type="button" class="chip-btn active" onclick="selectSciTheme(this, 'all')">🌟 Alla artiklar</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'nutrition')">🥗 Näring &amp; Nutri-Score</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'ultra_processed')">🏭 NOVA &amp; ultraprocessade livsmedel</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'additives')">🧪 Tillsatser &amp; emulgeringsmedel</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'computer_science')">🤖 AI &amp; datavetenskap</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'environment')">♻️ Miljö &amp; Eco-Score</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'labeling')">🏷️ Märkning &amp; policy</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'halal_kosher')">🕊️ Halal / kosher</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'allergies')">⚠️ Allergier</button>
+  <button type="button" class="chip-btn active" data-theme="all" onclick="selectSciTheme(this, 'all')">🌟 All Articles</button>
+  <button type="button" class="chip-btn" data-theme="nutrition" onclick="selectSciTheme(this, 'nutrition')">🥗 Nutrition & Nutri-Score</button>
+  <button type="button" class="chip-btn" data-theme="ultra_processed" onclick="selectSciTheme(this, 'ultra_processed')">🏭 NOVA & Ultra-Processed</button>
+  <button type="button" class="chip-btn" data-theme="additives" onclick="selectSciTheme(this, 'additives')">🧪 Additives & Emulsifiers</button>
+  <button type="button" class="chip-btn" data-theme="computer_science" onclick="selectSciTheme(this, 'computer_science')">🤖 AI & Data Science</button>
+  <button type="button" class="chip-btn" data-theme="environment" onclick="selectSciTheme(this, 'environment')">♻️ Environment & Eco-Score</button>
+  <button type="button" class="chip-btn" data-theme="labeling" onclick="selectSciTheme(this, 'labeling')">🏷️ Labeling & Policy</button>
+  <button type="button" class="chip-btn" data-theme="halal_kosher" onclick="selectSciTheme(this, 'halal_kosher')">🕊️ Halal / Kosher</button>
+  <button type="button" class="chip-btn" data-theme="allergies" onclick="selectSciTheme(this, 'allergies')">⚠️ Allergies</button>
 </div>
 
 <!-- Filter Bar -->
@@ -767,8 +767,13 @@
 
 <!-- Stats and Count -->
 <div class="sci-stats">
-  <div class="sci-count" id="sciCount">Läser in publikationer …</div>
-  <button type="button" class="button secondary small" onclick="resetSciFilters()" style="margin: 0;">Återställ allt</button>
+  <div class="sci-count" id="sciCount">Loading publications...</div>
+  <div style="display: flex; gap: 0.5rem; align-items: center;">
+    <button type="button" class="button secondary small" onclick="copyShareLink()" style="margin: 0;" title="Copy direct link to this filtered view">
+      <span class="material-icons" style="font-size: 14px; vertical-align: -2px;">share</span> Share view
+    </button>
+    <button type="button" class="button secondary small" onclick="resetSciFilters()" style="margin: 0;">Reset All</button>
+  </div>
 </div>
 
 <!-- Publication Grid -->
@@ -865,10 +870,55 @@ const COUNTRY_FLAGS = {
   "gbr": "🇬🇧 UK"
 };
 
+const THEME_ALIASES = {
+  "ultra_processed": "ultra_processed",
+  "ultra-processed": "ultra_processed",
+  "ultraprocessed": "ultra_processed",
+  "upf": "ultra_processed",
+  "upfs": "ultra_processed",
+  "nova": "ultra_processed",
+  "nova4": "ultra_processed",
+  "nova-4": "ultra_processed",
+  "processing": "ultra_processed",
+  "nutrition": "nutrition",
+  "nutriscore": "nutrition",
+  "nutri-score": "nutrition",
+  "additives": "additives",
+  "additif": "additives",
+  "additifs": "additives",
+  "emulsifiers": "additives",
+  "computer_science": "computer_science",
+  "ai": "computer_science",
+  "ia": "computer_science",
+  "ml": "computer_science",
+  "nlp": "computer_science",
+  "environment": "environment",
+  "ecoscore": "environment",
+  "eco-score": "environment",
+  "climat": "environment",
+  "climate": "environment",
+  "labeling": "labeling",
+  "labels": "labeling",
+  "etiquetage": "labeling",
+  "packaging": "labeling",
+  "halal_kosher": "halal_kosher",
+  "halal": "halal_kosher",
+  "kosher": "halal_kosher",
+  "allergies": "allergies",
+  "allergens": "allergies",
+  "allergenes": "allergies",
+  "allergy": "allergies",
+  "nutrient_profiling": "nutrient_profiling",
+  "mobile_apps": "mobile_apps",
+  "economy": "economy",
+  "digital_platforms": "digital_platforms"
+};
+
 let selectedQuickTheme = "all";
 let currentFilteredList = [];
 let displayedCount = 0;
 const PAGE_SIZE = 36;
+let isReadingUrlState = false;
 
 function toggleSciDrawer(id) {
   const el = document.getElementById(id);
@@ -880,11 +930,16 @@ function toggleMultiFilterPanel() {
   if (p) p.classList.toggle("open");
 }
 
+function activateChip(themeVal) {
+  document.querySelectorAll(".topic-chips-bar .chip-btn").forEach(el => {
+    el.classList.toggle("active", el.getAttribute("data-theme") === themeVal);
+  });
+}
+
 function selectSciTheme(btn, themeVal) {
   selectedQuickTheme = themeVal;
-  document.querySelectorAll(".topic-chips-bar .chip-btn").forEach(el => el.classList.remove("active"));
-  if (btn) btn.classList.add("active");
-  applySciFilters();
+  activateChip(themeVal);
+  applySciFilters(true);
 }
 
 function getCheckedValues(name) {
@@ -898,10 +953,12 @@ function resetSciFilters() {
   document.querySelectorAll('input[name="filter_type"]').forEach(el => el.checked = false);
   document.querySelectorAll('input[name="filter_cit"]').forEach(el => el.checked = false);
   document.querySelectorAll('input[name="filter_country"]').forEach(el => el.checked = false);
-  selectSciTheme(document.querySelector(".topic-chips-bar .chip-btn"), "all");
+  selectedQuickTheme = "all";
+  activateChip("all");
+  applySciFilters(true);
 }
 
-function applySciFilters() {
+function applySciFilters(syncUrl = true) {
   const q = document.getElementById("sciSearch").value.toLowerCase().trim();
   const sortVal = document.getElementById("sciSort").value;
   const yearVal = document.getElementById("sciYear").value;
@@ -976,6 +1033,10 @@ function applySciFilters() {
   });
 
   renderSciList(filtered);
+
+  if (syncUrl && !isReadingUrlState) {
+    syncUrlFromState();
+  }
 }
 
 function renderSciCard(p) {
@@ -1168,10 +1229,140 @@ function openSciModal(id) {
   modal.classList.add("open");
 }
 
+function syncUrlFromState() {
+  if (activePubForModal) {
+    history.replaceState(null, null, "#" + activePubForModal.id);
+    return;
+  }
+
+  const searchEl = document.getElementById("sciSearch");
+  const yearEl = document.getElementById("sciYear");
+  const sortEl = document.getElementById("sciSort");
+
+  const q = searchEl ? searchEl.value.trim() : "";
+  const year = yearEl ? yearEl.value : "all";
+  const sort = sortEl ? sortEl.value : "recent";
+  const theme = selectedQuickTheme;
+
+  const checkedTypes = getCheckedValues("filter_type");
+  const checkedCits = getCheckedValues("filter_cit");
+  const checkedCountries = getCheckedValues("filter_country");
+
+  const hasAdvanced = (year !== "all") || (sort !== "recent") || q || checkedTypes.length || checkedCits.length || checkedCountries.length;
+
+  if (!hasAdvanced && theme && theme !== "all") {
+    history.replaceState(null, null, "#" + theme);
+  } else if (hasAdvanced || (theme && theme !== "all")) {
+    const params = new URLSearchParams();
+    if (theme && theme !== "all") params.set("theme", theme);
+    if (q) params.set("q", q);
+    if (year !== "all") params.set("year", year);
+    if (sort !== "recent") params.set("sort", sort);
+    if (checkedTypes.length) params.set("type", checkedTypes.join(","));
+    if (checkedCits.length) params.set("cit", checkedCits.join(","));
+    if (checkedCountries.length) params.set("country", checkedCountries.join(","));
+    history.replaceState(null, null, "#" + params.toString());
+  } else {
+    history.replaceState(null, null, window.location.pathname + window.location.search);
+  }
+}
+
+function readStateFromUrl() {
+  isReadingUrlState = true;
+  try {
+    const hashRaw = window.location.hash.replace(/^#/, "").trim();
+    const searchRaw = window.location.search.replace(/^\?/, "").trim();
+
+    // 1. Article modal deeplink (e.g. #2025-jun-... or #pub-...)
+    const cleanPubId = hashRaw.replace(/^pub-/, "");
+    const pub = PUBLICATIONS_DATA.find(x => x.id === cleanPubId);
+    if (pub) {
+      applySciFilters(false);
+      openSciModal(pub.id);
+      return true;
+    }
+
+    // 2. Structured query or hash parameters (e.g. #theme=ultra_processed or ?theme=ultra_processed)
+    let params = null;
+    if (hashRaw.includes("=") || hashRaw.includes("&")) {
+      params = new URLSearchParams(hashRaw);
+    } else if (searchRaw) {
+      params = new URLSearchParams(searchRaw);
+    }
+
+    if (params) {
+      const themeParam = params.get("theme") || params.get("topic") || params.get("category");
+      if (themeParam) {
+        const normalized = THEME_ALIASES[themeParam.toLowerCase()] || themeParam;
+        selectedQuickTheme = normalized;
+        activateChip(normalized);
+      } else {
+        selectedQuickTheme = "all";
+        activateChip("all");
+      }
+
+      const q = params.get("q") || params.get("search");
+      const searchEl = document.getElementById("sciSearch");
+      if (searchEl) searchEl.value = q || "";
+
+      const year = params.get("year");
+      const yearEl = document.getElementById("sciYear");
+      if (yearEl) yearEl.value = year || "all";
+
+      const sort = params.get("sort");
+      const sortEl = document.getElementById("sciSort");
+      if (sortEl) sortEl.value = sort || "recent";
+
+      const types = params.get("type") ? params.get("type").split(",") : [];
+      document.querySelectorAll('input[name="filter_type"]').forEach(el => {
+        el.checked = types.includes(el.value);
+      });
+
+      const cits = params.get("cit") ? params.get("cit").split(",") : [];
+      document.querySelectorAll('input[name="filter_cit"]').forEach(el => {
+        el.checked = cits.includes(el.value);
+      });
+
+      const countries = params.get("country") ? params.get("country").split(",") : [];
+      document.querySelectorAll('input[name="filter_country"]').forEach(el => {
+        el.checked = countries.includes(el.value);
+      });
+
+      if (types.length || cits.length || countries.length) {
+        const p = document.getElementById("multiFilterPanel");
+        if (p) p.classList.add("open");
+      }
+
+      applySciFilters(false);
+      return true;
+    }
+
+    // 3. Simple hashtag deeplink (e.g. #ultra_processed, #nova, #upf, #nutrition, #additives, etc.)
+    if (hashRaw) {
+      const normalized = THEME_ALIASES[hashRaw.toLowerCase()];
+      if (normalized) {
+        selectedQuickTheme = normalized;
+        activateChip(normalized);
+        applySciFilters(false);
+        return true;
+      }
+    }
+
+    // Fallback: default state
+    selectedQuickTheme = "all";
+    activateChip("all");
+    applySciFilters(false);
+    return false;
+  } finally {
+    isReadingUrlState = false;
+  }
+}
+
 function closeSciModal() {
   const modal = document.getElementById("sciModalOverlay");
   modal.classList.remove("open");
-  history.replaceState(null, null, window.location.pathname + window.location.search);
+  activePubForModal = null;
+  syncUrlFromState();
 }
 
 function onSciModalBackdropClick(event) {
@@ -1194,21 +1385,37 @@ function copyApa() {
   });
 }
 
+function copyShareLink() {
+  const url = window.location.href;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => {
+      alert(IS_FR ? "Lien direct vers cette sélection copié !" : "Direct link to this view copied to clipboard!");
+    }).catch(() => {
+      prompt(IS_FR ? "Copiez ce lien :" : "Copy this link:", url);
+    });
+  } else {
+    prompt(IS_FR ? "Copiez ce lien :" : "Copy this link:", url);
+  }
+}
+
 window.addEventListener("keydown", function(e) {
   if (e.key === "Escape") {
     closeSciModal();
   }
 });
 
-function checkHash() {
-  const hash = window.location.hash.replace(/^#pub-|^#/, "");
-  if (hash) {
-    openSciModal(hash);
-  }
-}
+// Initialize from URL hashtag or query parameters
+readStateFromUrl();
 
-// Initialize
-applySciFilters();
-window.addEventListener("load", checkHash);
-window.addEventListener("hashchange", checkHash);
+window.addEventListener("hashchange", function() {
+  if (!isReadingUrlState) {
+    readStateFromUrl();
+  }
+});
+
+window.addEventListener("popstate", function() {
+  if (!isReadingUrlState) {
+    readStateFromUrl();
+  }
+});
 </script>
