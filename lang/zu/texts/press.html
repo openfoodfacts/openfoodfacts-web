@@ -1,25 +1,8 @@
 <!-- no side column -->
 <div class="row text-center"></div>
 <div id="top"></div>
-<!--
-#app-landing-page {
-	padding: 0 20px;
-}
-.subheader {
-	
-	text-align: start;
-}
--->
+
 <style>
-
-
-	
-#app-landing-page .button {
-    font-weight: 700;
-    background-color: #341100!important;
-    color: white!important;
-}
-
 /* Ensure all download buttons and icon buttons across the entire page align vertically */
 #app-landing-page .button,
 .button,
@@ -47,424 +30,1803 @@ a.button .material-icons,
 	margin: 0 !important;
 }
 
-.title-2 {
-	margin: 30px 0 20px;
+:root {
+  --off-espresso: #341100;
+  --off-espresso-mid: #473526;
+  --off-cream: #f9f8f6;
+  --off-peach-tint: #ece0db;
+  --off-orange: #ed8857;
+  --off-orange-hover: #d77243;
+  --off-green: #209552;
+  --off-green-light: #e8f5e9;
+  --off-green-dark: #1b5e20;
+  --off-blue: #1976d2;
+  --off-blue-light: #eff6ff;
+  --off-purple: #7c3aed;
+  --off-purple-light: #f5f3ff;
+  --off-yellow: #f59e0b;
+  --off-yellow-light: #fffbeb;
+  --off-macchiato: #85746c;
+  --off-border: #e2e8f0;
+  --off-surface: #ffffff;
+  --off-text-muted: #64748b;
+  --off-radius-pill: 999px;
+  --off-radius-card: 18px;
+  --off-shadow-sm: 0 4px 14px rgba(52, 17, 0, 0.05);
+  --off-shadow-md: 0 10px 28px rgba(52, 17, 0, 0.08);
+  --off-shadow-hover: 0 16px 36px rgba(52, 17, 0, 0.12);
 }
 
-.card {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-}
-.card-image {
-	border-radius: .8rem;
+.off-press-wrap {
+  font-family: "Plus Jakarta Sans", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--off-espresso);
+  max-width: 1240px;
+  margin: 0 auto 3.5rem auto;
+  padding: 0 1rem;
+  line-height: 1.6;
+  box-sizing: border-box;
 }
 
+.off-press-wrap *,
+.off-press-wrap *::before,
+.off-press-wrap *::after {
+  box-sizing: border-box;
+}
+
+/* Hero Section */
+.off-press-hero {
+  background: linear-gradient(180deg, #ffffff 0%, var(--off-cream) 100%);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 28px;
+  padding: clamp(2rem, 4.5vw, 3.5rem);
+  margin: 1.5rem 0 2.5rem 0;
+  box-shadow: 0 12px 36px rgba(52, 17, 0, 0.06);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.off-press-hero::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(237, 136, 87, 0.15) 0%, rgba(237, 136, 87, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.off-press-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--off-espresso-mid);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.45rem 1.15rem;
+  border-radius: var(--off-radius-pill);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.off-press-hero h1 {
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.18;
+  color: var(--off-espresso);
+  margin: 0 0 1.1rem 0;
+}
+
+.off-press-hero p.lead {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  color: var(--off-espresso-mid);
+  max-width: 880px;
+  margin: 0 auto 1.85rem auto;
+  line-height: 1.6;
+}
+
+/* Stat Bar */
+.off-press-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  max-width: 1040px;
+  margin: 0 auto 2rem auto;
+}
+
+.off-press-stat-card {
+  background: var(--off-surface);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 16px;
+  padding: 1.1rem 0.85rem;
+  text-align: center;
+  box-shadow: var(--off-shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.off-press-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--off-shadow-md);
+}
+
+.off-press-stat-num {
+  font-size: clamp(1.75rem, 2.5vw, 2.2rem);
+  font-weight: 800;
+  color: var(--off-orange);
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+
+.off-press-stat-lbl {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--off-espresso-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Action Buttons Strip */
+.off-press-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.off-press-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.75rem 1.4rem;
+  border-radius: var(--off-radius-pill);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.off-press-btn-primary {
+  background: #2e7d32;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.25);
+}
+
+.off-press-btn-primary:hover {
+  background: #1b5e20;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(46, 125, 50, 0.35);
+  color: #ffffff !important;
+}
+
+.off-press-btn-secondary {
+  background: var(--off-espresso);
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(52, 17, 0, 0.2);
+}
+
+.off-press-btn-secondary:hover {
+  background: var(--off-espresso-mid);
+  transform: translateY(-1px);
+  color: #ffffff !important;
+}
+
+.off-press-btn-outline {
+  background: #ffffff;
+  color: var(--off-espresso) !important;
+  border-color: var(--off-peach-tint);
+  box-shadow: var(--off-shadow-sm);
+}
+
+.off-press-btn-outline:hover {
+  border-color: var(--off-orange);
+  color: var(--off-orange) !important;
+  background: #fff8f4;
+  transform: translateY(-1px);
+}
+
+/* Navigation Anchor Pills */
+.off-nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 1.5rem 0 2.5rem 0;
+}
+
+.off-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #ffffff;
+  border: 1px solid var(--off-border);
+  padding: 0.45rem 1rem;
+  border-radius: var(--off-radius-pill);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--off-espresso-mid);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.off-nav-pill:hover {
+  border-color: var(--off-orange);
+  color: var(--off-orange);
+  background: #fff8f4;
+  transform: translateY(-1px);
+}
+
+/* Section Headers */
+.off-section {
+  margin-bottom: 3.5rem;
+}
+
+.off-section-header {
+  margin-bottom: 1.75rem;
+  border-bottom: 2px solid var(--off-peach-tint);
+  padding-bottom: 0.85rem;
+}
+
+.off-section-badge {
+  display: inline-block;
+  background: var(--off-peach-tint);
+  color: var(--off-espresso);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--off-radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+
+.off-section-header h2 {
+  font-size: clamp(1.6rem, 2.6vw, 2.15rem);
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.4rem 0;
+}
+
+.off-section-header p {
+  font-size: 1.02rem;
+  color: var(--off-text-muted);
+  margin: 0;
+  max-width: 860px;
+}
+
+/* Persona Grid ("I am a...") */
+.off-persona-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.off-persona-card {
+  background: var(--off-surface);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: var(--off-radius-card);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--off-shadow-sm);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.off-persona-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--off-shadow-hover);
+  border-color: var(--off-orange);
+}
+
+.off-persona-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--persona-accent, var(--off-orange));
+}
+
+.off-persona-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.off-persona-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.off-persona-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0;
+}
+
+.off-persona-desc {
+  font-size: 0.92rem;
+  color: var(--off-espresso-mid);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+}
+
+.off-persona-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.off-persona-links li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--off-espresso);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.off-persona-links li a:hover {
+  color: var(--off-orange);
+  text-decoration: underline;
+}
+
+/* Narrative Matrix / Story Explorer */
+.off-topics-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.off-topic-chip {
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--off-radius-pill);
+  border: 1px solid var(--off-border);
+  background: #ffffff;
+  color: var(--off-espresso-mid);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.off-topic-chip:hover,
+.off-topic-chip.active {
+  background: var(--off-espresso);
+  color: #ffffff;
+  border-color: var(--off-espresso);
+}
+
+.off-narratives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.off-narrative-card {
+  background: var(--off-surface);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: var(--off-radius-card);
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--off-shadow-sm);
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.off-narrative-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--off-shadow-hover);
+  border-color: var(--off-orange);
+}
+
+.off-narrative-top {
+  margin-bottom: 1.25rem;
+}
+
+.off-narrative-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--off-cream);
+  border: 1px solid var(--off-peach-tint);
+  color: var(--off-espresso-mid);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--off-radius-pill);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.off-narrative-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+.off-narrative-lead {
+  font-size: 0.94rem;
+  color: var(--off-espresso-mid);
+  line-height: 1.55;
+  margin-bottom: 1rem;
+}
+
+.off-narrative-hooks {
+  background: var(--off-cream);
+  border-left: 3px solid var(--off-orange);
+  border-radius: 0 10px 10px 0;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.off-narrative-hooks h4 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--off-espresso);
+  margin: 0 0 0.35rem 0;
+}
+
+.off-narrative-hooks ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.86rem;
+  color: var(--off-espresso-mid);
+}
+
+.off-narrative-hooks li {
+  margin-bottom: 0.25rem;
+}
+
+.off-narrative-footer {
+  border-top: 1px solid var(--off-border);
+  padding-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.off-narrative-link {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--off-orange);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.off-narrative-link:hover {
+  color: var(--off-orange-hover);
+  text-decoration: underline;
+}
+
+/* Media Assets Spotlight Card */
+.off-assets-banner {
+  background: linear-gradient(135deg, #1e3a1f 0%, #2e7d32 100%);
+  color: #ffffff;
+  border-radius: 24px;
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: 0 12px 32px rgba(46, 125, 50, 0.25);
+  margin: 2.5rem 0;
+}
+
+@media (max-width: 800px) {
+  .off-assets-banner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.off-assets-banner h3 {
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.6rem 0;
+}
+
+.off-assets-banner p {
+  font-size: 1.02rem;
+  color: #e8f5e9;
+  margin: 0;
+  max-width: 650px;
+  line-height: 1.55;
+}
+
+.off-assets-banner .btn-cta {
+  background: #ffffff;
+  color: #1b5e20 !important;
+  font-size: 1.05rem;
+  font-weight: 800;
+  padding: 0.85rem 1.8rem;
+  border-radius: var(--off-radius-pill);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.off-assets-banner .btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  background: #f1f8e9;
+}
+
+/* Quick Assets Grid Preview */
+.off-assets-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.off-asset-preview-item {
+  background: var(--off-surface);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 14px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--off-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 160px;
+}
+
+.off-asset-preview-item img {
+  max-height: 75px;
+  max-width: 85%;
+  object-fit: contain;
+  margin: auto;
+}
+
+.off-asset-preview-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--off-espresso);
+  margin-top: 0.5rem;
+}
+
+/* Fact Sheet & Boilerplate Card */
+.off-boilerplate-card {
+  background: var(--off-surface);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 20px;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  box-shadow: var(--off-shadow-sm);
+  margin-bottom: 2.5rem;
+}
+
+.off-boilerplate-tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--off-border);
+  margin-bottom: 1.25rem;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.off-b-tab {
+  padding: 0.5rem 1.1rem;
+  border-radius: 10px 10px 0 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--off-text-muted);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: all 0.15s ease;
+}
+
+.off-b-tab.active {
+  color: var(--off-espresso);
+  border-bottom: 3px solid var(--off-orange);
+  background: var(--off-cream);
+}
+
+.off-boilerplate-pane {
+  display: none;
+  position: relative;
+}
+
+.off-boilerplate-pane.active {
+  display: block;
+}
+
+.off-boilerplate-text {
+  background: var(--off-cream);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 12px;
+  padding: 1.25rem;
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: var(--off-espresso-mid);
+  white-space: pre-line;
+  margin: 0 0 1rem 0;
+  font-family: inherit;
+}
+
+.off-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--off-espresso);
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1.15rem;
+  border-radius: var(--off-radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.off-copy-btn:hover {
+  background: var(--off-orange);
+}
+
+/* Key Facts Checklist */
+.off-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.off-fact-box {
+  background: var(--off-cream);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.off-fact-label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--off-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+
+.off-fact-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--off-espresso);
+}
+
+.off-fact-sub {
+  font-size: 0.84rem;
+  color: var(--off-espresso-mid);
+  margin-top: 0.2rem;
+}
+
+/* Spokespeople Cards */
+.off-spokespeople-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.off-spokesperson-card {
+  background: var(--off-surface);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: var(--off-radius-card);
+  padding: 1.6rem;
+  box-shadow: var(--off-shadow-sm);
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.off-spokesperson-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--off-peach-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(52, 17, 0, 0.08);
+  overflow: hidden;
+  border: 2px solid var(--off-orange);
+}
+
+.off-spokesperson-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.off-spokesperson-info {
+  flex: 1;
+}
+
+.off-spokesperson-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.25rem 0;
+}
+
+.off-spokesperson-role {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--off-orange);
+  margin: 0 0 0.5rem 0;
+}
+
+.off-spokesperson-bio {
+  font-size: 0.88rem;
+  color: var(--off-espresso-mid);
+  line-height: 1.5;
+  margin: 0 0 0.75rem 0;
+}
+
+.off-spokesperson-phone {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--off-espresso-mid);
+  margin-bottom: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.off-spokesperson-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.off-spokesperson-topic-pill {
+  background: var(--off-cream);
+  border: 1px solid var(--off-peach-tint);
+  color: var(--off-espresso-mid);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--off-radius-pill);
+}
+
+/* Contact Help Banner */
+.off-contact-banner {
+  background: linear-gradient(135deg, #fdf6ec 0%, #faecd8 100%);
+  border: 1px solid #f3d19e;
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.off-contact-banner h4 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #7c4a03;
+  margin: 0 0 0.35rem 0;
+}
+
+.off-contact-banner p {
+  font-size: 0.92rem;
+  color: #8c5304;
+  margin: 0;
+  max-width: 600px;
+}
+
+/* Media Wall Showcase */
+.off-media-showcase {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.off-media-showcase a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.off-media-showcase img {
+  height: 38px;
+  width: auto;
+  filter: grayscale(100%) brightness(0%);
+  opacity: 0.75;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.off-media-showcase a:hover img {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Press Review Teaser Box */
+.off-press-review-teaser {
+  background: linear-gradient(135deg, var(--off-espresso) 0%, #473526 100%);
+  color: #ffffff;
+  border-radius: 20px;
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  text-align: center;
+  margin: 2rem 0;
+  box-shadow: var(--off-shadow-md);
+}
+
+.off-press-review-teaser h3 {
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.6rem 0;
+}
+
+.off-press-review-teaser p {
+  font-size: 1.02rem;
+  color: var(--off-peach-tint);
+  max-width: 720px;
+  margin: 0 auto 1.5rem auto;
+  line-height: 1.55;
+}
+
+/* Country Selection Strip */
+.off-country-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.off-country-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--off-radius-pill);
+  background: #ffffff;
+  border: 1px solid var(--off-border);
+  color: var(--off-espresso);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.off-country-btn:hover {
+  border-color: var(--off-orange);
+  background: #fff8f4;
+  color: var(--off-orange);
+  transform: translateY(-1px);
+}
+
+/* Mobile App Screenshot Display */
+.off-mobile-showcase-box {
+  background: var(--off-cream);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.off-mobile-showcase-box img {
+  max-width: 900px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Custom Query Callout */
+.off-data-investigation-box {
+  background: #ffffff;
+  border: 2px dashed var(--off-orange);
+  border-radius: 20px;
+  padding: 1.75rem 2rem;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .off-data-investigation-box {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.off-data-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
 </style>
-<div id="app-landing-page">
-<div class="block block-blue" id="block-2">
-<!-- Block 1 -->
 
+<div class="off-press-wrap" id="app-landing-page">
 
+  <!-- HERO SECTION -->
+  <div class="off-press-hero">
+    <div class="off-press-eyebrow">🎙️ PRESS, MEDIA & STORYTELLER HUB</div>
+    <h1>Food Transparency, Public Health & Open Commons</h1>
+    <p class="lead">Verified data, investigative leads, high-resolution media assets, and direct access to our spokespeople behind the world's largest open food database. Built for journalists, food writers, content creators, broadcasters, and ecosystem partners.</p>
 
-<div class="row text-center">
-  	<div class="large-12 columns">
-		<h2 class="title-2 emphasized-title v-space-normal">Cindezela Ikhithi</h2>
-		<h4 class="subheader">Thola okubalulekile kwezindaba ezikhangayo ezimayelana nokudla obala, inguquko yokuskena esiyibhebhethayo kanye nokubaluleka kokudala ukuvumelana okuvulekile ukuze kugqugquzelwe futhi kugcinwe impikiswano enempilo yokudla.</h4>
-		<p class="text-left">
-			Siyabonga kakhulu ngentshisekelo yakho kuphrojekthi! Futhi ngibonga kakhulu kuzintatheli ezitshela abafundi bazo mayelana namaqiniso okudla okuvulekile.
-		</p>
-	</div>
+    <!-- Stats strip -->
+    <div class="off-press-stats">
+      <div class="off-press-stat-card">
+        <div class="off-press-stat-num">3.6M+</div>
+        <div class="off-press-stat-lbl">Catalogued Products</div>
+      </div>
+      <div class="off-press-stat-card">
+        <div class="off-press-stat-num">200+</div>
+        <div class="off-press-stat-lbl">Apps & Ecosystem Reuses</div>
+      </div>
+      <div class="off-press-stat-card">
+        <div class="off-press-stat-num">1 000+</div>
+        <div class="off-press-stat-lbl">Scientific Studies</div>
+      </div>
+      <div class="off-press-stat-card">
+        <div class="off-press-stat-num">180+</div>
+        <div class="off-press-stat-lbl">Contributing Countries</div>
+      </div>
+      <div class="off-press-stat-card">
+        <div class="off-press-stat-num">100%</div>
+        <div class="off-press-stat-lbl">Non-Profit & Open Data</div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="off-press-actions">
+      <a class="off-press-btn off-press-btn-primary" href="/media-assets">
+        <span>✨</span> Media Assets Library (Logos & Scores)
+      </a>
+      <a class="off-press-btn off-press-btn-secondary" href="/press-review">
+        <span>📰</span> Full Press Review (1,000+ Mentions)
+      </a>
+      <a class="off-press-btn off-press-btn-outline" href="#contacts">
+        <span>✉️</span> Contact Spokespeople
+      </a>
+      <a class="off-press-btn off-press-btn-outline" href="https://blog.openfoodfacts.org/wp-content/uploads/2023/11/press-kit-2023-open-food-facts.pdf" target="_blank" rel="noopener noreferrer">
+        <span class="material-icons">download</span> Press Kit (PDF)
+      </a>
+    </div>
+  </div>
+
+  <!-- NAVIGATION ANCHORS -->
+  <div class="off-nav-pills">
+    <a href="#audiences" class="off-nav-pill"><span>🎯</span> By Persona</a>
+    <a href="#narratives" class="off-nav-pill"><span>🧭</span> Narratives & Angles</a>
+    <a href="#media-assets-section" class="off-nav-pill"><span>📁</span> Media Assets & Logos</a>
+    <a href="#boilerplate" class="off-nav-pill"><span>📋</span> Cheat Sheet & Boilerplate</a>
+    <a href="#press-releases" class="off-nav-pill"><span>📄</span> Press Releases</a>
+    <a href="#coverage" class="off-nav-pill"><span>⭐</span> Press Wall</a>
+    <a href="#contacts" class="off-nav-pill"><span>🎙️</span> Contacts & Interviews</a>
+    <a href="#international" class="off-nav-pill"><span>🌐</span> Global & Languages</a>
+  </div>
+
+  <!-- 1. AUDIENCES SECTION ("CHOOSE YOUR ROLE") -->
+  <div class="off-section" id="audiences">
+    <div class="off-section-header">
+      <span class="off-section-badge">Tailored Experience</span>
+      <h2>What brings you here today?</h2>
+      <p>Whether you are breaking an investigation on deadline, recording a podcast, or filming a social video, here is how we can help.</p>
+    </div>
+
+    <div class="off-persona-grid">
+      <!-- Journalist Card -->
+      <div class="off-persona-card" style="--persona-accent: #1976d2;">
+        <div>
+          <div class="off-persona-header">
+            <span class="off-persona-icon">📰</span>
+            <h3 class="off-persona-title">Investigative Journalists</h3>
+          </div>
+          <p class="off-persona-desc">
+            Need custom queries across 3.6M+ products, ingredient analysis, or rapid on-the-record quotes for your newsroom? We respond quickly to media deadlines.
+          </p>
+        </div>
+        <ul class="off-persona-links">
+          <li><a href="#custom-investigation"><span>🔍</span> Request a custom dataset / inquiry →</a></li>
+          <li><a href="#contacts"><span>⚡</span> Direct line to spokespeople →</a></li>
+          <li><a href="#boilerplate"><span>📋</span> Fact sheet & citation guide →</a></li>
+        </ul>
+      </div>
+
+      <!-- Content Creator / Blogger Card -->
+      <div class="off-persona-card" style="--persona-accent: #ed8857;">
+        <div>
+          <div class="off-persona-header">
+            <span class="off-persona-icon">📱</span>
+            <h3 class="off-persona-title">Food Bloggers & Creators</h3>
+          </div>
+          <p class="off-persona-desc">
+            Create engaging content for YouTube, TikTok, Substack, or Instagram: label breakdowns, supermarket scan challenges, additive hunts, and shrinkflation checks.
+          </p>
+        </div>
+        <ul class="off-persona-links">
+          <li><a href="#narratives"><span>💡</span> Story hooks & video prompt ideas →</a></li>
+          <li><a href="/media-assets"><span>🖼️</span> Download transparent score badges & UI →</a></li>
+          <li><a href="#mobile-app"><span>📲</span> Official app screenshots & mockups →</a></li>
+        </ul>
+      </div>
+
+      <!-- TV & Radio Broadcasters Card -->
+      <div class="off-persona-card" style="--persona-accent: #7c3aed;">
+        <div>
+          <div class="off-persona-header">
+            <span class="off-persona-icon">🎙️</span>
+            <h3 class="off-persona-title">Broadcasters & Podcasters</h3>
+          </div>
+          <p class="off-persona-desc">
+            Book our spokespeople for live in-studio or remote interviews (EN, FR, ES). Access high-definition visual B-roll and compelling human-interest stories.
+          </p>
+        </div>
+        <ul class="off-persona-links">
+          <li><a href="#contacts"><span>📅</span> Spokespeople availability & bios →</a></li>
+          <li><a href="#podcast"><span>🎧</span> Listen to past broadcast interviews →</a></li>
+          <li><a href="/media-assets?topic=mobileapp"><span>🎥</span> B-roll & visual assets for broadcast →</a></li>
+        </ul>
+      </div>
+
+      <!-- Partners & Institutions Card -->
+      <div class="off-persona-card" style="--persona-accent: #209552;">
+        <div>
+          <div class="off-persona-header">
+            <span class="off-persona-icon">🤝</span>
+            <h3 class="off-persona-title">Partners, NGOs & Institutions</h3>
+          </div>
+          <p class="off-persona-desc">
+            Discover how to reuse our open data (ODbL), connect food brands via the free Producer Platform, or partner on public health and sustainability research.
+          </p>
+        </div>
+        <ul class="off-persona-links">
+          <li><a href="/producers"><span>🏭</span> Free Producer Platform →</a></li>
+          <li><a href="/scientific-publications"><span>🔬</span> 1,000+ scientific publications →</a></li>
+          <li><a href="/reuses"><span>🚀</span> 200+ ecosystem reuses & apps →</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM INVESTIGATION CALLOUT -->
+  <div class="off-data-investigation-box" id="custom-investigation">
+    <div class="off-data-icon">🔬</div>
+    <div>
+      <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--off-espresso); margin: 0 0 0.35rem 0;">
+        Working on an investigative food story or data exposé?
+      </h3>
+      <p style="font-size: 0.94rem; color: var(--off-espresso-mid); margin: 0; line-height: 1.5;">
+        Our data engineers and volunteer scientists can run custom SQL and analytical queries across 3.6M+ products (emerging additives, recipe reformulations, regional price differences, plastic packaging). Strict confidentiality under embargo.
+      </p>
+    </div>
+    <div>
+      <a class="off-press-btn off-press-btn-secondary" href="mailto:presse@openfoodfacts.org?subject=Demande%20d%27enqu%C3%AAte%20data%20presse">
+        <span>✉️</span> Request Custom Data
+      </a>
+    </div>
+  </div>
+
+  <!-- 2. THE MANY TOPICS & NARRATIVES (THE CORE SHOWCASE) -->
+  <div class="off-section" id="narratives">
+    <div class="off-section-header">
+      <span class="off-section-badge">Story Angles & Narratives</span>
+      <h2>The Many Stories of Open Food Facts</h2>
+      <p>Open Food Facts is far more than a barcode scanner. It is a digital public commons at the crossroads of public health, planetary boundaries, consumer purchasing power, the circular economy, and civic AI.</p>
+    </div>
+
+    <!-- Filter chips -->
+    <div class="off-topics-filter-bar">
+      <button class="off-topic-chip active" onclick="filterTopics('all', this)">All Stories</button>
+      <button class="off-topic-chip" onclick="filterTopics('health', this)">🥗 Health & Nutri-Score</button>
+      <button class="off-topic-chip" onclick="filterTopics('nova', this)">🔬 Ultra-Processed (NOVA)</button>
+      <button class="off-topic-chip" onclick="filterTopics('eco', this)">🌿 Planet & Eco-Score</button>
+      <button class="off-topic-chip" onclick="filterTopics('prices', this)">🏷️ Prices & Inflation</button>
+      <button class="off-topic-chip" onclick="filterTopics('circular', this)">📦 Circular Economy & Products</button>
+      <button class="off-topic-chip" onclick="filterTopics('science', this)">🎓 Science & Research</button>
+      <button class="off-topic-chip" onclick="filterTopics('tech', this)">💻 Tech, AI & Commons</button>
+      <button class="off-topic-chip" onclick="filterTopics('sister', this)">🧴 Sister Projects</button>
+    </div>
+
+    <div class="off-narratives-grid" id="narrativesGrid">
+      
+      <!-- Narrative 1: Nutri-Score -->
+      <div class="off-narrative-card" data-category="health">
+        <div class="off-narrative-top">
+          <span class="off-narrative-tag">🥗 Public Health</span>
+          <h3 class="off-narrative-title">The Nutri-Score Revolution & Recipe Reformulation</h3>
+          <p class="off-narrative-lead">
+            How an open citizen database validated and pioneered front-of-pack nutritional labeling in Europe, compelling food manufacturers to cut sugar, salt, and saturated fats.
+          </p>
+          <div class="off-narrative-hooks">
+            <h4>Story Angles:</h4>
+            <ul>
+              <li>The 2024 Nutri-Score update: tighter rules on sweeteners, red meat, and refined carbohydrates.</li>
+              <li>Silent recipe reformulation: how brands reworked ingredients to earn a higher grade.</li>
+              <li>Industry lobbying vs public health evidence: the political history of the 5-color badge.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="off-narrative-footer">
+          <a class="off-narrative-link" href="/open-food-facts-and-the-nutriscore">
+            Nutri-Score Deep Dive →
+          </a>
+          <a class="off-narrative-link" href="/media-assets?topic=nutriscore">
+            Download Badges 📁
+          </a>
+        </div>
+      </div>
+
+      <!-- Narrative 2: NOVA & Additives -->
+      <div class="off-narrative-card" data-category="nova">
+        <div class="off-narrative-top">
+          <span class="off-narrative-tag">🔬 Processing & Additives</span>
+          <h3 class="off-narrative-title">Ultra-Processed Foods (NOVA) & The Additive Maze</h3>
+          <p class="off-narrative-lead">
+            Beyond calorie counts: how industrial processing, texturizers, and emulsifiers disrupt gut health and metabolic function. Open Food Facts audits the ingredients list of millions of products.
+          </p>
+          <div class="off-narrative-hooks">
+            <h4>Story Angles:</h4>
+            <ul>
+              <li>The NOVA 4 trap in organic and plant-based aisles: meat substitutes packed with ultra-processed additives.</li>
+              <li>Nitrites in deli meats, titanium dioxide (E171), and sweeteners: how citizen data alerted consumers before regulatory bans.</li>
+              <li>The additive cocktail effect: assessing multiple combined emulsifiers in children's diets.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="off-narrative-footer">
+          <a class="off-narrative-link" href="/nova">
+            Guide to NOVA →
+          </a>
+          <a class="off-narrative-link" href="/media-assets?topic=main">
+            NOVA Assets 📁
+          </a>
+        </div>
+      </div>
+
+      <!-- Narrative 3: Green-Score & Eco-Score -->
+      <div class="off-narrative-card" data-category="eco">
+        <div class="off-narrative-top">
+          <span class="off-narrative-tag">🌿 Planet & Climate</span>
+          <h3 class="off-narrative-title">The Green-Score: Measuring The Planetary Impact of Food</h3>
+          <p class="off-narrative-lead">
+            Food generates 25-30% of global greenhouse emissions. Open Food Facts combines ADEME Agribalyse Life-Cycle Analysis (LCA) with packaging recyclability and deforestation indicators.
+          </p>
+          <div class="off-narrative-hooks">
+            <h4>Story Angles:</h4>
+            <ul>
+              <li>Single-use plastic & overpackaging: calculating the true packaging waste generated by weekly groceries.</li>
+              <li>Imported deforestation: tracing palm oil and soy risk across global supermarket brands.</li>
+              <li>Organic vs conventional farming: quantifying real biodiversity and carbon footprint differences.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="off-narrative-footer">
+          <a class="off-narrative-link" href="/green-score-methodology">
+            Green-Score Methodology →
+          </a>
+          <a class="off-narrative-link" href="/media-assets?topic=greenscore">
+            Green-Score Badges 📁
+          </a>
+        </div>
+      </div>
+
+      <!-- Narrative 4: Open Prices & Inflation -->
+      <div class="off-narrative-card" data-category="prices">
+        <div class="off-narrative-top">
+          <span class="off-narrative-tag">🏷️ Purchasing Power</span>
+          <h3 class="off-narrative-title">Open Prices: Crowdsourcing Inflation & Shrinkflation</h3>
+          <p class="off-narrative-lead">
+            Facing the grocery affordability crisis, citizens upload receipts to build an open, real-time observatory of price disparities across supermarket chains and territories.
+          </p>
+          <div class="off-narrative-hooks">
+            <h4>Story Angles:</h4>
+            <ul>
+              <li>Shrinkflation exposed: smaller packages sold at higher unit prices, tracked across time.</li>
+              <li>Store price gouging: identical items differing by up to 40% between store locations of the same chain.</li>
+              <li>Everyday family basket inflation vs official macro indexes.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="off-narrative-footer">
+          <a class="off-narrative-link" href="https://prices.openfoodfacts.org" target="_blank" rel="noopener noreferrer">
+            Open Prices Portal →
+          </a>
+          <a class="off-narrative-link" href="/media-assets?topic=openprices">
+            Open Prices Assets 📁
+          </a>
+        </div>
+      </div>
+
+      <!-- Narrative 5: Open Products Facts & Circular Economy (NEW) -->
+      <div class="off-narrative-card" data-category="circular">
+        <div class="off-narrative-top">
+          <span class="off-narrative-tag">📦 Circular Economy</span>
+          <h3 class="off-narrative-title">Open Products Facts: Defragmenting Product Data to Fluidify the Circular Economy</h3>
+          <p class="off-narrative-lead">
+            Product data fragmentation across proprietary silos and incompatible formats is one of the greatest bottlenecks to repair, reuse, and recycling. Open Products Facts provides the universal open data commons needed to break data silos and fluidify the circular economy.
+          </p>
+          <div class="off-narrative-hooks">
+            <h4>Story Angles:</h4>
+            <ul>
+              <li>Open Digital Product Passports (DPP): ensuring the circular transition is powered by open public commons rather than locked into proprietary software monopolies.</li>
+              <li>Repairability & spare parts linkage: connecting every consumer product's universal barcode to teardown guides, repairability scores, and spare part catalogs.</li>
+              <li>Material traceability & recycling streams: documenting exact polymer compositions, recyclable fractions, and hazardous components to supercharge automated sorting and industrial remanufacturing.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="off-narrative-footer">
+          <a class="off-narrative-link" href="https://world.openproductsfacts.org" target="_blank" rel="noopener noreferrer">
+            Open Products Facts →
+          </a>
+          <a class="off-narrative-link" href="/media-assets?topic=openproductsfacts">
+            Open Products Facts Assets 📁
+          </a>
+        </div>
+      </div>
+
+      <!-- Narrative 6: Open Science -->
+      <div class="off-narrative-card" data-category="science">
+        <div class="off-narrative-top">
+          <span class="off-narrative-tag">🎓 Academic Research</span>
+          <h3 class="off-narrative-title">Global Infrastructure for Epidemiological Science</h3>
+          <p class="off-narrative-lead">
+            Over 1,000 peer-reviewed papers (Inserm, INRAE, Harvard, Oxford) rely on Open Food Facts data to advance public health, nutrition science, and evidence-based policy.
+          </p>
+          <div class="off-narrative-hooks">
+            <h4>Story Angles:</h4>
+            <ul>
+              <li>Major cohort studies: correlation between consumption of ultra-processed foods and chronic disease risks.</li>
+              <li>Citizen science filling the void left by closed corporate datasets.</li>
+              <li>How independent European scientific committees evaluated and refined front-of-pack algorithms.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="off-narrative-footer">
+          <a class="off-narrative-link" href="/scientific-publications">
+            Explore Publications →
+          </a>
+          <a class="off-narrative-link" href="/data">
+            Open Data Dumps 📥
+          </a>
+        </div>
+      </div>
+
+      <!-- Narrative 7: Civic Tech & Open AI -->
+      <div class="off-narrative-card" data-category="tech">
+        <div class="off-narrative-top">
+          <span class="off-narrative-tag">💻 Civic Tech & Open AI</span>
+          <h3 class="off-narrative-title">The Wikipedia of Food: Ethical AI & Open Source Commons</h3>
+          <p class="off-narrative-lead">
+            Proving an open, non-profit community can out-innovate corporate silos using open-source Flutter apps, computer vision, in-house OCR, and collective intelligence.
+          </p>
+          <div class="off-narrative-hooks">
+            <h4>Story Angles:</h4>
+            <ul>
+              <li>AI for consumer empowerment: in-house OCR parsing nutritional tables without surveillance tech.</li>
+              <li>Scan Parties: how citizen communities turn grocery shopping into collaborative data hackathons.</li>
+              <li>100% independent non-profit: zero tracking, zero ads, zero private shareholder capture.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="off-narrative-footer">
+          <a class="off-narrative-link" href="/scan-parties">
+            Scan Parties Guide →
+          </a>
+          <a class="off-narrative-link" href="https://github.com/openfoodfacts" target="_blank" rel="noopener noreferrer">
+            GitHub Repositories 💻
+          </a>
+        </div>
+      </div>
+
+      <!-- Narrative 8: Sister Projects -->
+      <div class="off-narrative-card" data-category="sister">
+        <div class="off-narrative-top">
+          <span class="off-narrative-tag">🧴 Sister Projects</span>
+          <h3 class="off-narrative-title">Cosmetics, Pet Food & Beyond: Transparency in Every Aisle</h3>
+          <p class="off-narrative-lead">
+            Expanding citizen transparency beyond the food aisle to cosmetics (endocrine disruptors, allergens), pet nutrition, and all barcode-identified products.
+          </p>
+          <div class="off-narrative-hooks">
+            <h4>Story Angles:</h4>
+            <ul>
+              <li>Open Beauty Facts: identifying endocrine disruptors, allergens, and microplastics in cosmetics.</li>
+              <li>Open Pet Food Facts: unmasking pet food nutritional claims and filler ingredients.</li>
+              <li>A universal open key: barcode data as an open public good.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="off-narrative-footer">
+          <a class="off-narrative-link" href="https://world.openbeautyfacts.org" target="_blank" rel="noopener noreferrer">
+            Open Beauty Facts →
+          </a>
+          <a class="off-narrative-link" href="https://world.openpetfoodfacts.org" target="_blank" rel="noopener noreferrer">
+            Open Pet Food Facts →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 3. MEDIA ASSETS SPOTLIGHT BANNER -->
+  <div class="off-section" id="media-assets-section">
+    <div class="off-assets-banner">
+      <div>
+        <h3>🎨 Looking for High-Resolution Logos, Scores, or Screen Mockups?</h3>
+        <p>
+          Our dedicated Media Assets browser centralizes 100+ vector and high-resolution files (SVG, PNG, CMYK/RGB, light & dark mode), official Nutri-Score 2024 versions in 5 languages, Green-Score, NOVA, Open Prices, and mobile app UI kits.
+        </p>
+      </div>
+      <div>
+        <a class="btn-cta" href="/media-assets">
+          <span>✨</span> Explore Media Assets Browser →
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Preview Grid -->
+    <div class="off-assets-preview-grid">
+      <a class="off-asset-preview-item" href="/media-assets?topic=openfoodfacts" title="Open Food Facts Logo">
+        <img src="/images/logos/off-logo-horizontal-light.svg" alt="Open Food Facts Logo">
+        <div class="off-asset-preview-label">Open Food Facts</div>
+      </a>
+      <a class="off-asset-preview-item" href="/media-assets?topic=nutriscore" title="Nutri-Score Grade A">
+        <img src="/images/attributes/dist/nutriscore-a-new-en.svg" alt="Nutri-Score Grade A">
+        <div class="off-asset-preview-label">Nutri-Score 2024</div>
+      </a>
+      <a class="off-asset-preview-item" href="/media-assets?topic=greenscore" title="Green-Score / Eco-Score">
+        <img src="https://static.openfoodfacts.org/images/icons/ecoscore-a.svg" alt="Eco-Score">
+        <div class="off-asset-preview-label">Green-Score / Eco-Score</div>
+      </a>
+      <a class="off-asset-preview-item" href="/media-assets?topic=openprices" title="Open Prices Logo">
+        <img src="/images/logos/openprices/op-logo-vertical-light.svg" alt="Open Prices">
+        <div class="off-asset-preview-label">Open Prices</div>
+      </a>
+      <a class="off-asset-preview-item" href="/media-assets?topic=mobileapp" title="Mobile App Screenshots">
+        <img src="/images/misc/mobileapp/new_openfoodfacts_app_en_light_3_screenshots.png" alt="Mobile App">
+        <div class="off-asset-preview-label">Mobile App Showcase</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 4. BOILERPLATE & VERIFIED FACT SHEET -->
+  <div class="off-section" id="boilerplate">
+    <div class="off-section-header">
+      <span class="off-section-badge">Fact Sheet & Boilerplate</span>
+      <h2>Ready-to-Cite Cheat Sheet for Writers</h2>
+      <p>Verified definitions, succinct background paragraphs, and foundational facts ready to copy directly into your drafts.</p>
+    </div>
+
+    <div class="off-boilerplate-card">
+      <div class="off-boilerplate-tabs">
+        <button class="off-b-tab active" onclick="switchTab('tab-short', this)">1-Sentence Pitch</button>
+        <button class="off-b-tab" onclick="switchTab('tab-para', this)">Standard Paragraph (100 Words)</button>
+        <button class="off-b-tab" onclick="switchTab('tab-facts', this)">Key Facts & Legal Entity</button>
+      </div>
+
+      <!-- Tab 1: Short sentence -->
+      <div class="off-boilerplate-pane active" id="tab-short">
+        <div class="off-boilerplate-text" id="text-short">"Open Food Facts is an independent, non-profit open database of food products from around the world, empowering citizens to make healthier and more sustainable food choices."</div>
+        <button class="off-copy-btn" onclick="copyText('text-short', this)">📋 Copy 1-Sentence Pitch</button>
+      </div>
+
+      <!-- Tab 2: Standard 100-word paragraph -->
+      <div class="off-boilerplate-pane" id="tab-para">
+        <div class="off-boilerplate-text" id="text-para">Founded in 2012 by Stéphane Gigandet and co-founded with Pierre Slamich, presided over by Anca Luca, Open Food Facts is an independent, non-profit public interest organization that maintains the world's largest open, crowdsourced database of food products. Entirely free of food industry ownership and funded by individual donations and philanthropic grants, Open Food Facts catalogs over 3.6 million products across 180 countries under the Open Database License (ODbL). A pioneer of front-of-pack nutritional labeling (Nutri-Score), environmental metrics (Green-Score), Open Products Facts, and supermarket price crowdsourcing (Open Prices), the platform powers over 200 external mobile applications and provides critical research data cited in over 1,000 international peer-reviewed scientific studies (including Inserm, INRAE, and Harvard).</div>
+        <button class="off-copy-btn" onclick="copyText('text-para', this)">📋 Copy 100-Word Summary</button>
+      </div>
+
+      <!-- Tab 3: Key Facts checklist -->
+      <div class="off-boilerplate-pane" id="tab-facts">
+        <div class="off-facts-grid">
+          <div class="off-fact-box">
+            <div class="off-fact-label">Legal Entity</div>
+            <div class="off-fact-val">Non-profit Association (French 1901 law)</div>
+            <div class="off-fact-sub">501(c)(3) NGO equivalent</div>
+          </div>
+          <div class="off-fact-box">
+            <div class="off-fact-label">Founders & Leadership</div>
+            <div class="off-fact-val">Anca Luca, Stéphane Gigandet, Pierre Slamich</div>
+            <div class="off-fact-sub">President: Anca Luca · Founder: Stéphane Gigandet</div>
+          </div>
+          <div class="off-fact-box">
+            <div class="off-fact-label">Funding Model</div>
+            <div class="off-fact-val">100% Independent & Ad-Free</div>
+            <div class="off-fact-sub">Citizen donations & public grants</div>
+          </div>
+          <div class="off-fact-box">
+            <div class="off-fact-label">Data License</div>
+            <div class="off-fact-val">Open Database License (ODbL)</div>
+            <div class="off-fact-sub">Open public commons / Media CC-BY-SA</div>
+          </div>
+          <div class="off-fact-box">
+            <div class="off-fact-label">Catalog Size</div>
+            <div class="off-fact-val">3,600,000+ Food Products</div>
+            <div class="off-fact-sub">Contributions across 180+ countries</div>
+          </div>
+          <div class="off-fact-box">
+            <div class="off-fact-label">Scientific Impact</div>
+            <div class="off-fact-val">1,000+ Peer-Reviewed Papers</div>
+            <div class="off-fact-sub">The Lancet, BMJ, Nature Food, Inserm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. PRESS RELEASES SECTION -->
+  <div class="off-section" id="press-releases">
+    <div class="off-section-header">
+      <span class="off-section-badge">Press Releases & Kits</span>
+      <h2>Press Kits & Official Releases</h2>
+      <p>High-resolution downloadable press kits and historical statements.</p>
+    </div>
+
+    <div class="row text-center" style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-bottom: 2rem;">
+      <!-- Dossier de presse général -->
+      <div class="off-persona-card" style="flex: 1; min-width: 280px; max-width: 380px; text-align: center; align-items: center;">
+        <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--off-espresso); margin-bottom: 0.75rem;">Master Press Kit</h3>
+        <a href="https://blog.openfoodfacts.org/wp-content/uploads/2023/11/press-kit-2023-open-food-facts.pdf" target="_blank" rel="noopener noreferrer">
+          <img src="/images/misc/presskit/presskit-miniature.png" alt="Press Kit Cover" style="max-width: 200px; width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 1rem;">
+        </a>
+        <p style="font-size: 0.9rem; color: var(--off-espresso-mid); margin-bottom: 1.25rem;">
+          Full project presentation, ecosystem architecture, history, and civic governance overview.
+        </p>
+        <a class="off-press-btn off-press-btn-secondary" href="https://blog.openfoodfacts.org/wp-content/uploads/2023/11/press-kit-2023-open-food-facts.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="material-icons">download</span> Download Press Kit (PDF)
+        </a>
+      </div>
+
+      <!-- Communiqué application mobile -->
+      <div class="off-persona-card" style="flex: 1; min-width: 280px; max-width: 380px; text-align: center; align-items: center;">
+        <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--off-espresso); margin-bottom: 0.75rem;">Mobile App Press Release</h3>
+        <a href="https://blog.openfoodfacts.org/wp-content/uploads/2023/10/dossier-de-presse-2023-open-food-facts.pdf" target="_blank" rel="noopener noreferrer">
+          <img src="/images/misc/mobileapp/new_openfoodfacts_app_en_light_3_screenshots.png" alt="App release" style="max-width: 200px; width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 1rem;">
+        </a>
+        <p style="font-size: 0.9rem; color: var(--off-espresso-mid); margin-bottom: 1.25rem;">
+          Everything about our modern open-source mobile app built with Flutter, ad-free and privacy-first.
+        </p>
+        <a class="off-press-btn off-press-btn-secondary" href="https://blog.openfoodfacts.org/wp-content/uploads/2023/10/dossier-de-presse-2023-open-food-facts.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="material-icons">download</span> Download App Release (PDF)
+        </a>
+      </div>
+
+      <!-- Flux RSS & Actualités -->
+      <div class="off-persona-card" style="flex: 1; min-width: 280px; max-width: 380px; text-align: center; align-items: center;">
+        <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--off-espresso); margin-bottom: 0.75rem;">Latest News & Blog</h3>
+        <div style="font-size: 3rem; margin-bottom: 1rem;">📡</div>
+        <p style="font-size: 0.9rem; color: var(--off-espresso-mid); margin-bottom: 1.25rem;">
+          Follow our latest features, scientific updates, and community campaigns via our blog and RSS.
+        </p>
+        <a class="off-press-btn off-press-btn-outline" href="https://blog.openfoodfacts.org" target="_blank" rel="noopener noreferrer">
+          <span>📰</span> Visit Blog →
+        </a>
+        <div style="margin-top: 0.75rem;">
+          [[imibhalo/presskit-rss.html]]
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. PRESS WALL & MEDIA COVERAGE -->
+  <div class="off-section" id="coverage">
+    <div class="off-section-header">
+      <span class="off-section-badge">Press Wall</span>
+      <h2>Open Food Facts in the Global Press</h2>
+      <p>From investigative broadsheets to broadcast TV news and independent podcasts, explore coverage across the world.</p>
+    </div>
+
+    <!-- Media logos showcase -->
+    <div class="off-media-showcase">
+      <a href="/press-review?search=The+Guardian" title="Umqaphi">
+        <img src="/images/misc/presskit/the-guardian.svg" alt="Ilogo ye-Guardian">
+      </a>
+      <a href="/press-review?search=Le+Monde" title="Le Monde">
+        <img src="/images/misc/presskit/le-monde.svg" alt="Le Monde Logo">
+      </a>
+      <a href="/press-review?search=Les+Echos" title="Les Echos">
+        <img src="/images/misc/presskit/les-echos.svg" alt="Ilogo ye-Les Echos">
+      </a>
+      <a href="/press-review?search=France+Inter" title="France Inter">
+        <img src="/images/misc/presskit/france-inter.svg" alt="I-France Inter Logo">
+      </a>
+      <a href="/press-review?search=BBC" title="Umsakazo we-BBC">
+        <img src="/images/misc/presskit/bbc-radio.svg" alt="BBC Radio Logo">
+      </a>
+      <a href="/press-review?search=Le+Figaro" title="Le Figaro">
+        <img src="/images/misc/presskit/le-figaro.svg" alt="Le Figaro Logo">
+      </a>
+      <a href="/press-review?search=France+2" title="France 2">
+        <img src="/images/misc/presskit/france-2.svg" alt="I-France 2 Ilogo">
+      </a>
+      <a href="/press-review?search=Envoye+Special" title="I-Envoyé Special">
+        <img src="/images/misc/presskit/envoye-special.svg" alt="I-Envoyé Ilogo Ekhethekile">
+      </a>
+      <a href="/press-review?search=Tortoise" title="Ufudu Media">
+        <img src="/images/misc/presskit/tortoise-media.svg" alt="Ilogo Yemidiya Yofudu">
+      </a>
+      <a href="/press-review?search=Il+Fatto+Alimentare" title="I-Il Fatto Alimentare">
+        <img src="/images/misc/presskit/il-fatto-alimentare.svg" alt="I-Il Fatto Alimentare Ilogo">
+      </a>
+      <a href="/press-review?search=Daily+Mail" title="Imeyili Yansuku zonke">
+        <img src="/images/misc/presskit/daily-mail.svg" alt="I-Daily Mail Logo">
+      </a>
+      <a href="/press-review?search=Reporterre" title="Intatheli">
+        <img src="/images/misc/presskit/reporterre.svg" alt="Ilogo yentatheli">
+      </a>
+    </div>
+
+    <!-- Interactive Press Review Teaser CTA -->
+    <div class="off-press-review-teaser">
+      <h3>📰 Explore 1,000+ Articles, TV Reports & Podcasts</h3>
+      <p>
+        Search by media outlet, year, topic, or filter by verbatim quotes in our newly updated, searchable press review archive.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a class="off-press-btn off-press-btn-primary" href="/press-review" style="background: #ffffff; color: var(--off-espresso) !important;">
+          <span>🔍</span> Open Full Press Review (1,000+ Items) →
+        </a>
+        <a class="off-press-btn off-press-btn-outline" href="/press-review#submit" style="color: #ffffff !important; border-color: rgba(255,255,255,0.4); background: transparent;">
+          <span>➕</span> Submit a Press Mention
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. MOBILE APP SCREENSHOTS & SHOWCASE -->
+  <div class="off-section" id="mobile-app">
+    <div class="off-section-header">
+      <span class="off-section-badge">Mobile App Visuals</span>
+      <h2>Official Mobile App Visuals</h2>
+      <p>Enrich your articles with official, modern screenshots of the Open Food Facts mobile app on iOS and Android (available in 33 languages).</p>
+    </div>
+
+    <div class="off-mobile-showcase-box">
+      <a href="/images/misc/mobileapp/new_openfoodfacts_app_en_light_3_screenshots.png" target="_blank" rel="noopener noreferrer">
+        <img src="/images/misc/mobileapp/new_openfoodfacts_app_en_light_3_screenshots.png" alt="Open Food Facts App Screenshots">
+      </a>
+      <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem;">
+        <a class="off-press-btn off-press-btn-secondary" href="/images/misc/mobileapp/new_openfoodfacts_app_en_light_3_screenshots.png" download>
+          <span class="material-icons">download</span> Download 3-Screen Mockup (PNG)
+        </a>
+        <a class="off-press-btn off-press-btn-outline" href="/open-food-facts-mobile-app">
+          <span>📱</span> Mobile App Showcase Page
+        </a>
+        <a class="off-press-btn off-press-btn-outline" href="/media-assets?topic=mobileapp">
+          <span>📁</span> View All Language Packs (33 Countries)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. SPOKESPEOPLE & MEDIA CONTACTS -->
+  <div class="off-section" id="contacts">
+    <div class="off-section-header">
+      <span class="off-section-badge">Spokespeople & Interviews</span>
+      <h2>Spokespeople & Press Contacts</h2>
+      <p>Our team and topic specialists are available for television broadcasts, radio interviews, panel debates, and expert commentary.</p>
+    </div>
+
+    <div class="off-spokespeople-grid">
+      <!-- Anca Luca -->
+      <div class="off-spokesperson-card">
+        <div class="off-spokesperson-avatar">
+          <img src="https://static.openfoodfacts.org/files/presskit/PressKit/team/team-anca.jpg" alt="Anca Luca">
+        </div>
+        <div class="off-spokesperson-info">
+          <h3 class="off-spokesperson-name">Anca Luca</h3>
+          <div class="off-spokesperson-role">President, Open Food Facts NGO</div>
+          <p class="off-spokesperson-bio">
+            Open source advocate and ecosystem leader. She steers the strategic vision, international contributor community, and governance of the Open Food Facts non-profit.
+          </p>
+          <div class="off-spokesperson-topics">
+            <span class="off-spokesperson-topic-pill">Governance</span>
+            <span class="off-spokesperson-topic-pill">Open Source</span>
+            <span class="off-spokesperson-topic-pill">Community</span>
+            <span class="off-spokesperson-topic-pill">Digital Commons</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stéphane Gigandet -->
+      <div class="off-spokesperson-card">
+        <div class="off-spokesperson-avatar">
+          <img src="https://static.openfoodfacts.org/files/presskit/PressKit/team/press-stephane.jpg" alt="Stéphane Gigandet">
+        </div>
+        <div class="off-spokesperson-info">
+          <h3 class="off-spokesperson-name">Stéphane Gigandet</h3>
+          <div class="off-spokesperson-role">Founder</div>
+          <p class="off-spokesperson-bio">
+            Civic tech pioneer and open data veteran. Founded Open Food Facts in 2012 to empower citizens with radical transparency over their food choices.
+          </p>
+          <div class="off-spokesperson-phone">
+            📞 (+33) 6 88 96 17 49
+          </div>
+          <div class="off-spokesperson-topics">
+            <span class="off-spokesperson-topic-pill">Civic Tech</span>
+            <span class="off-spokesperson-topic-pill">Open Data</span>
+            <span class="off-spokesperson-topic-pill">Digital Commons</span>
+            <span class="off-spokesperson-topic-pill">Product Transparency</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pierre Slamich -->
+      <div class="off-spokesperson-card">
+        <div class="off-spokesperson-avatar">
+          <img src="https://static.openfoodfacts.org/files/presskit/PressKit/team/team-pierre.jpg" alt="Pierre Slamich">
+        </div>
+        <div class="off-spokesperson-info">
+          <h3 class="off-spokesperson-name">Pierre Slamich</h3>
+          <div class="off-spokesperson-role">Co-founder</div>
+          <p class="off-spokesperson-bio">
+            Specialist in food policy impact, the European Nutri-Score rollout, ethical AI, mobile civic-tech architecture, and circular product data ecosystems.
+          </p>
+          <div class="off-spokesperson-phone">
+            📞 (+33) 6 02 13 14 57
+          </div>
+          <div class="off-spokesperson-topics">
+            <span class="off-spokesperson-topic-pill">Nutri-Score</span>
+            <span class="off-spokesperson-topic-pill">Green-Score</span>
+            <span class="off-spokesperson-topic-pill">Open Prices</span>
+            <span class="off-spokesperson-topic-pill">Circular Economy</span>
+            <span class="off-spokesperson-topic-pill">AI & OCR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact details banner -->
+    <div class="off-contact-banner">
+      <div>
+        <h4>⚡ Urgent Media Deadline? Contact our Press Desk</h4>
+        <p>
+          Our media team prioritizes journalist inquiries for interviews, studio appearances, and data fact-checking under tight deadlines.
+        </p>
+      </div>
+      <div>
+        <a class="off-press-btn off-press-btn-secondary" href="mailto:presse@openfoodfacts.org" style="font-size: 1.05rem;">
+          <span>✉️</span> presse@openfoodfacts.org
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. GLOBAL COVERAGE & LANGUAGES -->
+  <div class="off-section" id="international">
+    <div class="off-section-header">
+      <span class="off-section-badge">Global & Languages</span>
+      <h2>Country Selections & Local Press Kits</h2>
+      <p>Access localized coverage, historical articles, and country-specific media packs.</p>
+    </div>
+
+    <div class="off-country-grid">
+      <a href="/presskit_fr_FR_selection" class="off-country-btn">🇫🇷 France</a>
+      <a href="/presskit_en_UK_selection" class="off-country-btn">🇬🇧 United Kingdom</a>
+      <a href="/presskit_de_DE_selection" class="off-country-btn">🇩🇪 Germany</a>
+      <a href="/presskit_es_ES_selection" class="off-country-btn">🇪🇸 Spain</a>
+      <a href="/presskit_it_IT_selection" class="off-country-btn">🇮🇹 Italy</a>
+      <a href="/presskit_fr_BE_selection" class="off-country-btn">🇧🇪 Belgique (FR)</a>
+      <a href="/presskit_nl_BE_selection" class="off-country-btn">🇧🇪 België (NL)</a>
+      <a href="/presskit_fr_CH_selection" class="off-country-btn">🇨🇭 Suisse (FR)</a>
+      <a href="/presskit_de_CH_selection" class="off-country-btn">🇨🇭 Schweiz (DE)</a>
+      <a href="/presskit_it_CH_selection" class="off-country-btn">🇨🇭 Svizzera (IT)</a>
+      <a href="/presskit_en_AU_selection" class="off-country-btn">🇦🇺 Australia</a>
+      <a href="/presskit_pt_BR_selection" class="off-country-btn">🇧🇷 Brasil</a>
+      <a href="/presskit_pt_PT_selection" class="off-country-btn">🇵🇹 Portugal</a>
+      <a href="/presskit_other_languages" class="off-country-btn">🌐 Other Languages</a>
+    </div>
+
+    <!-- Newsletter for Journalists -->
+    <div style="background: var(--off-cream); border: 1px solid var(--off-peach-tint); border-radius: 20px; padding: 2rem 1.5rem; margin-top: 2rem; text-align: center;">
+      <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--off-espresso); margin-bottom: 0.5rem;">
+        📩 Join our Journalist & Storyteller Newsletter
+      </h3>
+      <p style="font-size: 0.95rem; color: var(--off-espresso-mid); max-width: 600px; margin: 0 auto 1.5rem auto;">
+        Receive embargoed briefings, scientific research releases, and major database updates directly in your inbox.
+      </p>
+      [[texts/sendinblue.html]]
+    </div>
+  </div>
+
 </div>
-</div>
 
-<div class="block block-seashell" id="block-3">
-<!-- Block 2 -->
-<div id="key-facts-block">
-	<div id="key-facts"></div>
-	<div class="row text-center">
-		<div class="large-12 columns">
-			<h2 class="title-2 emphasized-title v-space-normal">Key Facts about Open Food Facts</h2>
-			<p class="text-left">Sikholelwa ngokuqinile ukuthi ulwazi mayelana nokuthi yini esikudlayo luwusizo emphakathini futhi kufanele
-				lufinyelele kuwo wonke umuntu ngokukhululekile. Yasungulwa ngo-2012, i-Open Food Facts iyinhlangano engenzi nzuzo ngemuva kwesizindalwazi esikhulu esivulekile esimayelana nemikhiqizo yokudla emhlabeni.
-			</p>
-			<p class="text-left">
-				As a reference database, we are very proud to have helped create <a href="/reuses">over 200 projects, applications and websites</a> in the food sector. Ngokusebenzisa kabusha isizindalwazi sethu, la maphrojekthi ayenza ifinyeleleke kubantu abaningi ngokwengeziwe emhlabeni jikelele, ngaleyo ndlela kube nesandla ekukhanyeni okukhulu kokudla.
-			</p>
-		</div>
-	</div>
-	[[texts/keyfacts.html]]
-</div>
-</div>
+<!-- INTERACTIVE SCRIPTS -->
+<script>
+// Filter Topics & Narratives
+function filterTopics(category, btn) {
+  const chips = document.querySelectorAll(".off-topic-chip");
+  chips.forEach(c => c.classList.remove("active"));
+  btn.classList.add("active");
 
-	
+  const cards = document.querySelectorAll("#narrativesGrid .off-narrative-card");
+  cards.forEach(card => {
+    const cat = card.getAttribute("data-category");
+    if (category === "all" || cat === category) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
 
-	<!-- Block 4 -->
-	<div id="numbers"></div>
-	<div class="row text-center">
-		<div class="large-12 columns">
-			<h2 class="title-2 emphasized-title v-space-normal">Open Food Facts in numbers</h2>
-			<h4 class="subheader">Those numbers might help convey the large, direct and indirect, impact of Open Food Facts</h4>
-			<p class="text-left"></p>
-		</div>
-	</div>
+// Switch Boilerplate Tabs
+function switchTab(tabId, btn) {
+  const tabs = document.querySelectorAll(".off-b-tab");
+  tabs.forEach(t => t.classList.remove("active"));
+  btn.classList.add("active");
 
+  const panes = document.querySelectorAll(".off-boilerplate-pane");
+  panes.forEach(p => p.classList.remove("active"));
+  const target = document.getElementById(tabId);
+  if (target) target.classList.add("active");
+}
 
-	[[texts/numbers-selected.html]]
-	<!--
-	<style>
-	.medium-4.columns.custom-border {
-		border: 1px solid black;
-		padding:5px;
-		margin:5px;
-		border-radius: 16px;
-			background-color: white;
-	}
-	</style>
-	-->
-
-
-</div>
-<div class="block block-light-green" id="block-5">
-<!-- Block 5 -->
-<!-- Press Releases -->
-<div id="press-releases"></div>
-	<div class="row text-center" data-equalizer data-equalize-by-row="true">
-		<div class="large-12 columns">
-			<h2 class="title-2 emphasized-title v-space-normal">Ukukhishwa kwabezindaba</h2>
-		</div>
-	<!-- Press Kit -->
-		<div class="card medium-4 columns custom-border h-divider-normal v-divider-short v-space-tiny h-space-tiny" data-equalizer-watch>
-			<h3>Cindezela Ikhithi</h3>
-			<a href="https://blog.openfoodfacts.org/wp-content/uploads/2023/11/press-kit-2023-open-food-facts.pdf"><img class="card-image" alt="Cindezela Ikhithi" width="300px" src="/images/misc/presskit/presskit-miniature.png"></a>
-			<p><a class="button round secondary small homepage-greeter__button" download="Presskit.pdf" href="https://blog.openfoodfacts.org/wp-content/uploads/2023/11/press-kit-2023-open-food-facts.pdf" target="_blank" rel="noopener noreferrer"><span class="material-icons">landa</span>Dawuniloda Ikhithi Yabezindaba (PDF)</a></p>
-		</div>
-	<!-- Press release new mobile app -->
-		<div class="card medium-4 columns custom-border h-divider-normal v-divider-short v-space-tiny h-space-tiny" data-equalizer-watch>
-			<h3>Cindezela ukukhishwa kohlelo lokusebenza olusha lweselula</h3>
-			<a href="https://blog.openfoodfacts.org/wp-content/uploads/2023/11/press-kit-2023-open-food-facts.pdf"><img class="card-image" alt="Cindezela ukukhishwa kohlelo lokusebenza olusha lweselula" width="300px" src="https://world.openfoodfacts.org/images/icons/dist/packaging.svg"></a>
-			<p><a class="button round secondary small homepage-greeter__button" download="press_release_new_mobile_app.pdf" href="https://blog.openfoodfacts.org/wp-content/uploads/2023/10/dossier-de-presse-2023-open-food-facts.pdf" target="_blank" rel="noopener noreferrer"><span class="material-icons">landa</span>Landa ukukhishwa kwabezindaba kohlelo lokusebenza (PDF)</a></p>
-		</div>
-		<div class="card medium-4 columns custom-border h-divider-normal v-divider-short v-space-tiny h-space-tiny" data-equalizer-watch>
-			<p>Uhlu lwethu olungokomlando lokukhishwa kwabezindaba luyeza maduze. Future communiques will be listed here.</p>
-		</div>
-	</div>
-
-	<!-- <p>If you spot (or publish) an article mentioning Open Food Facts not already in this list, <a href="mailto:press@openfoodfacts.org">please let us know</a>.</p> -->
-	<!--<br><br>
-	<h4>Table of contents</h4>
-	<div data-alert="" class="alert-box info" id="warning_data" style="display: block;">
-		<ul>
-	<li><a href="#logos">Media Kit</a></li>
-	<li><a href="#numbers">The project in numbers</a></li>
-	<li><a href="#newsletter">Subscribe to our journalist newsletter</a></li>
-	<li><a href="#selection">They talked about us</a></li>
-	</ul>
-
-	</div>
-		-->
-
-	[[texts/presskit_other_languages.html]]
-</div>
-
-<div class="block block-blue" id="block-6">
-<!-- Block 6 -->
-<!-- Media kit -->
-
-
-<div id="mediakit-block">
-	<div class="row text-center">
-		<div class="large-12 columns">
-			<h2 class="title-2 emphasized-title">Ikhithi Yemidiya</h2>
-			<h4 class="subheader">Izinguqulo ezinokulungiswa okuphezulu ziyatholakala ngokuchofoza i-PNG noma i-JPG.<br>Zizwe ukhululekile <a href="mailto:press@openfoodfacts.org">ukusithinta</a> ukuze uthole izicelo ezithile ezibonakalayo.</h4>
-		</div>
-	</div>
-
-	<div id="logos"></div>
-	<div id="openfoodfacts-logos"></div>
-
-	<div style="margin: 15px 0 20px;">
-		<a class="button" href="/media-assets" style="background-color: #2e7d32 !important; color: #ffffff !important; font-size: 1.05rem; padding: 10px 22px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">✨ All Media Assets (Search &amp; Filter Browser)</a>
-	</div>
-
-	<!--texts/logo-off.html-->
-	<a class="button small" href="/logo-off">Logos for 🍊 Open Food Facts</a>&nbsp;
-	<a class="button small" href="/logo-obf">Logos for 🧴 Open Beauty Facts</a>&nbsp;
-	<a class="button small" href="/logo-opf">Logos for 📸 Open Products Facts</a>&nbsp;
-	<a class="button small" href="/logo-opff">Logos for 🐾 Open Pet Food Facts</a>
-
-	<div id="ecoscore-logos"></div>
-	<!--<div class="row text-center">texts/cop26/blocks/presskit-ecoscore-logos.html</div>-->
-	<div class="text-center">[[texts/cop26/blocks/new-ecoscore-presskit.html]]</div>
-	<div id="un-sdg"></div>
-	<div class="text-center">[[texts/cop26/blocks/un-sustainable-development-goals.html]]</div>
-	<div id="nutriscore-logos"></div>
-	<div class="text-center">[[texts/presskit-nutriscore-logos.html]]
-	
-	[[texts/presskit-nutriscore-logos-horizontal-color.html]]
-[[texts/presskit-nutriscore-logos-en.html]]
-	</div>
-</div>
-</div>
-
-<div class="block block-seashell" id="block-7">
-<!-- Block 7 -->
-
-<div id="newsletter"></div>
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2 class="title-2 emphasized-title">Joyina iphephandaba lethu lezintatheli</h2>
-		<h4 class="subheader"></h4>
-		<p class="text-left"></p>
-	</div>
-</div>
-
-[[texts/sendinblue.html]]
-</div>
-
-<div class="block block-yellow" id="block-8">
-<!-- Block 8 -->
-<div id="selection"></div>
-<div id="they-talk-about-us"></div>
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2 class="title-2 emphasized-title">Bakhuluma ngathi</h2>
-		<h4 class="subheader"></h4>
-		<p class="text-left"></p>
-	</div>
-</div>
-[[texts/presskit_selection.html]]
-<br>
-    <style>
-      .media-showcase {
-        display: flex; /* Use Flexbox for horizontal layout */
-        flex-wrap: wrap; /* Allow items to wrap onto the next line if needed */
-        align-items: center; /* Vertically center the logos */
-        justify-content: center; /* Horizontally center the logos in the container */
-        gap: 30px; /* Space between logos */
-        padding: 20px; /* Add some padding around the showcase */
-      }
-
-      .media-showcase a {
-        display: inline-block; /* Treat links as blocks for better spacing/sizing */
-        text-decoration: none; /* Remove underline from links */
-      }
-
-      .media-showcase img {
-        height: 40px; /* Adjust height as needed, width will scale automatically */
-        width: auto;
-        filter: grayscale(100%) brightness(0%); /* Makes the image grayscale then black */
-        opacity: 0.8; /* Slightly transparent for a softer look */
-        transition: opacity 0.3s ease; /* Smooth transition effect on hover */
-      }
-
-      .media-showcase a:hover img {
-        opacity: 1; /* Make logo fully visible on hover */
-        /* Optional: uncomment the line below to show original colors on hover */
-        /* filter: none; */
-      }
-    </style>
-	
-<div class="media-showcase">
-  <a href="#" title="Ufudu Media">
-    <img src="/images/misc/presskit/tortoise-media.svg" alt="Ilogo Yemidiya Yofudu">
-  </a>
-  <a href="#" title="Umqaphi">
-    <img src="/images/misc/presskit/the-guardian.svg" alt="Ilogo ye-Guardian">
-  </a>
-  <a href="#" title="Intatheli">
-    <img src="/images/misc/presskit/reporterre.svg" alt="Ilogo yentatheli">
-  </a>
-  <a href="#" title="Les Echos">
-    <img src="/images/misc/presskit/les-echos.svg" alt="Ilogo ye-Les Echos">
-  </a>
-  <a href="#" title="Le Monde">
-    <img src="/images/misc/presskit/le-monde.svg" alt="Le Monde Logo">
-  </a>
-  <a href="#" title="Le Figaro">
-    <img src="/images/misc/presskit/le-figaro.svg" alt="Le Figaro Logo">
-  </a>
-  <a href="#" title="I-Il Fatto Alimentare">
-    <img src="/images/misc/presskit/il-fatto-alimentare.svg" alt="I-Il Fatto Alimentare Ilogo">
-  </a>
-  <a href="#" title="France Inter">
-    <img src="/images/misc/presskit/france-inter.svg" alt="I-France Inter Logo">
-  </a>
-  <a href="#" title="France 2">
-    <img src="/images/misc/presskit/france-2.svg" alt="I-France 2 Ilogo">
-  </a>
-  <a href="#" title="I-Envoyé Special">
-    <img src="/images/misc/presskit/envoye-special.svg" alt="I-Envoyé Ilogo Ekhethekile">
-  </a>
-  <a href="#" title="Imeyili Yansuku zonke">
-    <img src="/images/misc/presskit/daily-mail.svg" alt="I-Daily Mail Logo">
-  </a>
-  <a href="#" title="Umsakazo we-BBC">
-    <img src="/images/misc/presskit/bbc-radio.svg" alt="BBC Radio Logo">
-  </a>
-</div>
-<br><br>
-<a href="/presskit_de_CH_selection" class="button small">ISwitzerland 🇨🇭</a>
-<a href="/presskit_de_DE_selection" class="button small">Germany 🇩🇪</a>
-<a href="/presskit_en_AU_selection" class="button small">I-Australia 🇦🇺</a>
-<a href="/presskit_en_UK_selection" class="button small">I-United Kingdom 🇬🇧</a>
-<a href="/presskit_es_ES_selection" class="button small">ISpain 🇪🇸</a>
-<a href="/presskit_fr_BE_selection" class="button small">IBelgium 🇧🇪</a>
-<a href="/presskit_fr_CH_selection" class="button small">ISwitzerland 🇨🇭</a>
-<a href="/presskit_fr_FR_selection" class="button small">France 🇫🇷</a>
-<a href="/presskit_it_CH_selection" class="button small">ISwitzerland 🇨🇭</a>
-<a href="/presskit_it_IT_selection" class="button small">I-Italy 🇮🇹</a>
-<a href="/presskit_nl_BE_selection" class="button small">IBelgium 🇧🇪</a>
-<a href="/presskit_other_languages" class="button small">Ezinye Izilimi 🌐</a>
-<a href="/presskit_pt_BR_selection" class="button small">Brazil 🇧🇷</a>
-<a href="/presskit_pt_PT_selection" class="button small">IPortugal 🇵🇹</a>
-<br>
-	
-</div>
-
-
-
-
-<div class="block block-light-green" id="block-9">
-<!-- Block 9 -->
-
-
-[[texts/contacts.html]]
-
-<br><hr><br>
-
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2 class="title-2 emphasized-title">Open Food Facts media mentions</h2>
-		<h4 class="subheader">All media mentions we could find between 2012 and now.</h4>
-		<p class="text-left"></p>
-	</div>
-</div>
-	
-</div>
-
-<div class="block block-blue" id="block-10">
-<!-- Block 10 -->
-<div id="press-review"></div>
-
-<!-- texts/presskit_fr_FR_table.html -->
-<a class="button text-center" href="/revue-de-presse-fr">🇫🇷 Isibuyekezo sabezindaba esigcwele mayelana namaqiniso okudla okuvulekile</a><br>
-<p>Uma ubone (noma ushicilele) isihloko esimayelana namaqiniso okudla okuvulekile angekho kulolu hlu, <a href="mailto:presse@openfoodfacts.org">sicela usazise nge-imeyili</a> noma <a href="https://docs.google.com/forms/d/e/1FAIpQLScpzGaRX6Vr7nFHYuApVx5cz2zjU_bKA85qnQpXHsrY0M0KRA/viewform">ngqo ngaleli fomu</a>.</p>
-<!-- <hr> -->
-
-<!-- <div class="row text-center">
-	<div class="large-12 columns">
-		<h2>Screenshots of the iPhone and iPad version of Open Food Facts</h2>
-		<h4 class="subheader"></h4>
-		<p class="text-left"></p>
-	</div>
-</div>
-
-<div id="iphone"></div> -->
-
-<!-- texts/iphone-fr.html -->
-</div>
-
-<div class="block block-white" id="block-11">
-<!-- Block 11 -->
-<div id="mobile-screenshots"></div>
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2 class="title-2 emphasized-title">Izithombe-skrini zohlelo lokusebenza leselula le-Open Food Facts</h2>
-		<h4 class="subheader">Visuals showcasing the modern mobile app on iOS and Android.</h4>
-	</div>
-</div>
-
-<div class="row text-center" style="margin: 20px 0;">
-	<div class="large-12 columns">
-		<a href="/images/misc/mobileapp/new_openfoodfacts_app_en_light_3_screenshots.png" target="_blank" rel="noopener noreferrer">
-			<img src="/images/misc/mobileapp/new_openfoodfacts_app_en_light_3_screenshots.png" alt="Open Food Facts mobile app screenshots" style="max-width: 900px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-		</a>
-	</div>
-</div>
-
-<div class="row text-center" style="margin-top: 15px;">
-	<div class="large-12 columns">
-		<a class="button small" href="/images/misc/mobileapp/new_openfoodfacts_app_en_light_3_screenshots.png" download><span class="material-icons" style="vertical-align: middle; font-size: 18px;">download</span> Download 3-screen showcase (PNG)</a>&nbsp;
-		<a class="button small" href="/open-food-facts-mobile-app">📱 Open Food Facts Mobile App</a>&nbsp;
-		<a class="button small" href="https://github.com/openfoodfacts/smooth-app" target="_blank" rel="noopener noreferrer">💻 Mobile App on GitHub</a>&nbsp;
-		<a class="button small" href="/media-assets?topic=mobileapp">📁 View all mobile app assets</a>
-	</div>
-</div>
-</div>
-<div class="block block-blue" id="block-12">
-<!-- Block 12 -->
-<div id="greenscore"></div>
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2 class="title-2 emphasized-title">Izinsiza zeGreen-Score</h2>
-		<h4 class="subheader">Visuals, data, and information on the environmental impact score.</h4>
-	</div>
-</div>
-
-[[texts/presskit-greenscore.html]]
-</div>
-<div class="block block-seashell" id="block-13">
-<!-- Block 13 -->
-<div id="podcast"></div>
-[[texts/cop26/blocks/google-podcast.html]]
-</div>
-<div class="block block-yellow" id="block-14">
-<!-- Block 14 -->
-<div id="blog"></div>
-<div class="row text-center">
-<div class="large-12 columns">
-<h2 class="title-2 emphasized-title">The latest news</h2>
-<h4 class="subheader">Latest posts on the English Open Food Facts blog</h4>
-<!--<p class="text-left">Our blog is available in <a href="https://blog.openfoodfacts.org/">English</a> - <a href="https://blog.openfoodfacts.org/fr/">French</a> - <a href="https://blog.openfoodfacts.org/it/">Italian</a> - <a href="https://blog.openfoodfacts.org/es/">Spanish</a> - <a href="https://blog.openfoodfacts.org/de/">German</a> - <a href="https://blog.openfoodfacts.org/bg/">Bulgarian</a> - <a href="https://blog.openfoodfacts.org/da/">Danish</a> - <a href="https://blog.openfoodfacts.org/pt/"></a> - <a href="https://blog.openfoodfacts.org/he/">Hebrew</a> - <a href="https://blog.openfoodfacts.org/nl/">Dutch</a> - <a href="https://blog.openfoodfacts.org/cs/">Czech</a> - <a href="https://blog.openfoodfacts.org/ja/">Japanese</a> - <a href="https://blog.openfoodfacts.org/ro/">Romanian</a> - <a href="https://blog.openfoodfacts.org/tr/">Turkish</a> - <a href="https://blog.openfoodfacts.org/vi/">Vietnamese</a> - <a href="https://blog.openfoodfacts.org/ru/">Russian</a></p>-->
-<p>
-<a href="https://blog.openfoodfacts.org/" class="button small">🇬🇧🇺🇸 English</a>
-<a href="https://blog.openfoodfacts.org/fr/" class="button small">🇫🇷🇧🇪🇨🇭 French</a>
-<a href="https://blog.openfoodfacts.org/it/" class="button small">🇮🇹 Italian</a>
-<a href="https://blog.openfoodfacts.org/es/" class="button small">🇪🇸🇲🇽 Spanish</a>
-<a href="https://blog.openfoodfacts.org/de/" class="button small">🇩🇪🇦🇹🇨🇭 German</a>
-<a href="https://blog.openfoodfacts.org/bg/" class="button small">🇧🇬 Bulgarian</a>
-<a href="https://blog.openfoodfacts.org/da/" class="button small">🇩🇰 Danish</a>
-<a href="https://blog.openfoodfacts.org/pt/" class="button small">🇵🇹🇧🇷 Portuguese</a>
-<a href="https://blog.openfoodfacts.org/he/" class="button small">🇮🇱 Hebrew</a>
-<a href="https://blog.openfoodfacts.org/nl/" class="button small">🇳🇱🇧🇪 Dutch</a>
-<a href="https://blog.openfoodfacts.org/cs/" class="button small">🇨🇿 Czech</a>
-<a href="https://blog.openfoodfacts.org/ja/" class="button small">🇯🇵 Japanese</a>
-<a href="https://blog.openfoodfacts.org/ro/" class="button small">🇷🇴 Romanian</a>
-<a href="https://blog.openfoodfacts.org/tr/" class="button small">🇹🇷 Turkish</a>
-<a href="https://blog.openfoodfacts.org/vi/" class="button small">🇻🇳 Vietnamese</a>
-<a href="https://blog.openfoodfacts.org/ru/" class="button small">🇷🇺 Russian</a>
-</p>
-	
-</div>
-</div>
-
-<div style="display: flex; justify-content: center; align-items: center; margin: 1.5rem auto; text-align: center;">
-[[imibhalo/presskit-rss.html]]
-</div>
-</div>
-
-<div class="block block-light-green" id="block-15">
-<!-- Block 15 -->
-<div class="row text-center">
-<div class="large-12 columns">
-<h2 class="title-2 emphasized-title">Ukubukwa kohlelo lokusebenza</h2>
-<h4 class="subheader">Thola okubonwayo kohlelo lokusebenza ngolimi lwakho</h4>
-[[texts/app-visuals.html]]
-</div>
-</div>
-</div>
-<!--
-<br><hr><br>
-
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2>Our latest communiques</h2>
-		<h4 class="subheader"></h4>
-		<p class="text-left"></p>
-	</div>
-</div>
-<p>Our full list of communiques is coming soon. Future communiques will be listed here.</p>
--->
-</div>
+// Copy text to clipboard
+function copyText(elemId, btn) {
+  const elem = document.getElementById(elemId);
+  if (!elem) return;
+  const text = elem.innerText || elem.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const originalText = btn.innerHTML;
+    btn.innerHTML = "✅ Copied!";
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+    }, 2000);
+  }).catch(() => {
+    // Fallback
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+    const originalText = btn.innerHTML;
+    btn.innerHTML = "✅ Copied!";
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+    }, 2000);
+  });
+}
+</script>
