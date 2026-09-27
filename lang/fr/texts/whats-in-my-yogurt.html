@@ -1,0 +1,357 @@
+<style>
+/* What's In My Yogurt Revamped Showcase Styles */
+.off-yg-wrap {
+  --off-espresso: #0f172a;
+  --off-blue: #0284c7;
+  --off-blue-dark: #0369a1;
+  --off-blue-light: #f0f9ff;
+  --off-blue-border: #bae6fd;
+  --off-border: #e2e8f0;
+  --off-surface: #ffffff;
+  --off-radius: 20px;
+  
+  max-width: 1200px;
+  margin: 0 auto 3.5rem auto;
+  padding: 0 1rem;
+  color: var(--off-espresso);
+  font-family: "Plus Jakarta Sans", "Open Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+}
+
+.off-yg-hero {
+  background: linear-gradient(180deg, #ffffff 0%, var(--off-blue-light) 100%);
+  border: 1px solid var(--off-blue-border);
+  border-radius: 28px;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  text-align: center;
+  margin: 1.5rem 0 2.5rem 0;
+  box-shadow: 0 8px 30px rgba(2, 132, 199, 0.06);
+}
+
+.off-badge-blue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e0f2fe;
+  color: var(--off-blue-dark);
+  border: 1px solid var(--off-blue-border);
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.off-yg-hero h1 {
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  color: #0c4a6e;
+  margin: 0 0 1rem 0;
+  line-height: 1.15;
+}
+
+.off-yg-hero p.lead {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  color: #334155;
+  max-width: 860px;
+  margin: 0 auto 2rem auto;
+}
+
+.off-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.off-stat-card {
+  background: var(--off-surface);
+  border: 1px solid var(--off-border);
+  border-radius: var(--off-radius);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.off-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.08);
+}
+.off-stat-num-blue {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--off-blue);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+.off-stat-lbl {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.25rem;
+}
+.off-stat-sub {
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.off-section {
+  margin: 3.5rem 0;
+}
+.off-section-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #0c4a6e;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+.off-section-lead {
+  text-align: center;
+  font-size: 1.05rem;
+  color: #475569;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+}
+
+.off-card {
+  background: var(--off-surface);
+  border: 1px solid var(--off-border);
+  border-radius: var(--off-radius);
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+}
+.off-inq-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.off-inq-q {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0c4a6e;
+}
+.off-inq-a {
+  font-size: 0.92rem;
+  color: #334155;
+  background: #f8fafc;
+  padding: 0.85rem;
+  border-radius: 12px;
+  border-left: 3px solid var(--off-blue);
+}
+
+.off-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.off-btn-blue {
+  background: var(--off-blue);
+  color: #ffffff;
+}
+.off-btn-blue:hover {
+  background: var(--off-blue-dark);
+  color: #ffffff;
+}
+.off-btn-secondary {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid var(--off-border);
+}
+.off-btn-secondary:hover {
+  background: #f8fafc;
+}
+
+.off-legacy-banner-blue {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1px solid #bae6fd;
+  border-radius: 24px;
+  padding: clamp(2rem, 3.5vw, 3rem);
+  text-align: center;
+  margin-top: 3.5rem;
+}
+.off-legacy-title-blue {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0369a1;
+  margin-bottom: 0.75rem;
+}
+.off-legacy-desc-blue {
+  font-size: 1.05rem;
+  color: #075985;
+  max-width: 800px;
+  margin: 0 auto 1.5rem auto;
+}
+.off-legacy-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+</style>
+
+<div class="off-yg-wrap">
+  <!-- Hero Section -->
+  <div class="off-yg-hero">
+    <div class="off-badge-blue">🌍 Open Data Day 2014 • Campagne Mondiale</div>
+    <h1>Qu'y a-t-il dans mon yaourt ?</h1>
+    <p class="lead">Lancé lors de la Journée Internationale des Données Ouvertes (22 février 2014), le projet « What's in my yogurt? » a mobilisé des citoyens dans plus de 20 pays pour décrypter les rayons frais : portions de 125g contre 180g, taux de vrais fruits, additifs dans les 0% et sucres ajoutés sous toutes les latitudes.</p>
+    
+    <div class="off-stats-grid">
+      <div class="off-stat-card">
+        <div class="off-stat-num-blue">1 000+</div>
+        <div class="off-stat-lbl">Yaourts Décryptés</div>
+        <div class="off-stat-sub">Nature, aux fruits, brassés, soja</div>
+      </div>
+      <div class="off-stat-card">
+        <div class="off-stat-num-blue">20+</div>
+        <div class="off-stat-lbl">Pays Mobilisés</div>
+        <div class="off-stat-sub">Équipes nationales citoyennes</div>
+      </div>
+      <div class="off-stat-card">
+        <div class="off-stat-num-blue">125g vs 180g</div>
+        <div class="off-stat-lbl">Écarts de Portion</div>
+        <div class="off-stat-sub">France vs Suisse & États-Unis</div>
+      </div>
+      <div class="off-stat-card">
+        <div class="off-stat-num-blue">ODD 2014</div>
+        <div class="off-stat-lbl">Open Data Day</div>
+        <div class="off-stat-sub">whatsinmyyogurt.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trojan Horse Concept -->
+  <div class="off-section">
+    <div class="off-card" style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+      <div style="flex: 1 1 400px;">
+        <h3 style="font-size: 1.5rem; font-weight: 800; color: #0c4a6e; margin-top: 0;">Le « Cheval de Troie » au fond du réfrigérateur</h3>
+        <p style="color: #334155; font-size: 0.98rem;">Pourquoi choisir les yaourts après les sodas ? Parce que le yaourt est un aliment du quotidien consommé massivement par les familles et les enfants. Pourtant, derrière une image universelle de produit « santé », les étiquettes recèlent des disparités frappantes : épaississants masquant le manque de matière grasse, sirop de glucose-fructose, faux morceaux de fruits et variations géographiques majeures.</p>
+        <p style="color: #334155; font-size: 0.98rem;">En incitant chacun à photographier le pot de son frigo ou de l'épicerie du coin, Open Food Facts a utilisé le yaourt comme un cheval de Troie pour faire entrer la transparence alimentaire dans les foyers.</p>
+      </div>
+      <div style="flex: 0 0 280px; text-align: center; margin: 0 auto;">
+        <img src="https://fr.openfoodfacts.org/images/misc/yogurt-400x300.png" alt="What's in my yogurt badge" style="max-width: 240px; height: auto; border-radius: 16px; box-shadow: 0 4px 14px rgba(0,0,0,0.08);">
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Discoveries -->
+  <div class="off-section">
+    <h3 class="off-section-title">Les Révélations de l'Enquête Mondiale</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+      
+        <div class="off-card off-inq-card">
+          <div class="off-inq-q">🥛 Les portions de yaourts sont-elles identiques d'un pays à l'autre ?</div>
+          <div class="off-inq-a">💡 Grosse surprise culturelle : le pot individuel standard fait 125g en France, contre 180g en Suisse et jusqu'à 200-250g aux États-Unis !</div>
+        </div>
+        
+        <div class="off-card off-inq-card">
+          <div class="off-inq-q">🥛 Quelle est la part réelle de fruits dans les « yaourts aux fruits » ?</div>
+          <div class="off-inq-a">💡 Beaucoup de yaourts industriels contiennent moins de 5% de pulpe de fruits, compensée par du sucre, des gélifiants et des colorants.</div>
+        </div>
+        
+        <div class="off-card off-inq-card">
+          <div class="off-inq-q">🥛 Les yaourts allégés en matière grasse (0%) contiennent-ils plus de sucre ou d'additifs ?</div>
+          <div class="off-inq-a">💡 Les analyses révèlent que de nombreuses versions allégées compensent le manque d'onctuosité par des épaississants, amidons modifiés et édulcorants intenses.</div>
+        </div>
+        
+        <div class="off-card off-inq-card">
+          <div class="off-inq-q">🥛 Les yaourts sont-ils plus sucrés dans certaines régions du globe ou outre-mer ?</div>
+          <div class="off-inq-a">💡 Des écarts marqués de teneur en sucre ont été identifiés selon les marchés locaux, relançant la demande de formulations harmonisées.</div>
+        </div>
+        
+    </div>
+  </div>
+
+  <!-- Country Squads -->
+  <div class="off-section">
+    <h3 class="off-section-title">Équipes Internationales & Compétition Conviviale</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
+      
+        <div class="off-card" style="border-left: 4px solid var(--off-blue);">
+          <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: #0284c7;">🚩 France</h4>
+          <p style="margin: 0; font-size: 0.9rem; color: #334155;">Base initiale de 172 yaourts enrichie à plus de 1 000 références en quelques semaines.</p>
+        </div>
+        
+        <div class="off-card" style="border-left: 4px solid var(--off-blue);">
+          <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: #0284c7;">🚩 Belgium</h4>
+          <p style="margin: 0; font-size: 0.9rem; color: #334155;">Différenciation des circuits de distribution transfrontaliers avec la France et les Pays-Bas.</p>
+        </div>
+        
+        <div class="off-card" style="border-left: 4px solid var(--off-blue);">
+          <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: #0284c7;">🚩 Switzerland</h4>
+          <p style="margin: 0; font-size: 0.9rem; color: #334155;">Découverte des pots grand format 180g et forte proportion de yaourts brassés alpins.</p>
+        </div>
+        
+        <div class="off-card" style="border-left: 4px solid var(--off-blue);">
+          <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: #0284c7;">🚩 Morocco</h4>
+          <p style="margin: 0; font-size: 0.9rem; color: #334155;">Lancement de la dynamique avec les acteurs open data marocains.</p>
+        </div>
+        
+        <div class="off-card" style="border-left: 4px solid var(--off-blue);">
+          <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: #0284c7;">🚩 Singapore & French Caribbean</h4>
+          <p style="margin: 0; font-size: 0.9rem; color: #334155;">Enquête sur les produits importés et taux de sucre sous les tropiques.</p>
+        </div>
+        
+    </div>
+  </div>
+
+  <!-- Live Queries Exploration -->
+  <div class="off-section">
+    <h3 class="off-section-title">Explorer les Données en Direct (Requêtes Live)</h3>
+    <p class="off-section-lead">Grâce aux données collectées, plusieurs visualisations et analyses comparatives continuent d'éclairer les consommateurs en temps réel :</p>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 860px; margin: 0 auto;">
+      
+        <div class="off-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <div style="font-weight: 700; font-size: 1.05rem; color: #0f172a;">📊 Yogurts: Fat vs. Sugar content</div>
+            <div style="font-size: 0.8rem; color: #64748b; font-family: monospace;">query: yogurts-fat-vs-sugars</div>
+          </div>
+          <a href="https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=categories&tag_contains_0=contains&tag_0=yaourt&sort_by=unique_scans_n&page_size=20&axis_x=fat&axis_y=sugars&series_with_sweeteners=on&graph=1" target="_blank" rel="noopener noreferrer" class="off-btn off-btn-blue">
+            Voir l'analyse &rarr;
+          </a>
+        </div>
+        
+        <div class="off-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <div style="font-weight: 700; font-size: 1.05rem; color: #0f172a;">📊 Fruit content percentage in fruit yogurts</div>
+            <div style="font-size: 0.8rem; color: #64748b; font-family: monospace;">query: yogurts-fruit-content</div>
+          </div>
+          <a href="https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=categories&tag_contains_0=contains&tag_0=yaourts-aux-fruits&sort_by=unique_scans_n" target="_blank" rel="noopener noreferrer" class="off-btn off-btn-blue">
+            Voir l'analyse &rarr;
+          </a>
+        </div>
+        
+        <div class="off-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <div style="font-weight: 700; font-size: 1.05rem; color: #0f172a;">📊 Low-fat yogurts: Less fat, more additives?</div>
+            <div style="font-size: 0.8rem; color: #64748b; font-family: monospace;">query: yogurts-lowfat-vs-additives</div>
+          </div>
+          <a href="https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=categories&tag_contains_0=contains&tag_0=yaourts-alleges&sort_by=unique_scans_n" target="_blank" rel="noopener noreferrer" class="off-btn off-btn-blue">
+            Voir l'analyse &rarr;
+          </a>
+        </div>
+        
+    </div>
+  </div>
+
+  <!-- Bottom CTA Banner -->
+  <div class="off-legacy-banner-blue">
+    <div class="off-legacy-title-blue">🥛 Prêt à faire parler les rayons frais ?</div>
+    <div class="off-legacy-desc-blue">
+      Découvrez les scan parties organisées près de chez vous ou enrichissez directement la base de données ouverte !
+    </div>
+    <div class="off-legacy-actions">
+      <a href="scan-parties.html" class="off-btn off-btn-blue">🎉 Participer à une Scan Party</a>
+      <a href="https://world.openfoodfacts.org/category/yogurts" class="off-btn off-btn-secondary">🔍 Ajouter un yaourt à Open Food Facts</a>
+    </div>
+  </div>
+</div>

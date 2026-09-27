@@ -1,93 +1,2923 @@
-<h1>Domande poste frequentemente</h1>
+<style>
+/* ==========================================================================
+   Open Food Facts FAQ - Responsive Single Page Styles
+   ========================================================================== */
 
-<p>Qui sono raccolte le risposte alle domande più comunemente chieste. Se hai un'altra domanda, inviala per e-mail a <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a></p>
+:root {
+  --off-green-900: #064e3b;
+  --off-green-800: #065f46;
+  --off-green-700: #047857;
+  --off-green-600: #059669;
+  --off-green-500: #10b981;
+  --off-green-100: #d1fae5;
+  --off-green-50: #ecfdf5;
+  --off-surface: #ffffff;
+  --off-bg: #f8fafc;
+  --off-card-border: #e2e8f0;
+  --off-card-border-hover: #cbd5e1;
+  --off-text-primary: #0f172a;
+  --off-text-secondary: #475569;
+  --off-text-muted: #64748b;
+  --off-accent: #2563eb;
+  --off-shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --off-shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --off-shadow-hover: 0 8px 24px rgba(4, 120, 87, 0.08);
+  --off-radius-card: 14px;
+  --off-radius-pill: 9999px;
+  --off-pulse-bg: #fef08a;
+}
 
+.faq-wrapper {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+  color: var(--off-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+}
 
-<ul>
-<li><a href="#contact_the_team">Come posso contattare il team di Open Food Facts, porre domande o dare suggerimenti?</a></li>
-<li><a href="#data_verification">Le informazioni e i dati sui prodotti sono verificati?</a></li>
-<li><a href="#pictures_and_data_from_other_sites">Posso aggiungere immagini o dati dei prodotti dal sito del produttore, da siti di e-commerce o da altri siti?</a></li>
-<li><a href="#adding_my_products">Sono un produttore di prodotti alimentari, posso aggiungere i miei prodotti?</a></li>
-<li><a href="#difference_with_other_services">Qual è la differenza rispetto ad altri siti, servizi e app che già consentono di visualizzare informazioni sui prodotti alimentari?</a></li>
-<li><a href="#economic_model">Qual è il modello economico di Open Food Facts?</a></li>
-<li><a href="#nutrient_comparison_percentage">Cosa indica la percentuale accanto ai nutrienti (ad esempio +4%)?</a></li>
+/* Hero Section */
+.faq-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.faq-title {
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: var(--off-green-900);
+  letter-spacing: -0.025em;
+  margin: 0 0 0.65rem;
+  line-height: 1.2;
+}
+.faq-subtitle {
+  font-size: 1.1rem;
+  color: var(--off-text-secondary);
+  max-width: 680px;
+  margin: 0 auto 1.5rem;
+}
+
+/* Search Box */
+.faq-search-box {
+  position: relative;
+  max-width: 650px;
+  margin: 0 auto 1.25rem;
+}
+.faq-search-input {
+  width: 100%;
+  padding: 0.95rem 4.5rem 0.95rem 2.85rem;
+  font-size: 1.05rem;
+  color: var(--off-text-primary);
+  background: var(--off-surface);
+  border: 2px solid var(--off-card-border);
+  border-radius: var(--off-radius-pill);
+  box-shadow: var(--off-shadow-md);
+  transition: all 0.2s ease;
+  outline: none;
+  box-sizing: border-box;
+}
+.faq-search-input:focus {
+  border-color: var(--off-green-600);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+}
+.faq-search-icon {
+  position: absolute;
+  left: 1.05rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--off-text-muted);
+  pointer-events: none;
+  font-size: 1.15rem;
+}
+.faq-search-clear {
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f1f5f9;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  color: var(--off-text-muted);
+  font-weight: bold;
+  font-size: 0.85rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+.faq-search-clear:hover {
+  background: #e2e8f0;
+  color: var(--off-text-primary);
+}
+.faq-search-hint {
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--off-text-muted);
+  background: #f1f5f9;
+  padding: 0.18rem 0.45rem;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  pointer-events: none;
+}
+
+/* Category Pills Bar */
+.faq-pills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1.25rem 0 1.75rem;
+  padding: 0.25rem;
+}
+.faq-pill {
+  background: var(--off-surface);
+  border: 1px solid var(--off-card-border);
+  color: var(--off-text-secondary);
+  border-radius: var(--off-radius-pill);
+  padding: 0.42rem 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+.faq-pill:hover {
+  background: #f1f5f9;
+  border-color: var(--off-card-border-hover);
+  color: var(--off-text-primary);
+  transform: translateY(-1px);
+}
+.faq-pill.active {
+  background: var(--off-green-700);
+  border-color: var(--off-green-700);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(4, 120, 87, 0.25);
+}
+.faq-pill-count {
+  font-size: 0.75rem;
+  background: rgba(0,0,0,0.06);
+  padding: 0.1rem 0.42rem;
+  border-radius: var(--off-radius-pill);
+}
+.faq-pill.active .faq-pill-count {
+  background: rgba(255,255,255,0.25);
+  color: #ffffff;
+}
+
+/* Toolbar Controls */
+.faq-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 1.25rem;
+  padding: 0.5rem 0.25rem;
+  border-bottom: 1px solid var(--off-card-border);
+  font-size: 0.88rem;
+}
+.faq-counter-text {
+  color: var(--off-text-muted);
+  font-weight: 600;
+}
+.faq-toolbar-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+.faq-tool-btn {
+  background: transparent;
+  border: 1px solid var(--off-card-border);
+  color: var(--off-text-secondary);
+  border-radius: 8px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.faq-tool-btn:hover {
+  background: #f1f5f9;
+  color: var(--off-text-primary);
+}
+
+/* FAQ Accordion List */
+.faq-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.faq-card {
+  background: var(--off-surface);
+  border: 1px solid var(--off-card-border);
+  border-radius: var(--off-radius-card);
+  box-shadow: var(--off-shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  overflow: hidden;
+}
+.faq-card:hover {
+  border-color: var(--off-green-500);
+  box-shadow: var(--off-shadow-hover);
+}
+.faq-card.faq-target {
+  border-color: var(--off-green-600);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.35);
+  animation: off-faq-pulse 2s ease;
+}
+@keyframes off-faq-pulse {
+  0% { background-color: #fef08a; }
+  100% { background-color: var(--off-surface); }
+}
+
+.faq-details {
+  width: 100%;
+}
+.faq-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.25rem;
+  cursor: pointer;
+  list-style: none;
+  gap: 1rem;
+}
+.faq-summary::-webkit-details-marker {
+  display: none;
+}
+.faq-question-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  flex: 1;
+}
+.faq-category-badge {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--off-green-800);
+  background: var(--off-green-50);
+  border: 1px solid var(--off-green-100);
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.faq-question-title {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--off-text-primary);
+  line-height: 1.35;
+}
+.faq-summary-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+.faq-copy-btn {
+  position: relative;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--off-text-muted);
+  border-radius: 6px;
+  padding: 0.35rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+.faq-copy-btn:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: var(--off-text-primary);
+}
+.faq-copied-tooltip {
+  position: absolute;
+  bottom: 125%;
+  right: 0;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.faq-copy-btn.copied .faq-copied-tooltip {
+  opacity: 1;
+}
+.faq-chevron {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--off-text-muted);
+  border-bottom: 2px solid var(--off-text-muted);
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+  margin-left: 0.25rem;
+}
+.faq-details[open] .faq-chevron {
+  transform: rotate(-135deg);
+}
+
+/* Answer Drawer */
+.faq-answer {
+  padding: 0 1.25rem 1.25rem;
+  border-top: 1px solid #f1f5f9;
+}
+.faq-answer-inner {
+  padding-top: 1rem;
+  color: var(--off-text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.68;
+}
+.faq-answer-inner p {
+  margin: 0 0 0.85rem;
+}
+.faq-answer-inner p:last-child {
+  margin-bottom: 0;
+}
+.faq-answer-inner a {
+  color: var(--off-green-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.faq-answer-inner a:hover {
+  color: var(--off-green-900);
+}
+.faq-list {
+  margin: 0.5rem 0 1rem 1.35rem;
+  padding: 0;
+}
+.faq-list li {
+  margin-bottom: 0.35rem;
+}
+.faq-quote {
+  margin: 0.75rem 0;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid var(--off-green-600);
+  background: var(--off-green-50);
+  border-radius: 0 8px 8px 0;
+  color: var(--off-green-900);
+  font-style: italic;
+}
+.faq-answer-inner code {
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.88em;
+  font-family: monospace;
+}
+.faq-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 0.75rem 0;
+  border: 1px solid var(--off-card-border);
+}
+
+/* Highlight Match */
+mark.faq-highlight {
+  background-color: #fef08a;
+  color: #0f172a;
+  padding: 0.05rem 0.2rem;
+  border-radius: 3px;
+}
+
+/* Empty State */
+.faq-empty-state {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  background: var(--off-surface);
+  border: 2px dashed var(--off-card-border);
+  border-radius: var(--off-radius-card);
+  display: none;
+}
+.faq-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+.faq-empty-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+.faq-empty-btn {
+  background: var(--off-green-700);
+  color: #ffffff;
+  border: none;
+  padding: 0.55rem 1.25rem;
+  border-radius: var(--off-radius-pill);
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.15s ease;
+}
+.faq-empty-btn:hover {
+  background: var(--off-green-800);
+}
+
+/* Footer Help CTA */
+.faq-footer-cta {
+  margin-top: 3.5rem;
+  padding: 2.25rem 1.75rem;
+  background: linear-gradient(135deg, var(--off-green-50) 0%, #f0fdf4 100%);
+  border: 1px solid var(--off-green-100);
+  border-radius: var(--off-radius-card);
+  text-align: center;
+}
+.faq-footer-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--off-green-900);
+  margin: 0 0 0.5rem;
+}
+.faq-footer-desc {
+  font-size: 1rem;
+  color: var(--off-text-secondary);
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+.faq-footer-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+.faq-footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--off-radius-pill);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+.faq-footer-btn-primary {
+  background: var(--off-green-700);
+  color: #ffffff !important;
+}
+.faq-footer-btn-primary:hover {
+  background: var(--off-green-800);
+  transform: translateY(-1px);
+}
+.faq-footer-btn-secondary {
+  background: var(--off-surface);
+  border: 1px solid var(--off-card-border);
+  color: var(--off-text-primary) !important;
+}
+.faq-footer-btn-secondary:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .faq-title {
+    font-size: 1.75rem;
+  }
+  .faq-pills-container {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .faq-pill {
+    flex-shrink: 0;
+  }
+  .faq-search-hint {
+    display: none;
+  }
+  .faq-footer-buttons {
+    flex-direction: column;
+  }
+  .faq-footer-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>
+
+<div class="faq-wrapper" id="faq-app">
+  <!-- Hero Section -->
+  <header class="faq-hero">
+    <h1 class="faq-title">Domande Frequenti (FAQ)</h1>
+    <p class="faq-subtitle">Risposte a tutte le domande su Open Food Facts, l'applicazione mobile, i punteggi nutrizionali e la piattaforma per i produttori.</p>
+
+    <!-- Search Box -->
+    <div class="faq-search-box">
+      <span class="faq-search-icon" aria-hidden="true">🔍</span>
+      <input type="search" id="faqSearchInput" class="faq-search-input" placeholder="🔍 Cerca domande o parole chiave (es. Nutri-Score, account, scansione...)" autocomplete="off" />
+      <button type="button" id="faqSearchClear" class="faq-search-clear" aria-label="Reimposta ricerca">✕</button>
+      <span class="faq-search-hint">/</span>
+    </div>
+
+    <!-- Category Pills -->
+    <nav class="faq-pills-container" aria-label="Argomenti:">
+      <button type="button" class="faq-pill active" data-cat="all"><span class="faq-pill-icon">✨</span> <span class="faq-pill-text">Tutti gli argomenti</span> <span class="faq-pill-count">72</span></button>
+<button type="button" class="faq-pill" data-cat="account"><span class="faq-pill-icon">👤</span> <span class="faq-pill-text">Il mio account Open Food Facts</span> <span class="faq-pill-count">1</span></button>
+<button type="button" class="faq-pill" data-cat="mobile-app"><span class="faq-pill-icon">📱</span> <span class="faq-pill-text">Applicazione mobile</span> <span class="faq-pill-count">2</span></button>
+<button type="button" class="faq-pill" data-cat="product-questions"><span class="faq-pill-icon">🛒</span> <span class="faq-pill-text">Domande su un prodotto</span> <span class="faq-pill-count">1</span></button>
+<button type="button" class="faq-pill" data-cat="eco-score"><span class="faq-pill-icon">🌿</span> <span class="faq-pill-text">Eco-Score</span> <span class="faq-pill-count">5</span></button>
+<button type="button" class="faq-pill" data-cat="nova"><span class="faq-pill-icon">🧪</span> <span class="faq-pill-text">Qual è il punteggio NOVA?</span> <span class="faq-pill-count">1</span></button>
+<button type="button" class="faq-pill" data-cat="data-download"><span class="faq-pill-icon">📥</span> <span class="faq-pill-text">Download dei dati</span> <span class="faq-pill-count">1</span></button>
+<button type="button" class="faq-pill" data-cat="nutri-score"><span class="faq-pill-icon">🥗</span> <span class="faq-pill-text">Nutri-Score</span> <span class="faq-pill-count">3</span></button>
+<button type="button" class="faq-pill" data-cat="open-food-facts"><span class="faq-pill-icon">❓</span> <span class="faq-pill-text">Open Food Facts</span> <span class="faq-pill-count">9</span></button>
+<button type="button" class="faq-pill" data-cat="open-pet-food-facts"><span class="faq-pill-icon">🐾</span> <span class="faq-pill-text">Open Pet Food Facts</span> <span class="faq-pill-count">1</span></button>
+<button type="button" class="faq-pill" data-cat="open-beauty-facts"><span class="faq-pill-icon">💄</span> <span class="faq-pill-text">Open Beauty Facts</span> <span class="faq-pill-count">3</span></button>
+<button type="button" class="faq-pill" data-cat="api-data-reuse"><span class="faq-pill-icon">💻</span> <span class="faq-pill-text">API e riutilizzo dei dati</span> <span class="faq-pill-count">4</span></button>
+<button type="button" class="faq-pill" data-cat="volunteering"><span class="faq-pill-icon">🤝</span> <span class="faq-pill-text">Volontariato / Contributo</span> <span class="faq-pill-count">3</span></button>
+<button type="button" class="faq-pill" data-cat="press-media"><span class="faq-pill-icon">📰</span> <span class="faq-pill-text">Richieste della stampa e dei media</span> <span class="faq-pill-count">1</span></button>
+<button type="button" class="faq-pill" data-cat="international"><span class="faq-pill-icon">🌐</span> <span class="faq-pill-text">Migliorare Open Food Facts nella mia lingua/paese</span> <span class="faq-pill-count">3</span></button>
+<button type="button" class="faq-pill" data-cat="technical-faq"><span class="faq-pill-icon">🛠️</span> <span class="faq-pill-text">FAQ tecniche</span> <span class="faq-pill-count">1</span></button>
+<button type="button" class="faq-pill" data-cat="producers-about"><span class="faq-pill-icon">ℹ️</span> <span class="faq-pill-text">A proposito di Open Food Facts</span> <span class="faq-pill-count">3</span></button>
+<button type="button" class="faq-pill" data-cat="producers-scores"><span class="faq-pill-icon">📈</span> <span class="faq-pill-text">Informazioni sui punteggi</span> <span class="faq-pill-count">3</span></button>
+<button type="button" class="faq-pill" data-cat="producers-account"><span class="faq-pill-icon">👤</span> <span class="faq-pill-text">Gestire il mio account</span> <span class="faq-pill-count">3</span></button>
+<button type="button" class="faq-pill" data-cat="producers-products"><span class="faq-pill-icon">📦</span> <span class="faq-pill-text">Gestire i miei prodotti</span> <span class="faq-pill-count">16</span></button>
+<button type="button" class="faq-pill" data-cat="producers-portfolio"><span class="faq-pill-icon">📊</span> <span class="faq-pill-text">Analisi del portafoglio prodotti (benchmark, miglioramento...)</span> <span class="faq-pill-count">1</span></button>
+<button type="button" class="faq-pill" data-cat="labels"><span class="faq-pill-icon">🏷️</span> <span class="faq-pill-text">Etichette</span> <span class="faq-pill-count">2</span></button>
+<button type="button" class="faq-pill" data-cat="producers-packaging"><span class="faq-pill-icon">📦</span> <span class="faq-pill-text">Imballaggio</span> <span class="faq-pill-count">3</span></button>
+<button type="button" class="faq-pill" data-cat="school-projects"><span class="faq-pill-icon">🎓</span> <span class="faq-pill-text">Progetti scolastici</span> <span class="faq-pill-count">2</span></button>
+    </nav>
+  </header>
+
+  <!-- Toolbar Controls -->
+  <div class="faq-toolbar">
+    <div class="faq-counter-text" id="faqCounter">72 tutti gli argomenti</div>
+    <div class="faq-toolbar-actions">
+      <button type="button" class="faq-tool-btn" id="btnExpandAll">Espandi tutto</button>
+      <button type="button" class="faq-tool-btn" id="btnCollapseAll">Comprimi tutto</button>
+    </div>
+  </div>
+
+  <!-- FAQ Items Container -->
+  <main class="faq-list-container" id="faqList">
+    
+        <article class="faq-card" id="voglio-cancellare-il-mio-account" data-category="account" data-search="il mio account open food facts voglio cancellare il mio account">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">👤</span> Il mio account Open Food Facts</span>
+                <h3 class="faq-question-title">Voglio cancellare il mio account</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="voglio-cancellare-il-mio-account" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>La cancellazione dell'account ora avviene direttamente nelle tue preferenze.</p>
+<p>Dopo aver effettuato l'accesso su <a href="https://world-it.openfoodfacts.org/" target="_blank" rel="noopener noreferrer">https://world-it.openfoodfacts.org/</a>, fare clic sul nome utente nell'angolo in alto a destra, scegliere Parametri account. Apre la tua pagina delle preferenze. Vai in fondo alla pagina e utilizza l'azione "elimina utente".</p>
+<p>Se non riesci ad accedere (o a reimpostare la tua password), contatta dpo - at - <a href="http://openfoodfacts.org" target="_blank" rel="noopener noreferrer">openfoodfacts.org</a>, utilizzando l'indirizzo e-mail che utilizzi per registrare l'account.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-faccio-a-sapere-quale-versione-dellapp-sto-utilizzando" data-category="mobile-app" data-search="applicazione mobile come faccio a sapere quale versione dell'app sto utilizzando?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📱</span> Applicazione mobile</span>
+                <h3 class="faq-question-title">Come faccio a sapere quale versione dell'app sto utilizzando?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-faccio-a-sapere-quale-versione-dellapp-sto-utilizzando" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Andare su <strong>Profilo,</strong> poi su<strong> FAQ</strong>, quindi su Informazioni su <strong>questa applicazione</strong>.</p>
+<p>Si dovrebbe vedere un numero di versione come 3.4.5+662. Non dimenticare di indicare la marca e il modello del telefono se si tratta di un debug.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="lapp-non-esegue-la-scansione" data-category="mobile-app" data-search="applicazione mobile l'app non esegue la scansione">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📱</span> Applicazione mobile</span>
+                <h3 class="faq-question-title">L'app non esegue la scansione</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="lapp-non-esegue-la-scansione" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Ciò può essere dovuto a</p>
+<ul class="faq-list">
+<li>un problema di rete</li>
 </ul>
-
-
-
-<h2 id="contact_the_team">Come posso contattare il team di Open Food Facts, porre domande o dare suggerimenti?</h2>
-
-<p>Puoi fare domande o dare suggerimenti sul <a href="https://openfoodfacts.uservoice.com/">Forum Idea</a> o contattarci via e-mail:
-contact@openbeautyfacts.org</p>
-
-
-
-
-<h2 id="data_verification">Le informazioni e i dati sui prodotti sono verificati?</h2>
-
-<p>Le informazioni e i dati sono inseriti dai collaboratori di Open Food Facts. I collaboratori inviano anche foto dei prodotti, le loro etichette, le liste degli ingredienti e la tabella dei valori nutrizionali.
-Quando in dubbio, i visitatori possono così verificare da soli la loro accuratezza e se c'è un errore, possono correggerle sul posto.</p>
-
-<p>Per individuare più facilmente potenziali errori, aggiungeremo progressivamente controlli automatizzati. Ad esempio se i valori nutrizionali di un prodotto sono molto differenti dai prodotti della stessa categoria, potrebbe essere un errore. Se i nutrienti si sommano a più del 100%, è definitivamente un errore.</p>
-
-<p>Infine, molti produttori ci inviano foto e dati sui propri prodotti usando la nostra Piattaforma per i Produttori. Se sei un produttore, <a href="mailto:producers@openfoodfacts.org">contattaci</a></p>
-
-
-<h2 id="pictures_and_data_from_other_sites">Posso aggiungere immagini o dati dei prodotti dal sito del produttore, da siti di e-commerce o da altri siti?</h2>
-
-<p>Probabilmente no. Quasi tutti gli altri siti proibiscono la riproduzione e riutilizzo dei loro dati e immagini, questo è il motivo reale per cui stiamo creando Open Food Facts: rendere tutti questi dati disponibili a tutti e per tutti gli utenti.</p>
-
-
-<p>Per evitare qualsiasi problema legale, chiediamo dunque ai collaboratori di aggiungere solamente foto fatte da loro e solo dati che provengono dagli imballaggi e dalle etichette dei prodotti.</p>
-
-<h2 id="adding_my_products">Sono un produttore di prodotti alimentari, posso aggiungere i miei prodotti?</h2>
-
-<p>Sì! L'unica condizione è accettare che dati e immagini siano resi disponibili sotto licenza aperta. (vedi i <a href="https://en.openfoodfacts.org/terms-of-use#contribution">Termini di contribuzione</a>)</p>
-
-<p>Abbiamo sviluppato una piattaforma gratuita per farti importare facilmente foto e dati dei tuoi prodotti, indipendentemente dalle dimensioni. 
-Ti permetterà di importare dati e immagini completi e aggiornati in Open Food Facts, che saranno poi visibili in oltre 100 altre app nutrizionali. Inoltre, la piattaforma fornisce suggerimenti per migliorare il Nutri-Score dei tuoi prodotti. 
-
-Contattaci per discutere come potremmo procedere: <a href="mailto:producers@openfoodfacts.org">producers@openfoodfacts.org</a></p>
-
-
-<h2 id="difference_with_other_services">Qual è la differenza rispetto ad altri siti, servizi e app che già consentono di visualizzare informazioni sui prodotti alimentari?</h2>
-
-<p>La principale differenza è per noi critica: i nostri dati sono gratuitamente disponibili a tutti e per tutti gli usi. Si tratta di ciò che viene definito open data.</p>
-
-<p>Quasi tutti gli altri siti, servizi ed applicazioni proibiscono ad altri di riprodurre e riutilizzare i loro dati. Al contrario, lo custodiscono gelosamente per sé. Nella quasi totalità dei casi,
-i loro termini di servizio vietano esplicitamente qualsiasi utilizzo non personale e qualsiasi estrazione di tutti i dati o di parte di essi.</p>
-
-<p>Riteniamo che le informazioni sui prodotti alimentari siano troppo importanti e utili per tenerle chiuse in una cassaforte. Quindi, quando abbiamo avviato il progetto Open Food Facts e l'app mobile, nel 2012, abbiamo deciso di fare esattamente l'opposto: non solo consentiamo l'uso e il riutilizzo del nostro database, liberamente e senza costi,
-
-a chiunque e per tutti gli usi (inclusi quelli commerciali), ma lo incoraggiamo anche!</p>
-
-<p>Rendendo i dati disponibili pubblicamente (ciò che è noto come <i>open data</i>) consente a individui, associazioni, aziende, ricercatori etc. da tutto il mondo di pensare e sviluppare applicazioni per i dati che noi certamente non avremmo mai pensato.</p>
-
-
-
-<h2 id="economic_model">Qual è il modello economico di Open Food Facts</h2>
-
-<p>I contributori sono volontari. I loro contributi sono raccolti in un database aperto che può essere usato da tutti e per tutti gli usi.
-(vedi i <a href="https://en.openbeautyfacts.org/terms-of-use#reuse">Termini di riutilizzo</a>)</p>
-
-<p>Chiunque (inclusi, a titolo esemplificativo ma non esaustivo, i collaboratori e i creatori di Open Food Facts) può quindi ridistribuire e/o riutilizzare i dati per creare siti web, servizi, software, applicazioni mobile o per
-scrivere articoli e studi. Sono liberi di rendere il lavoro risultante disponibile gratuitamente, oppure di venderlo o monetizzarlo (ad esempio tramite pubblicità), purché rispettino i termini di riutilizzo.</p>
-
-<p>Inoltre, siamo completamente indipendenti dall'industria alimentare e tutti i servizi e i software che sviluppiamo sono gratuiti. Ad esempio, la nostra Piattaforma per i Produttori è totalmente gratuita, 
-
- e ne siamo ancora più contenti perché pensiamo che possa aiutarli a migliorare i loro prodotti. 
-</p>
-
-<h2 id="nutrient_comparison_percentage">Cosa indica la percentuale accanto ai nutrienti (ad esempio +4%)?</h2>
-
-<p>Una percentuale come "+4%" accanto a un nutriente, nella pagina di un prodotto, paragona questo prodotto ad altri della stessa categoria:</p>
-
-<ul>
-<li><strong>Valore positivo (+4%)</strong> = Questo prodotto contiene una quantità MAGGIORE di quel nutriente rispetto alla media dei prodotti simili</li>
-<li><strong>Valore negativo (-4%)</strong> = Questo prodotto contiene una quantità MINORE di quel nutriente rispetto alla media dei prodotti simili</li>
+<ul class="faq-list">
+<li>un problema di autorizzazioni</li>
 </ul>
+<ul class="faq-list">
+<li>un problema di codice a barre</li>
+</ul>
+<p>Inviateci un'e-mail tramite Profilo >> Contattaci >> Inviaci un'e-mail.</p>
+<p>Tutte le informazioni pertinenti devono essere allegate alla richiesta.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
 
-<p>Ad esempio, se il sale presenta un "+10%", significa che questo cereale ha il 10% in più di sale rispetto alla media dei cereali di quel tipo. Questo ti aiuta a capire rapidamente se un prodotto è più o meno salutare rispetto ad articoli simili.</p>
+        <article class="faq-card" id="ho-una-domanda-reclamo-su-un-prodotto" data-category="product-questions" data-search="domande su un prodotto ho una domanda / reclamo su un prodotto">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🛒</span> Domande su un prodotto</span>
+                <h3 class="faq-question-title">Ho una domanda / reclamo su un prodotto</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="ho-una-domanda-reclamo-su-un-prodotto" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p><a href="https://world.openfoodfacts.org" target="_blank" rel="noopener noreferrer">https://world.openfoodfacts.org</a> è un sito collaborativo creato e alimentato dai consumatori per poter decifrare le etichette e confrontare i prodotti.</p>
+<p>Per ulteriori informazioni su un prodotto o su un reclamo, scrivere al produttore. Non disponiamo di informazioni di contatto per i produttori, ma il più delle volte sono riportate sulla confezione.</p>
+<p>Se volete aiutarci a portare più trasparenza ai consumatori come voi o noi, potete utilizzare la nostra applicazione per iPhone o Android per aggiungere prodotti: <a href="https://openfoodfacts.app" target="_blank" rel="noopener noreferrer">https://openfoodfacts.app</a>.</p>
+<p>E per discutere del progetto, potete unirvi al gruppo Facebook dei collaboratori: <a href="https://www.facebook.com/groups/openfoodfacts/" target="_blank" rel="noopener noreferrer">https://www.facebook.com/groups/openfoodfacts/</a> o chattare con gli altri collaboratori su Slack:</p>
+<p><a href="https://slack.openfoodfacts.org" target="_blank" rel="noopener noreferrer">https://slack.openfoodfacts.org</a></p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
 
+        <article class="faq-card" id="che-cose-la-metodologia-eco-score" data-category="eco-score" data-search="eco-score che cos'è la metodologia eco-score?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🌿</span> Eco-Score</span>
+                <h3 class="faq-question-title">Che cos'è la metodologia Eco-Score?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="che-cose-la-metodologia-eco-score" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>L'Eco-Score si basa sul calcolo dell'analisi del ciclo di vita prodotta dall'ADEME (l'agenzia per la transizione ecologica) e dall'INRAE (l'istituto nazionale per la ricerca agronomica). Circa quindici componenti vengono calcolati e collegati per creare il punteggio PEF.</p>
+<p>A questo punteggio PEF si aggiungono i bonus e i malus (modalità di produzione, origine degli ingredienti, specie a rischio, imballaggio).</p>
+<p>ingredienti, specie in pericolo, imballaggio) per calcolare l'Eco-Score.</p>
+<p>Per ulteriori informazioni, consultare la pagina di sintesi <a href="https://world.openfoodfacts.org/eco-score-the-environmental-impact-of-food-products" target="_blank" rel="noopener noreferrer">https://world.openfoodfacts.org/eco-score-the-environmental-impact-of-food-products</a> su Open Food Facts e il sito web del consorzio Eco-Score. (Presentazione di Eco-Score <a href="https://docs.score-environnemental.com/" target="_blank" rel="noopener noreferrer">https://docs.score-environnemental.com/</a>)</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
 
-<p>&nbsp;</p>
+        <article class="faq-card" id="che-tipo-di-informazioni-devono-essere-fornite-affinche-leco" data-category="eco-score" data-search="eco-score che tipo di informazioni devono essere fornite affinché l'eco-score sia calcolato nel modo più accurato possibile?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🌿</span> Eco-Score</span>
+                <h3 class="faq-question-title">Che tipo di informazioni devono essere fornite affinché l'Eco-Score sia calcolato nel modo più accurato possibile?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="che-tipo-di-informazioni-devono-essere-fornite-affinche-leco" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Affinché l'Eco-Score sia calcolato con precisione, è necessario specificare la percentuale di ciascun ingrediente e la sua origine.</p>
+<p>Se queste informazioni non sono già specificate nell'elenco degli ingredienti, è possibile aggiungere una colonna per menzionarle, con il seguente formato:</p>
+<p>Farina di frumento 16% (Francia)</p>
+<p>Cioccolato 8% (Costa d'Avorio, Ecuador)</p>
+<p>Abbiamo bisogno anche dei componenti dell'imballaggio sotto forma di: 1 pellicola di plastica da buttare, 1 scatola di cartone FSC da riciclare, 6 bottiglie di plastica PET trasparente da 1,5 L da riciclare, 6 tappi di plastica colorata opaca, 12 lattine di plastica da 33 cl in alluminio.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-vengono-combinati-i-valori-dei-15-indicatori" data-category="eco-score" data-search="eco-score come vengono combinati i valori dei 15 indicatori?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🌿</span> Eco-Score</span>
+                <h3 class="faq-question-title">Come vengono combinati i valori dei 15 indicatori?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-vengono-combinati-i-valori-dei-15-indicatori" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Per comprendere meglio il sistema <a href="https://doc.agribalyse.fr/documentation/methodologie-acv" target="_blank" rel="noopener noreferrer">PEF</a>, potete leggere: spiegazione del punteggio PEF sul sito metodologico di Eco-Score</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="laspetto-locale-riguarda-il-luogo-di-produzione-o-il-luogo-d" data-category="eco-score" data-search="eco-score l'aspetto locale riguarda il luogo di produzione o il luogo di origine delle materie prime?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🌿</span> Eco-Score</span>
+                <h3 class="faq-question-title">L'aspetto locale riguarda il luogo di produzione o il luogo di origine delle materie prime?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="laspetto-locale-riguarda-il-luogo-di-produzione-o-il-luogo-d" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>L'aspetto locale riguarda l'origine delle materie prime. Per questo motivo è importante inserire le loro percentuali e le loro origini nell'elenco degli ingredienti del prodotto o nel campo dedicato alle origini degli ingredienti.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-inserire-le-origini-degli-ingredienti-per-leco-score" data-category="eco-score" data-search="eco-score come inserire le origini degli ingredienti per l'eco-score?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🌿</span> Eco-Score</span>
+                <h3 class="faq-question-title">Come inserire le origini degli ingredienti per l'eco-score?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-inserire-le-origini-degli-ingredienti-per-leco-score" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Se desiderate condividere le informazioni sull'origine delle materie prime presenti nelle vostre schede, vi invitiamo a inserirle nell'elenco degli ingredienti.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="che-cose-nova" data-category="nova" data-search="qual è il punteggio nova? che cos'è nova?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🧪</span> Qual è il punteggio NOVA?</span>
+                <h3 class="faq-question-title">Che cos'è NOVA?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="che-cose-nova" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p><a href="https://fr.openfoodfacts.org/nova" target="_blank" rel="noopener noreferrer">https://fr.openfoodfacts.org/nova</a></p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="dove-trovare-i-dati-per-un-paese-specifico" data-category="data-download" data-search="download dei dati dove trovare i dati per un paese specifico?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📥</span> Download dei dati</span>
+                <h3 class="faq-question-title">Dove trovare i dati per un Paese specifico?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="dove-trovare-i-dati-per-un-paese-specifico" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Attualmente non esistono esportazioni dedicate a Paesi specifici.</p>
+<p>Esistono molti modi per utilizzare le nostre diverse esportazioni combinate con diversi strumenti per selezionare i dati relativi a un paese specifico.</p>
+<p>È possibile dare un'occhiata ad alcune di queste tecniche sul nostro <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data" target="_blank" rel="noopener noreferrer">wiki</a>.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="cosa-devo-fare-se-il-nutri-score-dei-miei-prodotti-non-e-cor" data-category="nutri-score" data-search="nutri-score cosa devo fare se il nutri-score dei miei prodotti non è corretto?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🥗</span> Nutri-Score</span>
+                <h3 class="faq-question-title">Cosa devo fare se il Nutri-Score dei miei prodotti non è corretto?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="cosa-devo-fare-se-il-nutri-score-dei-miei-prodotti-non-e-cor" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>In caso di problemi con il vostro Nutri-Score, controllate che le informazioni siano corrette nella scheda "modifica" della vostra scheda prodotto. Se qualche informazione manca o è errata, non esitate a contattarci all'indirizzo <strong>producers@openfoodfacts.org.</strong></p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="che-tipo-di-informazioni-devo-fornire-affinche-il-nutri-scor" data-category="nutri-score" data-search="nutri-score che tipo di informazioni devo fornire affinché il nutri-score venga calcolato nel modo più accurato possibile?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🥗</span> Nutri-Score</span>
+                <h3 class="faq-question-title">Che tipo di informazioni devo fornire affinché il Nutri-Score venga calcolato nel modo più accurato possibile?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="che-tipo-di-informazioni-devo-fornire-affinche-il-nutri-scor" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Il calcolo del Nutri-Score sarà effettuato con la tabella nutrizionale del vostro prodotto.</p>
+<p>Non dimenticate di includere nella tabella la percentuale di frutta, verdura e noci, in modo che il Nutri-Score calcolato non sia errato.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="da-dove-proviene-il-nutri-score" data-category="nutri-score" data-search="nutri-score da dove proviene il nutri-score?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🥗</span> Nutri-Score</span>
+                <h3 class="faq-question-title">Da dove proviene il Nutri-Score?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="da-dove-proviene-il-nutri-score" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Il Nutri-Score è gestito da Santé Publique France. Riassume la tabella dei valori nutrizionali in modo che tutti possano comprenderla. L'obiettivo è fornire a tutti l'accesso a informazioni nutrizionali chiare e comprensibili.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="qual-e-la-differenza-con-altri-siti-web-servizi-e-applicazio" data-category="open-food-facts" data-search="open food facts qual è la differenza con altri siti web, servizi e applicazioni mobili che già consentono di visualizzare le informazioni sui prodotti alimentari?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">❓</span> Open Food Facts</span>
+                <h3 class="faq-question-title">Qual è la differenza con altri siti web, servizi e applicazioni mobili che già consentono di visualizzare le informazioni sui prodotti alimentari?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="qual-e-la-differenza-con-altri-siti-web-servizi-e-applicazio" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>La differenza principale è per noi fondamentale: i nostri dati sono liberamente disponibili per tutti e per tutti gli usi. È quello che si chiama open data.</p>
+<p>Quasi tutti gli altri siti, servizi e applicazioni vietano ad altri di riprodurre e riutilizzare i loro dati. Al contrario, li tengono gelosamente per sé. In quasi tutti i casi, i loro termini di servizio vietano esplicitamente qualsiasi uso non personale e qualsiasi estrazione di tutti i dati o di parti di essi.</p>
+<p>Riteniamo che le informazioni sui prodotti alimentari siano troppo importanti e utili per tenerle chiuse in una cassaforte. Per questo, quando abbiamo avviato il progetto Open Food Facts e l'applicazione mobile, nel 2012, abbiamo deciso di fare esattamente il contrario: non solo permettiamo l'uso e il riutilizzo del nostro database, liberamente e gratuitamente, a tutti e per tutti gli usi (anche commerciali), ma lo incoraggiamo!</p>
+<p>Rendere i dati disponibili pubblicamente (il cosiddetto open data) permette a singoli, associazioni, aziende, ricercatori ecc. di tutto il mondo di pensare e sviluppare applicazioni per i dati che certamente non avremmo mai pensato.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="qual-e-il-modello-economico-di-open-food-facts" data-category="open-food-facts" data-search="open food facts qual è il modello economico di open food facts">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">❓</span> Open Food Facts</span>
+                <h3 class="faq-question-title">Qual è il modello economico di Open Food Facts</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="qual-e-il-modello-economico-di-open-food-facts" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>I collaboratori sono volontari. I loro contributi sono raccolti in un database aperto che può essere utilizzato da tutti e per tutti gli usi. (vedi le <a href="https://world.openfoodfacts.org/terms-of-use#reuse" target="_blank" rel="noopener noreferrer">Condizioni di riutilizzo</a>)</p>
+<p>Tutti (compresi, ma non solo, i collaboratori e i creatori di Open Food Facts) possono quindi ridistribuire e/o riutilizzare i dati per costruire siti web, servizi, software, applicazioni mobili o per scrivere articoli e studi. Sono liberi di rendere il lavoro risultante liberamente disponibile, oppure di venderlo o monetizzarlo (ad esempio con annunci pubblicitari), purché rispettino i termini di riutilizzo.</p>
+<p>Siamo inoltre rigorosamente indipendenti dall'industria alimentare e tutti i servizi e i software che realizziamo sono gratuiti. Ad esempio, la nostra piattaforma per i produttori è totalmente gratuita, e ne siamo ancora più soddisfatti perché pensiamo che possa aiutarli a migliorare i loro prodotti.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="posso-aggiungere-immagini-o-dati-del-prodotto-dal-sito-del-p" data-category="open-food-facts" data-search="open food facts posso aggiungere immagini o dati del prodotto dal sito del produttore, dai siti di shopping o da altri siti?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">❓</span> Open Food Facts</span>
+                <h3 class="faq-question-title">Posso aggiungere immagini o dati del prodotto dal sito del produttore, dai siti di shopping o da altri siti?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="posso-aggiungere-immagini-o-dati-del-prodotto-dal-sito-del-p" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Probabilmente no. Quasi tutti gli altri siti vietano la riproduzione e il riutilizzo dei propri dati e immagini, ed è proprio per questo che abbiamo creato Open Food Facts: per rendere tutti questi dati disponibili a tutti e per tutti gli usi.</p>
+<p>Per evitare problemi legali, chiediamo quindi ai contributori di aggiungere solo immagini che hanno preso loro stessi e solo i dati della confezione e dell'etichetta del prodotto.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-posso-contattare-il-team-di-open-food-facts-fare-domand" data-category="open-food-facts" data-search="open food facts come posso contattare il team di open food facts, fare domande o suggerimenti?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">❓</span> Open Food Facts</span>
+                <h3 class="faq-question-title">Come posso contattare il team di Open Food Facts, fare domande o suggerimenti?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-posso-contattare-il-team-di-open-food-facts-fare-domand" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Potete fare domande o suggerimenti sul <a href="https://forum.openfoodfacts.org/" target="_blank" rel="noopener noreferrer">forum</a> o contattarci via e-mail: contact@openfoodfacts.org.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="le-informazioni-e-i-dati-sui-prodotti-sono-verificati" data-category="open-food-facts" data-search="open food facts le informazioni e i dati sui prodotti sono verificati?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">❓</span> Open Food Facts</span>
+                <h3 class="faq-question-title">Le informazioni e i dati sui prodotti sono verificati?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="le-informazioni-e-i-dati-sui-prodotti-sono-verificati" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Le informazioni e i dati sono inviati dai collaboratori di Open Food Facts. I collaboratori inviano anche immagini dei prodotti, delle loro etichette, degli elenchi degli ingredienti e della tabella nutrizionale. In caso di dubbio, i visitatori possono quindi verificarne l'accuratezza da soli e, se c'è un errore, possono correggerlo sul posto.</p>
+<p>Per individuare più facilmente i potenziali errori, aggiungeremo progressivamente controlli automatici. Ad esempio, se i dati nutrizionali di un prodotto sono molto diversi da quelli dei prodotti della stessa categoria, potrebbe trattarsi di un errore. Se la somma dei dati nutrizionali supera il 100%, si tratta sicuramente di un errore.</p>
+<p>Infine, molti produttori ci inviano foto e dati sui loro prodotti utilizzando la nostra piattaforma per i produttori. Se siete un produttore, contattateci : producers@openfoodfacts.org</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="sono-un-produttore-di-prodotti-alimentari-posso-aggiungere-i" data-category="open-food-facts" data-search="open food facts sono un produttore di prodotti alimentari, posso aggiungere i miei prodotti?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">❓</span> Open Food Facts</span>
+                <h3 class="faq-question-title">Sono un produttore di prodotti alimentari, posso aggiungere i miei prodotti?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="sono-un-produttore-di-prodotti-alimentari-posso-aggiungere-i" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Sì! L'unica condizione è accettare che i dati e le immagini siano resi disponibili con una licenza aperta. (vedere i <a href="https://world.openfoodfacts.org/terms-of-use#contribution" target="_blank" rel="noopener noreferrer">Termini di contribuzione</a>)</p>
+<p>Abbiamo sviluppato una piattaforma gratuita per permettervi di importare facilmente foto e dati sui vostri prodotti, indipendentemente dalle vostre dimensioni. La piattaforma consente di importare dati e immagini completi e aggiornati in Open Food Facts, che saranno visibili in più di 100 altre app nutrizionali. Inoltre, la piattaforma fornisce suggerimenti per migliorare il Nutri-Score dei vostri prodotti. Contattateci per discutere di come procedere: <strong>producers@openfoodfacts.org</strong></p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="chi-utilizza-i-dati-di-open-food-facts" data-category="open-food-facts" data-search="open food facts chi utilizza i dati di open food facts?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">❓</span> Open Food Facts</span>
+                <h3 class="faq-question-title">Chi utilizza i dati di Open Food Facts?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="chi-utilizza-i-dati-di-open-food-facts" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Sarebbe troppo lungo elencare tutte le organizzazioni che si affidano alla piattaforma Open Food Facts.</p>
+<p>Più di 100 applicazioni mobili rispondono alle esigenze di molti pubblici: diabete (VeryDiab), allergie, equilibrio alimentare attraverso l'intelligenza artificiale (FoodVisor), disabilità e altro ancora. Il nostro database ha permesso anche la creazione di Yuka.</p>
+<p>Molti siti web: <a href="http://CombienDeSucres.fr" target="_blank" rel="noopener noreferrer">CombienDeSucres.fr</a>, <a href="http://CestEmballePresDeChezVous.fr" target="_blank" rel="noopener noreferrer">CestEmballePresDeChezVous.fr</a>...</p>
+<p>Giornalisti di dati : Les Décodeurs du Monde, BFM TV</p>
+<p>Ricercatori in quasi 100 articoli scientifici</p>
+<p>Banchi alimentari e negozi solidali: un progetto Data For Good nella continuità di un progetto pilota avviato dalla Croce Rossa francese, integrazione nella gestione della cassa di una piccola cooperativa alimentare.</p>
+<p>Aziende: Terraillon utilizza i nostri dati per dare vita alle sue bilance connesse.</p>
+<p>Le scuole di programmazione (Simplon, Open Classrooms) hanno integrato Open Food Facts come progetto motivante nel loro curriculum.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-posso-sostenere-open-food-facts" data-category="open-food-facts" data-search="open food facts come posso sostenere open food facts?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">❓</span> Open Food Facts</span>
+                <h3 class="faq-question-title">Come posso sostenere Open Food Facts?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-posso-sostenere-open-food-facts" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Open Food Facts è un'associazione no-profit del 1901. Potete aiutarci <a href="https://fr-en.openfoodfacts.org/contribute" target="_blank" rel="noopener noreferrer">partecipando</a> al progetto e sostenendoci finanziariamente con le vostre<a href="https://www.helloasso.com/associations/open-food-facts/collectes/aidez-open-food-facts-a-ameliorer-l-alimentation-de-tous" target="_blank" rel="noopener noreferrer"> donazioni</a> (deducibili al 66%) e anche utilizzando il <a href="https://www.lilo.org/fr/open-food-facts/?utm_source=open-food-facts" target="_blank" rel="noopener noreferrer">motore di ricerca Lilo</a>.</p>
+<p>Grazie mille!</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="non-riesco-a-trovare-la-risposta-alla-mia-domanda" data-category="open-food-facts" data-search="open food facts non riesco a trovare la risposta alla mia domanda">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">❓</span> Open Food Facts</span>
+                <h3 class="faq-question-title">Non riesco a trovare la risposta alla mia domanda</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="non-riesco-a-trovare-la-risposta-alla-mia-domanda" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Se non riesci a trovare una risposta alla tua domanda, non esitare a contattarci tramite:</p>
+<ul class="faq-list">
+<li>Il nostro Slack: <a href="https://slack.openfoodfacts.org/" target="_blank" rel="noopener noreferrer">https://slack.openfoodfacts.org/</a></li>
+</ul>
+<ul class="faq-list">
+<li>Il nostro forum: <a href="https://forum.openfoodfacts.org/" target="_blank" rel="noopener noreferrer">https://forum.openfoodfacts.org/</a></li>
+</ul>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="perche-non-esiste-un-nutri-score-per-gli-animali" data-category="open-pet-food-facts" data-search="open pet food facts perché non esiste un nutri-score per gli animali?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🐾</span> Open Pet Food Facts</span>
+                <h3 class="faq-question-title">Perché non esiste un Nutri-Score per gli animali?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="perche-non-esiste-un-nutri-score-per-gli-animali" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Ogni animale è diverso (un serpente non ha le stesse esigenze nutrizionali di un gatto o di un cane).</p>
+<p>Anche all'interno dello stesso tipo di animale, come i cani, le esigenze nutrizionali variano a seconda della vita sedentaria, di un'eventuale castrazione o di malattie.</p>
+<p>È quindi complicato calcolare un punteggio per l'alimentazione animale senza coinvolgere decine di ricercatori e creare decine di algoritmi diversi, cosa che finora non è stata fatta.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="open-beauty-facts-ha-un-laboratorio-di-analisi" data-category="open-beauty-facts" data-search="open beauty facts open beauty facts ha un laboratorio di analisi?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">💄</span> Open Beauty Facts</span>
+                <h3 class="faq-question-title">Open Beauty Facts ha un laboratorio di analisi?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="open-beauty-facts-ha-un-laboratorio-di-analisi" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Open Beauty Facts purtroppo non dispone di un laboratorio di analisi: siamo un'associazione di volontari il cui obiettivo è creare una Wikipedia dei cosmetici.</p>
+<p>Detto questo, se volete aiutarci a garantire una maggiore trasparenza ai</p>
+<p>consumatori, è possibile utilizzare i nostri servizi per iPhone, Android e</p>
+<p>Windows Phone per aggiungere prodotti:</p>
+<p><a href="https://play.google.com/store/apps/details?id=org.openbeautyfacts.scanner" target="_blank" rel="noopener noreferrer">https://play.google.com/store/apps/details?id=org.openbeautyfacts.scanner</a></p>
+<p>E per scambiare e discutere i possibili usi del progetto, potete</p>
+<p>potete unirvi al gruppo Facebook dei collaboratori:</p>
+<p><a href="https://www.facebook.com/groups/356858984359591/" target="_blank" rel="noopener noreferrer">https://www.facebook.com/groups/356858984359591/</a></p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-faccio-a-importare-i-miei-prodotti-in-open-beauty-facts" data-category="open-beauty-facts" data-search="open beauty facts come faccio a importare i miei prodotti in open beauty facts?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">💄</span> Open Beauty Facts</span>
+                <h3 class="faq-question-title">Come faccio a importare i miei prodotti in Open Beauty Facts?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-faccio-a-importare-i-miei-prodotti-in-open-beauty-facts" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Contattate producteurs@openfoodfacts.org o andate direttamente su</p>
+<p><a href="https://world.pro.openfoodfacts.org" target="_blank" rel="noopener noreferrer">https://world.pro.openfoodfacts.org</a> e poi contattare producteurs@openfoodfacts.org per un'esportazione speciale.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="dove-posso-scaricare-i-dati-di-open-beauty-facts" data-category="open-beauty-facts" data-search="open beauty facts dove posso scaricare i dati di open beauty facts?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">💄</span> Open Beauty Facts</span>
+                <h3 class="faq-question-title">Dove posso scaricare i dati di Open Beauty Facts?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="dove-posso-scaricare-i-dati-di-open-beauty-facts" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>La pagina /dati è attualmente interrotta. È possibile scaricare i dati da <a href="https://fr.openbeautyfacts.org/data/fr.openbeautyfacts.org.products.csv" target="_blank" rel="noopener noreferrer">https://fr.openbeautyfacts.org/data/fr.openbeautyfacts.org.products.csv</a></p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="ci-sono-raccomandazioni-da-qualche-parte-nella-documentazion" data-category="api-data-reuse" data-search="api e riutilizzo dei dati ci sono raccomandazioni da qualche parte nella documentazione su quale sarebbe una buona dimensione per le foto caricate?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">💻</span> API e riutilizzo dei dati</span>
+                <h3 class="faq-question-title">Ci sono raccomandazioni da qualche parte nella documentazione su quale sarebbe una buona dimensione per le foto caricate?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="ci-sono-raccomandazioni-da-qualche-parte-nella-documentazion" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Potrebbe dipendere dai paesi, se la rete è lenta o costosa. Qualsiasi cosa al di sopra dei 5000 pixel di peso o altezza probabilmente non è molto utile. e se si può in qualche modo rilevare che la rete è lenta, allora anche un'immagine di 2000 pixel sarebbe ottima (certamente meglio che non avere un'immagine!).</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="e-gli-alimenti-senza-codice-a-barre" data-category="api-data-reuse" data-search="api e riutilizzo dei dati e gli alimenti senza codice a barre?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">💻</span> API e riutilizzo dei dati</span>
+                <h3 class="faq-question-title">E gli alimenti senza codice a barre?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="e-gli-alimenti-senza-codice-a-barre" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Open Food Facts contiene solo informazioni sugli alimenti confezionati. Per i valori medi dei prodotti (ad esempio, pomodori o banane) e di altri alimenti, potete invece utilizzare uno dei database nutrizionali nazionali ufficiali.</p>
+<p>Nota: l'elenco seguente contiene alcuni dei più importanti database alimentari nazionali. Se ritenete che qualche altra banca dati debba essere inclusa nell'elenco, contattateci all'indirizzo: <a href="https://world.openfoodfacts.org/contact" target="_blank" rel="noopener noreferrer">https://world.openfoodfacts.org/contact</a>.</p>
+<p>Elenco delle banche dati alimentari nazionali:</p>
+<p><strong>Australia</strong> - FSANZ - NUTTAB 2006: <a href="https://www.foodstandards.gov.au/media/documents/FSANZ%20Conf%20PostersNUTTAB.pdf" target="_blank" rel="noopener noreferrer">https://www.foodstandards.gov.au/media/documents/FSANZ%20Conf%20PostersNUTTAB.pdf</a></p>
+<p><strong>Belgium</strong> - NUBEL - Belgian Food Composition Data: <a href="https://www.internubel.be/" target="_blank" rel="noopener noreferrer">https://www.internubel.be</a></p>
+<p><strong>Canada</strong> - FCEN: <a href="https://aliments-nutrition.canada.ca/cnf-fce/index-fra.jsp" target="_blank" rel="noopener noreferrer">https://aliments-nutrition.canada.ca/cnf-fce/index-fra.jsp</a></p>
+<p><strong>Czech Republic</strong> - Food Composition Database at National Institute of Public Health: <a href="http://www.chpr.szu.cz/dbdata/foodcomp/nut2001.asp" target="_blank" rel="noopener noreferrer">http://www.chpr.szu.cz/dbdata/foodcomp/nut2001.asp</a></p>
+<p><strong>Denmark</strong> - Danish Food Composition Databank: <a href="https://frida.fooddata.dk/?lang=en" target="_blank" rel="noopener noreferrer">https://frida.fooddata.dk/?lang=en</a></p>
+<p><strong>Estonia</strong> - Estonian Food Composition Database: <a href="https://tka.nutridata.ee/en/" target="_blank" rel="noopener noreferrer">https://tka.nutridata.ee/en/</a></p>
+<p><strong>Finland</strong> - Finnish Food Composition Database - FINELI: <a href="https://fineli.fi/fineli/en/index" target="_blank" rel="noopener noreferrer">https://fineli.fi/fineli/en/index</a></p>
+<p><strong>France</strong> - CIQUAL: <a href="https://www.anses.fr/en/search/site/Table%20ciqual" target="_blank" rel="noopener noreferrer">https://www.anses.fr/en/search/site/Table%20ciqual</a></p>
+<p><strong>Germany</strong> - Souci-Fachmann-Kraut Online Database: <a href="https://www.sfk.online/#/home" target="_blank" rel="noopener noreferrer">https://www.sfk.online/#/home</a></p>
+<p><strong>Italy</strong> - Banca Dati di Composizione degli Alimenti CREA: <a href="https://www.crea.gov.it/web/alimenti-e-nutrizione/banche-dati" target="_blank" rel="noopener noreferrer">https://www.crea.gov.it/web/alimenti-e-nutrizione/banche-dati</a></p>
+<p><strong>Netherlands</strong> - Dutch Food Composition Database: <a href="https://www.rivm.nl/en/dutch-food-composition-database" target="_blank" rel="noopener noreferrer">https://www.rivm.nl/en/dutch-food-composition-database</a></p>
+<p><strong>Norway</strong> - The Norwegian Food Composition Table 2006: <a href="https://www.matvaretabellen.no/?language=en" target="_blank" rel="noopener noreferrer">https://www.matvaretabellen.no/?language=en</a></p>
+<p><strong>Poland</strong> - Food Composition Tables: <a href="http://www.izz.waw.pl/en/?lang=en" target="_blank" rel="noopener noreferrer">http://www.izz.waw.pl/en/?lang=en</a></p>
+<p><strong>Spain</strong> - Spanish Food Composition Database - BEDCA: <a href="https://www.bedca.net/bdpub/index.php" target="_blank" rel="noopener noreferrer">https://www.bedca.net/bdpub/index.php</a></p>
+<p><strong>Switzerland</strong> - Swiss Food Composition Database: <a href="https://www.naehrwertdaten.ch/de/" target="_blank" rel="noopener noreferrer">https://www.naehrwertdaten.ch/de/</a></p>
+<p><strong>UK</strong> - Composition of foods integrated dataset (CoFID): <a href="https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid" target="_blank" rel="noopener noreferrer">https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid</a></p>
+<p><strong>USA</strong> - USDA: <a href="https://ndb.nal.usda.gov/" target="_blank" rel="noopener noreferrer">https://ndb.nal.usda.gov/</a></p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="posso-cercare-un-nome-di-prodotto-preciso-con-lapi" data-category="api-data-reuse" data-search="api e riutilizzo dei dati posso cercare un nome di prodotto preciso con l'api?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">💻</span> API e riutilizzo dei dati</span>
+                <h3 class="faq-question-title">Posso cercare un nome di prodotto preciso con l'API?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="posso-cercare-un-nome-di-prodotto-preciso-con-lapi" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Purtroppo non è ancora possibile effettuare una ricerca precisa solo sul nome del prodotto tramite l'API.</p>
+<p>Tuttavia, l'utilizzo di un filtro sulla categoria potrebbe aiutare a rendere la ricerca più precisa.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-posso-accedere-ai-dati-per-i-miei-progetti" data-category="api-data-reuse" data-search="api e riutilizzo dei dati come posso accedere ai dati per i miei progetti?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">💻</span> API e riutilizzo dei dati</span>
+                <h3 class="faq-question-title">Come posso accedere ai dati per i miei progetti?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-posso-accedere-ai-dati-per-i-miei-progetti" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Nella pagina principale di Open Food Facts, nell'angolo in alto a sinistra dello schermo, c'è un menu a scorrimento. In fondo, si trova l'opzione "ricerca avanzata", sulla quale è possibile fare clic. A questo punto sta a voi stabilire quali sono i criteri più rilevanti per il vostro progetto (o i vostri progetti). Una volta scelti, potrete scaricare i risultati ottenuti scorrendo in fondo alla pagina e cliccando su "Scarica i risultati".</p>
+<p>Potete anche consultare:</p>
+<p>La nostra documentazione API: <a href="https://openfoodfacts.github.io/api-documentation/" target="_blank" rel="noopener noreferrer">https://openfoodfacts.github.io/api-documentation/</a></p>
+<p>Condizioni d'uso di Open Food Facts: <a href="https://world.openfoodfacts.org/terms-of-use" target="_blank" rel="noopener noreferrer">https://world.openfoodfacts.org/terms-of-use</a></p>
+<p>Sui nostri dati: <a href="https://world.openfoodfacts.org/data" target="_blank" rel="noopener noreferrer">https://world.openfoodfacts.org/data</a></p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="esiste-un-modo-per-rimuovere-le-immagini-caricate-per-i-prod" data-category="volunteering" data-search="volontariato / contributo esiste un modo per rimuovere le immagini caricate per i prodotti?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🤝</span> Volontariato / Contributo</span>
+                <h3 class="faq-question-title">Esiste un modo per rimuovere le immagini caricate per i prodotti?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="esiste-un-modo-per-rimuovere-le-immagini-caricate-per-i-prod" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Solo i moderatori possono rimuovere le foto, per evitare potenziali atti di vandalismo.</p>
+<p>Basta chiedere su Slack o a <strong>contact@openfoodfacts.org </strong>di rimuovere i duplicati o le foto inappropriate (si dovrebbe cercare di fornire il numero di codice a barre o l'URL).</p>
+<p>Se sei un programmatore, abbiamo anche una nuova API per la segnalazione delle immagini.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="sono-un-designer-come-posso-aiutare" data-category="volunteering" data-search="volontariato / contributo sono un designer. come posso aiutare?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🤝</span> Volontariato / Contributo</span>
+                <h3 class="faq-question-title">Sono un designer. Come posso aiutare?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="sono-un-designer-come-posso-aiutare" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Coordiniamo tutte le attività di progettazione su <a href="https://github.com/openfoodfacts/openfoodfacts-design" target="_blank" rel="noopener noreferrer">https://github.com/openfoodfacts/openfoodfacts-design</a> e su un canale di chat dedicato. Organizziamo regolarmente riunioni di team e brainstorm su sfide specifiche.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="in-alcuni-casi-lo-stesso-prodotto-puo-avere-valori-nutrizion" data-category="volunteering" data-search="volontariato / contributo in alcuni casi lo stesso prodotto può avere valori nutrizionali diversi per ogni paese, come viene gestito questo aspetto in open food facts?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🤝</span> Volontariato / Contributo</span>
+                <h3 class="faq-question-title">In alcuni casi lo stesso prodotto può avere valori nutrizionali diversi per ogni Paese, come viene gestito questo aspetto in Open Food Facts?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="in-alcuni-casi-lo-stesso-prodotto-puo-avere-valori-nutrizion" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Il 99% delle volte i produttori creano codici a barre diversi per le varie versioni dei loro prodotti. Un esempio famoso è la differenza tra la Nutella francese e quella tedesca in termini di spessore, dovuta alla differenza di pane tra i vari Paesi. 2 formule diverse, 2 codici a barre diversi.</p>
+<p>La collisione dei codici a barre può tuttavia verificarsi per i codici più corti (EAN-8), tipicamente riutilizzati da alcuni negozi in Europa e negli Stati Uniti. Attualmente non gestiamo questi scontri di codici a barre, ma dovrebbe essere possibile farlo ottenendo la posizione generale dell'utente (è ancora più raro che si verifichino scontri di codici a barre all'interno di un paese).</p>
+<p>A lungo termine, incoraggiamo i produttori a passare all'EAN-13 per evitare questi scontri di codici a barre.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-posso-ottenere-immagini-per-la-stampa-su-open-food-fact" data-category="press-media" data-search="richieste della stampa e dei media come posso ottenere immagini per la stampa su open food facts?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📰</span> Richieste della stampa e dei media</span>
+                <h3 class="faq-question-title">Come posso ottenere immagini per la stampa su Open Food Facts?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-posso-ottenere-immagini-per-la-stampa-su-open-food-fact" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Si prega di contattare: <strong>contact@openfoodfacts.org</strong></p>
+<p><a href="https://blog.openfoodfacts.org/en/press-release-new-mobile-app" target="_blank" rel="noopener noreferrer">https://blog.openfoodfacts.org/en/press-release-new-mobile-app</a></p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="desidero-aggiungere-un-nuovo-logo-per-le-etichette" data-category="international" data-search="migliorare open food facts nella mia lingua/paese desidero aggiungere un nuovo logo per le etichette.">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🌐</span> Migliorare Open Food Facts nella mia lingua/paese</span>
+                <h3 class="faq-question-title">Desidero aggiungere un nuovo logo per le etichette.</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="desidero-aggiungere-un-nuovo-logo-per-le-etichette" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Ecco il processo:</p>
+<p>trovare il nome canonico dell'etichetta nella tassonomia delle etichette (è la prima voce nell'elenco dei sinonimi delle etichette, ad esempio en:100% vegetable) <a href="https://github.com/openfoodfacts/openfoodfacts-server/blob/main/taxonomies/labels.txt" target="_blank" rel="noopener noreferrer">https://github.com/openfoodfacts/openfoodfacts-server/blob/main/taxonomies/labels.txt</a></p>
+<p>ottenere il logo in buona qualità: evitare di utilizzare le foto del collaboratore che non sono adatte a questo caso; la maggior parte delle etichette ha dei siti web ufficiali con loghi di alta qualità, a volte in formato vettoriale (ancora meglio per noi); finché utilizziamo un logo per informare oggettivamente sulla presenza di un'etichetta sulla confezione di un prodotto, non c'è bisogno di chiedere il permesso.</p>
+<p>nominare il file in questo modo: nome-dell'etichetta.[width]x90.png dove width è la larghezza del logo quando è alto 90 pixel. I nomi dei file devono essere senza accenti, in minuscolo e usando "-" al posto degli spazi.</p>
+<p>aggiungere il logo nella directory che corrisponde al suo nome canonico. Se il nome canonico è en:something, allora devono trovarsi in /en/. La directory principale per i loghi è <a href="https://github.com/openfoodfacts/openfoodfacts-server/tree/main/html/images/lang" target="_blank" rel="noopener noreferrer">https://github.com/openfoodfacts/openfoodfacts-server/tree/main/html/images/lang</a></p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-posso-tradurre-open-food-facts-nella-mia-lingua" data-category="international" data-search="migliorare open food facts nella mia lingua/paese come posso tradurre open food facts nella mia lingua?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🌐</span> Migliorare Open Food Facts nella mia lingua/paese</span>
+                <h3 class="faq-question-title">Come posso tradurre Open Food Facts nella mia lingua?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-posso-tradurre-open-food-facts-nella-mia-lingua" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Visitate il sito <a href="https://wiki.openfoodfacts.org/Country_Support" target="_blank" rel="noopener noreferrer">https://wiki.openfoodfacts.org/Country_Support</a></p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-posso-tradurre-questa-faq-nella-mia-lingua" data-category="international" data-search="migliorare open food facts nella mia lingua/paese come posso tradurre questa faq nella mia lingua?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🌐</span> Migliorare Open Food Facts nella mia lingua/paese</span>
+                <h3 class="faq-question-title">Come posso tradurre questa FAQ nella mia lingua?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-posso-tradurre-questa-faq-nella-mia-lingua" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Chiedete a <strong>contact@openfoodfacts.org</strong> di modificare l'accesso alla Knowledge Base.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="devo-aggiornare-tutti-i-file-di-lingua-quando-modifico-una-s" data-category="technical-faq" data-search="faq tecniche devo aggiornare tutti i file di lingua quando modifico una stringa sorgente?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🛠️</span> FAQ tecniche</span>
+                <h3 class="faq-question-title">Devo aggiornare tutti i file di lingua quando modifico una stringa sorgente?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="devo-aggiornare-tutti-i-file-di-lingua-quando-modifico-una-s" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>No, non è così. È sufficiente aggiornare quello in inglese</p>
+<ul class="faq-list">
+<li>Crea il tuo PR</li>
+</ul>
+<p>Una volta unito, il sistema di traduzione di Crowdin, attivato dalle azioni di GitHub, farà il resto per le altre lingue.</p>
+<p>Il bot di GitHub crea quindi automaticamente una nuova PR che noi poi revisioniamo.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="che-tipo-di-informazioni-devono-essere-condivise" data-category="producers-about" data-search="a proposito di open food facts che tipo di informazioni devono essere condivise?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">ℹ️</span> A proposito di Open Food Facts</span>
+                <h3 class="faq-question-title">Che tipo di informazioni devono essere condivise?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="che-tipo-di-informazioni-devono-essere-condivise" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Ogni informazione è benvenuta, dalle informazioni nutrizionali a quelle sulla confezione.</p>
+<p>Questo permette di creare un dossier completo, di calcolare tutti i punteggi con precisione e, più in generale, una trasparenza apprezzata dai consumatori.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="scarica-i-dati-di-open-food-facts" data-category="producers-about" data-search="a proposito di open food facts scarica i dati di open food facts">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">ℹ️</span> A proposito di Open Food Facts</span>
+                <h3 class="faq-question-title">Scarica i dati di Open Food Facts</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="scarica-i-dati-di-open-food-facts" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>È possibile scaricare tutti i dati (attenzione, questo richiede molto spazio su disco, un computer potente se si vuole usare un foglio di calcolo o la conoscenza di R o Python).</p>
+<p>È anche possibile scaricare un sottoinsieme di dati (ad esempio il proprio marchio) grazie alla ricerca avanzata.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="aggiungere-prodotti-e-gratuito" data-category="producers-about" data-search="a proposito di open food facts aggiungere prodotti è gratuito?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">ℹ️</span> A proposito di Open Food Facts</span>
+                <h3 class="faq-question-title">Aggiungere prodotti è gratuito?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="aggiungere-prodotti-e-gratuito" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>L'importazione dei dati è completamente gratuita. Non accettiamo alcun compenso per l'inserimento dei dati. Siamo lieti che abbiate deciso di contribuire con i dati dei vostri prodotti alla trasparenza alimentare e vi ringraziamo.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="chi-e-responsabile-del-calcolo-dellimpronta-eo-del-punteggio" data-category="producers-scores" data-search="informazioni sui punteggi chi è responsabile del calcolo dell'impronta e/o del punteggio?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📈</span> Informazioni sui punteggi</span>
+                <h3 class="faq-question-title">Chi è responsabile del calcolo dell'impronta e/o del punteggio?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="chi-e-responsabile-del-calcolo-dellimpronta-eo-del-punteggio" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Il Nutri-Score, il gruppo NOVA e l'Eco-Score sono calcolati da algoritmi che seguono alla lettera le metodologie ufficiali, a partire dai dati presenti in Open Food Facts.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="perche-tre-punteggi-diversi-leco-score-il-nutri-score-e-il-g" data-category="producers-scores" data-search="informazioni sui punteggi perché tre punteggi diversi, l'eco-score, il nutri-score e il gruppo nova? non è una fonte di confusione per il consumatore?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📈</span> Informazioni sui punteggi</span>
+                <h3 class="faq-question-title">Perché tre punteggi diversi, l'Eco-Score, il Nutri-Score e il gruppo NOVA? Non è una fonte di confusione per il consumatore?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="perche-tre-punteggi-diversi-leco-score-il-nutri-score-e-il-g" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Lo scopo di questi diversi indicatori è quello di fornire informazioni di facile comprensione per il consumatore.</p>
+<p>Il Nutri-Score è ormai diventato di uso comune, ma il suo punto di vista è puramente nutrizionale. Per questo motivo, l'Eco-Score e il gruppo NOVA consentono di fornire informazioni aggiuntive di facile comprensione per il consumatore.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="e-possibile-simulare-un-eco-score-o-un-nutri-score" data-category="producers-scores" data-search="informazioni sui punteggi è possibile simulare un eco-score o un nutri-score?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📈</span> Informazioni sui punteggi</span>
+                <h3 class="faq-question-title">È possibile simulare un Eco-Score o un Nutri-Score?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="e-possibile-simulare-un-eco-score-o-un-nutri-score" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Registrandosi sulla piattaforma dei produttori e depositando i propri prodotti, è possibile creare nuovi prodotti oltre a quelli già esistenti. Tuttavia, è necessario cancellarli una volta effettuata la simulazione, per evitare che vengano esportati sulla piattaforma pubblica insieme ai prodotti già commercializzati nella vostra gamma.</p>
+<p>Le spiegazioni passo-passo del calcolo dell'Eco-Score e del Nutri-Score sono riportate nella scheda prodotto della simulazione.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="e-possibile-associare-piu-account-open-food-facts-a-ununica" data-category="producers-account" data-search="gestire il mio account è possibile associare più account open food facts a un'unica azienda?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">👤</span> Gestire il mio account</span>
+                <h3 class="faq-question-title">È possibile associare più account Open Food Facts a un'unica azienda?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="e-possibile-associare-piu-account-open-food-facts-a-ununica" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Sì, inviate un'e-mail a <a href="mailto:support@openfoodfacts.org">support@openfoodfacts.org</a>, in modo da poter collegare tutti gli account alla stessa azienda.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="voglio-convertire-il-mio-conto-in-un-conto-pro" data-category="producers-account" data-search="gestire il mio account voglio convertire il mio conto in un conto pro">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">👤</span> Gestire il mio account</span>
+                <h3 class="faq-question-title">Voglio convertire il mio conto in un conto pro</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="voglio-convertire-il-mio-conto-in-un-conto-pro" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Conversione degli account Open Food Facts esistenti in account produttore : contattateci all'indirizzo <a href="http://producers@openfoodfacts.org" target="_blank" rel="noopener noreferrer">producers@openfoodfacts.org</a> per collegare i vostri account Open Food Facts esistenti alla piattaforma.</p>
+<p>Vantaggi:</p>
+<ul class="faq-list">
+<li>I vostri dati saranno protetti</li>
+</ul>
+<ul class="faq-list">
+<li>Il vostro contributo sarà accreditato</li>
+</ul>
+<ul class="faq-list">
+<li>Sarete in grado di presentare più prodotti contemporaneamente tramite un file Excel e il drag and drop delle immagini.</li>
+</ul>
+<p>Prerequisito:</p>
+<ul class="faq-list">
+<li>il nome del vostro o dei vostri account esistenti</li>
+</ul>
+<ul class="faq-list">
+<li>il nome dell'azienda desiderata</li>
+</ul>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="avete-una-documentazione-su-come-utilizzare-la-piattaforma" data-category="producers-account" data-search="gestire il mio account avete una documentazione su come utilizzare la piattaforma?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">👤</span> Gestire il mio account</span>
+                <h3 class="faq-question-title">Avete una documentazione su come utilizzare la piattaforma?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="avete-una-documentazione-su-come-utilizzare-la-piattaforma" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Sì, assolutamente, potete trovarlo qui. Al momento stiamo anche lavorando a una serie di tutorial per aiutarvi a sfruttare al meglio la piattaforma.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-possiamo-essere-sicuri-che-i-prodotti-presentati-su-ope" data-category="producers-products" data-search="gestire i miei prodotti come possiamo essere sicuri che i prodotti presentati su open food facts presentino dati originali e corretti?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">Come possiamo essere sicuri che i prodotti presentati su Open Food Facts presentino dati originali e corretti?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-possiamo-essere-sicuri-che-i-prodotti-presentati-su-ope" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Per migliorare continuamente la qualità dei dati ci basiamo su 4 pilastri:</p>
+<ol class="faq-list">
+<li>La comunità aggiunge costantemente dati e foto ed è una vera e propria pattuglia di revisori.</li>
+</ol>
+<ol class="faq-list">
+<li>Abbiamo stabilito delle regole logiche per identificare gli errori nelle schede dei prodotti. Per esempio: se la somma del peso degli ingredienti è maggiore del peso totale del prodotto, c'è un'anomalia. Abbiamo circa altri 50 controlli di qualità.</li>
+</ol>
+<ol class="faq-list">
+<li>Grazie al Machine Learning, limitiamo il rischio di errori di input. La nostra tecnologia ci permette di estrarre dati testuali dalle foto scattate dai collaboratori.</li>
+</ol>
+<ol class="faq-list">
+<li>Grazie al supporto di Santé Publique France, abbiamo sviluppato un portale che consente ai produttori di caricare i loro dati di massa e quindi di correggere/completare i contributi della comunità.</li>
+</ol>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-aggiungere-prodotti" data-category="producers-products" data-search="gestire i miei prodotti come aggiungere prodotti?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">Come aggiungere prodotti?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-aggiungere-prodotti" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Per aggiungere prodotti alla nostra piattaforma, tutto ciò che dovete fare è:</p>
+<ul class="faq-list">
+<li>Aggiungere un documento Excel con i dati dei vostri prodotti, quindi la nostra piattaforma creerà e compilerà i fogli.</li>
+</ul>
+<ul class="faq-list">
+<li>Se avete un account EQUADIS o AGENA3000. È possibile anche l'importazione.</li>
+</ul>
+<ul class="faq-list">
+<li>Se avete un numero ridotto di prodotti, è comunque possibile crearli a mano sulla piattaforma del produttore (si noti che le modifiche apportate alla piattaforma pubblica tramite il vostro account professionale non sono protette; per ottenere la protezione, tali modifiche devono essere apportate tramite la piattaforma del produttore e poi esportate sulla piattaforma pubblica).</li>
+</ul>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="is-there-an-automatic-product-upload-feature" data-category="producers-products" data-search="gestire i miei prodotti is there an automatic product upload feature?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">Is there an automatic product upload feature?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="is-there-an-automatic-product-upload-feature" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Yes, if you use EQUADIS or AGENA3000 and set up the right configuration, the import can be done automatically and therefore update the product data on Open Food Facts.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="il-numero-di-prodotti-aggiunti-e-limitato" data-category="producers-products" data-search="gestire i miei prodotti il numero di prodotti aggiunti è limitato?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">Il numero di prodotti aggiunti è limitato?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="il-numero-di-prodotti-aggiunti-e-limitato" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Non ci sono limiti, potete caricare il numero di prodotti che volete sulla nostra piattaforma.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="e-possibile-eliminare-i-prodotti-non-piu-venduti" data-category="producers-products" data-search="gestire i miei prodotti è possibile eliminare i prodotti non più venduti?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">È possibile eliminare i prodotti non più venduti?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="e-possibile-eliminare-i-prodotti-non-piu-venduti" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Se si desidera eliminare un prodotto non più disponibile per la vendita, è sufficiente selezionare la casella "questo prodotto non è più venduto" quando si desidera modificare la propria scheda prodotto. Potete anche contattarci tramite support@openfoodfacts.org con i vari link dei vostri prodotti in modo che ce ne occupiamo noi.</p>
+<p>Poiché il prodotto non è più venduto, in ogni caso non verrà più scansionato e quindi non verrà più visualizzato dai consumatori.</p>
+<p>Rimarrà comunque nel nostro database, come archivio. Molti studi utilizzano il database di Open Food Facts per analizzare l'alimentazione in momenti diversi.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="le-informazioni-sullazienda-hanno-la-precedenza-su-quelle-gi" data-category="producers-products" data-search="gestire i miei prodotti le informazioni sull'azienda hanno la precedenza su quelle già presenti sulla piattaforma?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">Le informazioni sull'azienda hanno la precedenza su quelle già presenti sulla piattaforma?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="le-informazioni-sullazienda-hanno-la-precedenza-su-quelle-gi" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Quando un produttore mette online uno dei suoi prodotti con il suo account di produttore ed esiste già una scheda prodotto, questa verrà completata.</p>
+<p>Le informazioni che il produttore avrà inserito avranno sempre la priorità e solo lui potrà modificare i suoi prodotti quando le informazioni saranno completate.</p>
+<p>Se i dati inviati tramite la piattaforma sono frammentati, le informazioni aggiunte dalla comunità dalla confezione possono completarli.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="quali-informazioni-sono-richieste-e-in-quale-forma" data-category="producers-products" data-search="gestire i miei prodotti quali informazioni sono richieste e in quale forma?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">Quali informazioni sono richieste e in quale forma?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="quali-informazioni-sono-richieste-e-in-quale-forma" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>È sufficiente qualsiasi tabella con i vostri dati. L'algoritmo effettuerà automaticamente un massimo di corrispondenze, mentre alcune possono essere regolate manualmente.</p>
+<p>Abbiamo un esempio qui</p>
+<p>Sebbene Open Food Facts fornisca un <a href="https://fr.pro.openfoodfacts.org/cgi/generate_sample_import_file.pl" target="_blank" rel="noopener noreferrer">modello</a>, potete inviarci gli Excel che avete già con i nomi delle colonne che desiderate. La piattaforma sarà in grado di riconoscerne le variazioni e di eseguire la corrispondenza e la normalizzazione con il modello di dati di Open Food Facts.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="siete-integrati-con-equadis-agena3000-consotrust" data-category="producers-products" data-search="gestire i miei prodotti siete integrati con equadis / agena3000 / consotrust?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">Siete integrati con Equadis / AGENA3000 / ConsoTrust?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="siete-integrati-con-equadis-agena3000-consotrust" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>I produttori possono ora inviare i dati e le foto dei loro prodotti in tempo reale da Equadis e AGENA3000 a Open Food Facts. Se siete clienti di un catalogo di dati sui prodotti, fatecelo sapere all'indirizzo <a href="mailto:producers@openfoodfacts.org">producers@openfoodfacts.org</a>.</p>
+<p>Naturalmente potrete beneficiare anche dei suggerimenti di riformulazione e di tutte le funzionalità della piattaforma.</p>
+<p>Il nostro <a href="https://blog.openfoodfacts.org/en/news/real-time-product-data-from-producers-on-open-food-facts-thanks-to-the-new-equadis-integration" target="_blank" rel="noopener noreferrer">post sul blog</a> spiega i passi da seguire se siete clienti di EQUADIS.</p>
+<p>Se siete clienti di AGENA3000 (Prodotto A3 PIM INDUSTRIA), dovete solo selezionare il destinatario "Open Food Facts" quando inviate le vostre schede prodotto. Ulteriori informazioni su <a href="https://blog.openfoodfacts.org/en/news/share-your-product-data-in-1-click-with-the-new-agena3000-connector" target="_blank" rel="noopener noreferrer">questo post del blog</a>.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="desidero-aggiungere-prodotti-senza-codice-a-barre-tramite-la" data-category="producers-products" data-search="gestire i miei prodotti desidero aggiungere prodotti senza codice a barre tramite la piattaforma del produttore">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">Desidero aggiungere prodotti senza codice a barre tramite la piattaforma del produttore</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="desidero-aggiungere-prodotti-senza-codice-a-barre-tramite-la" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Per i prodotti senza codice a barre, sul sito o sulla piattaforma del produttore, nella colonna di sinistra è presente un pulsante "Prodotto senza codice a barre" che consente di aggiungerli. Un identificatore viene quindi generato automaticamente.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="i-prodotti-animali-i-prodotti-non-alimentari-i-cosmetici-e-a" data-category="producers-products" data-search="gestire i miei prodotti i prodotti animali, i prodotti non alimentari, i cosmetici e altri prodotti possono essere integrati in open food facts?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">I prodotti animali, i prodotti non alimentari, i cosmetici e altri prodotti possono essere integrati in Open Food Facts?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="i-prodotti-animali-i-prodotti-non-alimentari-i-cosmetici-e-a" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Abbiamo creato progetti specifici per i cosmetici, per i mangimi e per altri prodotti (rispettivamente Open Beauty Facts, Open Pet Food Facts e Open Products Facts). Siamo quindi lieti di poter importare i vostri prodotti nel progetto che fa per loro.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="i-dati-dei-prodotti-della-mia-azienda-sono-disponibili-su-op" data-category="producers-products" data-search="gestire i miei prodotti i dati dei prodotti della mia azienda sono disponibili su open food facts. è possibile prendere il controllo dell'account del produttore associato?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">I dati dei prodotti della mia azienda sono disponibili su Open Food Facts. È possibile prendere il controllo dell'account del produttore associato?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="i-dati-dei-prodotti-della-mia-azienda-sono-disponibili-su-op" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Sì, certo! Potete prendere il controllo dell'account del produttore associato creando un account Open Food Facts con il vostro indirizzo commerciale. Al momento della registrazione, menzionate il nome dell'organizzazione presente nel modulo per poter accedere allo spazio produttore corrispondente.</p>
+<p>Sarà necessario un breve passaggio di convalida per assicurarsi che siate effettivamente il produttore.</p>
+<p>Sarà possibile completare i dati, aggiungere immagini, ottenere raccomandazioni automatiche per migliorare il Nutri-Score e molto altro ancora. Naturalmente tutto questo è completamente gratuito. È inoltre possibile collegare un sistema di gestione dei dati di prodotto di terze parti, come EQUADIS o AGENA3000.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="quanto-tempo-ci-vuole-perche-i-dati-dei-produttori-siano-agg" data-category="producers-products" data-search="gestire i miei prodotti quanto tempo ci vuole perché i dati dei produttori siano aggiornati su altre app che utilizzano il database di open food facts?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">Quanto tempo ci vuole perché i dati dei produttori siano aggiornati su altre app che utilizzano il database di Open Food Facts?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="quanto-tempo-ci-vuole-perche-i-dati-dei-produttori-siano-agg" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Dipende dalle applicazioni. Per quelle che utilizzano le nostre API, che sono la stragrande maggioranza, è immediato.</p>
+<p>Per quelle che utilizzano le nostre esportazioni giornaliere, è D+1 a condizione che le aggiornino.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="limportazione-dei-dati-di-un-record-di-prodotto-completa-o-s" data-category="producers-products" data-search="gestire i miei prodotti l'importazione dei dati di un record di prodotto completa o sovrascrive il record di prodotto esistente?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">L'importazione dei dati di un record di prodotto completa o sovrascrive il record di prodotto esistente?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="limportazione-dei-dati-di-un-record-di-prodotto-completa-o-s" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Utilizziamo il codice a barre per identificare i prodotti; se si importa un record con lo stesso codice a barre di un record esistente, le informazioni verranno unite.</p>
+<p>Per i dati come l'elenco degli ingredienti, i valori nutrizionali (è possibile un solo valore corretto), i dati inviati tramite la piattaforma del produttore sovrascriveranno i dati esistenti.</p>
+<p>Per dati come etichette/categorie/marchi (sono possibili più valori corretti), le informazioni vengono unite. Se i dati sono errati sulla piattaforma pubblica, è possibile modificare la scheda prodotto sulla piattaforma pubblica per rimuovere i valori errati.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="lordine-degli-ingredienti-e-importante" data-category="producers-products" data-search="gestire i miei prodotti l'ordine degli ingredienti è importante?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">L'ordine degli ingredienti è importante?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="lordine-degli-ingredienti-e-importante" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>L'ordine degli ingredienti è importante: rappresenta l'ordine per quantità. Il modo migliore per riempire gli ingredienti è seguire esattamente ciò che è scritto sulla confezione. Per questo motivo è importante che siano stampate anche le foto degli ingredienti.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="posso-inviare-immagini-anche-tramite-agena3000" data-category="producers-products" data-search="gestire i miei prodotti posso inviare immagini anche tramite agena3000?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">Posso inviare immagini anche tramite AGENA3000?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="posso-inviare-immagini-anche-tramite-agena3000" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>È possibile inviare immagini, ma in pratica solo l'immagine principale verrà selezionata automaticamente, mentre le altre immagini verranno inviate, ma non ritagliate / selezionate per ingredienti, nutrizione ecc.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-accedere-ai-tutorial-della-piattaforma-pro" data-category="producers-products" data-search="gestire i miei prodotti come accedere ai tutorial della piattaforma pro?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Gestire i miei prodotti</span>
+                <h3 class="faq-question-title">Come accedere ai tutorial della piattaforma Pro?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-accedere-ai-tutorial-della-piattaforma-pro" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>È possibile accedere alle esercitazioni della piattaforma Pro:</p>
+<ul class="faq-list">
+<li>Tramite la piattaforma pro stessa: <a href="https://world.pro.openfoodfacts.org/" target="_blank" rel="noopener noreferrer">https://world.pro.openfoodfacts.org/</a></li>
+</ul>
+<ul class="faq-list">
+<li>Direttamente su <a href="https://www.youtube.com/playlist?list=PLjAH-USadsF3xgSVfUUBS4we3XBr-1r55" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+</ul>
+<p>→ È inoltre possibile scaricare la nostra <a href="https://drive.google.com/file/d/1SkHa8MeeIPpyxnlGg6TqTI9W2mx3phdd/view" target="_blank" rel="noopener noreferrer">guida utente</a></p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-accedere-alle-raccomandazioni-di-riformulazione-per-mig" data-category="producers-portfolio" data-search="analisi del portafoglio prodotti (benchmark, miglioramento...) come accedere alle raccomandazioni di riformulazione per migliorare il nutri-score dei miei prodotti?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📊</span> Analisi del portafoglio prodotti (benchmark, miglioramento...)</span>
+                <h3 class="faq-question-title">Come accedere alle raccomandazioni di riformulazione per migliorare il Nutri-Score dei miei prodotti?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-accedere-alle-raccomandazioni-di-riformulazione-per-mig" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Quando siete sulla home page della Piattaforma Produttori, cliccate sul link "→ Numero di prodotti con opportunità di miglioramento" nella parte superiore della pagina:</p>
+<ol class="faq-list">
+<li>cliccate sul link "→ Numero di prodotti con opportunità di miglioramento" nella parte superiore della pagina.</li>
+</ol>
+<ol class="faq-list">
+<li>potete consultare tutte le opportunità rilevate dal nostro sistema per migliorare i vostri prodotti.</li>
+</ol>
+<ol class="faq-list">
+<li>cliccando su un tipo di opportunità si accede all'elenco dei prodotti da migliorare.</li>
+</ol>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-etichetta-e-importante-creare-un-account" data-category="labels" data-search="etichette come etichetta, è importante creare un account?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🏷️</span> Etichette</span>
+                <h3 class="faq-question-title">Come etichetta, è importante creare un account?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-etichetta-e-importante-creare-un-account" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>In quanto etichetta, non essendo il produttore diretto dei prodotti, non è necessario creare un account di produttore.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="sono-unetichetta-come-posso-partecipare-al-progetto" data-category="labels" data-search="etichette sono un'etichetta, come posso partecipare al progetto?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🏷️</span> Etichette</span>
+                <h3 class="faq-question-title">Sono un'etichetta, come posso partecipare al progetto?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="sono-unetichetta-come-posso-partecipare-al-progetto" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>In qualità di etichetta, la cosa più importante da fare è contattarci <strong>(producers@openfoodfacts.org)</strong> e inviarci l'elenco dei prodotti su cui è esposta la vostra etichetta, in modo da poterli inserire nelle relative schede prodotto.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-posso-aggiungere-i-dati-del-mio-imballaggio-a-open-food" data-category="producers-packaging" data-search="imballaggio come posso aggiungere i dati del mio imballaggio a open food facts?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Imballaggio</span>
+                <h3 class="faq-question-title">Come posso aggiungere i dati del mio imballaggio a Open Food Facts?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-posso-aggiungere-i-dati-del-mio-imballaggio-a-open-food" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>In qualità di produttori, il modo più efficiente per aggiungere i dati di confezionamento ai vostri prodotti è compilare questo <a href="https://it.pro.openfoodfacts.org/cgi/generate_sample_import_file.pl" target="_blank" rel="noopener noreferrer">foglio excel</a> con le informazioni necessarie, a partire dalla colonna "AU".</p>
+<p>Per ogni componente dell'imballaggio, dovrete inserire:</p>
+<ul class="faq-list">
+<li>il numero di unità (es. 4 vasetti di yogurt)</li>
+</ul>
+<ul class="faq-list">
+<li>La forma (es: vasetto, coperchio, scatola, ecc.)</li>
+</ul>
+<ul class="faq-list">
+<li>Il materiale (es: PET, carta, vetro, ecc.)</li>
+</ul>
+<ul class="faq-list">
+<li>L'istruzione per il riciclaggio (es.: riciclare, gettare, ecc.)</li>
+</ul>
+<ul class="faq-list">
+<li>Il peso di un'unità vuota (in gr)</li>
+</ul>
+<ul class="faq-list">
+<li>La quantità netta di prodotto contenuta per unità</li>
+</ul>
+<p>Questo foglio di calcolo può essere importato nella nostra piattaforma dedicata ai professionisti.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="cose-il-progetto-tackling-food-packaging" data-category="producers-packaging" data-search="imballaggio cos'è il progetto "tackling food packaging"?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Imballaggio</span>
+                <h3 class="faq-question-title">Cos'è il progetto "Tackling Food Packaging"?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="cose-il-progetto-tackling-food-packaging" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Il progetto "Tackling Food Packaging" consiste nel raccogliere informazioni dettagliate sulle confezioni dei prodotti più consumati (forma, materiale, istruzioni per la selezione, peso, capacità).</p>
+<p>Basato su un approccio di scienza partecipativa, si baserà sia sulle aziende che accettano di condividere i propri dati sugli imballaggi e di giocare alla trasparenza, sia sui cittadini che consentono la raccolta di informazioni sui prodotti. Queste informazioni saranno liberamente riutilizzabili ("open data").</p>
+<p>Per maggiori informazioni: <a href="https://blog.openfoodfacts.org/en/packaging-projet-producers" target="_blank" rel="noopener noreferrer">https://blog.openfoodfacts.org/en/packaging-projet-producers</a> inglese</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="anche-dopo-la-fine-del-progetto-tackling-food-packaging-poss" data-category="producers-packaging" data-search="imballaggio anche dopo la fine del progetto tackling food packaging, posso continuare ad aggiungere i miei dati sull'imballaggio?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">📦</span> Imballaggio</span>
+                <h3 class="faq-question-title">Anche dopo la fine del progetto Tackling Food Packaging, posso continuare ad aggiungere i miei dati sull'imballaggio?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="anche-dopo-la-fine-del-progetto-tackling-food-packaging-poss" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Anche dopo la fine del progetto, è possibile aggiungere dati sugli imballaggi, poiché i campi degli imballaggi rimarranno sul nostro sito web.</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="devo-fare-un-progetto-scolastico-e-voglio-usare-i-dati-di-op" data-category="school-projects" data-search="progetti scolastici devo fare un progetto scolastico e voglio usare i dati di open food facts, posso farlo?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🎓</span> Progetti scolastici</span>
+                <h3 class="faq-question-title">Devo fare un progetto scolastico e voglio usare i dati di Open Food Facts, posso farlo?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="devo-fare-un-progetto-scolastico-e-voglio-usare-i-dati-di-op" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Open Food Facts è un database aperto, un progetto aperto che opera sotto licenza ODbL; pertanto, se siete d'accordo con i requisiti della licenza ODbL, potete riutilizzare i nostri dati per i vostri progetti :).</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+        <article class="faq-card" id="come-posso-accedere-ai-dati-per-i-miei-progetti-2" data-category="school-projects" data-search="progetti scolastici come posso accedere ai dati per i miei progetti?">
+          <details class="faq-details">
+            <summary class="faq-summary">
+              <div class="faq-question-header">
+                <span class="faq-category-badge"><span class="faq-badge-icon">🎓</span> Progetti scolastici</span>
+                <h3 class="faq-question-title">Come posso accedere ai dati per i miei progetti?</h3>
+              </div>
+              <div class="faq-summary-actions">
+                <button type="button" class="faq-copy-btn" data-anchor="come-posso-accedere-ai-dati-per-i-miei-progetti-2" title="Copia link" aria-label="Copia link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span class="faq-copied-tooltip">Link copiato!</span>
+                </button>
+                <span class="faq-chevron" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Nella pagina principale di Open Food Facts, nell'angolo in alto a sinistra dello schermo, c'è un menu a scorrimento. In fondo, si trova l'opzione "ricerca avanzata", sulla quale è possibile fare clic. A questo punto sta a voi stabilire quali sono i criteri più rilevanti per il vostro progetto (o i vostri progetti). Una volta scelti, potrete scaricare i risultati ottenuti scorrendo in fondo alla pagina e cliccando su "Scarica i risultati".</p>
+              </div>
+            </div>
+          </details>
+        </article>
+        
+
+    <!-- Empty Search State -->
+    <div class="faq-empty-state" id="faqEmptyState">
+      <div class="faq-empty-icon">🔎</div>
+      <h3 class="faq-empty-title">Nessuna domanda corrispondente alla ricerca</h3>
+      <p class="faq-subtitle" id="faqEmptyQuery"></p>
+      <button type="button" class="faq-empty-btn" id="faqResetSearchBtn">Reimposta ricerca</button>
+    </div>
+  </main>
+
+  <!-- Contact Footer CTA -->
+  <footer class="faq-footer-cta">
+    <h2 class="faq-footer-title">Hai ancora domande?</h2>
+    <p class="faq-footer-desc">Non hai trovato quello che cerchi? Unisciti alla nostra community su Slack o contatta direttamente il nostro team.</p>
+    <div class="faq-footer-buttons">
+      <a href="https://slack.openfoodfacts.org/" target="_blank" rel="noopener noreferrer" class="faq-footer-btn faq-footer-btn-primary">💬 Unisciti a Slack</a>
+      <a href="https://forum.openfoodfacts.org/" target="_blank" rel="noopener noreferrer" class="faq-footer-btn faq-footer-btn-secondary">🗣️ Forum della community</a>
+      <a href="mailto:contact@openfoodfacts.org" class="faq-footer-btn faq-footer-btn-secondary">✉️ Scrivi al team</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function() {
+  const searchInput = document.getElementById("faqSearchInput");
+  const searchClear = document.getElementById("faqSearchClear");
+  const pills = document.querySelectorAll(".faq-pill");
+  const cards = document.querySelectorAll(".faq-card");
+  const counter = document.getElementById("faqCounter");
+  const emptyState = document.getElementById("faqEmptyState");
+  const emptyQuery = document.getElementById("faqEmptyQuery");
+  const resetBtn = document.getElementById("faqResetSearchBtn");
+  const btnExpandAll = document.getElementById("btnExpandAll");
+  const btnCollapseAll = document.getElementById("btnCollapseAll");
+
+  let activeCategory = "all";
+  let currentSearch = "";
+
+  function filterFaq() {
+    const query = currentSearch.trim().toLowerCase();
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const cat = card.getAttribute("data-category");
+      const searchData = card.getAttribute("data-search") || "";
+      const textContent = card.innerText.toLowerCase();
+
+      const matchesCat = (activeCategory === "all" || cat === activeCategory);
+      const matchesQuery = !query || searchData.includes(query) || textContent.includes(query);
+
+      if (matchesCat && matchesQuery) {
+        card.style.display = "";
+        visibleCount++;
+        // If user typed a search query of 2+ characters, auto-expand the match
+        if (query.length >= 2) {
+          card.querySelector("details").open = true;
+        }
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    // Update Counter
+    if (counter) {
+      if (query || activeCategory !== "all") {
+        counter.textContent = visibleCount + " / 72 questions";
+      } else {
+        counter.textContent = "72 questions";
+      }
+    }
+
+    // Toggle Empty State
+    if (emptyState) {
+      if (visibleCount === 0) {
+        emptyState.style.display = "block";
+        if (emptyQuery) {
+          emptyQuery.textContent = query ? '“' + query + '”' : '';
+        }
+      } else {
+        emptyState.style.display = "none";
+      }
+    }
+
+    // Toggle Clear Search button
+    if (searchClear) {
+      searchClear.style.display = query ? "flex" : "none";
+    }
+  }
+
+  // Category Pill Clicks
+  pills.forEach(pill => {
+    pill.addEventListener("click", () => {
+      pills.forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+      activeCategory = pill.getAttribute("data-cat") || "all";
+      filterFaq();
+    });
+  });
+
+  // Search Input Events
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      currentSearch = e.target.value;
+      filterFaq();
+    });
+
+    // Keyboard shortcut: '/' focuses search input
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "/" && document.activeElement !== searchInput && document.activeElement.tagName !== "INPUT" && document.activeElement.tagName !== "TEXTAREA") {
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+      }
+      if (e.key === "Escape" && document.activeElement === searchInput) {
+        searchInput.value = "";
+        currentSearch = "";
+        filterFaq();
+        searchInput.blur();
+      }
+    });
+  }
+
+  if (searchClear) {
+    searchClear.addEventListener("click", () => {
+      if (searchInput) {
+        searchInput.value = "";
+        searchInput.focus();
+      }
+      currentSearch = "";
+      filterFaq();
+    });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      if (searchInput) searchInput.value = "";
+      currentSearch = "";
+      activeCategory = "all";
+      pills.forEach(p => p.classList.remove("active"));
+      const allPill = document.querySelector('.faq-pill[data-cat="all"]');
+      if (allPill) allPill.classList.add("active");
+      filterFaq();
+    });
+  }
+
+  // Expand / Collapse All
+  if (btnExpandAll) {
+    btnExpandAll.addEventListener("click", () => {
+      cards.forEach(card => {
+        if (card.style.display !== "none") {
+          card.querySelector("details").open = true;
+        }
+      });
+    });
+  }
+
+  if (btnCollapseAll) {
+    btnCollapseAll.addEventListener("click", () => {
+      cards.forEach(card => {
+        card.querySelector("details").open = false;
+      });
+    });
+  }
+
+  // Copy Link Buttons
+  document.querySelectorAll(".faq-copy-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      const anchor = btn.getAttribute("data-anchor");
+      const url = window.location.origin + window.location.pathname + "#" + anchor;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => {
+          btn.classList.add("copied");
+          setTimeout(() => btn.classList.remove("copied"), 1800);
+        }).catch(() => {});
+      } else {
+        window.location.hash = anchor;
+      }
+    });
+  });
+
+  // Deep Linking from URL Hash (#slug)
+  function handleHashTarget() {
+    const hash = window.location.hash ? window.location.hash.substring(1) : "";
+    if (!hash) return;
+    const targetCard = document.getElementById(hash);
+    if (targetCard) {
+      const cat = targetCard.getAttribute("data-category");
+      // If a category was filtered out, switch to all or that category
+      if (activeCategory !== "all" && activeCategory !== cat) {
+        activeCategory = "all";
+        pills.forEach(p => p.classList.remove("active"));
+        const allPill = document.querySelector('.faq-pill[data-cat="all"]');
+        if (allPill) allPill.classList.add("active");
+        filterFaq();
+      }
+      targetCard.style.display = "";
+      const details = targetCard.querySelector("details");
+      if (details) details.open = true;
+      targetCard.classList.add("faq-target");
+      targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(() => targetCard.classList.remove("faq-target"), 2500);
+    }
+  }
+
+  window.addEventListener("hashchange", handleHashTarget);
+  document.addEventListener("DOMContentLoaded", handleHashTarget);
+  if (document.readyState !== "loading") {
+    handleHashTarget();
+  }
+})();
+</script>
