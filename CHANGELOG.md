@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.6.1](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.6.0...v1.6.1) (2026-09-28)
+
+
+### Bug Fixes
+
+* cleanup presskit.html ([b993585](https://github.com/openfoodfacts/openfoodfacts-web/commit/b9935858ee6097768df8f3dd52da5d7ed000597c))
+
+## [1.6.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.5.1...v1.6.0) (2026-09-28)
+
+
+### Features
+
+* science glowup + what's in my shampoo ([5b16f84](https://github.com/openfoodfacts/openfoodfacts-web/commit/5b16f84f1fa74d262fc1b75454693214041bfa4c))
+
+## [1.5.1](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.5.0...v1.5.1) (2026-09-24)
+
+
+### Bug Fixes
+
+* permissions for .github/workflows/push.yml ([#969](https://github.com/openfoodfacts/openfoodfacts-web/issues/969)) ([66c1a75](https://github.com/openfoodfacts/openfoodfacts-web/commit/66c1a758e2f0cda56877a693e61756b1048ee275))
+* permissions for release-please.yml ([#967](https://github.com/openfoodfacts/openfoodfacts-web/issues/967)) ([144f3b0](https://github.com/openfoodfacts/openfoodfacts-web/commit/144f3b08e52013d054d6c9650495f8066f5d0162))
+
 ## [1.5.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.4.1...v1.5.0) (2026-09-16)
 
 

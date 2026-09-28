@@ -2234,7 +2234,7 @@ function renderSpEvents(filter = "all", searchQuery = "") {{
       <div>
         <div class="sp-event-top">
           <span class="sp-event-badge ${{e.type === 'upcoming' ? 'sp-badge-upcoming' : 'sp-badge-past'}}">
-            ${{e.type === 'upcoming' ? 'À venir' : 'Édition passée'}}
+            ${{e.type === 'upcoming' ? '{"À venir" if is_fr else "Upcoming"}' : '{"Édition passée" if is_fr else "Past Event"}'}}
           </span>
           <span class="sp-event-date">📅 ${{e.date}}</span>
         </div>
@@ -2253,12 +2253,12 @@ function renderSpEvents(filter = "all", searchQuery = "") {{
       <div class="sp-event-footer">
         ${{e.link ? `
           <a href="${{e.link}}" target="_blank" rel="noopener noreferrer" style="font-size: 0.82rem; font-weight: 700; color: #ea580c; text-decoration: none;">
-            Lire le compte-rendu &rarr;
+            {"Lire le dossier &rarr;" if is_fr else "Read full dossier &rarr;"}
           </a>
         ` : `
-          <span style="font-size: 0.78rem; color: #94a3b8;">Atelier communautaire</span>
+          <span style="font-size: 0.78rem; color: #94a3b8;">{"Atelier communautaire" if is_fr else "Community workshop"}</span>
         `}}
-        ${{e.products_scanned ? `<span style="font-size: 0.78rem; font-weight: 700; color: #16a34a;">✨ ` + e.products_scanned + ` produits</span>` : ''}}
+        ${{e.products_scanned ? `<span style="font-size: 0.78rem; font-weight: 700; color: #16a34a;">✨ ` + e.products_scanned + ` {"produits" if is_fr else "products"}</span>` : ''}}
       </div>
     </div>
   `).join("");
@@ -2452,6 +2452,87 @@ def compile_scan_parties(check_only=False, verbose=True):
         f.write(fr_html)
     if verbose:
         print(f"Wrote {fr_path}")
+
+    # 3. Generate standalone root page
+    root_path = os.path.join(REPO_ROOT, "scan-parties.html")
+    root_html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Food Facts — Scan Parties & Community Workshops</title>
+  <meta name="description" content="Organize and join Open Food Facts Scan Parties: collaborative community workshops to scan barcodes, capture ingredients, nutrition facts, and packaging specs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {{
+      margin: 0;
+      padding: 0;
+      background: #fdfcfb;
+      font-family: "Plus Jakarta Sans", "Open Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #0f172a;
+    }}
+    .standalone-nav {{
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }}
+    .standalone-brand {{
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #341100;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }}
+    .standalone-brand img {{
+      height: 32px;
+      width: auto;
+    }}
+    .standalone-links {{
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }}
+    .standalone-links a {{
+      color: #473526;
+      text-decoration: none;
+      font-weight: 600;
+    }}
+    .standalone-links a:hover {{
+      color: #ed8857;
+    }}
+  </style>
+</head>
+<body>
+  <nav class="standalone-nav">
+    <a href="https://world.openfoodfacts.org" class="standalone-brand">
+      <img src="https://static.openfoodfacts.org/images/logos/off-logo-horizontal-light.svg" alt="Open Food Facts Logo">
+      <span>Scan Parties</span>
+    </a>
+    <div class="standalone-links">
+      <a href="operation-sodas.html">Opération Sodas</a>
+      <a href="whats-in-my-yogurt.html">What's in my yogurt?</a>
+      <a href="whats-in-my-shampoo.html">What's in my shampoo?</a>
+      <a href="https://world.openfoodfacts.org/contribute">Contribute</a>
+      <a href="https://slack.openfoodfacts.org" target="_blank" rel="noopener">Slack</a>
+    </div>
+  </nav>
+  {en_html}
+</body>
+</html>"""
+    with open(root_path, "w", encoding="utf-8") as f:
+        f.write(root_html)
+    if verbose:
+        print(f"Wrote {root_path}")
 
     return True
 

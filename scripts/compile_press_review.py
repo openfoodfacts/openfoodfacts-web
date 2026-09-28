@@ -18,6 +18,7 @@ PRESS_DIR = os.path.join(DATA_DIR, "press-review")
 COMPILED_JSON = os.path.join(DATA_DIR, "press-review-merged.json")
 
 VALID_TYPES = {"article", "podcast", "video", "study"}
+VALID_SCOPES = {"national", "regional", "report", "culinary_blog", "specialized"}
 
 def validate_press_item(item, filepath):
     errors = []
@@ -56,15 +57,37 @@ def validate_press_item(item, filepath):
     elif m_type not in VALID_TYPES:
         errors.append(f"{filename}: invalid type '{m_type}', must be one of {sorted(list(VALID_TYPES))}")
 
+    # Optional: media_scope
+    scope = item.get("media_scope")
+    if scope and scope not in VALID_SCOPES:
+        errors.append(f"{filename}: invalid media_scope '{scope}', must be one of {sorted(list(VALID_SCOPES))}")
+
+    # Check for OFF acronym in public fields
+    for field in ("title", "source", "verbatim", "topic"):
+        val = str(item.get(field) or "")
+        if re.search(r"\bOFF\b", val):
+            errors.append(f"{filename}: field '{field}' contains acronym 'OFF'. Please spell out 'Open Food Facts'.")
+
+    # Check for leaked editorial comments in verbatim
+    v = str(item.get("verbatim") or "")
+    leaked_markers = ["l’icone de l’appli", "l'icone de l'appli", "Mention page ", "Citation anecdotique", "Yuka déclare officiellement"]
+    for lm in leaked_markers:
+        if lm.lower() in v.lower():
+            errors.append(f"{filename}: field 'verbatim' contains leaked comment ('{lm}'). Move to 'editorial_note'.")
+
     # Check link
     link = item.get("link")
-    if link and not str(link).startswith(("http://", "https://")):
+    if link and not str(link).startswith(("http://", "https://", "/")):
         warnings.append(f"{filename}: link '{link}' does not start with http:// or https://")
 
-    # Boolean field
+    # Boolean fields
     sel = item.get("selected")
     if sel is not None and not isinstance(sel, bool):
         errors.append(f"{filename}: 'selected' must be boolean")
+
+    dead = item.get("dead_link")
+    if dead is not None and not isinstance(dead, bool):
+        errors.append(f"{filename}: 'dead_link' must be boolean")
 
     return errors, warnings
 
@@ -130,16 +153,29 @@ def compile_press_review(check_only=False, verbose=True):
     if check_only:
         return True
 
-    # 1. Write compiled data/press-review-merged.json
+    # 1. Write compiled data/press-review-merged.json (stripping internal notes)
+    clean_items = []
+    for it in items:
+        item_copy = dict(it)
+        item_copy.pop("editorial_note", None)
+        clean_items.append(item_copy)
+
     with open(COMPILED_JSON, "w", encoding="utf-8") as f:
-        json.dump(items, f, ensure_ascii=False, indent=2)
+        json.dump(clean_items, f, ensure_ascii=False, indent=2)
     if verbose:
-        print(f"Wrote compiled {COMPILED_JSON} ({len(items)} items)")
+        print(f"Wrote compiled {COMPILED_JSON} ({len(clean_items)} items without internal notes)")
 
     # 2. Re-generate press review HTML pages
     sys.path.insert(0, os.path.dirname(__file__))
     import generate_press_review
     generate_press_review.main(items=items)
+
+    # 3. Re-generate country presskits and press hub
+    import generate_country_presskits
+    generate_country_presskits.generate_all()
+
+    import generate_press_hub
+    generate_press_hub.main()
 
     return True
 

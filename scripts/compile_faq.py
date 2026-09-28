@@ -46,6 +46,14 @@ UI_STRINGS = {
         "btn_forum": "🗣️ Community Forum",
         "btn_email": "✉️ Email the Team",
         "results_stats": "Showing {shown} of {total} questions",
+        "feedback_prompt": "Did this answer your question?",
+        "feedback_yes": "Yes",
+        "feedback_no": "No",
+        "feedback_thanks_up": "Thank you for your feedback! 🙌",
+        "feedback_thanks_down": "Thank you for your feedback. We'll work on improving this answer!",
+        "suggest_question": "Suggest a question",
+        "suggest_question_sub": "Can't find an answer? Propose a new question on GitHub",
+        "edit_question": "Edit on GitHub",
     },
     "fr": {
         "title": "Foire Aux Questions (FAQ)",
@@ -67,6 +75,14 @@ UI_STRINGS = {
         "btn_forum": "🗣️ Forum de discussion",
         "btn_email": "✉️ Écrire à l'équipe",
         "results_stats": "{shown} sur {total} questions affichées",
+        "feedback_prompt": "Cette réponse a-t-elle été utile ?",
+        "feedback_yes": "Oui",
+        "feedback_no": "Non",
+        "feedback_thanks_up": "Merci pour votre retour ! 🙌",
+        "feedback_thanks_down": "Merci pour votre retour. Nous allons améliorer cette réponse !",
+        "suggest_question": "Suggérer une question",
+        "suggest_question_sub": "Vous ne trouvez pas de réponse ? Proposez une nouvelle question sur GitHub",
+        "edit_question": "Modifier sur GitHub",
     },
     "es": {
         "title": "Preguntas Frecuentes (FAQ)",
@@ -88,6 +104,14 @@ UI_STRINGS = {
         "btn_forum": "🗣️ Foro comunitario",
         "btn_email": "✉️ Escribir al equipo",
         "results_stats": "Mostrando {shown} de {total} preguntas",
+        "feedback_prompt": "¿Te ha resultado útil esta respuesta?",
+        "feedback_yes": "Sí",
+        "feedback_no": "No",
+        "feedback_thanks_up": "¡Gracias por tus comentarios! 🙌",
+        "feedback_thanks_down": "Gracias por tu opinión. ¡Trabajaremos para mejorarla!",
+        "suggest_question": "Sugerir una pregunta",
+        "suggest_question_sub": "¿No encuentras una respuesta? Propón una nueva pregunta en GitHub",
+        "edit_question": "Editar en GitHub",
     },
     "de": {
         "title": "Häufig gestellte Fragen (FAQ)",
@@ -109,6 +133,14 @@ UI_STRINGS = {
         "btn_forum": "🗣️ Community-Forum",
         "btn_email": "✉️ E-Mail an das Team",
         "results_stats": "{shown} von {total} Fragen angezeigt",
+        "feedback_prompt": "War diese Antwort hilfreich?",
+        "feedback_yes": "Ja",
+        "feedback_no": "Nein",
+        "feedback_thanks_up": "Vielen Dank für Ihr Feedback! 🙌",
+        "feedback_thanks_down": "Danke für das Feedback. Wir werden diesen Eintrag verbessern!",
+        "suggest_question": "Frage vorschlagen",
+        "suggest_question_sub": "Keine passende Antwort gefunden? Neue Frage auf GitHub vorschlagen",
+        "edit_question": "Auf GitHub bearbeiten",
     },
     "it": {
         "title": "Domande Frequenti (FAQ)",
@@ -130,6 +162,14 @@ UI_STRINGS = {
         "btn_forum": "🗣️ Forum della community",
         "btn_email": "✉️ Scrivi al team",
         "results_stats": "{shown} di {total} domande visualizzate",
+        "feedback_prompt": "Questa risposta ti è stata utile?",
+        "feedback_yes": "Sì",
+        "feedback_no": "No",
+        "feedback_thanks_up": "Grazie per il tuo feedback! 🙌",
+        "feedback_thanks_down": "Grazie per il tuo feedback. Lavoreremo per migliorarla!",
+        "suggest_question": "Suggerisci una domanda",
+        "suggest_question_sub": "Non trovi la risposta? Proponi una nuova domanda su GitHub",
+        "edit_question": "Modifica su GitHub",
     }
 }
 
@@ -343,6 +383,7 @@ def build_faq_html(lang, categories):
         for q in c["questions"]:
             item = dict(q)
             item["category_icon"] = c["icon"]
+            item["file"] = c.get("file", "")
             all_questions.append(item)
 
     total_count = len(all_questions)
@@ -381,6 +422,7 @@ def build_faq_html(lang, categories):
         c_icon = q["category_icon"]
         q_title = q["question"]
         ans_html = q["answer_html"]
+        src_file = q.get("file", "")
 
         faq_items_html.append(f"""
         <article class="faq-card" id="{q_id}" data-category="{c_id}" data-search="{c_title.lower()} {q_title.lower()}">
@@ -404,6 +446,31 @@ def build_faq_html(lang, categories):
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 {ans_html}
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="{q_id}" data-lang="{lang}">
+                  <span class="faq-feedback-label">{t['feedback_prompt']}</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="{t['feedback_prompt']}">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="{t['feedback_yes']}" title="{t['feedback_yes']}">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">{t['feedback_yes']}</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="{t['feedback_no']}" title="{t['feedback_no']}">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">{t['feedback_no']}</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/{lang}/{src_file}" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="{t['edit_question']}">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>{t['edit_question']}</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -806,6 +873,132 @@ def build_faq_html(lang, categories):
   border: 1px solid var(--off-card-border);
 }}
 
+/* Feedback & Question Actions Bar */
+.faq-footer-bar {{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.86rem;
+}}
+.faq-feedback {{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}}
+.faq-feedback-label {{
+  color: var(--off-text-secondary);
+  font-weight: 600;
+  font-size: 0.84rem;
+}}
+.faq-feedback-actions {{
+  display: inline-flex;
+  gap: 0.35rem;
+}}
+.faq-feedback-btn {{
+  background: var(--off-surface);
+  border: 1px solid var(--off-card-border);
+  color: var(--off-text-secondary);
+  border-radius: 8px;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.15s ease;
+  line-height: 1.3;
+}}
+.faq-feedback-btn:hover:not(:disabled) {{
+  background: #f1f5f9;
+  border-color: var(--off-card-border-hover);
+  color: var(--off-text-primary);
+  transform: translateY(-1px);
+}}
+.faq-feedback-btn.faq-vote-up.active {{
+  background: var(--off-green-50);
+  border-color: var(--off-green-600);
+  color: var(--off-green-800);
+  font-weight: 700;
+}}
+.faq-feedback-btn.faq-vote-down.active {{
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #b91c1c;
+  font-weight: 700;
+}}
+.faq-feedback-btn:disabled {{
+  cursor: default;
+  opacity: 0.9;
+}}
+.faq-feedback-status {{
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--off-green-700);
+  display: none;
+}}
+.faq-feedback-status.visible {{
+  display: inline-block;
+}}
+.faq-feedback-status.negative {{
+  color: var(--off-text-secondary);
+}}
+.faq-edit-wrapper {{
+  display: flex;
+  align-items: center;
+}}
+.faq-edit-link {{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--off-text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}}
+.faq-edit-link:hover {{
+  color: var(--off-green-700);
+  text-decoration: underline;
+}}
+.faq-tool-btn-suggest {{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  background: var(--off-green-50);
+  border-color: var(--off-green-100);
+  color: var(--off-green-800);
+}}
+.faq-tool-btn-suggest:hover {{
+  background: var(--off-green-100);
+  color: var(--off-green-900);
+}}
+.faq-empty-actions {{
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}}
+.faq-empty-suggest {{
+  background: var(--off-surface);
+  border: 1px solid var(--off-card-border);
+  color: var(--off-text-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}}
+.faq-empty-suggest:hover {{
+  background: #f1f5f9;
+}}
+
 /* Highlight Match */
 mark.faq-highlight {{
   background-color: #fef08a;
@@ -929,6 +1122,10 @@ mark.faq-highlight {{
     width: 100%;
     justify-content: center;
   }}
+  .faq-footer-bar {{
+    flex-direction: column;
+    align-items: flex-start;
+  }}
 }}
 </style>
 
@@ -956,6 +1153,9 @@ mark.faq-highlight {{
   <div class="faq-toolbar">
     <div class="faq-counter-text" id="faqCounter">{total_count} {t['all_questions'].lower()}</div>
     <div class="faq-toolbar-actions">
+      <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-faq-question.yml" target="_blank" rel="noopener noreferrer" class="faq-tool-btn faq-tool-btn-suggest" title="{t['suggest_question_sub']}">
+        <span aria-hidden="true">➕</span> {t['suggest_question']}
+      </a>
       <button type="button" class="faq-tool-btn" id="btnExpandAll">{t['expand_all']}</button>
       <button type="button" class="faq-tool-btn" id="btnCollapseAll">{t['collapse_all']}</button>
     </div>
@@ -970,7 +1170,12 @@ mark.faq-highlight {{
       <div class="faq-empty-icon">🔎</div>
       <h3 class="faq-empty-title">{t['no_results']}</h3>
       <p class="faq-subtitle" id="faqEmptyQuery"></p>
-      <button type="button" class="faq-empty-btn" id="faqResetSearchBtn">{t['clear_search']}</button>
+      <div class="faq-empty-actions">
+        <button type="button" class="faq-empty-btn" id="faqResetSearchBtn">{t['clear_search']}</button>
+        <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-faq-question.yml" target="_blank" rel="noopener noreferrer" class="faq-empty-btn faq-empty-suggest">
+          ➕ {t['suggest_question']}
+        </a>
+      </div>
     </div>
   </main>
 
@@ -979,7 +1184,8 @@ mark.faq-highlight {{
     <h2 class="faq-footer-title">{t['still_questions']}</h2>
     <p class="faq-footer-desc">{t['still_sub']}</p>
     <div class="faq-footer-buttons">
-      <a href="https://slack.openfoodfacts.org/" target="_blank" rel="noopener noreferrer" class="faq-footer-btn faq-footer-btn-primary">{t['btn_slack']}</a>
+      <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-faq-question.yml" target="_blank" rel="noopener noreferrer" class="faq-footer-btn faq-footer-btn-primary">✍️ {t['suggest_question']}</a>
+      <a href="https://slack.openfoodfacts.org/" target="_blank" rel="noopener noreferrer" class="faq-footer-btn faq-footer-btn-secondary">{t['btn_slack']}</a>
       <a href="https://forum.openfoodfacts.org/" target="_blank" rel="noopener noreferrer" class="faq-footer-btn faq-footer-btn-secondary">{t['btn_forum']}</a>
       <a href="mailto:contact@openfoodfacts.org" class="faq-footer-btn faq-footer-btn-secondary">{t['btn_email']}</a>
     </div>
@@ -1143,6 +1349,75 @@ mark.faq-highlight {{
       }} else {{
         window.location.hash = anchor;
       }}
+    }});
+  }});
+
+  // Feedback Mechanism (Thumbs up / Thumbs down) & Matomo Tracking
+  const tThanksUp = {json.dumps(t['feedback_thanks_up'])};
+  const tThanksDown = {json.dumps(t['feedback_thanks_down'])};
+
+  document.querySelectorAll(".faq-feedback").forEach(feedbackBox => {{
+    const qId = feedbackBox.getAttribute("data-question-id");
+    const langCode = feedbackBox.getAttribute("data-lang") || "{lang}";
+    const statusEl = feedbackBox.querySelector(".faq-feedback-status");
+    const btns = feedbackBox.querySelectorAll(".faq-feedback-btn");
+    const storageKey = "off_faq_feedback_" + langCode + "_" + qId;
+
+    // Check localStorage for previously submitted feedback
+    let storedVote = null;
+    try {{
+      storedVote = localStorage.getItem(storageKey);
+    }} catch(e) {{}}
+
+    if (storedVote) {{
+      btns.forEach(b => {{
+        if (b.getAttribute("data-vote") === storedVote) {{
+          b.classList.add("active");
+        }}
+        b.disabled = true;
+      }});
+      if (statusEl) {{
+        statusEl.textContent = (storedVote === "up") ? tThanksUp : tThanksDown;
+        statusEl.className = "faq-feedback-status visible" + (storedVote === "down" ? " negative" : "");
+      }}
+    }}
+
+    btns.forEach(btn => {{
+      btn.addEventListener("click", (e) => {{
+        e.preventDefault();
+        e.stopPropagation();
+
+        const vote = btn.getAttribute("data-vote"); // "up" or "down"
+        const isUp = (vote === "up");
+        const action = isUp ? "thumbs_up" : "thumbs_down";
+
+        // ====================================================================
+        // Matomo Event Tracking:
+        // Parameters: Question ID, Language, Thumbs Up / Thumbs Down
+        // 1. Unified Event: Category='FAQ Feedback', Action='thumbs_up'/'thumbs_down', Name='<qId> [<lang>]'
+        // 2. Segmented Event: Category='FAQ Feedback (<lang>)', Action='thumbs_up'/'thumbs_down', Name='<qId>'
+        // ====================================================================
+        window._paq = window._paq || [];
+        window._paq.push(["trackEvent", "FAQ Feedback", action, qId + " [" + langCode + "]"]);
+        window._paq.push(["trackEvent", "FAQ Feedback (" + langCode + ")", action, qId]);
+
+        // Save in localStorage to prevent repeat voting
+        try {{
+          localStorage.setItem(storageKey, vote);
+        }} catch(e) {{}}
+
+        // Update UI state
+        btns.forEach(b => {{
+          b.classList.remove("active");
+          b.disabled = true;
+        }});
+        btn.classList.add("active");
+
+        if (statusEl) {{
+          statusEl.textContent = isUp ? tThanksUp : tThanksDown;
+          statusEl.className = "faq-feedback-status visible" + (isUp ? "" : " negative");
+        }}
+      }});
     }});
   }});
 

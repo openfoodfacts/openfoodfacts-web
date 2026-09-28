@@ -1,0 +1,1050 @@
+<!-- Open Food Facts: Guides, Scores & Methodologies -->
+<style>
+  :root {
+    --off-espresso: #341100;
+    --off-espresso-mid: #473526;
+    --off-cream: #f9f8f6;
+    --off-peach-tint: #ece0db;
+    --off-orange: #ed8857;
+    --off-orange-hover: #d77243;
+    --off-green: #209552;
+    --off-green-light: #e8f5e9;
+    --off-green-dark: #1b5e20;
+    --off-blue: #1976d2;
+    --off-blue-light: #eff6ff;
+    --off-purple: #7c3aed;
+    --off-purple-light: #f5f3ff;
+    --off-yellow: #f59e0b;
+    --off-yellow-light: #fffbeb;
+    --off-macchiato: #85746c;
+    --off-border: #e2e8f0;
+    --off-surface: #ffffff;
+    --off-text-muted: #64748b;
+    --off-radius-pill: 999px;
+    --off-radius-card: 20px;
+  }
+
+  .off-sm-wrap {
+    font-family: "Plus Jakarta Sans", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--off-espresso);
+    max-width: 1240px;
+    margin: 0 auto 3.5rem auto;
+    padding: 0 1rem;
+    line-height: 1.6;
+    box-sizing: border-box;
+  }
+
+  .off-sm-wrap *,
+  .off-sm-wrap *::before,
+  .off-sm-wrap *::after {
+    box-sizing: border-box;
+  }
+
+  /* Hero Section */
+  .off-sm-hero {
+    background: linear-gradient(180deg, #ffffff 0%, var(--off-cream) 100%);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 28px;
+    padding: clamp(2rem, 4.5vw, 3.75rem);
+    margin-bottom: 2.25rem;
+    box-shadow: 0 10px 32px rgba(52, 17, 0, 0.05);
+    text-align: center;
+  }
+
+  .off-sm-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--off-espresso-mid);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    border-radius: var(--off-radius-pill);
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .off-sm-hero h1 {
+    font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--off-espresso);
+    margin: 0 0 1rem 0;
+  }
+
+  .off-sm-hero p.lead {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    color: var(--off-espresso-mid);
+    max-width: 860px;
+    margin: 0 auto 1.75rem auto;
+  }
+
+  .off-sm-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .off-sm-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #ffffff;
+    border: 1px solid var(--off-border);
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--off-radius-pill);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--off-espresso-mid);
+  }
+
+  /* Sticky Quick Navigation */
+  .off-sm-nav-sticky {
+    position: sticky;
+    top: 10px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--off-border);
+    border-radius: var(--off-radius-pill);
+    padding: 0.5rem 0.75rem;
+    margin: 0 auto 2.5rem auto;
+    max-width: 1060px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .off-sm-nav-sticky a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--off-espresso-mid);
+    text-decoration: none !important;
+    font-size: 0.84rem;
+    font-weight: 700;
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--off-radius-pill);
+    transition: all 0.2s ease;
+  }
+
+  .off-sm-nav-sticky a:hover {
+    background: var(--off-cream);
+    color: var(--off-espresso);
+  }
+
+  .off-sm-nav-sticky a.highlight {
+    background: var(--off-espresso);
+    color: #ffffff;
+  }
+
+  /* Section Styling */
+  .off-sm-section {
+    background: #ffffff;
+    border: 1px solid var(--off-border);
+    border-radius: var(--off-radius-card);
+    padding: clamp(1.75rem, 3.5vw, 3rem);
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+    scroll-margin-top: 80px;
+  }
+
+  .off-sm-section-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 2px solid var(--off-cream);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .off-sm-section-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .off-sm-badge-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: var(--off-cream);
+    border: 1px solid var(--off-peach-tint);
+    flex-shrink: 0;
+  }
+
+  .off-sm-section-header h2 {
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+    font-weight: 800;
+    color: var(--off-espresso);
+    margin: 0;
+  }
+
+  .off-sm-section-header p {
+    margin: 0.25rem 0 0 0;
+    font-size: 0.95rem;
+    color: var(--off-text-muted);
+  }
+
+  /* Two Column Layouts */
+  .off-sm-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem;
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .off-sm-grid-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Card Grids */
+  .off-sm-card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+  }
+
+  .off-sm-card-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+  }
+
+  .off-sm-feature-card {
+    background: #ffffff;
+    border: 1px solid var(--off-border);
+    border-radius: 16px;
+    padding: 1.35rem 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .off-sm-feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    border-color: #cbd5e1;
+  }
+
+  .off-sm-feature-card h3,
+  .off-sm-feature-card h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--off-espresso);
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .off-sm-feature-card p {
+    font-size: 0.9rem;
+    color: var(--off-espresso-mid);
+    margin: 0;
+  }
+
+  /* Score Showcase Visual Boxes */
+  .off-sm-visual-box {
+    background: var(--off-cream);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 18px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .off-sm-visual-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  /* Callouts & Highlights */
+  .off-sm-callout {
+    background: #f8fafc;
+    border-left: 4px solid var(--off-orange);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 14px 14px 0;
+    margin: 1.25rem 0;
+    font-size: 0.95rem;
+  }
+
+  .off-sm-callout.green {
+    border-left-color: var(--off-green);
+    background: #f0fdf4;
+  }
+
+  .off-sm-callout.blue {
+    border-left-color: var(--off-blue);
+    background: #eff6ff;
+  }
+
+  .off-sm-callout.purple {
+    border-left-color: var(--off-purple);
+    background: #faf5ff;
+  }
+
+  /* Button Actions */
+  .off-sm-btn-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+  }
+
+  .off-sm-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    padding: 0.65rem 1.25rem;
+    border-radius: var(--off-radius-pill);
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+  }
+
+  .off-sm-btn-primary {
+    background: var(--off-orange);
+    color: #ffffff !important;
+  }
+
+  .off-sm-btn-primary:hover {
+    background: var(--off-orange-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(237, 136, 87, 0.35);
+  }
+
+  .off-sm-btn-secondary {
+    background: #ffffff;
+    color: var(--off-espresso) !important;
+    border: 1px solid var(--off-border);
+  }
+
+  .off-sm-btn-secondary:hover {
+    background: var(--off-cream);
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+  }
+
+  .off-sm-btn-green {
+    background: var(--off-green);
+    color: #ffffff !important;
+  }
+
+  .off-sm-btn-green:hover {
+    background: #177a42;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(32, 149, 82, 0.35);
+  }
+
+  /* Comparison Matrix Table */
+  .off-sm-matrix-wrap {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-radius: 14px;
+    border: 1px solid var(--off-border);
+  }
+
+  .off-sm-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    text-align: left;
+    background: #ffffff;
+  }
+
+  .off-sm-matrix th {
+    background: var(--off-cream);
+    color: var(--off-espresso);
+    font-weight: 700;
+    padding: 1rem;
+    border-bottom: 2px solid var(--off-border);
+  }
+
+  .off-sm-matrix td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--off-border);
+    color: var(--off-espresso-mid);
+    vertical-align: top;
+  }
+
+  .off-sm-matrix tr:last-child td {
+    border-bottom: none;
+  }
+
+  .off-sm-matrix tr:nth-child(even) td {
+    background: #fbfbfb;
+  }
+
+  /* Traffic Light Badges */
+  .off-tl-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--off-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-right: 0.35rem;
+    margin-bottom: 0.25rem;
+  }
+  .tl-green { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+  .tl-amber { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+  .tl-red   { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+  /* Impact timeline stats */
+  .off-impact-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+  }
+
+  .off-impact-stat-card {
+    background: var(--off-cream);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+  }
+
+  .off-impact-num {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--off-orange);
+    line-height: 1.1;
+  }
+
+  .off-impact-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--off-espresso-mid);
+    margin-top: 0.35rem;
+  }
+</style>
+
+<div class="off-sm-wrap">
+
+  <!-- Hero Header -->
+  <header class="off-sm-hero">
+    <div class="off-sm-eyebrow">🔬 Independent · Open Data · Science-Backed</div>
+    <h1>Food Scores, Guides &amp; Methodologies</h1>
+    <p class="lead">
+      Empowering citizens, researchers, and public health authorities worldwide with transparent, peer-reviewed food evaluations. From nutritional density and industrial ultra-processing to planetary carbon footprints and deforestation risks, understand how Open Food Facts turns open science into actionable food transparency.
+    </p>
+
+    <div class="off-sm-pills">
+      <span class="off-sm-pill">✅ 100% Open Data (ODbL)</span>
+      <span class="off-sm-pill">📖 Open-Source Algorithms</span>
+      <span class="off-sm-pill">🎓 Peer-Reviewed Science</span>
+      <span class="off-sm-pill">🚫 Zero Food Lobby Influence</span>
+      <span class="off-sm-pill">🌍 3.5M+ Products Worldwide</span>
+    </div>
+
+    <div class="off-sm-btn-bar" style="justify-content: center;">
+      <a href="#matrix" class="off-sm-btn off-sm-btn-primary">📊 View Scores Comparison Matrix</a>
+      <a href="#principles" class="off-sm-btn off-sm-btn-secondary">📜 Our Scientific &amp; Openness Principles</a>
+      <a href="#nutriscore-impact" class="off-sm-btn off-sm-btn-secondary">🚀 Our Impact with Nutri-Score</a>
+    </div>
+  </header>
+
+  <!-- Sticky Sub-Navigation -->
+  <nav class="off-sm-nav-sticky" aria-label="Scores quick navigation">
+    <a href="#nutriscore" class="highlight">🥗 Nutri-Score</a>
+    <a href="#nova">🏭 NOVA &amp; UPF</a>
+    <a href="#greenscore">🌱 Green-Score</a>
+    <a href="#forest">🌳 Forest Footprint</a>
+    <a href="#traffic-lights">🚦 UK Traffic Lights</a>
+    <a href="#principles">⚖️ Openness &amp; Science</a>
+    <a href="#nutriscore-impact">⭐ Nutri-Score Impact</a>
+    <a href="#matrix">📋 Matrix</a>
+  </nav>
+
+  <!-- Section 1: Principles of Openness & Science-Based Methodology -->
+  <section id="principles" class="off-sm-section">
+    <div class="off-sm-section-header">
+      <div class="off-sm-section-title-wrap">
+        <div class="off-sm-badge-icon">⚖️</div>
+        <div>
+          <h2>Principles of Openness &amp; Science</h2>
+          <p>Why openness, independent governance, and peer-reviewed rigor are non-negotiable.</p>
+        </div>
+      </div>
+      <div>
+        <a href="/data" class="off-sm-btn off-sm-btn-secondary">Explore Open Data ➔</a>
+      </div>
+    </div>
+
+    <p>
+      For more than a decade, Open Food Facts has demonstrated that food data and public health algorithms belong in the public domain. Unlike proprietary scoring systems or private for-profit databases, our entire methodology rests on five unbreakable pillars:
+    </p>
+
+    <div class="off-sm-card-grid-3">
+      <div class="off-sm-feature-card">
+        <h3><span>🔓</span> 100% Open Data (ODbL)</h3>
+        <p>
+          All product data, ingredient taxonomies, nutritional breakdowns, and environmental estimations are published under the <strong>Open Database License (ODbL)</strong>. Citizens, universities, NGOs, and commercial startups can freely inspect, download, and build upon our datasets.
+        </p>
+      </div>
+
+      <div class="off-sm-feature-card">
+        <h3><span>💻</span> Transparent Open Source Code</h3>
+        <p>
+          There are <strong>zero black-box algorithms</strong>. Every calculation rule, nutritional cut-off point, and edge case is published in our open-source repositories on GitHub. Anyone can audit how a grade is computed and verify its mathematical correctness.
+        </p>
+      </div>
+
+      <div class="off-sm-feature-card">
+        <h3><span>🔬</span> Grounded in Academic Science</h3>
+        <p>
+          We do not invent proprietary scores out of thin air. We partner with established academic research teams (including <strong>EREN, Inserm, INRAE, ADEME</strong>) and implement scientifically validated, peer-reviewed standards recognized by international health organizations.
+        </p>
+      </div>
+
+      <div class="off-sm-feature-card">
+        <h3><span>🛡️</span> Independent &amp; Non-Profit</h3>
+        <p>
+          Open Food Facts is a registered non-profit organization. We accept no advertising, sell no consumer data, and offer no paid score upgrades to manufacturers. Our ratings are completely independent of food industry lobbying.
+        </p>
+      </div>
+
+      <div class="off-sm-feature-card">
+        <h3><span>🤝</span> Citizen Science Ground-Truthing</h3>
+        <p>
+          Our database is crowdsourced and cross-checked by tens of thousands of active volunteers. By photographing actual product packaging and barcodes, our community creates an auditable historical paper trail that guarantees factual ground-truth.
+        </p>
+      </div>
+
+      <div class="off-sm-feature-card">
+        <h3><span>📚</span> Over 500+ Scientific Papers</h3>
+        <p>
+          Epidemiologists, climate scientists, and economists worldwide rely on Open Food Facts to study ultra-processing trends, food reformulation, and national dietary patterns. Browse our dedicated <a href="/scientific-publications">Scientific Publications index</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Nutri-Score -->
+  <section id="nutriscore" class="off-sm-section">
+    <div class="off-sm-section-header">
+      <div class="off-sm-section-title-wrap">
+        <div class="off-sm-badge-icon">🥗</div>
+        <div>
+          <h2>Nutri-Score: Nutritional Quality from A to E</h2>
+          <p>Front-of-pack nutritional grading reflecting overall dietary healthfulness.</p>
+        </div>
+      </div>
+      <div>
+        <a href="/nutriscore" class="off-sm-btn off-sm-btn-secondary">Nutri-Score Guide ➔</a>
+      </div>
+    </div>
+
+    <div class="off-sm-grid-2">
+      <div>
+        <p>
+          The <strong>Nutri-Score</strong> is a voluntary front-of-pack nutrition logo that translates the mandatory nutritional declaration table (calories, sugars, fats, sodium) into an intuitive 5-color, 5-letter grade from <strong>A (dark green)</strong> for foods with high nutritional quality to <strong>E (dark orange)</strong> for foods to consume in moderation.
+        </p>
+        <p>
+          Developed by <strong>EREN</strong> (Equipe de Recherche en Epidémiologie Nutritionnelle, Paris 13 University / Inserm / INRAE) under the leadership of Professor Serge Hercberg, and adopted officially by public health authorities across 7 European nations (France, Belgium, Germany, Spain, Netherlands, Luxembourg, Switzerland).
+        </p>
+
+        <div class="off-sm-callout green">
+          <strong>The Balance Formula:</strong>
+          <br>
+          <strong>Negative Points (0 to 40):</strong> Unfavorable nutrients that should be limited (high energy density, saturated fatty acids, sugars, and sodium).
+          <br>
+          <strong>Positive Points (0 to 15):</strong> Favorable components to encourage (percentage of fruits, vegetables, legumes, nuts, specific oils like olive and rapeseed, dietary fiber, and protein).
+          <br>
+          <strong>Final Score:</strong> <code>Score = Negative Points &minus; Positive Points</code> (lower is healthier).
+        </div>
+
+        <h3>The New 2024–2025 Nutri-Score Algorithm</h3>
+        <p>
+          To keep pace with the latest European dietary guidelines and discourage deceptive industrial reformulation, an international scientific steering committee updated the algorithm:
+        </p>
+        <ul>
+          <li><strong>Better drink differentiation:</strong> Milk, flavored dairy drinks, and plant-based beverages are now classified under the beverage category with stricter sugar thresholds.</li>
+          <li><strong>Sweetener penalty:</strong> Artificially sweetened diet sodas are downgraded (from B to C/D/E) to discourage replacing sugar with chemical sweeteners.</li>
+          <li><strong>Stricter salt &amp; sugar cut-offs:</strong> Highly sweetened breakfast cereals and salty snacks face sharper downgrades.</li>
+          <li><strong>Fatty fish &amp; healthy oils rewarded:</strong> Olive oil, rapeseed oil, walnut oil, and oily fish (salmon, sardines) see improved ratings.</li>
+          <li><strong>Red meat limitations:</strong> Red meat scores are capped to reflect European anti-cancer nutritional recommendations.</li>
+        </ul>
+
+        <div class="off-sm-btn-bar">
+          <a href="/new-nutriscore" class="off-sm-btn off-sm-btn-primary">New Algorithm Explained ➔</a>
+          <a href="/nutriscore-formula" class="off-sm-btn off-sm-btn-secondary">Mathematical Formulas ➔</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="off-sm-visual-box">
+          <img src="https://static.openfoodfacts.org/images/attributes/dist/nutriscore-a-new-en.svg" alt="Nutri-Score A to E Grade" style="max-height: 120px;">
+          <p style="font-size: 0.85rem; color: var(--off-text-muted); margin-top: 1rem;">
+            Official European Nutri-Score front-of-pack logo computed automatically on Open Food Facts since 2014.
+          </p>
+        </div>
+
+        <div class="off-sm-feature-card">
+          <h4>🧪 Why Open Food Facts Was Essential</h4>
+          <p>
+            When governments debated whether Nutri-Score was feasible, Open Food Facts calculated it across 10,000+ commercial products overnight, proving that transparent public data could power large-scale public health scoring without industry obstruction.
+          </p>
+          <div style="margin-top: 0.75rem;">
+            <a href="/open-food-facts-and-the-nutriscore" style="font-weight: 700; color: var(--off-orange); text-decoration: underline;">
+              Read our full story: Open Food Facts &amp; Nutri-Score ➔
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: NOVA & UPF -->
+  <section id="nova" class="off-sm-section">
+    <div class="off-sm-section-header">
+      <div class="off-sm-section-title-wrap">
+        <div class="off-sm-badge-icon">🏭</div>
+        <div>
+          <h2>NOVA: Degree of Food Processing &amp; UPF</h2>
+          <p>Distinguishing authentic culinary ingredients from industrial ultra-formulations.</p>
+        </div>
+      </div>
+      <div>
+        <a href="/nova" class="off-sm-btn off-sm-btn-secondary">NOVA Classification Guide ➔</a>
+      </div>
+    </div>
+
+    <p>
+      Created by Professor Carlos Monteiro and his epidemiological team at the <strong>University of São Paulo (Brazil)</strong>, the <strong>NOVA classification</strong> looks beyond nutrient numbers to assess how food is altered by industrial manufacturing.
+    </p>
+
+    <div class="off-sm-card-grid-4">
+      <div class="off-sm-feature-card" style="border-top: 4px solid #038141;">
+        <div style="text-align: center; margin-bottom: 0.5rem;">
+          <img src="https://static.openfoodfacts.org/images/misc/nova-group-1.svg" alt="NOVA 1" style="height: 60px;">
+        </div>
+        <h4>Group 1: Unprocessed or Minimally Processed</h4>
+        <p>Whole edible parts of plants, animals, fungi, and water. Processing involves only drying, freezing, milling, or pasteurization without added salt, sugar, or fats (e.g. fresh fruits, oats, plain yogurt, frozen vegetables).</p>
+      </div>
+
+      <div class="off-sm-feature-card" style="border-top: 4px solid #85bb2f;">
+        <div style="text-align: center; margin-bottom: 0.5rem;">
+          <img src="https://static.openfoodfacts.org/images/misc/nova-group-2.svg" alt="NOVA 2" style="height: 60px;">
+        </div>
+        <h4>Group 2: Processed Culinary Ingredients</h4>
+        <p>Substances extracted directly from nature or Group 1 foods through pressing, refining, or mining. Used in kitchens to season and cook real food (e.g. butter, cold-pressed olive oil, cane sugar, table salt).</p>
+      </div>
+
+      <div class="off-sm-feature-card" style="border-top: 4px solid #ee8100;">
+        <div style="text-align: center; margin-bottom: 0.5rem;">
+          <img src="https://static.openfoodfacts.org/images/misc/nova-group-3.svg" alt="NOVA 3" style="height: 60px;">
+        </div>
+        <h4>Group 3: Processed Foods</h4>
+        <p>Relatively simple foods manufactured by adding salt, sugar, oil, or vinegar to Group 1 foods to enhance preservation or taste (e.g. canned sardines in olive oil, artisan bread, simple cheeses, canned legumes in brine).</p>
+      </div>
+
+      <div class="off-sm-feature-card" style="border-top: 4px solid #e63e11;">
+        <div style="text-align: center; margin-bottom: 0.5rem;">
+          <img src="https://static.openfoodfacts.org/images/misc/nova-group-4.svg" alt="NOVA 4" style="height: 60px;">
+        </div>
+        <h4>Group 4: Ultra-Processed Foods (UPF)</h4>
+        <p>Industrial formulations made mostly from deconstructed substances (maltodextrins, hydrogenated fats, protein isolates) combined with cosmetic additives (flavor enhancers, emulsifiers, artificial colors, texturizers).</p>
+      </div>
+    </div>
+
+    <div class="off-sm-callout purple">
+      <strong>Public Health Importance:</strong> Massive prospective cohort studies (including the French <em>NutriNet-Santé</em> cohort published in <em>The BMJ</em>) have linked regular UPF consumption to significantly higher risks of cardiovascular disease, obesity, type 2 diabetes, depression, and overall mortality. National dietary guidelines in Brazil, France, Canada, and Belgium now explicitly recommend limiting or avoiding Group 4 ultra-processed foods.
+    </div>
+
+    <div class="off-sm-btn-bar">
+      <a href="/nova" class="off-sm-btn off-sm-btn-primary">Learn How Open Food Facts Detects NOVA 4 ➔</a>
+      <a href="/mobile-features#ultra-processing" class="off-sm-btn off-sm-btn-secondary">Check Ultra-Processing in the App ➔</a>
+    </div>
+  </section>
+
+  <!-- Section 4: Green-Score -->
+  <section id="greenscore" class="off-sm-section">
+    <div class="off-sm-section-header">
+      <div class="off-sm-section-title-wrap">
+        <div class="off-sm-badge-icon">🌱</div>
+        <div>
+          <h2>Green-Score: Environmental Impact from Farm to Fork</h2>
+          <p>The transparent ecological rating evaluating life cycle impacts, packaging, and biodiversity.</p>
+        </div>
+      </div>
+      <div>
+        <a href="/green-score-methodology" class="off-sm-btn off-sm-btn-green">Full Technical Methodology ➔</a>
+      </div>
+    </div>
+
+    <div class="off-sm-grid-2">
+      <div>
+        <p>
+          The <strong>Green-Score</strong> (formerly Eco-Score) is an environmental grade from <strong>A (very low impact)</strong> to <strong>E (very high impact)</strong> designed to help consumers minimize the planetary footprint of their shopping basket. Food production accounts for over 28% of global greenhouse gases, 70% of freshwater consumption, and significant biodiversity degradation.
+        </p>
+        <p>
+          Calculated by an open collective including <strong>Open Food Facts, Yuka, Marmiton, ScanUp, ECO2 Initiative, and La Fourche</strong>, it couples official government Life Cycle Assessments with product-specific environmental modulators.
+        </p>
+
+        <h3>The Two-Tier Calculation Framework</h3>
+        <ol>
+          <li>
+            <strong>LCA Category Benchmark (Agribalyse v3):</strong> Using data compiled by ADEME and INRAE covering 16 European PEF environmental indicators (carbon emissions, water scarcity, land use, ozone depletion, acidification, eutrophication). Normalized to a 0–100 scale using a logarithmic formula.
+          </li>
+          <li>
+            <strong>Complementary Product Modulators (&plusmn;25 pts):</strong>
+            <ul>
+              <li><strong>Production Systems (+5 to +20 pts):</strong> Rewarding Organic (AB, Demeter), Label Rouge, Fairtrade, and HVE certifications.</li>
+              <li><strong>Local Sourcing &amp; Freight (0 to +15 pts):</strong> Geodesic distance tracking, road/rail/maritime modal mix, and ADEME Base Carbone factors.</li>
+              <li><strong>Environmental Policy (&minus;5 to +5 pts):</strong> Origin score based on the Yale/Columbia Environmental Performance Index (EPI).</li>
+              <li><strong>Packaging Circularity (0 to &minus;15 pts):</strong> Upstream recycled content incorporation and downstream municipal recyclability.</li>
+              <li><strong>Threatened Species Safeguards:</strong> Hard caps for depleted fish stocks and &minus;10 penalty for unsustainable palm oil.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="off-sm-callout green">
+          <strong>Mandatory Packaging Gate:</strong> No food product can receive a <strong>Green-Score A</strong> unless its packaging is proven to be 100% recyclable or biodegradable.
+        </div>
+
+        <div class="off-sm-btn-bar">
+          <a href="/green-score-methodology" class="off-sm-btn off-sm-btn-green">Read Revamped Green-Score Methodology ➔</a>
+          <a href="/green-score" class="off-sm-btn off-sm-btn-secondary">Green-Score Consumer Guide ➔</a>
+          <a href="https://docs.score-environnemental.com/" target="_blank" rel="noopener noreferrer" class="off-sm-btn off-sm-btn-secondary">Consortium Docs (External) ➔</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="off-sm-visual-box">
+          <img src="https://static.openfoodfacts.org/images/attributes/dist/green-score-a.svg" alt="Green-Score A" style="max-height: 120px;">
+          <p style="font-size: 0.85rem; color: var(--off-text-muted); margin-top: 1rem;">
+            The Green-Score leaf grade summarizes 16 environmental indicators onto an easy-to-read label.
+          </p>
+        </div>
+
+        <div class="off-sm-feature-card">
+          <h4>🏭 Citizen Packaging Inventory</h4>
+          <p>
+            Through citizen science initiatives like <em>Mission Emballages</em>, Open Food Facts volunteers have cataloged the materials (PET, aluminum, cardboard, glass), weights, and recyclability of hundreds of thousands of individual packaging containers to make Green-Score packaging calculations possible.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Forest Footprint -->
+  <section id="forest" class="off-sm-section">
+    <div class="off-sm-section-header">
+      <div class="off-sm-section-title-wrap">
+        <div class="off-sm-badge-icon">🌳</div>
+        <div>
+          <h2>Forest Footprint: Embedded Deforestation Risks</h2>
+          <p>Tracking the hidden forest destruction behind livestock feed, soy, and palm oil.</p>
+        </div>
+      </div>
+      <div>
+        <a href="/forest-footprint-of-food-products" class="off-sm-btn off-sm-btn-secondary">Forest Footprint Details ➔</a>
+      </div>
+    </div>
+
+    <div class="off-sm-grid-2">
+      <div>
+        <p>
+          In collaboration with the environmental NGO <strong>Envol Vert</strong>, Open Food Facts computes a dedicated <strong>Forest Footprint</strong> for food products. This metric quantifies the surface area of tropical and temperate forest threatened with deforestation or degradation to produce the ingredients in our food.
+        </p>
+        <p>
+          A vast proportion of deforestation in South America (the Amazon and Cerrado biomes) is driven by intensive monoculture soy cultivation, which is exported globally to feed chickens, laying hens, dairy cows, and pigs.
+        </p>
+
+        <h3>How the Forest Footprint is Calculated</h3>
+        <ul>
+          <li><strong>Animal Feed Conversion:</strong> Estimates the mass of chicken meat or eggs contained in the food product, calculating the soy feed required throughout the animal's life cycle.</li>
+          <li><strong>Geographic Sourcing Risk:</strong> Cross-references ingredient origin with deforestation-risk regions (e.g. Brazilian Cerrado vs. European-grown domestic soy).</li>
+          <li><strong>Certification Offsets:</strong> Takes into account agricultural labels (Organic / Bio, Label Rouge, Bleu-Blanc-Cœur, GMO-free animal feeding) that certify deforestation-free or locally sourced feed.</li>
+          <li><strong>Direct Forest Commodities:</strong> Evaluates palm oil, cocoa, coffee, and beef with commodity-specific land conversion factors.</li>
+        </ul>
+
+        <div class="off-sm-btn-bar">
+          <a href="/forest-footprint-of-food-products" class="off-sm-btn off-sm-btn-primary">Learn More About Forest Footprint ➔</a>
+          <a href="https://envol-vert.org/en/" target="_blank" rel="noopener noreferrer" class="off-sm-btn off-sm-btn-secondary">Visit Envol Vert NGO ➔</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="off-sm-callout warning">
+          <strong>Did You Know?</strong>
+          <br>
+          Even if an egg or chicken breast packaging mentions "Packed in Europe", the livestock was frequently fed with imported South American genetically modified soy associated with primary forest clearing. The Forest Footprint brings visibility to this invisible ecological cost.
+        </div>
+
+        <div class="off-sm-feature-card">
+          <h4>🌲 Actionable Reformulation</h4>
+          <p>
+            By surfacing embedded deforestation scores, Open Food Facts helps ethical producers identify their soy supply chains and shift toward verified deforestation-free, European-grown leguminous animal feed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: UK Traffic Lights -->
+  <section id="traffic-lights" class="off-sm-section">
+    <div class="off-sm-section-header">
+      <div class="off-sm-section-title-wrap">
+        <div class="off-sm-badge-icon">🚦</div>
+        <div>
+          <h2>UK Traffic Lights: Front-of-Pack Nutrient Warning Lights</h2>
+          <p>At-a-glance color coding for fat, saturated fat, total sugars, and sodium.</p>
+        </div>
+      </div>
+      <div>
+        <a href="/traffic-lights" class="off-sm-btn off-sm-btn-secondary">Traffic Lights Guide ➔</a>
+      </div>
+    </div>
+
+    <div class="off-sm-grid-2">
+      <div>
+        <p>
+          Established by the United Kingdom's <strong>Food Standards Agency (FSA)</strong>, the <strong>Traffic Lights</strong> nutritional system assigns simple <span class="off-tl-pill tl-green">Green (Low)</span>, <span class="off-tl-pill tl-amber">Amber (Medium)</span>, or <span class="off-tl-pill tl-red">Red (High)</span> color codes to four critical macronutrients: <strong>Fat, Saturated Fatty Acids, Sugars, and Salt</strong>.
+        </p>
+        <p>
+          Unlike Nutri-Score (which synthesizes positive and negative nutrients into a single global letter), Traffic Lights allow shoppers to spot specific dietary red flags instantly—ideal for individuals managing diabetes (sugar), hypertension (salt), or cholesterol (saturated fat).
+        </p>
+
+        <h3>Official UK FSA Thresholds (per 100g of Food)</h3>
+        <div class="off-sm-matrix-wrap">
+          <table class="off-sm-matrix">
+            <thead>
+              <tr>
+                <th>Nutrient</th>
+                <th><span class="off-tl-pill tl-green">🟢 Low (Green)</span></th>
+                <th><span class="off-tl-pill tl-amber">🟡 Medium (Amber)</span></th>
+                <th><span class="off-tl-pill tl-red">🔴 High (Red)</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Total Fat</strong></td>
+                <td>&le; 3.0 g</td>
+                <td>&gt; 3.0 g to &le; 17.5 g</td>
+                <td>&gt; 17.5 g (or &gt; 21g / portion)</td>
+              </tr>
+              <tr>
+                <td><strong>Saturated Fat</strong></td>
+                <td>&le; 1.5 g</td>
+                <td>&gt; 1.5 g to &le; 5.0 g</td>
+                <td>&gt; 5.0 g (or &gt; 6g / portion)</td>
+              </tr>
+              <tr>
+                <td><strong>Total Sugars</strong></td>
+                <td>&le; 5.0 g</td>
+                <td>&gt; 5.0 g to &le; 22.5 g</td>
+                <td>&gt; 22.5 g (or &gt; 27g / portion)</td>
+              </tr>
+              <tr>
+                <td><strong>Salt (Sodium &times; 2.5)</strong></td>
+                <td>&le; 0.30 g</td>
+                <td>&gt; 0.30 g to &le; 1.50 g</td>
+                <td>&gt; 1.50 g (or &gt; 1.8g / portion)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="off-sm-btn-bar">
+          <a href="/traffic-lights" class="off-sm-btn off-sm-btn-primary">View Full UK Traffic Lights Details ➔</a>
+          <a href="/nutrition-traffic-lights" class="off-sm-btn off-sm-btn-secondary">Liquids &amp; Beverage Thresholds ➔</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="off-sm-feature-card">
+          <h4>🎯 Dual Per-100g and Per-Portion Rules</h4>
+          <p>
+            The FSA standard applies strict per-portion thresholds in addition to per-100g rules. If a single serving of a product exceeds 21g of total fat, 6g of saturated fat, 27g of sugars, or 1.8g of salt, it automatically triggers a <strong>Red light</strong>, preventing manufacturers from manipulating portion sizes to hide excessive nutrient densities.
+          </p>
+        </div>
+
+        <div class="off-sm-callout blue" style="margin-top: 1.25rem;">
+          <strong>Synergy with Nutri-Score:</strong> A food might achieve an overall Nutri-Score C, but feature a Red light on salt. Having both indicators side-by-side provides consumers with a complete nutritional radar.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Our Impact with Nutri-Score -->
+  <section id="nutriscore-impact" class="off-sm-section">
+    <div class="off-sm-section-header">
+      <div class="off-sm-section-title-wrap">
+        <div class="off-sm-badge-icon">🚀</div>
+        <div>
+          <h2>Our Impact with Nutri-Score: A Decade of Leadership</h2>
+          <p>How Open Food Facts proved the feasibility of Nutri-Score and changed the food industry.</p>
+        </div>
+      </div>
+      <div>
+        <a href="/open-food-facts-and-the-nutriscore" class="off-sm-btn off-sm-btn-secondary">Full Story &amp; Archives ➔</a>
+      </div>
+    </div>
+
+    <div class="off-impact-stat-grid">
+      <div class="off-impact-stat-card">
+        <div class="off-impact-num">2014</div>
+        <div class="off-impact-label">First in the World to Compute Nutri-Score</div>
+      </div>
+      <div class="off-impact-stat-card">
+        <div class="off-impact-num">10,000+</div>
+        <div class="off-impact-label">Initial Benchmark Products Scored in 2014</div>
+      </div>
+      <div class="off-impact-stat-card">
+        <div class="off-impact-num">7</div>
+        <div class="off-impact-label">European Countries Officially Adopted It</div>
+      </div>
+      <div class="off-impact-stat-card">
+        <div class="off-impact-num">100+</div>
+        <div class="off-impact-label">Apps &amp; Services Using OFF Nutri-Score API</div>
+      </div>
+    </div>
+
+    <div class="off-sm-grid-2">
+      <div>
+        <h3>1. From a Research Paper to Reality (2014)</h3>
+        <p>
+          In 2014, when Professor Serge Hercberg’s team proposed the "5-Color Nutrition Grade" in a public health report, food industry lobbyists claimed it was unworkable, impossible to compute, and would confuse consumers.
+        </p>
+        <p>
+          Open Food Facts immediately contacted the EREN research team, obtained the mathematical algorithm, and <strong>computed the 5-color score across all products in our open database overnight</strong>. We proved to regulators, journalists, and consumers that the score was completely practical and immediately usable.
+        </p>
+
+        <h3>2. Breaking Down Barriers for Food Producers</h3>
+        <p>
+          To accelerate adoption, Open Food Facts built the <strong>free Open Food Facts Pro platform</strong>. Manufacturers can upload recipes, run instant Nutri-Score simulations, test reformulation scenarios (e.g. reducing salt by 10% to move from C to B), and publish verified data directly to citizens.
+        </p>
+      </div>
+
+      <div>
+        <h3>3. Documenting Industrial Reformulation</h3>
+        <p>
+          Because Open Food Facts preserves historical product revisions, our database enabled researchers to track the <strong>Nutri-Score reformulation wave</strong>. Supermarkets (Intermarché, Delhaize, Albert Heijn) and major manufacturers reformulated thousands of product recipes to eliminate saturated fats, sugar, and excess salt so they could proudly display an A or B on packaging.
+        </p>
+
+        <h3>4. The Foundation for European Health Tech</h3>
+        <p>
+          Every mobile application that scans food barcodes today—including popular shopping aids, healthcare apps, and university diet tools—relies directly or indirectly on the Open Food Facts Nutri-Score calculation engine.
+        </p>
+
+        <div class="off-sm-btn-bar">
+          <a href="/open-food-facts-and-the-nutriscore" class="off-sm-btn off-sm-btn-primary">Read "Open Food Facts &amp; Nutri-Score" ➔</a>
+          <a href="/impact" class="off-sm-btn off-sm-btn-secondary">Explore Overall OFF Impact ➔</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Comparison Matrix -->
+  <section id="matrix" class="off-sm-section">
+    <div class="off-sm-section-header">
+      <div class="off-sm-section-title-wrap">
+        <div class="off-sm-badge-icon">📋</div>
+        <div>
+          <h2>The 360° Food Evaluation Matrix</h2>
+          <p>Understanding how each score answers a different critical dimension of food.</p>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      A food product cannot be judged on a single metric alone. A product can be nutritionally balanced yet ultra-processed; another may be organic yet packaged in non-recyclable plastic. Open Food Facts brings all dimensions together:
+    </p>
+
+    <div class="off-sm-matrix-wrap">
+      <table class="off-sm-matrix">
+        <thead>
+          <tr>
+            <th>Indicator</th>
+            <th>What It Evaluates</th>
+            <th>Scale &amp; Output</th>
+            <th>Key Scientific Inputs</th>
+            <th>Why It Matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>🥗 Nutri-Score</strong></td>
+            <td>Overall nutritional balance and nutrient density</td>
+            <td>5 Letters: A to E (Color coded)</td>
+            <td>Calories, saturated fat, sugars, sodium, fiber, protein, fruits/vegetables/nuts percentage</td>
+            <td>Prevents chronic diet-related diseases (obesity, cardiovascular disease, hypertension)</td>
+          </tr>
+          <tr>
+            <td><strong>🏭 NOVA / UPF</strong></td>
+            <td>Degree and purpose of industrial processing</td>
+            <td>4 Groups: 1 to 4 (Numeric)</td>
+            <td>Ingredient processing markers, industrial additives, texturizers, emulsifiers</td>
+            <td>Limits metabolic disruption, cancer correlation, and hyper-palatable industrial foods</td>
+          </tr>
+          <tr>
+            <td><strong>🌱 Green-Score</strong></td>
+            <td>Comprehensive ecological and environmental footprint</td>
+            <td>5 Letters: A to E (Leaf badge)</td>
+            <td>ADEME Agribalyse LCA (16 PEF indicators), labels, transport freight, packaging circularity, EPI</td>
+            <td>Combats climate change, water depletion, chemical pollution, and packaging waste</td>
+          </tr>
+          <tr>
+            <td><strong>🌳 Forest Footprint</strong></td>
+            <td>Embedded deforestation and habitat destruction</td>
+            <td>Deforestation risk score / impact</td>
+            <td>Envol Vert data, poultry/egg feed soy conversion, origin geolocation, deforestation-free labels</td>
+            <td>Protects tropical rainforests (Amazon, Cerrado) and vulnerable indigenous habitats</td>
+          </tr>
+          <tr>
+            <td><strong>🚦 UK Traffic Lights</strong></td>
+            <td>Specific macronutrient warning cut-offs</td>
+            <td>Color Pills: Green, Amber, Red</td>
+            <td>UK FSA thresholds per 100g and portion for fat, saturated fat, sugars, and salt</td>
+            <td>Gives instantaneous red-flag warnings for specific health conditions (diabetes, salt restrictions)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="off-sm-callout green" style="margin-top: 1.5rem;">
+      <strong>The 360° Perspective in Practice:</strong>
+      <br>
+      Take an organic chocolate cookie: It may score <strong>Nutri-Score D</strong> (high in sugar and butter), <strong>NOVA 3</strong> (artisanal processed food without cosmetic additives), and <strong>Green-Score B</strong> (organic ingredients with recyclable paper box). None of these ratings contradict each other—they reveal the complete truth of the food you eat.
+    </div>
+  </section>
+
+  <!-- Final Call to Action -->
+  <section class="off-sm-section" style="background: linear-gradient(180deg, var(--off-cream) 0%, #ffffff 100%); text-align: center;">
+    <h2>Join the Global Food Transparency Movement</h2>
+    <p class="lead" style="max-width: 760px; margin: 0 auto 1.75rem auto;">
+      Open Food Facts is made by everyone, for everyone. Scan food products with our free app, explore our open database, or integrate our API into your research and applications.
+    </p>
+
+    <div class="off-sm-btn-bar" style="justify-content: center;">
+      <a href="https://world.openfoodfacts.org/open-food-facts-mobile-app" class="off-sm-btn off-sm-btn-primary">📱 Download Free Mobile App</a>
+      <a href="https://world.pro.openfoodfacts.org" class="off-sm-btn off-sm-btn-secondary">🏭 Open Food Facts for Producers</a>
+      <a href="/data" class="off-sm-btn off-sm-btn-secondary">💾 Access Open Datasets (ODbL)</a>
+      <a href="https://world.openfoodfacts.org/donate-to-open-food-facts" class="off-sm-btn off-sm-btn-secondary">❤️ Support Our Non-Profit</a>
+    </div>
+  </section>
+
+</div>
