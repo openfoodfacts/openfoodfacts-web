@@ -1361,14 +1361,19 @@ def compile_campaign_pages(verbose=True):
     fr_shampoo = generate_whats_in_my_shampoo_html(shampoo_data, lang="fr")
     root_shampoo = render_standalone_wrapper("What's in my shampoo?", "en", en_shampoo)
     
-    with open(os.path.join(REPO_ROOT, "lang", "en", "texts", "whats-in-my-shampoo.html"), "w", encoding="utf-8") as f:
+    obf_en_dir = os.path.join(REPO_ROOT, "lang", "obf", "en", "texts")
+    obf_fr_dir = os.path.join(REPO_ROOT, "lang", "obf", "fr", "texts")
+    os.makedirs(obf_en_dir, exist_ok=True)
+    os.makedirs(obf_fr_dir, exist_ok=True)
+
+    with open(os.path.join(obf_en_dir, "whats-in-my-shampoo.html"), "w", encoding="utf-8") as f:
         f.write(en_shampoo)
-    with open(os.path.join(REPO_ROOT, "lang", "fr", "texts", "whats-in-my-shampoo.html"), "w", encoding="utf-8") as f:
+    with open(os.path.join(obf_fr_dir, "whats-in-my-shampoo.html"), "w", encoding="utf-8") as f:
         f.write(fr_shampoo)
     with open(os.path.join(REPO_ROOT, "whats-in-my-shampoo.html"), "w", encoding="utf-8") as f:
         f.write(root_shampoo)
     if verbose:
-        print("  ✅ What's in my shampoo? compiled (lang/en, lang/fr, root)")
+        print("  ✅ What's in my shampoo? compiled (lang/obf/en, lang/obf/fr, root)")
 
     return True
 
