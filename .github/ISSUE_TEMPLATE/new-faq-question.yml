@@ -1,0 +1,96 @@
+name: "💡 Suggest a new FAQ question"
+description: Propose a new question and answer for the Open Food Facts FAQ
+title: "[FAQ]: "
+labels: ["faq", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Welcome to the Open Food Facts FAQ contribution form!
+        Thank you for helping improve Open Food Facts documentation.
+        Fill out this form to propose a new question and answer. Our automated workflow can turn accepted questions into Pull Requests!
+
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      description: Select the target language for this question
+      options:
+        - "en (English)"
+        - "fr (Français)"
+        - "es (Español)"
+        - "de (Deutsch)"
+        - "it (Italiano)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Choose the topic that best matches your question
+      options:
+        - "nutri-score (Nutri-Score)"
+        - "eco-score (Eco-Score / Green-Score)"
+        - "nova-food-processing (NOVA / Food Processing)"
+        - "mobile-app (Mobile App)"
+        - "my-open-food-facts-account (Account & Profile)"
+        - "questions-about-a-product (Questions about a product)"
+        - "open-food-facts (About Open Food Facts)"
+        - "producers (Producers Platform)"
+        - "data-download (Data Download & Exports)"
+        - "api-data-reuse (API & Data Reuse)"
+        - "volunteering-contribution (Volunteering & Contributions)"
+        - "press-media-requests (Press & Media)"
+        - "improving-open-food-facts-in-my-language-country (International & Translations)"
+        - "technical-faq (Technical FAQ / Developers)"
+        - "open-pet-food-facts (Open Pet Food Facts)"
+        - "open-beauty-facts (Open Beauty Facts)"
+        - "open-products-facts (Open Products Facts)"
+        - "open-prices (Open Prices)"
+        - "labels (Labels & Certifications)"
+        - "folksonomy-engine (Folksonomy Engine)"
+        - "other (Other / Propose new category)"
+    validations:
+      required: true
+
+  - type: input
+    id: question
+    attributes:
+      label: Question Title
+      description: What is the question users would search for?
+      placeholder: e.g. How do I export my scanned products history as a CSV file?
+    validations:
+      required: true
+
+  - type: textarea
+    id: answer
+    attributes:
+      label: Proposed Answer (Markdown)
+      description: Write the answer in clear, accessible Markdown (bullet points, bold text, and links are supported).
+      placeholder: |
+        To export your scanned products history:
+
+        1. Open the Open Food Facts mobile app.
+        2. Tap your **Profile** or **History** tab.
+        3. Tap the **Share / Export** icon in the top right.
+        4. Select **Export to CSV**.
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources / Documentation Links (optional)
+      description: Provide links to official sources, Santé Publique France, Wiki, code, or scientific papers.
+      placeholder: e.g. https://wiki.openfoodfacts.org/...
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Contribution Checklist
+      options:
+        - label: I confirm this information is factual, neutral, and helpful to the community.
+          required: true
+        - label: I agree to license this content under the Open Database License (ODbL) and CC-BY-SA.
+          required: true

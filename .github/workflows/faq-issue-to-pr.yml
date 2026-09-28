@@ -1,0 +1,86 @@
+name: "FAQ: Create PR from Question Issue"
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: faq-issue-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  process-faq-issue:
+    # Run only if the issue has the 'faq' label or was opened with the FAQ issue template
+    if: >
+      (github.event.action == 'labeled' && github.event.label.name == 'faq') ||
+      (github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'faq'))
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Process FAQ issue and add question
+        id: add_faq
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python3 scripts/add_faq_question.py --from-env --compile --json > result.json
+          cat result.json
+          SUCCESS=$(python3 -c "import json; print(json.load(open('result.json')).get('success', False))")
+          if [ "$SUCCESS" != "True" ]; then
+            echo "Failed to parse or add FAQ question"
+            exit 1
+          fi
+          echo "question_title=$(python3 -c "import json; print(json.load(open('result.json')).get('question', ''))")" >> $GITHUB_OUTPUT
+          echo "target_file=$(python3 -c "import json; print(json.load(open('result.json')).get('file', ''))")" >> $GITHUB_OUTPUT
+          echo "lang=$(python3 -c "import json; print(json.load(open('result.json')).get('lang', ''))")" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "feat(faq): add question from issue #${{ github.event.issue.number }}"
+          branch: "faq/issue-${{ github.event.issue.number }}"
+          delete-branch: true
+          title: "[FAQ] Add question: ${{ steps.add_faq.outputs.question_title }}"
+          body: |
+            ### 💡 FAQ Question Proposal
+
+            This Pull Request was automatically generated from issue #${{ github.event.issue.number }}.
+
+            - **Language**: `${{ steps.add_faq.outputs.lang }}`
+            - **Target file**: `${{ steps.add_faq.outputs.target_file }}`
+            - **Question**: ${{ steps.add_faq.outputs.question_title }}
+
+            Closes #${{ github.event.issue.number }}
+          labels: |
+            faq
+            documentation
+            automated-pr
+
+      - name: Comment on Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Thank you @${context.payload.issue.user.login} for proposing this FAQ question! 🎉\n\nA Pull Request has been automatically opened to review and merge this question into the Open Food Facts FAQ. You can follow along with the PR review and automated validation checks!`
+            });
