@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.5.1...v1.6.0) (2026-09-28)
+
+
+### Features
+
+* science glowup + what's in my shampoo ([5b16f84](https://github.com/openfoodfacts/openfoodfacts-web/commit/5b16f84f1fa74d262fc1b75454693214041bfa4c))
+
 ## [1.5.1](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.5.0...v1.5.1) (2026-09-24)
 
 
