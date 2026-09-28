@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.6.0...v1.6.1) (2026-09-28)
+
+
+### Bug Fixes
+
+* cleanup presskit.html ([b993585](https://github.com/openfoodfacts/openfoodfacts-web/commit/b9935858ee6097768df8f3dd52da5d7ed000597c))
+
 ## [1.6.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.5.1...v1.6.0) (2026-09-28)
 
 
