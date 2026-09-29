@@ -781,36 +781,43 @@ def is_css_pattern(text):
 
 def fix_dynamic_repetitions(content, filepath):
     """
-    Dynamically detect and fix text repetitions.
+    Dynamically detect and fix text repetitions safely line-by-line.
     """
     fixes = 0
-    skip_files = ['landing-off.html', 'presse.html', 'revue-de-presse-fr.html']
+    skip_files = ['landing-off.html', 'presse.html', 'revue-de-presse-fr.html', 'press-review.html', 'faq.html', 'mobile-app-showcase.html']
     for skip_file in skip_files:
         if skip_file in filepath:
             return content, 0
-    
-    min_len = 20
-    max_iterations = 50
-    for _ in range(max_iterations):
-        match = re.search(r'([^\n<>]{' + str(min_len) + r',}?)\s+\1', content, re.MULTILINE)
-        if not match:
-            break
-        
-        matched_text = match.group(1).strip()
-        if is_css_pattern(matched_text):
-            break
-        if re.match(r'^[\s\n\r\t<>\/]+$', matched_text):
-            break
-        if re.match(r'^[a-z0-9_-]+$', matched_text, re.IGNORECASE):
-            break
-        if re.match(r'^["\'\(\)\[\]{}]+$', matched_text):
-            break
-        
-        full_match = match.group(0)
-        content = content.replace(full_match, matched_text, 1)
-        fixes += 1
-    
-    return content, fixes
+
+    new_lines = []
+    modified = False
+    for line in content.splitlines(keepends=True):
+        if len(line) < 40:
+            new_lines.append(line)
+            continue
+        line_clean = line
+        for _ in range(10):
+            match = re.search(r'([^\n<>]{20,300}?)\s+\1', line_clean)
+            if not match:
+                break
+            matched_text = match.group(1).strip()
+            if is_css_pattern(matched_text):
+                break
+            if re.match(r'^[\s\n\r\t<>\/]+$', matched_text):
+                break
+            if re.match(r'^[a-z0-9_-]+$', matched_text, re.IGNORECASE):
+                break
+            if re.match(r'^["\'\(\)\[\]{}]+$', matched_text):
+                break
+            full_match = match.group(0)
+            line_clean = line_clean.replace(full_match, matched_text, 1)
+            fixes += 1
+            modified = True
+        new_lines.append(line_clean)
+
+    if modified:
+        return "".join(new_lines), fixes
+    return content, 0
 
 
 def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fix_badges=True, fix_brands=True, fix_typography=True, fix_facets=True, verbose=False):

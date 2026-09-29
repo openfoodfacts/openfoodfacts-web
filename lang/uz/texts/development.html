@@ -1,68 +1,235 @@
-<div class="row text-center">
-  <div class="large-12 columns">
-    <h2 class="emphasized-title">Come play with food !</h2>
-    <h4 class="subheader">Open Food Facts ishlab chiqish jamoalaridan biriga qo'shiling va oziq-ovqat tizimiga butun dunyo bo'ylab ta'sir ko'rsating!</h4>
-  </div>
+<!-- no side column -->
+<title>Develop with Open Food Facts - Open Source Developer Portal</title>
+
+<style>
+#dev-portal {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1f2937;
+    max-width: 1200px;
+    margin: 0 auto 3rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+#dev-portal *,
+#dev-portal *::before,
+#dev-portal *::after {
+    box-sizing: border-box;
+}
+
+/* Hero Section */
+#dev-portal .dev-hero {
+    text-align: center;
+    padding: 2.75rem 1rem 2rem 1rem;
+    background: linear-gradient(180deg, #fff7ed 0%, #ffffff 100%);
+    border-radius: 20px;
+    border: 1px solid #ffedd5;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(234, 88, 12, 0.05);
+}
+
+#dev-portal .dev-hero h1 {
+    font-size: 2.75rem;
+    font-weight: 900;
+    color: #111827;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+#dev-portal .dev-hero p.lead {
+    font-size: 1.2rem;
+    color: #4b5563;
+    max-width: 820px;
+    margin: 0 auto 1.75rem auto;
+    line-height: 1.6;
+}
+
+#dev-portal .dev-hero-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+/* Quick Nav Anchor Bar */
+#dev-portal .dev-nav-bar {
+    position: sticky;
+    top: 10px;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+#dev-portal .dev-nav-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4b5563;
+    padding: 0.4rem 0.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+#dev-portal .dev-nav-link:hover {
+    color: #ea580c;
+    background: #fff7ed;
+}
+
+/* Buttons */
+.btn-dev-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.6rem 1.1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.btn-dev-action:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary-action {
+    background: #ea580c;
+    color: #ffffff !important;
+}
+
+.btn-primary-action:hover {
+    background: #c2410c;
+    color: #ffffff !important;
+}
+
+.btn-github-action {
+    background: #24292f;
+    color: #ffffff !important;
+}
+
+.btn-github-action:hover {
+    background: #090a0c;
+    color: #ffffff !important;
+}
+
+.btn-slack-action {
+    background: #ffffff;
+    color: #1f2937 !important;
+    border: 1px solid #d1d5db;
+}
+
+.btn-slack-action:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+}
+
+/* Section divider */
+#dev-portal hr.dev-divider {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 3rem 0;
+}
+
+@media (max-width: 640px) {
+    #dev-portal .dev-hero {
+        padding: 1.75rem 1rem;
+    }
+    #dev-portal .dev-hero h1 {
+        font-size: 1.95rem;
+    }
+    #dev-portal .dev-hero p.lead {
+        font-size: 1rem;
+    }
+    #dev-portal .dev-nav-bar {
+        position: static;
+        gap: 0.35rem;
+    }
+    #dev-portal .dev-nav-link {
+        font-size: 0.78rem;
+        padding: 0.3rem 0.5rem;
+    }
+}
+</style>
+
+<div id="dev-portal">
+    <!-- Hero Banner -->
+    <section class="dev-hero">
+        <h1>Come Play with Food! 🥗✨</h1>
+        <p class="lead">
+            Join the Open Food Facts developer community. From building our next-generation web frontend to training AI models, gamifying micro-contributions, and defending our infrastructure against rogue scrapers, your code will make an immediate impact on global food transparency.
+        </p>
+        <div class="dev-hero-actions">
+            <a href="https://github.com/openfoodfacts" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
+                <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                Explore GitHub Org
+            </a>
+            <a href="https://slack.openfoodfacts.org" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+                💬 Join Our Slack
+            </a>
+            <a href="https://wiki.openfoodfacts.org/Projects_homepage" class="btn-dev-action btn-slack-action" target="_blank" rel="noopener noreferrer">
+                📖 Projects Wiki
+            </a>
+        </div>
+    </section>
+
+    <!-- Interactive Navigation Anchor Bar -->
+    <nav class="dev-nav-bar" aria-label="Developer Teams Navigation">
+        <a href="#dev-general" class="dev-nav-link">🎯 Objectives</a>
+        <a href="#dev-frontend" class="dev-nav-link">🌐 Frontend &amp; JS</a>
+        <a href="#dev-gamification" class="dev-nav-link">🎮 Hunger Games</a>
+        <a href="#dev-mobile" class="dev-nav-link">📱 Mobile (Flutter)</a>
+        <a href="#dev-ai" class="dev-nav-link">🤖 AI &amp; Vision</a>
+        <a href="#dev-server" class="dev-nav-link">⚙️ Core Backend</a>
+        <a href="#dev-infrastructure" class="dev-nav-link">🛡️ Infrastructure &amp; Bots</a>
+    </nav>
+
+    <!-- Cardinal Objectives & Mentoring -->
+    [[texts/dev-general.html]]
+
+    <hr class="dev-divider">
+
+    <!-- Frontend & JavaScript -->
+    [[texts/dev-frontend.html]]
+
+    <hr class="dev-divider">
+
+    <!-- Gamification & Editing Tools -->
+    [[texts/dev-gamification.html]]
+
+    <hr class="dev-divider">
+
+    <!-- Mobile Application -->
+    [[texts/dev-android.html]]
+
+    <hr class="dev-divider">
+
+    <!-- Artificial Intelligence -->
+    [[texts/dev-artificial-intelligence.html]]
+
+    <hr class="dev-divider">
+
+    <!-- Core Backend & APIs -->
+    [[texts/dev-server.html]]
+
+    <hr class="dev-divider">
+
+    <!-- Infrastructure, Systems & Bot Defense -->
+    [[texts/dev-infrastructure.html]]
+
+    <!-- Edit Page Include -->
+    
 </div>
-
-<p>You can find our software architecture, and a curated list of repositories on Github. Shuningdek, tematik loyihalar ro'yxatini va referentlarni wiki-da topishingiz mumkin</p>
-<center><a class="button" href="https://github.com/openfoodfacts">Explore the list of projects on GitHub</a><br>
-<a class="button" href="https://wiki.openfoodfacts.org/Projects_homepage">Explore on-going projects</a><br>
-</center>
-[[texts/dev-general.html]]
-
-<div class="row text-center">
-  <div class="large-12 columns">
-    <h2 class="emphasized-title">Android team</h2>
-    <h4 class="subheader">We strive to build an Android app that uses all the best practises, and works well across geographies and devices.</h4>
-    <p class="text-left"></p>
-  </div>
-</div>
-
-[[texts/dev-android.html]]
-
-<!--
-<hr>
-<div class="row text-center">
-  <div class="large-12 columns">
-    <h2>Android team</h2>
-    <h4 class="subheader">We strive to build an Android app that uses all the best practises, and works well across geographies and devices.</h4>
-    <p class="text-left"></p>
-  </div>
-</div>
-
-[[texts/dev-android.html]]
--->
-
-<div class="row text-center">
-  <div class="large-12 columns">
-    <h2 class="emphasized-title">The Artificial Intelligence team</h2>
-    <h4 class="subheader">We're leveraging the structured trove of data to empower contributors to liberate even more data, by liberating them from tedious tasks.</h4>
-    <p class="text-left"></p>
-  </div>
-</div>
-
-[[texts/dev-artificial-intelligence.html]]
-
-<!--
-
-<div class="row text-center">
-  <div class="large-12 columns">
-    <h2 class="emphasized-title">The iOS team</h2>
-    <h4 class="subheader">We strive to make an elegant, simple yet powerful app to empower users to join the food revolution.</h4>
-    <p class="text-left"></p>
-  </div>
-</div>
-
-texts/dev-ios.html
--->
-
-<div class="row text-center">
-  <div class="large-12 columns">
-    <h2 class="emphasized-title">The Server Team</h2>
-    <h4 class="subheader">The server team does the heavy lifting to make Open Food Facts possible.</h4>
-    <p class="text-left"></p>
-  </div>
-</div>
-
-[[texts/dev-server.html]]

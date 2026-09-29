@@ -1,0 +1,474 @@
+<!-- no side column -->
+<title>Développement Frontend &amp; JavaScript - Open Food Facts</title>
+
+<style>
+.dev-frontend-section {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1f2937;
+    margin: 1.5rem auto 3rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.dev-frontend-section *,
+.dev-frontend-section *::before,
+.dev-frontend-section *::after {
+    box-sizing: border-box;
+}
+
+.dev-frontend-section .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.dev-frontend-section .section-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+}
+
+.dev-frontend-section .section-header p.lead {
+    font-size: 1.1rem;
+    color: #4b5563;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.dev-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.dev-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.dev-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    border-color: #fdba74;
+}
+
+.dev-card-featured {
+    border: 2px solid #ea580c;
+    background: linear-gradient(180deg, #fffaf5 0%, #ffffff 100%);
+    position: relative;
+}
+
+.dev-card-featured-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: #ea580c;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    box-shadow: 0 2px 6px rgba(234, 88, 12, 0.3);
+}
+
+.dev-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.dev-card-icon {
+    font-size: 2rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #f3f4f6;
+    flex-shrink: 0;
+}
+
+.dev-card-title {
+    margin: 0;
+}
+
+.dev-card-title h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.25rem 0;
+    line-height: 1.3;
+}
+
+.dev-tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.dev-tech-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.tag-svelte { background: #ffedd5; color: #c2410c; }
+.tag-tailwind { background: #e0f2fe; color: #0369a1; }
+.tag-ts { background: #dbeafe; color: #1d4ed8; }
+.tag-vue { background: #d1fae5; color: #047857; }
+.tag-react { background: #e0f2fe; color: #0284c7; }
+.tag-lit { background: #ede9fe; color: #6d28d9; }
+.tag-node { background: #dcfce7; color: #15803d; }
+
+.dev-card-body {
+    flex: 1;
+    margin-bottom: 1.5rem;
+}
+
+.dev-card-body p {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.55;
+    margin: 0 0 0.75rem 0;
+}
+
+.dev-card-features {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0 0;
+}
+
+.dev-card-features li {
+    font-size: 0.88rem;
+    color: #4b5563;
+    padding-left: 1.25rem;
+    position: relative;
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+}
+
+.dev-card-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #ea580c;
+    font-weight: bold;
+}
+
+.dev-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: auto;
+}
+
+.btn-dev-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary-action {
+    background: #ea580c;
+    color: #ffffff&nbsp;!important;
+}
+
+.btn-primary-action:hover {
+    background: #c2410c;
+    color: #ffffff&nbsp;!important;
+}
+
+.btn-github-action {
+    background: #24292f;
+    color: #ffffff&nbsp;!important;
+}
+
+.btn-github-action:hover {
+    background: #090a0c;
+    color: #ffffff&nbsp;!important;
+}
+
+.btn-slack-action {
+    background: #f3f4f6;
+    color: #1f2937&nbsp;!important;
+    border: 1px solid #e5e7eb;
+}
+
+.btn-slack-action:hover {
+    background: #e5e7eb;
+}
+
+.dev-onboarding-box {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.dev-onboarding-box h4 {
+    color: #9a3412;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+}
+
+.dev-onboarding-box p {
+    font-size: 0.95rem;
+    color: #7c2d12;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+    .dev-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<div class="dev-frontend-section" id="dev-frontend">
+    <div class="section-header">
+        <h2>Écosystème Frontend &amp; JavaScript</h2>
+        <p class="lead">
+            Nous construisons une expérience web réactive, accessible et axée sur le plaisir d'utilisation. De notre frontend de nouvelle génération aux composants web partagés et aux micro-applications spécialisées, les développeurs JavaScript et TypeScript façonnent la manière dont des millions de citoyens explorent et vérifient quotidiennement les données alimentaires.
+        </p>
+    </div>
+
+    <div class="dev-cards-grid">
+        <!-- Open Food Facts Explorer (Next Gen Frontend) -->
+        <div class="dev-card dev-card-featured">
+            <span class="dev-card-featured-badge">Flagship de nouvelle génération</span>
+            <div class="dev-card-header">
+                <div class="dev-card-icon" style="background: #fff0eb; color: #ea580c;">🚀</div>
+                <div class="dev-card-title">
+                    <h3>Ouvrir l'explorateur de faits alimentaires</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag tag-svelte">SvelteKit</span>
+                        <span class="dev-tech-tag tag-tailwind">Tailwind CSS</span>
+                        <span class="dev-tech-tag tag-ts">TypeScript</span>
+                        <span class="dev-tech-tag">Vite</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <p>
+                    <strong>Explorer</strong> est le nouveau frontend phare d'Open Food Facts. Il réinvente l'expérience web dans son ensemble avec des transitions de pages ultra-rapides, une intégration moderne du système de design, des explorations de produits réactives et une accessibilité approfondie.
+                </p>
+                <ul class="dev-card-features">
+                    <li>Rendu côté serveur complet &amp; réactivité côté client via SvelteKit</li>
+                    <li>Système de design Tailwind CSS conçu avec notre équipe design sur Figma</li>
+                    <li>Interface utilisateur accessible et internationalisée, prête pour plus de 80 langues</li>
+                    <li>Déploiement de staging prêt pour des tests en direct sur beta.openfoodfacts.net</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="https://beta.openfoodfacts.net" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+                    Démo en direct (Bêta)
+                </a>
+                <a href="https://github.com/openfoodfacts/openfoodfacts-explorer" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
+                    Dépôt explorer
+                </a>
+                <a href="https://openfoodfacts.slack.com/messages/C02778A869D/" class="btn-dev-action btn-slack-action" target="_blank" rel="noopener noreferrer">
+                    #explorer sur Slack
+                </a>
+            </div>
+        </div>
+
+        <!-- Open Food Facts Web Components -->
+        <div class="dev-card">
+            <div class="dev-card-header">
+                <div class="dev-card-icon" style="background: #f5f3ff; color: #7c3aed;">🧩</div>
+                <div class="dev-card-title">
+                    <h3>Bibliothèque de composants web</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag tag-lit">Lit</span>
+                        <span class="dev-tech-tag tag-ts">TypeScript</span>
+                        <span class="dev-tech-tag">Web Components</span>
+                        <span class="dev-tech-tag">NPM</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <p>
+                    Éléments d'interface utilisateur agnostiques vis-à-vis des frameworks, publiés sur NPM. Ils permettent des interfaces de contribution réutilisables à travers nos modèles de serveur hérités, le frontend moderne Explorer, Hunger Games et les portails de partenaires tiers.
+                </p>
+                <ul class="dev-card-features">
+                    <li>Extraction OCR du tableau nutritionnel Nutri-Sight &amp; vérification visuelle</li>
+                    <li>Questions IA Robotoff &amp; widgets de validation humaine (human-in-the-loop)</li>
+                    <li>Correcteur orthographique d'ingrédients, affichages de panneaux de connaissances et outils photo</li>
+                    <li>Intégrable partout sans dépendance à un framework spécifique</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="https://openfoodfacts.github.io/openfoodfacts-webcomponents/" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+                    Présentation des composants
+                </a>
+                <a href="https://github.com/openfoodfacts/openfoodfacts-webcomponents" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
+                    Dépôt GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Open Prices Frontend -->
+        <div class="dev-card">
+            <div class="dev-card-header">
+                <div class="dev-card-icon" style="background: #ecfdf5; color: #059669;">🏷️</div>
+                <div class="dev-card-title">
+                    <h3>Application web Open Prices</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag tag-vue">Vue.js 3</span>
+                        <span class="dev-tech-tag tag-ts">TypeScript</span>
+                        <span class="dev-tech-tag tag-tailwind">Tailwind CSS</span>
+                        <span class="dev-tech-tag">PWA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <p>
+                    Une base de données ouverte et participative ainsi qu'une application web progressive pour suivre les prix des produits alimentaires, l'inflation alimentaire et la transparence des prix dans les chaînes de supermarchés du monde entier.
+                </p>
+                <ul class="dev-card-features">
+                    <li>Scan de codes-barres, téléchargement de photos de tickets de caisse et géolocalisation des magasins</li>
+                    <li>Comparaisons de prix dynamiques entre les détaillants et les dates</li>
+                    <li>Fonctionne conjointement avec le backend Python Open Prices</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="https://prices.openfoodfacts.org" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+                    prices.openfoodfacts.org
+                </a>
+                <a href="https://github.com/openfoodfacts/open-prices-frontend" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
+                    Dépôt GitHub
+                </a>
+                <a href="https://openfoodfacts.slack.com/messages/C051Y6FP6C4/" class="btn-dev-action btn-slack-action" target="_blank" rel="noopener noreferrer">
+                    #prices
+                </a>
+            </div>
+        </div>
+
+        <!-- Official Node.js & Web SDK -->
+        <div class="dev-card">
+            <div class="dev-card-header">
+                <div class="dev-card-icon" style="background: #f0fdf4; color: #16a34a;">📦</div>
+                <div class="dev-card-title">
+                    <h3>SDK JavaScript &amp; Node.js</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag tag-node">Node.js</span>
+                        <span class="dev-tech-tag tag-ts">TypeScript</span>
+                        <span class="dev-tech-tag">Edge &amp; Navigateur</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <p>
+                    Le SDK client officiel pour les développeurs JavaScript et TypeScript. Fournit un accès complet et typé aux données produits d'Open Food Facts, aux API de recherche, aux facettes et aux points de terminaison d'écriture pour les contributions.
+                </p>
+                <ul class="dev-card-features">
+                    <li>Typages TypeScript complets pour les produits, le Nutri-Score, les allergènes et les labels</li>
+                    <li>Prend en charge Node.js, Cloudflare Workers, Deno, Bun et les environnements de navigateur</li>
+                    <li>Alimente les outils web internes, les scripts Node et les réutilisations par la communauté</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="https://www.npmjs.com/package/@openfoodfacts/openfoodfacts-nodejs" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+                    Package NPM
+                </a>
+                <a href="https://github.com/openfoodfacts/openfoodfacts-nodejs" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
+                    Dépôt GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Nutripatrol Moderation Frontend -->
+        <div class="dev-card">
+            <div class="dev-card-header">
+                <div class="dev-card-icon" style="background: #fef2f2; color: #dc2626;">🛡️</div>
+                <div class="dev-card-title">
+                    <h3>Interface de modération Nutripatrol</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag tag-react">React</span>
+                        <span class="dev-tech-tag tag-ts">TypeScript</span>
+                        <span class="dev-tech-tag">Modération</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <p>
+                    Nutripatrol est la plateforme gardienne de la qualité des données d'Open Food Facts. L'interface fournit aux modérateurs des flux de travail rapides pour examiner les modifications suspectes, lutter contre le vandalisme et auditer les anomalies de données.
+                </p>
+                <ul class="dev-card-features">
+                    <li>Comparaisons côte à côte des révisions et suivi de la réputation des contributeurs</li>
+                    <li>Actions de modération par lots pour approuver ou annuler rapidement les modifications</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="https://github.com/openfoodfacts/nutripatrol-frontend" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
+                    Dépôt GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Folksonomy Engine UI -->
+        <div class="dev-card">
+            <div class="dev-card-header">
+                <div class="dev-card-icon" style="background: #fdf4ff; color: #c026d3;">🏷️</div>
+                <div class="dev-card-title">
+                    <h3>Interface du moteur de folksonomie</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag">JavaScript</span>
+                        <span class="dev-tech-tag">Open Metadata</span>
+                        <span class="dev-tech-tag">Clé-Valeur</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <p>
+                    Similaire au modèle de tags d'OpenStreetMap ou aux propriétés de Wikidata, la Folksonomie permet d'ajouter des métadonnées arbitraires sous forme de clés-valeurs sur les produits alimentaires (par exemple&nbsp;: organismes de certification halal, dimensions de l'emballage, allégations spécifiques).
+                </p>
+                <ul class="dev-card-features">
+                    <li>Éditeur de propriétés dynamique et interface de recherche</li>
+                    <li>Modèle de données extensible découplé des schémas fixes</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="https://github.com/openfoodfacts/folksonomy_frontend" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
+                    Dépôt GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="dev-onboarding-box">
+        <h4>💡 Vous souhaitez contribuer à nos projets frontend&nbsp;?</h4>
+        <p>
+            Que vous soyez passionné par SvelteKit, React, Vue ou les Web Components, des tickets adaptés aux débutants vous attendent. Rejoignez la conversation sur Slack dans <strong>#frontend</strong> et <strong>#explorer</strong>, et consultez les tickets ouverts avec le label <code>good first issue</code> sur nos dépôts&nbsp;!
+        </p>
+        <a href="https://static.openfoodfacts.org/data/fr.openfoodfacts.org.products.csv" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+            Rejoindre l'équipe Frontend sur Slack
+        </a>
+    </div>
+</div>

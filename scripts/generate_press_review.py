@@ -741,19 +741,23 @@ if (document.readyState !== "loading") {{
 </script>
 """
 
-# Write French version
-fr_html = build_html("fr")
-with open("lang/fr/texts/revue-de-presse-fr.html", "w", encoding="utf-8") as f:
-    f.write(fr_html.strip() + "\n")
-print("Wrote lang/fr/texts/revue-de-presse-fr.html")
+def main(items=None):
+    # Write French version
+    fr_html = build_html("fr", items=items)
+    with open("lang/fr/texts/revue-de-presse-fr.html", "w", encoding="utf-8") as f:
+        f.write(fr_html.strip() + "\n")
+    print("Wrote lang/fr/texts/revue-de-presse-fr.html")
 
-# Write English version (both as revue-de-presse-fr.html for direct access and press-review.html)
-en_html = build_html("en")
-with open("lang/en/texts/revue-de-presse-fr.html", "w", encoding="utf-8") as f:
-    f.write(en_html.strip() + "\n")
-print("Wrote lang/en/texts/revue-de-presse-fr.html")
+    # Write English version (both as revue-de-presse-fr.html for direct access and press-review.html)
+    en_html = build_html("en", items=items)
+    with open("lang/en/texts/revue-de-presse-fr.html", "w", encoding="utf-8") as f:
+        f.write(en_html.strip() + "\n")
+    print("Wrote lang/en/texts/revue-de-presse-fr.html")
 
-with open("lang/en/texts/press-review.html", "w", encoding="utf-8") as f:
-    f.write(en_html.strip() + "\n")
-print("Wrote lang/en/texts/press-review.html")
+    with open("lang/en/texts/press-review.html", "w", encoding="utf-8") as f:
+        f.write(en_html.strip() + "\n")
+    print("Wrote lang/en/texts/press-review.html")
+
+if __name__ == "__main__":
+    main()
 

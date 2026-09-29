@@ -171,11 +171,18 @@ def compile_press_review(check_only=False, verbose=True):
     generate_press_review.main(items=items)
 
     # 3. Re-generate country presskits and press hub
-    import generate_country_presskits
-    generate_country_presskits.generate_all()
+    try:
+        import generate_country_presskits
+        generate_country_presskits.generate_all()
+    except Exception as e:
+        if verbose:
+            print(f"Note: generate_country_presskits failed or skipped: {e}")
 
-    import generate_press_hub
-    generate_press_hub.main()
+    try:
+        import generate_press_hub
+        generate_press_hub.main()
+    except ImportError:
+        pass
 
     return True
 

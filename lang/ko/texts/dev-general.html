@@ -1,55 +1,177 @@
-<div class="row text-center">
-	<div class="medium-4 columns">
-		<img src="https://static.openfoodfacts.org/files/presskit/PressKit/developers/impact-accessibility.png" alt="" style="height: 140px;">	
-		<h3>모든 사람의 접근성에 영향을 미침</h3>
-		<p>
-			정보에 근거한 음식 결정은 보편적인 권리입니다. 일반적으로 스크린 리더 및 접근성 기술에 의존하는 사람들이 Open Food Facts를 더욱 쉽게 이용할 수 있도록 도와주십시오.
-		</p>
-	</div>
+<!-- no side column -->
+<title>Developer Overview &amp; Mentoring - Open Food Facts</title>
 
-	<div class="medium-4 columns">
-		<img src="https://static.openfoodfacts.org/files/presskit/PressKit/developers/impact-geo.png" alt="" style="height: 140px;">	
-		<h3>전 세계 어디서나 가능한 식품 정보 제공</h3>
-		<p>
-			정보에 근거한 음식 결정은 보편적인 권리입니다. 소프트웨어를 해당 국가 (또는 다른 국가) 및 모든 작성 시스템에 맞게 조정하여 가능한 한 많은 국가와 언어에서 Open Food Facts가 잘 작동하도록 도와주십시오.
-		</p>
-	</div>
+<style>
+.dev-general-section {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1f2937;
+    margin: 1.5rem auto 3rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
 
-	<div class="medium-4 columns">
-		<img src="https://static.openfoodfacts.org/files/presskit/PressKit/android/healthy-android.jpg" alt="A cake with every Android dessert" style="height: 140px;">	
-		<h3>영향을 미치기</h3>
-		<p>새로운 기능은 0,5 백만 이상의 사용자에게 제공됩니다. 우리는 협력적으로 그들이 모든 사람들을 위해 일하고, 충돌하지 않도록 보장하고, 가능한 한 빨리, 가능한 한 많은 언어로 그것들을 발송합니다.
-		</p>
-	</div>
-</div>
+.dev-general-section *,
+.dev-general-section *::before,
+.dev-general-section *::after {
+    box-sizing: border-box;
+}
 
+.dev-objectives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.75rem;
+    margin-bottom: 2.5rem;
+}
 
-<div class="row text-center">
+.dev-obj-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 1.75rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-	<div class="medium-4 columns">
-		<img src="https://static.openfoodfacts.org/files/presskit/PressKit/developers/summerofcode.png" alt="Summer of Code logo" style="height: 140px;">	
-		<h3>구글의 Summer Code</h3>
-		<p>
-			구글의 Summer code의 일환으로 학생들을 지도하고 동시에 더 나은 프로그래머가 되고 싶으습니까?
-			지구상에서 가장 좋은 여름 기회 중 하나를 얻기를 원하십니까? 그리고 식품 시스템에 지속적인 영향을 미치고 싶으십니까?
-		</p>
-	</div>
+.dev-obj-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
 
-	<div class="medium-4 columns">
-		<img src="https://static.openfoodfacts.org/files/presskit/PressKit/developers/seasonofdocs.png" alt="Google Season of Docs" style="height: 140px;">	
-		<h3>Google의  Season of Docs</h3>
-		<p>
-			우리는 구글의  Season of Docs 1판에 참여하게 되어 기쁘다. 문서 작성자는 이름이없는 영웅입니다. 그들은 다른 사람들이 프로젝트를 탐색하도록 도와줍니다. 이 글을 읽고 도움을 고려하고 있다면, 프로그램에 대한 우리의 참여가 문서화되었기 때문입니다 ;-)
+.dev-obj-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+}
 
-		</p>
-	</div>
+.dev-obj-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+}
 
-	<div class="medium-4 columns">
-		<img src="https://static.openfoodfacts.org/files/presskit/PressKit/developers/coderswanted.png" alt="Coders wanted for Open Food Facts" style="height: 140px;">	
-		<h3>프로그래머들은 원합니다</h3>
-		<p>
-			Open Food Facts의 모든 자원봉사 엔지니어링 팀들이 당신의 pull-request를 기다리고 있습니다. 작은 버그 같은 것이 없으면 당신의 커밋은 몇 주가 아닌 며칠 만에 큰 영향을 미칠 것입니다.
-		</p>
-	</div>
+.dev-obj-card p {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.55;
+    margin: 0;
+}
 
+.dev-mentoring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.dev-mentoring-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.dev-mentoring-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dev-mentoring-card p {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.55;
+    margin: 0 0 1rem 0;
+    flex: 1;
+}
+</style>
+
+<div class="dev-general-section" id="dev-general">
+    <!-- Objectives -->
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <h2 style="font-size: 2rem; font-weight: 800; color: #111827; margin: 0 0 0.5rem 0;">Our Cardinal Development Objectives</h2>
+        <p style="font-size: 1.1rem; color: #4b5563; max-width: 750px; margin: 0 auto; line-height: 1.6;">
+            Every line of code written at Open Food Facts serves a clear mission: empowering citizens with transparent food data for health and the planet.
+        </p>
+    </div>
+
+    <div class="dev-objectives-grid">
+        <div class="dev-obj-card">
+            <div class="dev-obj-icon">♿</div>
+            <h3>Accessibility for Everyone</h3>
+            <p>
+                Making informed food decisions is a universal right. We build software that is fully usable by people who rely on screen readers, high-contrast modes, and assistive hardware across all devices.
+            </p>
+        </div>
+
+        <div class="dev-obj-card">
+            <div class="dev-obj-icon">🌍</div>
+            <h3>Worldwide Availability</h3>
+            <p>
+                Food culture and food labeling vary globally. We build support for hundreds of languages, all writing systems (RTL, Cyrillic, Hanzi, Arabic), diverse packaging norms, and regional nutritional systems.
+            </p>
+        </div>
+
+        <div class="dev-obj-card">
+            <div class="dev-obj-icon">🚀</div>
+            <h3>Planetary Scale Impact</h3>
+            <p>
+                New features are shipped directly to millions of citizens, scientific researchers, and public policy makers. Your contributions create tangible, real-world change from day one.
+            </p>
+        </div>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 2.5rem 0;">
+
+    <!-- Mentoring & Community Opportunities -->
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <h2 style="font-size: 1.8rem; font-weight: 800; color: #111827; margin: 0 0 0.5rem 0;">Mentoring &amp; Learning Opportunities</h2>
+        <p style="font-size: 1.05rem; color: #4b5563; max-width: 750px; margin: 0 auto; line-height: 1.6;">
+            Learn, mentor, and build open source and open data together in a supportive community.
+        </p>
+    </div>
+
+    <div class="dev-mentoring-grid">
+        <div class="dev-mentoring-card">
+            <h3>☀️ Google Summer of Code</h3>
+            <p>
+                Open Food Facts is a proud, recurring mentoring organization for Google Summer of Code (GSoC). Students and beginner developers collaborate closely with senior maintainers on high-impact projects across Flutter, AI/ML, and web development.
+            </p>
+            <div>
+                <a href="/google-summer-of-code" class="btn-dev-action btn-primary-action">
+                    Explore GSoC at OFF
+                </a>
+            </div>
+        </div>
+
+        <div class="dev-mentoring-card">
+            <h3>📝 Google Season of Docs</h3>
+            <p>
+                Documentation writers and technical communicators are our heroes. Whether writing interactive tutorials, clarifying taxonomy guidelines, or refining OpenAPI specs, your words unlock the codebase for thousands of newcomers.
+            </p>
+            <div>
+                <a href="https://wiki.openfoodfacts.org/Projects_homepage" class="btn-dev-action btn-slack-action" target="_blank" rel="noopener noreferrer">
+                    Read Our Project Guides
+                </a>
+            </div>
+        </div>
+
+        <div class="dev-mentoring-card">
+            <h3>👩‍💻 Coders &amp; Decoders Wanted</h3>
+            <p>
+                All volunteer teams are ready to welcome you and review your first Pull Request. There are no "small bugs"—fixing a typo, adding an automated test, or improving an icon makes an immediate difference.
+            </p>
+            <div>
+                <a href="https://slack.openfoodfacts.org" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+                    Join #welcome on Slack
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
