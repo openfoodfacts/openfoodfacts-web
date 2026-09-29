@@ -40,11 +40,11 @@
 .media-search-input {
   min-width: 260px;
   flex: 1 1 260px;
-  margin: 0 !important;
-  padding: 0.5rem 0.9rem !important;
-  border-radius: 8px !important;
-  border: 1px solid #cbd5e1 !important;
-  font-size: 0.95rem !important;
+  margin: 0&nbsp;!important;
+  padding: 0.5rem 0.9rem&nbsp;!important;
+  border-radius: 8px&nbsp;!important;
+  border: 1px solid #cbd5e1&nbsp;!important;
+  font-size: 0.95rem&nbsp;!important;
 }
 .media-filter-group {
   display: flex;
@@ -59,12 +59,12 @@
   white-space: nowrap;
 }
 .media-filter-group select {
-  margin: 0 !important;
-  padding: 0.45rem 0.8rem !important;
-  border-radius: 8px !important;
-  border: 1px solid #cbd5e1 !important;
-  background-color: #fff !important;
-  font-size: 0.9rem !important;
+  margin: 0&nbsp;!important;
+  padding: 0.45rem 0.8rem&nbsp;!important;
+  border-radius: 8px&nbsp;!important;
+  border: 1px solid #cbd5e1&nbsp;!important;
+  background-color: #fff&nbsp;!important;
+  font-size: 0.9rem&nbsp;!important;
   cursor: pointer;
 }
 .media-stats {
@@ -164,13 +164,13 @@
   margin-top: auto;
 }
 .media-download-btn {
-  display: inline-flex !important;
-  align-items: center !important;
+  display: inline-flex&nbsp;!important;
+  align-items: center&nbsp;!important;
   gap: 4px;
-  margin: 0 !important;
-  font-size: 0.85rem !important;
-  padding: 0.4rem 0.8rem !important;
-  border-radius: 8px !important;
+  margin: 0&nbsp;!important;
+  font-size: 0.85rem&nbsp;!important;
+  padding: 0.4rem 0.8rem&nbsp;!important;
+  border-radius: 8px&nbsp;!important;
   vertical-align: middle;
 }
 .media-download-btn .material-icons {
@@ -271,7 +271,7 @@ function renderCards(list) {
 
   grid.innerHTML = list.map(item => {
     const isDark = item.bg === "dark";
-    const darkClass = isDark ? " dark-card" : "";
+    const darkClass = isDark&nbsp;? " dark-card"&nbsp;: "";
     const fname = item.title.replace(/[^a-zA-Z0-9_-]/g, "_");
     
     const btns = [];
@@ -303,9 +303,9 @@ function applyFilters() {
   const sort = document.getElementById("sortSelect").value;
 
   let filtered = ALL_ASSETS.filter(item => {
-    if (topic !== "all" && item.topic !== topic) return false;
-    if (color !== "all" && item.color !== color) return false;
-    if (format !== "all" && !item.format.includes(format)) return false;
+    if (topic&nbsp;!== "all" && item.topic&nbsp;!== topic) return false;
+    if (color&nbsp;!== "all" && item.color&nbsp;!== color) return false;
+    if (format&nbsp;!== "all" && !item.format.includes(format)) return false;
     if (query) {
       const matchText = (item.title + " " + item.keywords + " " + item.topic_label).toLowerCase();
       if (!matchText.includes(query)) return false;
@@ -357,5 +357,5 @@ function resetFilters() {
 }
 
 document.addEventListener("DOMContentLoaded", () => renderCards(ALL_ASSETS));
-if (document.readyState !== "loading") renderCards(ALL_ASSETS);
+if (document.readyState&nbsp;!== "loading") renderCards(ALL_ASSETS);
 </script>
