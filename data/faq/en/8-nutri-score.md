@@ -26,3 +26,14 @@ Don't forget to include the percentage of fruits, vegetables and nuts in your ta
 The Nutri-Score is managed by Santé Publique France. It summarizes the table of nutritional values ​​so that everyone can understand it. The goal is to provide access to clear and understandable nutritional information for everyone.
 
 ---
+
+## How do i report nails in my food ?
+
+- contact@openfoodfacts.org
+- include a photo of the food with nails and the barcode
+- wait for answer
+
+
+*Sources:* https://en.wikipedia.org/wiki/Coyote_vs._Acme
+
+---
