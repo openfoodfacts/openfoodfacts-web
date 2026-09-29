@@ -140,14 +140,18 @@ def compile_reuses(check_only=False, verbose=True):
     if verbose:
         print(f"Wrote compiled {COMPILED_JSON} ({len(items)} items)")
 
-    # 2. Re-generate showcase HTML pages
-    sys.path.insert(0, os.path.dirname(__file__))
-    import generate_showcase
-    generate_showcase.ALL_REUSES = items
-    generate_showcase.TOTAL_APPS = len(items)
-    generate_showcase.TOTAL_INSTALLS_NUM = sum(r.get("installs_numeric", 0) for r in items)
-    generate_showcase.TOTAL_COUNTRIES = len(set(r.get("country") for r in items if r.get("country")))
-    generate_showcase.main()
+    # 2. Re-generate showcase HTML pages (optional)
+    try:
+        sys.path.insert(0, os.path.dirname(__file__))
+        import generate_showcase
+        generate_showcase.ALL_REUSES = items
+        generate_showcase.TOTAL_APPS = len(items)
+        generate_showcase.TOTAL_INSTALLS_NUM = sum(r.get("installs_numeric", 0) for r in items)
+        generate_showcase.TOTAL_COUNTRIES = len(set(r.get("country") for r in items if r.get("country")))
+        generate_showcase.main()
+    except ImportError:
+        if verbose:
+            print("Note: generate_showcase module not found, skipping HTML showcase generation.")
 
     return True
 

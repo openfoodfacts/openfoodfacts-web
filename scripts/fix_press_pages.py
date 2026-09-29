@@ -60,6 +60,12 @@ def fix_standard_press_file(content, lang_code):
     # 2. Material icons: restore 'download' inside class="material-icons"
     content = re.sub(r'<span class=([\'"])material-icons\1>[^<]*</span>', r'<span class="material-icons">download</span>', content)
 
+    # 2b. Modern press page includes (restore untranslated include paths)
+    content = re.sub(r'(<!-- Flux RSS & Actualités -->[\s\S]*?)\[\[.*?\]\]', r'\1[[texts/presskit-rss.html]]', content)
+    content = re.sub(r'\[\[[^\]]*?(?:rss|pressekit|presskit|persmap|dossier-de-premsa|gazetara|kit de prensa|prentsa-kit|pressukit|spaudos|kit tal-istampa|dosar-de-pres|прескит|i-rss|sediriswa|bas[iı]nkit|xiphephana|текст|ٽيڪسٽس|पाठ|প্ৰেছ|ਪ੍ਰੈਸ|ಟೆಕ್|మజ|உரை|టెక్|ข้อความ|ጽሑ|טעק)[^\]]*?\]\]', '[[texts/presskit-rss.html]]', content, flags=re.IGNORECASE)
+    content = re.sub(r'(<!-- Newsletter for Journalists -->[\s\S]*?)\[\[.*?\]\]', r'\1[[texts/sendinblue.html]]', content)
+    content = re.sub(r'\[\[[^\]]*?(?:sendinblue|sūtīšanas_zilais)[^\]]*?\]\]', '[[texts/sendinblue.html]]', content, flags=re.IGNORECASE)
+
     # 3. Block 3 Key facts include
     def fix_block_3(m):
         block = m.group(0)

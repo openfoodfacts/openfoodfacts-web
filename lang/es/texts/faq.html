@@ -391,6 +391,132 @@
   border: 1px solid var(--off-card-border);
 }
 
+/* Feedback & Question Actions Bar */
+.faq-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.86rem;
+}
+.faq-feedback {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.faq-feedback-label {
+  color: var(--off-text-secondary);
+  font-weight: 600;
+  font-size: 0.84rem;
+}
+.faq-feedback-actions {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+.faq-feedback-btn {
+  background: var(--off-surface);
+  border: 1px solid var(--off-card-border);
+  color: var(--off-text-secondary);
+  border-radius: 8px;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.15s ease;
+  line-height: 1.3;
+}
+.faq-feedback-btn:hover:not(:disabled) {
+  background: #f1f5f9;
+  border-color: var(--off-card-border-hover);
+  color: var(--off-text-primary);
+  transform: translateY(-1px);
+}
+.faq-feedback-btn.faq-vote-up.active {
+  background: var(--off-green-50);
+  border-color: var(--off-green-600);
+  color: var(--off-green-800);
+  font-weight: 700;
+}
+.faq-feedback-btn.faq-vote-down.active {
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #b91c1c;
+  font-weight: 700;
+}
+.faq-feedback-btn:disabled {
+  cursor: default;
+  opacity: 0.9;
+}
+.faq-feedback-status {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--off-green-700);
+  display: none;
+}
+.faq-feedback-status.visible {
+  display: inline-block;
+}
+.faq-feedback-status.negative {
+  color: var(--off-text-secondary);
+}
+.faq-edit-wrapper {
+  display: flex;
+  align-items: center;
+}
+.faq-edit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--off-text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.faq-edit-link:hover {
+  color: var(--off-green-700);
+  text-decoration: underline;
+}
+.faq-tool-btn-suggest {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  background: var(--off-green-50);
+  border-color: var(--off-green-100);
+  color: var(--off-green-800);
+}
+.faq-tool-btn-suggest:hover {
+  background: var(--off-green-100);
+  color: var(--off-green-900);
+}
+.faq-empty-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.faq-empty-suggest {
+  background: var(--off-surface);
+  border: 1px solid var(--off-card-border);
+  color: var(--off-text-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.faq-empty-suggest:hover {
+  background: #f1f5f9;
+}
+
 /* Highlight Match */
 mark.faq-highlight {
   background-color: #fef08a;
@@ -514,6 +640,10 @@ mark.faq-highlight {
     width: 100%;
     justify-content: center;
   }
+  .faq-footer-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 </style>
 
@@ -564,6 +694,9 @@ mark.faq-highlight {
   <div class="faq-toolbar">
     <div class="faq-counter-text" id="faqCounter">74 todos los temas</div>
     <div class="faq-toolbar-actions">
+      <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-faq-question.yml" target="_blank" rel="noopener noreferrer" class="faq-tool-btn faq-tool-btn-suggest" title="¿No encuentras una respuesta? Propón una nueva pregunta en GitHub">
+        <span aria-hidden="true">➕</span> Sugerir una pregunta
+      </a>
       <button type="button" class="faq-tool-btn" id="btnExpandAll">Desplegar todo</button>
       <button type="button" class="faq-tool-btn" id="btnCollapseAll">Plegar todo</button>
     </div>
@@ -596,6 +729,31 @@ mark.faq-highlight {
 <p>Después de iniciar sesión en <a href="https://world-es.openfoodfacts.org/" target="_blank" rel="noopener noreferrer">https://world-es.openfoodfacts.org/</a>, haga clic en el nombre de usuario en la esquina superior derecha, seleccione Parámetros de la cuenta. Abre su página de preferencias. Vaya al final de la página y use la acción "eliminar usuario".</p>
 <p>Si no puede iniciar sesión (o restablecer su contraseña), comuníquese con dpo - at - <a href="http://openfoodfacts.org" target="_blank" rel="noopener noreferrer">openfoodfacts.org</a>, usando la dirección de correo electrónico que usó para registrar la cuenta.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="quiero-eliminar-mi-cuenta" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/1-mi-cuenta-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -623,6 +781,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Ve a <strong>Perfil</strong>, luego a <strong>Preguntas frecuentes</strong> y, por último, a<strong> Acerca de esta aplicación.</strong></p>
 <p>Deberías ver un número de versión como 3.4.5+662. No olvides indicarnos la marca y el modelo del teléfono si está depurando.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-se-que-version-de-la-aplicacion-estoy-utilizando" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/2-aplicacion-movil.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -662,6 +845,31 @@ mark.faq-highlight {
 <p>Envíenos un correo electrónico a través de Perfil >> Contacto >> Envíenos un correo electrónico.</p>
 <p>Adjunte a su solicitud toda la información pertinente.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="la-aplicacion-no-escanea" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/2-aplicacion-movil.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -692,6 +900,31 @@ mark.faq-highlight {
 <p>Si quiere ayudarnos a aportar más transparencia a consumidores como usted o nosotros, puede utilizar nuestra aplicación para iPhone o Android para añadir productos: <a href="https://openfoodfacts.app" target="_blank" rel="noopener noreferrer">https://openfoodfacts.app</a>.</p>
 <p>Y para debatir sobre el proyecto, puedes unirte al grupo de colaboradores de Facebook: <a href="https://www.facebook.com/groups/openfoodfacts/" target="_blank" rel="noopener noreferrer">https://www.facebook.com/groups/openfoodfacts/</a> o chatear con los demás colaboradores en Slack: <a href="https://slack.openfoodfacts.org" target="_blank" rel="noopener noreferrer">https://slack.openfoodfacts.org</a></p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="tengo-una-pregunta-reclamacion-sobre-un-producto" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/4-preguntas-sobre-un-producto.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -721,6 +954,31 @@ mark.faq-highlight {
 <p>A esta puntuación PEF se añaden las ventajas y desventajas (modo de producción, origen de los ingredientes, especies amenazadas, envasado, etc.).</p>
 <p>ingredientes, especies amenazadas, envasado) para calcular la puntuación ecológica.</p>
 <p>Para más información, consulte la página de resumen <a href="https://world.openfoodfacts.org/eco-score-the-environmental-impact-of-food-products" target="_blank" rel="noopener noreferrer">https://world.openfoodfacts.org/eco-score-the-environmental-impact-of-food-products</a> en Open Food Facts, así como en el sitio web del consorcio Eco-Score. (Presentación de Eco-Score <a href="https://docs.score-environnemental.com/" target="_blank" rel="noopener noreferrer">https://docs.score-environnemental.com/</a>)</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="que-es-la-metodologia-eco-score" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/5-eco-score.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -753,6 +1011,31 @@ mark.faq-highlight {
 <p>Chocolate 8% (Costa de Marfil, Ecuador)</p>
 <p>Necesitamos también los componentes del envase en forma de: 1 film de plástico para tirar, 1 caja de cartón FSC para reciclar, 6 botellas de plástico PET transparente de 1,5 L para reciclar, 6 tapones de plástico opaco de colores, 12 latas de plástico 33 cl aluminio.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="que-tipo-de-informacion-debe-facilitarse-para-que-la-puntuac" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/5-eco-score.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -781,6 +1064,31 @@ mark.faq-highlight {
                 <p>¿Cómo se combinan los valores de los 15 indicadores?</p>
 <p>Para comprender mejor el sistema FCR, puede leer: <a href="https://doc.agribalyse.fr/documentation/methodologie-acv" target="_blank" rel="noopener noreferrer">explicación de la puntuación FCR</a> (FR) en el sitio metodológico de Eco-Score.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-se-combinan-los-valores-de-los-15-indicadores" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/5-eco-score.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -807,6 +1115,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>El aspecto local se refiere al origen de las materias primas. Por eso es importante introducir sus porcentajes así como sus orígenes en la lista de ingredientes del producto o en el campo dedicado a los orígenes de los ingredientes.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="el-aspecto-local-se-refiere-al-lugar-de-fabricacion-o-al-lug" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/5-eco-score.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -835,6 +1168,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Si desea compartir la información sobre el origen de las materias primas de sus fichas, le invitamos a incluirlas en la lista de ingredientes.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-introducir-el-origen-de-los-ingredientes-para-la-puntua" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/5-eco-score.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -861,6 +1219,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p><a href="https://fr.openfoodfacts.org/nova" target="_blank" rel="noopener noreferrer">https://world.openfoodfacts.org/nova</a></p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="que-es-nova" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/6-nova-procesado-de-alimentos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -891,6 +1274,31 @@ mark.faq-highlight {
 <p>Hay muchas maneras de utilizar nuestras diferentes exportaciones combinadas con diferentes herramientas para seleccionar los datos relativos a un país específico.</p>
 <p>Puede echar un vistazo a algunas de estas técnicas en nuestra <a href="https://wiki.openfoodfacts.org/Reusing_Open_Food_Facts_Data" target="_blank" rel="noopener noreferrer">wiki</a>.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="donde-obtener-los-datos-de-un-pais-concreto" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/7-descarga-de-datos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -917,6 +1325,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>En caso de problema con su Nutri-Score, compruebe que sus datos son correctos en la pestaña "modificar" de la ficha de su producto. Si falta algún dato o es incorrecto, no dude en ponerse en contacto con nosotros en <strong>producers@openfoodfacts.org.</strong></p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="que-debo-hacer-si-el-nutri-score-de-mis-productos-no-es-corr" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/8-nutri-score.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -946,6 +1379,31 @@ mark.faq-highlight {
                 <p>El cálculo del Nutri-Score se realizará con la tabla nutricional de su producto.</p>
 <p>No olvide incluir en su tabla el porcentaje de frutas, verduras y frutos secos, para que el Nutri-Score calculado no sea incorrecto.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="que-tipo-de-informacion-debo-facilitar-para-que-el-nutri-sco" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/8-nutri-score.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -972,6 +1430,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>El Nutri-Score está gestionado por Santé Publique France. Resume la tabla de valores nutricionales para que todo el mundo pueda entenderla. El objetivo es facilitar el acceso a una información nutricional clara y comprensible para todos.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="de-donde-procede-el-nutri-score" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/8-nutri-score.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1003,6 +1486,31 @@ mark.faq-highlight {
 <p>Consideramos que la información sobre productos alimentarios es demasiado importante y útil para guardarla en una caja fuerte. Por eso, cuando en 2012 pusimos en marcha el proyecto y la app Open Food Facts, decidimos hacer exactamente lo contrario: no solo permitimos que cualquiera utilice y reutilice nuestra base de datos, de forma gratuita y libre de impuestos, para cualquier fin (incluido el comercial), ¡sino que lo fomentamos!</p>
 <p>Hacer que los datos sean accesibles al público (lo que se conoce como datos abiertos) permite a particulares, asociaciones, empresas, investigadores, etc. de todo el mundo pensar y desarrollar aplicaciones para los datos que a nosotros seguramente nunca se nos habrían ocurrido.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="cual-es-la-diferencia-con-otros-sitios-web-servicios-o-aplic" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/9-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1032,6 +1540,31 @@ mark.faq-highlight {
 <p>Cualquiera (incluidos, entre otros, los colaboradores y creadores de Open Food Facts) puede redistribuir y/o reutilizar los datos para crear sitios web, servicios, software, aplicaciones móviles, o para escribir artículos y realizar estudios. Son libres de poner el trabajo resultante a libre disposición, o de venderlo o monetizarlo (por ejemplo, con publicidad), siempre que cumplan las condiciones de reutilización.</p>
 <p>También somos estrictamente independientes de la industria alimentaria, y todos los servicios y programas informáticos que producimos son gratuitos. Por ejemplo, nuestra plataforma para productores es totalmente gratuita, y nos complace especialmente, porque creemos que puede ayudarles a mejorar sus productos.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="cual-es-el-modelo-de-negocio-de-open-food-facts" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/9-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1059,6 +1592,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Probablemente no. Casi todos los demás sitios prohíben la reproducción y reutilización de sus datos e imágenes, y esa es, de hecho, la razón por la que creamos Open Food Facts: para que todos estos datos estén disponibles para todos y para todos los usos.</p>
 <p>Por lo tanto, para evitar cualquier problema legal, pedimos a los contribuyentes que solo agreguen imágenes que hayan tomado ellos mismos y solo datos del empaque y la etiqueta del producto.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="puedo-agregar-imagenes-de-productos-o-datos-del-sitio-del-fa" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/9-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1090,6 +1648,31 @@ mark.faq-highlight {
 <p>Si eres un periodista, por favor envíanos un correo electrónico a <a href="mailto:presse@openfoodfacts.org">presse@openfoodfacts.org</a>.</p>
 <p>Tenga en cuenta que: <a href="https://es.openfoodfacts.org/discover" target="_blank" rel="noopener noreferrer">Open Food Facts es una base de datos colaborativa de productos alimenticios</a>, nosotros no vendemos ningún producto y no tenemos conexiones con sus productores. Para una pregunta o queja acerca de un producto, usted necesita escribir directamente al productor( la dirección está en la etiqueta del producto).</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-puedo-ponerme-en-contacto-con-el-equipo-de-open-food-fa" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/9-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1119,6 +1702,31 @@ mark.faq-highlight {
 <p>Para detectar más fácilmente los posibles errores, iremos añadiendo gradualmente comprobaciones automatizadas. Por ejemplo, si los ingredientes de un producto son muy diferentes de los productos de la misma categoría, puede tratarse de un error. Si los nutrientes suman más del 100%, sin duda es un error.</p>
 <p>Por último, muchos productores nos envían fotos y datos sobre sus productos a través de nuestra Plataforma de Productores. Si usted es productor, póngase en contacto con nosotros (producers@openfoodfacts.org).</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="estan-verificados-la-informacion-y-los-datos-del-producto" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/9-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1146,6 +1754,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Sí, la única condición es que acepte que los datos y las imágenes estén disponibles bajo una licencia abierta. (ver <a href="https://world.openfoodfacts.org/terms-of-use#contribution" target="_blank" rel="noopener noreferrer">Condiciones de contribución</a>)</p>
 <p>Hemos desarrollado una plataforma gratuita que le permite importar fácilmente fotos y datos sobre sus productos, independientemente de su tamaño. Podrá importar datos y gráficos completos y actualizados a Open Food Facts. Esta información será visible en más de otras 100 aplicaciones nutricionales. Además, la plataforma le ofrece sugerencias para mejorar el Nutri-Score de sus productos. Póngase en contacto con nosotros para hablar de sus posibles próximos pasos: <strong>producteurs@openfoodfacts.org.</strong></p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="soy-fabricante-de-alimentos-puedo-anadir-mis-productos" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/9-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1195,6 +1828,31 @@ mark.faq-highlight {
 <li>Escuelas de programación (Simplon, Aulas Abiertas) han incluido Open Food Facts como proyecto motivador en sus planes de estudio.</li>
 </ul>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="quien-utiliza-los-datos-de-open-food-facts" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/9-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1222,6 +1880,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Open Food Facts es una asociación sin ánimo de lucro creada en 1901. Puedes ayudarnos <a href="https://fr-en.openfoodfacts.org/contribute" target="_blank" rel="noopener noreferrer">participando en el proyecto</a> y apoyándonos económicamente con tus <a href="https://www.helloasso.com/associations/open-food-facts/collectes/aidez-open-food-facts-a-ameliorer-l-alimentation-de-tous" target="_blank" rel="noopener noreferrer">donaciones</a> (66% deducible de impuestos) y también <a href="https://www.lilo.org/fr/open-food-facts/?utm_source=open-food-facts" target="_blank" rel="noopener noreferrer">utilizando el buscador Lilo.</a></p>
 <p><strong>Muchas gracias.</strong></p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-puedo-apoyar-a-open-food-facts" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/9-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1256,6 +1939,31 @@ mark.faq-highlight {
 <li>Nuestro foro: <a href="https://forum.openfoodfacts.org/" target="_blank" rel="noopener noreferrer">https://forum.openfoodfacts.org/</a></li>
 </ul>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="no-encuentro-respuesta-a-mi-pregunta" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/9-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1284,6 +1992,31 @@ mark.faq-highlight {
                 <p>Cada animal es diferente (una serpiente no tiene las mismas necesidades nutricionales que un gato o un perro).</p>
 <p>Incluso dentro de un mismo tipo de animal, como los perros, las necesidades nutricionales varían en función de la vida sedentaria, una posible castración o enfermedades.</p>
 <p>Por lo tanto, es complicado calcular una puntuación para la alimentación animal sin implicar a decenas de investigadores y crear decenas de algoritmos diferentes, algo que no se ha hecho hasta la fecha.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="por-que-no-existe-nutri-score-para-animales" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/10-open-pet-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1321,6 +2054,31 @@ mark.faq-highlight {
 <p>puede unirse al grupo de colaboradores de Facebook:</p>
 <p><a href="https://www.facebook.com/groups/356858984359591/" target="_blank" rel="noopener noreferrer">https://www.facebook.com/groups/356858984359591/</a></p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="dispone-open-beauty-facts-de-un-laboratorio-de-analisis" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/11-open-beauty-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1349,6 +2107,31 @@ mark.faq-highlight {
                 <p>Póngase en contacto con <strong>producteurs@openfoodfacts.org</strong> o vaya directamente a</p>
 <p><a href="https://world.pro.openfoodfacts.org" target="_blank" rel="noopener noreferrer">https://world.pro.openfoodfacts.org</a> y póngase en contacto con <strong>producteurs@openfoodfacts.org </strong>para una exportación especial</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-importo-mis-productos-a-open-beauty-facts" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/11-open-beauty-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1376,6 +2159,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>La página /data no funciona actualmente. Puede descargar los datos en <a href="https://fr.openbeautyfacts.org/data/fr.openbeautyfacts.org.products.csv" target="_blank" rel="noopener noreferrer">https://fr.openbeautyfacts.org/data/fr.openbeautyfacts.org.products.csv</a></p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="donde-puedo-descargar-los-datos-de-open-beauty-facts" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/11-open-beauty-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1402,6 +2210,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>Eso puede depender de los países, si la red es lenta o cara. cualquier cosa por encima de 5000 píxeles en peso o altura probablemente no sea muy útil. y si de alguna manera se puede detectar que la red es lenta, entonces incluso una imagen de 2000 píxeles sería genial (¡sin duda mejor que no tener una imagen!)</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="hay-recomendaciones-en-algun-lugar-de-la-documentacion-sobre" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/12-api-y-reutilizacion-de-datos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1449,6 +2282,31 @@ mark.faq-highlight {
 <p><strong>UK</strong> - Composition of foods integrated dataset (CoFID): <a href="https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid" target="_blank" rel="noopener noreferrer">https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid</a></p>
 <p><strong>USA</strong> - USDA: <a href="https://ndb.nal.usda.gov/" target="_blank" rel="noopener noreferrer">https://ndb.nal.usda.gov/</a></p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="y-los-alimentos-sin-codigo-de-barras" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/12-api-y-reutilizacion-de-datos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1476,6 +2334,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Desgraciadamente, todavía no es posible buscar fácilmente y con precisión sólo el nombre del producto a través de la API.</p>
 <p>Sin embargo, el uso de un filtro por categoría puede ayudarle a realizar una búsqueda más precisa.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="puedo-buscar-un-nombre-de-producto-preciso-con-la-api" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/12-api-y-reutilizacion-de-datos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1507,6 +2390,31 @@ mark.faq-highlight {
 <p>La documentación de nuestra API:<a href="https://openfoodfacts.github.io/api-documentation/" target="_blank" rel="noopener noreferrer">https://openfoodfacts.github.io/api-documentation/</a></p>
 <p>Condiciones de uso de Open Food Facts:<a href="https://world.openfoodfacts.org/terms-of-use" target="_blank" rel="noopener noreferrer">https://world.openfoodfacts.org/terms-of-use</a></p>
 <p>Sobre nuestros datos:<a href="https://world.openfoodfacts.org/data" target="_blank" rel="noopener noreferrer">https://world.openfoodfacts.org/data</a></p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-puedo-acceder-a-los-datos-para-mis-proyectos" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/12-api-y-reutilizacion-de-datos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1544,6 +2452,31 @@ mark.faq-highlight {
 <li>Se aplican <em>rate-limits</em> para cada <em>API endpoint</em>.</li>
 </ul>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="existen-condiciones-para-utilizar-la-api" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/12-api-y-reutilizacion-de-datos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1573,6 +2506,31 @@ mark.faq-highlight {
 <p>Sólo tienes que pedir en Slack o en<strong> contact@openfoodfacts.org </strong>para eliminar los duplicados o cualquier fotos inapropiadas (usted debe tratar de proporcionar el número de código de barras o URL para así).</p>
 <p>También tenemos una nueva API de informe de imágenes si eres programador.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="hay-alguna-forma-de-eliminar-las-imagenes-subidas-para-los-p" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/13-voluntariado-contribucion.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1599,6 +2557,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>Coordinamos todas las actividades relacionadas con el diseño en <a href="https://github.com/openfoodfacts/openfoodfacts-design" target="_blank" rel="noopener noreferrer">https://github.com/openfoodfacts/openfoodfacts-design</a> y en un canal de chat específico. Periódicamente celebramos reuniones de equipo y brainjams sobre retos específicos.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="soy-disenador-en-que-puedo-ayudarle" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/13-voluntariado-contribucion.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1629,6 +2612,31 @@ mark.faq-highlight {
 <p>Sin embargo, los códigos de barras más cortos (EAN-8), que suelen reutilizar algunas tiendas de Europa y Estados Unidos, pueden dar lugar a conflictos. Actualmente no gestionamos estos choques de códigos de barras, pero debería ser posible hacerlo obteniendo la ubicación general del usuario (es aún más raro que se produzcan choques de códigos de barras dentro de un mismo país).</p>
 <p>A largo plazo, animamos a los fabricantes a pasar a EAN-13 para evitar esos conflictos de códigos de barras.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="en-algunos-casos-el-mismo-producto-puede-tener-valores-nutri" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/13-voluntariado-contribucion.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1656,6 +2664,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Póngase en contacto con : <a href="mailto:presse@openfoodfacts.org">presse@openfoodfacts.org</a></p>
 <p><a href="https://blog.openfoodfacts.org/en/press-release-new-mobile-app" target="_blank" rel="noopener noreferrer">https://blog.openfoodfacts.org/en/press-release-new-mobile-app</a></p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-puedo-obtener-imagenes-de-prensa-sobre-open-food-facts" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/14-prensa-y-medios-de-comunicacion.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1688,6 +2721,31 @@ mark.faq-highlight {
 <p>Nombre el archivo así: nombre-de-la-etiqueta.[ancho]x90.png donde ancho es el ancho del logotipo cuando tiene 90 píxeles de alto. Los nombres de los archivos deben ir sin acentos, en minúsculas y con "-" en lugar de espacios.</p>
 <p>A continuación, añada el logotipo en el directorio que corresponda a su nombre canónico. Si el nombre canónico es es:algo, entonces tienen que estar en /es/. El directorio raíz para los logotipos es <a href="https://github.com/openfoodfacts/openfoodfacts-server/tree/main/html/images/lang" target="_blank" rel="noopener noreferrer">https://github.com/openfoodfacts/openfoodfacts-server/tree/main/html/images/lang</a></p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="me-gustaria-anadir-un-nuevo-logotipo-para-las-etiquetas" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/15-mejorar-open-food-facts-en-mi-lengua-pais.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1715,6 +2773,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Visite <a href="https://wiki.openfoodfacts.org/Country_Support" target="_blank" rel="noopener noreferrer">https://wiki.openfoodfacts.org/Country_Support</a></p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-traduzco-open-food-facts-a-mi-idioma" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/15-mejorar-open-food-facts-en-mi-lengua-pais.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1741,6 +2824,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>Solicite a <strong>contact@openfoodfacts.org</strong> acceso de edición a la base de conocimientos.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-traduzco-esta-faq-a-mi-idioma" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/15-mejorar-open-food-facts-en-mi-lengua-pais.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1773,6 +2881,31 @@ mark.faq-highlight {
 <p>Una vez que se fusiona, vamos a rebase crowdin-trigger manualmente y el sistema de traducción Crowdin triggerd por GitHub Acciones hará el resto para otros idiomas.</p>
 <p>GitHub bot entonces crea un nuevo PR automáticamente que luego revisamos.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="debo-actualizar-todos-los-archivos-de-idioma-cuando-cambie-u" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/16-faq-tecnico.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1800,6 +2933,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Cualquier información que tenga es bienvenida, desde la información nutricional hasta la información sobre el envase.</p>
 <p>Esto permite establecer un expediente completo, calcular todas las puntuaciones con precisión y, en general, una transparencia apreciada por los consumidores.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="que-tipo-de-informacion-debe-compartirse" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/17-acerca-de-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1829,6 +2987,31 @@ mark.faq-highlight {
                 <p>Puedes descargar todos los datos (cuidado, esto requiere mucho espacio en disco, un ordenador potente si quieres usar una hoja de cálculo o conocimientos de R o Python en caso contrario)</p>
 <p>También puede descargar un subconjunto de datos (su marca, por ejemplo) gracias a la búsqueda avanzada.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="descargar-los-datos-de-open-food-facts" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/17-acerca-de-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1855,6 +3038,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>La importación de datos es totalmente gratuita. No aceptamos ninguna compensación por la inclusión de los datos. Nos complace mucho que haya decidido contribuir con los datos de sus productos a la transparencia alimentaria, y se lo agradecemos.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="es-gratuito-registrar-sus-productos" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/17-acerca-de-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1886,6 +3094,31 @@ mark.faq-highlight {
 <p>También puedes ponerte en contacto con nosotros para hacernos sugerencias a través de nuestro <a href="https://forum.openfoodfacts.org/" target="_blank" rel="noopener noreferrer">foro</a> o vía Slack.</p>
 <p>Únase a nuestro Slack y entre en el canal #producers para ponerse en contacto con nosotros.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="me-gustaria-sugerir-mejoras-para-la-plataforma-profesional-c" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/17-acerca-de-open-food-facts.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1912,6 +3145,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>La Nutri-Score, el grupo NOVA y la Eco-Score se calculan mediante algoritmos, que siguen al pie de la letra las metodologías oficiales, a partir de los datos presentes en Open Food Facts.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="quien-es-el-responsable-de-calcular-la-huella-yo-la-puntuaci" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/19-acerca-de-las-puntuaciones.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -1941,6 +3199,31 @@ mark.faq-highlight {
                 <p>El objetivo de estos diferentes indicadores es proporcionar una información fácil de entender para el consumidor.</p>
 <p>La Nutri-Score se ha convertido en algo habitual, pero su punto de vista es puramente nutricional. Por ello, la Eco-Score y el grupo NOVA permiten ofrecer información adicional fácilmente comprensible para el consumidor.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="por-que-tres-puntuaciones-diferentes-la-eco-score-la-nutri-s" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/19-acerca-de-las-puntuaciones.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1969,6 +3252,31 @@ mark.faq-highlight {
                 <p>Al registrarse en la plataforma de productores y depositar sus productos, puede crear nuevos productos además de los ya existentes. Sin embargo, debe eliminarlo una vez realizada la simulación para que no se exporte a la plataforma pública con los productos ya comercializados en su gama.</p>
 <p>En la ficha de producto de la simulación encontrará explicaciones paso a paso sobre el cálculo de la Eco-Score y la Nutri-Score.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="es-posible-simular-un-eco-score-o-un-nutri-score" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/19-acerca-de-las-puntuaciones.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -1995,6 +3303,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>Sí, envíe un correo electrónico a <a href="mailto:support@openfoodfacts.org">support@openfoodfacts.org</a>, para que podamos vincular todas las cuentas a la misma empresa.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="pueden-vincularse-varias-cuentas-de-open-food-facts-a-una-mi" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/20-administrar-mi-cuenta.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -2040,6 +3373,31 @@ mark.faq-highlight {
 <li>el nombre de la empresa deseada</li>
 </ul>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="quiero-convertir-mi-cuenta-en-una-cuenta-pro" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/20-administrar-mi-cuenta.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2066,6 +3424,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="dispone-de-documentacion-sobre-el-uso-de-la-plataforma" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/20-administrar-mi-cuenta.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -2106,6 +3489,31 @@ mark.faq-highlight {
 <li>Gracias al apoyo de Santé Publique France, desarrollamos un portal que permite a los productores cargar sus datos masivos y así corregir/completar las contribuciones de la comunidad.</li>
 </ol>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-podemos-estar-seguros-de-que-los-productos-presentados" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2142,6 +3550,31 @@ mark.faq-highlight {
 <li>Si tiene un pequeño número de productos, todavía es posible crearlos a mano en la plataforma de productores (tenga en cuenta que las modificaciones en la plataforma pública a través de su cuenta profesional no están protegidas, estas modificaciones deben realizarse a través de la plataforma de productores y luego exportarse en la plataforma pública para obtener protección)</li>
 </ul>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-anadir-productos" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2169,6 +3602,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Sí, si utiliza EQUADIS o AGENA3000 y establece la configuración adecuada, la importación puede realizarse automáticamente y, por tanto, actualizar los datos del producto en Open Food Facts.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="existe-una-funcion-de-carga-automatica-de-productos" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2195,6 +3653,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>No hay límite, puedes subir el número de productos que quieras en nuestra plataforma.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="esta-limitado-el-numero-de-productos-anadidos" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -2225,6 +3708,31 @@ mark.faq-highlight {
 <p>Como el producto ya no se vende, en cualquier caso ya no será escaneado y, por tanto, ya no se mostrará a los consumidores.</p>
 <p>Sin embargo, permanecerá en nuestra base de datos, sirviendo de archivo. Muchos estudios utilizan la base de datos Open Food Facts para informar sobre la alimentación en diferentes momentos.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="es-posible-eliminar-los-productos-que-ya-no-se-venden" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2254,6 +3762,31 @@ mark.faq-highlight {
 <p>La información que el productor haya colgado tendrá siempre prioridad y sólo él podrá modificar sus productos cuando la información esté completa.</p>
 <p>Si los datos enviados a través de la plataforma están fragmentados, la información añadida por la comunidad desde el envase podrá completarla.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="la-informacion-de-la-empresa-tiene-prioridad-sobre-la-inform" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2282,6 +3815,31 @@ mark.faq-highlight {
                 <p>Cualquier tabla con sus datos es suficiente. El algoritmo hará un máximo de coincidencias de forma automática y algunas pueden ajustarse manualmente.</p>
 <p>Tenemos un ejemplo <a href="https://fr.pro.openfoodfacts.org/cgi/generate_sample_import_file.pl" target="_blank" rel="noopener noreferrer">aquí</a></p>
 <p>Aunque Open Food Facts proporciona una plantilla, puede enviarnos los Excels que ya tenga con los nombres de las columnas que desee. La plataforma será capaz de reconocer sus variaciones y realizar el cotejo y la normalización con el modelo de datos de Open Food Facts.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="que-informacion-se-solicita-y-en-que-forma" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -2313,6 +3871,31 @@ mark.faq-highlight {
 <p>En nuestra <a href="https://blog.openfoodfacts.org/en/news/real-time-product-data-from-producers-on-open-food-facts-thanks-to-the-new-equadis-integration" target="_blank" rel="noopener noreferrer">entrada del blog</a> se explican los pasos a seguir si es cliente de EQUADIS.</p>
 <p>Si es cliente de AGENA3000 (Producto A3 PIM INDUSTRY), sólo tiene que seleccionar el destinatario "Open Food Facts" al enviar sus fichas de producto. Más información en esta <a href="https://blog.openfoodfacts.org/en/news/share-your-product-data-in-1-click-with-the-new-agena3000-connector" target="_blank" rel="noopener noreferrer">entrada del blog</a>.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="esta-integrado-con-equadis-agena3000-consotrust" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2340,6 +3923,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Para los productos sin código de barras, en el sitio o en la plataforma de productores, hay un botón "Producto sin código de barras" en la columna de la izquierda que permite añadirlos. A continuación se genera automáticamente un identificador.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="quiero-anadir-productos-sin-codigo-de-barras-a-traves-de-la" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2366,6 +3974,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>Hemos creado proyectos específicos para los cosméticos, para la alimentación animal, así como para otros productos (Open Beauty Facts, Open Pet Food Facts y Open Products Facts respectivamente). Por lo tanto, estamos encantados de poder importar sus productos al proyecto que les convenga.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="pueden-integrarse-en-open-food-facts-los-productos-animales" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -2396,6 +4029,31 @@ mark.faq-highlight {
 <p>Será necesario un breve paso de validación para garantizar que usted es realmente el productor.</p>
 <p>Podrá completar los datos, añadir imágenes, obtener recomendaciones automáticas para mejorar el Nutr-Score, y mucho más. Todo esto es, por supuesto, completamente gratuito. También puede conectar un sistema de gestión de datos de productos de terceros, como EQUADIS o AGENA3000</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="los-datos-de-los-productos-de-mi-empresa-estan-disponibles-e" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2423,6 +4081,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Depende de las aplicaciones. Para las que utilizan nuestras API, que son la gran mayoría, es inmediato.</p>
 <p>Para las que utilizan nuestras exportaciones diarias, es D+1 siempre que la actualicen.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="cuanto-tardan-en-actualizarse-los-datos-de-los-productores-e" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -2453,6 +4136,31 @@ mark.faq-highlight {
 <p>Para datos como la lista de ingredientes, los valores nutricionales (sólo un valor correcto posible), los datos enviados a través de la plataforma del productor sobrescribirán los datos existentes.</p>
 <p>Para datos como etiquetas/categorías/marcas (varios valores correctos posibles), la información se fusionará. Si los datos son incorrectos en la plataforma pública, puede modificar la ficha del producto en la plataforma pública para eliminar los valores incorrectos.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="la-importacion-de-los-datos-de-una-ficha-de-producto-complet" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2480,6 +4188,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>El orden de los ingredientes es importante: representa el orden por cantidad. La mejor manera de rellenar los ingredientes es seguir exactamente lo que está escrito en el envase. Por eso también es tan importante tener fotos de los ingredientes impresas.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="es-importante-el-orden-de-los-ingredientes" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2506,6 +4239,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>Puede enviar imágenes, pero en la práctica solo se seleccionará automáticamente la imagen principal, las demás imágenes se enviarán, pero no se recortarán ni seleccionarán para ingredientes, nutrición, etc.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="puedo-enviar-imagenes-tambien-a-traves-de-agena3000" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -2536,6 +4294,31 @@ mark.faq-highlight {
 <p>A través de la propia plataforma pro: <a href="https://es.pro.openfoodfacts.org/" target="_blank" rel="noopener noreferrer">https://es.pro.openfoodfacts.org/</a></p>
 <p>Directamente en <a href="https://www.youtube.com/playlist?list=PLjAH-USadsF3xgSVfUUBS4we3XBr-1r55" target="_blank" rel="noopener noreferrer">YouTube</a></p>
 <p>→ También puedes descargar nuestra <a href="https://blog.openfoodfacts.org/wp-content/uploads/2023/03/EN-Pro-Plateform-User-Guide.pdf" target="_blank" rel="noopener noreferrer">guía de usuario</a> (<a href="https://blog.openfoodfacts.org/wp-content/uploads/2023/03/EN-Pro-Plateform-User-Guide.pdf" target="_blank" rel="noopener noreferrer">https://blog.openfoodfacts.org/wp-content/uploads/2023/03/EN-Pro-Plateform-User-Guide.pdf</a>) (inglés)</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-acceder-a-los-tutoriales-de-la-plataforma-pro" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/21-gestionar-mis-productos.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -2573,6 +4356,31 @@ mark.faq-highlight {
 <li>al hacer clic en un tipo de oportunidad se accede a la lista de productos susceptibles de mejora.</li>
 </ol>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-acceder-a-la-recomendacion-de-reformulacion-para-mejora" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/22-analisis-de-la-cartera-de-productos-benchmark-mejoras.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2600,6 +4408,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Como etiqueta, al no ser el productor directo de los productos, no necesita crear una cuenta de productor.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-etiqueta-es-importante-crear-una-cuenta" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/23-etiqueta.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2626,6 +4459,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>Como etiqueta lo más pertinente es que se ponga en contacto con nosotros <strong>(producers@openfoodfacts.org) </strong>y nos envíe la lista de los productos en los que aparece su etiqueta para que podamos añadirlos en las fichas de productos relacionados.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="soy-una-etiqueta-como-puedo-participar-en-el-proyecto" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/23-etiqueta.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -2674,6 +4532,31 @@ mark.faq-highlight {
 </ul>
 <p>Esta hoja de cálculo puede importarse a nuestra plataforma dedicada a los profesionales.</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-puedo-anadir-mis-datos-de-envasado-a-open-food-facts" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/24-embalaje.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2703,6 +4586,31 @@ mark.faq-highlight {
 <p>Basado en un enfoque científico participativo, se apoyará tanto en que las empresas acepten compartir los datos de sus envases y entrar en el juego de la transparencia, como en que los ciudadanos permitan la recogida de información sobre los productos. Esta información será reutilizable libremente ("datos abiertos").</p>
 <p>Más información: <a href="https://blog.openfoodfacts.org/en/packaging-projet-producers" target="_blank" rel="noopener noreferrer">https://blog.openfoodfacts.org/en/packaging-projet-producers</a></p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="que-es-el-proyecto-tackling-food-packaging" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/24-embalaje.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2729,6 +4637,31 @@ mark.faq-highlight {
             <div class="faq-answer">
               <div class="faq-answer-inner">
                 <p>Incluso después de que finalice el proyecto, es posible añadir datos de envasado, ya que los campos de envasado permanecerán en nuestro sitio web.</p>
+              </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="puedo-anadir-mis-datos-de-envasado-incluso-despues-de-que-fi" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/3-producteurs/24-embalaje.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
               </div>
             </div>
           </details>
@@ -2757,6 +4690,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>Open Food Facts, es una base de datos abierta, un proyecto abierto que opera bajo una licencia ODbL, por lo tanto, siempre que esté de acuerdo con los requisitos de la licencia ODbL, es bienvenido a reutilizar nuestros datos para sus proyectos :).</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="tengo-que-hacer-un-proyecto-escolar-y-quiero-utilizar-los-da" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/25-researchers-scholar/26-proyectos-escolares.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2784,6 +4742,31 @@ mark.faq-highlight {
               <div class="faq-answer-inner">
                 <p>En la página principal de Open Food Facts, en la esquina superior izquierda de la pantalla, hay un menú desplegable. En la parte inferior del mismo, encontrará la opción "búsqueda avanzada", en la que puede hacer clic. A continuación, deberá determinar qué criterios son los más pertinentes para su(s) proyecto(s). Una vez elegidos, podrá descargar los resultados obtenidos desplazándose hacia abajo en la parte inferior de la página y haciendo clic en "Descargar resultados".</p>
               </div>
+              <div class="faq-footer-bar">
+                <div class="faq-feedback" data-question-id="como-puedo-accederrecopilar-datos-para-mis-proyectos" data-lang="es">
+                  <span class="faq-feedback-label">¿Te ha resultado útil esta respuesta?</span>
+                  <div class="faq-feedback-actions" role="group" aria-label="¿Te ha resultado útil esta respuesta?">
+                    <button type="button" class="faq-feedback-btn faq-vote-up" data-vote="up" aria-label="Sí" title="Sí">
+                      <span class="faq-feedback-icon" aria-hidden="true">👍</span>
+                      <span class="faq-feedback-text">Sí</span>
+                    </button>
+                    <button type="button" class="faq-feedback-btn faq-vote-down" data-vote="down" aria-label="No" title="No">
+                      <span class="faq-feedback-icon" aria-hidden="true">👎</span>
+                      <span class="faq-feedback-text">No</span>
+                    </button>
+                  </div>
+                  <span class="faq-feedback-status" aria-live="polite"></span>
+                </div>
+                <div class="faq-edit-wrapper">
+                  <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/faq/es/25-researchers-scholar/26-proyectos-escolares.md" target="_blank" rel="noopener noreferrer" class="faq-edit-link" title="Editar en GitHub">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                    <span>Editar en GitHub</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </details>
         </article>
@@ -2794,7 +4777,12 @@ mark.faq-highlight {
       <div class="faq-empty-icon">🔎</div>
       <h3 class="faq-empty-title">No se encontraron preguntas que coincidan con la búsqueda</h3>
       <p class="faq-subtitle" id="faqEmptyQuery"></p>
-      <button type="button" class="faq-empty-btn" id="faqResetSearchBtn">Restablecer búsqueda</button>
+      <div class="faq-empty-actions">
+        <button type="button" class="faq-empty-btn" id="faqResetSearchBtn">Restablecer búsqueda</button>
+        <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-faq-question.yml" target="_blank" rel="noopener noreferrer" class="faq-empty-btn faq-empty-suggest">
+          ➕ Sugerir una pregunta
+        </a>
+      </div>
     </div>
   </main>
 
@@ -2803,7 +4791,8 @@ mark.faq-highlight {
     <h2 class="faq-footer-title">¿Tienes más preguntas?</h2>
     <p class="faq-footer-desc">¿No encuentras lo que buscas? Únete a nuestra comunidad en Slack o escribe directamente a nuestro equipo.</p>
     <div class="faq-footer-buttons">
-      <a href="https://slack.openfoodfacts.org/" target="_blank" rel="noopener noreferrer" class="faq-footer-btn faq-footer-btn-primary">💬 Unirse a Slack</a>
+      <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-faq-question.yml" target="_blank" rel="noopener noreferrer" class="faq-footer-btn faq-footer-btn-primary">✍️ Sugerir una pregunta</a>
+      <a href="https://slack.openfoodfacts.org/" target="_blank" rel="noopener noreferrer" class="faq-footer-btn faq-footer-btn-secondary">💬 Unirse a Slack</a>
       <a href="https://forum.openfoodfacts.org/" target="_blank" rel="noopener noreferrer" class="faq-footer-btn faq-footer-btn-secondary">🗣️ Foro comunitario</a>
       <a href="mailto:contact@openfoodfacts.org" class="faq-footer-btn faq-footer-btn-secondary">✉️ Escribir al equipo</a>
     </div>
@@ -2967,6 +4956,75 @@ mark.faq-highlight {
       } else {
         window.location.hash = anchor;
       }
+    });
+  });
+
+  // Feedback Mechanism (Thumbs up / Thumbs down) & Matomo Tracking
+  const tThanksUp = "\u00a1Gracias por tus comentarios! \ud83d\ude4c";
+  const tThanksDown = "Gracias por tu opini\u00f3n. \u00a1Trabajaremos para mejorarla!";
+
+  document.querySelectorAll(".faq-feedback").forEach(feedbackBox => {
+    const qId = feedbackBox.getAttribute("data-question-id");
+    const langCode = feedbackBox.getAttribute("data-lang") || "es";
+    const statusEl = feedbackBox.querySelector(".faq-feedback-status");
+    const btns = feedbackBox.querySelectorAll(".faq-feedback-btn");
+    const storageKey = "off_faq_feedback_" + langCode + "_" + qId;
+
+    // Check localStorage for previously submitted feedback
+    let storedVote = null;
+    try {
+      storedVote = localStorage.getItem(storageKey);
+    } catch(e) {}
+
+    if (storedVote) {
+      btns.forEach(b => {
+        if (b.getAttribute("data-vote") === storedVote) {
+          b.classList.add("active");
+        }
+        b.disabled = true;
+      });
+      if (statusEl) {
+        statusEl.textContent = (storedVote === "up") ? tThanksUp : tThanksDown;
+        statusEl.className = "faq-feedback-status visible" + (storedVote === "down" ? " negative" : "");
+      }
+    }
+
+    btns.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const vote = btn.getAttribute("data-vote"); // "up" or "down"
+        const isUp = (vote === "up");
+        const action = isUp ? "thumbs_up" : "thumbs_down";
+
+        // ====================================================================
+        // Matomo Event Tracking:
+        // Parameters: Question ID, Language, Thumbs Up / Thumbs Down
+        // 1. Unified Event: Category='FAQ Feedback', Action='thumbs_up'/'thumbs_down', Name='<qId> [<lang>]'
+        // 2. Segmented Event: Category='FAQ Feedback (<lang>)', Action='thumbs_up'/'thumbs_down', Name='<qId>'
+        // ====================================================================
+        window._paq = window._paq || [];
+        window._paq.push(["trackEvent", "FAQ Feedback", action, qId + " [" + langCode + "]"]);
+        window._paq.push(["trackEvent", "FAQ Feedback (" + langCode + ")", action, qId]);
+
+        // Save in localStorage to prevent repeat voting
+        try {
+          localStorage.setItem(storageKey, vote);
+        } catch(e) {}
+
+        // Update UI state
+        btns.forEach(b => {
+          b.classList.remove("active");
+          b.disabled = true;
+        });
+        btn.classList.add("active");
+
+        if (statusEl) {
+          statusEl.textContent = isUp ? tThanksUp : tThanksDown;
+          statusEl.className = "faq-feedback-status visible" + (isUp ? "" : " negative");
+        }
+      });
     });
   });
 
