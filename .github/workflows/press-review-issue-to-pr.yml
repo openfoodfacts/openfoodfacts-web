@@ -40,7 +40,7 @@ jobs:
           ISSUE_BODY: ${{ github.event.issue.body }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
-          python3 scripts/add_press_review.py --from-env --compile --json > result.json
+          python3 scripts/add_press_review.py --from-env --compile --json --output-json result.json
           cat result.json
           SUCCESS=$(python3 -c "import json; print(json.load(open('result.json')).get('success', False))")
           if [ "$SUCCESS" != "True" ]; then
