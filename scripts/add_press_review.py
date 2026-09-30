@@ -26,6 +26,7 @@ Usage:
 """
 
 import argparse
+import contextlib
 import json
 import os
 import re
@@ -454,7 +455,8 @@ def add_press_review_entry(
     # Recompile if requested
     if do_compile:
         try:
-            compile_success = compile_press_review(check_only=False, verbose=False)
+            with contextlib.redirect_stdout(sys.stderr):
+                compile_success = compile_press_review(check_only=False, verbose=False)
             if not compile_success:
                 return {
                     "success": False,
@@ -510,6 +512,7 @@ def main():
     parser.add_argument("--compile", action="store_true", help="Recompile data/press-review-merged.json and HTML pages")
     parser.add_argument("--dry-run", action="store_true", help="Validate without writing changes")
     parser.add_argument("--json", action="store_true", help="Output result as JSON")
+    parser.add_argument("--output-json", help="Path to write JSON result to")
 
     args = parser.parse_args()
 
@@ -564,8 +567,12 @@ def main():
 
     if missing:
         err_msg = f"Missing required fields: {', '.join(missing)}"
+        err_dict = {"success": False, "error": err_msg}
+        if args.output_json:
+            with open(args.output_json, "w", encoding="utf-8") as f:
+                json.dump(err_dict, f, indent=2)
         if args.json:
-            print(json.dumps({"success": False, "error": err_msg}, indent=2))
+            print(json.dumps(err_dict, indent=2))
         else:
             print(f"❌ Error: {err_msg}", file=sys.stderr)
         sys.exit(1)
@@ -590,6 +597,10 @@ def main():
         dry_run=args.dry_run,
         do_compile=args.compile,
     )
+
+    if args.output_json:
+        with open(args.output_json, "w", encoding="utf-8") as f:
+            json.dump(result, f, indent=2)
 
     if args.json:
         print(json.dumps(result, indent=2))
