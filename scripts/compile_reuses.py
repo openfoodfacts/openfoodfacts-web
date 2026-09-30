@@ -18,8 +18,12 @@ REUSES_DIR = os.path.join(DATA_DIR, "reuses")
 COMPILED_JSON = os.path.join(DATA_DIR, "reuses.json")
 
 VALID_THEMES = {
-    "nutrition", "environment", "allergies", "health", "tools",
-    "social", "research", "retail", "general", "ai", "dietary"
+    # General domains
+    "nutrition", "environment", "tools", "research", "traceability", "education",
+    "health", "social", "retail", "general", "ai", "dietary",
+    # Diets & Health
+    "pregnancy", "gluten", "lactose", "fodmap", "allergies", "vegan",
+    "halal_kosher", "diabetes_keto", "additives"
 }
 
 VALID_PROJECTS = {"openfoodfacts", "openbeautyfacts", "openpetfoodfacts", "openproductsfacts"}
@@ -48,12 +52,23 @@ def validate_reuse(item, filepath):
     theme = item.get("theme")
     if not theme:
         errors.append(f"{filename}: missing required field 'theme'")
+    elif theme not in VALID_THEMES:
+        errors.append(f"{filename}: invalid theme '{theme}'. Must be one of: {', '.join(sorted(VALID_THEMES))}")
 
     # Optional themes list
     themes = item.get("themes")
     if themes is not None:
         if not isinstance(themes, list):
             errors.append(f"{filename}: 'themes' must be a list of strings")
+        else:
+            for t in themes:
+                if t not in VALID_THEMES:
+                    errors.append(f"{filename}: invalid theme '{t}' in 'themes' list. Must be one of: {', '.join(sorted(VALID_THEMES))}")
+
+    # Project check
+    project = item.get("project")
+    if project and project not in VALID_PROJECTS:
+        errors.append(f"{filename}: invalid project '{project}'. Must be one of: {', '.join(sorted(VALID_PROJECTS))}")
 
     # Boolean fields check
     for bool_field in ["contributes_data", "contributes_photos", "odbl_compliant", "open_source", "featured", "donates_to_ngo"]:
@@ -141,13 +156,17 @@ def compile_reuses(check_only=False, verbose=True):
         print(f"Wrote compiled {COMPILED_JSON} ({len(items)} items)")
 
     # 2. Re-generate showcase HTML pages
-    sys.path.insert(0, os.path.dirname(__file__))
-    import generate_showcase
-    generate_showcase.ALL_REUSES = items
-    generate_showcase.TOTAL_APPS = len(items)
-    generate_showcase.TOTAL_INSTALLS_NUM = sum(r.get("installs_numeric", 0) for r in items)
-    generate_showcase.TOTAL_COUNTRIES = len(set(r.get("country") for r in items if r.get("country")))
-    generate_showcase.main()
+    try:
+        sys.path.insert(0, os.path.dirname(__file__))
+        import generate_showcase
+        generate_showcase.ALL_REUSES = items
+        generate_showcase.TOTAL_APPS = len(items)
+        generate_showcase.TOTAL_INSTALLS_NUM = sum(r.get("installs_numeric", 0) for r in items)
+        generate_showcase.TOTAL_COUNTRIES = len(set(r.get("country") for r in items if r.get("country")))
+        generate_showcase.main()
+    except Exception as e:
+        if verbose:
+            print(f"  [NOTE] Showcase HTML pages generation skipped or failed: {e}")
 
     return True
 

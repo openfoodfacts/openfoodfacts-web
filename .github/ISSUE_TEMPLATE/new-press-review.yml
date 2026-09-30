@@ -1,0 +1,159 @@
+name: "📰 Suggest a new Press Mention"
+description: Propose a new article, podcast, video, or study for the Open Food Facts Press Review
+title: "[Press]: "
+labels: ["press-review", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Welcome to the Open Food Facts Press Review submission form!
+        Did you spot Open Food Facts in a newspaper, magazine, podcast, TV broadcast, video, or research report?
+        Submit the details below to add it to our public press review.
+        Our automated GitHub Actions workflow will turn your proposal into a Pull Request!
+
+  - type: input
+    id: title
+    attributes:
+      label: Article / Segment Title
+      description: The headline or title of the media piece
+      placeholder: e.g. How Did Open Food Facts Fix OCR-Extracted Ingredients Using Open-Source LLMs?
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Media Source
+      description: The name of the newspaper, magazine, radio station, TV channel, podcast, or website
+      placeholder: e.g. Le Monde, BBC News, France Inter, Towards Data Science
+    validations:
+      required: true
+
+  - type: input
+    id: date
+    attributes:
+      label: Publication Date (YYYY-MM-DD)
+      description: The exact date when the piece was published or broadcasted (format: YYYY-MM-DD)
+      placeholder: e.g. 2026-09-30
+    validations:
+      required: true
+
+  - type: input
+    id: link
+    attributes:
+      label: URL / Web Link
+      description: Direct link to the article, podcast episode, video, or study
+      placeholder: e.g. https://www.lemonde.fr/...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Media Type
+      description: What type of media is this?
+      options:
+        - "article (Written article / news story)"
+        - "podcast (Podcast / Radio episode / Audio)"
+        - "video (TV news / Video / Documentary)"
+        - "study (Scientific paper / Academic study / Institutional report)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: media_scope
+    attributes:
+      label: Media Scope
+      description: Geographic or editorial scope of the outlet
+      options:
+        - "national (National media & mainstream press)"
+        - "regional (Regional press & local media / PQR)"
+        - "specialized (Specialized tech, agrifood, health, science press)"
+        - "culinary_blog (Culinary blog / food specialist)"
+        - "report (Public report / Institutional study)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: lang
+    attributes:
+      label: Language
+      description: Primary language of the content
+      options:
+        - "fr (Français)"
+        - "en (English)"
+        - "es (Español)"
+        - "de (Deutsch)"
+        - "it (Italiano)"
+        - "nl (Nederlands)"
+        - "pt (Português)"
+        - "other"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: country
+    attributes:
+      label: Country
+      description: Country where the media is based or primarily distributed
+      options:
+        - "fra (France)"
+        - "deu (Germany)"
+        - "esp (Spain)"
+        - "ita (Italy)"
+        - "bel (Belgium)"
+        - "che (Switzerland)"
+        - "gbr (United Kingdom)"
+        - "usa (United States)"
+        - "can (Canada)"
+        - "eu (European Union / International)"
+        - "sen (Senegal)"
+        - "other"
+    validations:
+      required: true
+
+  - type: input
+    id: author
+    attributes:
+      label: Author / Journalist
+      description: Name of the journalist, host, or author (optional)
+      placeholder: e.g. Élise Lucet
+
+  - type: checkboxes
+    id: topics
+    attributes:
+      label: Topics Covered
+      description: Select any specific topics discussed in this piece (optional)
+      options:
+        - label: nutriscore (Nutri-Score)
+        - label: nova (NOVA food processing score)
+        - label: upf (Ultra-processed foods / aliments ultra-transformés)
+        - label: green-score (Eco-Score / Green-Score / environmental impact)
+        - label: open-data (Open data & digital commons)
+        - label: data-journalism (Data journalism & data investigations)
+        - label: additives (Food additives & controversial substances)
+        - label: seasonal (Seasonal fruits & vegetables)
+
+  - type: textarea
+    id: verbatim
+    attributes:
+      label: Verbatim / Key Quote (optional)
+      description: Short relevant quote or excerpt mentioning Open Food Facts (do not put internal comments here)
+      placeholder: e.g. « Grâce aux données ouvertes d'Open Food Facts, l'équipe a pu analyser plus de... »
+
+  - type: textarea
+    id: editorial_note
+    attributes:
+      label: Editorial Note (optional)
+      description: Internal notes, context, or instructions for maintainers (will NOT be published on public website)
+      placeholder: e.g. Paywalled article; mention is on page 42.
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Contribution Checklist
+      options:
+        - label: I confirm this media piece explicitly mentions or uses Open Food Facts.
+          required: true
+        - label: I have verified that the link, title, and publication date are accurate.
+          required: true

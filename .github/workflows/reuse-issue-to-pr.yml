@@ -1,0 +1,91 @@
+name: "Reuses: Create PR from Reuse Issue"
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: reuse-issue-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  process-reuse-issue:
+    # Run only if the issue has the 'reuse' or 'showcase' label
+    if: >
+      (github.event.action == 'labeled' && (github.event.label.name == 'reuse' || github.event.label.name == 'showcase')) ||
+      (github.event.action == 'opened' && (contains(github.event.issue.labels.*.name, 'reuse') || contains(github.event.issue.labels.*.name, 'showcase')))
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Process reuse issue and create YAML
+        id: add_reuse
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python3 scripts/add_reuse.py --from-env --compile --json > result.json
+          cat result.json
+          SUCCESS=$(python3 -c "import json; print(json.load(open('result.json')).get('success', False))")
+          if [ "$SUCCESS" != "True" ]; then
+            echo "Failed to parse or add reuse"
+            exit 1
+          fi
+          echo "reuse_id=$(python3 -c "import json; print(json.load(open('result.json')).get('id', ''))")" >> $GITHUB_OUTPUT
+          echo "reuse_name=$(python3 -c "import json; print(json.load(open('result.json')).get('name', ''))")" >> $GITHUB_OUTPUT
+          echo "target_file=$(python3 -c "import json; print(json.load(open('result.json')).get('file', ''))")" >> $GITHUB_OUTPUT
+          echo "theme=$(python3 -c "import json; print(json.load(open('result.json')).get('theme', ''))")" >> $GITHUB_OUTPUT
+          echo "project=$(python3 -c "import json; print(json.load(open('result.json')).get('project', ''))")" >> $GITHUB_OUTPUT
+          echo "website=$(python3 -c "import json; print(json.load(open('result.json')).get('website', ''))")" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "feat(reuses): add ${{ steps.add_reuse.outputs.reuse_name }} from issue #${{ github.event.issue.number }}"
+          branch: "reuse/issue-${{ github.event.issue.number }}"
+          delete-branch: true
+          title: "[Reuse] Add ${{ steps.add_reuse.outputs.reuse_name }}"
+          body: |
+            ### 🚀 New Reuse Application Proposal
+
+            This Pull Request was automatically generated from issue #${{ github.event.issue.number }}.
+
+            - **Application**: **${{ steps.add_reuse.outputs.reuse_name }}** (`${{ steps.add_reuse.outputs.reuse_id }}`)
+            - **Theme**: `${{ steps.add_reuse.outputs.theme }}`
+            - **Project**: `${{ steps.add_reuse.outputs.project }}`
+            - **Website / Link**: ${{ steps.add_reuse.outputs.website }}
+            - **Target file**: `${{ steps.add_reuse.outputs.target_file }}`
+
+            Closes #${{ github.event.issue.number }}
+          labels: |
+            reuse
+            showcase
+            automated-pr
+
+      - name: Comment on Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Thank you @${context.payload.issue.user.login} for proposing **${{ steps.add_reuse.outputs.reuse_name }}** to the Open Food Facts reuses showcase! 🎉\n\nA Pull Request has been automatically opened to validate and merge this application into our reuses catalog. You can follow along with the automated checks and review in the PR!`
+            });

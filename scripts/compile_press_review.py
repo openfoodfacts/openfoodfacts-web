@@ -125,6 +125,7 @@ def load_press_items(directory=PRESS_DIR, validate=True):
     return items, all_errors, all_warnings
 
 def compile_press_review(check_only=False, verbose=True):
+    os.chdir(REPO_ROOT)
     if verbose:
         print(f"Loading and validating press review from {PRESS_DIR}...")
 

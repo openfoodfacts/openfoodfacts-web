@@ -1,0 +1,60 @@
+name: "Press Review: CI Validation"
+
+on:
+  push:
+    paths:
+      - 'data/press-review/**'
+      - 'scripts/compile_press_review.py'
+      - 'scripts/add_press_review.py'
+      - 'scripts/test_add_press_review.py'
+  pull_request:
+    paths:
+      - 'data/press-review/**'
+      - 'scripts/compile_press_review.py'
+      - 'scripts/add_press_review.py'
+      - 'scripts/test_add_press_review.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: press-review-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-press-review:
+    name: Validate Press Review YAMLs & Schemas
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Validate Press Review YAML files
+        run: |
+          python3 scripts/compile_press_review.py --check
+
+      - name: Run Press Review Unit Tests
+        run: |
+          python3 scripts/test_add_press_review.py
+
+      - name: Test Press Review Issue Parser
+        run: |
+          python3 scripts/add_press_review.py --dry-run --json \
+            --title "CI Validation Test Article" \
+            --source "Open Food Facts News" \
+            --date "2026-09-30" \
+            --link "https://world.openfoodfacts.org/news/ci-test" \
+            --type article \
+            --media-scope specialized \
+            --lang en \
+            --country fra

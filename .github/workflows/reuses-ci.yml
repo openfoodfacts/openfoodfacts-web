@@ -1,0 +1,44 @@
+name: "Reuses: CI Validation"
+
+on:
+  push:
+    paths:
+      - 'data/reuses/**'
+      - 'scripts/compile_reuses.py'
+      - 'scripts/add_reuse.py'
+      - 'scripts/generate_showcase.py'
+  pull_request:
+    paths:
+      - 'data/reuses/**'
+      - 'scripts/compile_reuses.py'
+      - 'scripts/add_reuse.py'
+      - 'scripts/generate_showcase.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: reuses-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-reuses:
+    name: Validate Reuses YAML & Schemas
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Validate reuse files
+        run: |
+          python3 scripts/compile_reuses.py --check

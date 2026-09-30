@@ -1,0 +1,90 @@
+name: "Press Review: Create PR from Issue"
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: press-review-issue-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  process-press-issue:
+    # Run only if the issue has the 'press-review' label or was opened with the press-review issue template
+    if: >
+      (github.event.action == 'labeled' && github.event.label.name == 'press-review') ||
+      (github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'press-review'))
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Process Press Review issue and add entry
+        id: add_press
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python3 scripts/add_press_review.py --from-env --compile --json > result.json
+          cat result.json
+          SUCCESS=$(python3 -c "import json; print(json.load(open('result.json')).get('success', False))")
+          if [ "$SUCCESS" != "True" ]; then
+            echo "Failed to parse or add press review entry"
+            exit 1
+          fi
+          echo "entry_title=$(python3 -c "import json; print(json.load(open('result.json')).get('title', ''))")" >> $GITHUB_OUTPUT
+          echo "source=$(python3 -c "import json; print(json.load(open('result.json')).get('source', ''))")" >> $GITHUB_OUTPUT
+          echo "target_file=$(python3 -c "import json; print(json.load(open('result.json')).get('file', ''))")" >> $GITHUB_OUTPUT
+          echo "date=$(python3 -c "import json; print(json.load(open('result.json')).get('date', ''))")" >> $GITHUB_OUTPUT
+          echo "media_type=$(python3 -c "import json; print(json.load(open('result.json')).get('type', ''))")" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "feat(press): add press review mention from issue #${{ github.event.issue.number }}"
+          branch: "press-review/issue-${{ github.event.issue.number }}"
+          delete-branch: true
+          title: "[Press Review] Add mention: ${{ steps.add_press.outputs.source }} - ${{ steps.add_press.outputs.entry_title }}"
+          body: |
+            ### 📰 Press Review Mention Proposal
+
+            This Pull Request was automatically generated from issue #${{ github.event.issue.number }}.
+
+            - **Source**: `${{ steps.add_press.outputs.source }}`
+            - **Date**: `${{ steps.add_press.outputs.date }}`
+            - **Title**: ${{ steps.add_press.outputs.entry_title }}
+            - **Media Type**: `${{ steps.add_press.outputs.media_type }}`
+            - **Target file**: `${{ steps.add_press.outputs.target_file }}`
+
+            Closes #${{ github.event.issue.number }}
+          labels: |
+            press-review
+            documentation
+            automated-pr
+
+      - name: Comment on Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Thank you @${context.payload.issue.user.login} for proposing this press mention! 🎉\n\nA Pull Request has been automatically opened to review and merge this mention into the Open Food Facts Press Review. You can follow along with the PR review and automated validation checks!`
+            });

@@ -1,0 +1,211 @@
+name: "🚀 Propose a new reuse or application"
+description: Add a new app, service, platform, or research project powered by Open Food Facts to the reuses showcase
+title: "[Reuse]: "
+labels: ["reuse", "showcase"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Welcome to the Open Food Facts Ecosystem & Reuses submission form!
+        Thank you for showcasing your project powered by Open Food Facts data or API.
+        Filling out this form will trigger our automated workflow to validate and generate a Pull Request adding your application to the official Open Food Facts Reuses showcase (`/reuses`).
+
+  - type: input
+    id: name
+    attributes:
+      label: Application / Reuse Name
+      description: Name of the application, service, tool, website, or research project.
+      placeholder: e.g. Open Prices, Waistline, FoodScanner
+    validations:
+      required: true
+
+  - type: input
+    id: tagline
+    attributes:
+      label: Tagline / One-line Summary
+      description: A punchy one-sentence summary of what the project does.
+      placeholder: e.g. Free, open-source barcode scanner for nutritional analysis and allergens
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Detailed Description
+      description: Explain what your application or project does, who it's for, and how it leverages Open Food Facts data or API.
+      placeholder: |
+        FoodScanner helps consumers understand product labels while grocery shopping.
+        It uses the Open Food Facts API to display Nutri-Score, Eco-Score, NOVA group, and allergen warnings, and allows users to contribute missing product photos back to the Open Food Facts database.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: theme
+    attributes:
+      label: Primary Theme
+      description: Select the main theme or category that best describes your project.
+      options:
+        - "nutrition (Nutrition & General Health)"
+        - "environment (Environment & Eco-Score)"
+        - "allergies (Allergies & Intolerances)"
+        - "additives (Additives & Ultra-Processing)"
+        - "vegan (Vegan & Vegetarian)"
+        - "gluten (Gluten-Free & Celiac)"
+        - "lactose (Lactose-Free & Dairy)"
+        - "fodmap (FODMAP & IBS)"
+        - "diabetes_keto (Diabetes & Low-Carb / Keto)"
+        - "pregnancy (Pregnancy & Maternity)"
+        - "halal_kosher (Halal & Kosher)"
+        - "tools (Tools, Fridge & Pantry Management)"
+        - "research (Science & Research)"
+        - "traceability (Traceability & Local Sourcing)"
+        - "education (Education & Games)"
+        - "health (Health & Medicine)"
+        - "social (Social & Community)"
+        - "retail (Retail & Supermarkets)"
+        - "ai (Artificial Intelligence & Machine Learning)"
+        - "general (General & Utilities)"
+    validations:
+      required: true
+
+  - type: input
+    id: secondary_themes
+    attributes:
+      label: Secondary Themes (optional)
+      description: Any secondary themes from the list above (comma-separated, e.g. "environment, additives").
+      placeholder: e.g. environment, additives
+
+  - type: dropdown
+    id: project
+    attributes:
+      label: Open Food Facts Project
+      description: Which Open Food Facts database does your project primarily use?
+      options:
+        - "openfoodfacts (Open Food Facts - Food & Beverages)"
+        - "openbeautyfacts (Open Beauty Facts - Cosmetics)"
+        - "openpetfoodfacts (Open Pet Food Facts - Pet Food)"
+        - "openproductsfacts (Open Products Facts - General Products)"
+    validations:
+      required: true
+
+  - type: input
+    id: website
+    attributes:
+      label: Website URL
+      description: Official website or landing page for the application or project.
+      placeholder: https://example.com
+
+  - type: input
+    id: play_store
+    attributes:
+      label: Google Play Store URL (optional)
+      description: Direct link to the Android app on Google Play Store.
+      placeholder: https://play.google.com/store/apps/details?id=...
+
+  - type: input
+    id: app_store
+    attributes:
+      label: Apple App Store URL (optional)
+      description: Direct link to the iOS app on Apple App Store.
+      placeholder: https://apps.apple.com/app/...
+
+  - type: input
+    id: fdroid
+    attributes:
+      label: F-Droid URL (optional)
+      description: Direct link to the app on F-Droid or another libre repository.
+      placeholder: https://f-droid.org/en/packages/...
+
+  - type: input
+    id: github
+    attributes:
+      label: Source Code / GitHub URL (optional)
+      description: Link to the public source code repository (GitHub, GitLab, etc.).
+      placeholder: https://github.com/...
+
+  - type: input
+    id: country
+    attributes:
+      label: Country Code (ISO 3-letter)
+      description: 3-letter ISO country code where the app is primarily available or developed, or "global" for worldwide apps.
+      placeholder: e.g. fra, usa, gbr, deu, esp, ita, or global
+
+  - type: input
+    id: country_label
+    attributes:
+      label: Country / Territory Label
+      description: Human-readable display label for the country.
+      placeholder: e.g. France, United States, Worldwide, Germany
+
+  - type: dropdown
+    id: open_source
+    attributes:
+      label: Is this project Open Source?
+      description: Is the source code available under an open-source license?
+      options:
+        - "No (Proprietary / Closed source)"
+        - "Yes (Open Source)"
+    validations:
+      required: true
+
+  - type: input
+    id: license
+    attributes:
+      label: License Name
+      description: Name of the license governing the app or project.
+      placeholder: e.g. GPLv3, MIT, Apache-2.0, Proprietary
+
+  - type: dropdown
+    id: contributes_data
+    attributes:
+      label: Does it contribute data back to Open Food Facts?
+      description: Does your project upload or sync product data back to Open Food Facts?
+      options:
+        - "No"
+        - "Yes"
+
+  - type: dropdown
+    id: contributes_photos
+    attributes:
+      label: Does it contribute product photos back?
+      description: Does your project send packaging or ingredients photos back to Open Food Facts?
+      options:
+        - "No"
+        - "Yes"
+
+  - type: dropdown
+    id: odbl_compliant
+    attributes:
+      label: Is it ODbL compliant?
+      description: Does your project comply with the Open Database License (ODbL) by providing attribution to Open Food Facts and sharing derivative databases?
+      options:
+        - "Yes (Compliant with ODbL)"
+        - "No"
+    validations:
+      required: true
+
+  - type: input
+    id: icon_url
+    attributes:
+      label: App Icon or Logo URL (optional)
+      description: Link to a high-resolution square PNG or SVG icon of the application.
+      placeholder: https://example.com/icon.png
+
+  - type: input
+    id: keywords
+    attributes:
+      label: Keywords / Search Tags (optional)
+      description: Comma-separated search keywords to help users discover your app in the showcase search bar.
+      placeholder: e.g. scanner, organic, keto, eco-score, recipes
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Contribution Checklist
+      options:
+        - label: I confirm this application or project is active and accurately described.
+          required: true
+        - label: I confirm this project respects Open Food Facts attribution requirements or uses the Open Food Facts API / data.
+          required: true
+        - label: I agree to have this metadata published in the public Open Food Facts reuses catalog under CC-BY-SA / ODbL.
+          required: true
