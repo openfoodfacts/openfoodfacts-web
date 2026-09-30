@@ -5,21 +5,41 @@ Unit tests for scripts/add_reuse.py
 
 import os
 import shutil
+import sys
 import tempfile
 import unittest
 import yaml
 
-from scripts.add_reuse import (
-    slugify,
-    clean_dropdown,
-    clean_url,
-    extract_domain,
-    parse_bool,
-    parse_issue_markdown,
-    format_reuse_dict,
-    add_reuse,
-)
-from scripts.compile_reuses import validate_reuse, VALID_THEMES, VALID_PROJECTS
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
+if os.path.dirname(__file__) not in sys.path:
+    sys.path.insert(0, os.path.dirname(__file__))
+
+try:
+    from scripts.add_reuse import (
+        slugify,
+        clean_dropdown,
+        clean_url,
+        extract_domain,
+        parse_bool,
+        parse_issue_markdown,
+        format_reuse_dict,
+        add_reuse,
+    )
+    from scripts.compile_reuses import validate_reuse, VALID_THEMES, VALID_PROJECTS
+except ImportError:
+    from add_reuse import (
+        slugify,
+        clean_dropdown,
+        clean_url,
+        extract_domain,
+        parse_bool,
+        parse_issue_markdown,
+        format_reuse_dict,
+        add_reuse,
+    )
+    from compile_reuses import validate_reuse, VALID_THEMES, VALID_PROJECTS
 
 
 class TestAddReuse(unittest.TestCase):

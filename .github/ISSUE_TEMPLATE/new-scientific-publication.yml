@@ -1,0 +1,124 @@
+name: "🔬 Suggest a new Scientific Publication"
+description: Propose an academic paper, study, or thesis that uses or cites Open Food Facts
+title: "[Publication]: "
+labels: ["science", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Welcome to the Open Food Facts Scientific Publications submission form!
+        Did you publish or discover research using Open Food Facts data or API?
+        Submit the study details below to include it in our scientific publications directory.
+
+  - type: input
+    id: title
+    attributes:
+      label: Paper Title
+      description: Full title of the scientific article, paper, or thesis
+      placeholder: "e.g. Nutri-Score: Evidence of the effectiveness of the French front-of-pack nutrition label"
+    validations:
+      required: true
+
+  - type: input
+    id: authors
+    attributes:
+      label: Authors
+      description: List of authors (comma-separated)
+      placeholder: e.g. Chantal Julia, Serge Hercberg
+    validations:
+      required: true
+
+  - type: input
+    id: journal
+    attributes:
+      label: Journal / Conference / Publisher
+      description: Where was this research published?
+      placeholder: e.g. Nature Food, The Lancet Planetary Health, Foods, Nutrients, PLOS ONE
+    validations:
+      required: true
+
+  - type: input
+    id: year
+    attributes:
+      label: Publication Year (YYYY)
+      description: Year of publication
+      placeholder: e.g. 2026
+    validations:
+      required: true
+
+  - type: input
+    id: doi
+    attributes:
+      label: DOI (Digital Object Identifier)
+      description: DOI identifier or link (optional)
+      placeholder: e.g. 10.3390/foods15152651
+
+  - type: input
+    id: url
+    attributes:
+      label: Publication URL
+      description: Link to the paper on the publisher's website or repository
+      placeholder: e.g. https://www.mdpi.com/...
+    validations:
+      required: true
+
+  - type: input
+    id: url_pdf
+    attributes:
+      label: Open Access PDF Link (optional)
+      description: Direct link to the open-access PDF version if available
+      placeholder: e.g. https://.../article.pdf
+
+  - type: dropdown
+    id: theme
+    attributes:
+      label: Primary Research Theme
+      description: Select the main scientific theme
+      options:
+        - "nutrition (Nutritional profiling, Nutri-Score & diet quality)"
+        - "ultra_processed (Ultra-processed foods, NOVA & food processing)"
+        - "environment (Environmental impact, Eco-Score & carbon footprint)"
+        - "additives (Food additives, emulsifiers & contaminants)"
+        - "food_classification (Food ontology, categorization & databases)"
+        - "computer_science (Machine learning, AI, NLP & computer vision)"
+        - "public_health (Epidemiology, public policy & health economics)"
+        - "mobile_apps (Consumer empowerment & smartphone food scanning)"
+        - "other (Other scientific domain)"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: themes
+    attributes:
+      label: Additional Keywords & Themes
+      description: Select any other areas covered by this publication
+      options:
+        - label: nutrition (Nutritional profiling)
+        - label: ultra_processed (Ultra-processed foods / NOVA)
+        - label: environment (Environmental impact / Green-Score)
+        - label: additives (Additives & substances)
+        - label: food_classification (Food classification & taxonomies)
+        - label: computer_science (Computer science, AI & open data)
+        - label: public_health (Public health & policy)
+        - label: consumer_empowerment (Consumer behavior & empowerment)
+        - label: food_waste (Food waste & sustainability)
+        - label: allergies (Allergens & food safety)
+
+  - type: textarea
+    id: excerpt
+    attributes:
+      label: Open Food Facts Usage & Key Findings
+      description: Describe how the authors used Open Food Facts data/API, sample size, or key conclusions
+      placeholder: e.g. The researchers extracted 15,000 products from Open Food Facts to evaluate...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Contribution Checklist
+      options:
+        - label: I confirm this publication directly cites, uses data from, or discusses Open Food Facts.
+          required: true
+        - label: I have verified that the title, authors, journal, and links are accurate.
+          required: true

@@ -24,6 +24,7 @@ Usage:
 """
 
 import argparse
+import contextlib
 import json
 import os
 import re
@@ -368,13 +369,17 @@ def add_reuse(raw_data, reuse_id=None, overwrite=False, dry_run=False, do_compil
 
     # Optionally recompile
     if do_compile:
-        compile_success = compile_reuses(check_only=False, verbose=False)
-        if not compile_success:
-            return {
-                "success": False,
-                "error": "Failed to recompile reuses after adding YAML.",
-                "file": rel_filepath
-            }
+        try:
+            with contextlib.redirect_stdout(sys.stderr):
+                compile_success = compile_reuses(check_only=False, verbose=False)
+            if not compile_success:
+                return {
+                    "success": False,
+                    "error": "Failed to recompile reuses after adding YAML.",
+                    "file": rel_filepath
+                }
+        except Exception as e:
+            print(f"[WARN] Reuses compilation warning: {e}", file=sys.stderr)
 
     return {
         "success": True,
@@ -420,6 +425,7 @@ def main():
     parser.add_argument("--overwrite", action="store_true", help="Allow overwriting existing reuse file")
     parser.add_argument("--dry-run", action="store_true", help="Validate without writing files")
     parser.add_argument("--json", action="store_true", help="Output result as JSON")
+    parser.add_argument("--output-json", help="Path to write JSON result to")
 
     args = parser.parse_args()
 
@@ -484,8 +490,12 @@ def main():
 
     if not raw_data.get("name"):
         err_msg = "Error: Application name must be provided via issue body or --name."
+        err_dict = {"success": False, "error": err_msg}
+        if args.output_json:
+            with open(args.output_json, "w", encoding="utf-8") as f:
+                json.dump(err_dict, f, indent=2)
         if args.json:
-            print(json.dumps({"success": False, "error": err_msg}, indent=2))
+            print(json.dumps(err_dict, indent=2))
         else:
             print(err_msg, file=sys.stderr)
         sys.exit(1)
@@ -497,6 +507,10 @@ def main():
         dry_run=args.dry_run,
         do_compile=args.compile
     )
+
+    if args.output_json:
+        with open(args.output_json, "w", encoding="utf-8") as f:
+            json.dump(result, f, indent=2)
 
     if args.json:
         print(json.dumps(result, indent=2))
