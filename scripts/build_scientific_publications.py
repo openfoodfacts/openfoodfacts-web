@@ -9,30 +9,88 @@ Compile data/scientific_publications/*.yaml into:
 import glob
 import json
 import os
-import re
+import sys
 import urllib.parse
 import yaml
 
-PUBLICATIONS_DIR = "data/scientific_publications"
-OUTPUT_JSON = "data/scientific_publications.json"
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+PUBLICATIONS_DIR = os.path.join(REPO_ROOT, "data", "scientific_publications")
+OUTPUT_JSON = os.path.join(REPO_ROOT, "data", "scientific_publications.json")
 
-def load_all_publications():
+def validate_publication(p, filepath):
+    errors = []
+    warnings = []
+    filename = os.path.basename(filepath)
+    stem = filename[:-5] if filename.endswith(".yaml") else filename[:-4]
+
+    # Required: id
+    p_id = p.get("id")
+    if not p_id:
+        errors.append(f"{filename}: missing required field 'id'")
+    elif str(p_id) != stem:
+        errors.append(f"{filename}: id '{p_id}' does not match filename stem '{stem}'")
+
+    # Required: title
+    title = p.get("title")
+    if not title or not str(title).strip():
+        errors.append(f"{filename}: missing or empty required field 'title'")
+
+    # Authors
+    authors = p.get("authors")
+    if authors is None:
+        errors.append(f"{filename}: missing required field 'authors'")
+    elif not isinstance(authors, list):
+        errors.append(f"{filename}: 'authors' must be a list of strings")
+    elif len(authors) == 0:
+        warnings.append(f"{filename}: 'authors' list is empty")
+
+    # Year
+    year = p.get("year")
+    if year is None:
+        errors.append(f"{filename}: missing required field 'year'")
+    elif not isinstance(year, int) or year < 1990 or year > 2050:
+        errors.append(f"{filename}: invalid year '{year}', must be an integer between 1990 and 2050")
+
+    # URL
+    url = p.get("url")
+    if url and not str(url).startswith(("http://", "https://")):
+        warnings.append(f"{filename}: url '{url}' does not start with http:// or https://")
+
+    # Themes
+    themes = p.get("themes")
+    if themes is not None and not isinstance(themes, list):
+        errors.append(f"{filename}: 'themes' must be a list of strings")
+
+    return errors, warnings
+
+def load_all_publications(directory=PUBLICATIONS_DIR, validate=False):
     pubs = []
-    yaml_files = sorted(glob.glob(os.path.join(PUBLICATIONS_DIR, "*.yaml")))
+    all_errors = []
+    all_warnings = []
+    yaml_files = sorted(glob.glob(os.path.join(directory, "*.yaml")) + glob.glob(os.path.join(directory, "*.yml")))
     for path in yaml_files:
         try:
             with open(path, "r", encoding="utf-8") as f:
                 data = yaml.safe_load(f)
                 if not data or not isinstance(data, dict):
+                    all_errors.append(f"{os.path.basename(path)}: content must be a YAML mapping")
                     continue
                 if not data.get("id"):
                     data["id"] = os.path.splitext(os.path.basename(path))[0]
+
+                if validate:
+                    errs, warns = validate_publication(data, path)
+                    all_errors.extend(errs)
+                    all_warnings.extend(warns)
+
                 pubs.append(data)
         except Exception as e:
-            print(f"Warning: Error parsing {path}: {e}")
-    
+            all_errors.append(f"{os.path.basename(path)}: parsing error: {e}")
+
     # Sort by year descending by default
     pubs.sort(key=lambda p: (-(p.get("year") or 0), -(p.get("num_citations") or 0), p.get("title", "")))
+    if validate:
+        return pubs, all_errors, all_warnings
     return pubs
 
 def generate_bibtex(p):
@@ -703,7 +761,7 @@ def generate_html(pubs, lang="en"):
   <h4 class="subheader">{t_subtitle}</h4>
   
   <div class="sci-actions">
-    <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?title=%5BPublication%5D+New+Scientific+Paper%3A+&labels=science%2Cdocumentation&body=%23%23%23+%F0%9F%93%96+Paper+Title%0A%3C%21--+Enter+full+article+title+--%3E%0A%0A%23%23%23+%F0%9F%91%A8%E2%80%8D%F0%9F%94%AC+Authors+%26+Journal%0A-+Authors%3A+%0A-+Journal+%2F+Conference%3A+%0A-+Year%3A+%0A-+DOI%3A+%0A-+URL%3A+%0A%0A%23%23%23+%F0%9F%94%AC+Open+Food+Facts+Usage+%26+Findings%0A%3C%21--+How+did+this+study+use+Open+Food+Facts+data%3F+--%3E%0A" target="_blank" rel="noopener noreferrer" class="button round primary small sci-btn">
+    <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-scientific-publication.yml" target="_blank" rel="noopener noreferrer" class="button round primary small sci-btn">
       <span class="material-icons">add_circle</span> {t_submit_gh_btn}
     </a>
     <a href="https://github.com/openfoodfacts/openfoodfacts-web/tree/main/data/scientific_publications" target="_blank" rel="noopener noreferrer" class="button round secondary small sci-btn">
@@ -762,7 +820,7 @@ def generate_html(pubs, lang="en"):
     <a href="mailto:contact@openfoodfacts.org" class="sci-chip-link">✉️ contact@openfoodfacts.org</a>
     <a href="/data" class="sci-chip-link">💾 {"Téléchargement des bases (Exports)" if is_fr else "Download Database Dumps"}</a>
     <a href="https://wiki.openfoodfacts.org/Open_Food_Facts_and_Science" target="_blank" rel="noopener noreferrer" class="sci-chip-link">📖 {"Page Wiki Science" if is_fr else "Science Wiki"}</a>
-    <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?title=%5BPublication%5D+New+Scientific+Paper%3A+&labels=science%2Cdocumentation" target="_blank" rel="noopener noreferrer" class="sci-chip-link">🚀 {"Signaler votre article" if is_fr else "Submit Your Publication"}</a>
+    <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-scientific-publication.yml" target="_blank" rel="noopener noreferrer" class="sci-chip-link">🚀 {"Signaler votre article" if is_fr else "Submit Your Publication"}</a>
   </div>
 </div>
 
@@ -825,15 +883,15 @@ def generate_html(pubs, lang="en"):
 
 <!-- Quick Topic Filter Chips -->
 <div class="topic-chips-bar">
-  <button type="button" class="chip-btn active" onclick="selectSciTheme(this, 'all')">{"🌟 Tous les articles" if is_fr else "🌟 All Articles"}</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'nutrition')">🥗 {"Nutrition & Nutri-Score" if is_fr else "Nutrition & Nutri-Score"}</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'ultra_processed')">🏭 {"NOVA & Aliments Ultra-Transformés" if is_fr else "NOVA & Ultra-Processed"}</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'additives')">🧪 {"Additifs & Émulsifiants" if is_fr else "Additives & Emulsifiers"}</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'computer_science')">🤖 {"IA & Data Science" if is_fr else "AI & Data Science"}</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'environment')">♻️ {"Environnement & Éco-Score" if is_fr else "Environment & Eco-Score"}</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'labeling')">🏷️ {"Étiquetage & Politiques" if is_fr else "Labeling & Policy"}</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'halal_kosher')">🕊️ Halal / Kosher</button>
-  <button type="button" class="chip-btn" onclick="selectSciTheme(this, 'allergies')">⚠️ {"Allergies" if is_fr else "Allergies"}</button>
+  <button type="button" class="chip-btn active" data-theme="all" onclick="selectSciTheme(this, 'all')">{"🌟 Tous les articles" if is_fr else "🌟 All Articles"}</button>
+  <button type="button" class="chip-btn" data-theme="nutrition" onclick="selectSciTheme(this, 'nutrition')">🥗 {"Nutrition & Nutri-Score" if is_fr else "Nutrition & Nutri-Score"}</button>
+  <button type="button" class="chip-btn" data-theme="ultra_processed" onclick="selectSciTheme(this, 'ultra_processed')">🏭 {"NOVA & Aliments Ultra-Transformés" if is_fr else "NOVA & Ultra-Processed"}</button>
+  <button type="button" class="chip-btn" data-theme="additives" onclick="selectSciTheme(this, 'additives')">🧪 {"Additifs & Émulsifiants" if is_fr else "Additives & Emulsifiers"}</button>
+  <button type="button" class="chip-btn" data-theme="computer_science" onclick="selectSciTheme(this, 'computer_science')">🤖 {"IA & Data Science" if is_fr else "AI & Data Science"}</button>
+  <button type="button" class="chip-btn" data-theme="environment" onclick="selectSciTheme(this, 'environment')">♻️ {"Environnement & Éco-Score" if is_fr else "Environment & Eco-Score"}</button>
+  <button type="button" class="chip-btn" data-theme="labeling" onclick="selectSciTheme(this, 'labeling')">🏷️ {"Étiquetage & Politiques" if is_fr else "Labeling & Policy"}</button>
+  <button type="button" class="chip-btn" data-theme="halal_kosher" onclick="selectSciTheme(this, 'halal_kosher')">🕊️ Halal / Kosher</button>
+  <button type="button" class="chip-btn" data-theme="allergies" onclick="selectSciTheme(this, 'allergies')">⚠️ {"Allergies" if is_fr else "Allergies"}</button>
 </div>
 
 <!-- Filter Bar -->
@@ -902,7 +960,12 @@ def generate_html(pubs, lang="en"):
 <!-- Stats and Count -->
 <div class="sci-stats">
   <div class="sci-count" id="sciCount">{"Chargement des publications..." if is_fr else "Loading publications..."}</div>
-  <button type="button" class="button secondary small" onclick="resetSciFilters()" style="margin: 0;">{"Tout réinitialiser" if is_fr else "Reset All"}</button>
+  <div style="display: flex; gap: 0.5rem; align-items: center;">
+    <button type="button" class="button secondary small" onclick="copyShareLink()" style="margin: 0;" title="{'Copier le lien direct vers cette sélection' if is_fr else 'Copy direct link to this filtered view'}">
+      <span class="material-icons" style="font-size: 14px; vertical-align: -2px;">share</span> {"Partager" if is_fr else "Share view"}
+    </button>
+    <button type="button" class="button secondary small" onclick="resetSciFilters()" style="margin: 0;">{"Tout réinitialiser" if is_fr else "Reset All"}</button>
+  </div>
 </div>
 
 <!-- Publication Grid -->
@@ -999,10 +1062,55 @@ const COUNTRY_FLAGS = {{
   "gbr": "🇬🇧 UK"
 }};
 
+const THEME_ALIASES = {{
+  "ultra_processed": "ultra_processed",
+  "ultra-processed": "ultra_processed",
+  "ultraprocessed": "ultra_processed",
+  "upf": "ultra_processed",
+  "upfs": "ultra_processed",
+  "nova": "ultra_processed",
+  "nova4": "ultra_processed",
+  "nova-4": "ultra_processed",
+  "processing": "ultra_processed",
+  "nutrition": "nutrition",
+  "nutriscore": "nutrition",
+  "nutri-score": "nutrition",
+  "additives": "additives",
+  "additif": "additives",
+  "additifs": "additives",
+  "emulsifiers": "additives",
+  "computer_science": "computer_science",
+  "ai": "computer_science",
+  "ia": "computer_science",
+  "ml": "computer_science",
+  "nlp": "computer_science",
+  "environment": "environment",
+  "ecoscore": "environment",
+  "eco-score": "environment",
+  "climat": "environment",
+  "climate": "environment",
+  "labeling": "labeling",
+  "labels": "labeling",
+  "etiquetage": "labeling",
+  "packaging": "labeling",
+  "halal_kosher": "halal_kosher",
+  "halal": "halal_kosher",
+  "kosher": "halal_kosher",
+  "allergies": "allergies",
+  "allergens": "allergies",
+  "allergenes": "allergies",
+  "allergy": "allergies",
+  "nutrient_profiling": "nutrient_profiling",
+  "mobile_apps": "mobile_apps",
+  "economy": "economy",
+  "digital_platforms": "digital_platforms"
+}};
+
 let selectedQuickTheme = "all";
 let currentFilteredList = [];
 let displayedCount = 0;
 const PAGE_SIZE = 36;
+let isReadingUrlState = false;
 
 function toggleSciDrawer(id) {{
   const el = document.getElementById(id);
@@ -1014,11 +1122,16 @@ function toggleMultiFilterPanel() {{
   if (p) p.classList.toggle("open");
 }}
 
+function activateChip(themeVal) {{
+  document.querySelectorAll(".topic-chips-bar .chip-btn").forEach(el => {{
+    el.classList.toggle("active", el.getAttribute("data-theme") === themeVal);
+  }});
+}}
+
 function selectSciTheme(btn, themeVal) {{
   selectedQuickTheme = themeVal;
-  document.querySelectorAll(".topic-chips-bar .chip-btn").forEach(el => el.classList.remove("active"));
-  if (btn) btn.classList.add("active");
-  applySciFilters();
+  activateChip(themeVal);
+  applySciFilters(true);
 }}
 
 function getCheckedValues(name) {{
@@ -1032,10 +1145,12 @@ function resetSciFilters() {{
   document.querySelectorAll('input[name="filter_type"]').forEach(el => el.checked = false);
   document.querySelectorAll('input[name="filter_cit"]').forEach(el => el.checked = false);
   document.querySelectorAll('input[name="filter_country"]').forEach(el => el.checked = false);
-  selectSciTheme(document.querySelector(".topic-chips-bar .chip-btn"), "all");
+  selectedQuickTheme = "all";
+  activateChip("all");
+  applySciFilters(true);
 }}
 
-function applySciFilters() {{
+function applySciFilters(syncUrl = true) {{
   const q = document.getElementById("sciSearch").value.toLowerCase().trim();
   const sortVal = document.getElementById("sciSort").value;
   const yearVal = document.getElementById("sciYear").value;
@@ -1110,6 +1225,10 @@ function applySciFilters() {{
   }});
 
   renderSciList(filtered);
+
+  if (syncUrl && !isReadingUrlState) {{
+    syncUrlFromState();
+  }}
 }}
 
 function renderSciCard(p) {{
@@ -1302,10 +1421,140 @@ function openSciModal(id) {{
   modal.classList.add("open");
 }}
 
+function syncUrlFromState() {{
+  if (activePubForModal) {{
+    history.replaceState(null, null, "#" + activePubForModal.id);
+    return;
+  }}
+
+  const searchEl = document.getElementById("sciSearch");
+  const yearEl = document.getElementById("sciYear");
+  const sortEl = document.getElementById("sciSort");
+
+  const q = searchEl ? searchEl.value.trim() : "";
+  const year = yearEl ? yearEl.value : "all";
+  const sort = sortEl ? sortEl.value : "recent";
+  const theme = selectedQuickTheme;
+
+  const checkedTypes = getCheckedValues("filter_type");
+  const checkedCits = getCheckedValues("filter_cit");
+  const checkedCountries = getCheckedValues("filter_country");
+
+  const hasAdvanced = (year !== "all") || (sort !== "recent") || q || checkedTypes.length || checkedCits.length || checkedCountries.length;
+
+  if (!hasAdvanced && theme && theme !== "all") {{
+    history.replaceState(null, null, "#" + theme);
+  }} else if (hasAdvanced || (theme && theme !== "all")) {{
+    const params = new URLSearchParams();
+    if (theme && theme !== "all") params.set("theme", theme);
+    if (q) params.set("q", q);
+    if (year !== "all") params.set("year", year);
+    if (sort !== "recent") params.set("sort", sort);
+    if (checkedTypes.length) params.set("type", checkedTypes.join(","));
+    if (checkedCits.length) params.set("cit", checkedCits.join(","));
+    if (checkedCountries.length) params.set("country", checkedCountries.join(","));
+    history.replaceState(null, null, "#" + params.toString());
+  }} else {{
+    history.replaceState(null, null, window.location.pathname + window.location.search);
+  }}
+}}
+
+function readStateFromUrl() {{
+  isReadingUrlState = true;
+  try {{
+    const hashRaw = window.location.hash.replace(/^#/, "").trim();
+    const searchRaw = window.location.search.replace(/^\\?/, "").trim();
+
+    // 1. Article modal deeplink (e.g. #2025-jun-... or #pub-...)
+    const cleanPubId = hashRaw.replace(/^pub-/, "");
+    const pub = PUBLICATIONS_DATA.find(x => x.id === cleanPubId);
+    if (pub) {{
+      applySciFilters(false);
+      openSciModal(pub.id);
+      return true;
+    }}
+
+    // 2. Structured query or hash parameters (e.g. #theme=ultra_processed or ?theme=ultra_processed)
+    let params = null;
+    if (hashRaw.includes("=") || hashRaw.includes("&")) {{
+      params = new URLSearchParams(hashRaw);
+    }} else if (searchRaw) {{
+      params = new URLSearchParams(searchRaw);
+    }}
+
+    if (params) {{
+      const themeParam = params.get("theme") || params.get("topic") || params.get("category");
+      if (themeParam) {{
+        const normalized = THEME_ALIASES[themeParam.toLowerCase()] || themeParam;
+        selectedQuickTheme = normalized;
+        activateChip(normalized);
+      }} else {{
+        selectedQuickTheme = "all";
+        activateChip("all");
+      }}
+
+      const q = params.get("q") || params.get("search");
+      const searchEl = document.getElementById("sciSearch");
+      if (searchEl) searchEl.value = q || "";
+
+      const year = params.get("year");
+      const yearEl = document.getElementById("sciYear");
+      if (yearEl) yearEl.value = year || "all";
+
+      const sort = params.get("sort");
+      const sortEl = document.getElementById("sciSort");
+      if (sortEl) sortEl.value = sort || "recent";
+
+      const types = params.get("type") ? params.get("type").split(",") : [];
+      document.querySelectorAll('input[name="filter_type"]').forEach(el => {{
+        el.checked = types.includes(el.value);
+      }});
+
+      const cits = params.get("cit") ? params.get("cit").split(",") : [];
+      document.querySelectorAll('input[name="filter_cit"]').forEach(el => {{
+        el.checked = cits.includes(el.value);
+      }});
+
+      const countries = params.get("country") ? params.get("country").split(",") : [];
+      document.querySelectorAll('input[name="filter_country"]').forEach(el => {{
+        el.checked = countries.includes(el.value);
+      }});
+
+      if (types.length || cits.length || countries.length) {{
+        const p = document.getElementById("multiFilterPanel");
+        if (p) p.classList.add("open");
+      }}
+
+      applySciFilters(false);
+      return true;
+    }}
+
+    // 3. Simple hashtag deeplink (e.g. #ultra_processed, #nova, #upf, #nutrition, #additives, etc.)
+    if (hashRaw) {{
+      const normalized = THEME_ALIASES[hashRaw.toLowerCase()];
+      if (normalized) {{
+        selectedQuickTheme = normalized;
+        activateChip(normalized);
+        applySciFilters(false);
+        return true;
+      }}
+    }}
+
+    // Fallback: default state
+    selectedQuickTheme = "all";
+    activateChip("all");
+    applySciFilters(false);
+    return false;
+  }} finally {{
+    isReadingUrlState = false;
+  }}
+}}
+
 function closeSciModal() {{
   const modal = document.getElementById("sciModalOverlay");
   modal.classList.remove("open");
-  history.replaceState(null, null, window.location.pathname + window.location.search);
+  activePubForModal = null;
+  syncUrlFromState();
 }}
 
 function onSciModalBackdropClick(event) {{
@@ -1328,46 +1577,97 @@ function copyApa() {{
   }});
 }}
 
+function copyShareLink() {{
+  const url = window.location.href;
+  if (navigator.clipboard && navigator.clipboard.writeText) {{
+    navigator.clipboard.writeText(url).then(() => {{
+      alert(IS_FR ? "Lien direct vers cette sélection copié !" : "Direct link to this view copied to clipboard!");
+    }}).catch(() => {{
+      prompt(IS_FR ? "Copiez ce lien :" : "Copy this link:", url);
+    }});
+  }} else {{
+    prompt(IS_FR ? "Copiez ce lien :" : "Copy this link:", url);
+  }}
+}}
+
 window.addEventListener("keydown", function(e) {{
   if (e.key === "Escape") {{
     closeSciModal();
   }}
 }});
 
-function checkHash() {{
-  const hash = window.location.hash.replace(/^#pub-|^#/, "");
-  if (hash) {{
-    openSciModal(hash);
-  }}
-}}
+// Initialize from URL hashtag or query parameters
+readStateFromUrl();
 
-// Initialize
-applySciFilters();
-window.addEventListener("load", checkHash);
-window.addEventListener("hashchange", checkHash);
+window.addEventListener("hashchange", function() {{
+  if (!isReadingUrlState) {{
+    readStateFromUrl();
+  }}
+}});
+
+window.addEventListener("popstate", function() {{
+  if (!isReadingUrlState) {{
+    readStateFromUrl();
+  }}
+}});
 </script>
 """
 
-def main():
-    pubs = load_all_publications()
-    print(f"Loaded {len(pubs)} scientific publications from {PUBLICATIONS_DIR}")
+def compile_publications(check_only=False, verbose=True):
+    os.chdir(REPO_ROOT)
+    if verbose:
+        print(f"Loading and validating scientific publications from {PUBLICATIONS_DIR}...")
+
+    pubs, errors, warnings = load_all_publications(PUBLICATIONS_DIR, validate=True)
+
+    if warnings and verbose:
+        for w in warnings[:10]:
+            print(f"  [WARN] {w}")
+        if len(warnings) > 10:
+            print(f"  ... and {len(warnings) - 10} more warnings.")
+
+    if errors:
+        print(f"\n❌ Found {len(errors)} validation error(s) in scientific publications YAMLs:")
+        for e in errors:
+            print(f"  - {e}")
+        return False
+
+    if verbose:
+        print(f"✅ Validated {len(pubs)} scientific publications")
+
+    if check_only:
+        return True
 
     # Write aggregate JSON
     with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
         json.dump(pubs, f, ensure_ascii=False, indent=2)
-    print(f"Wrote aggregate JSON: {OUTPUT_JSON}")
+    if verbose:
+        print(f"Wrote aggregate JSON: {OUTPUT_JSON}")
 
     # Generate HTML for en and fr
     en_html = generate_html(pubs, "en")
     fr_html = generate_html(pubs, "fr")
 
-    with open("lang/en/texts/scientific-publications.html", "w", encoding="utf-8") as f:
-        f.write(en_html)
-    print("Wrote lang/en/texts/scientific-publications.html")
+    try:
+        with open("lang/en/texts/scientific-publications.html", "w", encoding="utf-8") as f:
+            f.write(en_html)
+        if verbose:
+            print("Wrote lang/en/texts/scientific-publications.html")
 
-    with open("lang/fr/texts/scientific-publications.html", "w", encoding="utf-8") as f:
-        f.write(fr_html)
-    print("Wrote lang/fr/texts/scientific-publications.html")
+        with open("lang/fr/texts/scientific-publications.html", "w", encoding="utf-8") as f:
+            f.write(fr_html)
+        if verbose:
+            print("Wrote lang/fr/texts/scientific-publications.html")
+    except Exception as e:
+        if verbose:
+            print(f"[WARN] HTML export warning: {e}", file=sys.stderr)
+
+    return True
+
+def main():
+    check_mode = "--check" in sys.argv
+    success = compile_publications(check_only=check_mode, verbose=True)
+    sys.exit(0 if success else 1)
 
 if __name__ == "__main__":
     main()
