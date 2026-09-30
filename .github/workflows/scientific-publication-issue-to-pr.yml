@@ -1,0 +1,90 @@
+name: "Scientific Publications: Create PR from Issue"
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: scientific-publication-issue-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  process-publication-issue:
+    # Run only if the issue has the 'science' label
+    if: >
+      (github.event.action == 'labeled' && github.event.label.name == 'science') ||
+      (github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'science'))
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Process scientific publication issue and create YAML
+        id: add_pub
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python3 scripts/add_scientific_publication.py --from-env --compile --json --output-json result.json
+          cat result.json
+          SUCCESS=$(python3 -c "import json; print(json.load(open('result.json')).get('success', False))")
+          if [ "$SUCCESS" != "True" ]; then
+            echo "Failed to parse or add scientific publication"
+            exit 1
+          fi
+          echo "pub_title=$(python3 -c "import json; print(json.load(open('result.json')).get('title', ''))")" >> $GITHUB_OUTPUT
+          echo "authors=$(python3 -c "import json; print(json.load(open('result.json')).get('authors', ''))")" >> $GITHUB_OUTPUT
+          echo "year=$(python3 -c "import json; print(json.load(open('result.json')).get('year', ''))")" >> $GITHUB_OUTPUT
+          echo "journal=$(python3 -c "import json; print(json.load(open('result.json')).get('journal', ''))")" >> $GITHUB_OUTPUT
+          echo "target_file=$(python3 -c "import json; print(json.load(open('result.json')).get('file', ''))")" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "feat(science): add publication from issue #${{ github.event.issue.number }}"
+          branch: "publication/issue-${{ github.event.issue.number }}"
+          delete-branch: true
+          title: "[Publication] Add ${{ steps.add_pub.outputs.pub_title }}"
+          body: |
+            ### 🔬 Scientific Publication Proposal
+
+            This Pull Request was automatically generated from issue #${{ github.event.issue.number }}.
+
+            - **Title**: ${{ steps.add_pub.outputs.pub_title }}
+            - **Authors**: ${{ steps.add_pub.outputs.authors }}
+            - **Year**: `${{ steps.add_pub.outputs.year }}`
+            - **Journal**: `${{ steps.add_pub.outputs.journal }}`
+            - **Target file**: `${{ steps.add_pub.outputs.target_file }}`
+
+            Closes #${{ github.event.issue.number }}
+          labels: |
+            science
+            documentation
+            automated-pr
+
+      - name: Comment on Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Thank you @${context.payload.issue.user.login} for proposing this scientific publication! 🎉\n\nA Pull Request has been automatically opened to validate and merge this paper into the Open Food Facts scientific publications directory. You can follow along with the automated checks and review in the PR!`
+            });

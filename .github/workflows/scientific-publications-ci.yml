@@ -1,0 +1,58 @@
+name: "Scientific Publications: CI Validation"
+
+on:
+  push:
+    paths:
+      - 'data/scientific_publications/**'
+      - 'scripts/build_scientific_publications.py'
+      - 'scripts/add_scientific_publication.py'
+      - 'scripts/test_add_scientific_publication.py'
+  pull_request:
+    paths:
+      - 'data/scientific_publications/**'
+      - 'scripts/build_scientific_publications.py'
+      - 'scripts/add_scientific_publication.py'
+      - 'scripts/test_add_scientific_publication.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scientific-publications-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-publications:
+    name: Validate Scientific Publications YAML & Schemas
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Validate scientific publications YAML files
+        run: |
+          python3 scripts/build_scientific_publications.py --check
+
+      - name: Run Scientific Publications Unit Tests
+        run: |
+          python3 scripts/test_add_scientific_publication.py
+
+      - name: Test Scientific Publication Parser
+        run: |
+          python3 scripts/add_scientific_publication.py --dry-run --json \
+            --title "CI Validation Test Article" \
+            --authors "Jane Doe, John Smith" \
+            --year 2026 \
+            --journal "Journal of Food Research" \
+            --url "https://example.com/paper" \
+            --theme nutrition
