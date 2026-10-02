@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.7.0...v1.8.0) (2026-10-02)
+
+
+### Features
+
+* producers page revamp ([c9c2c46](https://github.com/openfoodfacts/openfoodfacts-web/commit/c9c2c46e8885462bae2f5a530fc84d03c69410cc))
+
 ## [1.7.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.6.1...v1.7.0) (2026-10-02)
 
 
