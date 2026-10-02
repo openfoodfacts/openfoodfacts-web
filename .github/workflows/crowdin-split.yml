@@ -19,10 +19,11 @@ jobs:
         uses: crowdin/github-action@9c23991700c0ec5256fd41089b9d9d7d540e424e # v3.3.0
         with:
           upload_sources: true
-          upload_translations: false
+          upload_translations: true
           download_translations: true
           config: 'crowdin-kp.yml'
           pull_request_title: 'feat: Knowledge panels translations'
+          pull_request_labels: "translations"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
@@ -32,10 +33,11 @@ jobs:
         uses: crowdin/github-action@9c23991700c0ec5256fd41089b9d9d7d540e424e # v3.3.0
         with:
           upload_sources: true
-          upload_translations: false
+          upload_translations: true
           download_translations: true
           config: 'crowdin-html.yml'
           pull_request_title: 'feat: Static pages translations'
+          pull_request_labels: "translations"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
