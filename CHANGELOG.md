@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.7.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.6.1...v1.7.0) (2026-10-02)
+
+
+### Features
+
+* add illustrations from design ([6917535](https://github.com/openfoodfacts/openfoodfacts-web/commit/69175356678fbe67cb9af9ad40f89de11c53afaf))
+* add scan party automation ([13f6e8d](https://github.com/openfoodfacts/openfoodfacts-web/commit/13f6e8de8f22499e99428aa19b062d62e0dc8e1c))
+* commit various scripts ([1254111](https://github.com/openfoodfacts/openfoodfacts-web/commit/12541119f574311b4b81b538970690e71f2eecf1))
+* photos for impact image ([e6dfd71](https://github.com/openfoodfacts/openfoodfacts-web/commit/e6dfd713c36222c2eae5a7ea9d306523ce550ebc))
+* pipeline for scientific publications ([00c51c5](https://github.com/openfoodfacts/openfoodfacts-web/commit/00c51c5a7b953a9d7a8cce01c0b1d0b276e2bc2f))
+* press review and reuse automatic system ([059ff89](https://github.com/openfoodfacts/openfoodfacts-web/commit/059ff896281c94589575116549efb400b32be30c))
+
+
+### Bug Fixes
+
+* add mobile feature scripts and data ([31b1a2d](https://github.com/openfoodfacts/openfoodfacts-web/commit/31b1a2d3b9692cf13e456c96d633b3b5a2701f23))
+* duplicate permissions ([6e5b9bb](https://github.com/openfoodfacts/openfoodfacts-web/commit/6e5b9bb5c4278d614b668f4dae7bce57317c9b47))
+* fixes to small national presspages ([c9a5982](https://github.com/openfoodfacts/openfoodfacts-web/commit/c9a598299ae7510c53032a8a99e80bf802ddcaa3))
+* old iphone page in French fix ([b404aa6](https://github.com/openfoodfacts/openfoodfacts-web/commit/b404aa6b1ecce4a468e0b81a59386777ca10e639))
+* Update open-food-facts-mobile-app.html with scale-greenscore ([#948](https://github.com/openfoodfacts/openfoodfacts-web/issues/948)) ([38bfa17](https://github.com/openfoodfacts/openfoodfacts-web/commit/38bfa175577b4ac6329e0df5c8dbf3b9b2b7b907))
+* update pagelist ([16f912a](https://github.com/openfoodfacts/openfoodfacts-web/commit/16f912a63c2b0baac53f874edd993d6b9ca204b1))
+* update reuses ([899bb02](https://github.com/openfoodfacts/openfoodfacts-web/commit/899bb028d5c0f3abbb20c7e955970ec4845538c2))
+* updates to reusers ([1c20f33](https://github.com/openfoodfacts/openfoodfacts-web/commit/1c20f33c662b16bcbc9ba7de44d0ecdfa09bc7c7))
+
 ## [1.6.1](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.6.0...v1.6.1) (2026-09-28)
 
 
