@@ -1,0 +1,59 @@
+name: "Scan Parties: CI Validation"
+
+on:
+  push:
+    paths:
+      - 'data/scan_parties/**'
+      - 'scripts/compile_scan_parties.py'
+      - 'scripts/add_scan_party.py'
+      - 'scripts/test_add_scan_party.py'
+  pull_request:
+    paths:
+      - 'data/scan_parties/**'
+      - 'scripts/compile_scan_parties.py'
+      - 'scripts/add_scan_party.py'
+      - 'scripts/test_add_scan_party.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scan-parties-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-scan-parties:
+    name: Validate Scan Parties YAMLs & Schemas
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Validate Scan Parties YAML files
+        run: |
+          python3 scripts/compile_scan_parties.py --check
+
+      - name: Run Scan Parties Unit Tests
+        run: |
+          python3 scripts/test_add_scan_party.py
+
+      - name: Test Scan Party Issue Parser
+        run: |
+          python3 scripts/add_scan_party.py --dry-run --json \
+            --title "CI Validation Scan Party" \
+            --type upcoming \
+            --date "2026-11-20" \
+            --venue "Biocoop Paris" \
+            --city "Paris" \
+            --country "fra" \
+            --description "CI automated test scan party event"

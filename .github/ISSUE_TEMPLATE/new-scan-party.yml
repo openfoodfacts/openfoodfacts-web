@@ -1,0 +1,169 @@
+name: "🎉 Propose a new Scan Party / Event"
+description: Announce an upcoming Scan Party workshop or submit a past community event to the directory
+title: "[Scan Party]: "
+labels: ["scan-party", "event"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Welcome to the Open Food Facts Scan Parties submission form!
+        Are you organizing an upcoming Scan Party, barcode-scanning hackathon, packaging workshop, or community food event? Or do you want to archive a past gathering in the official directory?
+        Filling out this form will trigger our automated workflow to validate and generate a Pull Request adding your event to the Open Food Facts Scan Parties directory (`/scan-parties`).
+
+  - type: input
+    id: title
+    attributes:
+      label: Event Title
+      description: Name of the Scan Party or workshop.
+      placeholder: e.g. Biomonde Rennes Organic Scan Party, Climate Academy Packaging Workshop
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Event Timing / Type
+      description: Is this an upcoming event or a past / completed event?
+      options:
+        - "upcoming (Upcoming Event)"
+        - "past (Past / Completed Event)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Event Status
+      description: Current status of the event.
+      options:
+        - "upcoming"
+        - "completed"
+        - "cancelled"
+    validations:
+      required: false
+
+  - type: input
+    id: date
+    attributes:
+      label: Date (Display format)
+      description: Display date of the event (e.g. "November 2026", "October 15, 2026", or "2026-10-15").
+      placeholder: e.g. November 2026 or 2026-11-23
+    validations:
+      required: true
+
+  - type: input
+    id: start_date
+    attributes:
+      label: Start Date (YYYY-MM-DD)
+      description: Exact date in YYYY-MM-DD format for chronological sorting (optional if specified in Date).
+      placeholder: e.g. 2026-11-23
+    validations:
+      required: false
+
+  - type: input
+    id: venue
+    attributes:
+      label: Venue / Location Details
+      description: Store, venue, cooperative grocery, library, or community center name.
+      placeholder: e.g. Biomonde Organic Grocery, Académie du Climat (Paris 4e)
+    validations:
+      required: true
+
+  - type: input
+    id: city
+    attributes:
+      label: City
+      description: City where the scan party takes place.
+      placeholder: e.g. Paris, Rennes, Lyon, London, Barcelona
+    validations:
+      required: false
+
+  - type: input
+    id: country
+    attributes:
+      label: Country
+      description: Country ISO code (e.g. fra, gbr, esp, deu, usa) or country name.
+      placeholder: e.g. fra, France
+    validations:
+      required: false
+
+  - type: input
+    id: location
+    attributes:
+      label: Location (City, Country)
+      description: Full city and country location string (e.g. "Paris, France"). Optional if City and Country are provided above.
+      placeholder: e.g. Paris, France
+    validations:
+      required: false
+
+  - type: input
+    id: organizer
+    attributes:
+      label: Organizer / Community Group
+      description: Name of the person, chapter, association, or organization running the workshop.
+      placeholder: e.g. Open Food Facts & Climate Academy, Breton Food Data Enthusiasts
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What will happen during the scan party? What store or products will be targeted?
+      placeholder: e.g. A collaborative Saturday workshop scanning organic and regional Brittany products, checking labels for additives and certifying recyclable packagings.
+    validations:
+      required: true
+
+  - type: input
+    id: link
+    attributes:
+      label: Registration / Event URL / Recap Link
+      description: Link to Mobilizon, Meetup, Eventbrite, blog recap, or announcement.
+      placeholder: https://...
+    validations:
+      required: false
+
+  - type: input
+    id: image
+    attributes:
+      label: Image URL (optional)
+      description: Photo from the event or venue banner image URL.
+      placeholder: https://...
+    validations:
+      required: false
+
+  - type: input
+    id: image_caption
+    attributes:
+      label: Image Caption (optional)
+      description: Short caption describing the photo.
+      placeholder: e.g. Volunteers scanning items at the supermarket
+    validations:
+      required: false
+
+  - type: input
+    id: products_scanned
+    attributes:
+      label: Products Scanned (for past events, optional)
+      description: Estimated or final count of products scanned / added.
+      placeholder: e.g. 240
+    validations:
+      required: false
+
+  - type: input
+    id: participants_count
+    attributes:
+      label: Participants Count (optional)
+      description: Number of attendees / volunteers who joined.
+      placeholder: e.g. 22
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags / Keywords (comma-separated, optional)
+      description: Relevant keywords for search and categorization.
+      placeholder: e.g. organic, packaging, eco-score, workshop
+    validations:
+      required: false

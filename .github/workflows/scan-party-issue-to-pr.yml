@@ -1,0 +1,94 @@
+name: "Scan Parties: Create PR from Issue"
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: scan-party-issue-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  process-scan-party-issue:
+    # Run only if the issue has the 'scan-party', 'scan-parties', or 'event' label,
+    # or was opened with '[Scan Party]' in the title
+    if: >
+      (github.event.action == 'labeled' && (github.event.label.name == 'scan-party' || github.event.label.name == 'scan-parties' || github.event.label.name == 'event')) ||
+      (github.event.action == 'opened' && (contains(github.event.issue.labels.*.name, 'scan-party') || contains(github.event.issue.labels.*.name, 'scan-parties') || contains(github.event.issue.labels.*.name, 'event') || startsWith(github.event.issue.title, '[Scan Party]')))
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Process Scan Party issue and add entry
+        id: add_scan_party
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python3 scripts/add_scan_party.py --from-env --compile --json --output-json result.json
+          cat result.json
+          SUCCESS=$(python3 -c "import json; print(json.load(open('result.json')).get('success', False))")
+          if [ "$SUCCESS" != "True" ]; then
+            echo "Failed to parse or add scan party"
+            exit 1
+          fi
+          echo "party_id=$(python3 -c "import json; print(json.load(open('result.json')).get('id', ''))")" >> $GITHUB_OUTPUT
+          echo "party_title=$(python3 -c "import json; print(json.load(open('result.json')).get('title', ''))")" >> $GITHUB_OUTPUT
+          echo "date=$(python3 -c "import json; print(json.load(open('result.json')).get('date', ''))")" >> $GITHUB_OUTPUT
+          echo "location=$(python3 -c "import json; print(json.load(open('result.json')).get('location', ''))")" >> $GITHUB_OUTPUT
+          echo "venue=$(python3 -c "import json; print(json.load(open('result.json')).get('venue', ''))")" >> $GITHUB_OUTPUT
+          echo "event_type=$(python3 -c "import json; print(json.load(open('result.json')).get('event_type', ''))")" >> $GITHUB_OUTPUT
+          echo "target_file=$(python3 -c "import json; print(json.load(open('result.json')).get('file', ''))")" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "feat(scan-parties): add ${{ steps.add_scan_party.outputs.party_title }} from issue #${{ github.event.issue.number }}"
+          branch: "scan-party/issue-${{ github.event.issue.number }}"
+          delete-branch: true
+          title: "[Scan Party] Add ${{ steps.add_scan_party.outputs.party_title }}"
+          body: |
+            ### 🎉 New Scan Party Event Proposal
+
+            This Pull Request was automatically generated from issue #${{ github.event.issue.number }}.
+
+            - **Title**: **${{ steps.add_scan_party.outputs.party_title }}** (`${{ steps.add_scan_party.outputs.party_id }}`)
+            - **Date**: `${{ steps.add_scan_party.outputs.date }}`
+            - **Location**: `${{ steps.add_scan_party.outputs.location }}`
+            - **Venue**: `${{ steps.add_scan_party.outputs.venue }}`
+            - **Timing / Type**: `${{ steps.add_scan_party.outputs.event_type }}`
+            - **Target file**: `${{ steps.add_scan_party.outputs.target_file }}`
+
+            Closes #${{ github.event.issue.number }}
+          labels: |
+            scan-party
+            event
+            automated-pr
+
+      - name: Comment on Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Thank you @${context.payload.issue.user.login} for organizing and submitting **${{ steps.add_scan_party.outputs.party_title }}**! 🎉\n\nA Pull Request has been automatically opened to validate and merge this event into the Open Food Facts Scan Parties directory. You can follow along with the automated checks and review in the PR!`
+            });

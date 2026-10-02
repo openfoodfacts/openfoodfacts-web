@@ -1951,7 +1951,7 @@ def generate_html(events, lang="en"):
       <p>{t["declare_banner_desc"]}</p>
       
       <div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
-        <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?title=%5BScan+Party%5D+New+Event%3A+&labels=scan-party%2Cevent&body=%23%23%23+%F0%9F%8E%89+Scan+Party+Title%0A%3C%21--+Enter+event+title+--%3E%0A%0A%23%23%23+%F0%9F%93%85+Date+%26+Time%0A-+Date%3A+%0A-+Start+Time%3A+%0A%0A%23%23%23+%F0%9F%93%8D+Location+%26+Venue%0A-+Venue+Name%3A+%0A-+City%3A+%0A-+Country%3A+%0A%0A%23%23%23+%F0%9F%91%A4+Organizer%0A-+Organizer+Name+%2F+Organization%3A+%0A-+Contact+Email+%2F+Slack+handle%3A+%0A%0A%23%23%23+%F0%9F%93%9D+Description%0A%3C%21--+Describe+the+scan+party%2C+target+store%2C+or+focus+--%3E%0A%0A%23%23%23+%F0%9F%94%97+Registration+%2F+Recap+Link%0A-+Link%3A+%0A" 
+        <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-scan-party.yml" 
            target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-primary">
           {t["btn_declare_gh"]}
         </a>
@@ -2443,15 +2443,23 @@ def compile_scan_parties(check_only=False, verbose=True):
     en_path = os.path.join(REPO_ROOT, "lang", "en", "texts", "scan-parties.html")
     fr_path = os.path.join(REPO_ROOT, "lang", "fr", "texts", "scan-parties.html")
 
-    with open(en_path, "w", encoding="utf-8") as f:
-        f.write(en_html)
-    if verbose:
-        print(f"Wrote {en_path}")
+    try:
+        with open(en_path, "w", encoding="utf-8") as f:
+            f.write(en_html)
+        if verbose:
+            print(f"Wrote {en_path}")
+    except (PermissionError, OSError) as e:
+        if verbose:
+            print(f"  [WARN] Could not write {en_path}: {e}")
 
-    with open(fr_path, "w", encoding="utf-8") as f:
-        f.write(fr_html)
-    if verbose:
-        print(f"Wrote {fr_path}")
+    try:
+        with open(fr_path, "w", encoding="utf-8") as f:
+            f.write(fr_html)
+        if verbose:
+            print(f"Wrote {fr_path}")
+    except (PermissionError, OSError) as e:
+        if verbose:
+            print(f"  [WARN] Could not write {fr_path}: {e}")
 
     # 3. Generate standalone root page
     root_path = os.path.join(REPO_ROOT, "scan-parties.html")
@@ -2529,10 +2537,14 @@ def compile_scan_parties(check_only=False, verbose=True):
   {en_html}
 </body>
 </html>"""
-    with open(root_path, "w", encoding="utf-8") as f:
-        f.write(root_html)
-    if verbose:
-        print(f"Wrote {root_path}")
+    try:
+        with open(root_path, "w", encoding="utf-8") as f:
+            f.write(root_html)
+        if verbose:
+            print(f"Wrote {root_path}")
+    except (PermissionError, OSError) as e:
+        if verbose:
+            print(f"  [WARN] Could not write {root_path}: {e}")
 
     return True
 
