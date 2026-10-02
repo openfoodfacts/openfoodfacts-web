@@ -1,0 +1,65 @@
+<!-- Brand Checkup Script -->
+<script>
+(function() {
+    function normalizeBrand(brand) {
+        if (!brand) return "";
+        return brand
+            .trim()
+            .toLowerCase()
+            // Normalize unicode characters and remove diacritics/accents
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            // Replace any non-alphanumeric character sequences with hyphens
+            .replace(/[^a-z0-9]+/g, "-")
+            // Remove leading and trailing hyphens
+            .replace(/^-+|-+$/g, "");
+    }
+
+    function checkBrand() {
+        const input = document.getElementById("hero-brand-input");
+        if (!input) return;
+        const rawBrand = input.value;
+        const normalized = normalizeBrand(rawBrand);
+        if (!normalized) {
+            input.focus();
+            return;
+        }
+
+        // Determine active language code (defaults to 'en', or 'fr', etc.)
+        let lang = (document.documentElement.lang || "en").toLowerCase();
+        lang = lang.split("-")[0].split("_")[0];
+        if (!lang || lang.length !== 2) lang = "en";
+
+        // Redirect to https://world-lc.openfoodfacts.org/facets/brands/xxxxx
+        const targetUrl = `https://world-${lang}.openfoodfacts.org/facets/brands/${normalized}`;
+        window.location.href = targetUrl;
+    }
+
+    function initBrandCheckup() {
+        const input = document.getElementById("hero-brand-input");
+        const btn = document.getElementById("hero-brand-submit-btn");
+
+        if (input) {
+            input.addEventListener("keydown", function(e) {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    checkBrand();
+                }
+            });
+        }
+
+        if (btn) {
+            btn.addEventListener("click", function(e) {
+                e.preventDefault();
+                checkBrand();
+            });
+        }
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initBrandCheckup);
+    } else {
+        initBrandCheckup();
+    }
+})();
+</script>
