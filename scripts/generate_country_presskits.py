@@ -20,6 +20,7 @@ and provides direct deeplinks to the newly enhanced Press Review (?country=...).
 """
 
 import os
+import glob
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
@@ -104,7 +105,7 @@ COUNTRIES = {
                 "title": "C'est en France : La révolution du scan alimentaire",
                 "desc_fr": "Diffusion internationale sur France 24 décryptant comment Open Food Facts a amorcé une transformation profonde des comportements de consommation et poussé les industriels à reformuler leurs recettes.",
                 "desc_en": "International broadcast on France 24 analyzing how Open Food Facts sparked a global wave of barcode scanning apps, forcing multinational manufacturers to reformulate recipes.",
-                "img": "https://world.openfoodfacts.org/files/presskit/PressKit/global/global-rfi.jpeg",
+                "img": "/images/misc/presskit/france-24.svg",
                 "link": "https://youtu.be/GMBQGG2FjP8?t=440",
                 "link_label_fr": "Voir l'émission France 24",
                 "link_label_en": "Watch France 24 Broadcast"
@@ -136,7 +137,7 @@ COUNTRIES = {
                 "title": "BBC Morning Live: Live Ultra-Processed Food Scanner Demo",
                 "desc_en": "The BBC Morning Live team investigated ultra-processed foods (UPFs) on BBC One, conducting a live demo of the Open Food Facts mobile app to help viewers spot NOVA 4 ultra-processed items.",
                 "desc_fr": "L'équipe de BBC Morning Live a enquêté en direct sur BBC One sur les aliments ultra-transformés (UPF), réalisant une démonstration de l'application Open Food Facts pour repérer les produits NOVA 4.",
-                "img": "https://world.openfoodfacts.org/files/presskit/PressKit/media/unitedkingdom/metro-productrecalls.png",
+                "img": "/images/misc/presskit/bbc.svg",
                 "link": "https://blog.openfoodfacts.org/en/news/open-food-facts-on-bbc-morning-live",
                 "link_label_en": "Read BBC Demo Summary",
                 "link_label_fr": "Lire le résumé sur le blog"
@@ -147,7 +148,7 @@ COUNTRIES = {
                 "title": "The Food Chain: What Really Is Ultra-Processed Food?",
                 "desc_en": "Open Food Facts co-founder Pierre Slamich was interviewed by the BBC World Service for an in-depth episode exploring ultra-processed foods, NOVA classification, and how open citizen data empowers buyers.",
                 "desc_fr": "Le co-fondateur Pierre Slamich a été interviewé par la BBC World Service dans l'émission 'The Food Chain', explorant les aliments ultra-transformés, la classification NOVA et le rôle des données citoyennes ouvertes.",
-                "img": "https://world.openfoodfacts.org/files/presskit/PressKit/global/global-rfi.jpeg",
+                "img": "/images/misc/presskit/bbc.svg",
                 "link": "https://www.bbc.co.uk/programmes/w3ct4v83",
                 "link_label_en": "Listen on BBC Sounds",
                 "link_label_fr": "Écouter sur BBC Sounds"
@@ -169,7 +170,7 @@ COUNTRIES = {
                 "title": "The Guardian: Food Data Commons and the Battle for Transparency",
                 "desc_en": "Extensive investigation examining corporate food labeling opacity and how civic open source databases provide researchers with vital evidence on nutritional degradation.",
                 "desc_fr": "Enquête approfondie sur l'opacité nutritionnelle et la façon dont les bases citoyennes libres fournissent des preuves cruciales aux chercheurs internationaux.",
-                "img": "https://world.openfoodfacts.org/files/presskit/PressKit/media/france/lemonde.png",
+                "img": "/images/misc/presskit/the-guardian.svg",
                 "link": "https://www.theguardian.com",
                 "link_label_en": "Read on The Guardian",
                 "link_label_fr": "Lire sur The Guardian"
@@ -201,7 +202,7 @@ COUNTRIES = {
                 "title": "UbuCon: Open Source Software Meets Open Food Data",
                 "desc_en": "Presentation to German open-source software communities on Open Food Facts' civic mission, open APIs, and crowdsourcing architecture.",
                 "desc_fr": "Présentation devant la communauté open-source allemande de la mission citoyenne d'Open Food Facts, de ses API libres et de son architecture collaborative.",
-                "img": "https://world.openfoodfacts.org/files/presskit/PressKit/global/spain/es-present-iodc.jpg",
+                "img": "/images/misc/presskit/ubucon.svg",
                 "link": "https://ubucon.de",
                 "link_label_en": "Read Conference Notes",
                 "link_label_fr": "Lire le compte-rendu"
@@ -212,7 +213,7 @@ COUNTRIES = {
                 "title": "Nutri-Score Einführung in Deutschland",
                 "desc_en": "How Open Food Facts data supported consumer organizations and citizens during the official rollout of the Nutri-Score in Germany.",
                 "desc_fr": "Comment la base Open Food Facts a soutenu les organisations de consommateurs et les citoyens lors du déploiement officiel du Nutri-Score en Allemagne.",
-                "img": "https://world.openfoodfacts.org/files/presskit/PressKit/media/france/france2-13h-experimentation-nutriscore.jpg",
+                "img": "/images/misc/presskit/verbraucherzentrale.svg",
                 "link": "https://blog.openfoodfacts.org",
                 "link_label_en": "Learn More",
                 "link_label_fr": "En savoir plus"
@@ -587,7 +588,7 @@ COUNTRIES = {
                 "title": "Nutri-Score e rotulagem transparente em Portugal",
                 "desc_en": "Coverage of the official implementation of the Nutri-Score in Portugal and the role of Open Food Facts supporting consumers with transparent product calculations.",
                 "desc_fr": "Couverture du déploiement du Nutri-Score au Portugal et du rôle d'Open Food Facts pour calculer et vérifier en toute indépendance la qualité des produits.",
-                "img": "https://static.openfoodfacts.org/files/presskit/PressKit/media/spain/elpais-elwikipediadelacomidahablaespanol.png",
+                "img": "/images/misc/presskit/deco-proteste.svg",
                 "link": "https://blog.openfoodfacts.org",
                 "link_label_en": "Read Story on Blog",
                 "link_label_fr": "Lire l'article sur le blog"
@@ -641,7 +642,7 @@ def build_country_selection_html(country_key, lang="en"):
         card = f"""
     <div class="off-media-item-card">
       <div class="off-media-thumb-wrap">
-        <img src="{img}" alt="{title}" loading="lazy" onerror="this.src='https://world.openfoodfacts.org/files/presskit/PressKit/media/france/lemonde.png';">
+        <img src="{img}" alt="{title}" loading="lazy" onerror="this.src='/images/misc/presskit/press-article-placeholder.svg';">
         <span class="off-media-year-badge">{year}</span>
       </div>
       <div class="off-media-card-body">
@@ -943,12 +944,12 @@ def build_other_languages_html(lang="en"):
         tagline = data["tagline_fr"] if is_fr else data["tagline_en"]
         flag = data["flag"]
         c_code = data["country_code"]
-        img = data["items"][0]["img"] if data["items"] else "https://world.openfoodfacts.org/files/presskit/PressKit/media/france/lemonde.png"
+        img = data["items"][0]["img"] if data["items"] else "/images/misc/presskit/press-article-placeholder.svg"
 
         cards.append(f"""
     <div class="off-portal-card">
       <div class="off-portal-thumb">
-        <img src="{img}" alt="{name}" loading="lazy">
+        <img src="{img}" alt="{name}" loading="lazy" onerror="this.src='/images/misc/presskit/press-article-placeholder.svg';">
         <span class="off-portal-flag">{flag}</span>
       </div>
       <div class="off-portal-body">
@@ -1102,6 +1103,17 @@ def generate_all():
             with open(target_path, "w", encoding="utf-8") as fp:
                 fp.write(content.strip() + "\n")
             print(f"Wrote {target_path}")
+
+    # Also update any other language directory that already has presskit_{country_key}_selection.html
+    for lang_dir in glob.glob(os.path.join(REPO_ROOT, "lang", "*", "texts")):
+        for country_key in COUNTRIES:
+            filename = f"presskit_{country_key}_selection.html"
+            p = os.path.join(lang_dir, filename)
+            if os.path.exists(p) and "/lang/en/" not in p and "/lang/fr/" not in p:
+                content = build_country_selection_html(country_key, lang="en")
+                with open(p, "w", encoding="utf-8") as fp:
+                    fp.write(content.strip() + "\n")
+                print(f"Updated {p}")
 
     # Generate other languages
     for lang in langs:

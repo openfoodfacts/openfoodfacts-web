@@ -1,6 +1,24 @@
 #!/usr/bin/env python3
-import glob, json, os, re
-from urllib.parse import urlparse
+"""
+generate_press_review.py
+
+Generates the multilingual, fully deeplinkable Press Review pages for Open Food Facts.
+Features:
+- Full URL deeplinking (filters, search, and direct card permalinks via ?id=... and #press-...)
+- Granular filtering by country, topic (nova, nutriscore, green-score, upf, seasonal, data journalism),
+  source (France Inter, Le Monde...), media scope (national, regional, public reports, culinary blogs),
+  type (article, podcast, video, study), and link accessibility (filtering out dead links)
+- Wayback Machine archive fallbacks for inactive links
+- Zero leakage of internal editorial notes
+- Complete elimination of the 'OFF' acronym in favor of 'Open Food Facts'
+- Copyable card permalinks with visual feedback
+- Interactive active filter pills
+"""
+
+import glob
+import json
+import os
+import re
 import yaml
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -26,18 +44,25 @@ def load_press_items():
 merged = load_press_items()
 print(f"Loaded {len(merged)} press review items!")
 
-# Generate HTML Template function
 def build_html(lang="fr", items=None):
     is_fr = (lang == "fr")
     if items is None:
         items = merged
-    
+
+    # Clean items: ensure internal editorial notes are never leaked to client JSON
+    clean_items = []
+    for it in items:
+        clean = dict(it)
+        clean.pop("editorial_note", None)
+        clean_items.append(clean)
+
+    # Translations
     t_title = "📰 Revue de presse Open Food Facts" if is_fr else "📰 Open Food Facts in the Press"
     t_subtitle = "Toutes les mentions dans les médias, radios, télés et publications de 2012 à aujourd'hui." if is_fr else "All press, radio, TV, and media coverage of Open Food Facts from 2012 to today."
     t_submit_btn = "➕ Signaler une mention" if is_fr else "➕ Submit a Press Mention"
     t_assets_btn = "📁 Bibliothèque de logos & assets" if is_fr else "📁 Media Assets Library"
     t_presskit_btn = "← Espace presse" if is_fr else "← Press Page"
-    
+
     t_drawer_title = "Signaler ou soumettre une mention presse" if is_fr else "Submit a Press Mention"
     t_drawer_desc = "Vous avez découvert ou publié un article, un podcast ou un reportage mentionnant Open Food Facts ? Partagez-le avec nous !" if is_fr else "Found or published an article, podcast, or report mentioning Open Food Facts? Share it with our team!"
     t_lbl_url = "Lien URL de l'article ou de l'émission :" if is_fr else "Article or Show URL:"
@@ -48,31 +73,49 @@ def build_html(lang="fr", items=None):
     t_btn_gh = "🚀 Ouvrir une issue GitHub (1-clic)" if is_fr else "🚀 Open 1-Click GitHub Issue"
     t_btn_gform = "📝 Formulaire Google" if is_fr else "📝 Google Form"
     t_btn_mail = "✉️ Envoyer par email" if is_fr else "✉️ Send by Email"
-    
-    t_chip_all = "Tout" if is_fr else "All Mentions"
-    t_chip_articles = "📰 Articles & Presse" if is_fr else "📰 Articles & Press"
+
+    # Chips
+    t_chip_all = "Tout" if is_fr else "All"
+    t_chip_national = "📰 Presse nationale" if is_fr else "📰 National Press"
+    t_chip_regional = "📍 Presse régionale" if is_fr else "📍 Regional Press"
+    t_chip_reports = "📑 Rapports publics" if is_fr else "📑 Public Reports"
+    t_chip_blogs = "🧑‍🍳 Blogs culinaires" if is_fr else "🧑‍🍳 Food Blogs"
+    t_chip_nutriscore = "🏷️ Nutri-Score"
+    t_chip_nova_upf = "🏷️ NOVA & UPF"
+    t_chip_green = "🏷️ Green-Score"
     t_chip_podcasts = "🎙️ Podcasts & Radio" if is_fr else "🎙️ Podcasts & Radio"
     t_chip_videos = "📺 Vidéos & TV" if is_fr else "📺 Videos & TV"
-    t_chip_studies = "📑 Rapports & Études" if is_fr else "📑 Reports & Studies"
     t_chip_verbatim = "💬 Avec citations" if is_fr else "💬 With Quotes"
-    
-    t_search_placeholder = "🔍 Rechercher par titre, média, mot-clé, auteur, citation..." if is_fr else "🔍 Search by title, media outlet, author, topic, quote..."
-    t_opt_all_types = "Tous les types" if is_fr else "All Types"
-    t_opt_all_langs = "Toutes les langues" if is_fr else "All Languages"
+
+    # Filter labels
+    t_search_placeholder = "🔍 Rechercher par titre, média, sujet, auteur, citation..." if is_fr else "🔍 Search by title, outlet, topic, author, quote..."
+    t_opt_all_topics = "Tous les sujets" if is_fr else "All Topics"
+    t_opt_all_scopes = "Tous les médias" if is_fr else "All Media Scopes"
+    t_opt_all_countries = "Tous les pays" if is_fr else "All Countries"
+    t_opt_all_sources = "Toutes les sources" if is_fr else "All Outlets"
+    t_opt_all_types = "Tous les formats" if is_fr else "All Formats"
+    t_opt_all_links = "Tous les liens" if is_fr else "All Links"
+    t_opt_links_active = "✅ Liens actifs uniquement" if is_fr else "✅ Active Links Only"
+    t_opt_links_dead = "⚠️ Liens archivés / inactifs" if is_fr else "⚠️ Inactive / Archived Links"
     t_opt_all_years = "Toutes les années" if is_fr else "All Years"
     t_sort_newest = "Plus récents d'abord" if is_fr else "Newest First"
     t_sort_oldest = "Plus anciens d'abord" if is_fr else "Oldest First"
     t_sort_outlet = "Média (A-Z)" if is_fr else "Media Outlet (A-Z)"
     t_sort_title = "Titre (A-Z)" if is_fr else "Title (A-Z)"
-    t_reset = "Réinitialiser" if is_fr else "Reset Filters"
+    t_reset = "Réinitialiser les filtres" if is_fr else "Reset Filters"
     t_load_more = "Afficher plus de mentions" if is_fr else "Load More Mentions"
-    t_read_btn = "Consulter la source" if is_fr else "View Source"
 
-    # Collect available years
-    years = sorted(list(set(int(item["date"][:4]) for item in items if item.get("date") and len(item["date"]) >= 4)), reverse=True)
+    # Extract distinct available years
+    years = sorted(list(set(int(item["date"][:4]) for item in clean_items if item.get("date") and len(item["date"]) >= 4)), reverse=True)
     year_options = "".join(f'<option value="{y}">{y}</option>' for y in years)
 
-    data_json = json.dumps(items, ensure_ascii=False)
+    # Extract distinct sources with count >= 2
+    from collections import Counter
+    src_counter = Counter(it.get("source") for it in clean_items if it.get("source"))
+    top_sources = [s for s, count in src_counter.most_common() if count >= 2]
+    source_options = "".join(f'<option value="{s}">{s} ({src_counter[s]})</option>' for s in sorted(top_sources))
+
+    data_json = json.dumps(clean_items, ensure_ascii=False)
 
     return f"""<style>
 .press-review-header {{
@@ -156,7 +199,7 @@ def build_html(lang="fr", items=None):
   flex-wrap: wrap;
   gap: 0.5rem;
   justify-content: center;
-  margin: 1.5rem 0;
+  margin: 1.25rem 0;
 }}
 .press-chip-btn {{
   padding: 0.35rem 0.85rem;
@@ -168,29 +211,37 @@ def build_html(lang="fr", items=None):
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }}
 .press-chip-btn:hover, .press-chip-btn.active {{
   background: #341100;
   color: #ffffff;
   border-color: #341100;
 }}
-.press-filter-bar {{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-  align-items: center;
-  justify-content: center;
-  margin: 1.5rem 0 1.5rem;
-  padding: 1.15rem;
+.press-filter-container {{
   background: #f8fafc;
   border-radius: 14px;
   border: 1px solid #e2e8f0;
+  padding: 1.25rem;
+  margin: 1.25rem 0 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}}
+.press-filter-row {{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}}
+.press-filter-row:last-child {{
+  margin-bottom: 0;
 }}
 .press-search-input {{
-  min-width: 250px;
-  flex: 1 1 250px;
+  min-width: 280px;
+  flex: 2 1 280px;
   margin: 0 !important;
-  padding: 0.5rem 0.9rem !important;
+  padding: 0.55rem 0.9rem !important;
   border-radius: 8px !important;
   border: 1px solid #cbd5e1 !important;
   font-size: 0.95rem !important;
@@ -203,8 +254,8 @@ def build_html(lang="fr", items=None):
 .press-filter-group label {{
   font-weight: 600;
   margin: 0;
-  color: #334155;
-  font-size: 0.88rem;
+  color: #475569;
+  font-size: 0.82rem;
   white-space: nowrap;
 }}
 .press-filter-group select {{
@@ -213,9 +264,45 @@ def build_html(lang="fr", items=None):
   border-radius: 8px !important;
   border: 1px solid #cbd5e1 !important;
   background-color: #fff !important;
-  font-size: 0.88rem !important;
+  font-size: 0.85rem !important;
   cursor: pointer;
 }}
+
+/* Active filter pills */
+.press-active-pills {{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  margin: 0.75rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px dashed #cbd5e1;
+}}
+.press-pill {{
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #e2e8f0;
+  color: #1e293b;
+  padding: 0.2rem 0.6rem;
+  border-radius: 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}}
+.press-pill-remove {{
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 13px;
+  font-weight: bold;
+  color: #64748b;
+  line-height: 1;
+}}
+.press-pill-remove:hover {{
+  color: #b91c1c;
+}}
+
 .press-stats {{
   display: flex;
   justify-content: space-between;
@@ -230,7 +317,7 @@ def build_html(lang="fr", items=None):
 }}
 .press-grid {{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: 1.35rem;
   margin-bottom: 2.5rem;
 }}
@@ -244,7 +331,7 @@ def build_html(lang="fr", items=None):
   justify-content: space-between;
   text-align: left;
   box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   position: relative;
 }}
 .press-card:hover {{
@@ -252,11 +339,20 @@ def build_html(lang="fr", items=None):
   box-shadow: 0 8px 18px rgba(0,0,0,0.08);
   border-color: #cbd5e1;
 }}
+.press-card.press-card-highlighted {{
+  outline: 3px solid #e65100;
+  animation: pressCardPulse 2.5s ease;
+}}
+@keyframes pressCardPulse {{
+  0% {{ box-shadow: 0 0 0 0 rgba(230, 81, 0, 0.6); }}
+  70% {{ box-shadow: 0 0 0 14px rgba(230, 81, 0, 0); }}
+  100% {{ box-shadow: 0 0 0 0 rgba(230, 81, 0, 0); }}
+}}
 .press-card-header {{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
 }}
 .press-outlet-wrap {{
   display: flex;
@@ -277,6 +373,12 @@ def build_html(lang="fr", items=None):
   font-weight: 700;
   color: #1e293b;
 }}
+.press-badges-group {{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}}
 .press-type-badge {{
   font-size: 0.72rem;
   font-weight: 700;
@@ -291,6 +393,17 @@ def build_html(lang="fr", items=None):
 .press-type-badge.type-video {{ background: #fef2f2; color: #b91c1c; }}
 .press-type-badge.type-study {{ background: #eff6ff; color: #1d4ed8; }}
 .press-type-badge.type-article {{ background: #f0fdf4; color: #15803d; }}
+
+.press-scope-badge {{
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+}}
+.press-scope-regional {{ background: #ede9fe; color: #5b21b6; }}
+.press-scope-report {{ background: #dbeafe; color: #1e40af; }}
+.press-scope-culinary {{ background: #fef3c7; color: #92400e; }}
+.press-scope-specialized {{ background: #ccfbf1; color: #115e59; }}
 
 .press-date {{
   font-size: 0.8rem;
@@ -316,7 +429,48 @@ def build_html(lang="fr", items=None):
 .press-meta-sub {{
   font-size: 0.82rem;
   color: #64748b;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.5rem;
+}}
+.press-topics-wrap {{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0.4rem 0 0.6rem;
+}}
+.press-topic-tag {{
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  background: #f1f5f9;
+  color: #475569;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}}
+.press-topic-tag:hover {{
+  background: #e2e8f0;
+  color: #0f172a;
+}}
+.press-dead-link-box {{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-radius: 6px;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.78rem;
+  color: #9f1239;
+  margin: 0.5rem 0;
+}}
+.press-archive-link {{
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #b91c1c;
+  font-weight: 600;
+  text-decoration: underline;
 }}
 .press-verbatim {{
   margin: 0.5rem 0 0.85rem;
@@ -348,9 +502,10 @@ def build_html(lang="fr", items=None):
   align-items: center;
   border-top: 1px solid #f1f5f9;
 }}
-.press-tag-list {{
+.press-card-actions-left {{
   display: flex;
-  gap: 0.35rem;
+  align-items: center;
+  gap: 6px;
 }}
 .press-tag {{
   font-size: 0.7rem;
@@ -358,6 +513,42 @@ def build_html(lang="fr", items=None):
   background: #f1f5f9;
   color: #475569;
   border-radius: 4px;
+}}
+.press-share-btn {{
+  background: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.15s ease;
+}}
+.press-share-btn:hover {{
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}}
+.press-share-btn.copied {{
+  background: #dcfce7;
+  color: #15803d;
+  border-color: #86efac;
+}}
+.press-edit-link {{
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-decoration: none;
+}}
+.press-edit-link:hover {{
+  color: #475569;
+  text-decoration: underline;
 }}
 .press-action-link {{
   display: inline-flex;
@@ -429,7 +620,7 @@ def build_html(lang="fr", items=None):
   </div>
   
   <div class="press-form-actions">
-    <a id="btnGhIssue" class="button round small press-header-btn" href="#" target="_blank" rel="noopener noreferrer" style="background-color: #24292f !important; color: #fff !important;">
+    <a id="btnGhIssue" class="button round small press-header-btn" href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-press-review.yml" target="_blank" rel="noopener noreferrer" style="background-color: #24292f !important; color: #fff !important;">
       <span class="material-icons">open_in_new</span> {t_btn_gh}
     </a>
     <a id="btnGoogleForm" class="button round secondary small press-header-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScpzGaRX6Vr7nFHYuApVx5cz2zjU_bKA85qnQpXHsrY0M0KRA/viewform" target="_blank" rel="noopener noreferrer">
@@ -442,61 +633,122 @@ def build_html(lang="fr", items=None):
 </div>
 
 <div class="press-chips">
-  <button type="button" class="press-chip-btn active" onclick="selectChip(this, 'all')">{t_chip_all} ({len(merged)})</button>
-  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'article')">{t_chip_articles}</button>
-  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'podcast')">{t_chip_podcasts}</button>
-  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'video')">{t_chip_videos}</button>
-  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'study')">{t_chip_studies}</button>
-  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'verbatim')">{t_chip_verbatim}</button>
+  <button type="button" class="press-chip-btn active" onclick="selectChip(this, 'all')">{t_chip_all} ({len(clean_items)})</button>
+  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'scope:national')">{t_chip_national}</button>
+  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'scope:regional')">{t_chip_regional}</button>
+  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'scope:report')">{t_chip_reports}</button>
+  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'scope:culinary_blog')">{t_chip_blogs}</button>
+  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'topic:nutriscore')">{t_chip_nutriscore}</button>
+  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'topic:nova')">{t_chip_nova_upf}</button>
+  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'topic:green-score')">{t_chip_green}</button>
+  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'type:podcast')">{t_chip_podcasts}</button>
+  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'type:video')">{t_chip_videos}</button>
+  <button type="button" class="press-chip-btn" onclick="selectChip(this, 'chip:verbatim')">{t_chip_verbatim}</button>
 </div>
 
-<div class="press-filter-bar">
-  <input type="search" id="pressSearch" class="press-search-input" placeholder="{t_search_placeholder}" oninput="applyFilters()">
-  
-  <div class="press-filter-group">
-    <label for="typeSelect">Type:</label>
-    <select id="typeSelect" onchange="applyFilters()">
-      <option value="all">{t_opt_all_types}</option>
-      <option value="article">📰 Article / Presse</option>
-      <option value="podcast">🎙️ Podcast / Radio</option>
-      <option value="video">📺 TV / Vidéo</option>
-      <option value="study">📑 Rapport / Étude</option>
-    </select>
+<div class="press-filter-container">
+  <div class="press-filter-row">
+    <input type="search" id="pressSearch" class="press-search-input" placeholder="{t_search_placeholder}" oninput="onFilterChanged()">
+
+    <div class="press-filter-group">
+      <label for="topicSelect">Sujet / Topic:</label>
+      <select id="topicSelect" onchange="onFilterChanged()">
+        <option value="all">{t_opt_all_topics}</option>
+        <option value="nutriscore">🏷️ Nutri-Score</option>
+        <option value="nova">🏷️ Classification NOVA</option>
+        <option value="upf">🏷️ Aliments ultra-transformés (UPF)</option>
+        <option value="green-score">🏷️ Green-Score / Éco-Score</option>
+        <option value="seasonal">🏷️ Fruits & Légumes de saison</option>
+        <option value="data-journalism">🏷️ Journalisme de données</option>
+        <option value="additives">🏷️ Additifs & Ingrédients</option>
+        <option value="open-data">🏷️ Open Data & Communs</option>
+      </select>
+    </div>
+
+    <div class="press-filter-group">
+      <label for="countrySelect">Pays / Country:</label>
+      <select id="countrySelect" onchange="onFilterChanged()">
+        <option value="all">{t_opt_all_countries}</option>
+        <option value="fra">🇫🇷 France</option>
+        <option value="bel">🇧🇪 Belgique</option>
+        <option value="che">🇨🇭 Suisse</option>
+        <option value="deu">🇩🇪 Deutschland</option>
+        <option value="esp">🇪🇸 España</option>
+        <option value="ita">🇮🇹 Italia</option>
+        <option value="gbr">🇬🇧 United Kingdom</option>
+        <option value="usa">🇺🇸 United States</option>
+        <option value="eu">🇪🇺 European Union</option>
+        <option value="can">🇨🇦 Canada</option>
+        <option value="sen">🇸🇳 Sénégal</option>
+      </select>
+    </div>
+
+    <div class="press-filter-group">
+      <label for="scopeSelect">Média / Granularité:</label>
+      <select id="scopeSelect" onchange="onFilterChanged()">
+        <option value="all">{t_opt_all_scopes}</option>
+        <option value="national">📰 Presse nationale</option>
+        <option value="regional">📍 Presse régionale (PQR)</option>
+        <option value="report">📑 Rapports publics & Études</option>
+        <option value="culinary_blog">🧑‍🍳 Blogs culinaires</option>
+        <option value="specialized">🔬 Presse spécialisée & Tech</option>
+      </select>
+    </div>
   </div>
 
-  <div class="press-filter-group">
-    <label for="langSelect">Lang:</label>
-    <select id="langSelect" onchange="applyFilters()">
-      <option value="all">{t_opt_all_langs}</option>
-      <option value="fr">🇫🇷 Français</option>
-      <option value="en">🇬🇧 English</option>
-      <option value="de">🇩🇪 Deutsch</option>
-      <option value="es">🇪🇸 Español</option>
-      <option value="it">🇮🇹 Italiano</option>
-    </select>
+  <div class="press-filter-row">
+    <div class="press-filter-group">
+      <label for="sourceSelect">Source:</label>
+      <select id="sourceSelect" onchange="onFilterChanged()">
+        <option value="all">{t_opt_all_sources}</option>
+        {source_options}
+      </select>
+    </div>
+
+    <div class="press-filter-group">
+      <label for="typeSelect">Format:</label>
+      <select id="typeSelect" onchange="onFilterChanged()">
+        <option value="all">{t_opt_all_types}</option>
+        <option value="article">📰 Article / Presse</option>
+        <option value="podcast">🎙️ Podcast / Radio</option>
+        <option value="video">📺 TV / Vidéo</option>
+        <option value="study">📑 Rapport / Étude</option>
+      </select>
+    </div>
+
+    <div class="press-filter-group">
+      <label for="linkSelect">Liens / Links:</label>
+      <select id="linkSelect" onchange="onFilterChanged()">
+        <option value="all">{t_opt_all_links}</option>
+        <option value="active">{t_opt_links_active}</option>
+        <option value="dead">{t_opt_links_dead}</option>
+      </select>
+    </div>
+
+    <div class="press-filter-group">
+      <label for="yearSelect">Année / Year:</label>
+      <select id="yearSelect" onchange="onFilterChanged()">
+        <option value="all">{t_opt_all_years}</option>
+        {year_options}
+      </select>
+    </div>
+
+    <div class="press-filter-group">
+      <label for="sortSelect">Tri / Sort:</label>
+      <select id="sortSelect" onchange="onFilterChanged()">
+        <option value="newest">{t_sort_newest}</option>
+        <option value="oldest">{t_sort_oldest}</option>
+        <option value="outlet">{t_sort_outlet}</option>
+        <option value="title">{t_sort_title}</option>
+      </select>
+    </div>
   </div>
 
-  <div class="press-filter-group">
-    <label for="yearSelect">Year:</label>
-    <select id="yearSelect" onchange="applyFilters()">
-      <option value="all">{t_opt_all_years}</option>
-      {year_options}
-    </select>
-  </div>
-
-  <div class="press-filter-group">
-    <label for="sortSelect">Sort:</label>
-    <select id="sortSelect" onchange="applyFilters()">
-      <option value="newest">{t_sort_newest}</option>
-      <option value="oldest">{t_sort_oldest}</option>
-      <option value="outlet">{t_sort_outlet}</option>
-      <option value="title">{t_sort_title}</option>
-    </select>
-  </div>
+  <div class="press-active-pills" id="activePillsWrap" style="display: none;"></div>
 </div>
 
 <div class="press-stats">
-  <div class="press-count" id="pressCount">Showing {len(merged)} mentions</div>
+  <div class="press-count" id="pressCount">Showing {len(clean_items)} mentions</div>
   <button type="button" class="button secondary small" onclick="resetFilters()" style="margin: 0;">{t_reset}</button>
 </div>
 
@@ -512,6 +764,7 @@ const IS_FR = {'true' if is_fr else 'false'};
 const PAGE_SIZE = 24;
 let currentPage = 1;
 let currentFiltered = [];
+let activeChip = "all";
 
 const COUNTRY_FLAGS = {{
   "fra": "🇫🇷",
@@ -524,7 +777,20 @@ const COUNTRY_FLAGS = {{
   "ita": "🇮🇹",
   "can": "🇨🇦",
   "lux": "🇱🇺",
-  "nld": "🇳🇱"
+  "nld": "🇳🇱",
+  "eu": "🇪🇺",
+  "sen": "🇸🇳"
+}};
+
+const TOPIC_LABELS = {{
+  "nutriscore": "Nutri-Score",
+  "nova": "NOVA",
+  "upf": "Aliments ultra-transformés",
+  "green-score": "Green-Score",
+  "seasonal": "Saisonnalité",
+  "data-journalism": "Journalisme de données",
+  "additives": "Additifs",
+  "open-data": "Open Data"
 }};
 
 function formatDate(isoStr) {{
@@ -550,14 +816,26 @@ function getTypeBadge(type) {{
   }}
 }}
 
+function getScopeBadge(scope) {{
+  if (!scope || scope === "national") return "";
+  switch(scope) {{
+    case "regional": return '<span class="press-scope-badge press-scope-regional">📍 ' + (IS_FR ? "Presse régionale" : "Regional Media") + '</span>';
+    case "report": return '<span class="press-scope-badge press-scope-report">📑 ' + (IS_FR ? "Rapport public" : "Public Report") + '</span>';
+    case "culinary_blog": return '<span class="press-scope-badge press-scope-culinary">🧑‍🍳 ' + (IS_FR ? "Blog culinaire" : "Food Blog") + '</span>';
+    case "specialized": return '<span class="press-scope-badge press-scope-specialized">🔬 ' + (IS_FR ? "Presse spécialisée" : "Specialized Press") + '</span>';
+    default: return "";
+  }}
+}}
+
 function renderCard(item) {{
   const flag = COUNTRY_FLAGS[item.country] || "";
   const faviconUrl = item.domain ? "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(item.domain) + "&sz=128" : "";
   const logoImg = faviconUrl ? '<img class="press-outlet-logo" src="' + faviconUrl + '" alt="" loading="lazy" onerror="this.style.display=\\'none\\';">' : '<span class="material-icons" style="font-size: 20px; color: #94a3b8;">newspaper</span>';
   const dateFormatted = formatDate(item.date);
   
-  const linkAttr = item.link ? ' href="' + item.link + '" target="_blank" rel="noopener noreferrer"' : '';
-  const titleHtml = item.link ? '<a' + linkAttr + '>' + item.title + '</a>' : item.title;
+  const isDead = !!item.dead_link;
+  const linkAttr = (item.link && !isDead) ? ' href="' + item.link + '" target="_blank" rel="noopener noreferrer"' : '';
+  const titleHtml = linkAttr ? '<a' + linkAttr + '>' + item.title + '</a>' : item.title;
   
   let verbatimHtml = "";
   if (item.verbatim) {{
@@ -569,6 +847,22 @@ function renderCard(item) {{
     authorHtml = '<div class="press-meta-sub">✍️ ' + item.author + '</div>';
   }}
 
+  let deadLinkHtml = "";
+  if (isDead) {{
+    const archiveUrl = "https://web.archive.org/web/*/" + (item.link || "");
+    deadLinkHtml = '<div class="press-dead-link-box">' +
+      '<span>⚠️ ' + (IS_FR ? "Lien d'origine inactif" : "Original link inactive") + '</span>' +
+      (item.link ? '<a class="press-archive-link" href="' + archiveUrl + '" target="_blank" rel="noopener noreferrer" title="' + (IS_FR ? "Consulter sur Archive.org" : "View on Archive.org") + '">🏛️ Archive.org</a>' : '') +
+    '</div>';
+  }}
+
+  let topicsHtml = "";
+  if (item.topics && item.topics.length) {{
+    topicsHtml = '<div class="press-topics-wrap">' +
+      item.topics.map(t => '<span class="press-topic-tag" onclick="setTopicFilter(\\'' + t + '\\')" title="' + (IS_FR ? "Filtrer par ce sujet" : "Filter by this topic") + '">#' + (TOPIC_LABELS[t] || t) + '</span>').join("") +
+    '</div>';
+  }}
+
   let actionBtn = "";
   if (item.link) {{
     let actionLabel = IS_FR ? "Consulter l'article" : "Read Article";
@@ -576,25 +870,41 @@ function renderCard(item) {{
     else if (item.type === "video") actionLabel = IS_FR ? "Voir la vidéo" : "Watch";
     else if (item.type === "study") actionLabel = IS_FR ? "Consulter l'étude" : "Read Report";
     
-    actionBtn = '<a class="press-action-link"' + linkAttr + '>' + actionLabel + ' <span class="material-icons">arrow_forward</span></a>';
+    if (isDead) {{
+      const archiveUrl = "https://web.archive.org/web/*/" + item.link;
+      actionBtn = '<a class="press-action-link" href="' + archiveUrl + '" target="_blank" rel="noopener noreferrer">' + (IS_FR ? "Consulter l'archive" : "View Archive") + ' <span class="material-icons">open_in_new</span></a>';
+    }} else {{
+      actionBtn = '<a class="press-action-link"' + linkAttr + '>' + actionLabel + ' <span class="material-icons">arrow_forward</span></a>';
+    }}
   }}
 
-  return '<div class="press-card">' +
+  const scopeBadge = getScopeBadge(item.media_scope);
+
+  return '<div class="press-card" id="press-' + (item.id || '') + '">' +
     '<div>' +
       '<div class="press-card-header">' +
         '<div class="press-outlet-wrap">' +
           logoImg +
           '<span class="press-outlet-name">' + (item.source || item.domain || "Média") + ' ' + flag + '</span>' +
         '</div>' +
-        getTypeBadge(item.type) +
+        '<div class="press-badges-group">' +
+          scopeBadge +
+          getTypeBadge(item.type) +
+        '</div>' +
       '</div>' +
       (dateFormatted ? '<div class="press-date">' + dateFormatted + '</div>' : '') +
       '<h3 class="press-title">' + titleHtml + '</h3>' +
       authorHtml +
+      deadLinkHtml +
+      topicsHtml +
       verbatimHtml +
     '</div>' +
     '<div class="press-card-footer">' +
-      '<span class="press-tag">' + (item.lang ? item.lang.toUpperCase() : "FR") + '</span>' +
+      '<div class="press-card-actions-left">' +
+        '<span class="press-tag">' + (item.lang ? item.lang.toUpperCase() : "FR") + '</span>' +
+        '<button type="button" class="press-share-btn" onclick="copyCardPermalink(\\'' + (item.id || '') + '\\', this)" title="' + (IS_FR ? "Copier le permalien vers cette mention" : "Copy permalink to this mention") + '"><span class="material-icons" style="font-size: 13px;">share</span> ' + (IS_FR ? "Partager" : "Share") + '</button>' +
+        '<a class="press-edit-link" href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/press-review/' + (item.id || '') + '.yaml" target="_blank" rel="noopener noreferrer" title="' + (IS_FR ? "Modifier cette mention sur GitHub" : "Edit on GitHub") + '"><span class="material-icons" style="font-size: 13px; vertical-align: middle;">edit</span> ' + (IS_FR ? "Modifier" : "Edit") + '</a>' +
+      '</div>' +
       actionBtn +
     '</div>' +
   '</div>';
@@ -625,6 +935,7 @@ function renderList() {{
   }}
   
   countSpan.textContent = (IS_FR ? "Affichage de " + toShow.length + " sur " + currentFiltered.length + " mentions" : "Showing " + toShow.length + " of " + currentFiltered.length + " mentions");
+  updateActivePills();
 }}
 
 function loadMore() {{
@@ -632,37 +943,68 @@ function loadMore() {{
   renderList();
 }}
 
-let activeChip = "all";
-
 function selectChip(btn, chipVal) {{
   document.querySelectorAll(".press-chip-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
   activeChip = chipVal;
-  
-  if (chipVal === "article" || chipVal === "podcast" || chipVal === "video" || chipVal === "study") {{
-    document.getElementById("typeSelect").value = chipVal;
-  }} else if (chipVal === "all") {{
-    document.getElementById("typeSelect").value = "all";
+
+  if (chipVal === "all") {{
+    resetDropdowns();
+  }} else if (chipVal.startsWith("scope:")) {{
+    document.getElementById("scopeSelect").value = chipVal.split(":")[1];
+  }} else if (chipVal.startsWith("topic:")) {{
+    document.getElementById("topicSelect").value = chipVal.split(":")[1];
+  }} else if (chipVal.startsWith("type:")) {{
+    document.getElementById("typeSelect").value = chipVal.split(":")[1];
   }}
-  
+
+  onFilterChanged();
+}}
+
+function setTopicFilter(t) {{
+  document.getElementById("topicSelect").value = t;
+  onFilterChanged();
+}}
+
+function resetDropdowns() {{
+  document.getElementById("scopeSelect").value = "all";
+  document.getElementById("topicSelect").value = "all";
+  document.getElementById("typeSelect").value = "all";
+}}
+
+function onFilterChanged() {{
   applyFilters();
+  syncUrlParams();
 }}
 
 function applyFilters() {{
   const q = document.getElementById("pressSearch").value.toLowerCase().trim();
+  const topicVal = document.getElementById("topicSelect").value;
+  const countryVal = document.getElementById("countrySelect").value;
+  const scopeVal = document.getElementById("scopeSelect").value;
+  const sourceVal = document.getElementById("sourceSelect").value;
   const typeVal = document.getElementById("typeSelect").value;
-  const langVal = document.getElementById("langSelect").value;
+  const linkVal = document.getElementById("linkSelect").value;
   const yearVal = document.getElementById("yearSelect").value;
   const sortVal = document.getElementById("sortSelect").value;
   
   currentFiltered = ALL_PRESS.filter(item => {{
-    if (activeChip === "verbatim" && !item.verbatim) return false;
+    if (activeChip === "chip:verbatim" && !item.verbatim) return false;
+    if (topicVal !== "all") {{
+      const topics = item.topics || [];
+      if (!topics.includes(topicVal)) return false;
+    }}
+    if (countryVal !== "all" && item.country !== countryVal) return false;
+    if (scopeVal !== "all" && item.media_scope !== scopeVal) return false;
+    if (sourceVal !== "all" && item.source !== sourceVal) return false;
     if (typeVal !== "all" && item.type !== typeVal) return false;
-    if (langVal !== "all" && item.lang !== langVal) return false;
+    if (linkVal === "active" && item.dead_link) return false;
+    if (linkVal === "dead" && !item.dead_link) return false;
     if (yearVal !== "all" && !item.date.startsWith(yearVal)) return false;
     
     if (q) {{
-      const text = (item.title + " " + item.source + " " + item.author + " " + item.verbatim + " " + item.topic + " " + item.domain).toLowerCase();
+      const topicsStr = (item.topics || []).join(" ");
+      const text = (item.title + " " + item.source + " " + item.author + " " + item.verbatim + " " + item.topic + " " + topicsStr + " " + item.domain).toLowerCase();
       if (!text.includes(q)) return false;
     }}
     return true;
@@ -682,18 +1024,163 @@ function applyFilters() {{
   renderList();
 }}
 
+function syncUrlParams() {{
+  const params = new URLSearchParams();
+  const q = document.getElementById("pressSearch").value.trim();
+  const topicVal = document.getElementById("topicSelect").value;
+  const countryVal = document.getElementById("countrySelect").value;
+  const scopeVal = document.getElementById("scopeSelect").value;
+  const sourceVal = document.getElementById("sourceSelect").value;
+  const typeVal = document.getElementById("typeSelect").value;
+  const linkVal = document.getElementById("linkSelect").value;
+  const yearVal = document.getElementById("yearSelect").value;
+  const sortVal = document.getElementById("sortSelect").value;
+
+  if (q) params.set("search", q);
+  if (topicVal !== "all") params.set("topic", topicVal);
+  if (countryVal !== "all") params.set("country", countryVal);
+  if (scopeVal !== "all") params.set("scope", scopeVal);
+  if (sourceVal !== "all") params.set("source", sourceVal);
+  if (typeVal !== "all") params.set("type", typeVal);
+  if (linkVal !== "all") params.set("dead_links", linkVal);
+  if (yearVal !== "all") params.set("year", yearVal);
+  if (sortVal !== "newest") params.set("sort", sortVal);
+
+  const queryString = params.toString();
+  const newUrl = window.location.pathname + (queryString ? "?" + queryString : "") + window.location.hash;
+  window.history.replaceState(null, "", newUrl);
+}}
+
+function updateActivePills() {{
+  const wrap = document.getElementById("activePillsWrap");
+  const pills = [];
+
+  const q = document.getElementById("pressSearch").value.trim();
+  const topicVal = document.getElementById("topicSelect").value;
+  const countryVal = document.getElementById("countrySelect").value;
+  const scopeVal = document.getElementById("scopeSelect").value;
+  const sourceVal = document.getElementById("sourceSelect").value;
+  const typeVal = document.getElementById("typeSelect").value;
+  const linkVal = document.getElementById("linkSelect").value;
+  const yearVal = document.getElementById("yearSelect").value;
+
+  if (q) pills.push('Recherche: "' + q + '" <button class="press-pill-remove" onclick="clearSpecificFilter(\\'q\\')">&times;</button>');
+  if (topicVal !== "all") pills.push('Sujet: ' + (TOPIC_LABELS[topicVal] || topicVal) + ' <button class="press-pill-remove" onclick="clearSpecificFilter(\\'topic\\')">&times;</button>');
+  if (countryVal !== "all") pills.push('Pays: ' + (COUNTRY_FLAGS[countryVal] || countryVal.toUpperCase()) + ' <button class="press-pill-remove" onclick="clearSpecificFilter(\\'country\\')">&times;</button>');
+  if (scopeVal !== "all") pills.push('Média: ' + scopeVal + ' <button class="press-pill-remove" onclick="clearSpecificFilter(\\'scope\\')">&times;</button>');
+  if (sourceVal !== "all") pills.push('Source: ' + sourceVal + ' <button class="press-pill-remove" onclick="clearSpecificFilter(\\'source\\')">&times;</button>');
+  if (typeVal !== "all") pills.push('Type: ' + typeVal + ' <button class="press-pill-remove" onclick="clearSpecificFilter(\\'type\\')">&times;</button>');
+  if (linkVal !== "all") pills.push('Liens: ' + (linkVal === "active" ? "Actifs" : "Archivés") + ' <button class="press-pill-remove" onclick="clearSpecificFilter(\\'link\\')">&times;</button>');
+  if (yearVal !== "all") pills.push('Année: ' + yearVal + ' <button class="press-pill-remove" onclick="clearSpecificFilter(\\'year\\')">&times;</button>');
+
+  if (pills.length) {{
+    wrap.style.display = "flex";
+    wrap.innerHTML = '<span style="font-size: 0.8rem; font-weight: 600; color: #64748b;">Filtres actifs :</span> ' +
+      pills.map(p => '<span class="press-pill">' + p + '</span>').join("") +
+      '<button type="button" class="button secondary small" onclick="resetFilters()" style="margin: 0 0 0 auto; padding: 2px 8px; font-size: 0.75rem;">' + (IS_FR ? "Tout effacer" : "Clear all") + '</button>';
+  }} else {{
+    wrap.style.display = "none";
+    wrap.innerHTML = "";
+  }}
+}}
+
+function clearSpecificFilter(key) {{
+  switch(key) {{
+    case "q": document.getElementById("pressSearch").value = ""; break;
+    case "topic": document.getElementById("topicSelect").value = "all"; break;
+    case "country": document.getElementById("countrySelect").value = "all"; break;
+    case "scope": document.getElementById("scopeSelect").value = "all"; break;
+    case "source": document.getElementById("sourceSelect").value = "all"; break;
+    case "type": document.getElementById("typeSelect").value = "all"; break;
+    case "link": document.getElementById("linkSelect").value = "all"; break;
+    case "year": document.getElementById("yearSelect").value = "all"; break;
+  }}
+  onFilterChanged();
+}}
+
 function resetFilters() {{
   document.getElementById("pressSearch").value = "";
+  document.getElementById("topicSelect").value = "all";
+  document.getElementById("countrySelect").value = "all";
+  document.getElementById("scopeSelect").value = "all";
+  document.getElementById("sourceSelect").value = "all";
   document.getElementById("typeSelect").value = "all";
-  document.getElementById("langSelect").value = "all";
+  document.getElementById("linkSelect").value = "all";
   document.getElementById("yearSelect").value = "all";
   document.getElementById("sortSelect").value = "newest";
   activeChip = "all";
   document.querySelectorAll(".press-chip-btn").forEach(b => {{
-    if (b.getAttribute("onclick").includes("'all'")) b.classList.add("active");
+    if (b.getAttribute("onclick") && b.getAttribute("onclick").includes("'all'")) b.classList.add("active");
     else b.classList.remove("active");
   }});
+  onFilterChanged();
+}}
+
+function copyCardPermalink(id, btn) {{
+  const url = new URL(window.location.href);
+  url.searchParams.set("id", id);
+  url.hash = "press-" + id;
+  navigator.clipboard.writeText(url.toString()).then(() => {{
+    const origHtml = btn.innerHTML;
+    btn.innerHTML = '<span class="material-icons" style="font-size: 13px;">check</span> ' + (IS_FR ? "Copié !" : "Copied!");
+    btn.classList.add("copied");
+    setTimeout(() => {{
+      btn.innerHTML = origHtml;
+      btn.classList.remove("copied");
+    }}, 2000);
+  }}).catch(() => {{
+    prompt(IS_FR ? "Copiez ce lien :" : "Copy this link:", url.toString());
+  }});
+}}
+
+function checkInitialDeeplink() {{
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get("search") || params.get("q");
+  const topic = params.get("topic");
+  const country = params.get("country");
+  const scope = params.get("scope");
+  const source = params.get("source");
+  const type = params.get("type");
+  const deadLinks = params.get("dead_links");
+  const year = params.get("year");
+  const sort = params.get("sort");
+  const targetId = params.get("id") || (window.location.hash ? window.location.hash.replace("#press-", "").replace("#", "") : null);
+
+  if (q) document.getElementById("pressSearch").value = q;
+  if (topic && document.querySelector('#topicSelect option[value="' + topic + '"]')) document.getElementById("topicSelect").value = topic;
+  if (country && document.querySelector('#countrySelect option[value="' + country + '"]')) document.getElementById("countrySelect").value = country;
+  if (scope && document.querySelector('#scopeSelect option[value="' + scope + '"]')) document.getElementById("scopeSelect").value = scope;
+  if (source && document.querySelector('#sourceSelect option[value="' + source + '"]')) document.getElementById("sourceSelect").value = source;
+  if (type && document.querySelector('#typeSelect option[value="' + type + '"]')) document.getElementById("typeSelect").value = type;
+  if (deadLinks && document.querySelector('#linkSelect option[value="' + deadLinks + '"]')) document.getElementById("linkSelect").value = deadLinks;
+  if (year && document.querySelector('#yearSelect option[value="' + year + '"]')) document.getElementById("yearSelect").value = year;
+  if (sort && document.querySelector('#sortSelect option[value="' + sort + '"]')) document.getElementById("sortSelect").value = sort;
+
   applyFilters();
+
+  if (targetId) {{
+    // Locate target in ALL_PRESS
+    const itemIndex = ALL_PRESS.findIndex(it => it.id === targetId);
+    if (itemIndex >= 0) {{
+      // Ensure target is in currentFiltered
+      if (!currentFiltered.some(it => it.id === targetId)) {{
+        // Reset filters if item was hidden
+        resetFilters();
+      }}
+      const filteredIndex = currentFiltered.findIndex(it => it.id === targetId);
+      if (filteredIndex >= 0) {{
+        currentPage = Math.ceil((filteredIndex + 1) / PAGE_SIZE);
+        renderList();
+        setTimeout(() => {{
+          const el = document.getElementById("press-" + targetId);
+          if (el) {{
+            el.scrollIntoView({{ behavior: "smooth", block: "center" }});
+            el.classList.add("press-card-highlighted");
+          }}
+        }}, 200);
+      }}
+    }}
+  }}
 }}
 
 function toggleSubmitDrawer() {{
@@ -722,38 +1209,50 @@ function updateSubmitLinks() {{
     "---\\n*" + (IS_FR ? "Soumis via la page Revue de Presse" : "Submitted via Press Review page") + "*";
   
   const ghBtn = document.getElementById("btnGhIssue");
-  ghBtn.href = "https://github.com/openfoodfacts/openfoodfacts-web/issues/new?title=" + encodeURIComponent(issueTitle) + "&body=" + encodeURIComponent(issueBody) + "&labels=press-review,documentation";
+  const params = new URLSearchParams();
+  params.set("template", "new-press-review.yml");
+  if (title) params.set("title", "[Press]: " + (source ? source + " - " : "") + title);
+  if (source) params.set("source", source);
+  if (date) params.set("date", date);
+  if (url) params.set("link", url);
+  if (quote) params.set("verbatim", quote);
+  ghBtn.href = "https://github.com/openfoodfacts/openfoodfacts-web/issues/new?" + params.toString();
   
   const mailBtn = document.getElementById("btnMailto");
   mailBtn.href = "mailto:presse@openfoodfacts.org?subject=" + encodeURIComponent(issueTitle) + "&body=" + encodeURIComponent(issueBody.replace(/\\n/g, "\\r\\n"));
 }}
 
 document.addEventListener("DOMContentLoaded", () => {{
-  currentFiltered = ALL_PRESS.slice();
-  renderList();
+  checkInitialDeeplink();
   updateSubmitLinks();
 }});
 if (document.readyState !== "loading") {{
-  currentFiltered = ALL_PRESS.slice();
-  renderList();
+  checkInitialDeeplink();
   updateSubmitLinks();
 }}
 </script>
 """
 
-# Write French version
-fr_html = build_html("fr")
-with open("lang/fr/texts/revue-de-presse-fr.html", "w", encoding="utf-8") as f:
-    f.write(fr_html.strip() + "\n")
-print("Wrote lang/fr/texts/revue-de-presse-fr.html")
+def main(items=None):
+    global merged
+    if items is not None:
+        merged = items
 
-# Write English version (both as revue-de-presse-fr.html for direct access and press-review.html)
-en_html = build_html("en")
-with open("lang/en/texts/revue-de-presse-fr.html", "w", encoding="utf-8") as f:
-    f.write(en_html.strip() + "\n")
-print("Wrote lang/en/texts/revue-de-presse-fr.html")
+    # Write French version
+    fr_html = build_html("fr", items=merged)
+    with open("lang/fr/texts/revue-de-presse-fr.html", "w", encoding="utf-8") as f:
+        f.write(fr_html.strip() + "\n")
+    print("Wrote lang/fr/texts/revue-de-presse-fr.html")
 
-with open("lang/en/texts/press-review.html", "w", encoding="utf-8") as f:
-    f.write(en_html.strip() + "\n")
-print("Wrote lang/en/texts/press-review.html")
+    # Write English version (both as revue-de-presse-fr.html for direct access and press-review.html)
+    en_html = build_html("en", items=merged)
+    with open("lang/en/texts/revue-de-presse-fr.html", "w", encoding="utf-8") as f:
+        f.write(en_html.strip() + "\n")
+    print("Wrote lang/en/texts/revue-de-presse-fr.html")
 
+    with open("lang/en/texts/press-review.html", "w", encoding="utf-8") as f:
+        f.write(en_html.strip() + "\n")
+    print("Wrote lang/en/texts/press-review.html")
+
+if __name__ == "__main__":
+    main()
