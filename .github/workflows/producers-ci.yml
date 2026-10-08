@@ -1,0 +1,58 @@
+name: "Producers: CI Validation"
+
+on:
+  push:
+    paths:
+      - 'data/producers/**'
+      - 'scripts/compile_producers.py'
+      - 'scripts/add_producer.py'
+      - 'scripts/test_add_producer.py'
+  pull_request:
+    paths:
+      - 'data/producers/**'
+      - 'scripts/compile_producers.py'
+      - 'scripts/add_producer.py'
+      - 'scripts/test_add_producer.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: producers-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-producers:
+    name: Validate Producers YAMLs & Schemas
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Validate Producer YAML files
+        run: |
+          python3 scripts/compile_producers.py --check
+
+      - name: Run Producer Unit Tests
+        run: |
+          python3 scripts/test_add_producer.py
+
+      - name: Test Producer Issue Parser
+        run: |
+          python3 scripts/add_producer.py --dry-run --json \
+            --name "CI Test Producer" \
+            --owner "CI Test Group" \
+            --category "Dairy & Cheese" \
+            --country "fra" \
+            --producer-id "producer-ci-test" \
+            --description "Automated test producer for CI validation"

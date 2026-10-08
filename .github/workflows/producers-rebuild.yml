@@ -1,0 +1,44 @@
+name: "Producers: Rebuild Catalog & Pages"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/producers/**'
+      - 'scripts/compile_producers.py'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: producers-rebuild-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rebuild-producers:
+    name: Rebuild Producers JSON and HTML
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Recompile producers dataset and HTML pages
+        run: |
+          python3 scripts/compile_producers.py
+
+      - name: Commit and push changes if any
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(producers): recompile producers.json and static HTML showcase"
+          file_pattern: "data/producers.json lang/en/texts/producers-sharing-data.html lang/en/texts/producers.html lang/fr/texts/producers-sharing-data.html lang/fr/texts/producers.html lang/fr/texts/producteurs.html producers-sharing-data.html producers.html"
