@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.8.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.7.0...v1.8.0) (2026-10-08)
+
+
+### Features
+
+* producers page revamp ([c9c2c46](https://github.com/openfoodfacts/openfoodfacts-web/commit/c9c2c46e8885462bae2f5a530fc84d03c69410cc))
+
+
+### Bug Fixes
+
+* point the dev page Slack button to #dev ([#1005](https://github.com/openfoodfacts/openfoodfacts-web/issues/1005)) ([702a4e0](https://github.com/openfoodfacts/openfoodfacts-web/commit/702a4e0989baca960e012b516939a07d3a43aee8))
+* Revise Yuka description for clarity ([328eb90](https://github.com/openfoodfacts/openfoodfacts-web/commit/328eb906cc537de65307017f7125be197d13325d))
+
 ## [1.7.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.6.1...v1.7.0) (2026-10-02)
 
 
