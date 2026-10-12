@@ -1,0 +1,91 @@
+name: "Producers: Create PR from Producer Issue"
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: producer-issue-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  process-producer-issue:
+    # Run only if the issue has the 'producer' or 'brand' label
+    if: >
+      (github.event.action == 'labeled' && (github.event.label.name == 'producer' || github.event.label.name == 'brand')) ||
+      (github.event.action == 'opened' && (contains(github.event.issue.labels.*.name, 'producer') || contains(github.event.issue.labels.*.name, 'brand')))
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Process producer issue and create YAML
+        id: add_producer
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python3 scripts/add_producer.py --from-env --compile --json --output-json result.json
+          cat result.json
+          SUCCESS=$(python3 -c "import json; print(json.load(open('result.json')).get('success', False))")
+          if [ "$SUCCESS" != "True" ]; then
+            echo "Failed to parse or add producer"
+            exit 1
+          fi
+          echo "producer_id=$(python3 -c "import json; print(json.load(open('result.json')).get('id', ''))")" >> $GITHUB_OUTPUT
+          echo "producer_name=$(python3 -c "import json; print(json.load(open('result.json')).get('name', ''))")" >> $GITHUB_OUTPUT
+          echo "owner=$(python3 -c "import json; print(json.load(open('result.json')).get('owner', ''))")" >> $GITHUB_OUTPUT
+          echo "category=$(python3 -c "import json; print(json.load(open('result.json')).get('category', ''))")" >> $GITHUB_OUTPUT
+          echo "target_file=$(python3 -c "import json; print(json.load(open('result.json')).get('file', ''))")" >> $GITHUB_OUTPUT
+          echo "off_url=$(python3 -c "import json; print(json.load(open('result.json')).get('off_url', ''))")" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "feat(producers): add ${{ steps.add_producer.outputs.producer_name }} from issue #${{ github.event.issue.number }}"
+          branch: "producer/issue-${{ github.event.issue.number }}"
+          delete-branch: true
+          title: "[Producer] Add ${{ steps.add_producer.outputs.producer_name }}"
+          body: |
+            ### 🏭 New Producer / Brand Submission
+
+            This Pull Request was automatically generated from issue #${{ github.event.issue.number }}.
+
+            - **Brand / Producer**: **${{ steps.add_producer.outputs.producer_name }}** (`${{ steps.add_producer.outputs.producer_id }}`)
+            - **Parent Group / Owner**: `${{ steps.add_producer.outputs.owner }}`
+            - **Category**: `${{ steps.add_producer.outputs.category }}`
+            - **Open Food Facts Facet**: ${{ steps.add_producer.outputs.off_url }}
+            - **Target file**: `${{ steps.add_producer.outputs.target_file }}`
+
+            Closes #${{ github.event.issue.number }}
+          labels: |
+            producer
+            brand
+            automated-pr
+
+      - name: Comment on Issue
+        uses: actions/github-script@v9
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Thank you @${context.payload.issue.user.login} for submitting **${{ steps.add_producer.outputs.producer_name }}** to the Open Food Facts directory! 🎉\n\nA Pull Request has been automatically created to validate and add this brand to the catalog. You can follow along with the automated checks in the PR!`
+            });

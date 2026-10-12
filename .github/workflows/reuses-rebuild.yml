@@ -1,0 +1,46 @@
+name: "Reuses: Rebuild Catalog & Pages"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/reuses/**'
+      - 'scripts/compile_reuses.py'
+      - 'scripts/generate_showcase.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reuses-rebuild-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rebuild-reuses:
+    name: Rebuild Reuses JSON and HTML
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Recompile reuses dataset and HTML pages
+        run: |
+          python3 scripts/compile_reuses.py
+
+      - name: Commit and push changes if any
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(reuses): recompile reuses.json and static HTML showcase"
+          file_pattern: "data/reuses.json lang/en/texts/reuse.html lang/en/texts/reuses.html lang/fr/texts/reuses.html lang/fr/texts/reutilisations.html"

@@ -1,0 +1,45 @@
+name: "FAQ: Rebuild Catalog & Pages"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/faq/**'
+      - 'scripts/compile_faq.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: faq-rebuild-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rebuild-faq:
+    name: Rebuild FAQ JSON and HTML
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Recompile FAQ dataset and HTML pages
+        run: |
+          python3 scripts/compile_faq.py
+
+      - name: Commit and push changes if any
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(faq): recompile faq.json and static HTML"
+          file_pattern: "data/faq.json lang/*/texts/faq.html"
