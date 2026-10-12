@@ -1,0 +1,152 @@
+name: "🏭 Propose a new producer or brand"
+description: Add a new food manufacturer, retailer, cooperative or brand contributing data to Open Food Facts
+title: "[Producer]: "
+labels: ["producer", "brand"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Welcome to the Open Food Facts Producers Directory submission form!
+        Thank you for showcasing a food producer or brand contributing verified data to Open Food Facts.
+        Filling out this form triggers our automated workflow to validate and generate a Pull Request adding the brand to the directory (`/producers-sharing-data`).
+
+  - type: input
+    id: name
+    attributes:
+      label: Brand or Producer Name
+      description: Name of the brand or producer (e.g. Fleury Michon, Knorr, Alnatura, Danone).
+      placeholder: e.g. Fleury Michon
+    validations:
+      required: true
+
+  - type: input
+    id: owner
+    attributes:
+      label: Parent Company / Owner
+      description: Parent corporate entity, manufacturer, or cooperative (leave same as brand name for independent producers).
+      placeholder: e.g. Fleury Michon, Unilever, Nestlé, Groupe Bel
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Primary Category
+      description: Select the main product category.
+      options:
+        - "Retail & Supermarkets"
+        - "Dairy & Cheese"
+        - "Beverages"
+        - "Sweet Groceries & Biscuits"
+        - "Savoury Groceries & Condiments"
+        - "Prepared Meals, Meat & Fish"
+        - "Plant-Based & Vegetarian"
+        - "Baby Food & Nutrition"
+        - "Bakery & Pastries"
+        - "Organic & Local"
+        - "Snacks & Savoury"
+        - "Health & Sports Nutrition"
+        - "Frozen Foods"
+        - "Fresh & Produce"
+        - "Multicategory"
+        - "Institutions & Public Data"
+    validations:
+      required: true
+
+  - type: input
+    id: country
+    attributes:
+      label: Country Code (ISO 3-letter)
+      description: 3-letter ISO country code (e.g. fra, deu, esp, ita, che, usa, gbr, or global).
+      placeholder: fra
+    validations:
+      required: true
+
+  - type: input
+    id: country_label
+    attributes:
+      label: Country Label
+      description: Display name of the country or territory.
+      placeholder: France
+
+  - type: input
+    id: producer_id
+    attributes:
+      label: Data Source ID
+      description: Open Food Facts data source tag (typically starts with producer-).
+      placeholder: e.g. producer-fleury-michon
+    validations:
+      required: true
+
+  - type: input
+    id: off_url
+    attributes:
+      label: Open Food Facts Data Source URL
+      description: Link to the data source facet on Open Food Facts.
+      placeholder: https://world.openfoodfacts.org/facets/data-sources/producer-fleury-michon
+
+  - type: input
+    id: website
+    attributes:
+      label: Official Website URL
+      description: Official website or brand landing page.
+      placeholder: https://example.com
+
+  - type: input
+    id: logo_url
+    attributes:
+      label: Brand Logo URL
+      description: Link to a high-resolution SVG or PNG logo.
+      placeholder: https://example.com/logo.svg
+
+  - type: input
+    id: products_count
+    attributes:
+      label: Products Contributed Count
+      description: Approximate or exact number of products contributed.
+      placeholder: e.g. 685
+
+  - type: input
+    id: last_update
+    attributes:
+      label: Last Update Date
+      description: Date of the most recent data sync or contribution (YYYY-MM-DD).
+      placeholder: e.g. 2026-10-08
+
+  - type: checkboxes
+    id: data_shared
+    attributes:
+      label: Data Shared with Open Food Facts
+      description: Select all types of data provided or synchronized with Open Food Facts.
+      options:
+        - label: basic_data (Product name, brand, barcode, quantity)
+        - label: nutrition (Nutritional values and table per 100g / portion)
+        - label: ingredients (Complete ingredients list and allergens)
+        - label: front_photo (High-resolution front packaging photo)
+        - label: ingredients_photo (High-resolution ingredients photo)
+        - label: nutrition_photo (High-resolution nutrition table photo)
+        - label: recycling_photo (High-resolution recycling instructions photo)
+        - label: packaging_data (Detailed packaging materials, weights, and recycling tags)
+        - label: origins (Origins of ingredients and processing locations)
+        - label: quality_labels (Quality, organic, and sustainability certifications)
+        - label: categories (Specific product taxonomy and categories)
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Summary Description
+      description: Brief description of the brand's products, commitments, and contributions to food transparency.
+      placeholder: |
+        French food manufacturer committed to clean recipes, nitrite-free meats, and transparent Nutri-Score labeling.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Verification Checklist
+      options:
+        - label: I confirm this producer or brand has contributed data to Open Food Facts.
+          required: true
+        - label: I agree to have this metadata published in the public Open Food Facts directory under CC-BY-SA / ODbL.
+          required: true

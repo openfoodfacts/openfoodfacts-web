@@ -1,0 +1,48 @@
+name: "Press Review: Rebuild Catalog & Pages"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/press-review/**'
+      - 'scripts/compile_press_review.py'
+      - 'scripts/generate_press_review.py'
+      - 'scripts/generate_country_presskits.py'
+      - 'scripts/generate_press_hub.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: press-review-rebuild-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rebuild-press-review:
+    name: Rebuild Press Review JSON and HTML
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Recompile press review dataset and HTML pages
+        run: |
+          python3 scripts/compile_press_review.py
+
+      - name: Commit and push changes if any
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(press-review): recompile press-review-merged.json and static HTML pages"
+          file_pattern: "data/press-review-merged.json lang/en/texts/revue-de-presse-fr.html lang/en/texts/press-review.html lang/fr/texts/revue-de-presse-fr.html lang/en/texts/press.html lang/en/texts/presskit.html lang/fr/texts/press.html lang/fr/texts/presskit.html lang/*/texts/presskit_*_selection.html lang/*/texts/presskit_other_languages.html"

@@ -1,0 +1,45 @@
+name: "Scientific Publications: Rebuild Catalog & Pages"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/scientific_publications/**'
+      - 'scripts/build_scientific_publications.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scientific-publications-rebuild-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rebuild-publications:
+    name: Rebuild Scientific Publications JSON and HTML
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Recompile scientific publications dataset and HTML pages
+        run: |
+          python3 scripts/build_scientific_publications.py
+
+      - name: Commit and push changes if any
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(scientific-publications): recompile scientific_publications.json and static HTML"
+          file_pattern: "data/scientific_publications.json lang/en/texts/scientific-publications.html lang/fr/texts/scientific-publications.html"
