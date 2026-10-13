@@ -69,8 +69,7 @@ def generate_html(lang="en"):
     t_stat_open_label = "Données ouvertes" if is_fr else "Open Data & Commons"
     t_stat_open_sub = "Licence ODbL & API libre" if is_fr else "ODbL & free open API"
 
-    # Header Action Buttons
-    t_submit_gh_btn = "🚀 Déclarer via GitHub" if is_fr else "🚀 Register via GitHub"
+    t_submit_gh_btn = "🚀 Déclarer une réutilisation" if is_fr else "🚀 Submit a Reuse"
     t_edit_gh_btn = "✏️ Proposer une modif (PR)" if is_fr else "✏️ Propose an Edit (PR)"
     t_donate_btn = "💝 Soutenir par un don" if is_fr else "💝 Donate to the NGO"
     t_submit_form_btn = "📝 Formulaire Google" if is_fr else "📝 Google Form"
@@ -85,8 +84,8 @@ def generate_html(lang="en"):
     t_link_slack = "💬 Slack #reuse & #api" if is_fr else "💬 Slack #reuse & #api"
     t_link_meet = "🗓️ Réunion mensuelle (3e mardi)" if is_fr else "🗓️ Monthly Meeting (3rd Tuesday)"
     t_link_form = "📝 Déclarer sur Formulaire" if is_fr else "📝 Register on Form"
-    t_link_gh = "🚀 Déclarer sur GitHub" if is_fr else "🚀 Register on GitHub"
-    t_link_edit_gh = "✏️ Proposer un correctif sur GitHub" if is_fr else "✏️ Propose a correction on GitHub"
+    t_link_gh = "🚀 Déclarer une réutilisation" if is_fr else "🚀 Submit a Reuse"
+    t_link_edit_gh = "✏️ Proposer un correctif" if is_fr else "✏️ Propose a correction"
     t_link_donate = "💝 Soutenir l'association" if is_fr else "💝 Donate to the NGO"
 
     # SDK Drawer
@@ -109,10 +108,10 @@ def generate_html(lang="en"):
     t_sub_card3_title = "💝 3. Soutenir l'association par un don" if is_fr else "💝 3. Support the Open Food Facts NGO"
     t_sub_card3_desc = "Open Food Facts est une association citoyenne à but non lucratif. Les dons financent les serveurs, la bande passante et l'API ouverte pour tous." if is_fr else "Open Food Facts is an independent citizen non-profit. Donations fund servers, bandwidth, and the free open API for everyone."
 
-    t_btn_gh = "🚀 Ouvrir une issue GitHub" if is_fr else "🚀 Open GitHub Issue"
+    t_btn_gh = "🚀 Déclarer une réutilisation" if is_fr else "🚀 Submit a Reuse"
     t_btn_gform = "📝 Formulaire Google" if is_fr else "📝 Official Google Form"
     t_btn_mail = "✉️ Contacter l'équipe" if is_fr else "✉️ Email Reuse Team"
-    t_btn_edit_gh = "✏️ Éditer sur GitHub (PR)" if is_fr else "✏️ Edit on GitHub (PR)"
+    t_btn_edit_gh = "✏️ Proposer une modification (PR)" if is_fr else "✏️ Propose an Edit (PR)"
     t_btn_donate = "💝 Faire un don défiscalisé" if is_fr else "💝 Make a Donation"
 
     # Multi-Filter Labels
@@ -157,7 +156,7 @@ def generate_html(lang="en"):
         if is_fr else
         "Notice outdated or inaccurate information? Propose a correction directly on this app's YAML file via a GitHub Pull Request."
     )
-    t_modal_edit_btn = "✏️ Proposer une correction sur GitHub" if is_fr else "✏️ Propose an Edit on GitHub"
+    t_modal_edit_btn = "✏️ Proposer une correction" if is_fr else "✏️ Propose an Edit"
     t_modal_support_text = (
         "Vous utilisez Open Food Facts ? Aidez l'association à maintenir ses serveurs et son API libre."
         if is_fr else
@@ -177,7 +176,7 @@ def generate_html(lang="en"):
     t_badge_donation = "Soutient l'association" if is_fr else "NGO Supporter"
     t_badge_installs = "téléch." if is_fr else "installs"
     t_card_edit = "Modifier" if is_fr else "Edit"
-    t_card_edit_title = "Proposer une modification pour cette app sur GitHub" if is_fr else "Propose an edit for this app on GitHub"
+    t_card_edit_title = "Proposer une modification pour cette app" if is_fr else "Propose an edit for this app"
 
     # Localized Store Badges
     play_badge_svg = f"/images/misc/playstore/img/{'fr' if is_fr else 'en'}_get.svg"

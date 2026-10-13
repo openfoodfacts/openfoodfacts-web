@@ -239,6 +239,60 @@ class TestTranslationQA(unittest.TestCase):
                 violations.append(f"{path}: references obsolete logo.html")
         self.assertEqual(len(violations), 0, f"Found {len(violations)} references to obsolete logo.html in press pages:\n" + "\n".join(violations[:10]))
 
+    def test_edit_page_include_exists_in_en(self):
+        """Verify edit-page-include.html exists in lang/en/texts."""
+        root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        en_include = os.path.join(root_dir, 'lang', 'en', 'texts', 'edit-page-include.html')
+        self.assertTrue(os.path.isfile(en_include), "edit-page-include.html does not exist in lang/en/texts/")
+
+    def test_non_editable_pages_have_no_edit_include(self):
+        """Verify non-editable pages (ToS, Code of Conduct, Legal, Privacy) do not contain edit-page-include."""
+        forbidden_basenames = {
+            'terms-of-use.html',
+            'termos-de-uso.html',
+            'termos-de-utilizacao.html',
+            'nutzungsbedingungen.html',
+            'condiciones-de-uso.html',
+            'conditions-d-utilisation.html',
+            'code-of-conduct.html',
+            'codigo-de-conducta.html',
+            'code-de-conduite.html',
+            'verhaltenskodex.html',
+            'legal.html',
+            'informacao-legal.html',
+            'gesetzliche-hinweise.html',
+            'mentions-legales.html',
+            'aviso-legal.html',
+            'impressum.html',
+            'privacy.html',
+            'privacidade.html',
+            'datenschutz.html',
+            'politique-de-confidentialite.html',
+        }
+        violations = []
+        for path in self.html_files:
+            filename = os.path.basename(path)
+            real_filename = os.path.basename(os.path.realpath(path))
+            if filename in forbidden_basenames or real_filename in forbidden_basenames:
+                with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                    content = f.read()
+                if 'edit-page-include.html' in content:
+                    violations.append(path)
+        self.assertEqual(len(violations), 0, f"Found edit-page-include in non-editable pages:\n" + "\n".join(violations[:10]))
+
+
+    def test_data_page_has_api_donation_include(self):
+        """Verify that the Data page includes the api-donation-include tag."""
+        root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        for lang in ['en', 'fr']:
+            page_path = os.path.join(root_dir, 'lang', lang, 'texts', 'data.html')
+            with open(page_path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            self.assertIn('[[texts/api-donation-include.html]]', content, f"lang/{lang}/texts/data.html is missing [[texts/api-donation-include.html]]")
+            include_path = os.path.join(root_dir, 'lang', lang, 'texts', 'api-donation-include.html')
+            self.assertTrue(os.path.isfile(include_path), f"Missing include file: {include_path}")
+
 if __name__ == '__main__':
     unittest.main()
+
 

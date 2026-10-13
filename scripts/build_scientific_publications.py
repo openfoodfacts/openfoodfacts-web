@@ -1023,10 +1023,10 @@ def generate_html(pubs, lang="en"):
     <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 1rem; margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;">
       <div style="display: flex; align-items: center; gap: 6px; font-size: 0.86rem; color: #166534;">
         <span class="material-icons" style="font-size: 18px; color: #16a34a;">edit_note</span>
-        <span>{"Une information est inexacte ou vous êtes l'auteur de cette étude ? Proposez une mise à jour sur GitHub." if is_fr else "Notice inaccurate information or are you the author? Propose an update on GitHub."}</span>
+        <span>{"Une information est inexacte ou vous êtes l'auteur de cette étude ? Proposez une mise à jour." if is_fr else "Notice inaccurate information or are you the author? Propose an update."}</span>
       </div>
       <a id="modalEditLink" href="https://github.com/openfoodfacts/openfoodfacts-web/tree/main/data/scientific_publications" target="_blank" rel="noopener noreferrer" class="button small secondary sci-btn" style="align-self: flex-start;">
-        <span class="material-icons" style="font-size: 14px;">edit</span> {"Modifier ce fichier YAML sur GitHub" if is_fr else "Edit this YAML on GitHub"}
+        <span class="material-icons" style="font-size: 14px;">edit</span> {"Modifier ce fichier YAML" if is_fr else "Edit this YAML"}
       </a>
     </div>
   </div>

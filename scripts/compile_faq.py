@@ -52,8 +52,8 @@ UI_STRINGS = {
         "feedback_thanks_up": "Thank you for your feedback! 🙌",
         "feedback_thanks_down": "Thank you for your feedback. We'll work on improving this answer!",
         "suggest_question": "Suggest a question",
-        "suggest_question_sub": "Can't find an answer? Propose a new question on GitHub",
-        "edit_question": "Edit on GitHub",
+        "suggest_question_sub": "Can't find an answer? Propose a new question",
+        "edit_question": "Edit this question",
     },
     "fr": {
         "title": "Foire Aux Questions (FAQ)",
@@ -81,8 +81,8 @@ UI_STRINGS = {
         "feedback_thanks_up": "Merci pour votre retour ! 🙌",
         "feedback_thanks_down": "Merci pour votre retour. Nous allons améliorer cette réponse !",
         "suggest_question": "Suggérer une question",
-        "suggest_question_sub": "Vous ne trouvez pas de réponse ? Proposez une nouvelle question sur GitHub",
-        "edit_question": "Modifier sur GitHub",
+        "suggest_question_sub": "Vous ne trouvez pas de réponse ? Proposez une nouvelle question",
+        "edit_question": "Modifier cette question",
     },
     "es": {
         "title": "Preguntas Frecuentes (FAQ)",
@@ -110,8 +110,8 @@ UI_STRINGS = {
         "feedback_thanks_up": "¡Gracias por tus comentarios! 🙌",
         "feedback_thanks_down": "Gracias por tu opinión. ¡Trabajaremos para mejorarla!",
         "suggest_question": "Sugerir una pregunta",
-        "suggest_question_sub": "¿No encuentras una respuesta? Propón una nueva pregunta en GitHub",
-        "edit_question": "Editar en GitHub",
+        "suggest_question_sub": "¿No encuentras una respuesta? Propón una nueva pregunta",
+        "edit_question": "Editar esta pregunta",
     },
     "de": {
         "title": "Häufig gestellte Fragen (FAQ)",
@@ -139,8 +139,8 @@ UI_STRINGS = {
         "feedback_thanks_up": "Vielen Dank für Ihr Feedback! 🙌",
         "feedback_thanks_down": "Danke für das Feedback. Wir werden diesen Eintrag verbessern!",
         "suggest_question": "Frage vorschlagen",
-        "suggest_question_sub": "Keine passende Antwort gefunden? Neue Frage auf GitHub vorschlagen",
-        "edit_question": "Auf GitHub bearbeiten",
+        "suggest_question_sub": "Keine passende Antwort gefunden? Neue Frage vorschlagen",
+        "edit_question": "Diese Frage bearbeiten",
     },
     "it": {
         "title": "Domande Frequenti (FAQ)",
@@ -168,8 +168,8 @@ UI_STRINGS = {
         "feedback_thanks_up": "Grazie per il tuo feedback! 🙌",
         "feedback_thanks_down": "Grazie per il tuo feedback. Lavoreremo per migliorarla!",
         "suggest_question": "Suggerisci una domanda",
-        "suggest_question_sub": "Non trovi la risposta? Proponi una nuova domanda su GitHub",
-        "edit_question": "Modifica su GitHub",
+        "suggest_question_sub": "Non trovi la risposta? Proponi una nuova domanda",
+        "edit_question": "Modifica questa domanda",
     }
 }
 

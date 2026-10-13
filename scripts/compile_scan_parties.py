@@ -286,9 +286,8 @@ def generate_html(events, lang="en"):
             if is_fr else
             "Add your scan party in 1 click via a pre-filled GitHub issue or a Pull Request, just like reuses and scientific papers."
         ),
-        "btn_declare_gh": "🚀 Déclarer via GitHub (1 clic)" if is_fr else "🚀 Submit via GitHub (1-Click)",
+        "btn_declare_gh": "🚀 Déclarer un atelier (1 clic)" if is_fr else "🚀 Submit an Event (1-Click)",
         "btn_declare_pr": "✏️ Proposer un fichier YAML (PR)" if is_fr else "✏️ Propose a YAML file (PR)",
-        "btn_declare_drawer": "📋 Générateur YAML en ligne" if is_fr else "📋 Online YAML Generator",
 
         "comm_title": "Échanger avec la communauté" if is_fr else "Connect with the Community",
         "comm_lead": "Des questions sur l'organisation ou besoin d'aide pour animer votre groupe ?" if is_fr else "Need guidance, ideas, or venue advice? Connect directly with organizers and OFF staff:",
@@ -1328,17 +1327,6 @@ def generate_html(events, lang="en"):
   color: #14532d;
   margin: 0 0 1rem;
 }}
-.sp-declare-drawer {{
-  display: none;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 14px;
-  padding: 1.5rem;
-  margin-top: 1rem;
-}}
-.sp-declare-drawer.open {{
-  display: block;
-}}
 
 .sp-partner-section {{
   background: #ffffff;
@@ -1959,33 +1947,6 @@ def generate_html(events, lang="en"):
            target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-secondary" style="border-color: #16a34a; color: #16a34a;">
           {t["btn_declare_pr"]}
         </a>
-        <button type="button" onclick="toggleSpDeclareDrawer()" class="sp-btn sp-btn-secondary">
-          {t["btn_declare_drawer"]}
-        </button>
-      </div>
-
-      <!-- Generator Drawer -->
-      <div class="sp-declare-drawer" id="sp-declare-drawer">
-        <h4 style="font-size: 1.05rem; font-weight: 800; color: #0f172a; margin: 0 0 0.85rem;">
-          Générer une fiche d'atelier YAML
-        </h4>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.85rem; margin-bottom: 1rem;">
-          <input type="text" id="gen-title" placeholder="Titre de la Scan Party" style="padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem;">
-          <input type="text" id="gen-city" placeholder="Ville & Pays (ex: Lyon, France)" style="padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem;">
-          <input type="text" id="gen-venue" placeholder="Lieu / Magasin (ex: Biomonde Rennes)" style="padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem;">
-          <input type="text" id="gen-date" placeholder="Date (ex: Novembre 2024)" style="padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem;">
-        </div>
-        <textarea id="gen-desc" placeholder="Courte description de l'atelier..." style="width: 100%; height: 70px; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem; margin-bottom: 0.85rem;"></textarea>
-        
-        <div style="display: flex; gap: 0.65rem;">
-          <button type="button" onclick="generateSpYaml()" class="sp-btn sp-btn-primary">
-            📋 Générer & Copier le YAML
-          </button>
-          <button type="button" onclick="toggleSpDeclareDrawer()" class="sp-btn sp-btn-secondary">
-            Fermer
-          </button>
-        </div>
-        <pre id="gen-output" style="display: none; background: #0f172a; color: #a5f3fc; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: 0.78rem; overflow-x: auto;"></pre>
       </div>
     </div>
 
@@ -2282,57 +2243,6 @@ function searchSpEvents() {{
   renderSpEvents(spCurrentFilter, search ? search.value : "");
 }}
 
-function toggleSpDeclareDrawer() {{
-  const el = document.getElementById("sp-declare-drawer");
-  if (el) el.classList.toggle("open");
-}}
-
-function generateSpYaml() {{
-  const title = (document.getElementById("gen-title").value || "Mon atelier Scan Party").trim();
-  const city = (document.getElementById("gen-city").value || "Paris, France").trim();
-  const venue = (document.getElementById("gen-venue").value || "Supermarché local").trim();
-  const date = (document.getElementById("gen-date").value || "Novembre 2024").trim();
-  const desc = (document.getElementById("gen-desc").value || "Atelier citoyen de scan d'aliments.").trim();
-
-  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-
-  const yamlContent = "id: " + (slug || "nouvelle-scan-party") + "\\n" +
-"title: " + title + "\\n" +
-"type: upcoming\\n" +
-"status: upcoming\\n" +
-"date: \\"" + date + "\\"\\n" +
-"start_date: \\"" + new Date().toISOString().split('T')[0] + "\\"\\n" +
-"location: \\"" + city + "\\"\\n" +
-"city: \\"" + city.split(',')[0].trim() + "\\"\\n" +
-"country: \\"fra\\"\\n" +
-"venue: \\"" + venue + "\\"\\n" +
-"organizer: \\"Collectif citoyen\\"\\n" +
-"description: \\"" + desc + "\\"\\n" +
-"image: null\\n" +
-"image_caption: null\\n" +
-"products_scanned: null\\n" +
-"participants_count: null\\n" +
-"link: null\\n" +
-"tags:\\n" +
-"  - scanparty\\n" +
-"  - citizen-science\\n";
-
-  const pre = document.getElementById("gen-output");
-  if (pre) {{
-    pre.style.display = "block";
-    pre.innerText = yamlContent;
-  }}
-
-  if (navigator.clipboard) {{
-    navigator.clipboard.writeText(yamlContent).then(() => {{
-      alert("YAML généré et copié dans le presse-papiers ! Vous pouvez le coller dans une Pull Request sur data/scan_parties/.");
-    }}).catch(() => {{
-      alert("YAML généré ci-dessous !");
-    }});
-  }} else {{
-    alert("YAML généré ci-dessous !");
-  }}
-}}
 
 function triggerSpConfetti() {{
   const canvas = document.getElementById('sp-confetti-canvas');
