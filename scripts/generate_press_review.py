@@ -60,19 +60,9 @@ def build_html(lang="fr", items=None):
     t_title = "📰 Revue de presse Open Food Facts" if is_fr else "📰 Open Food Facts in the Press"
     t_subtitle = "Toutes les mentions dans les médias, radios, télés et publications de 2012 à aujourd'hui." if is_fr else "All press, radio, TV, and media coverage of Open Food Facts from 2012 to today."
     t_submit_btn = "➕ Signaler une mention" if is_fr else "➕ Submit a Press Mention"
+    t_btn_mail = "✉️ Envoyer par email" if is_fr else "✉️ Send by Email"
     t_assets_btn = "📁 Bibliothèque de logos & assets" if is_fr else "📁 Media Assets Library"
     t_presskit_btn = "← Espace presse" if is_fr else "← Press Page"
-
-    t_drawer_title = "Signaler ou soumettre une mention presse" if is_fr else "Submit a Press Mention"
-    t_drawer_desc = "Vous avez découvert ou publié un article, un podcast ou un reportage mentionnant Open Food Facts ? Partagez-le avec nous !" if is_fr else "Found or published an article, podcast, or report mentioning Open Food Facts? Share it with our team!"
-    t_lbl_url = "Lien URL de l'article ou de l'émission :" if is_fr else "Article or Show URL:"
-    t_lbl_title = "Titre de l'article :" if is_fr else "Article Title:"
-    t_lbl_source = "Nom du média (ex: Le Monde, France Inter, BBC) :" if is_fr else "Media Outlet Name (e.g. Le Monde, BBC):"
-    t_lbl_date = "Date de publication :" if is_fr else "Publication Date:"
-    t_lbl_quote = "Citation ou passage mentionnant Open Food Facts (optionnel) :" if is_fr else "Quote or passage mentioning Open Food Facts (optional):"
-    t_btn_gh = "🚀 Ouvrir une issue GitHub (1-clic)" if is_fr else "🚀 Open 1-Click GitHub Issue"
-    t_btn_gform = "📝 Formulaire Google" if is_fr else "📝 Google Form"
-    t_btn_mail = "✉️ Envoyer par email" if is_fr else "✉️ Send by Email"
 
     # Chips
     t_chip_all = "Tout" if is_fr else "All"
@@ -137,62 +127,6 @@ def build_html(lang="fr", items=None):
   font-weight: 600 !important;
   margin: 0 !important;
   vertical-align: middle !important;
-}}
-.press-drawer {{
-  display: none;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 14px;
-  padding: 1.5rem;
-  max-width: 860px;
-  margin: 0 auto 2rem;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-  text-align: left;
-}}
-.press-drawer.open {{
-  display: block;
-  animation: pressFadeDown 0.25s ease-out;
-}}
-@keyframes pressFadeDown {{
-  from {{ opacity: 0; transform: translateY(-10px); }}
-  to {{ opacity: 1; transform: translateY(0); }}
-}}
-.press-form-grid {{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-top: 1rem;
-}}
-@media (max-width: 640px) {{
-  .press-form-grid {{ grid-template-columns: 1fr; }}
-}}
-.press-form-group {{
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}}
-.press-form-group.full-width {{
-  grid-column: 1 / -1;
-}}
-.press-form-group label {{
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #334155;
-  margin: 0;
-}}
-.press-form-group input, .press-form-group textarea {{
-  margin: 0 !important;
-  padding: 0.45rem 0.75rem !important;
-  border-radius: 6px !important;
-  border: 1px solid #cbd5e1 !important;
-  font-size: 0.9rem !important;
-}}
-.press-form-actions {{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-top: 1.25rem;
-  align-items: center;
 }}
 .press-chips {{
   display: flex;
@@ -576,58 +510,17 @@ def build_html(lang="fr", items=None):
   <h4 class="subheader">{t_subtitle}</h4>
   
   <div class="press-header-actions">
-    <button type="button" class="button round primary small press-header-btn" onclick="toggleSubmitDrawer()">
+    <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-press-review.yml" target="_blank" rel="noopener noreferrer" class="button round primary small press-header-btn">
       <span class="material-icons">add_circle</span> {t_submit_btn}
-    </button>
+    </a>
+    <a href="mailto:presse@openfoodfacts.org" class="button round secondary small press-header-btn">
+      <span class="material-icons">email</span> {t_btn_mail}
+    </a>
     <a href="/media-assets" class="button round secondary small press-header-btn">
       <span class="material-icons">folder</span> {t_assets_btn}
     </a>
     <a href="/press" class="button round secondary small press-header-btn">
       <span class="material-icons">newspaper</span> {t_presskit_btn}
-    </a>
-  </div>
-</div>
-
-<!-- Submit Mention Drawer -->
-<div class="press-drawer" id="pressDrawer">
-  <div style="display: flex; justify-content: space-between; align-items: center;">
-    <h3 style="margin: 0; font-size: 1.15rem; color: #0f172a;">{t_drawer_title}</h3>
-    <button type="button" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;" onclick="toggleSubmitDrawer()">&times;</button>
-  </div>
-  <p style="font-size: 0.9rem; color: #475569; margin: 0.4rem 0 1rem;">{t_drawer_desc}</p>
-  
-  <div class="press-form-grid">
-    <div class="press-form-group full-width">
-      <label for="subUrl">{t_lbl_url}</label>
-      <input type="url" id="subUrl" placeholder="https://www.lemonde.fr/..." oninput="updateSubmitLinks()">
-    </div>
-    <div class="press-form-group">
-      <label for="subTitle">{t_lbl_title}</label>
-      <input type="text" id="subTitle" placeholder="Ex: Open Food Facts célèbre ses 10 ans" oninput="updateSubmitLinks()">
-    </div>
-    <div class="press-form-group">
-      <label for="subSource">{t_lbl_source}</label>
-      <input type="text" id="subSource" placeholder="Ex: France Inter, BBC, Le Monde..." oninput="updateSubmitLinks()">
-    </div>
-    <div class="press-form-group">
-      <label for="subDate">{t_lbl_date}</label>
-      <input type="date" id="subDate" oninput="updateSubmitLinks()">
-    </div>
-    <div class="press-form-group full-width">
-      <label for="subQuote">{t_lbl_quote}</label>
-      <textarea id="subQuote" rows="2" placeholder="Extrait de l'article..." oninput="updateSubmitLinks()"></textarea>
-    </div>
-  </div>
-  
-  <div class="press-form-actions">
-    <a id="btnGhIssue" class="button round small press-header-btn" href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-press-review.yml" target="_blank" rel="noopener noreferrer" style="background-color: #24292f !important; color: #fff !important;">
-      <span class="material-icons">open_in_new</span> {t_btn_gh}
-    </a>
-    <a id="btnGoogleForm" class="button round secondary small press-header-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScpzGaRX6Vr7nFHYuApVx5cz2zjU_bKA85qnQpXHsrY0M0KRA/viewform" target="_blank" rel="noopener noreferrer">
-      <span class="material-icons">assignment</span> {t_btn_gform}
-    </a>
-    <a id="btnMailto" class="button round secondary small press-header-btn" href="mailto:presse@openfoodfacts.org">
-      <span class="material-icons">email</span> {t_btn_mail}
     </a>
   </div>
 </div>
@@ -903,7 +796,7 @@ function renderCard(item) {{
       '<div class="press-card-actions-left">' +
         '<span class="press-tag">' + (item.lang ? item.lang.toUpperCase() : "FR") + '</span>' +
         '<button type="button" class="press-share-btn" onclick="copyCardPermalink(\\'' + (item.id || '') + '\\', this)" title="' + (IS_FR ? "Copier le permalien vers cette mention" : "Copy permalink to this mention") + '"><span class="material-icons" style="font-size: 13px;">share</span> ' + (IS_FR ? "Partager" : "Share") + '</button>' +
-        '<a class="press-edit-link" href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/press-review/' + (item.id || '') + '.yaml" target="_blank" rel="noopener noreferrer" title="' + (IS_FR ? "Modifier cette mention sur GitHub" : "Edit on GitHub") + '"><span class="material-icons" style="font-size: 13px; vertical-align: middle;">edit</span> ' + (IS_FR ? "Modifier" : "Edit") + '</a>' +
+        '<a class="press-edit-link" href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/press-review/' + (item.id || '') + '.yaml" target="_blank" rel="noopener noreferrer" title="' + (IS_FR ? "Modifier cette mention" : "Edit this mention") + '"><span class="material-icons" style="font-size: 13px; vertical-align: middle;">edit</span> ' + (IS_FR ? "Modifier" : "Edit") + '</a>' +
       '</div>' +
       actionBtn +
     '</div>' +
@@ -1183,52 +1076,11 @@ function checkInitialDeeplink() {{
   }}
 }}
 
-function toggleSubmitDrawer() {{
-  const d = document.getElementById("pressDrawer");
-  d.classList.toggle("open");
-  if (d.classList.contains("open")) {{
-    d.scrollIntoView({{ behavior: "smooth", block: "start" }});
-    updateSubmitLinks();
-  }}
-}}
-
-function updateSubmitLinks() {{
-  const url = document.getElementById("subUrl").value.trim();
-  const title = document.getElementById("subTitle").value.trim();
-  const source = document.getElementById("subSource").value.trim();
-  const date = document.getElementById("subDate").value.trim();
-  const quote = document.getElementById("subQuote").value.trim();
-  
-  const issueTitle = "[Revue de presse] " + (source ? source + ": " : "") + (title || (IS_FR ? "Nouvelle mention médiatique" : "New press mention"));
-  const issueBody = "### " + (IS_FR ? "Nouvelle mention dans les médias" : "New Press / Media Mention") + "\\n\\n" +
-    "- **" + (IS_FR ? "Titre" : "Title") + " :** " + (title || "N/A") + "\\n" +
-    "- **" + (IS_FR ? "Média / Source" : "Outlet") + " :** " + (source || "N/A") + "\\n" +
-    "- **" + (IS_FR ? "Lien / URL" : "URL") + " :** " + (url || "N/A") + "\\n" +
-    "- **" + (IS_FR ? "Date" : "Date") + " :** " + (date || "N/A") + "\\n" +
-    "- **" + (IS_FR ? "Citation / Verbatim" : "Quote") + " :**\\n> " + (quote || "N/A") + "\\n\\n" +
-    "---\\n*" + (IS_FR ? "Soumis via la page Revue de Presse" : "Submitted via Press Review page") + "*";
-  
-  const ghBtn = document.getElementById("btnGhIssue");
-  const params = new URLSearchParams();
-  params.set("template", "new-press-review.yml");
-  if (title) params.set("title", "[Press]: " + (source ? source + " - " : "") + title);
-  if (source) params.set("source", source);
-  if (date) params.set("date", date);
-  if (url) params.set("link", url);
-  if (quote) params.set("verbatim", quote);
-  ghBtn.href = "https://github.com/openfoodfacts/openfoodfacts-web/issues/new?" + params.toString();
-  
-  const mailBtn = document.getElementById("btnMailto");
-  mailBtn.href = "mailto:presse@openfoodfacts.org?subject=" + encodeURIComponent(issueTitle) + "&body=" + encodeURIComponent(issueBody.replace(/\\n/g, "\\r\\n"));
-}}
-
 document.addEventListener("DOMContentLoaded", () => {{
   checkInitialDeeplink();
-  updateSubmitLinks();
 }});
 if (document.readyState !== "loading") {{
   checkInitialDeeplink();
-  updateSubmitLinks();
 }}
 </script>
 """

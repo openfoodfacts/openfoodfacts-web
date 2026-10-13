@@ -914,17 +914,6 @@
   color: #14532d;
   margin: 0 0 1rem;
 }
-.sp-declare-drawer {
-  display: none;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 14px;
-  padding: 1.5rem;
-  margin-top: 1rem;
-}
-.sp-declare-drawer.open {
-  display: block;
-}
 
 .sp-partner-section {
   background: #ffffff;
@@ -1537,41 +1526,14 @@
       <p>Ajoutez votre atelier en 1 clic via un ticket GitHub ou une Pull Request, exactement comme pour les réutilisations et publications scientifiques.</p>
       
       <div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
-        <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?title=%5BScan+Party%5D+New+Event%3A+&labels=scan-party%2Cevent&body=%23%23%23+%F0%9F%8E%89+Scan+Party+Title%0A%3C%21--+Enter+event+title+--%3E%0A%0A%23%23%23+%F0%9F%93%85+Date+%26+Time%0A-+Date%3A+%0A-+Start+Time%3A+%0A%0A%23%23%23+%F0%9F%93%8D+Location+%26+Venue%0A-+Venue+Name%3A+%0A-+City%3A+%0A-+Country%3A+%0A%0A%23%23%23+%F0%9F%91%A4+Organizer%0A-+Organizer+Name+%2F+Organization%3A+%0A-+Contact+Email+%2F+Slack+handle%3A+%0A%0A%23%23%23+%F0%9F%93%9D+Description%0A%3C%21--+Describe+the+scan+party%2C+target+store%2C+or+focus+--%3E%0A%0A%23%23%23+%F0%9F%94%97+Registration+%2F+Recap+Link%0A-+Link%3A+%0A" 
+        <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-scan-party.yml" 
            target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-primary">
-          🚀 Déclarer via GitHub (1 clic)
+          🚀 Déclarer un atelier (1 clic)
         </a>
         <a href="https://github.com/openfoodfacts/openfoodfacts-web/tree/main/data/scan_parties" 
            target="_blank" rel="noopener noreferrer" class="sp-btn sp-btn-secondary" style="border-color: #16a34a; color: #16a34a;">
           ✏️ Proposer un fichier YAML (PR)
         </a>
-        <button type="button" onclick="toggleSpDeclareDrawer()" class="sp-btn sp-btn-secondary">
-          📋 Générateur YAML en ligne
-        </button>
-      </div>
-
-      <!-- Generator Drawer -->
-      <div class="sp-declare-drawer" id="sp-declare-drawer">
-        <h4 style="font-size: 1.05rem; font-weight: 800; color: #0f172a; margin: 0 0 0.85rem;">
-          Générer une fiche d'atelier YAML
-        </h4>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.85rem; margin-bottom: 1rem;">
-          <input type="text" id="gen-title" placeholder="Titre de la Scan Party" style="padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem;">
-          <input type="text" id="gen-city" placeholder="Ville & Pays (ex: Lyon, France)" style="padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem;">
-          <input type="text" id="gen-venue" placeholder="Lieu / Magasin (ex: Biomonde Rennes)" style="padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem;">
-          <input type="text" id="gen-date" placeholder="Date (ex: Novembre 2024)" style="padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem;">
-        </div>
-        <textarea id="gen-desc" placeholder="Courte description de l'atelier..." style="width: 100%; height: 70px; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem; margin-bottom: 0.85rem;"></textarea>
-        
-        <div style="display: flex; gap: 0.65rem;">
-          <button type="button" onclick="generateSpYaml()" class="sp-btn sp-btn-primary">
-            📋 Générer & Copier le YAML
-          </button>
-          <button type="button" onclick="toggleSpDeclareDrawer()" class="sp-btn sp-btn-secondary">
-            Fermer
-          </button>
-        </div>
-        <pre id="gen-output" style="display: none; background: #0f172a; color: #a5f3fc; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: 0.78rem; overflow-x: auto;"></pre>
       </div>
     </div>
 
@@ -1868,57 +1830,6 @@ function searchSpEvents() {
   renderSpEvents(spCurrentFilter, search ? search.value : "");
 }
 
-function toggleSpDeclareDrawer() {
-  const el = document.getElementById("sp-declare-drawer");
-  if (el) el.classList.toggle("open");
-}
-
-function generateSpYaml() {
-  const title = (document.getElementById("gen-title").value || "Mon atelier Scan Party").trim();
-  const city = (document.getElementById("gen-city").value || "Paris, France").trim();
-  const venue = (document.getElementById("gen-venue").value || "Supermarché local").trim();
-  const date = (document.getElementById("gen-date").value || "Novembre 2024").trim();
-  const desc = (document.getElementById("gen-desc").value || "Atelier citoyen de scan d'aliments.").trim();
-
-  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-
-  const yamlContent = "id: " + (slug || "nouvelle-scan-party") + "\n" +
-"title: " + title + "\n" +
-"type: upcoming\n" +
-"status: upcoming\n" +
-"date: \"" + date + "\"\n" +
-"start_date: \"" + new Date().toISOString().split('T')[0] + "\"\n" +
-"location: \"" + city + "\"\n" +
-"city: \"" + city.split(',')[0].trim() + "\"\n" +
-"country: \"fra\"\n" +
-"venue: \"" + venue + "\"\n" +
-"organizer: \"Collectif citoyen\"\n" +
-"description: \"" + desc + "\"\n" +
-"image: null\n" +
-"image_caption: null\n" +
-"products_scanned: null\n" +
-"participants_count: null\n" +
-"link: null\n" +
-"tags:\n" +
-"  - scanparty\n" +
-"  - citizen-science\n";
-
-  const pre = document.getElementById("gen-output");
-  if (pre) {
-    pre.style.display = "block";
-    pre.innerText = yamlContent;
-  }
-
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(yamlContent).then(() => {
-      alert("YAML généré et copié dans le presse-papiers ! Vous pouvez le coller dans une Pull Request sur data/scan_parties/.");
-    }).catch(() => {
-      alert("YAML généré ci-dessous !");
-    });
-  } else {
-    alert("YAML généré ci-dessous !");
-  }
-}
 
 function triggerSpConfetti() {
   const canvas = document.getElementById('sp-confetti-canvas');
