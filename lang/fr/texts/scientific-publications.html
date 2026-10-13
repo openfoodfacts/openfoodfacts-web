@@ -569,7 +569,7 @@
   <h4 class="subheader">Découvrez les recherches universitaires, études épidémiologiques et projets d'intelligence artificielle fondés sur les données ouvertes d'Open Food Facts.</h4>
   
   <div class="sci-actions">
-    <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?title=%5BPublication%5D+New+Scientific+Paper%3A+&labels=science%2Cdocumentation&body=%23%23%23+%F0%9F%93%96+Paper+Title%0A%3C%21--+Enter+full+article+title+--%3E%0A%0A%23%23%23+%F0%9F%91%A8%E2%80%8D%F0%9F%94%AC+Authors+%26+Journal%0A-+Authors%3A+%0A-+Journal+%2F+Conference%3A+%0A-+Year%3A+%0A-+DOI%3A+%0A-+URL%3A+%0A%0A%23%23%23+%F0%9F%94%AC+Open+Food+Facts+Usage+%26+Findings%0A%3C%21--+How+did+this+study+use+Open+Food+Facts+data%3F+--%3E%0A" target="_blank" rel="noopener noreferrer" class="button round primary small sci-btn">
+    <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-scientific-publication.yml" target="_blank" rel="noopener noreferrer" class="button round primary small sci-btn">
       <span class="material-icons">add_circle</span> 🚀 Déclarer une publication
     </a>
     <a href="https://github.com/openfoodfacts/openfoodfacts-web/tree/main/data/scientific_publications" target="_blank" rel="noopener noreferrer" class="button round secondary small sci-btn">
@@ -628,7 +628,7 @@
     <a href="mailto:contact@openfoodfacts.org" class="sci-chip-link">✉️ contact@openfoodfacts.org</a>
     <a href="/data" class="sci-chip-link">💾 Téléchargement des bases (Exports)</a>
     <a href="https://wiki.openfoodfacts.org/Open_Food_Facts_and_Science" target="_blank" rel="noopener noreferrer" class="sci-chip-link">📖 Page Wiki Science</a>
-    <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?title=%5BPublication%5D+New+Scientific+Paper%3A+&labels=science%2Cdocumentation" target="_blank" rel="noopener noreferrer" class="sci-chip-link">🚀 Signaler votre article</a>
+    <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-scientific-publication.yml" target="_blank" rel="noopener noreferrer" class="sci-chip-link">🚀 Signaler votre article</a>
   </div>
 </div>
 
@@ -693,12 +693,12 @@
 <div class="topic-chips-bar">
   <button type="button" class="chip-btn active" data-theme="all" onclick="selectSciTheme(this, 'all')">🌟 Tous les articles</button>
   <button type="button" class="chip-btn" data-theme="nutrition" onclick="selectSciTheme(this, 'nutrition')">🥗 Nutrition & Nutri-Score</button>
-  <button type="button" class="chip-btn" data-theme="ultra_processed" onclick="selectSciTheme(this, 'ultra_processed')">🏭 NOVA & Ultra-transformés</button>
+  <button type="button" class="chip-btn" data-theme="ultra_processed" onclick="selectSciTheme(this, 'ultra_processed')">🏭 NOVA & Aliments Ultra-Transformés</button>
   <button type="button" class="chip-btn" data-theme="additives" onclick="selectSciTheme(this, 'additives')">🧪 Additifs & Émulsifiants</button>
-  <button type="button" class="chip-btn" data-theme="computer_science" onclick="selectSciTheme(this, 'computer_science')">🤖 IA & Science des données</button>
+  <button type="button" class="chip-btn" data-theme="computer_science" onclick="selectSciTheme(this, 'computer_science')">🤖 IA & Data Science</button>
   <button type="button" class="chip-btn" data-theme="environment" onclick="selectSciTheme(this, 'environment')">♻️ Environnement & Éco-Score</button>
-  <button type="button" class="chip-btn" data-theme="labeling" onclick="selectSciTheme(this, 'labeling')">🏷️ Étiquetage & Réglementation</button>
-  <button type="button" class="chip-btn" data-theme="halal_kosher" onclick="selectSciTheme(this, 'halal_kosher')">🕊️ Halal / Cacher</button>
+  <button type="button" class="chip-btn" data-theme="labeling" onclick="selectSciTheme(this, 'labeling')">🏷️ Étiquetage & Politiques</button>
+  <button type="button" class="chip-btn" data-theme="halal_kosher" onclick="selectSciTheme(this, 'halal_kosher')">🕊️ Halal / Kosher</button>
   <button type="button" class="chip-btn" data-theme="allergies" onclick="selectSciTheme(this, 'allergies')">⚠️ Allergies</button>
 </div>
 
@@ -769,8 +769,8 @@
 <div class="sci-stats">
   <div class="sci-count" id="sciCount">Chargement des publications...</div>
   <div style="display: flex; gap: 0.5rem; align-items: center;">
-    <button type="button" class="button secondary small" onclick="copyShareLink()" style="margin: 0;" title="Copier le lien direct vers cette vue filtrée">
-      <span class="material-icons" style="font-size: 14px; vertical-align: -2px;">share</span> Partager la vue
+    <button type="button" class="button secondary small" onclick="copyShareLink()" style="margin: 0;" title="Copier le lien direct vers cette sélection">
+      <span class="material-icons" style="font-size: 14px; vertical-align: -2px;">share</span> Partager
     </button>
     <button type="button" class="button secondary small" onclick="resetSciFilters()" style="margin: 0;">Tout réinitialiser</button>
   </div>
@@ -831,10 +831,10 @@
     <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 1rem; margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;">
       <div style="display: flex; align-items: center; gap: 6px; font-size: 0.86rem; color: #166534;">
         <span class="material-icons" style="font-size: 18px; color: #16a34a;">edit_note</span>
-        <span>Une information est inexacte ou vous êtes l'auteur de cette étude ? Proposez une mise à jour sur GitHub.</span>
+        <span>Une information est inexacte ou vous êtes l'auteur de cette étude ? Proposez une mise à jour.</span>
       </div>
       <a id="modalEditLink" href="https://github.com/openfoodfacts/openfoodfacts-web/tree/main/data/scientific_publications" target="_blank" rel="noopener noreferrer" class="button small secondary sci-btn" style="align-self: flex-start;">
-        <span class="material-icons" style="font-size: 14px;">edit</span> Modifier ce fichier YAML sur GitHub
+        <span class="material-icons" style="font-size: 14px;">edit</span> Modifier ce fichier YAML
       </a>
     </div>
   </div>
