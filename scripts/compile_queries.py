@@ -1171,11 +1171,12 @@ def generate_page_html(queries, lang="en"):
     # Contribute section
     t_contrib_title = "💡 Vous avez conçu une requête ou un graphique utile ?" if is_fr else "💡 Created an Insightful Query or Graph?"
     t_contrib_desc = (
-        "Ajoutez votre requête à notre bibliothèque ouverte ! Soumettez simplement un fichier YAML dans le répertoire data/queries/ sur GitHub."
+        "Ajoutez votre requête à notre bibliothèque ouverte ! Soumettez simplement un formulaire en 1 clic pour générer automatiquement une Pull Request."
         if is_fr else
-        "Add your search or chart to this open library! Simply submit a YAML file to the data/queries/ directory on GitHub via Pull Request."
+        "Add your search or chart to this open library! Simply submit our 1-click form to automatically generate a Pull Request."
     )
-    t_btn_gh_contrib = "🚀 Proposer une requête sur GitHub" if is_fr else "🚀 Propose a Query on GitHub"
+    t_btn_propose = "🚀 Proposer une requête" if is_fr else "🚀 Propose a Query"
+    t_btn_browse_yaml = "📁 Fichiers YAML" if is_fr else "📁 Browse YAML Files"
 
     # Build topic pill buttons
     topic_pills_html = [f'<button type="button" class="g3c-pill-btn g3c-topic-pill active" data-topic="all">🌐 {t_all_topics}</button>']
@@ -1254,6 +1255,7 @@ def generate_page_html(queries, lang="en"):
 
         btn_run_text = "Ouvrir la requête" if is_fr else "Open Query"
         btn_copy_title = "Copier le lien" if is_fr else "Copy link"
+        btn_edit_title = "Modifier cette requête" if is_fr else "Edit this query"
         params_summary_text = "🔍 Voir les paramètres" if is_fr else "🔍 Inspect parameters"
 
         card = f"""
@@ -1282,6 +1284,9 @@ def generate_page_html(queries, lang="en"):
             <button type="button" class="g3c-copy-btn" data-url="{url}" title="{btn_copy_title}">
               📋
             </button>
+            <a href="https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/queries/{qid}.yaml" target="_blank" rel="noopener noreferrer" class="g3c-copy-btn" title="{btn_edit_title}" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">
+              ✏️
+            </a>
           </div>
           <details class="g3c-params-details">
             <summary>{params_summary_text}</summary>
@@ -1320,6 +1325,9 @@ def generate_page_html(queries, lang="en"):
       </a>
       <a href="#g3c-showcase" class="g3c-btn g3c-btn-secondary">
         {t_btn_showcase}
+      </a>
+      <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-graph-query.yml" target="_blank" rel="noopener noreferrer" class="g3c-btn g3c-btn-secondary">
+        {t_btn_propose}
       </a>
       <a href="https://world.openfoodfacts.org/cgi/search.pl" class="g3c-btn g3c-btn-secondary" title="{t_btn_skip}">
         {t_btn_skip} ➔
@@ -1489,9 +1497,14 @@ def generate_page_html(queries, lang="en"):
     <div class="g3c-contribute-box">
       <h3 class="g3c-contribute-title">{t_contrib_title}</h3>
       <p class="g3c-contribute-desc">{t_contrib_desc}</p>
-      <a href="https://github.com/openfoodfacts/openfoodfacts-web/tree/main/data/queries" target="_blank" rel="noopener noreferrer" class="g3c-btn g3c-btn-primary">
-        {t_btn_gh_contrib} ↗
-      </a>
+      <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-graph-query.yml" target="_blank" rel="noopener noreferrer" class="g3c-btn g3c-btn-primary">
+          {t_btn_propose} ↗
+        </a>
+        <a href="https://github.com/openfoodfacts/openfoodfacts-web/tree/main/data/queries" target="_blank" rel="noopener noreferrer" class="g3c-btn g3c-btn-secondary">
+          {t_btn_browse_yaml} ↗
+        </a>
+      </div>
     </div>
   </section>
 
@@ -1573,6 +1586,17 @@ def compile_queries(check_only=False, verbose=True):
             f.write(fr_content)
         if verbose:
             print(f"Generated fallback {fallback_path} (sandbox prevented write to {fr_html_path})")
+
+    # 4. Ensure French legacy symlink exists: graphes-en-3-clics.html -> graphs-in-3-clicks.html
+    fr_symlink_path = os.path.join(REPO_ROOT, "lang", "fr", "texts", "graphes-en-3-clics.html")
+    try:
+        if not os.path.exists(fr_symlink_path) and not os.path.islink(fr_symlink_path):
+            os.symlink("graphs-in-3-clicks.html", fr_symlink_path)
+            if verbose:
+                print(f"Created symlink {fr_symlink_path} -> graphs-in-3-clicks.html")
+    except Exception as e:
+        if verbose:
+            print(f"Notice: could not create symlink {fr_symlink_path}: {e}")
 
     return True
 

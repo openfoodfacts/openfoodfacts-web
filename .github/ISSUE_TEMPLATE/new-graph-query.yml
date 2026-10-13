@@ -1,0 +1,132 @@
+name: "📈 Suggest a new Graph or Useful Query"
+description: Propose an insightful search query, scatter plot, chart, or data exploration on Open Food Facts
+title: "[Query]: "
+labels: ["queries", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Welcome to the Open Food Facts Useful Queries & Graphs submission form!
+        Did you build an insightful visualization or useful search query on Open Food Facts (e.g. comparing sugars vs additives, analyzing Nutri-Score distributions, or tracking data quality)?
+        Fill out this form to add it to our curated library (`/graphs-in-3-clicks` / `/graphes-en-3-clics`).
+        Our automated GitHub Actions system will validate your query and create a Pull Request automatically!
+
+  - type: input
+    id: title
+    attributes:
+      label: Query / Graph Title
+      description: Clear and descriptive title for this query or chart.
+      placeholder: "e.g. Sugars vs Additives in Yogurts, Organic Breakfast Cereals Nutri-Score"
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Open Food Facts Query URL
+      description: Full Open Food Facts search or graph URL (e.g. world.openfoodfacts.org/cgi/search.pl?...).
+      placeholder: "https://world.openfoodfacts.org/cgi/search.pl?action=process&..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description & Insights
+      description: Explain what this query reveals, how to interpret the results, or why it is useful for consumers or researchers.
+      placeholder: "e.g. This visualization contrasts sugar content against the number of food additives across 400+ yogurts, highlighting organic and low-fat alternatives."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: topic
+    attributes:
+      label: Food Topic
+      description: Primary category or domain for this query.
+      options:
+        - "beverages (🥤 Beverages / Boissons)"
+        - "dairy (🧀 Dairy & Cheeses / Produits laitiers & Fromages)"
+        - "breakfast (🥣 Breakfast & Cereals / Petit-déjeuner & Céréales)"
+        - "sweets (🍫 Sweets & Spreads / Douceurs & Pâtes à tartiner)"
+        - "meat (🥩 Meat & Charcuterie / Viandes & Charcuterie)"
+        - "meals (🍲 Ready Meals & Prepared / Plats préparés)"
+        - "nutrition (🥗 Nutrition & Scores)"
+        - "quality (🛠️ Data Quality & Contributor Tools / Qualité des données & Outils)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: query_type
+    attributes:
+      label: Visualization / Query Format
+      description: Type of visualization or output produced by this query.
+      options:
+        - "scatter_plot (📈 Scatter Plot / Nuage de points)"
+        - "bar_chart (📊 Bar Chart / Histogramme)"
+        - "map (🗺️ Origins Map / Carte d'origines)"
+        - "list (📋 Product List / Liste de produits)"
+        - "facet (🔍 Taxonomy Facet / Facette taxonomique)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: geography
+    attributes:
+      label: Geographic Scope
+      description: Primary country or geographical focus.
+      options:
+        - "world (🌍 Worldwide)"
+        - "fr (🇫🇷 France)"
+        - "uk (🇬🇧 United Kingdom)"
+        - "be (🇧🇪 Belgium)"
+        - "de (🇩🇪 Germany)"
+        - "es (🇪🇸 Spain)"
+        - "us (🇺🇸 United States)"
+    validations:
+      required: true
+
+  - type: input
+    id: author
+    attributes:
+      label: Author / Contributor Name
+      description: Your name, pseudonym, or Open Food Facts username (optional).
+      placeholder: "e.g. Stéphane, Alex, Open Food Facts Community"
+    validations:
+      required: false
+
+  - type: input
+    id: axis_x
+    attributes:
+      label: X-Axis Metric (optional)
+      description: For scatter plots, the nutrient or property plotted on the horizontal axis.
+      placeholder: "e.g. sugars, fat, energy-kcal"
+    validations:
+      required: false
+
+  - type: input
+    id: axis_y
+    attributes:
+      label: Y-Axis Metric (optional)
+      description: For scatter plots, the nutrient or property plotted on the vertical axis.
+      placeholder: "e.g. additives_n, salt, fiber"
+    validations:
+      required: false
+
+  - type: input
+    id: keywords
+    attributes:
+      label: Keywords (comma-separated, optional)
+      description: Relevant search keywords or tags.
+      placeholder: "e.g. yogurt, sugar, additives, dairy, scatter plot"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Verification Checklist
+      options:
+        - label: I confirm this URL works and produces meaningful results on Open Food Facts.
+          required: true
+        - label: I verified that the title and description accurately describe this search.
+          required: true

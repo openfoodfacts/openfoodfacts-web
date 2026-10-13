@@ -1,0 +1,45 @@
+name: "Useful Queries: Rebuild Catalog & Pages"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/queries/**'
+      - 'scripts/compile_queries.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: graph-queries-rebuild-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rebuild-queries:
+    name: Rebuild Queries JSON and HTML
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Recompile queries dataset and HTML pages
+        run: |
+          python3 scripts/compile_queries.py
+
+      - name: Commit and push changes if any
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(queries): recompile queries.json and graphs-in-3-clicks.html"
+          file_pattern: "data/queries.json lang/en/texts/graphs-in-3-clicks.html lang/fr/texts/graphs-in-3-clicks.html"

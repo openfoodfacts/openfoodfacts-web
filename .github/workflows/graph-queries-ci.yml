@@ -1,0 +1,58 @@
+name: "Useful Queries: CI Validation"
+
+on:
+  push:
+    paths:
+      - 'data/queries/**'
+      - 'scripts/compile_queries.py'
+      - 'scripts/add_query.py'
+      - 'scripts/test_add_query.py'
+  pull_request:
+    paths:
+      - 'data/queries/**'
+      - 'scripts/compile_queries.py'
+      - 'scripts/add_query.py'
+      - 'scripts/test_add_query.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: graph-queries-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-queries:
+    name: Validate Query YAMLs & Schemas
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Validate Query YAML files
+        run: |
+          python3 scripts/compile_queries.py --check
+
+      - name: Run Query Unit Tests
+        run: |
+          python3 scripts/test_add_query.py
+
+      - name: Test Query Issue Parser Dry-Run
+        run: |
+          python3 scripts/add_query.py --dry-run --json \
+            --title "CI Test Query" \
+            --url "https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=categories&tag_0=sodas" \
+            --description "CI automated test query" \
+            --topic "beverages" \
+            --query-type "list" \
+            --geography "world"
