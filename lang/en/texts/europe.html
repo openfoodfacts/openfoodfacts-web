@@ -1,0 +1,1731 @@
+<!-- main column content - comment used to remove left column and center content on some pages -->
+<!-- Open Food Facts Europe Portal: A Citizen-Driven Digital Common for Food, Health & Climate Change -->
+<div id="europe-portal-page" class="off-eu-page">
+<style>
+:root {
+  --off-espresso: #341100;
+  --off-espresso-mid: #473526;
+  --off-espresso-soft: #634d3e;
+  --off-cream: #f9f8f6;
+  --off-peach-tint: #ece0db;
+  --off-peach-light: #f5eeea;
+  --off-orange: #ed8857;
+  --off-orange-hover: #d77243;
+  --off-orange-soft: #fff3ec;
+  --off-green: #209552;
+  --off-green-light: #e8f5e9;
+  --off-green-dark: #1b5e20;
+  --off-blue: #003399; /* EU Blue */
+  --off-blue-light: #ebf3ff;
+  --off-blue-border: #bcd5ff;
+  --off-yellow: #ffcc00; /* EU Gold */
+  --off-border: #e2e8f0;
+  --off-surface: #ffffff;
+  --off-text-muted: #64748b;
+  --off-radius-pill: 999px;
+  --off-radius-card: 20px;
+  --off-radius-sm: 12px;
+  --off-shadow-sm: 0 4px 14px rgba(52, 17, 0, 0.05);
+  --off-shadow-md: 0 10px 30px rgba(52, 17, 0, 0.08);
+  --off-shadow-hover: 0 16px 36px rgba(52, 17, 0, 0.12);
+}
+
+#europe-portal-page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4.5rem;
+  font-family: "Plus Jakarta Sans", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--off-espresso);
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+#europe-portal-page *,
+#europe-portal-page *::before,
+#europe-portal-page *::after {
+  box-sizing: border-box;
+}
+
+/* HERO SECTION */
+.off-eu-hero {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff 0%, #f4f8ff 45%, #fff7f2 100%);
+  border: 1px solid var(--off-blue-border);
+  border-radius: 28px;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+  margin-bottom: 2.75rem;
+  box-shadow: var(--off-shadow-md);
+  overflow: hidden;
+}
+
+.off-eu-hero::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(0, 51, 153, 0.08) 0%, rgba(255, 204, 0, 0.06) 60%, transparent 80%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.off-eu-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.off-eu-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 1rem;
+  border-radius: var(--off-radius-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.off-eu-badge-primary {
+  background: var(--off-blue);
+  color: #ffffff;
+}
+
+.off-eu-badge-gold {
+  background: #fff8d6;
+  color: #7a5800;
+  border: 1px solid #ffd84d;
+}
+
+.off-eu-badge-green {
+  background: var(--off-green-light);
+  color: var(--off-green-dark);
+}
+
+.off-eu-hero h1 {
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.18;
+  color: var(--off-espresso);
+  margin: 0 0 1.25rem 0;
+  letter-spacing: -0.02em;
+}
+
+.off-eu-hero h1 .highlight {
+  color: var(--off-blue);
+  background: linear-gradient(120deg, rgba(0, 51, 153, 0.1) 0%, rgba(237, 136, 87, 0.15) 100%);
+  padding: 0 0.3rem;
+  border-radius: 6px;
+}
+
+.off-eu-hero p.lead {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  color: var(--off-espresso-mid);
+  max-width: 900px;
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
+}
+
+.off-eu-cta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 2.25rem;
+}
+
+.off-eu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--off-radius-pill);
+  font-size: 0.96rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.off-eu-btn-primary {
+  background: var(--off-blue);
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(0, 51, 153, 0.25);
+}
+.off-eu-btn-primary:hover {
+  background: #002266;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 51, 153, 0.32);
+}
+
+.off-eu-btn-secondary {
+  background: #ffffff;
+  color: var(--off-espresso) !important;
+  border: 1px solid var(--off-peach-tint);
+  box-shadow: var(--off-shadow-sm);
+}
+.off-eu-btn-secondary:hover {
+  border-color: var(--off-blue);
+  color: var(--off-blue) !important;
+  transform: translateY(-2px);
+}
+
+.off-eu-btn-gold {
+  background: #ffea79;
+  color: #3b2800 !important;
+  font-weight: 800;
+  border: 1px solid #ffd84d;
+}
+.off-eu-btn-gold:hover {
+  background: #ffd93b;
+  transform: translateY(-2px);
+}
+
+/* STAT STRIP */
+.off-eu-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.off-eu-stat-card {
+  background: #ffffff;
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 18px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  box-shadow: var(--off-shadow-sm);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.off-eu-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--off-blue);
+}
+
+.off-eu-stat-num {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--off-blue);
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+
+.off-eu-stat-label {
+  font-size: 0.82rem;
+  color: var(--off-text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* SECTION STYLING */
+.off-eu-section {
+  margin-bottom: 3.5rem;
+}
+
+.off-eu-sec-head {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--off-peach-tint);
+  padding-bottom: 1rem;
+}
+
+.off-eu-sec-tag {
+  display: inline-block;
+  background: var(--off-peach-tint);
+  color: var(--off-espresso);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--off-radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.off-eu-sec-head h2 {
+  font-size: clamp(1.7rem, 2.7vw, 2.3rem);
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.5rem 0;
+}
+
+.off-eu-sec-head p {
+  font-size: 1.05rem;
+  color: var(--off-espresso-soft);
+  max-width: 860px;
+  margin: 0;
+}
+
+/* ONE-PAGER NUTSHELL & RECOGNITION */
+.off-eu-nutshell-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+@media (max-width: 900px) {
+  .off-eu-nutshell-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.off-eu-nutshell-card {
+  background: #ffffff;
+  border: 1px solid var(--off-peach-tint);
+  border-radius: var(--off-radius-card);
+  padding: 2rem;
+  box-shadow: var(--off-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.off-eu-nutshell-card h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 1rem 0;
+}
+
+.off-eu-nutshell-card p {
+  font-size: 1rem;
+  color: var(--off-espresso-soft);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+.off-eu-awards-card {
+  background: linear-gradient(160deg, #ffffff 0%, #fdfaf7 100%);
+  border: 1px solid var(--off-orange);
+  border-radius: var(--off-radius-card);
+  padding: 2rem;
+  box-shadow: var(--off-shadow-sm);
+}
+
+.off-eu-awards-card h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 1.25rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.off-eu-award-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #ffffff;
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease;
+}
+.off-eu-award-item:hover {
+  transform: translateX(4px);
+  border-color: var(--off-orange);
+}
+
+.off-eu-award-year {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  background: var(--off-orange-soft);
+  color: var(--off-orange-hover);
+  font-weight: 800;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+.off-eu-award-content h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--off-espresso);
+  margin: 0 0 0.3rem 0;
+}
+
+.off-eu-award-content p {
+  font-size: 0.88rem;
+  color: var(--off-text-muted);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* EXPERTISES GRID */
+.off-eu-expertises-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.5rem;
+}
+
+.off-eu-exp-card {
+  background: #ffffff;
+  border: 1px solid var(--off-peach-tint);
+  border-radius: var(--off-radius-card);
+  padding: 1.6rem;
+  box-shadow: var(--off-shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+.off-eu-exp-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--off-shadow-hover);
+  border-color: var(--off-blue);
+}
+
+.off-eu-exp-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.off-eu-exp-card h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.6rem 0;
+}
+
+.off-eu-exp-card p {
+  font-size: 0.92rem;
+  color: var(--off-espresso-soft);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* MEMBER STATES DIRECTORY */
+.off-eu-directory-container {
+  background: #ffffff;
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: var(--off-shadow-sm);
+}
+
+.off-eu-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--off-peach-tint);
+}
+
+.off-eu-search-box {
+  flex: 1;
+  min-width: 260px;
+  position: relative;
+}
+
+.off-eu-search-box input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid var(--off-peach-tint);
+  border-radius: var(--off-radius-pill);
+  font-size: 0.94rem;
+  color: var(--off-espresso);
+  outline: none;
+  background: var(--off-cream);
+  transition: border-color 0.2s, background 0.2s;
+}
+.off-eu-search-box input:focus {
+  border-color: var(--off-blue);
+  background: #ffffff;
+}
+
+.off-eu-search-box::before {
+  content: "🔍";
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+.off-eu-sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.off-eu-sort-btn {
+  padding: 0.5rem 1rem;
+  background: var(--off-cream);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: var(--off-radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--off-espresso-soft);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.off-eu-sort-btn.active {
+  background: var(--off-blue);
+  color: #ffffff;
+  border-color: var(--off-blue);
+}
+
+.off-eu-country-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.off-eu-country-card {
+  background: var(--off-cream);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.off-eu-country-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--off-shadow-md);
+  border-color: var(--off-blue);
+  background: #ffffff;
+}
+
+.off-eu-country-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.off-eu-country-flag {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.off-eu-country-code {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--off-blue);
+  background: var(--off-blue-light);
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--off-radius-pill);
+  border: 1px solid var(--off-blue-border);
+}
+
+.off-eu-country-names h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.2rem 0;
+}
+
+.off-eu-country-native {
+  font-size: 0.84rem;
+  color: var(--off-text-muted);
+  margin-bottom: 0.85rem;
+}
+
+.off-eu-country-count-block {
+  background: #ffffff;
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 1rem;
+}
+.off-eu-country-card:hover .off-eu-country-count-block {
+  background: var(--off-blue-light);
+  border-color: var(--off-blue-border);
+}
+
+.off-eu-country-count-val {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--off-blue);
+  line-height: 1;
+}
+
+.off-eu-country-count-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--off-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-top: 0.2rem;
+}
+
+.off-eu-country-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.off-eu-country-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--off-radius-pill);
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.off-eu-btn-portal {
+  background: var(--off-blue);
+  color: #ffffff !important;
+}
+.off-eu-btn-portal:hover {
+  background: #002266;
+}
+
+.off-eu-btn-count {
+  background: #ffffff;
+  color: var(--off-espresso) !important;
+  border: 1px solid var(--off-peach-tint);
+}
+.off-eu-btn-count:hover {
+  border-color: var(--off-orange);
+  color: var(--off-orange) !important;
+}
+
+/* PAN-EUROPEAN FEATURES */
+.off-eu-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.75rem;
+}
+
+.off-eu-feature-card {
+  background: #ffffff;
+  border: 1px solid var(--off-peach-tint);
+  border-radius: var(--off-radius-card);
+  padding: 2rem;
+  box-shadow: var(--off-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.off-eu-feature-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--off-blue);
+}
+
+.off-eu-feature-badge {
+  align-self: flex-start;
+  padding: 0.3rem 0.75rem;
+  background: var(--off-blue-light);
+  color: var(--off-blue);
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: var(--off-radius-pill);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.off-eu-feature-card h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.85rem 0;
+}
+
+.off-eu-feature-card p {
+  font-size: 0.95rem;
+  color: var(--off-espresso-soft);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.off-eu-code-pill {
+  display: inline-block;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+  font-family: monospace;
+  font-size: 0.88rem;
+  color: #1e293b;
+  margin: 0.2rem 0.1rem;
+}
+
+/* FACTS FAMILY TILES */
+.off-eu-facts-family {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.off-eu-family-tile {
+  background: var(--off-cream);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 14px;
+  padding: 1.15rem 1rem;
+  text-align: center;
+  transition: all 0.2s;
+}
+.off-eu-family-tile:hover {
+  background: #ffffff;
+  border-color: var(--off-orange);
+  transform: translateY(-2px);
+}
+
+.off-eu-family-tile h4 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.4rem 0;
+}
+
+.off-eu-family-tile p {
+  font-size: 0.82rem;
+  color: var(--off-text-muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* PROJECTS TRACK RECORD */
+.off-eu-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.5rem;
+}
+@media (max-width: 600px) {
+  .off-eu-projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.off-eu-project-card {
+  background: #ffffff;
+  border: 1px solid var(--off-peach-tint);
+  border-radius: var(--off-radius-card);
+  padding: 1.75rem;
+  box-shadow: var(--off-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.off-eu-project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--off-shadow-hover);
+  border-color: var(--off-blue);
+}
+
+.off-eu-project-top {
+  margin-bottom: 1rem;
+}
+
+.off-eu-project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.off-eu-tag-prog {
+  background: var(--off-blue-light);
+  color: var(--off-blue);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--off-radius-pill);
+  text-transform: uppercase;
+}
+
+.off-eu-tag-dates {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--off-text-muted);
+}
+
+.off-eu-project-card h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.65rem 0;
+}
+
+.off-eu-project-card p {
+  font-size: 0.92rem;
+  color: var(--off-espresso-soft);
+  line-height: 1.55;
+  margin: 0 0 1rem 0;
+}
+
+.off-eu-project-partners {
+  background: var(--off-cream);
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.82rem;
+  color: var(--off-espresso-soft);
+  margin-bottom: 1.25rem;
+}
+.off-eu-project-partners strong {
+  color: var(--off-espresso);
+}
+
+.off-eu-project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--off-blue);
+  text-decoration: none;
+}
+.off-eu-project-link:hover {
+  text-decoration: underline;
+}
+
+/* INBOUND PARTNERS & CORDIS CALLS */
+.off-eu-partner-banner {
+  background: linear-gradient(135deg, #002266 0%, #003399 50%, #0044cc 100%);
+  color: #ffffff;
+  border-radius: 24px;
+  padding: clamp(2rem, 4vw, 3.25rem);
+  box-shadow: var(--off-shadow-md);
+  margin-bottom: 3.5rem;
+}
+
+.off-eu-partner-banner h2 {
+  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+}
+
+.off-eu-partner-banner p.lead {
+  font-size: 1.1rem;
+  color: #e0ecff;
+  max-width: 860px;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.off-eu-pic-box {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.off-eu-pic-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ffea79;
+  font-weight: 700;
+}
+
+.off-eu-pic-num {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-family: monospace;
+  color: #ffffff;
+}
+
+.off-eu-partner-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.off-eu-partner-call-card {
+  background: #ffffff;
+  color: var(--off-espresso);
+  border-radius: 18px;
+  padding: 1.75rem;
+  box-shadow: var(--off-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.off-eu-partner-call-card h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.5rem 0;
+}
+
+.off-eu-partner-call-card p {
+  font-size: 0.92rem;
+  color: var(--off-espresso-soft);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+}
+
+/* LOGO GRID / TRUST SECTION */
+.off-eu-trust-section {
+  background: #ffffff;
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 24px;
+  padding: 2.25rem;
+  text-align: center;
+  box-shadow: var(--off-shadow-sm);
+}
+
+.off-eu-trust-section h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.5rem 0;
+}
+
+.off-eu-trust-section p {
+  font-size: 1rem;
+  color: var(--off-text-muted);
+  max-width: 780px;
+  margin: 0 auto 1.75rem auto;
+}
+
+.off-eu-trust-banner-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--off-peach-tint);
+  background: #ffffff;
+  padding: 1rem;
+}
+
+/* COMMUNITY & CITIZEN SCIENCE */
+.off-eu-community-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+@media (max-width: 850px) {
+  .off-eu-community-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.off-eu-comm-card {
+  background: #ffffff;
+  border: 1px solid var(--off-peach-tint);
+  border-radius: var(--off-radius-card);
+  padding: 2rem;
+  box-shadow: var(--off-shadow-sm);
+}
+
+.off-eu-comm-card h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 1rem 0;
+}
+
+.off-eu-comm-card ul {
+  margin: 0 0 1.5rem 0;
+  padding-left: 1.25rem;
+}
+
+.off-eu-comm-card li {
+  font-size: 0.95rem;
+  color: var(--off-espresso-soft);
+  margin-bottom: 0.65rem;
+  line-height: 1.55;
+}
+
+/* COMMISSION STAFF FAQ / QUICK GUIDE */
+.off-eu-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.off-eu-faq-item {
+  background: #ffffff;
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 16px;
+  padding: 1.4rem 1.75rem;
+  box-shadow: var(--off-shadow-sm);
+}
+
+.off-eu-faq-item h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.off-eu-faq-item p {
+  font-size: 0.94rem;
+  color: var(--off-espresso-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* FOOTER CALLOUT */
+.off-eu-footer-contact {
+  background: var(--off-cream);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 20px;
+  padding: 2.25rem;
+  text-align: center;
+  margin-top: 3.5rem;
+}
+
+.off-eu-footer-contact h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.5rem 0;
+}
+
+.off-eu-footer-contact p {
+  font-size: 1rem;
+  color: var(--off-espresso-soft);
+  max-width: 650px;
+  margin: 0 auto 1.5rem auto;
+}
+</style>
+
+<!-- HERO SECTION -->
+<section class="off-eu-hero">
+  <div class="off-eu-badge-row">
+    <span class="off-eu-badge off-eu-badge-primary">🇪🇺 European Union Common</span>
+    <span class="off-eu-badge off-eu-badge-gold">★ EU Citizen Science Prize 2025</span>
+    <span class="off-eu-badge off-eu-badge-green">✔ Digital Public Good (UN)</span>
+  </div>
+  <h1>
+    A citizen-driven digital common to support the <span class="highlight">EU’s food, health & climate</span> agenda
+  </h1>
+  <p class="lead">
+    Open Food Facts is a unique, pan-European open data ecosystem collecting, verifying, and publishing algorithmic consumer product intelligence across all 27 EU Member States. Built by over 80,000 citizens and researchers, powering hundreds of scientific studies, and equipping public health and environmental policies.
+  </p>
+
+  <div class="off-eu-cta-strip">
+    <a href="#member-states" class="off-eu-btn off-eu-btn-primary">
+      <span>🇪🇺</span> Explore 27 Member State Portals
+    </a>
+    <a href="#eu-projects" class="off-eu-btn off-eu-btn-secondary">
+      <span>🤝</span> EU Consortium Partnership Desk
+    </a>
+    <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/org-details/908745665" target="_blank" rel="noopener noreferrer" class="off-eu-btn off-eu-btn-gold">
+      <span>🏛️</span> EU Participant Profile (PIC: 908745665)
+    </a>
+  </div>
+
+  <!-- STAT STRIP -->
+  <div class="off-eu-stats">
+    <div class="off-eu-stat-card">
+      <div class="off-eu-stat-num">2,898,095+</div>
+      <div class="off-eu-stat-label">EU Packaged Products</div>
+    </div>
+    <div class="off-eu-stat-card">
+      <div class="off-eu-stat-num">27 / 27</div>
+      <div class="off-eu-stat-label">Member State Portals</div>
+    </div>
+    <div class="off-eu-stat-card">
+      <div class="off-eu-stat-num">80,000+</div>
+      <div class="off-eu-stat-label">Citizen Contributors</div>
+    </div>
+    <div class="off-eu-stat-card">
+      <div class="off-eu-stat-num">20M+</div>
+      <div class="off-eu-stat-label">Verification Photos</div>
+    </div>
+    <div class="off-eu-stat-card">
+      <div class="off-eu-stat-num">200+</div>
+      <div class="off-eu-stat-label">Apps & API Reusers</div>
+    </div>
+    <div class="off-eu-stat-card">
+      <div class="off-eu-stat-num">40+</div>
+      <div class="off-eu-stat-label">European Languages</div>
+    </div>
+  </div>
+</section>
+
+<!-- ONE-PAGER: OPEN FOOD FACTS IN A NUTSHELL -->
+<section class="off-eu-section">
+  <div class="off-eu-sec-head">
+    <span class="off-eu-sec-tag">Executive Summary</span>
+    <h2>Open Food Facts in a nutshell</h2>
+    <p>A digital public common equipping scientific research, civil society, industry accountability, and European policy.</p>
+  </div>
+
+  <div class="off-eu-nutshell-grid">
+    <div class="off-eu-nutshell-card">
+      <div>
+        <h3>An open ecosystem for European food transparency</h3>
+        <p>
+          Open Food Facts is a unique open ecosystem for collecting and sharing data, information, and algorithms related to food and consumer products. Built around an open database of over <strong>4.5 million products</strong> (with roughly three-quarters sold in Europe), the Open Food Facts community brings together <strong>80,000+ contributors worldwide</strong>, a dedicated core team of 10 employees, and an active ecosystem of thousands of technology and food professionals.
+        </p>
+        <p>
+          Our community and digital commons equip research and innovation: several hundred peer-reviewed research projects rely on our data, and over <strong>200 mobile and web applications</strong> use our open APIs and algorithms—including nutritional and environmental scoring (Nutri-Score, Green-Score, NOVA, Eco-Score)—for public health, educational, and commercial uses.
+        </p>
+      </div>
+
+      <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--off-peach-tint);">
+        <strong style="color: var(--off-blue);">Core Strategic Priorities:</strong>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem;">
+          <span class="off-eu-badge off-eu-badge-primary">🌱 Farm to Fork Alignment</span>
+          <span class="off-eu-badge off-eu-badge-green">🥗 Public Health & Nutrition</span>
+          <span class="off-eu-badge off-eu-badge-gold">🌍 Climate & Environmental Footprint</span>
+          <span class="off-eu-badge off-eu-badge-primary">🔬 Citizen Science & Open Data</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECOGNITIONS -->
+    <div class="off-eu-awards-card">
+      <h3><span>🏆</span> Key Recognitions</h3>
+
+      <div class="off-eu-award-item">
+        <div class="off-eu-award-year">2025</div>
+        <div class="off-eu-award-content">
+          <h4>European Union Prize for Citizen Science</h4>
+          <p>Honorary Mention awarded by the European Commission jury for pioneering citizen-led scientific data collection across Europe.</p>
+        </div>
+      </div>
+
+      <div class="off-eu-award-item">
+        <div class="off-eu-award-year">2024</div>
+        <div class="off-eu-award-content">
+          <h4>Recognised as a “Digital Public Good”</h4>
+          <p>Certified by the Digital Public Goods Alliance, formally endorsed by the UN Secretary-General for advancing the Sustainable Development Goals (SDGs).</p>
+        </div>
+      </div>
+
+      <div class="off-eu-award-item">
+        <div class="off-eu-award-year">2023</div>
+        <div class="off-eu-award-content">
+          <h4>French National Open Science Award</h4>
+          <p>Distinguished by the French Ministry of Higher Education & Research for excellence in open research software and public data stewardship.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CORE EXPERTISES & INTERESTS -->
+<section class="off-eu-section">
+  <div class="off-eu-sec-head">
+    <span class="off-eu-sec-tag">Capacities & Assets</span>
+    <h2>Our core expertises & technological assets</h2>
+    <p>How Open Food Facts operates as a resilient, high-throughput digital public infrastructure.</p>
+  </div>
+
+  <div class="off-eu-expertises-grid">
+    <div class="off-eu-exp-card">
+      <div class="off-eu-exp-icon">📦</div>
+      <h3>Big Data & Open Commons</h3>
+      <p>Collecting, managing, and publishing vast consumer product datasets: 4.5M+ products and 20M+ images (3/4 from Europe). Available under the Open Database License (ODbL) with daily full dumps (JSONL, CSV, Parquet, MongoDB).</p>
+    </div>
+
+    <div class="off-eu-exp-card">
+      <div class="off-eu-exp-icon">👥</div>
+      <h3>Citizen Mobilization at Scale</h3>
+      <p>Mobilizing citizens in large-scale international projects: 80,000+ contributors worldwide across 40+ languages, with gamified collaborative verification and crowdsourced audit trails.</p>
+    </div>
+
+    <div class="off-eu-exp-card">
+      <div class="off-eu-exp-icon">🔄</div>
+      <h3>Automated API & Brand Workflows</h3>
+      <p>Direct automated data imports from over 3,000 food brands and retail chains annually via the Open Food Facts Pro platform; real-time high-throughput APIs for researchers, developers, and institutions.</p>
+    </div>
+
+    <div class="off-eu-exp-card">
+      <div class="off-eu-exp-icon">🤖</div>
+      <h3>Computer Vision & AI Models</h3>
+      <p>Custom machine learning and vision models built since 2019 to extract structured ingredients, nutrition tables, EU approval codes, logos, labels, brands, categories, weights, and packaging from raw photos.</p>
+    </div>
+
+    <div class="off-eu-exp-card">
+      <div class="off-eu-exp-icon">⚖️</div>
+      <h3>Algorithmic Enrichment & Scoring</h3>
+      <p>Developing open algorithms to reverse-engineer recipe ingredient percentages, compute nutritional metrics (Nutri-Score), assess ultra-processing (NOVA), and evaluate lifecycle environmental impacts (Green-Score).</p>
+    </div>
+
+    <div class="off-eu-exp-card">
+      <div class="off-eu-exp-icon">🌐</div>
+      <h3>Multilingual European Taxonomies</h3>
+      <p>Crowdsourced, interoperable semantic taxonomies with 100,000+ entries covering ingredients, additives (E-numbers), allergens, categories, and labels, mapped across EU official languages and Wikidata.</p>
+    </div>
+
+    <div class="off-eu-exp-card">
+      <div class="off-eu-exp-icon">📱</div>
+      <h3>Democratizing Information for 4M+</h3>
+      <p>Free, privacy-preserving mobile and web scanner used by 4+ million citizens monthly, empowering informed choices directly in supermarket aisles with zero commercial advertising or tracking.</p>
+    </div>
+
+    <div class="off-eu-exp-card">
+      <div class="off-eu-exp-icon">🎯</div>
+      <h3>Policy & Scientific Impact</h3>
+      <p>Equipping public health authorities (Santé Publique France, Sciensano, Spanish AESAN), monitoring food supply reformulation over time, and delivering empirical evidence for European food policies.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 27 EU MEMBER STATES DIRECTORY -->
+<section id="member-states" class="off-eu-section">
+  <div class="off-eu-sec-head">
+    <span class="off-eu-sec-tag">Pan-European Coverage</span>
+    <h2>Open Food Facts across the 27 EU Member States</h2>
+    <p>Explore dedicated national portals, crowdsourced product catalogues, and live growth metrics in every European Union country.</p>
+  </div>
+
+  <div class="off-eu-directory-container">
+    <div class="off-eu-filter-bar">
+      <div class="off-eu-search-box">
+        <input type="text" id="eu-country-search" placeholder="Filter by country name, native name, or code (e.g. Germany, Polska, ES)..." oninput="filterCountries()">
+      </div>
+      <div class="off-eu-sort-controls">
+        <span style="font-size: 0.85rem; font-weight: 700; color: var(--off-espresso);">Sort by:</span>
+        <button id="sort-count-btn" class="off-eu-sort-btn active" onclick="sortCountries('count')">Product Count (Desc)</button>
+        <button id="sort-alpha-btn" class="off-eu-sort-btn" onclick="sortCountries('name')">Country Name (A-Z)</button>
+      </div>
+    </div>
+
+    <div id="eu-countries-grid" class="off-eu-country-grid">
+      <!-- Injected via JavaScript from JSON data -->
+    </div>
+  </div>
+</section>
+
+<!-- UNIQUE PAN-EUROPEAN FEATURES -->
+<section class="off-eu-section">
+  <div class="off-eu-sec-head">
+    <span class="off-eu-sec-tag">Technical Innovations</span>
+    <h2>Pan-European features: Solving single-market data fragmentation</h2>
+    <p>How Open Food Facts solves unique cross-border challenges across European supply chains.</p>
+  </div>
+
+  <div class="off-eu-features-grid">
+    <div class="off-eu-feature-card">
+      <span class="off-eu-feature-badge">Traceability & Origins</span>
+      <h3>Defragmenting EU Packager Codes (EC Health Marks)</h3>
+      <p>
+        Across the European Single Market, food packaging must bear an oval health/identification mark (veterinary approval mark) indicating the establishment where the product was manufactured or packed:
+      </p>
+      <div style="margin-bottom: 0.85rem;">
+        <span class="off-eu-code-pill">FR 75.101.001 CE</span>
+        <span class="off-eu-code-pill">DE-BY 12345 EG</span>
+        <span class="off-eu-code-pill">ES 10.00000/B CE</span>
+        <span class="off-eu-code-pill">IT 03 123 CE</span>
+        <span class="off-eu-code-pill">NL 1234 EG</span>
+        <span class="off-eu-code-pill">PL 12345678 WE</span>
+      </div>
+      <p>
+        While retailers frequently mask the actual producer behind private store brands, national health mark registries are siloed and inaccessible across borders. Open Food Facts crowdsources packaging photos, extracts oval codes with OCR, and cross-references member-state registries to geolocate factories, trace supply chains, and empower citizens with true manufacturing transparency.
+      </p>
+      <div style="margin-top: auto;">
+        <a href="https://world.openfoodfacts.org/packager-codes" target="_blank" rel="noopener noreferrer" style="font-weight: 700; color: var(--off-blue); font-size: 0.9rem;">Explore Packager Codes Directory →</a>
+      </div>
+    </div>
+
+    <div class="off-eu-feature-card">
+      <span class="off-eu-feature-badge">Multilingual Engine</span>
+      <h3>Cross-Border Packaging & Multilingual Taxonomies</h3>
+      <p>
+        European products routinely cross borders with multi-language packaging (e.g. French/Dutch in Belgium; German/French/Italian in Switzerland/Luxembourg; German/Austrian distributions).
+      </p>
+      <p>
+        Open Food Facts dynamically parses multilingual ingredient blocks, automatically normalizes synonyms, and maps ingredients against our open multilingual taxonomy of 100,000+ entries. Additives are indexed by their E-numbers across all official EU languages, allowing accurate allergen warnings and additive risk profiles regardless of the consumer's native language.
+      </p>
+      <div style="margin-top: auto;">
+        <a href="https://world.openfoodfacts.org/ingredients" target="_blank" rel="noopener noreferrer" style="font-weight: 700; color: var(--off-blue); font-size: 0.9rem;">Browse Multilingual Ingredients Taxonomy →</a>
+      </div>
+    </div>
+
+    <div class="off-eu-feature-card" style="grid-column: 1 / -1;">
+      <span class="off-eu-feature-badge">The "Facts" Family</span>
+      <h3>Open Data Commons Supporting EU Green & Health Agendas</h3>
+      <p>
+        The Open Food Facts ecosystem extends beyond food to address complementary EU consumer safety and circular economy goals through dedicated open sister databases:
+      </p>
+
+      <div class="off-eu-facts-family">
+        <div class="off-eu-family-tile">
+          <h4>🥗 Open Food Facts (OPF)</h4>
+          <p>Nutri-Score, NOVA ultra-processing, Green-Score lifecycle assessment, food reformulation tracking, anti-waste, and nutritional literacy.</p>
+        </div>
+        <div class="off-eu-family-tile">
+          <h4>💄 Open Beauty Facts (OBF)</h4>
+          <p>Cosmetics Regulation (EC 1223/2009), INCI chemical ingredients deciphering, allergen alerts, microplastics, and endocrine disruptors.</p>
+        </div>
+        <div class="off-eu-family-tile">
+          <h4>🐾 Open Pet Food Facts (OPFF)</h4>
+          <p>Pet nutrition, animal feed transparency, companion animal welfare, and veterinary ingredient verification.</p>
+        </div>
+        <div class="off-eu-family-tile">
+          <h4>📦 Open Products Facts</h4>
+          <p>Non-food consumer goods, repairability index, packaging circularity, and eco-design verification for consumer durables.</p>
+        </div>
+        <div class="off-eu-family-tile">
+          <h4>💶 Open Prices</h4>
+          <p>Crowdsourced European supermarket price tracking, food inflation monitoring, and purchasing power transparency across Member States.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EUROPEAN COMMUNITY OF VOLUNTEERS -->
+<section class="off-eu-section">
+  <div class="off-eu-sec-head">
+    <span class="off-eu-sec-tag">Citizen Science & Engagement</span>
+    <h2>A pan-European community of volunteers & researchers</h2>
+    <p>Citizens across every European nation powering a common public good.</p>
+  </div>
+
+  <div class="off-eu-community-grid">
+    <div class="off-eu-comm-card">
+      <h3>Active Volunteer Mobilization</h3>
+      <ul>
+        <li><strong>Translators:</strong> Localizing web interfaces, mobile apps, and ingredient dictionaries into 40+ European languages via our open Crowdin workspace.</li>
+        <li><strong>Scan Party Organizers:</strong> Hosting hands-on community workshops in universities, maker spaces, and civic centers across Berlin, Barcelona, Rome, Brussels, and Paris to digitize local supermarket shelves.</li>
+        <li><strong>Data Moderators & Curators:</strong> Reviewing OCR results, resolving barcode ambiguities, and annotating packaging images through gamified micro-tasks (Hunger Games & Robotoff).</li>
+        <li><strong>Open Source Contributors:</strong> Python, Perl, Flutter, and AI developers contributing bug fixes, features, and algorithms on GitHub.</li>
+      </ul>
+      <a href="https://world.openfoodfacts.org/contribute" class="off-eu-btn off-eu-btn-secondary" style="font-size: 0.88rem;">
+        Get involved in the European Community →
+      </a>
+    </div>
+
+    <div class="off-eu-comm-card">
+      <h3>Serving European Science & Public Health</h3>
+      <ul>
+        <li><strong>Epidemiological Research:</strong> OFF open data is the primary empirical foundation for hundreds of published scientific studies examining Nutri-Score efficacy, ultra-processed food consumption, and nutrient profiles.</li>
+        <li><strong>Health Authorities:</strong> Actively reused and referenced by national public health agencies including Santé Publique France, Sciensano (Belgium), AESAN (Spain), and European academic consortia.</li>
+        <li><strong>Environmental Lifecycle Analysis:</strong> Collaborative development of the Green-Score with ADEME, Agribalyse, and leading European ecological research centers.</li>
+        <li><strong>Open Science Compliance:</strong> 100% compliant with European Open Science mandates, FAIR data principles (Findable, Accessible, Interoperable, Reusable), and GDPR.</li>
+      </ul>
+      <a href="/science" class="off-eu-btn off-eu-btn-secondary" style="font-size: 0.88rem;">
+        Explore Science & Publications Hub →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EUROPEAN PROJECTS TRACK RECORD -->
+<section id="eu-projects" class="off-eu-section">
+  <div class="off-eu-sec-head">
+    <span class="off-eu-sec-tag">Horizon & NGI Portfolio</span>
+    <h2>European projects track record</h2>
+    <p>Proven excellence in collaborative EU-funded research, citizen science, and open digital infrastructure.</p>
+  </div>
+
+  <div class="off-eu-projects-grid">
+    <!-- FOODTURE -->
+    <div class="off-eu-project-card">
+      <div class="off-eu-project-top">
+        <div class="off-eu-project-meta">
+          <span class="off-eu-tag-prog">EU Horizon Europe</span>
+          <span class="off-eu-tag-dates">2025 – 2030</span>
+        </div>
+        <h3>FOODTURE</h3>
+        <p>
+          Developing environmental impact assessments for food at the European scale. Open Food Facts develops a novel algorithm to estimate precise recipes of any packaged food product to compute its lifecycle environmental impacts.
+        </p>
+      </div>
+      <div>
+        <div class="off-eu-project-partners">
+          <strong>Key Partners:</strong> Univ. of Vic (Spain), Univ. NTNU (Norway), INRAE (France), Univ. Ghent (Belgium), ADEME (France), and more.
+        </div>
+        <a href="https://foodture-project.eu/" target="_blank" rel="noopener noreferrer" class="off-eu-project-link">
+          Visit project website (foodture-project.eu) ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- DIVINFOOD -->
+    <div class="off-eu-project-card">
+      <div class="off-eu-project-top">
+        <div class="off-eu-project-meta">
+          <span class="off-eu-tag-prog">EU Horizon Europe</span>
+          <span class="off-eu-tag-dates">2022 – 2027</span>
+        </div>
+        <h3>DIVINFOOD</h3>
+        <p>
+          Co-constructing short, fair, and resilient food chains that value Neglected and Underutilized Crops (NUCs) across diverse European agrosystems.
+        </p>
+      </div>
+      <div>
+        <div class="off-eu-project-partners">
+          <strong>Key Partners:</strong> INRAE (France), CREA (Italy), FiBL (Switzerland), AGRI KULTI (Hungary), The Vegetarian Society of Denmark, and more.
+        </div>
+        <a href="https://divinfood.eu/" target="_blank" rel="noopener noreferrer" class="off-eu-project-link">
+          Visit project website (divinfood.eu) ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- NUTRISIGHT -->
+    <div class="off-eu-project-card">
+      <div class="off-eu-project-top">
+        <div class="off-eu-project-meta">
+          <span class="off-eu-tag-prog">EU DRG4FOOD</span>
+          <span class="off-eu-tag-dates">2024 – 2025</span>
+        </div>
+        <h3>NUTRISIGHT</h3>
+        <p>
+          An AI computer vision model to extract structured data from multilingual nutrition facts tables with high precision and error-correction.
+        </p>
+      </div>
+      <div>
+        <div class="off-eu-project-partners">
+          <strong>Partner:</strong> El Coco App (Spain).
+        </div>
+        <a href="https://blog.openfoodfacts.org/en/news/nutri-sight-part-2-seamless-nutrition-data-entry-on-the-open-food-facts-and-website-and-maybe-yours" target="_blank" rel="noopener noreferrer" class="off-eu-project-link">
+          Read technical article on NutriSight ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- OPEN PRICES -->
+    <div class="off-eu-project-card">
+      <div class="off-eu-project-top">
+        <div class="off-eu-project-meta">
+          <span class="off-eu-tag-prog">EU NGI / NLnet</span>
+          <span class="off-eu-tag-dates">2025 – 2027</span>
+        </div>
+        <h3>OPEN PRICES</h3>
+        <p>
+          The first open database of European food prices collected through crowdsourcing and receipt scans to monitor retail price disparities and purchasing power.
+        </p>
+      </div>
+      <div>
+        <div class="off-eu-project-partners">
+          <strong>Supported by:</strong> Next Generation Internet (NGI) & NLnet Foundation.
+        </div>
+        <a href="https://prices.openfoodfacts.org/" target="_blank" rel="noopener noreferrer" class="off-eu-project-link">
+          Explore Open Prices platform ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- SEARCH-A-LICIOUS -->
+    <div class="off-eu-project-card">
+      <div class="off-eu-project-top">
+        <div class="off-eu-project-meta">
+          <span class="off-eu-tag-prog">EU NGI / NLnet</span>
+          <span class="off-eu-tag-dates">2024 – 2025</span>
+        </div>
+        <h3>SEARCH-A-LICIOUS</h3>
+        <p>
+          A high-performance modern semantic search engine that significantly improves the accessibility, filtering, and usability of the Open Food Facts database.
+        </p>
+      </div>
+      <div>
+        <div class="off-eu-project-partners">
+          <strong>Supported by:</strong> NGI Search (European Commission & NLnet).
+        </div>
+        <a href="https://blog.openfoodfacts.org/en/news/search-a-licious-wants-to-make-searching-a-delicious-experience" target="_blank" rel="noopener noreferrer" class="off-eu-project-link">
+          Read Search-a-licious overview ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- OPEN EVERYTHING FACTS -->
+    <div class="off-eu-project-card">
+      <div class="off-eu-project-top">
+        <div class="off-eu-project-meta">
+          <span class="off-eu-tag-prog">EU NGI / NLnet</span>
+          <span class="off-eu-tag-dates">2024 – 2025</span>
+        </div>
+        <h3>OPEN EVERYTHING FACTS</h3>
+        <p>
+          Integration of all our open databases (Food, Beauty, Pet Food, and Products) into a single unified mobile scanning application.
+        </p>
+      </div>
+      <div>
+        <div class="off-eu-project-partners">
+          <strong>Supported by:</strong> Next Generation Internet (NGI Commons).
+        </div>
+        <a href="https://nlnet.nl/project/OpenEverythingFacts/" target="_blank" rel="noopener noreferrer" class="off-eu-project-link">
+          NLnet project disclosure ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- POMME D'API -->
+    <div class="off-eu-project-card">
+      <div class="off-eu-project-top">
+        <div class="off-eu-project-meta">
+          <span class="off-eu-tag-prog">EU NGI / NLnet</span>
+          <span class="off-eu-tag-dates">2024 – 2025</span>
+        </div>
+        <h3>POMME D’API</h3>
+        <p>
+          Modernizing and documenting our public REST API and developer toolkits to make open product data seamlessly accessible to app creators and scientists.
+        </p>
+      </div>
+      <div>
+        <div class="off-eu-project-partners">
+          <strong>Supported by:</strong> NLnet Foundation.
+        </div>
+        <a href="https://nlnet.nl/project/Pomme-dAPI/" target="_blank" rel="noopener noreferrer" class="off-eu-project-link">
+          NLnet project disclosure ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- FOLKSONOMY ENGINE -->
+    <div class="off-eu-project-card">
+      <div class="off-eu-project-top">
+        <div class="off-eu-project-meta">
+          <span class="off-eu-tag-prog">EU NGI / NLnet</span>
+          <span class="off-eu-tag-dates">2020 – 2022</span>
+        </div>
+        <h3>FOLKSONOMY ENGINE</h3>
+        <p>
+          A decentralized tagging and metadata categorization tool allowing citizens and scientists to enrich products with custom tags and attributes.
+        </p>
+      </div>
+      <div>
+        <div class="off-eu-project-partners">
+          <strong>Supported by:</strong> NLnet Foundation.
+        </div>
+        <a href="https://nlnet.nl/project/FolksonomyEngine/" target="_blank" rel="noopener noreferrer" class="off-eu-project-link">
+          NLnet project disclosure ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- PERSONAL SEARCH -->
+    <div class="off-eu-project-card">
+      <div class="off-eu-project-top">
+        <div class="off-eu-project-meta">
+          <span class="off-eu-tag-prog">EU NGI / NLnet</span>
+          <span class="off-eu-tag-dates">2019</span>
+        </div>
+        <h3>PERSONAL SEARCH</h3>
+        <p>
+          Empowering citizens to search and filter products based on personalized dietary requirements, allergens, intolerances, and ethical preferences.
+        </p>
+      </div>
+      <div>
+        <div class="off-eu-project-partners">
+          <strong>Supported by:</strong> NLnet Foundation.
+        </div>
+        <a href="https://nlnet.nl/project/OpenFoodFacts/" target="_blank" rel="noopener noreferrer" class="off-eu-project-link">
+          NLnet project disclosure ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INBOUND EU PROJECTS & CORDIS CALLS -->
+<section class="off-eu-partner-banner">
+  <h2>Inbound EU Partnerships & CORDIS Opportunities</h2>
+  <p class="lead">
+    Are you coordinating or building a European consortium under Horizon Europe, Single Market Programme, Digital Europe, Life, or EU4Health? Open Food Facts is your experienced, battle-tested partner for citizen science, open data infrastructure, AI extraction, and pan-European consumer impact.
+  </p>
+
+  <div class="off-eu-pic-box">
+    <div>
+      <div class="off-eu-pic-label">Official EU Participant Identification Code (PIC)</div>
+      <div class="off-eu-pic-num">908745665</div>
+    </div>
+    <div style="margin-left: auto;">
+      <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/org-details/908745665" target="_blank" rel="noopener noreferrer" class="off-eu-btn off-eu-btn-gold">
+        View Organisation Details on EU Portal ↗
+      </a>
+    </div>
+  </div>
+
+  <div class="off-eu-partner-cards">
+    <!-- TARGETED CALL: SMP FOOD WASTE -->
+    <div class="off-eu-partner-call-card">
+      <div>
+        <span class="off-eu-tag-prog" style="margin-bottom: 0.5rem; display: inline-block;">Target Open Call</span>
+        <h3>SMP-FOOD-2026-FW-STAKEHOLDERS-PJ</h3>
+        <p>
+          <strong>Single Market Programme:</strong> Stakeholders actions for food waste prevention and reduction. Open Food Facts is actively preparing applications to mobilize citizen science, track packaging date labels (Best Before / Use By), quantify portion sizing, and empower consumers to reduce domestic and retail food waste.
+        </p>
+      </div>
+      <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/SMP-FOOD-2026-FW-STAKEHOLDERS-PJ" target="_blank" rel="noopener noreferrer" class="off-eu-btn off-eu-btn-primary" style="font-size: 0.85rem;">
+        View Call Details on Funding & Tenders Portal ↗
+      </a>
+    </div>
+
+    <!-- HORIZON EUROPE CLUSTERS -->
+    <div class="off-eu-partner-call-card">
+      <div>
+        <span class="off-eu-tag-prog" style="margin-bottom: 0.5rem; display: inline-block;">Horizon Europe Work Programmes</span>
+        <h3>Cluster 6 (Bioeconomy & Food) & Cluster 1 (Health)</h3>
+        <p>
+          We join consortia as lead partner for Citizen Science Work Packages (WP), Data Ingestion & Harmonization, Machine Learning OCR for Packaging, Multilingual Dissemination, and Public Engagement Tools across all 27 Member States.
+        </p>
+      </div>
+      <a href="mailto:contact@openfoodfacts.org?subject=EU%20Consortium%20Partnership%20Inquiry%20(PIC%20908745665)" class="off-eu-btn off-eu-btn-secondary" style="font-size: 0.85rem;">
+        Inquire for Consortium Partnership ✉️
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST & FUNDERS -->
+<section class="off-eu-section">
+  <div class="off-eu-trust-section">
+    <h3>They trust & support Open Food Facts</h3>
+    <p>Our work is funded and endorsed by major European public bodies, philanthropic foundations, and scientific research institutions.</p>
+    <img src="/images/europe/eu-partners-trust-logos.png" alt="European Commission, Santé Publique France, DINUM, ADEME, NLnet Foundation, DRG4FOOD, Mozilla, Google.org, Ford Foundation" class="off-eu-trust-banner-img">
+  </div>
+</section>
+
+<!-- COMMISSION STAFF & POLICY MAKERS QUICK GUIDE -->
+<section class="off-eu-section">
+  <div class="off-eu-sec-head">
+    <span class="off-eu-sec-tag">Policy & Institutional Guide</span>
+    <h2>Information for European Commission staff & EU agencies</h2>
+    <p>Key facts for policy officers at DG SANTE, DG AGRI, DG ENVI, DG CNECT, JRC, and EFSA.</p>
+  </div>
+
+  <div class="off-eu-faq-list">
+    <div class="off-eu-faq-item">
+      <h3><span>🏛️</span> How can European institutions and agencies use Open Food Facts data?</h3>
+      <p>
+        All Open Food Facts database contents are published under the <strong>Open Database License (ODbL)</strong>. EU Commission Directorates-General, the Joint Research Centre (JRC), the European Food Safety Authority (EFSA), and national agencies can freely download daily dumps, execute bulk queries, or integrate our public APIs for market monitoring, reformulation tracking, environmental assessments, and consumer policy evaluation with zero licensing fees.
+      </p>
+    </div>
+
+    <div class="off-eu-faq-item">
+      <h3><span>🛡️</span> How does Open Food Facts maintain independence and data integrity?</h3>
+      <p>
+        Open Food Facts is organized as an independent, non-profit non-governmental association (association loi 1901) with strict governance rules preventing corporate lobbying influence. Data contributions are auditable through permanent photographic proofs of physical packaging, with algorithmic anomaly detection (Robotoff) and volunteer moderation preserving scientific reproducibility.
+      </p>
+    </div>
+
+    <div class="off-eu-faq-item">
+      <h3><span>📜</span> How does Open Food Facts support EU regulatory frameworks?</h3>
+      <p>
+        Our infrastructure directly operationalizes key European regulatory goals: Front-of-Pack Nutrition Labeling (Nutri-Score), the Green Claims Directive (lifecycle environmental verification), Food Waste Reduction targets under the Waste Framework Directive, the EU Cosmetics Regulation (INCI decoding on Open Beauty Facts), and the European Single Market's traceability requirements (EC health approval marks).
+      </p>
+    </div>
+
+    <div class="off-eu-faq-item">
+      <h3><span>🤝</span> Can Open Food Facts provide customized technical briefings or data extracts for EU institutions?</h3>
+      <p>
+        Yes. Our team regularly presents technical briefings, provides tailored aggregate data extracts for scientific studies, and participates in European workshops on food transparency and citizen science. Contact our institutional liaison desk at <a href="mailto:contact@openfoodfacts.org" style="color: var(--off-blue); font-weight: 700;">contact@openfoodfacts.org</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CONTACT CALLOUT -->
+<div class="off-eu-footer-contact">
+  <h3>Let's build a healthier, more sustainable Europe together</h3>
+  <p>Whether you represent a European research consortium, a Member State agency, an NGO, or a tech initiative, we welcome collaboration.</p>
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+    <a href="mailto:contact@openfoodfacts.org?subject=Europe%20Partnership%20Inquiry" class="off-eu-btn off-eu-btn-primary">
+      Contact our European Desk ✉️
+    </a>
+    <a href="https://world.openfoodfacts.org/data" class="off-eu-btn off-eu-btn-secondary">
+      Access Open Data Dumps & APIs
+    </a>
+  </div>
+</div>
+
+</div>
+
+<!-- Interactive Client-side Directory Script -->
+<script>
+(function() {
+  const countriesData = [{"name": "Austria", "local_name": "Österreich", "code": "at", "tag": "austria", "count": 23157, "portal_url": "https://at.openfoodfacts.org", "product_count_url": "https://at.openfoodfacts.org/product-count"}, {"name": "Belgium", "local_name": "Belgique / België", "code": "be", "tag": "belgium", "count": 102260, "portal_url": "https://be.openfoodfacts.org", "product_count_url": "https://be.openfoodfacts.org/product-count"}, {"name": "Bulgaria", "local_name": "България", "code": "bg", "tag": "bulgaria", "count": 18290, "portal_url": "https://bg.openfoodfacts.org", "product_count_url": "https://bg.openfoodfacts.org/product-count"}, {"name": "Croatia", "local_name": "Hrvatska", "code": "hr", "tag": "croatia", "count": 7751, "portal_url": "https://hr.openfoodfacts.org", "product_count_url": "https://hr.openfoodfacts.org/product-count"}, {"name": "Cyprus", "local_name": "Κύπρος / Kıbrıs", "code": "cy", "tag": "cyprus", "count": 2826, "portal_url": "https://cy.openfoodfacts.org", "product_count_url": "https://cy.openfoodfacts.org/product-count"}, {"name": "Czech Republic", "local_name": "Česká republika", "code": "cz", "tag": "czech-republic", "count": 21052, "portal_url": "https://cz.openfoodfacts.org", "product_count_url": "https://cz.openfoodfacts.org/product-count"}, {"name": "Denmark", "local_name": "Danmark", "code": "dk", "tag": "denmark", "count": 22594, "portal_url": "https://dk.openfoodfacts.org", "product_count_url": "https://dk.openfoodfacts.org/product-count"}, {"name": "Estonia", "local_name": "Eesti", "code": "ee", "tag": "estonia", "count": 6660, "portal_url": "https://ee.openfoodfacts.org", "product_count_url": "https://ee.openfoodfacts.org/product-count"}, {"name": "Finland", "local_name": "Suomi", "code": "fi", "tag": "finland", "count": 21113, "portal_url": "https://fi.openfoodfacts.org", "product_count_url": "https://fi.openfoodfacts.org/product-count"}, {"name": "France", "local_name": "France", "code": "fr", "tag": "france", "count": 1274070, "portal_url": "https://fr.openfoodfacts.org", "product_count_url": "https://fr.openfoodfacts.org/product-count"}, {"name": "Germany", "local_name": "Deutschland", "code": "de", "tag": "germany", "count": 430583, "portal_url": "https://de.openfoodfacts.org", "product_count_url": "https://de.openfoodfacts.org/product-count"}, {"name": "Greece", "local_name": "Ελλάδα", "code": "gr", "tag": "greece", "count": 12844, "portal_url": "https://gr.openfoodfacts.org", "product_count_url": "https://gr.openfoodfacts.org/product-count"}, {"name": "Hungary", "local_name": "Magyarország", "code": "hu", "tag": "hungary", "count": 11751, "portal_url": "https://hu.openfoodfacts.org", "product_count_url": "https://hu.openfoodfacts.org/product-count"}, {"name": "Ireland", "local_name": "Éire", "code": "ie", "tag": "ireland", "count": 18740, "portal_url": "https://ie.openfoodfacts.org", "product_count_url": "https://ie.openfoodfacts.org/product-count"}, {"name": "Italy", "local_name": "Italia", "code": "it", "tag": "italy", "count": 271227, "portal_url": "https://it.openfoodfacts.org", "product_count_url": "https://it.openfoodfacts.org/product-count"}, {"name": "Latvia", "local_name": "Latvija", "code": "lv", "tag": "latvia", "count": 4957, "portal_url": "https://lv.openfoodfacts.org", "product_count_url": "https://lv.openfoodfacts.org/product-count"}, {"name": "Lithuania", "local_name": "Lietuva", "code": "lt", "tag": "lithuania", "count": 11232, "portal_url": "https://lt.openfoodfacts.org", "product_count_url": "https://lt.openfoodfacts.org/product-count"}, {"name": "Luxembourg", "local_name": "Luxembourg", "code": "lu", "tag": "luxembourg", "count": 11320, "portal_url": "https://lu.openfoodfacts.org", "product_count_url": "https://lu.openfoodfacts.org/product-count"}, {"name": "Malta", "local_name": "Malta", "code": "mt", "tag": "malta", "count": 2265, "portal_url": "https://mt.openfoodfacts.org", "product_count_url": "https://mt.openfoodfacts.org/product-count"}, {"name": "Netherlands", "local_name": "Nederland", "code": "nl", "tag": "netherlands", "count": 112129, "portal_url": "https://nl.openfoodfacts.org", "product_count_url": "https://nl.openfoodfacts.org/product-count"}, {"name": "Poland", "local_name": "Polska", "code": "pl", "tag": "poland", "count": 38160, "portal_url": "https://pl.openfoodfacts.org", "product_count_url": "https://pl.openfoodfacts.org/product-count"}, {"name": "Portugal", "local_name": "Portugal", "code": "pt", "tag": "portugal", "count": 22883, "portal_url": "https://pt.openfoodfacts.org", "product_count_url": "https://pt.openfoodfacts.org/product-count"}, {"name": "Romania", "local_name": "România", "code": "ro", "tag": "romania", "count": 48236, "portal_url": "https://ro.openfoodfacts.org", "product_count_url": "https://ro.openfoodfacts.org/product-count"}, {"name": "Slovakia", "local_name": "Slovensko", "code": "sk", "tag": "slovakia", "count": 9820, "portal_url": "https://sk.openfoodfacts.org", "product_count_url": "https://sk.openfoodfacts.org/product-count"}, {"name": "Slovenia", "local_name": "Slovenija", "code": "si", "tag": "slovenia", "count": 4467, "portal_url": "https://si.openfoodfacts.org", "product_count_url": "https://si.openfoodfacts.org/product-count"}, {"name": "Spain", "local_name": "España", "code": "es", "tag": "spain", "count": 359769, "portal_url": "https://es.openfoodfacts.org", "product_count_url": "https://es.openfoodfacts.org/product-count"}, {"name": "Sweden", "local_name": "Sverige", "code": "se", "tag": "sweden", "count": 27939, "portal_url": "https://se.openfoodfacts.org", "product_count_url": "https://se.openfoodfacts.org/product-count"}];
+  const flagEmojis = {"at": "\ud83c\udde6\ud83c\uddf9", "be": "\ud83c\udde7\ud83c\uddea", "bg": "\ud83c\udde7\ud83c\uddec", "hr": "\ud83c\udded\ud83c\uddf7", "cy": "\ud83c\udde8\ud83c\uddfe", "cz": "\ud83c\udde8\ud83c\uddff", "dk": "\ud83c\udde9\ud83c\uddf0", "ee": "\ud83c\uddea\ud83c\uddea", "fi": "\ud83c\uddeb\ud83c\uddee", "fr": "\ud83c\uddeb\ud83c\uddf7", "de": "\ud83c\udde9\ud83c\uddea", "gr": "\ud83c\uddec\ud83c\uddf7", "hu": "\ud83c\udded\ud83c\uddfa", "ie": "\ud83c\uddee\ud83c\uddea", "it": "\ud83c\uddee\ud83c\uddf9", "lv": "\ud83c\uddf1\ud83c\uddfb", "lt": "\ud83c\uddf1\ud83c\uddf9", "lu": "\ud83c\uddf1\ud83c\uddfa", "mt": "\ud83c\uddf2\ud83c\uddf9", "nl": "\ud83c\uddf3\ud83c\uddf1", "pl": "\ud83c\uddf5\ud83c\uddf1", "pt": "\ud83c\uddf5\ud83c\uddf9", "ro": "\ud83c\uddf7\ud83c\uddf4", "sk": "\ud83c\uddf8\ud83c\uddf0", "si": "\ud83c\uddf8\ud83c\uddee", "es": "\ud83c\uddea\ud83c\uddf8", "se": "\ud83c\uddf8\ud83c\uddea"};
+
+  let currentSort = 'count';
+
+  function renderGrid(data) {
+    const container = document.getElementById('eu-countries-grid');
+    if (!container) return;
+
+    if (data.length === 0) {
+      container.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 2.5rem; color: var(--off-text-muted);">No European member states match your search criteria.</div>';
+      return;
+    }
+
+    container.innerHTML = data.map(c => {
+      const flag = flagEmojis[c.code] || '🇪🇺';
+      const countFormatted = c.count ? c.count.toLocaleString() : 'N/A';
+      return `
+        <div class="off-eu-country-card" data-code="${c.code}" data-name="${c.name.toLowerCase()}" data-native="${(c.local_name || '').toLowerCase()}" data-count="${c.count || 0}">
+          <div class="off-eu-country-top">
+            <span class="off-eu-country-flag">${flag}</span>
+            <span class="off-eu-country-code">${c.code.toUpperCase()}</span>
+          </div>
+          <div class="off-eu-country-names">
+            <h3>${c.name}</h3>
+            <div class="off-eu-country-native">${c.local_name || c.name}</div>
+          </div>
+          <div class="off-eu-country-count-block">
+            <div class="off-eu-country-count-val">${countFormatted}</div>
+            <div class="off-eu-country-count-label">Products Listed</div>
+          </div>
+          <div class="off-eu-country-actions">
+            <a href="${c.portal_url}" class="off-eu-country-btn off-eu-btn-portal" title="Visit ${c.name} portal">Visit Portal</a>
+            <a href="${c.product_count_url}" class="off-eu-country-btn off-eu-btn-count" title="View product count history">Count History</a>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function getSortedData(data, sortKey) {
+    const copy = [...data];
+    if (sortKey === 'count') {
+      copy.sort((a, b) => (b.count || 0) - (a.count || 0));
+    } else if (sortKey === 'name') {
+      copy.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    return copy;
+  }
+
+  window.sortCountries = function(sortKey) {
+    currentSort = sortKey;
+    document.getElementById('sort-count-btn').classList.toggle('active', sortKey === 'count');
+    document.getElementById('sort-alpha-btn').classList.toggle('active', sortKey === 'name');
+    filterCountries();
+  };
+
+  window.filterCountries = function() {
+    const query = (document.getElementById('eu-country-search').value || '').trim().toLowerCase();
+    let filtered = countriesData;
+    if (query) {
+      filtered = filtered.filter(c => 
+        c.name.toLowerCase().includes(query) ||
+        (c.local_name && c.local_name.toLowerCase().includes(query)) ||
+        c.code.toLowerCase().includes(query)
+      );
+    }
+    const sorted = getSortedData(filtered, currentSort);
+    renderGrid(sorted);
+  };
+
+  // Initial render
+  const initialSorted = getSortedData(countriesData, currentSort);
+  renderGrid(initialSorted);
+})();
+</script>
