@@ -1,0 +1,1380 @@
+<!-- Hub Sciences Citoyennes Open Food Facts : Recherche Participative & Action Citoyenne -->
+<style>
+  :root {
+    --off-espresso: #341100;
+    --off-espresso-mid: #473526;
+    --off-cream: #f9f8f6;
+    --off-peach-tint: #ece0db;
+    --off-peach-light: #fff8f5;
+    --off-orange: #ed8857;
+    --off-orange-hover: #d77243;
+    --off-orange-light: #fff3ec;
+    --off-green: #209552;
+    --off-green-light: #e8f5e9;
+    --off-green-dark: #1b5e20;
+    --off-blue: #0284c7;
+    --off-blue-light: #eff6ff;
+    --off-blue-dark: #0369a1;
+    --off-purple: #7c3aed;
+    --off-purple-light: #f5f3ff;
+    --off-amber: #d97706;
+    --off-amber-light: #fef3c7;
+    --off-macchiato: #85746c;
+    --off-border: #e2e8f0;
+    --off-surface: #ffffff;
+    --off-text-muted: #64748b;
+    --off-radius-pill: 999px;
+    --off-radius-card: 20px;
+    --off-shadow-sm: 0 4px 12px rgba(52, 17, 0, 0.04);
+    --off-shadow-md: 0 10px 28px rgba(52, 17, 0, 0.07);
+    --off-shadow-hover: 0 16px 36px rgba(52, 17, 0, 0.12);
+  }
+
+  .off-cs-wrap {
+    font-family: "Plus Jakarta Sans", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--off-espresso);
+    max-width: 1240px;
+    margin: 0 auto 3.5rem auto;
+    padding: 0 1rem;
+    line-height: 1.6;
+    box-sizing: border-box;
+  }
+
+  .off-cs-wrap *,
+  .off-cs-wrap *::before,
+  .off-cs-wrap *::after {
+    box-sizing: border-box;
+  }
+
+  /* Hero Section */
+  .off-cs-hero {
+    background: linear-gradient(180deg, #ffffff 0%, var(--off-cream) 100%);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 28px;
+    padding: clamp(2.2rem, 5vw, 3.8rem);
+    margin-bottom: 2.75rem;
+    box-shadow: 0 12px 36px rgba(52, 17, 0, 0.06);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .off-cs-hero::before {
+    content: "";
+    position: absolute;
+    top: -90px;
+    right: -90px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(237, 136, 87, 0.15) 0%, rgba(237, 136, 87, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .off-cs-hero::after {
+    content: "";
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(32, 149, 82, 0.12) 0%, rgba(32, 149, 82, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .off-cs-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff3ec;
+    color: #c2410c;
+    border: 1px solid #fed7aa;
+    font-size: 0.84rem;
+    font-weight: 700;
+    padding: 0.45rem 1.15rem;
+    border-radius: var(--off-radius-pill);
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .off-cs-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ea580c;
+    animation: csPulse 2s infinite ease-in-out;
+  }
+
+  @keyframes csPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  .off-cs-hero h1 {
+    font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+    font-weight: 850;
+    line-height: 1.18;
+    color: var(--off-espresso);
+    margin: 0 auto 1.2rem auto;
+    max-width: 980px;
+  }
+
+  .off-cs-hero h1 span.highlight {
+    color: var(--off-orange);
+    position: relative;
+    display: inline-block;
+  }
+
+  .off-cs-hero p.lead {
+    font-size: clamp(1.08rem, 1.85vw, 1.28rem);
+    color: var(--off-espresso-mid);
+    max-width: 890px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.62;
+  }
+
+  .off-cs-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Stat Strip */
+  .off-cs-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.1rem;
+    max-width: 1080px;
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .off-cs-stat-card {
+    background: var(--off-surface);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 18px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    box-shadow: var(--off-shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .off-cs-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--off-shadow-md);
+  }
+
+  .off-cs-stat-number {
+    font-size: clamp(1.85rem, 2.7vw, 2.35rem);
+    font-weight: 850;
+    color: var(--off-orange);
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+
+  .off-cs-stat-label {
+    font-size: 0.86rem;
+    font-weight: 750;
+    color: var(--off-espresso);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .off-cs-stat-sub {
+    font-size: 0.8rem;
+    color: var(--off-text-muted);
+    margin-top: 0.2rem;
+  }
+
+  /* Nav Pills Bar */
+  .off-cs-pills-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-top: 1.5rem;
+  }
+
+  .off-cs-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #ffffff;
+    border: 1px solid var(--off-border);
+    padding: 0.45rem 0.95rem;
+    border-radius: var(--off-radius-pill);
+    font-size: 0.84rem;
+    font-weight: 650;
+    color: var(--off-espresso-mid);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .off-cs-pill:hover {
+    border-color: var(--off-orange);
+    color: var(--off-orange);
+    background: #fff8f5;
+    transform: translateY(-1px);
+  }
+
+  /* Buttons */
+  .off-cs-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--off-radius-pill);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    line-height: 1.25;
+  }
+
+  .off-cs-btn-primary {
+    background: var(--off-orange);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(237, 136, 87, 0.35);
+  }
+
+  .off-cs-btn-primary:hover {
+    background: var(--off-orange-hover);
+    box-shadow: 0 6px 18px rgba(237, 136, 87, 0.45);
+    transform: translateY(-2px);
+    color: #ffffff !important;
+  }
+
+  .off-cs-btn-secondary {
+    background: #ffffff;
+    color: var(--off-espresso) !important;
+    border-color: var(--off-border);
+  }
+
+  .off-cs-btn-secondary:hover {
+    border-color: var(--off-espresso-mid);
+    background: var(--off-cream);
+    transform: translateY(-2px);
+  }
+
+  .off-cs-btn-blue {
+    background: var(--off-blue);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+  }
+
+  .off-cs-btn-blue:hover {
+    background: var(--off-blue-dark);
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.4);
+    transform: translateY(-2px);
+    color: #ffffff !important;
+  }
+
+  .off-cs-btn-green {
+    background: var(--off-green);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(32, 149, 82, 0.3);
+  }
+
+  .off-cs-btn-green:hover {
+    background: var(--off-green-dark);
+    box-shadow: 0 6px 18px rgba(32, 149, 82, 0.4);
+    transform: translateY(-2px);
+    color: #ffffff !important;
+  }
+
+  .off-cs-btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.86rem;
+  }
+
+  /* Section Framing */
+  .off-cs-section {
+    margin-bottom: 4rem;
+  }
+
+  .off-cs-section-header {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--off-peach-tint);
+    padding-bottom: 1rem;
+  }
+
+  .off-cs-section-badge {
+    display: inline-block;
+    background: var(--off-peach-tint);
+    color: var(--off-espresso);
+    font-size: 0.78rem;
+    font-weight: 750;
+    padding: 0.28rem 0.8rem;
+    border-radius: var(--off-radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.55rem;
+  }
+
+  .off-cs-section-badge-blue {
+    background: var(--off-blue-light);
+    color: var(--off-blue-dark);
+  }
+
+  .off-cs-section-badge-green {
+    background: var(--off-green-light);
+    color: var(--off-green-dark);
+  }
+
+  .off-cs-section-badge-purple {
+    background: var(--off-purple-light);
+    color: var(--off-purple);
+  }
+
+  .off-cs-section-badge-amber {
+    background: var(--off-amber-light);
+    color: var(--off-amber);
+  }
+
+  .off-cs-section-header h2 {
+    font-size: clamp(1.7rem, 2.7vw, 2.3rem);
+    font-weight: 850;
+    color: var(--off-espresso);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.25;
+  }
+
+  .off-cs-section-header p {
+    font-size: 1.05rem;
+    color: var(--off-espresso-mid);
+    margin: 0;
+    max-width: 860px;
+  }
+
+  /* Fondation de France Prestige Card */
+  .off-cs-fdf-card {
+    background: linear-gradient(135deg, #ffffff 0%, #fffbf8 50%, #fef5f0 100%);
+    border: 2px solid #fed7aa;
+    border-radius: 24px;
+    padding: clamp(1.75rem, 3.5vw, 2.85rem);
+    box-shadow: 0 10px 32px rgba(234, 88, 12, 0.08);
+    margin-bottom: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .off-cs-fdf-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, #ea580c 0%, #f97316 100%);
+  }
+
+  .off-cs-fdf-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .off-cs-fdf-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .off-cs-fdf-badge {
+    background: #c2410c;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--off-radius-pill);
+    display: inline-block;
+  }
+
+  .off-cs-fdf-title {
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight: 850;
+    color: var(--off-espresso);
+    margin: 0.35rem 0 0.5rem;
+    line-height: 1.28;
+  }
+
+  .off-cs-fdf-quote {
+    background: #ffffff;
+    border-left: 4px solid #ea580c;
+    border-radius: 12px;
+    padding: 1.15rem 1.4rem;
+    margin: 1.25rem 0 1.75rem;
+    font-style: italic;
+    color: var(--off-espresso-mid);
+    font-size: 1.05rem;
+    box-shadow: var(--off-shadow-sm);
+  }
+
+  .off-cs-fdf-axes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .off-cs-fdf-axis {
+    background: #ffffff;
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 16px;
+    padding: 1.35rem 1.2rem;
+    box-shadow: var(--off-shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .off-cs-fdf-axis:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--off-shadow-md);
+  }
+
+  .off-cs-fdf-axis-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ffedd5;
+    color: #c2410c;
+    font-weight: 850;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .off-cs-fdf-axis h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: var(--off-espresso);
+  }
+
+  .off-cs-fdf-axis p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--off-espresso-mid);
+    line-height: 1.55;
+  }
+
+  /* Foodture Callout Banner */
+  .off-cs-foodture-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 60%, #e6f7ec 100%);
+    border: 2px solid #bbf7d0;
+    border-radius: 24px;
+    padding: clamp(1.75rem, 3.5vw, 2.75rem);
+    box-shadow: 0 10px 30px rgba(32, 149, 82, 0.08);
+    margin-bottom: 2.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .off-cs-foodture-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: var(--off-green);
+  }
+
+  .off-cs-foodture-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  @media (min-width: 880px) {
+    .off-cs-foodture-inner {
+      grid-template-columns: 1.4fr 1fr;
+      align-items: center;
+    }
+  }
+
+  .off-cs-foodture-text h3 {
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight: 850;
+    color: var(--off-espresso);
+    margin: 0.4rem 0 0.75rem 0;
+    line-height: 1.25;
+  }
+
+  .off-cs-foodture-text p {
+    font-size: 1rem;
+    color: var(--off-espresso-mid);
+    line-height: 1.6;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .off-cs-foodture-interactive-box {
+    background: #ffffff;
+    border: 1px solid #bbf7d0;
+    border-radius: 18px;
+    padding: 1.4rem;
+    box-shadow: var(--off-shadow-sm);
+    text-align: center;
+  }
+
+  .off-cs-foodture-interactive-box h4 {
+    margin: 0 0 0.4rem;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--off-green-dark);
+  }
+
+  .off-cs-foodture-interactive-box p {
+    font-size: 0.9rem;
+    color: var(--off-espresso-mid);
+    margin-bottom: 1.1rem;
+  }
+
+  /* Challenges & Open Prices Section */
+  .off-cs-challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .off-cs-challenge-card {
+    background: #ffffff;
+    border: 1px solid var(--off-border);
+    border-radius: 20px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: var(--off-shadow-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .off-cs-challenge-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--off-shadow-md);
+    border-color: var(--off-orange);
+  }
+
+  .off-cs-challenge-card-featured {
+    border: 2px solid #f97316;
+    background: linear-gradient(180deg, #ffffff 0%, #fff7ed 100%);
+    position: relative;
+  }
+
+  .off-cs-challenge-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--off-radius-pill);
+    margin-bottom: 0.85rem;
+  }
+
+  .off-cs-tag-scantober {
+    background: #ea580c;
+    color: #ffffff;
+  }
+
+  .off-cs-tag-prices {
+    background: var(--off-blue-light);
+    color: var(--off-blue-dark);
+  }
+
+  .off-cs-tag-sprint {
+    background: var(--off-purple-light);
+    color: var(--off-purple);
+  }
+
+  .off-cs-challenge-card h3 {
+    margin: 0 0 0.55rem;
+    font-size: 1.32rem;
+    font-weight: 800;
+    color: var(--off-espresso);
+  }
+
+  .off-cs-challenge-card p {
+    font-size: 0.94rem;
+    color: var(--off-espresso-mid);
+    line-height: 1.58;
+    margin: 0 0 1.25rem;
+    flex-grow: 1;
+  }
+
+  .off-cs-challenge-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    border-top: 1px solid var(--off-border);
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Ecosystem 4-Pillars Grid */
+  .off-cs-ecosystem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+  }
+
+  .off-cs-eco-card {
+    background: #ffffff;
+    border: 1px solid var(--off-border);
+    border-radius: 20px;
+    padding: 1.65rem 1.35rem;
+    box-shadow: var(--off-shadow-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .off-cs-eco-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--off-shadow-md);
+  }
+
+  .off-cs-eco-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .off-cs-eco-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--off-espresso);
+  }
+
+  .off-cs-eco-card p {
+    margin: 0 0 1.25rem;
+    font-size: 0.93rem;
+    color: var(--off-espresso-mid);
+    line-height: 1.58;
+    flex-grow: 1;
+  }
+
+  /* Action Hub Steps (How to contribute) */
+  .off-cs-action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.4rem;
+    margin-top: 1.5rem;
+  }
+
+  .off-cs-action-card {
+    background: #ffffff;
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 18px;
+    padding: 1.5rem 1.35rem;
+    box-shadow: var(--off-shadow-sm);
+    display: flex;
+    gap: 1.15rem;
+    transition: all 0.2s ease;
+  }
+
+  .off-cs-action-card:hover {
+    border-color: var(--off-orange);
+    box-shadow: var(--off-shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .off-cs-action-badge-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #fff3ec;
+    color: var(--off-orange);
+    font-weight: 850;
+    font-size: 1.1rem;
+    border: 1px solid #fed7aa;
+  }
+
+  .off-cs-action-content h4 {
+    margin: 0 0 0.35rem 0;
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: var(--off-espresso);
+  }
+
+  .off-cs-action-content p {
+    margin: 0 0 0.85rem 0;
+    font-size: 0.92rem;
+    color: var(--off-espresso-mid);
+    line-height: 1.52;
+  }
+
+  /* Calendar Section */
+  .off-cs-calendar-box {
+    background: #ffffff;
+    border: 1px solid var(--off-border);
+    border-radius: 22px;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    box-shadow: var(--off-shadow-sm);
+    margin-top: 1.5rem;
+  }
+
+  .off-cs-calendar-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .off-cs-calendar-embed-container {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--off-border);
+    background: #f8fafc;
+  }
+
+  .off-cs-calendar-embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .off-cs-schedule-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .off-cs-schedule-item {
+    background: var(--off-cream);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 14px;
+    padding: 1rem 1.15rem;
+  }
+
+  .off-cs-schedule-item-date {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--off-orange);
+    margin-bottom: 0.25rem;
+  }
+
+  .off-cs-schedule-item h5 {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.98rem;
+    font-weight: 750;
+    color: var(--off-espresso);
+  }
+
+  .off-cs-schedule-item p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--off-text-muted);
+  }
+
+  /* Newsletter Promo Banner */
+  .off-cs-newsletter-card {
+    background: linear-gradient(135deg, var(--off-espresso) 0%, #473526 100%);
+    color: #ffffff;
+    border-radius: 26px;
+    padding: clamp(2rem, 4vw, 3.25rem);
+    box-shadow: 0 14px 36px rgba(52, 17, 0, 0.18);
+    margin-top: 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .off-cs-newsletter-card::after {
+    content: "📬";
+    position: absolute;
+    right: 2rem;
+    bottom: -1rem;
+    font-size: 8rem;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  .off-cs-newsletter-inner {
+    max-width: 820px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .off-cs-newsletter-card h3 {
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    font-weight: 850;
+    margin: 0 0 0.75rem 0;
+    color: #ffffff;
+    line-height: 1.25;
+  }
+
+  .off-cs-newsletter-card p {
+    font-size: 1.05rem;
+    color: #e2e8f0;
+    margin: 0 0 1.75rem 0;
+    line-height: 1.6;
+  }
+
+  /* Footer Navigation Hub */
+  .off-cs-footer-hub {
+    margin-top: 4.5rem;
+    padding: 2.75rem 2rem;
+    background: var(--off-cream);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 24px;
+    text-align: center;
+  }
+
+  .off-cs-footer-hub h3 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--off-espresso);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .off-cs-footer-hub p {
+    font-size: 0.98rem;
+    color: var(--off-espresso-mid);
+    margin: 0 auto 1.5rem auto;
+    max-width: 760px;
+  }
+
+  .off-cs-button-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+</style>
+
+<div class="off-cs-wrap">
+
+  <!-- Hero Section -->
+  <header class="off-cs-hero" id="top">
+    <div class="off-cs-eyebrow">
+      <span class="off-cs-pulse-dot"></span>
+      Sciences Citoyennes • Recherche Participative • Bien Commun Alimentaire
+    </div>
+    <h1>
+      Chaque scan nourrit la <span class="highlight">science indépendante</span> et le débat public
+    </h1>
+    <p class="lead">
+      Open Food Facts est la plus grande base de données alimentaire ouverte et collaborative au monde. Chaque fois que vous scannez un code-barres, photographiez un emballage ou saisissez un ticket de caisse, vous créez une preuve indépendante d'intérêt général au service des chercheurs, du calcul de l'impact environnemental et des veilleurs citoyens.
+    </p>
+
+    <div class="off-cs-hero-actions">
+      <a href="#action-hub" class="off-cs-btn off-cs-btn-primary">
+        🚀 Agir dès aujourd'hui
+      </a>
+      <a href="#foodture" class="off-cs-btn off-cs-btn-green">
+        🇪🇺 Opération Foodture
+      </a>
+      <a href="#challenges" class="off-cs-btn off-cs-btn-blue">
+        🛒 Défis Open Prices
+      </a>
+      <a href="#fondation-de-france" class="off-cs-btn off-cs-btn-secondary">
+        🤝 Partenariat Fondation de France
+      </a>
+    </div>
+
+    <!-- Live Impact Stats Strip -->
+    <div class="off-cs-stats">
+      <div class="off-cs-stat-card">
+        <div class="off-cs-stat-number">3,5M+</div>
+        <div class="off-cs-stat-label">Produits Référencés</div>
+        <div class="off-cs-stat-sub">Dans plus de 150 pays</div>
+      </div>
+      <div class="off-cs-stat-card">
+        <div class="off-cs-stat-number">138+</div>
+        <div class="off-cs-stat-label">Études Scientifiques</div>
+        <div class="off-cs-stat-sub">Publications à comité de lecture</div>
+      </div>
+      <div class="off-cs-stat-card">
+        <div class="off-cs-stat-number">31</div>
+        <div class="off-cs-stat-label">Pays Européens</div>
+        <div class="off-cs-stat-sub">Mobilisés pour Foodture</div>
+      </div>
+      <div class="off-cs-stat-card">
+        <div class="off-cs-stat-number">100%</div>
+        <div class="off-cs-stat-label">Commun Numérique</div>
+        <div class="off-cs-stat-sub">Libre sous licence ODbL</div>
+      </div>
+    </div>
+
+    <!-- Quick Navigation Pills -->
+    <nav class="off-cs-pills-bar" aria-label="Sections de la page">
+      <a href="#fondation-de-france" class="off-cs-pill">🏛️ Fondation de France</a>
+      <a href="#foodture" class="off-cs-pill">🇪🇺 Opération Foodture</a>
+      <a href="#challenges" class="off-cs-pill">🏆 Défis mensuels &amp; Scantober</a>
+      <a href="#ecosystem" class="off-cs-pill">🔬 Science, Scan Parties &amp; Journalisme</a>
+      <a href="#action-hub" class="off-cs-pill">⚡ 6 façons d'agir</a>
+      <a href="#calendar" class="off-cs-pill">📅 Calendrier communautaire</a>
+      <a href="#newsletter" class="off-cs-pill">📬 Lettre d'information</a>
+    </nav>
+  </header>
+
+  <!-- Section 1: Support by Fondation de France -->
+  <section class="off-cs-section" id="fondation-de-france">
+    <div class="off-cs-section-header">
+      <span class="off-cs-section-badge">Partenariat Philanthropique Stratégique</span>
+      <h2>Soutenu par la Fondation de France</h2>
+      <p>
+        Bâtir un contre-pouvoir citoyen indépendant pour éclairer le débat public et démocratiser le savoir alimentaire.
+      </p>
+    </div>
+
+    <div class="off-cs-fdf-card">
+      <div class="off-cs-fdf-header">
+        <div class="off-cs-fdf-brand">
+          <span class="off-cs-fdf-badge">Soutien Majeur • 2026–2027</span>
+        </div>
+        <div style="font-weight: 750; color: #c2410c; font-size: 0.95rem;">
+          Appel à projets : Ouvrir l'information alimentaire
+        </div>
+      </div>
+
+      <h3 class="off-cs-fdf-title">
+        « Ouvrir l’information alimentaire : un contre-pouvoir citoyen indépendant pour éclairer le débat public »
+      </h3>
+
+      <p style="font-size: 1.05rem; color: var(--off-espresso-mid); line-height: 1.62; margin-top: 0.75rem;">
+        Open Food Facts est infiniment honoré et fier de bénéficier du soutien stratégique de la <strong>Fondation de France</strong> avec une subvention de 150 000 €. Ce projet d'envergure vise à asseoir durablement un commun numérique indépendant et citoyen, afin d'éclairer les choix alimentaires individuels, d'offrir un contre-pouvoir face aux lobbies industriels et à la désinformation, et de nourrir les grands débats de société.
+      </p>
+
+      <blockquote class="off-cs-fdf-quote">
+        « Comme nous l’observons depuis plus de dix ans, un contributeur de données devient un usager avisé des données : il développe des savoirs, un esprit critique et une familiarité indispensables à sa compréhension et sa participation active à la démocratie numérique. »
+      </blockquote>
+
+      <!-- Les 3 axes soutenus par la Fondation de France -->
+      <div class="off-cs-fdf-axes-grid">
+        <div class="off-cs-fdf-axis">
+          <div class="off-cs-fdf-axis-num">1</div>
+          <h4>Cartographier l’écosystème de l’information alimentaire</h4>
+          <p>
+            Documenter objectivement les acteurs de l'information (marques, lobbies, autorités sanitaires, médias, applications et associations de consommateurs) pour offrir un contre-pouvoir d'intérêt général transparent et partagé.
+          </p>
+        </div>
+
+        <div class="off-cs-fdf-axis">
+          <div class="off-cs-fdf-axis-num">2</div>
+          <h4>Éclairer le débat grâce à des données plus accessibles</h4>
+          <p>
+            Mettre à disposition des outils d'exploration visuelle (<a href="https://sql.openfoodfacts.org/" target="_blank" rel="noopener">Apache Superset</a>) accessibles aux non-techniciens, et bâtir une <strong>base de données temporelle</strong> permettant d'étudier scientifiquement l'évolution des recettes et la <strong>shrinkflation (réduflation)</strong>.
+          </p>
+        </div>
+
+        <div class="off-cs-fdf-axis">
+          <div class="off-cs-fdf-axis-num">3</div>
+          <h4>Encapacitation citoyenne &amp; co-recherche</h4>
+          <p>
+            Concevoir des kits d'animation pour organiser des « scan parties » en autonomie, animer des défis thématiques (« Mois du petit-déjeuner », « Semaine du local »), et connecter directement les chercheurs et journalistes avec les citoyens enquêteurs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Opération FOODTURE & Empreinte Environnementale Européenne -->
+  <section class="off-cs-section" id="foodture">
+    <div class="off-cs-section-header">
+      <span class="off-cs-section-badge off-cs-section-badge-green">Projet Horizon Europe • 2025–2029</span>
+      <h2>Opération Foodture : Bâtir les Communs Environnementaux en Europe</h2>
+      <p>
+        Étendre l'Analyse du Cycle de Vie (ACV) et l'affichage environnemental à 31 pays européens grâce à la collecte citoyenne.
+      </p>
+    </div>
+
+    <div class="off-cs-foodture-card">
+      <div class="off-cs-foodture-inner">
+        <div class="off-cs-foodture-text">
+          <span style="display: inline-block; background: #dcfce7; color: #166534; font-size: 0.8rem; font-weight: 750; padding: 0.25rem 0.75rem; border-radius: var(--off-radius-pill); text-transform: uppercase; margin-bottom: 0.5rem;">
+            Impact Européen
+          </span>
+          <h3>Passer du modèle français Agribalyse à une base pan-européenne</h3>
+          <p>
+            Alors que la France a développé la base de référence <strong>Agribalyse</strong> (pilotée par l'ADEME et l'INRAE) pour calculer l'Éco-Score / Green-Score, l'Europe manque cruellement de données environnementales ouvertes et harmonisées. Open Food Facts est partenaire du consortium européen <strong>FOODTURE</strong> pour combler cette lacune majeure dans 31 pays (les 27 États membres de l'UE + Norvège, Suisse, Royaume-Uni, Serbie et Monténégro).
+          </p>
+          <p>
+            Pour calculer des bilans écologiques fiables (empreinte carbone, consommation d'eau, occupation des sols et recyclabilité des emballages), les modèles scientifiques ont besoin de données vérifiées sur les <strong>produits représentatifs</strong> de chaque pays et rayon. C'est ici que les citoyens scientifiques entrent en action !
+          </p>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="https://openfoodfacts.github.io/smooth-app_assets/photos-for-impact/index.html?country=fr#" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-green">
+              📸 Ouvrir l'outil « Des photos pour avoir de l'impact » ➔
+            </a>
+            <a href="https://prices.openfoodfacts.org/challenges/17" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-secondary">
+              🏆 Découvrir le Défi Foodture Scantober
+            </a>
+          </div>
+        </div>
+
+        <div class="off-cs-foodture-interactive-box">
+          <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">📱</div>
+          <h4>Minisite intégré dans l'application mobile</h4>
+          <p>
+            Accessible directement depuis l'application Open Food Facts, notre outil interactif vous guide pas à pas pour capturer les informations environnementales décisives :
+          </p>
+          <ul style="text-align: left; font-size: 0.88rem; color: var(--off-espresso-mid); padding-left: 1.25rem; margin-bottom: 1.25rem;">
+            <li>Matériaux exacts de l'emballage et consignes de tri</li>
+            <li>Mentions d'origine des ingrédients (ex. origine UE / non-UE)</li>
+            <li>Poids net, tare et formats de conditionnement</li>
+            <li>Vérification des catégories pour les produits représentatifs</li>
+          </ul>
+          <a href="https://openfoodfacts.github.io/smooth-app_assets/photos-for-impact/index.html?country=fr#" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-primary off-cs-btn-small" style="width: 100%;">
+            Tester l'outil en ligne
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Open Prices & Défis Mensuels (Scantober) -->
+  <section class="off-cs-section" id="challenges">
+    <div class="off-cs-section-header">
+      <span class="off-cs-section-badge off-cs-section-badge-blue">Transparence Économique Citoyenne</span>
+      <h2>Open Prices &amp; les Défis Mensuels de la Communauté</h2>
+      <p>
+        Du suivi de l'inflation à la justice alimentaire : transformer les tickets de caisse en biens communs économiques.
+      </p>
+    </div>
+
+    <p style="font-size: 1.05rem; color: var(--off-espresso-mid); line-height: 1.6; max-width: 960px; margin-bottom: 1.5rem;">
+      La transparence alimentaire ne s'arrête pas à la composition des produits : elle concerne également leur accessibilité financière et leur juste prix. Avec <strong>Open Prices</strong> (<a href="https://prices.openfoodfacts.org/" target="_blank" rel="noopener">prices.openfoodfacts.org</a>), Open Food Facts a étendu la science participative aux prix en magasin et aux tickets de caisse. Chaque mois, la communauté relève des défis thématiques pour démasquer l'inflation, les disparités territoriales et la shrinkflation.
+    </p>
+
+    <div class="off-cs-challenges-grid">
+      <!-- Challenge 1: Scantober & Foodture (#17) -->
+      <article class="off-cs-challenge-card off-cs-challenge-card-featured">
+        <div>
+          <span class="off-cs-challenge-tag off-cs-tag-scantober">🎃 Défi d'Octobre • Challenge #17</span>
+          <h3>Le Défi Scantober pour Foodture</h3>
+          <p>
+            Notre grand défi automnal de science citoyenne ! Bénévoles et curieux scannent les codes-barres et photographient les tickets de caisse ciblant les produits alimentaires de base pour alimenter la base de données européenne Foodture.
+          </p>
+          <ul style="font-size: 0.88rem; color: var(--off-espresso-mid); padding-left: 1.2rem; margin-bottom: 1rem;">
+            <li>Scannez les produits de consommation courante dans les rayons</li>
+            <li>Ajoutez vos tickets de caisse avec le prix et l'enseigne</li>
+            <li>Gagnez des badges, progressez dans le classement et faites avancer la science</li>
+          </ul>
+        </div>
+        <div class="off-cs-challenge-footer">
+          <span style="font-size: 0.86rem; font-weight: 750; color: #ea580c;">Sprint communautaire actif</span>
+          <a href="https://prices.openfoodfacts.org/challenges/17" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-primary off-cs-btn-small">
+            Participer au Défi #17 ➔
+          </a>
+        </div>
+      </article>
+
+      <!-- Challenge 2: Hub des Défis Mensuels -->
+      <article class="off-cs-challenge-card">
+        <div>
+          <span class="off-cs-challenge-tag off-cs-tag-prices">Défis Thématiques</span>
+          <h3>Découvrir Tous les Défis Open Prices</h3>
+          <p>
+            Chaque mois met en lumière un enjeu sociétal concret : volatilité des prix des produits laitiers, comparaison bio vs conventionnel, fruits et légumes de saison, ou évolution des marques de distributeurs.
+          </p>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 0.85rem; margin-bottom: 0.75rem; font-size: 0.88rem;">
+            💡 <em>Le saviez-vous ?</em> Les tickets téléversés sont croisés avec Open Food Facts pour révéler instantanément le prix au kilo et détecter les hausses masquées !
+          </div>
+        </div>
+        <div class="off-cs-challenge-footer">
+          <span style="font-size: 0.86rem; font-weight: 650; color: var(--off-text-muted);">prices.openfoodfacts.org</span>
+          <a href="https://prices.openfoodfacts.org/challenges" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-secondary off-cs-btn-small">
+            Voir tous les défis ➔
+          </a>
+        </div>
+      </article>
+
+      <!-- Challenge 3: Application Open Prices -->
+      <article class="off-cs-challenge-card">
+        <div>
+          <span class="off-cs-challenge-tag off-cs-tag-sprint">Collecte en Temps Réel</span>
+          <h3>Ajoutez vos Tickets de Caisse Toute l'Année</h3>
+          <p>
+            Pas besoin d'attendre un défi pour agir ! Prenez en photo vos tickets de caisse au retour des courses. Notre moteur OCR extrait automatiquement les articles, prix, promotions et coordonnées du magasin.
+          </p>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
+            <span style="background: #e2e8f0; font-size: 0.78rem; padding: 0.2rem 0.55rem; border-radius: 6px; font-weight: 600;">OCR Tickets</span>
+            <span style="background: #e2e8f0; font-size: 0.78rem; padding: 0.2rem 0.55rem; border-radius: 6px; font-weight: 600;">Observatoire Prix</span>
+            <span style="background: #e2e8f0; font-size: 0.78rem; padding: 0.2rem 0.55rem; border-radius: 6px; font-weight: 600;">API Ouverte</span>
+          </div>
+        </div>
+        <div class="off-cs-challenge-footer">
+          <span style="font-size: 0.86rem; font-weight: 650; color: var(--off-text-muted);">100% Gratuit &amp; Sans Pub</span>
+          <a href="https://prices.openfoodfacts.org/" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-blue off-cs-btn-small">
+            Accéder à Open Prices ➔
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Section 4: L'Écosystème Vertueux d'Open Food Facts -->
+  <section class="off-cs-section" id="ecosystem">
+    <div class="off-cs-section-header">
+      <span class="off-cs-section-badge off-cs-section-badge-purple">Synergies &amp; Impact Collectif</span>
+      <h2>Comment la Science Citoyenne Irrigua Tout l'Écosystème</h2>
+      <p>
+        Un cercle vertueux : les données collectées sur le terrain bénéficient immédiatement à la recherche académique, au journalisme d'investigation et au pouvoir d'agir des consommateurs.
+      </p>
+    </div>
+
+    <div class="off-cs-ecosystem-grid">
+      <!-- Pilier 1: Scan Parties -->
+      <article class="off-cs-eco-card">
+        <div>
+          <div class="off-cs-eco-icon">🎉</div>
+          <h3>Scan Parties &amp; Ateliers Conviviaux</h3>
+          <p>
+            Des événements chaleureux et collectifs organisés dans des universités, tiers-lieux, fablabs, associations ou supermarchés. Les citoyens se réunissent pour scanner des paniers entiers, photographier les emballages et partager un moment convivial.
+          </p>
+        </div>
+        <div style="border-top: 1px solid var(--off-border); padding-top: 1rem;">
+          <a href="/scan-parties" class="off-cs-btn off-cs-btn-secondary off-cs-btn-small" style="width: 100%;">
+            Guide &amp; Kits des Scan Parties ➔
+          </a>
+        </div>
+      </article>
+
+      <!-- Pilier 2: Publications Scientifiques -->
+      <article class="off-cs-eco-card">
+        <div>
+          <div class="off-cs-eco-icon">🔬</div>
+          <h3>138+ Publications Scientifiques à Comité de Lecture</h3>
+          <p>
+            Épidémiologistes, nutritionnistes et chercheurs en informatique s'appuient sur nos données pour valider l'algorithme du Nutri-Score, analyser les aliments ultra-transformés (NOVA), traquer les additifs controversés et entraîner des modèles d'IA.
+          </p>
+        </div>
+        <div style="border-top: 1px solid var(--off-border); padding-top: 1rem;">
+          <a href="/scientific-publications" class="off-cs-btn off-cs-btn-secondary off-cs-btn-small" style="width: 100%;">
+            Explorer les Études Scientifiques ➔
+          </a>
+        </div>
+      </article>
+
+      <!-- Pilier 3: Journalisme de Données -->
+      <article class="off-cs-eco-card">
+        <div>
+          <div class="off-cs-eco-icon">📰</div>
+          <h3>Journalisme de Données &amp; Enquêtes Citoyennes</h3>
+          <p>
+            De grandes rédactions (Le Monde, Radio France, Mediapart, France Télévisions) et ONG de consommateurs (Foodwatch) mobilisent nos données historiques pour révéler la shrinkflation, la cheapflation, les allégations trompeuses et les baisses de sel/sucre.
+          </p>
+        </div>
+        <div style="border-top: 1px solid var(--off-border); padding-top: 1rem;">
+          <a href="https://wiki.openfoodfacts.org/Data_journalism" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-secondary off-cs-btn-small" style="width: 100%;">
+            Guide Journalisme de Données ➔
+          </a>
+        </div>
+      </article>
+
+      <!-- Pilier 4: Outils Analytiques & Superset -->
+      <article class="off-cs-eco-card">
+        <div>
+          <div class="off-cs-eco-icon">📊</div>
+          <h3>Analytique Ouverte, Superset &amp; Exports</h3>
+          <p>
+            Grâce au projet soutenu par la Fondation de France, chacun peut explorer des millions de lignes sans coder grâce à notre plateforme publique Apache Superset, ou télécharger nos exports quotidiens en JSONL, CSV et Parquet.
+          </p>
+        </div>
+        <div style="border-top: 1px solid var(--off-border); padding-top: 1rem;">
+          <a href="https://sql.openfoodfacts.org/" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-secondary off-cs-btn-small" style="width: 100%;">
+            Accéder à SQL &amp; Superset ➔
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Section 5: Hub d'Action - 6 Façons Concrètes d'Agir -->
+  <section class="off-cs-section" id="action-hub">
+    <div class="off-cs-section-header">
+      <span class="off-cs-section-badge">Passez à l'Action</span>
+      <h2>6 Façons Concrètes de Rejoindre l'Aventure dès Aujourd'hui</h2>
+      <p>
+        Nul besoin d'être chercheur pour faire avancer la science. Choisissez votre niveau d'engagement et rejoignez des milliers de citoyens actifs !
+      </p>
+    </div>
+
+    <div class="off-cs-action-grid">
+      <!-- Action 1 -->
+      <div class="off-cs-action-card">
+        <div class="off-cs-action-badge-num">1</div>
+        <div class="off-cs-action-content">
+          <h4>Scannez avec l'application mobile</h4>
+          <p>Téléchargez gratuitement l'application Open Food Facts sur iOS ou Android. Dès qu'un produit manque, prenez en photo la face avant, les ingrédients et le tableau nutritionnel.</p>
+          <a href="https://fr.openfoodfacts.org/application-mobile-open-food-facts" class="off-cs-btn off-cs-btn-primary off-cs-btn-small">Télécharger l'App ➔</a>
+        </div>
+      </div>
+
+      <!-- Action 2 -->
+      <div class="off-cs-action-card">
+        <div class="off-cs-action-badge-num">2</div>
+        <div class="off-cs-action-content">
+          <h4>Photographiez pour Foodture</h4>
+          <p>Utilisez l'outil « Des photos pour avoir de l'impact » pour renseigner les consignes de tri, matériaux et origines géographiques des produits représentatifs européens.</p>
+          <a href="https://openfoodfacts.github.io/smooth-app_assets/photos-for-impact/index.html?country=fr#" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-green off-cs-btn-small">Photos pour l'Impact ➔</a>
+        </div>
+      </div>
+
+      <!-- Action 3 -->
+      <div class="off-cs-action-card">
+        <div class="off-cs-action-badge-num">3</div>
+        <div class="off-cs-action-content">
+          <h4>Ajoutez vos tickets sur Open Prices</h4>
+          <p>Aidez à mesurer l'inflation réelle et la shrinkflation en prenant en photo vos tickets de caisse de supermarché sur Open Prices.</p>
+          <a href="https://prices.openfoodfacts.org/challenges" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-blue off-cs-btn-small">Rejoindre les Défis ➔</a>
+        </div>
+      </div>
+
+      <!-- Action 4 -->
+      <div class="off-cs-action-card">
+        <div class="off-cs-action-badge-num">4</div>
+        <div class="off-cs-action-content">
+          <h4>Organisez une Scan Party</h4>
+          <p>Animez un atelier de scan entre amis, dans votre école, entreprise ou association. Téléchargez notre kit d'animation gratuit et nos fiches pratiques.</p>
+          <a href="/scan-parties" class="off-cs-btn off-cs-btn-secondary off-cs-btn-small">Kit de l'Organisateur ➔</a>
+        </div>
+      </div>
+
+      <!-- Action 5 -->
+      <div class="off-cs-action-card">
+        <div class="off-cs-action-badge-num">5</div>
+        <div class="off-cs-action-content">
+          <h4>Participez aux réunions mensuelles</h4>
+          <p>Rencontrez la communauté, échangez directement avec les scientifiques invités et suivez l'avancement des enquêtes chaque 4ème mardi du mois.</p>
+          <a href="https://meet.google.com/jsv-xbyr-sir" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-secondary off-cs-btn-small">Lien Visioconférence 🎥</a>
+        </div>
+      </div>
+
+      <!-- Action 6 -->
+      <div class="off-cs-action-card">
+        <div class="off-cs-action-badge-num">6</div>
+        <div class="off-cs-action-content">
+          <h4>Échangez sur Slack (#citizen-science)</h4>
+          <p>Rejoignez le canal dédié pour discuter des méthodes, poser des questions sur les outils et soumettre de nouvelles idées d'enquêtes citoyennes.</p>
+          <a href="https://slack.openfoodfacts.org" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-secondary off-cs-btn-small">Rejoindre le Slack ➔</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Calendrier Communautaire & Rendez-vous Réguliers -->
+  <section class="off-cs-section" id="calendar">
+    <div class="off-cs-section-header">
+      <span class="off-cs-section-badge off-cs-section-badge-amber">Rythme &amp; Rendez-Vous</span>
+      <h2>Calendrier Communautaire &amp; Prochaines Rencontres</h2>
+      <p>
+        Ne manquez aucun lancement d'enquête, webinaire technique ou réunion communautaire. Synchronisez notre Google Calendar public avec votre agenda !
+      </p>
+    </div>
+
+    <div class="off-cs-calendar-box">
+      <div class="off-cs-calendar-header">
+        <div>
+          <h3 style="margin: 0 0 0.35rem 0; font-size: 1.35rem; font-weight: 800; color: var(--off-espresso);">
+            Calendrier Communautaire Open Food Facts (Heure de Paris)
+          </h3>
+          <p style="margin: 0; font-size: 0.92rem; color: var(--off-text-muted);">
+            Regroupe les réunions sciences citoyennes, webinaires données, hackathons et scan parties.
+          </p>
+        </div>
+        <a href="https://calendar.google.com/calendar/u/0/embed?src=c_9d0e7fc68f19f64fd91f60ac1936a0364750ec868272cefeb57464dba0ef906c@group.calendar.google.com&ctz=Europe/Paris" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-primary off-cs-btn-small">
+          📅 Ouvrir le Google Calendar complet ➔
+        </a>
+      </div>
+
+      <!-- Interactive Embedded Google Calendar -->
+      <div class="off-cs-calendar-embed-container">
+        <iframe
+          src="https://calendar.google.com/calendar/u/0/embed?src=c_9d0e7fc68f19f64fd91f60ac1936a0364750ec868272cefeb57464dba0ef906c@group.calendar.google.com&amp;ctz=Europe/Paris&amp;mode=AGENDA"
+          title="Calendrier Communautaire Open Food Facts"
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <!-- Dates Clés et Rythme Régulier -->
+      <div class="off-cs-schedule-list">
+        <div class="off-cs-schedule-item">
+          <div class="off-cs-schedule-item-date">Chaque 4ème mardi du mois • 19h30–20h30 Paris</div>
+          <h5>Réunion Mensuelle Sciences Citoyennes</h5>
+          <p>Ouverte à toutes et tous ! Point d'étape Foodture, retours terrain, présentations scientifiques. <a href="https://meet.google.com/jsv-xbyr-sir" target="_blank" rel="noopener">Lien Google Meet</a></p>
+        </div>
+
+        <div class="off-cs-schedule-item">
+          <div class="off-cs-schedule-item-date">13 Octobre • 9 Décembre • 15 Janvier</div>
+          <h5>Webinaires Outils &amp; Données</h5>
+          <p>Ateliers pratiques en ligne pour maîtriser les extractions de données, les requêtes SQL Superset et l'analyse sous Python.</p>
+        </div>
+
+        <div class="off-cs-schedule-item">
+          <div class="off-cs-schedule-item-date">Rendez-vous annuel</div>
+          <h5>Journées Open Food Facts</h5>
+          <p>Grand rassemblement annuel réunissant développeurs, scientifiques, associations de consommateurs et bénévoles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Newsletter Promo Banner -->
+  <section class="off-cs-newsletter-card" id="newsletter">
+    <div class="off-cs-newsletter-inner">
+      <span style="display: inline-block; background: rgba(255, 255, 255, 0.2); color: #ffffff; font-size: 0.8rem; font-weight: 750; padding: 0.3rem 0.85rem; border-radius: var(--off-radius-pill); text-transform: uppercase; margin-bottom: 0.85rem; letter-spacing: 0.05em;">
+        Restez au cœur de la science
+      </span>
+      <h3>Abonnez-vous à la Lettre d'Information Spéciale Sciences Citoyennes</h3>
+      <p>
+        Soyez les premiers informés des nouvelles enquêtes participatives, des avancées du projet Foodture, des publications académiques et des défis communautaires. Respect absolu de votre vie privée : zéro pistage commercial, désinscription en un clic.
+      </p>
+
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+        <a href="/sendinblue?utm_source=science_citoyenne&utm_medium=web&utm_campaign=newsletter_sciences_citoyennes" class="off-cs-btn off-cs-btn-primary" style="background: #ffffff; color: var(--off-espresso) !important; font-size: 1rem; padding: 0.85rem 1.75rem;">
+          ✉️ S'inscrire à la lettre d'information ➔
+        </a>
+        <span style="font-size: 0.88rem; color: #cbd5e1;">(Vous recevrez notre lettre d'information générale + les numéros spéciaux sciences citoyennes)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation Hub Footer -->
+  <footer class="off-cs-footer-hub">
+    <h3>Explorer les Autres Portails Scientifiques &amp; Données</h3>
+    <p>
+      Découvrez l'ensemble des algorithmes, documentations de recherche, jeux de données ouverts et outils civiques créés par la communauté Open Food Facts.
+    </p>
+    <div class="off-cs-button-bar">
+      <a href="/scientific-publications" class="off-cs-btn off-cs-btn-primary">Explorateur des Publications Scientifiques ➔</a>
+      <a href="/science" class="off-cs-btn off-cs-btn-secondary">Hub Science &amp; Recherche</a>
+      <a href="/scan-parties" class="off-cs-btn off-cs-btn-secondary">Guide des Scan Parties</a>
+      <a href="https://prices.openfoodfacts.org/challenges" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-secondary">Défis Open Prices</a>
+      <a href="https://wiki.openfoodfacts.org/Data_journalism" target="_blank" rel="noopener" class="off-cs-btn off-cs-btn-secondary">Wiki Journalisme de Données</a>
+      <a href="/data" class="off-cs-btn off-cs-btn-secondary">Télécharger les Données Ouvertes</a>
+    </div>
+  </footer>
+
+</div>
