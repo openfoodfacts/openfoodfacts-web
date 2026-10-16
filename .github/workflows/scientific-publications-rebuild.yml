@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.11"
 
@@ -39,7 +39,7 @@ jobs:
           python3 scripts/build_scientific_publications.py
 
       - name: Commit and push changes if any
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore(scientific-publications): recompile scientific_publications.json and static HTML"
           file_pattern: "data/scientific_publications.json lang/en/texts/scientific-publications.html lang/fr/texts/scientific-publications.html"

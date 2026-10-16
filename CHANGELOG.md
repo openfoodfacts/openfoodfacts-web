@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.9.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.8.0...v1.9.0) (2026-10-15)
+
+
+### Features
+
+* europe landing page ([324d648](https://github.com/openfoodfacts/openfoodfacts-web/commit/324d6489de23153f8eb677215d81140e1274f56f))
+* science citoyenne draft ([f2724c2](https://github.com/openfoodfacts/openfoodfacts-web/commit/f2724c2bca056b0eee8f43ed3061b1d0f92a62c6))
+
+
+### Bug Fixes
+
+* Delete data/reuses/chrome.yaml ([05e0c05](https://github.com/openfoodfacts/openfoodfacts-web/commit/05e0c05ab5e3270ff33fc3deccdd1e750c43ab32))
+
 ## [1.8.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.7.0...v1.8.0) (2026-10-08)
 
 
