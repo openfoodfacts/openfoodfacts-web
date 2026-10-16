@@ -1,4 +1,5 @@
 <!-- Hub Sciences Citoyennes Open Food Facts : Recherche Participative & Action Citoyenne -->
+<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
 <style>
   :root {
     --off-espresso: #341100;
@@ -841,6 +842,43 @@
     line-height: 1.6;
   }
 
+  /* Brevo Form Styling Integration */
+  .sib-form {
+    text-align: center;
+    background-color: transparent !important;
+  }
+  .sib-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  :where(.sib-form-message-panel) {
+    display: none;
+  }
+  :where(.sib-form-message-panel .sib-notification__icon) {
+    width: 20px;
+    height: 20px;
+  }
+  #sib-container input:-ms-input-placeholder {
+    font-family: inherit;
+    text-align: left;
+    color: #94a3b8;
+  }
+  #sib-container input::placeholder {
+    font-family: inherit;
+    text-align: left;
+    color: #94a3b8;
+  }
+  #sib-container textarea::placeholder {
+    font-family: inherit;
+    text-align: left;
+    color: #94a3b8;
+  }
+  #sib-container a {
+    text-decoration: underline;
+    color: var(--off-orange);
+  }
+
   /* Footer Navigation Hub */
   .off-cs-footer-hub {
     margin-top: 4.5rem;
@@ -1341,25 +1379,128 @@
     </div>
   </section>
 
-  <!-- Section 7: Newsletter Promo Banner -->
+  <!-- Section 7: Newsletter Signup (Brevo) -->
   <section class="off-cs-newsletter-card" id="newsletter">
     <div class="off-cs-newsletter-inner">
       <span style="display: inline-block; background: rgba(255, 255, 255, 0.2); color: #ffffff; font-size: 0.8rem; font-weight: 750; padding: 0.3rem 0.85rem; border-radius: var(--off-radius-pill); text-transform: uppercase; margin-bottom: 0.85rem; letter-spacing: 0.05em;">
         Restez au cœur de la science
       </span>
-      <h3>Abonnez-vous à la Lettre d'Information Spéciale Sciences Citoyennes</h3>
-      <p>
-        Soyez les premiers informés des nouvelles enquêtes participatives, des avancées du projet Foodture, des publications académiques et des défis communautaires. Respect absolu de votre vie privée : zéro pistage commercial, désinscription en un clic.
+      <h3>Abonnez-vous à la Lettre d'Information Sciences Citoyennes</h3>
+      <p style="margin-bottom: 1.5rem;">
+        Vous souhaitez transformer les données alimentaires ouvertes en savoir scientifique ? Participer à la première enquête ou être informé de nos prochains travaux ? <strong>Rejoignez notre liste de diffusion dédiée aux sciences citoyennes !</strong> Nous partagerons les avancées, les prochaines enquêtes, les webinaires de formation et les opportunités d'agir.
       </p>
 
-      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
-        <a href="/sendinblue?utm_source=science_citoyenne&utm_medium=web&utm_campaign=newsletter_sciences_citoyennes" class="off-cs-btn off-cs-btn-primary" style="background: #ffffff; color: var(--off-espresso) !important; font-size: 1rem; padding: 0.85rem 1.75rem;">
-          ✉️ S'inscrire à la lettre d'information ➔
-        </a>
-        <span style="font-size: 0.88rem; color: #cbd5e1;">(Vous recevrez notre lettre d'information générale + les numéros spéciaux sciences citoyennes)</span>
+      <!-- Begin Brevo Form -->
+      <div class="sib-form" style="text-align: center; background-color: transparent;">
+        <div id="sib-form-container" class="sib-form-container">
+          <div id="error-message" class="sib-form-message-panel" style="font-family: inherit; font-size: 15px; text-align: left; color: #661d1d; background-color: #ffeded; border: 1px solid #ff4949; border-radius: 12px; max-width: 540px; margin: 0 auto 1rem auto; padding: 0.85rem 1.15rem;">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon">
+                <path d="M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-11.49 120h22.979c6.823 0 12.274 5.682 11.99 12.5l-7 168c-.268 6.428-5.556 11.5-11.99 11.5h-8.979c-6.433 0-11.722-5.073-11.99-11.5l-7-168c-.283-6.818 5.167-12.5 11.99-12.5zM256 340c-15.464 0-28 12.536-28 28s12.536 28 28 28 28-12.536 28-28-12.536-28-28-28z" />
+              </svg>
+              <span class="sib-form-message-panel__inner-text">
+                Nous n'avons pas pu confirmer votre inscription. Veuillez vérifier votre adresse e-mail.
+              </span>
+            </div>
+          </div>
+
+          <div id="success-message" class="sib-form-message-panel" style="font-family: inherit; font-size: 15px; text-align: left; color: #085229; background-color: #e7faf0; border: 1px solid #13ce66; border-radius: 12px; max-width: 540px; margin: 0 auto 1rem auto; padding: 0.85rem 1.15rem;">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon">
+                <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z" />
+              </svg>
+              <span class="sib-form-message-panel__inner-text">
+                Merci pour votre inscription à la lettre d'information Sciences Citoyennes !
+              </span>
+            </div>
+          </div>
+
+          <div id="sib-container" class="sib-container--large sib-container--vertical" style="max-width: 540px; margin: 0 auto; text-align: center; background-color: #ffffff; border: 1px solid #C0CCD9; border-radius: 18px; padding: 1.5rem; direction: ltr; box-shadow: 0 12px 30px rgba(0,0,0,0.18);">
+            <form id="sib-form" method="POST" action="https://a5b38e1c.sibforms.com/serve/MUIFAOdD8CSRoh6zFZ5Eq97ybPScH1QWaLbdh4Aijm5f5trG8SBlK6BWnah4AK5nXRoL6fq6xx8IpNacN7ZoKuQVfqkTmIvyC0x-jPvrXXX7biilUFGQ5c6LWbiWeXs5UAW6VUZTcDd8aCaw4RUOcbqkKq11u6AZrj9EFyYuvfGLlRMMy57tW2aVN9Zy4d91OSgcD759AQg_xRWb" data-type="subscription">
+
+              <div style="padding: 6px 0; text-align: center;">
+                <div class="sib-form-block sib-image-form-block" style="text-align: center;">
+                  <img src="https://img.mailinblue.com/2102565/images/content_library/original/651d72597438fb42793dd35b.png" style="width: 100%; max-width: 480px; height: auto; border-radius: 12px; display: block; margin: 0 auto;" alt="Sciences Citoyennes" title="Sciences Citoyennes" />
+                </div>
+              </div>
+
+              <div style="padding: 8px 0;">
+                <div class="sib-form-block" style="font-family: inherit; font-size: 24px; font-weight: 800; text-align: left; color: #168e89;">
+                  <p style="margin: 0;">Lettre d'information Sciences Citoyennes 👩‍🔬</p>
+                </div>
+              </div>
+
+              <div style="padding: 6px 0;">
+                <div class="sib-form-block" style="font-family: inherit; font-size: 14.5px; text-align: left; color: #3C4858; line-height: 1.5;">
+                  <div class="sib-text-form-block">
+                    <p style="margin: 0 0 0.5rem 0;">Vous souhaitez transformer les données alimentaires ouvertes en savoir scientifique ? Participer à la première enquête ou être informé de nos prochains travaux ?</p>
+                    <p style="margin: 0;"><strong>Rejoignez notre liste de diffusion dédiée aux sciences citoyennes !</strong> Nous partagerons les avancées, les prochaines enquêtes, les webinaires de formation et les opportunités d'agir.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding: 10px 0;">
+                <div class="sib-input sib-form-block">
+                  <div class="form__entry entry_block">
+                    <div class="form__label-row" style="text-align: left; margin-bottom: 0.35rem;">
+                      <label class="entry__label" style="font-weight: 700; text-align: left; font-family: inherit; font-size: 14.5px; color: #3c4858;" for="EMAIL" data-required="*">
+                        Saisissez l'adresse e-mail à laquelle vous souhaitez recevoir nos nouvelles
+                      </label>
+                      <div class="entry__field" style="margin-top: 0.35rem;">
+                        <input class="input" style="width: 100%; box-sizing: border-box; padding: 0.75rem 1rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 1rem; color: #0f172a;" type="email" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="E-MAIL" data-required="true" required />
+                      </div>
+                    </div>
+                    <label class="entry__error entry__error--primary" style="font-family: inherit; font-size: 13.5px; text-align: left; color: #661d1d; background-color: #ffeded; border: 1px solid #ff4949; border-radius: 6px; padding: 0.35rem 0.65rem; display: block; margin-top: 0.25rem;">
+                    </label>
+                    <label class="entry__specification" style="font-family: inherit; font-size: 12px; text-align: left; color: #8390A4; display: block; margin-top: 0.25rem;">
+                      Votre adresse e-mail ici Ex. : marie.curie@recherche.org
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding: 8px 0; text-align: left;">
+                <div class="sib-form-block" style="text-align: left;">
+                  <button class="sib-form-block__button sib-form-block__button-with-loader" style="font-family: inherit; font-size: 15px; font-weight: 700; text-align: center; color: #FFFFFF; background-color: #f48b04; border: 0; border-radius: 999px; padding: 0.8rem 1.6rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; transition: background 0.2s ease;" form="sib-form" type="submit">
+                    <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512" style="width: 16px; height: 16px; fill: #ffffff;">
+                      <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
+                    </svg>
+                    S'inscrire à la lettre d'information Sciences Citoyennes
+                  </button>
+                </div>
+              </div>
+
+              <input type="text" name="email_address_check" value="" class="input--hidden" style="display: none;">
+              <input type="hidden" name="locale" value="fr">
+            </form>
+          </div>
+        </div>
       </div>
+      <!-- End Brevo Form -->
     </div>
   </section>
+
+  <!-- Brevo Form Client Scripts -->
+  <script>
+    window.REQUIRED_CODE_ERROR_MESSAGE = 'Veuillez choisir un code pays';
+    window.LOCALE = 'fr';
+    window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "Les informations fournies ne sont pas valides. Veuillez vérifier le format du champ et réessayer.";
+    window.REQUIRED_ERROR_MESSAGE = "Vous devez remplir ce champ.";
+    window.GENERIC_INVALID_MESSAGE = "Les informations fournies ne sont pas valides. Veuillez vérifier le format du champ et réessayer.";
+    window.INVALID_NUMBER = "Les informations fournies ne sont pas valides. Veuillez vérifier le format du champ et réessayer.";
+    window.INVALID_DATE = "Veuillez saisir une date valide";
+    window.REQUIRED_MULTISELECT_MESSAGE = 'Veuillez choisir au moins une option';
+    window.translation = {
+      common: {
+        selectedList: '{quantity} liste sélectionnée',
+        selectedLists: '{quantity} listes sélectionnées',
+        selectedOption: '{quantity} sélectionné',
+        selectedOptions: '{quantity} sélectionnés',
+      }
+    };
+    var AUTOHIDE = Boolean(0);
+  </script>
+  <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 
   <!-- Navigation Hub Footer -->
   <footer class="off-cs-footer-hub">
