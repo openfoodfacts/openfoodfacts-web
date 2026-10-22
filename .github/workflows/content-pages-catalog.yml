@@ -1,0 +1,66 @@
+name: Content pages catalog
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "lang/**/texts/**/*.html"
+      - "lang/content-pages-metadata.json"
+      - "scripts/generate_content_pages_catalog.py"
+      - ".github/workflows/content-pages-catalog.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "lang/**/texts/**/*.html"
+      - "lang/content-pages-metadata.json"
+      - "scripts/generate_content_pages_catalog.py"
+      - ".github/workflows/content-pages-catalog.yml"
+
+jobs:
+  check-catalog:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Regenerate content pages catalog
+        run: python3 scripts/generate_content_pages_catalog.py
+
+      - name: Verify generated files are committed
+        run: |
+          git diff --exit-code lang/content-pages.json || {
+            echo "lang/content-pages.json is outdated. Run: python3 scripts/generate_content_pages_catalog.py"
+            exit 1
+          }
+
+  update-catalog-on-main:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Regenerate content pages catalog
+        run: python3 scripts/generate_content_pages_catalog.py
+
+      - name: Commit catalog changes
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "Update content pages catalog"
+          file_pattern: lang/content-pages.json
