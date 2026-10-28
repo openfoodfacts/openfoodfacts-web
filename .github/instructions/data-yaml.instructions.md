@@ -18,8 +18,8 @@ When adding or modifying YAML entities under `data/` (such as `data/reuses/`, `d
 
 ## 3. Press Review Schema Requirements (`data/press-review/`)
 - Filename format: `YYYY-MM-DD-<slug>.yaml`.
-- **Required fields:** `title`, `date`, `media`, `category`, `language`, `url`.
-- Valid categories: `article`, `podcast`, `study`, `video`.
+- **Required fields:** `id` (same as the file name), `date` (`YYYY-MM-DD`), `source`, `title`, `type`.
+- Valid types: `article`, `podcast`, `study`, `video`.
 
 ## 4. Validation
 Before committing any changes to `data/`, run:

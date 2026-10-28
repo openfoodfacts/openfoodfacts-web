@@ -20,5 +20,11 @@ When creating or modifying Python scripts in `scripts/`:
 Ensure unit tests cover new helpers or validation logic:
 ```bash
 python3 scripts/compile.py --check
-PYTHONPATH=scripts python3 -m unittest discover -s scripts -p "test_*.py"
+
+PYTHONPATH=scripts python3 scripts/test_translation_qa.py
+PYTHONPATH=scripts python3 scripts/test_add_reuse.py
+PYTHONPATH=scripts python3 scripts/test_add_press_review.py
+PYTHONPATH=scripts python3 scripts/test_add_query.py
+PYTHONPATH=scripts python3 scripts/test_add_scan_party.py
+PYTHONPATH=scripts python3 scripts/test_add_scientific_publication.py
 ```
