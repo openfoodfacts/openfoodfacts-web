@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.9.0...v1.10.0) (2026-10-20)
+
+
+### Features
+
+* Add developer newsletter signup to API page ([03953b3](https://github.com/openfoodfacts/openfoodfacts-web/commit/03953b300b319bd3b806bd7895247bb56650485a))
+
 ## [1.9.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.8.0...v1.9.0) (2026-10-15)
 
 
