@@ -1,234 +1,882 @@
- <!-- no side column -->
+<!-- no side column -->
 <style>
-.contribute-cards-row {
+/* Scoped Open Food Facts Contribute Page Styles */
+#off-contribute-page {
+    --off-espresso: #341100;
+    --off-espresso-dark: #220b00;
+    --off-cream: #fffaf5;
+    --off-peach-light: #fff3ec;
+    --off-peach-tint: #ffedd5;
+    --off-orange: #ed8857;
+    --off-orange-hover: #d77243;
+    --off-green: #209552;
+    --off-green-light: #e8f5e9;
+    --off-blue: #0284c7;
+    --off-blue-light: #eff6ff;
+    --off-purple: #7c3aed;
+    --off-purple-light: #f5f3ff;
+    --off-amber: #d97706;
+    --off-amber-light: #fef3c7;
+    --off-text-main: #1f2937;
+    --off-text-muted: #4b5563;
+    --off-border: #fed7aa;
+    --off-border-subtle: #f3f4f6;
+    --off-surface: #ffffff;
+    --off-radius-card: 20px;
+    --off-radius-pill: 999px;
+    --off-shadow-sm: 0 4px 14px rgba(52, 17, 0, 0.04);
+    --off-shadow-md: 0 8px 26px rgba(52, 17, 0, 0.07);
+    --off-shadow-hover: 0 16px 36px rgba(52, 17, 0, 0.12);
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--off-text-main);
+    max-width: 1200px;
+    margin: 0 auto 3.5rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    line-height: 1.6;
+}
+
+#off-contribute-page *,
+#off-contribute-page *::before,
+#off-contribute-page *::after {
+    box-sizing: border-box;
+}
+
+/* Badges & Pills */
+.off-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--off-radius-pill);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+    width: fit-content;
+}
+.off-badge-pill.orange { background: var(--off-peach-light); color: var(--off-orange-hover); border: 1px solid var(--off-border); }
+.off-badge-pill.green  { background: var(--off-green-light); color: #166534; border: 1px solid #bbf7d0; }
+.off-badge-pill.blue   { background: var(--off-blue-light); color: #0369a1; border: 1px solid #bae6fd; }
+.off-badge-pill.purple { background: var(--off-purple-light); color: #6d28d9; border: 1px solid #ddd6fe; }
+.off-badge-pill.amber  { background: var(--off-amber-light); color: #b45309; border: 1px solid #fde68a; }
+
+/* Hero Section */
+#off-contribute-page .contribute-hero {
+    background: linear-gradient(145deg, #ffffff 0%, var(--off-cream) 100%);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 28px;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 3.5rem;
+    box-shadow: var(--off-shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+#off-contribute-page .contribute-hero::after {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(237, 136, 87, 0.15) 0%, rgba(237, 136, 87, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+#off-contribute-page .hero-content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+#off-contribute-page .hero-text h1 {
+    font-size: clamp(2.1rem, 3.8vw, 3rem);
+    font-weight: 900;
+    color: var(--off-espresso);
+    line-height: 1.15;
+    margin: 0 0 1.25rem 0;
+    letter-spacing: -0.02em;
+}
+
+#off-contribute-page .hero-lead {
+    font-size: 1.15rem;
+    color: var(--off-text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.65;
+}
+
+#off-contribute-page .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    gap: 0.85rem;
+    margin-top: 1.75rem;
 }
-.contribute-cards-row > .columns {
+
+#off-contribute-page .hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#off-contribute-page .hero-media img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    filter: drop-shadow(0 14px 32px rgba(52, 17, 0, 0.12));
+    border-radius: 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+#off-contribute-page .hero-media img:hover {
+    transform: translateY(-4px) scale(1.015);
+    filter: drop-shadow(0 20px 40px rgba(52, 17, 0, 0.16));
+}
+
+/* Call to Action Buttons */
+.off-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--off-radius-pill);
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    line-height: 1.2;
+    border: none;
+}
+
+.off-btn-primary {
+    background: var(--off-orange);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(237, 136, 87, 0.35);
+}
+.off-btn-primary:hover {
+    background: var(--off-orange-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(237, 136, 87, 0.45);
+    color: #ffffff !important;
+}
+
+.off-btn-secondary {
+    background: #ffffff;
+    color: var(--off-espresso) !important;
+    border: 1px solid var(--off-border);
+    box-shadow: var(--off-shadow-sm);
+}
+.off-btn-secondary:hover {
+    background: var(--off-cream);
+    border-color: var(--off-orange);
+    transform: translateY(-2px);
+    color: var(--off-orange-hover) !important;
+}
+
+.off-btn-green {
+    background: var(--off-green);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(32, 149, 82, 0.3);
+}
+.off-btn-green:hover {
+    background: #197c43;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(32, 149, 82, 0.4);
+    color: #ffffff !important;
+}
+
+.off-btn-dark {
+    background: var(--off-espresso);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(52, 17, 0, 0.25);
+}
+.off-btn-dark:hover {
+    background: var(--off-espresso-dark);
+    transform: translateY(-2px);
+    color: #ffffff !important;
+}
+
+.off-btn-block {
+    width: 100%;
+}
+
+/* Section Headers */
+#off-contribute-page .section-header {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto 2.75rem auto;
+}
+
+#off-contribute-page .section-header h2 {
+    font-size: clamp(1.85rem, 3vw, 2.45rem);
+    font-weight: 800;
+    color: var(--off-espresso);
+    margin: 0.25rem 0 0.85rem 0;
+    line-height: 1.25;
+}
+
+#off-contribute-page .section-header p {
+    font-size: 1.1rem;
+    color: var(--off-text-muted);
+    margin: 0;
+}
+
+/* Responsive Grid Systems */
+.off-card-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.off-card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+
+.off-card-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+
+/* Feature & Action Cards */
+.off-feature-card {
+    background: var(--off-surface);
+    border: 1px solid var(--off-border-subtle);
+    border-radius: var(--off-radius-card);
+    padding: 1.75rem;
     display: flex;
     flex-direction: column;
-    margin-bottom: 1.5rem;
+    box-shadow: var(--off-shadow-sm);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
 }
-.contribute-cards-row > .columns .button {
+
+.off-feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--off-border);
+    box-shadow: var(--off-shadow-hover);
+}
+
+.off-card-art {
+    background: var(--off-cream);
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    min-height: 180px;
+    position: relative;
+    overflow: hidden;
+}
+
+.off-card-art img {
+    max-width: 100%;
+    max-height: 155px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.off-feature-card:hover .off-card-art img {
+    transform: scale(1.04);
+}
+
+.off-feature-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--off-espresso);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+}
+
+.off-feature-card p {
+    font-size: 0.95rem;
+    color: var(--off-text-muted);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.off-feature-card .card-footer-action {
     margin-top: auto;
-    margin-bottom: 0;
-    align-self: center;
+    padding-top: 0.75rem;
 }
-.contribute-grid {
-    display: flex !important;
-    flex-wrap: wrap;
+
+/* Expert Callout Banner */
+#off-contribute-page .expert-banner {
+    background: linear-gradient(135deg, #fff7ed 0%, #fffbf5 100%);
+    border: 1px solid var(--off-border);
+    border-radius: 24px;
+    padding: clamp(1.75rem, 3.5vw, 2.75rem);
+    margin-bottom: 2.75rem;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 2rem;
+    align-items: center;
+    box-shadow: var(--off-shadow-sm);
+}
+
+#off-contribute-page .expert-banner-art {
+    display: flex;
     justify-content: center;
 }
-.contribute-grid > li {
-    display: flex !important;
-    flex-direction: column;
-    margin-bottom: 1.5rem;
+
+#off-contribute-page .expert-banner-art img {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    filter: drop-shadow(0 8px 24px rgba(52, 17, 0, 0.08));
 }
-.contribute-grid > li .button {
-    margin-top: auto;
-    margin-bottom: 0;
-    align-self: center;
+
+#off-contribute-page .expert-banner-text h2 {
+    font-size: clamp(1.65rem, 2.7vw, 2.2rem);
+    font-weight: 800;
+    color: var(--off-espresso);
+    margin: 0 0 0.85rem 0;
+    line-height: 1.2;
+}
+
+#off-contribute-page .expert-banner-text p {
+    font-size: 1.05rem;
+    color: var(--off-text-muted);
+    margin: 0 0 1.5rem 0;
+    line-height: 1.65;
+}
+
+/* Communication Channels Grid */
+.channel-card {
+    background: #ffffff;
+    border: 1px solid var(--off-border-subtle);
+    border-radius: var(--off-radius-card);
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: var(--off-shadow-sm);
+    transition: all 0.25s ease;
+}
+
+.channel-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--off-border);
+    box-shadow: var(--off-shadow-hover);
+}
+
+.channel-icon-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--off-peach-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 4px 12px rgba(237, 136, 87, 0.15);
+}
+
+.channel-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--off-espresso);
+    margin: 0 0 0.75rem 0;
+}
+
+.channel-card p {
+    font-size: 0.95rem;
+    color: var(--off-text-muted);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+/* Operations Highlight Box */
+.operation-card {
+    border-left: 5px solid var(--off-orange);
+}
+.operation-card.green-accent {
+    border-left-color: var(--off-green);
+}
+.operation-card.purple-accent {
+    border-left-color: var(--off-purple);
+}
+.operation-card.blue-accent {
+    border-left-color: var(--off-blue);
+}
+
+/* Bottom Explore Section */
+.bottom-projects-cta {
+    background: linear-gradient(135deg, var(--off-espresso) 0%, #1a0800 100%);
+    border-radius: 24px;
+    padding: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+    color: #ffffff;
+    margin-top: 3.5rem;
+    box-shadow: var(--off-shadow-md);
+}
+
+.bottom-projects-cta h2 {
+    color: #ffffff;
+    font-size: clamp(1.8rem, 3vw, 2.3rem);
+    font-weight: 800;
+    margin: 0 0 0.85rem 0;
+}
+
+.bottom-projects-cta p {
+    color: #ffd8c2;
+    font-size: 1.1rem;
+    max-width: 680px;
+    margin: 0 auto 1.75rem auto;
+}
+
+/* Subtle Divider */
+#off-contribute-page hr.off-divider {
+    border: none;
+    border-top: 1px solid #fed7aa;
+    margin: 3.5rem 0;
+    opacity: 0.6;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .off-card-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .off-card-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    #off-contribute-page .hero-content-grid,
+    #off-contribute-page .expert-banner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    #off-contribute-page .hero-actions {
+        justify-content: center;
+    }
+    .off-card-grid-4,
+    .off-card-grid-3,
+    .off-card-grid-2 {
+        grid-template-columns: 1fr;
+    }
+    #off-contribute-page .section-header {
+        text-align: center;
+    }
 }
 </style>
 
-<h1 class="emphasized-title">Contribute to Open Food Facts</h1>
+<div id="off-contribute-page">
 
-<div class="row">
-	<div class="small-12 medium-6 large-4 columns">
-		<img src="https://blog.openfoodfacts.org/wp-content/uploads/2022/11/5-1024x726.png" alt="Open Food Facts community" style="margin-bottom:2rem">
-	</div>
-	<div class="small-12 medium-6 large-8 columns">
-		<p>
-Open Food Facts exists thanks to the citizens who give their time and talent in many different activities.
-We are a large international family that gives a unique character to this beautiful project, made for all, by all! 🌍✨ 
-		</p>
-		<a class="button" href="https://wiki.openfoodfacts.org/Contributor">Join our community</a>
-		<p>
-To facilitate the involvement of our contributors and allow the project to grow in a more dynamic way, we are setting up a Contributors Skill Pool, as well as teams of volunteers by theme.
-		</p>
-		<p>
-✅ The aim is to match your skills and interests to the needs of the project.
-		</p>
-		<p>
-Whether you are already a very involved contributor or have just arrived and want to participate, we invite you to fill in the form below. (All personal data you enter will be kept confidential and used only by the permanent team to contact you).
-		</p>
-<a class="button" href="https://connect.openfoodfacts.org/join-the-contributor-skill-pool-open-food-facts">Contributors Skill Pool form in ENG/FR</a>
-	</div>
-</div>
+    <!-- Hero Banner with Animated Collaborative Puzzle -->
+    <header class="contribute-hero">
+        <div class="hero-content-grid">
+            <div class="hero-text">
+                <span class="off-badge-pill orange">
+                    ✨ 100% Volunteer Driven • Made for all, by all
+                </span>
+                <h1>Contribute to Open Food Facts</h1>
+                <p class="hero-lead">
+                    Open Food Facts is a global citizen movement and independent non-profit powering food transparency around the world. We are an international community of volunteers giving our time and talent to build an open common good for healthier living and a cleaner planet. 🌍🥗
+                </p>
+                <p style="font-size: 0.98rem; color: var(--off-text-muted); margin-bottom: 0;">
+                    To match your unique skills and interests with ongoing projects, we invite you to join our community or join our Contributors Skill Pool.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://wiki.openfoodfacts.org/Contributor" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        Join our community
+                    </a>
+                    <a href="https://connect.openfoodfacts.org/join-the-contributor-skill-pool-open-food-facts" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        📋 Contributors Skill Pool Form (ENG/FR)
+                    </a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img src="/images/illustrations/shared/community-puzzle-faces.png" alt="Open Food Facts Community Contributors Puzzle" width="600" height="425" class="hero-puzzle-faces">
+            </div>
+        </div>
+    </header>
 
+    <!-- Section 1: Everyone can contribute -->
+    <section>
+        <div class="section-header">
+            <span class="off-badge-pill green">🌟 Quick Micro-Contributions</span>
+            <h2>Everyone can contribute</h2>
+            <p>
+                Whether you have 2 minutes while grocery shopping or an afternoon to share, you can make a tangible difference in global food transparency.
+            </p>
+        </div>
 
-<hr>
+        <div class="off-card-grid-4">
+            <!-- Card 1: Add products -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/food/off-add-products-animated.svg" alt="Animated barcode scanner uploading product" width="560" height="420" loading="lazy">
+                </div>
+                <span class="off-badge-pill blue">📱 Mobile &amp; Web</span>
+                <h3>Add products</h3>
+                <p>
+                    Use our free Android or iPhone app to easily scan barcodes from your pantry or grocery store shelves and upload clear photos of labels. No smartphone? You can snap photos with your camera and upload directly on the web.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://world.openfoodfacts.org/open-food-facts-mobile-app?utm_source=off&amp;utm_medium=web&amp;utm_campaign=contribute_page" class="off-btn off-btn-primary off-btn-block">
+                        Install Mobile App
+                    </a>
+                </div>
+            </article>
 
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2 class="emphasized-title">Everyone can contribute</h2>
-		<h4 class="subheader">Be part of our collaborative, free and open source database of food products from around the world!</h4>
-		<p>Open Food Facts is a non-profit project made entirely by volunteers, we do need you.</p>
+            <!-- Card 2: Complete products -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-hunger-games-category-validation-animated.svg" alt="Animated gamification controller and category validation" width="560" height="420" loading="lazy">
+                </div>
+                <span class="off-badge-pill amber">🎮 Fun &amp; Gamified</span>
+                <h3>Complete products</h3>
+                <p>
+                    Extract nutrition tables, crop ingredient lists, and classify food categories. Verify whether products are vegan, vegetarian, or gluten-free, or compete in our community games!
+                </p>
+                <div class="card-footer-action">
+                    <a href="/contribute-to-open-food-facts-by-playing" class="off-btn off-btn-secondary off-btn-block">
+                        Play Hunger Games
+                    </a>
+                </div>
+            </article>
 
-	</div>
-</div>
-<div class="row text-center contribute-cards-row">
-	<div class="medium-3 columns">
-		<h3>Add products</h3>
-		<p>Use our <a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=sr-cs&utm_source=off&utm_campaign=contribute-promo&utm_medium=website">Android</a> or <a href="https://apps.apple.com/app/open-food-facts/id588797948?l=sr-cs&amp;utm_source=off&utm_campaign=contribute-promo&utm_medium=website">iPhone</a> to easily scan the barcode of products from your home or local stores and upload pictures of their label.</p>
-		<p>No smartphone? No problem: you can also use your camera to add products directly on the web site.</p>
-		<a class="button" href="https://world.openfoodfacts.org/open-food-facts-mobile-app?utm_source=off&utm_medium=web&utm_campaign=search_and_links_promo_en">Install the app to contribute to food, cosmetic, pet food and product transparency</a>
-	</div>
+            <!-- Card 3: Tell the world -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-community-building-animated.svg" alt="Animated community celebration and sharing" width="560" height="420" loading="lazy">
+                </div>
+                <span class="off-badge-pill purple">📢 Spread the Word</span>
+                <h3>Tell the world</h3>
+                <p>
+                    Passionate about honest food information? Introduce Open Food Facts to friends, family, and local consumer co-ops. Share articles on social media or organize a local scan party.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://world.openfoodfacts.org/follow-open-food-facts" class="off-btn off-btn-secondary off-btn-block">
+                        Share on Social Media
+                    </a>
+                </div>
+            </article>
 
+            <!-- Card 4: Make it local -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-make-it-local-animated.svg" alt="Animated spinning multilingual world globe" width="560" height="420" loading="lazy">
+                </div>
+                <span class="off-badge-pill green">🌍 Local Communities</span>
+                <h3>Make it local</h3>
+                <p>
+                    Help translate the mobile application, web portal, and documentation into your native tongue. Bootstrap or join a local chapter to catalog regional specialties and local brands.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Translations" class="off-btn off-btn-green off-btn-block">
+                        Help Translate OFF
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
 
-	<div class="medium-3 columns">
-		<h3>Complete products</h3>
-    <p>We need to categorize products and extract ingredients lists and nutrition facts to
-analyze their nutritional quality, determine if they are suitable for vegans and vegetatarians and much more!</p>
-    <p><a href="/help-complete-products">You can help us complete products</a> by selecting and cropping photos and filling in information, or by participating in our <a href="/contribute-to-open-food-facts-by-playing">Hunger Games</a>.</p>
+    <!-- Section 2: Expert Help Needed -->
+    <section>
+        <div class="expert-banner">
+            <div class="expert-banner-art">
+                <img src="/images/illustrations/shared/off-expert-help-needed-animated.svg" alt="Animated scientist and developers working together" width="560" height="420" loading="lazy">
+            </div>
+            <div class="expert-banner-text">
+                <span class="off-badge-pill amber">🛠️ Specialized Skills Wanted</span>
+                <h2>Expert help needed</h2>
+                <p>
+                    Scaling Open Food Facts requires specialized talents across software engineering, artificial intelligence, product design, community management, and open science. Bring your expertise to a mission that matters!
+                </p>
+                <a href="https://connect.openfoodfacts.org/join-the-contributor-skill-pool-open-food-facts" class="off-btn off-btn-dark" target="_blank" rel="noopener noreferrer">
+                    Join the Contributor Skill Pool
+                </a>
+            </div>
+        </div>
 
-	</div>
+        <div class="off-card-grid-3">
+            <!-- Project management -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-project-management-animated.svg" alt="Animated roadmap and checklist illustration" width="560" height="420" loading="lazy">
+                </div>
+                <span class="off-badge-pill blue">Strategy &amp; Roadmap</span>
+                <h3>Project management</h3>
+                <p>
+                    We have hundreds of creative ideas, but prioritizing them into actionable roadmaps and coordinating volunteer working groups requires thoughtful leadership.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Projects_homepage" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        View Projects Wiki
+                    </a>
+                </div>
+            </article>
 
-	<div class="medium-3 columns">
-		<h3>Tell the world</h3>
-		<p>Do you like Open Food Facts? Tell others about it!</p>
-		<p>You can present the project to your family and friends, show them how to install the app and contribute, write a blog post, and share Open Food Facts on social media.</p>
+            <!-- Design & UX -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-design-ux-animated.svg" alt="Animated vector pen tool and design wireframe" width="560" height="420" loading="lazy">
+                </div>
+                <span class="off-badge-pill purple">UI / UX &amp; Branding</span>
+                <h3>Design &amp; UX</h3>
+                <p>
+                    Craft accessible, delightful user experiences across our mobile applications and responsive web portal, design infographics, and create engaging visuals.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts/openfoodfacts-design" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Join Design on GitHub
+                    </a>
+                </div>
+            </article>
 
-	</div>
+            <!-- Development & AI -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-developers-ai-animated.svg" alt="Animated Python mascot and neural circuit code illustration" width="560" height="420" loading="lazy">
+                </div>
+                <span class="off-badge-pill orange">Code &amp; Machine Learning</span>
+                <h3>Development &amp; AI</h3>
+                <p>
+                    Hack on our Perl &amp; MongoDB backend, high-volume JSON API, cross-platform Flutter mobile app (Smooth App), Python computer vision / OCR models, and SDKs.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://world.openfoodfacts.org/development" class="off-btn off-btn-primary off-btn-block">
+                        Explore Developer Portal
+                    </a>
+                </div>
+            </article>
 
-	<div class="medium-3 columns">
-		<h3>Make it local</h3>
-		<p>You can help us translate the website and mobile app in your language as well as the documents, announcements etc.</p>
-		<p>Start or join a local contributors community: add local products, recruit friends, present the project in local meetups and conferences etc.</p>
-		<a class="button" href="https://wiki.openfoodfacts.org/Translations">Help translate Open Food Facts</a>
-	</div>
-</div>
+            <!-- Community building -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-community-building-animated.svg" alt="Animated community connection" width="560" height="420" loading="lazy">
+                </div>
+                <span class="off-badge-pill green">Global Movement</span>
+                <h3>Community building</h3>
+                <p>
+                    Help recruit, welcome, and mentor volunteers worldwide. Support local chapters in Europe, the Americas, Africa, and Asia to unite food transparency ambassadors.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Contributor" class="off-btn off-btn-secondary off-btn-block">
+                        Join Community Team
+                    </a>
+                </div>
+            </article>
 
-<hr>
+            <!-- Communication & Media -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-lets-talk-animated.svg" alt="Animated conversation bubble and megaphone" width="560" height="420" loading="lazy">
+                </div>
+                <span class="off-badge-pill amber">Press &amp; Outreach</span>
+                <h3>Communication</h3>
+                <p>
+                    Amplify our message! Help share stories of citizen science impact, write blog articles, communicate data reuse milestones, and coordinate media relations.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/press" class="off-btn off-btn-secondary off-btn-block">
+                        Visit Press Room
+                    </a>
+                </div>
+            </article>
 
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2 class="emphasized-title">Expert help needed</h2>
-		<p>Developing Open Food Facts also requires specialized knowledge and expertise in many different areas:</p>
-	</div>
-</div>
+            <!-- Special Projects & Research -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-discover-open-science-animated.svg" alt="Animated open data dashboard and scientific network" width="560" height="420" loading="lazy">
+                </div>
+                <span class="off-badge-pill blue">Research &amp; Open Science</span>
+                <h3>Special projects &amp; Science</h3>
+                <p>
+                    Collaborate on food data science research with universities, public health agencies, consumer associations, and environmental NGOs to accelerate open food science.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/science" class="off-btn off-btn-secondary off-btn-block">
+                        Open Food Facts Science
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
 
-<ul class="text-center small-block-grid-1 medium-block-grid-2 large-block-grid-3 contribute-grid">
-	<li>
-		<h3>Project management</h3>
-		<p>We have tons of ideas and you probably have even more, but it is quite a challenge to prioritize them, to build a roadmap, and to manage projects when every participant is a volunteer with often limited time available.</p>
-	</li>
+    <!-- Section 3: Let's talk! -->
+    <section>
+        <div class="section-header">
+            <span class="off-badge-pill orange">💬 Live Community Channels</span>
+            <h2>Let's talk!</h2>
+            <p>
+                Ideas, questions, and collaborations happen every single day across our open channels. Drop in and say hello!
+            </p>
+        </div>
 
-	<li>
-		<h3>Design</h3>
-		<p>We need help to build a better user experience on the Open Food Facts web site and mobile app, to improve their design, to create impactful presentation materials etc.</p>
-		<a class="button" href="https://github.com/openfoodfacts/openfoodfacts-design">Join our design effort</a>
-	</li>
+        <div class="off-card-grid-3">
+            <div class="channel-card">
+                <div class="channel-icon-wrap">💬</div>
+                <h3>Slack Community</h3>
+                <p>
+                    Our active real-time discussion workspace where contributors, maintainers, designers, and researchers hang out, share updates, and answer questions.
+                </p>
+                <a href="https://slack.openfoodfacts.org/" class="off-btn off-btn-primary off-btn-block" target="_blank" rel="noopener noreferrer">
+                    Join Our Slack Workspace
+                </a>
+            </div>
 
-	<li>
-		<h3>Development</h3>
-		<p>We have a <a href="https://world.openfoodfacts.org/development">lot of development work to do</a>. On the Open Food Facts backend (Perl and MongoDB), API (JSON), web site (templatized HTML5, JS, Foundation), our <a href="https://github.com/openfoodfacts/smooth-app">Flutter mobile app for iOS and Android</a>, but also to build new cool reuses etc. We have SDK projects in many programming languages to ensure anyone can reuse and contribute to Open Food Facts, in any language. We also have a growing Artificial Intelligence effort to simplify contribution work. Our code is on <a href="https://github.com/openfoodfacts">GitHub</a>.
-			<a class="button" href="https://github.com/openfoodfacts">Explore the list of projects on GitHub</a>
-	</li>
+            <div class="channel-card">
+                <div class="channel-icon-wrap">🌐</div>
+                <h3>Social Media</h3>
+                <p>
+                    Follow Open Food Facts on Mastodon, Bluesky, LinkedIn, YouTube, and Instagram to stay up to date with new features, campaigns, and news.
+                </p>
+                <a href="https://world.openfoodfacts.org/follow-open-food-facts" class="off-btn off-btn-secondary off-btn-block">
+                    Follow Our Channels
+                </a>
+            </div>
 
-	<li>
-		<h3>Community building</h3>
-		<p>We need to build local communities in all countries and at the same time unite them globally.</p>
-		<p>It is very difficult to bootstrap a local community in a country without living there, so your help to find the first very motivated participants is essential. Are you one of them?</p>
-	</li>
-	<li>
-		<h3>Communication</h3>
-		<p>We are not sure what to write here, could you help?</p>
-		<p>More seriously, there are lot of cool things that users, contributors and reusers do with Open Food Facts, it would be great to get more people to know about it. In particular, we need help for public and <a href="/press">media relations</a>.</p>
-	</li>
-	<li>
-		<h3>Special projects</h3>
-<p>There are lots of interesting and original applications of food open data that we could work on with government food agencies, food producers, researchers, universities, schools, NGOs etc. Maybe you already have ideas? If you do, please help us to push them forward.</p></li>
-</ul>
+            <div class="channel-card">
+                <div class="channel-icon-wrap">📚</div>
+                <h3>Collaborative Wiki</h3>
+                <p>
+                    Discover in-depth documentation, international taxonomy guidelines, meeting notes, project roadmaps, and tutorials on contributing.
+                </p>
+                <a href="https://wiki.openfoodfacts.org/" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                    Explore the Wiki
+                </a>
+            </div>
+        </div>
+    </section>
 
-<hr>
+    <hr class="off-divider">
 
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2>Let's talk!</h2>
-		<h4 class="subheader">A lot of ideas, energy and enthusiasm are shared in our contributors community, join us!</h4>
-		<p>Here are some places where you can meet other contributors, talk to them and work with them:</p>
-	</div>
-</div>
+    <!-- Section 4: Make a difference (Ongoing Operations) -->
+    <section>
+        <div class="section-header">
+            <span class="off-badge-pill green">⚡ Active Campaigns</span>
+            <h2>Make a difference</h2>
+            <p>
+                Take part in focused citizen science initiatives to address climate impact, packaging waste, and database accuracy:
+            </p>
+        </div>
 
-<ul class="text-center small-block-grid-1 medium-block-grid-2 large-block-grid-3 contribute-grid">
-	<li>
-		<h3>Slack</h3>
-		<p>Slack is the best way to interact and collaborate with other contributors, developers and reusers. It's a discussion forum you can access from your browser or your phone. It completely changed how we work together. Please try it, <a href="https://slack.openfoodfacts.org/">click here to get invited to our Slack</a>.</p>
-		<a class="button" href="https://slack.openfoodfacts.org/">Join the Open Food Facts chat server</a>
-	</li>
+        <div class="off-card-grid-4">
+            <!-- Operation Packaging -->
+            <article class="off-feature-card operation-card green-accent">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-operation-packaging-animated.svg" alt="Animated scale weighing food packaging" width="560" height="420" loading="lazy">
+                </div>
+                <span class="off-badge-pill green">Eco-Impact</span>
+                <h3>Operation Packaging</h3>
+                <p>
+                    Weigh and photograph food containers and wrappers to calculate packaging footprints and hold manufacturers accountable for waste reduction.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://blog.openfoodfacts.org/en/plein-pot-presse" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Join Operation Packaging
+                    </a>
+                </div>
+            </article>
 
-	<li>
-		<h3>Spread the word on social media</h3>
-		<p>We have <a href="http://world.openfoodfacts.org/follow-open-food-facts">many social media accounts and groups for Open Food Facts contributors</a> in many languages. Joining them is a good way to get news about the project and to share announcements to a wider audience.</p>
-	</li>
+            <!-- Data Quality Effort -->
+            <article class="off-feature-card operation-card orange">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/food/off-data-quality-animated.svg" alt="Animated data quality magnifying glass and checkmarks" width="560" height="420" loading="lazy">
+                </div>
+                <span class="off-badge-pill orange">Accuracy &amp; OCR</span>
+                <h3>Data quality effort</h3>
+                <p>
+                    Join monthly data quality working group meetings to inspect product discrepancies, audit algorithms, and refine nutritional calculations.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Quality" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Quality Working Group
+                    </a>
+                </div>
+            </article>
 
-	<li>
-		<h3>Wiki</h3>
-		<p>We also have a <a href="https://wiki.openfoodfacts.org/">wiki</a> that we use to collaboratively document Open Food Facts and its sub-projects. From the wiki, you can learn how to help translate the multilingual information (categories, labels etc.) a food product might have (<a href="https://wiki.openfoodfacts.org/Global_taxonomies">using what we call taxonomies</a>). You can even help add a food category or a label that is not yet supported by Open Food Facts.</p>
-		<a class="button" href="https://wiki.openfoodfacts.org/">Explore the Open Food Facts wiki</a>
-	</li>
-</ul>
+            <!-- Become a Patron -->
+            <article class="off-feature-card operation-card purple-accent">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-become-a-patron-animated.svg" alt="Animated heart and patron badge support" width="560" height="420" loading="lazy">
+                </div>
+                <span class="off-badge-pill purple">Financial Support</span>
+                <h3>Become a patron</h3>
+                <p>
+                    As an independent non-profit, Open Food Facts relies on individual donations to keep servers humming, preserve open data, and remain 100% ad-free.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/donors" class="off-btn off-btn-primary off-btn-block">
+                        Support as a Donor
+                    </a>
+                </div>
+            </article>
 
+            <!-- Your own operation -->
+            <article class="off-feature-card operation-card blue-accent">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/contact-us-animated.svg" alt="Contact us illustration" width="247" height="200" loading="lazy">
+                </div>
+                <span class="off-badge-pill blue">Your Initiative</span>
+                <h3>Your own operation</h3>
+                <p>
+                    Have an ambitious idea, academic thesis, or community campaign? We'd love to partner with you and supply the open food data you need.
+                </p>
+                <div class="card-footer-action">
+                    <a href="mailto:contact@openfoodfacts.org" class="off-btn off-btn-secondary off-btn-block">
+                        Get in Touch with Us
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
 
-<div class="row text-center">
-	<div class="large-12 columns">
-		<h2 class="emphasized-title">Make a difference</h2>
-		<h4 class="subheader">We have several important on-going operations, join us!</h4>
-		<p>Here are some places where you can have impact now:</p>
-	</div>
-</div>
+    <!-- Bottom Projects CTA -->
+    <div class="bottom-projects-cta">
+        <h2>Ready to dive into the projects?</h2>
+        <p>
+            Explore our roadmap, active task forces, and community initiatives on the collaborative wiki homepage.
+        </p>
+        <a href="https://wiki.openfoodfacts.org/Projects_homepage" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer" style="font-size: 1.05rem; padding: 0.85rem 1.85rem;">
+            Explore On-Going Projects on Wiki &rarr;
+        </a>
+    </div>
 
-<ul class="text-center small-block-grid-1 medium-block-grid-2 large-block-grid-3 contribute-grid">
-	<li>
-		<h3>Operation Packaging</h3>
-		<p>Let's weigh the packagings of common foods to discover how much impact we have.</p>
-		<p><a href="https://blog.openfoodfacts.org/fr/rejoignez-loperation-plein-pot-sur-les-emballages">How you can help as an Open Food Facts user</a>, <a href="https://blog.openfoodfacts.org/fr/plein-pot-fabricants">How you can help as a producer</a>, <a href="https://blog.openfoodfacts.org/en/plein-pot-presse">Press page</a></p>
-	</li>
-
-	<li>
-		<h3>Data quality effort</h3>
-		<p>We have a data quality effort that <a href="https://wiki.openfoodfacts.org/Quality">you can join here</a>. We meet monthly (details on the wikipage).</p>
-	</li>
-
-	<li>
-		<h3>Your own operation</h3>
-		<p>If you have an important topic, you are very welcome to organize your own operation.</p>
-		<a class="button" href="mailto:contact@openfoodfacts.org">Get in touch at contact@openfoodfacts.org</a>
-	</li>
-</ul>
-
-<a class="button" href="https://wiki.openfoodfacts.org/Projects_homepage">Explore on-going projects</a>
-
-<hr>
-
-<div class="row text-center">
-	<div class="large-12 columns">
-		<p>There are many more ways to contribute to Open Food Facts, please <a href="https://slack.openfoodfacts.org">join us on Slack</a> and let's start the discussion!</p>
-	</div>
 </div>
 
 <script>
-	function onMount(fn) {
-		if (document.readyState === "loading") {
-			document.addEventListener("DOMContentLoaded", fn);
-		} else {
-			fn();
-		}
-	}
+    function onMount(fn) {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+        } else {
+            fn();
+        }
+    }
 
-	onMount(() => {
-		function sendHeight() {
-			const height = document.body.scrollHeight;
-			console.debug("Calculated height: " + height);
-			if (typeof parent !== 'undefined' && parent !== window) {
-				parent.postMessage({ frameHeight: height }, '*');
-			}
-		}
-		// Send the height on initial load
-		sendHeight();
-		// Send the height whenever the window is resized
-		window.addEventListener("resize", sendHeight);
-	});
+    onMount(() => {
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            console.debug("Calculated height: " + height);
+            if (typeof parent !== 'undefined' && parent !== window) {
+                parent.postMessage({ frameHeight: height }, '*');
+            }
+        }
+        // Send the height on initial load
+        sendHeight();
+        // Send the height whenever the window is resized
+        window.addEventListener("resize", sendHeight);
+    });
 </script>
