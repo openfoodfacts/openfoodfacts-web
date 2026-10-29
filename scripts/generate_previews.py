@@ -16,8 +16,19 @@ def get_base64_data_uri(file_path):
         mime = 'application/octet-stream'
     return f"data:{mime};base64,{encoded}"
 
-def build_preview(page_type):
-    src_file = f"lang/en/texts/{page_type}.html"
+PAGES = [
+    ('contribute', 'lang/en/texts/contribute.html', 'Open Food Facts — Contribute Preview'),
+    ('discover', 'lang/en/texts/discover.html', 'Open Food Facts — Discover Preview'),
+    ('contact', 'lang/en/texts/contact.html', 'Open Food Facts — Contact Page Preview'),
+    ('obf-discover', 'lang/obf/en/texts/discover.html', 'Open Beauty Facts — Discover Preview'),
+    ('obf-contribute', 'lang/obf/en/texts/contribute.html', 'Open Beauty Facts — Contribute Preview'),
+    ('opff-discover', 'lang/opff/en/texts/discover.html', 'Open Pet Food Facts — Discover Preview'),
+    ('opff-contribute', 'lang/opff/en/texts/contribute.html', 'Open Pet Food Facts — Contribute Preview'),
+    ('opf-discover', 'lang/opf/en/texts/discover.html', 'Open Products Facts — Discover Preview'),
+    ('opf-contribute', 'lang/opf/en/texts/contribute.html', 'Open Products Facts — Contribute Preview'),
+]
+
+def build_preview(page_key, src_file, title):
     with open(src_file, 'r', encoding='utf-8') as f:
         content = f.read()
 
@@ -34,8 +45,6 @@ def build_preview(page_type):
         else:
             print(f"Warning: {local_path} not found")
 
-    title = "Contribute" if page_type == "contribute" else "Discover"
-
     content_relative = content
     for img in unique_images:
         if img in data_uris:
@@ -47,7 +56,7 @@ def build_preview(page_type):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Food Facts — {title} Page Redesign Preview</title>
+    <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
@@ -59,141 +68,104 @@ def build_preview(page_type):
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             color: #1f2937;
         }}
-        /* Preview Banner Navigation */
-        .preview-topbar {{
-            background: #231206;
-            color: #ffffff;
-            padding: 0.75rem 1.5rem;
+        /* Simulated Site Header */
+        .site-header-preview {{
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.85rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
             position: sticky;
             top: 0;
-            z-index: 99999;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-            font-family: "Plus Jakarta Sans", sans-serif;
+            z-index: 100;
         }}
-        .preview-topbar-left {{
+        .site-header-left {{
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.25rem;
         }}
-        .preview-logo {{
-            font-weight: 900;
-            font-size: 1.15rem;
-            color: #ffffff;
-            text-decoration: none;
+        .site-header-title {{
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #334155;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }}
         .preview-badge {{
-            background: #ed8857;
+            background: #ea580c;
             color: #ffffff;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 800;
             padding: 0.2rem 0.6rem;
-            border-radius: 999px;
-            letter-spacing: 0.04em;
+            border-radius: 9999px;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
         }}
-        .preview-tabs {{
+        .site-header-right {{
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }}
-        .preview-tab {{
-            padding: 0.45rem 0.95rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 700;
-            transition: all 0.2s ease;
-        }}
-        .preview-tab.active {{
-            background: #ffffff;
-            color: #231206;
-        }}
-        .preview-tab:not(.active) {{
-            background: rgba(255,255,255,0.12);
-            color: #ffd8c2;
-        }}
-        .preview-tab:not(.active):hover {{
-            background: rgba(255,255,255,0.25);
-            color: #ffffff;
-        }}
-        .preview-container {{
-            max-width: 1280px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }}
-        /* Mock Site Header */
-        .mock-site-nav {{
-            max-width: 1200px;
-            margin: 0 auto 1.5rem auto;
-            padding: 0.75rem 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #e5e7eb;
-            font-size: 0.9rem;
-            color: #6b7280;
-        }}
-        .mock-nav-links {{
-            display: flex;
-            gap: 1.5rem;
-        }}
-        .mock-nav-link {{
-            color: #374151;
-            text-decoration: none;
+        .nav-switch-link {{
+            font-size: 0.82rem;
             font-weight: 600;
+            color: #64748b;
+            text-decoration: none;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            transition: all 0.15s;
         }}
-        .mock-nav-link:hover {{
-            color: #ea580c;
+        .nav-switch-link:hover {{
+            background: #f1f5f9;
+            color: #0f172a;
+        }}
+        .nav-switch-link.active {{
+            background: #e2e8f0;
+            color: #0f172a;
+            font-weight: 700;
+        }}
+        .main-container {{
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 3rem;
         }}
     </style>
 </head>
 <body>
 
-    <!-- Preview Switcher Bar -->
-    <header class="preview-topbar">
-        <div class="preview-topbar-left">
-            <span class="preview-logo">🥗 Open Food Facts</span>
-            <span class="preview-badge">PR #97 Design Preview</span>
+    <header class="site-header-preview">
+        <div class="site-header-left">
+            <div class="site-header-title">
+                <span>🌐 {title}</span>
+                <span class="preview-badge">Revamped</span>
+            </div>
         </div>
-        <nav class="preview-tabs" aria-label="Preview switcher">
-            <a href="preview-contribute.html" class="preview-tab {'active' if page_type == 'contribute' else ''}">
-                🤝 Contribute Page
-            </a>
-            <a href="preview-discover.html" class="preview-tab {'active' if page_type == 'discover' else ''}">
-                🔍 Discover Page
-            </a>
-        </nav>
+        <div class="site-header-right">
+            <a href="preview-discover.html" class="nav-switch-link {'active' if page_key == 'discover' else ''}">OFF Discover</a>
+            <a href="preview-contribute.html" class="nav-switch-link {'active' if page_key == 'contribute' else ''}">OFF Contribute</a>
+            <a href="preview-contact.html" class="nav-switch-link {'active' if page_key == 'contact' else ''}">Contact</a>
+            <a href="preview-obf-discover.html" class="nav-switch-link {'active' if page_key == 'obf-discover' else ''}">OBF</a>
+            <a href="preview-opff-discover.html" class="nav-switch-link {'active' if page_key == 'opff-discover' else ''}">OPFF</a>
+            <a href="preview-opf-discover.html" class="nav-switch-link {'active' if page_key == 'opf-discover' else ''}">OPF</a>
+        </div>
     </header>
 
-    <div class="mock-site-nav">
-        <div>🌍 <strong>world.openfoodfacts.org</strong> / {page_type}</div>
-        <div class="mock-nav-links">
-            <a href="preview-discover.html" class="mock-nav-link">Discover</a>
-            <a href="preview-contribute.html" class="mock-nav-link">Contribute</a>
-            <a href="https://world.openfoodfacts.org/data" class="mock-nav-link">Data</a>
-            <a href="https://world.openfoodfacts.org/donors" class="mock-nav-link">Donate</a>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <main class="preview-container">
-        {content_relative}
+    <main class="main-container">
+{content_relative}
     </main>
 
 </body>
 </html>
 """
-    output_filename = f"preview-{page_type}.html"
-    with open(output_filename, 'w', encoding='utf-8') as f:
+    out_file = f"preview-{page_key}.html"
+    with open(out_file, 'w', encoding='utf-8') as f:
         f.write(html)
-    print(f"Generated {output_filename} successfully ({len(html)} bytes)")
+    print(f"Generated {out_file} successfully ({len(html)} bytes)")
+    return out_file
 
-if __name__ == "__main__":
-    build_preview("contribute")
-    build_preview("discover")
+if __name__ == '__main__':
+    for key, path, title in PAGES:
+        build_preview(key, path, title)
