@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="puzzleSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="600" height="500" class="">
+                <style>
+                    /* Smooth 4-second looping assembly animation */
+                    .anim-left-hand {
+                        animation: snapLeft 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        transform-origin: center;
+                    }
+                    
+                    .anim-bottom-hand {
+                        animation: snapBottom 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        transform-origin: center;
+                    }
+
+                    .puzzle-cluster {
+                        animation: clusterPulse 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        transform-origin: 330px 210px;
+                    }
+
+                    .snap-glow {
+                        animation: glowFlash 4.2s ease-out infinite;
+                        pointer-events: none;
+                    }
+
+                    /* Paused state toggle */
+                    svg.paused .anim-left-hand,
+                    svg.paused .anim-bottom-hand,
+                    svg.paused .puzzle-cluster,
+                    svg.paused .snap-glow {
+                        animation-play-state: paused !important;
+                    }
+
+                    @keyframes snapLeft {
+                        0%, 12% {
+                            transform: translate(0px, 0px) rotate(3deg);
+                        }
+                        42%, 74% {
+                            /* Moves right by 78px and levels out to lock cleanly into the grey piece socket */
+                            transform: translate(78px, 0px) rotate(0deg);
+                        }
+                        90%, 100% {
+                            transform: translate(0px, 0px) rotate(3deg);
+                        }
+                    }
+
+                    @keyframes snapBottom {
+                        0%, 16% {
+                            transform: translate(0px, 0px) rotate(5deg);
+                        }
+                        46%, 74% {
+                            /* Moves up by 74px and levels out to lock cleanly into the light-blue piece socket */
+                            transform: translate(0px, -74px) rotate(0deg);
+                        }
+                        90%, 100% {
+                            transform: translate(0px, 0px) rotate(5deg);
+                        }
+                    }
+
+                    @keyframes clusterPulse {
+                        0%, 43% {
+                            transform: scale(1);
+                        }
+                        48% {
+                            transform: scale(1.018);
+                        }
+                        55%, 100% {
+                            transform: scale(1);
+                        }
+                    }
+
+                    @keyframes glowFlash {
+                        0%, 42% {
+                            opacity: 0;
+                        }
+                        47% {
+                            opacity: 0.75;
+                        }
+                        62%, 100% {
+                            opacity: 0;
+                        }
+                    }
+                </style>
+
+                <defs>
+                    <!-- Reusable 100x100 Base Square with Rounded Corners -->
+                    <!-- Top-Left Yellow Piece: Top(In), Right(Out), Bottom(In), Left(Out) -->
+                    <path id="piece-tl-yellow" d="
+                        M 200,90 
+                        L 233,90 C 230,114 270,114 267,90 L 284,90 
+                        A 16,16 0 0,1 300,106 
+                        L 300,123 C 324,120 324,160 300,157 L 300,174 
+                        A 16,16 0 0,1 284,190 
+                        L 267,190 C 270,166 230,166 233,190 L 216,190 
+                        A 16,16 0 0,1 200,174 
+                        L 200,157 C 176,160 176,120 200,123 L 200,106 
+                        A 16,16 0 0,1 216,90 Z"></path>
+
+                    <!-- Top-Middle Green Piece: Top(Out), Right(In), Bottom(Out), Left(In) -->
+                    <path id="piece-tm-green" d="
+                        M 316,90 
+                        L 333,90 C 330,66 370,66 367,90 L 384,90 
+                        A 16,16 0 0,1 400,106 
+                        L 400,123 C 376,120 376,160 400,157 L 400,174 
+                        A 16,16 0 0,1 384,190 
+                        L 367,190 C 370,214 330,214 333,190 L 316,190 
+                        A 16,16 0 0,1 300,174 
+                        L 300,157 C 324,160 324,120 300,123 L 300,106 
+                        A 16,16 0 0,1 316,90 Z"></path>
+
+                    <!-- Top-Right Grey Piece: Top(In), Right(Out), Bottom(In), Left(Out) -->
+                    <path id="piece-tr-grey" d="
+                        M 416,90 
+                        L 433,90 C 430,114 470,114 467,90 L 484,90 
+                        A 16,16 0 0,1 500,106 
+                        L 500,123 C 524,120 524,160 500,157 L 500,174 
+                        A 16,16 0 0,1 484,190 
+                        L 467,190 C 470,166 430,166 433,190 L 416,190 
+                        A 16,16 0 0,1 400,174 
+                        L 400,157 C 376,160 376,120 400,123 L 400,106 
+                        A 16,16 0 0,1 416,90 Z"></path>
+
+                    <!-- Bottom-Left Grey Piece: Top(Out), Right(In), Bottom(Out), Left(In) -->
+                    <path id="piece-bl-grey" d="
+                        M 216,190 
+                        L 233,190 C 230,166 270,166 267,190 L 284,190 
+                        A 16,16 0 0,1 300,206 
+                        L 300,223 C 276,220 276,260 300,257 L 300,274 
+                        A 16,16 0 0,1 284,290 
+                        L 267,290 C 270,314 230,314 233,290 L 216,290 
+                        A 16,16 0 0,1 200,274 
+                        L 200,257 C 224,260 224,220 200,223 L 200,206 
+                        A 16,16 0 0,1 216,190 Z"></path>
+
+                    <!-- Bottom-Middle Light Blue Piece: Top(In), Right(Out), Bottom(In), Left(Out) -->
+                    <path id="piece-bm-blue" d="
+                        M 316,190 
+                        L 333,190 C 330,214 370,214 367,190 L 384,190 
+                        A 16,16 0 0,1 400,206 
+                        L 400,223 C 424,220 424,260 400,257 L 400,274 
+                        A 16,16 0 0,1 384,290 
+                        L 367,290 C 370,266 330,266 333,290 L 316,290 
+                        A 16,16 0 0,1 300,274 
+                        L 300,257 C 276,260 276,220 300,223 L 300,206 
+                        A 16,16 0 0,1 316,190 Z"></path>
+
+                    <!-- Bottom-Right Salmon Piece: Top(Out), Right(In), Bottom(Out), Left(In) -->
+                    <path id="piece-br-salmon" d="
+                        M 416,190 
+                        L 433,190 C 430,166 470,166 467,190 L 484,190 
+                        A 16,16 0 0,1 500,206 
+                        L 500,223 C 476,220 476,260 500,257 L 500,274 
+                        A 16,16 0 0,1 484,290 
+                        L 467,290 C 470,314 430,314 433,290 L 416,290 
+                        A 16,16 0 0,1 400,274 
+                        L 400,257 C 424,260 424,220 400,223 L 400,206 
+                        A 16,16 0 0,1 416,190 Z"></path>
+                </defs>
+
+                <!-- ========================================== -->
+                <!-- MAIN CENTRAL 6-PIECE PUZZLE CLUSTER        -->
+                <!-- ========================================== -->
+                <g class="puzzle-cluster">
+                    <!-- Bottom-Left Grey -->
+                    <use href="#piece-bl-grey" fill="#d3d5d7"></use>
+                    <!-- Top-Left Yellow -->
+                    <use href="#piece-tl-yellow" fill="#f3be00"></use>
+                    <!-- Bottom-Middle Light Blue -->
+                    <use href="#piece-bm-blue" fill="#bce3fa"></use>
+                    <!-- Bottom-Right Salmon -->
+                    <use href="#piece-br-salmon" fill="#ff8f7d"></use>
+                    <!-- Top-Right Grey -->
+                    <use href="#piece-tr-grey" fill="#d3d5d7"></use>
+                    <!-- Top-Middle Green (Rendered on top so its tabs overlap cleanly) -->
+                    <use href="#piece-tm-green" fill="#28c96f"></use>
+
+                    <!-- Subtle Connection Highlight Lines when pieces lock in -->
+                    <circle cx="200" cy="240" r="26" fill="none" stroke="#ff8f7d" stroke-width="3" opacity="0" class="snap-glow"></circle>
+                    <circle cx="350" cy="290" r="26" fill="none" stroke="#f3be00" stroke-width="3" opacity="0" class="snap-glow"></circle>
+                </g>
+
+                <!-- ========================================== -->
+                <!-- LEFT ANIMATED HAND & SALMON PUZZLE PIECE   -->
+                <!-- ========================================== -->
+                <g class="anim-left-hand" style="transform-origin: 72px 240px;">
+                    <!-- Held Salmon Piece (Starts at X: 22..122, Y: 190..290; moves +78px right to lock into X: 100..200) -->
+                    <path fill="#ff8f7d" d="
+                        M 38,190 
+                        L 55,190 C 52,214 92,214 89,190 L 106,190 
+                        A 16,16 0 0,1 122,206 
+                        L 122,223 C 146,220 146,260 122,257 L 122,274 
+                        A 16,16 0 0,1 106,290 
+                        L 89,290 C 92,266 52,266 55,290 L 38,290 
+                        A 16,16 0 0,1 22,274 
+                        L 22,257 C -2,260 -2,220 22,223 L 22,206 
+                        A 16,16 0 0,1 38,190 Z"></path>
+
+                    <!-- Light Skin Tone Arm, Continuous Palm, Thumb & 4 Parallel Fingers with Thin Slits -->
+                    <path fill="#ffcb94" d="
+                        M 58,0
+                        C 16,72 18,145 21,260
+                        A 9.5,9.5 0 0,0 40,260
+                        L 40,204
+                        L 43,204
+                        L 43,262
+                        A 9.5,9.5 0 0,0 62,262
+                        L 62,204
+                        L 65,204
+                        L 65,260
+                        A 9.5,9.5 0 0,0 84,260
+                        L 84,204
+                        L 87,204
+                        L 87,258
+                        A 9.5,9.5 0 0,0 106,258
+                        L 106,170
+                        L 121,183
+                        C 127,188 134,182 129,174
+                        L 101,142
+                        C 103,95 118,45 156,0
+                        Z"></path>
+                </g>
+
+                <!-- ========================================== -->
+                <!-- BOTTOM ANIMATED HAND & YELLOW PUZZLE PIECE -->
+                <!-- ========================================== -->
+                <g class="anim-bottom-hand" style="transform-origin: 350px 414px;">
+                    <!-- Held Yellow Piece (Starts at X: 300..400, Y: 364..464; moves -74px up to lock into Y: 290..390) -->
+                    <path fill="#f3be00" d="
+                        M 316,364 
+                        L 333,364 C 330,340 370,340 367,364 L 384,364 
+                        A 16,16 0 0,1 400,380 
+                        L 400,397 C 376,394 376,434 400,431 L 400,448 
+                        A 16,16 0 0,1 384,464 
+                        L 367,464 C 370,488 330,488 333,464 L 316,464 
+                        A 16,16 0 0,1 300,448 
+                        L 300,431 C 324,434 324,394 300,397 L 300,380 
+                        A 16,16 0 0,1 316,364 Z"></path>
+
+                    <!-- Brown Skin Tone Arm, Continuous Palm, Thumb & 4 Parallel Fingers with Thin Slits -->
+                    <path fill="#935d37" d="
+                        M 600,334
+                        C 538,392 478,412 426,412
+                        L 396,372
+                        C 390,364 378,371 383,381
+                        L 399,405
+                        L 314,405
+                        A 8.5,8.5 0 0,0 314,422
+                        L 368,422
+                        L 368,425.5
+                        L 311,425.5
+                        A 8.5,8.5 0 0,0 311,442.5
+                        L 368,442.5
+                        L 368,446
+                        L 311,446
+                        A 8.5,8.5 0 0,0 311,463
+                        L 368,463
+                        L 368,466.5
+                        L 314,466.5
+                        A 8.5,8.5 0 0,0 314,483.5
+                        L 415,483.5
+                        C 482,483.5 545,462 600,424
+                        Z"></path>
+                </g>
+            </svg>

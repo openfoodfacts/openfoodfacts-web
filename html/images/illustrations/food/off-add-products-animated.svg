@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg-add-products" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" width="560" height="420" class="">
+                    <style>
+                        .cereal-float {
+                            animation: cerealBob 4.2s ease-in-out infinite;
+                            transform-origin: 135px 210px;
+                        }
+                        .bottle-float {
+                            animation: bottleBob 4.2s ease-in-out infinite;
+                            transform-origin: 265px 210px;
+                        }
+                        .scanner-hand {
+                            animation: phoneScanMove 4.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+                            transform-origin: 520px 360px;
+                        }
+                        .laser-line {
+                            animation: laserSweep 2.1s ease-in-out infinite;
+                        }
+                        .scan-badge {
+                            animation: badgePop 4.2s ease-out infinite;
+                            transform-origin: 355px 155px;
+                        }
+                        svg.paused * {
+                            animation-play-state: paused !important;
+                        }
+                        @keyframes cerealBob {
+                            0%, 100% { transform: translateY(0px) rotate(-6deg); }
+                            50% { transform: translateY(-8px) rotate(-4deg); }
+                        }
+                        @keyframes bottleBob {
+                            0%, 100% { transform: translateY(0px) rotate(18deg); }
+                            50% { transform: translateY(-10px) rotate(21deg); }
+                        }
+                        @keyframes phoneScanMove {
+                            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+                            45%, 60% { transform: translate(-18px, -10px) rotate(-3deg); }
+                        }
+                        @keyframes laserSweep {
+                            0%, 100% { transform: translateY(-38px); opacity: 0.35; }
+                            50% { transform: translateY(42px); opacity: 1; }
+                        }
+                        @keyframes badgePop {
+                            0%, 38%, 90%, 100% { transform: scale(0); opacity: 0; }
+                            48%, 78% { transform: scale(1); opacity: 1; }
+                        }
+                    </style>
+
+                    <!-- 1. ATTACHED CEREAL PACK ("CRISPY") -->
+                    <g class="cereal-float">
+                        <path fill="#ff6b35" d="M 55,95 L 205,95 A 12,12 0 0,1 217,107 L 217,245 C 217,265 180,275 162,295 C 145,315 168,342 135,350 C 102,358 75,342 55,352 L 43,107 A 12,12 0 0,1 55,95 Z"></path>
+                        <text x="72" y="152" fill="#d95326" font-family="Inter, sans-serif" font-weight="800" font-size="38" letter-spacing="1">CRISPY</text>
+                        <!-- Silver Spoon -->
+                        <path fill="#bfc3c6" d="M 145,112 A 7,7 0 0,1 158,108 L 182,175 A 22,22 0 1,1 162,182 Z"></path>
+                        <!-- Bright Cyan Bowl (#00bdf2) -->
+                        <path fill="#00bdf2" d="M 118,215 L 217,215 L 217,270 C 195,302 132,298 118,215 Z"></path>
+                        <!-- Falling Golden Cereal Flakes (#f8c100) -->
+                        <ellipse cx="75" cy="105" rx="9" ry="5" transform="rotate(35 75 105)" fill="#f8c100"></ellipse>
+                        <ellipse cx="112" cy="98" rx="8" ry="4" transform="rotate(-15 112 98)" fill="#f8c100"></ellipse>
+                        <ellipse cx="122" cy="135" rx="10" ry="5" transform="rotate(30 122 135)" fill="#f8c100"></ellipse>
+                        <ellipse cx="72" cy="162" rx="10" ry="5" transform="rotate(-25 72 162)" fill="#f8c100"></ellipse>
+                        <ellipse cx="105" cy="182" rx="9" ry="5" transform="rotate(75 105 182)" fill="#f8c100"></ellipse>
+                        <ellipse cx="82" cy="212" rx="10" ry="5" transform="rotate(-55 82 212)" fill="#f8c100"></ellipse>
+                        <ellipse cx="104" cy="245" rx="10" ry="5" transform="rotate(40 104 245)" fill="#f8c100"></ellipse>
+                        <ellipse cx="78" cy="278" rx="10" ry="5" transform="rotate(8 78 278)" fill="#f8c100"></ellipse>
+                        <ellipse cx="110" cy="305" rx="10" ry="5" transform="rotate(-58 110 305)" fill="#f8c100"></ellipse>
+                        <ellipse cx="82" cy="328" rx="10" ry="5" transform="rotate(-75 82 328)" fill="#f8c100"></ellipse>
+                        <ellipse cx="122" cy="348" rx="10" ry="5" transform="rotate(35 122 348)" fill="#f8c100"></ellipse>
+                    </g>
+
+                    <!-- 2. ATTACHED GREEN BOTTLE -->
+                    <g class="bottle-float">
+                        <!-- Bottle Body (#009a49) -->
+                        <path fill="#009a49" d="M 248,62 L 282,62 L 282,115 C 312,126 328,155 328,192 L 328,348 A 18,18 0 0,1 310,366 L 220,366 A 18,18 0 0,1 202,348 L 202,192 C 202,155 218,126 248,115 Z"></path>
+                        <!-- Grey Cap (#aeaeae) -->
+                        <rect x="242" y="42" width="46" height="22" rx="6" fill="#aeaeae"></rect>
+                        <!-- White Bottle Label with 3 Grey Lines -->
+                        <rect x="222" y="185" width="86" height="126" rx="8" fill="#ffffff"></rect>
+                        <line x1="236" y1="212" x2="294" y2="212" stroke="#999999" stroke-width="5" stroke-linecap="round"></line>
+                        <line x1="236" y1="228" x2="294" y2="228" stroke="#999999" stroke-width="5" stroke-linecap="round"></line>
+                        <line x1="236" y1="244" x2="294" y2="244" stroke="#999999" stroke-width="5" stroke-linecap="round"></line>
+                    </g>
+
+                    <!-- 3. HAND WITH SMARTPHONE SCANNING THE PRODUCTS -->
+                    <g class="scanner-hand">
+                        <!-- Back gripping fingers -->
+                        <g fill="#955830">
+                            <rect x="292" y="142" width="45" height="22" rx="11" transform="rotate(35 314 153)"></rect>
+                            <rect x="275" y="164" width="58" height="22" rx="11" transform="rotate(35 304 175)"></rect>
+                            <rect x="260" y="186" width="66" height="22" rx="11" transform="rotate(35 293 197)"></rect>
+                        </g>
+                        <!-- Forearm & Palm -->
+                        <path fill="#955830" d="M 380,210 L 432,216 C 470,252 508,270 555,280 L 555,375 C 488,365 436,336 385,292 Z"></path>
+                        <!-- Smartphone Frame -->
+                        <g transform="rotate(5 355 200)">
+                            <rect x="294" y="88" width="122" height="214" rx="14" fill="#606362"></rect>
+                            <rect x="300" y="95" width="110" height="200" rx="11" fill="#e1f3fe"></rect>
+                            <!-- Mini Product Preview + Barcode on Screen -->
+                            <rect x="314" y="122" width="82" height="90" rx="8" fill="#ffffff"></rect>
+                            <!-- Barcode Bars -->
+                            <g fill="#222222">
+                                <rect x="325" y="140" width="4" height="44"></rect>
+                                <rect x="333" y="140" width="8" height="44"></rect>
+                                <rect x="345" y="140" width="3" height="44"></rect>
+                                <rect x="352" y="140" width="6" height="44"></rect>
+                                <rect x="362" y="140" width="10" height="44"></rect>
+                                <rect x="376" y="140" width="3" height="44"></rect>
+                                <rect x="383" y="140" width="5" height="44"></rect>
+                            </g>
+                            <!-- Red Laser Scan Line -->
+                            <rect class="laser-line" x="304" y="162" width="102" height="3.5" rx="1.5" fill="#dc3522"></rect>
+                            <!-- Green Checkmark Pill -->
+                            <g class="scan-badge">
+                                <rect x="320" y="232" width="70" height="26" rx="13" fill="#009a49"></rect>
+                                <path d="M 346,245 L 352,251 L 365,239" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                            <!-- Notch -->
+                            <path fill="#606362" d="M 332,93 L 378,93 L 375,102 L 335,102 Z"></path>
+                        </g>
+                        <!-- Thumb -->
+                        <path fill="#955830" d="M 404,268 L 410,162 A 12,12 0 0,1 434,162 L 440,220 L 430,274 Z"></path>
+                    </g>
+                </svg>

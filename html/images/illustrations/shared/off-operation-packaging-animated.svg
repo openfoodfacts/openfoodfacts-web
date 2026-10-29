@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg-operation-packaging" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" width="560" height="420" class="">
+                    <style>
+                        .scale-tray-group {
+                            animation: trayCompress 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        }
+                        .scale-needle {
+                            animation: needleSpin 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                            transform-origin: 280px 312px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes trayCompress {
+                            0%, 15%, 90%, 100% { transform: translateY(-16px); }
+                            40%, 75% { transform: translateY(8px); }
+                        }
+                        @keyframes needleSpin {
+                            0%, 15%, 90%, 100% { transform: rotate(-55deg); }
+                            42%, 75% { transform: rotate(48deg); }
+                            48% { transform: rotate(56deg); }
+                        }
+                    </style>
+
+                    <!-- Scale Tray + Attached Bottle & Cereal Pack -->
+                    <g class="scale-tray-group">
+                        <!-- Mini Crispy Cereal Pack on Left of Scale -->
+                        <g transform="translate(152, 46) rotate(-5)">
+                            <rect x="0" y="0" width="105" height="145" rx="10" fill="#ff6b35"></rect>
+                            <text x="12" y="36" fill="#d95326" font-weight="800" font-size="22">CRISPY</text>
+                            <path fill="#00bdf2" d="M 42,82 L 105,82 L 105,115 C 88,136 50,134 42,82 Z"></path>
+                            <ellipse cx="22" cy="65" rx="7" ry="4" fill="#f8c100"></ellipse>
+                            <ellipse cx="28" cy="95" rx="7" ry="4" fill="#f8c100"></ellipse>
+                            <ellipse cx="22" cy="122" rx="7" ry="4" fill="#f8c100"></ellipse>
+                        </g>
+
+                        <!-- Mini Green Bottle on Right of Scale -->
+                        <g transform="translate(285, 22) rotate(6)">
+                            <rect x="28" y="0" width="32" height="14" rx="4" fill="#aeaeae"></rect>
+                            <path fill="#009a49" d="M 32,14 L 56,14 L 56,46 C 76,54 86,74 86,98 L 86,162 A 12,12 0 0,1 74,174 L 14,174 A 12,12 0 0,1 2,162 L 2,98 C 2,74 12,54 32,46 Z"></path>
+                            <rect x="16" y="86" width="56" height="68" rx="6" fill="#ffffff"></rect>
+                            <line x1="25" y1="104" x2="63" y2="104" stroke="#999999" stroke-width="4" stroke-linecap="round"></line>
+                            <line x1="25" y1="116" x2="63" y2="116" stroke="#999999" stroke-width="4" stroke-linecap="round"></line>
+                            <line x1="25" y1="128" x2="63" y2="128" stroke="#999999" stroke-width="4" stroke-linecap="round"></line>
+                        </g>
+
+                        <!-- Scale Top Metal Tray & Pillar -->
+                        <rect x="120" y="192" width="320" height="20" rx="10" fill="#aeaeae"></rect>
+                        <rect x="262" y="212" width="36" height="38" fill="#999999"></rect>
+                    </g>
+
+                    <!-- Scale Base Body (#00bdf2) -->
+                    <path fill="#00bdf2" d="M 155,238 L 405,238 A 28,28 0 0,1 432,266 L 448,376 A 16,16 0 0,1 432,392 L 128,392 A 16,16 0 0,1 112,376 L 128,266 A 28,28 0 0,1 155,238 Z"></path>
+
+                    <!-- White Dial Face -->
+                    <circle cx="280" cy="312" r="56" fill="#ffffff"></circle>
+                    <!-- Eco-Score Colored Dial Arc -->
+                    <path d="M 238,312 A 42,42 0 0,1 322,312" fill="none" stroke="#e2e8f0" stroke-width="10" stroke-linecap="round"></path>
+                    <path d="M 238,312 A 42,42 0 0,1 280,270" fill="none" stroke="#009a49" stroke-width="10" stroke-linecap="round"></path>
+                    <path d="M 280,270 A 42,42 0 0,1 322,312" fill="none" stroke="#ff6b35" stroke-width="10" stroke-linecap="round"></path>
+
+                    <!-- Animated Red Scale Needle -->
+                    <g class="scale-needle">
+                        <polygon points="275,312 285,312 280,264" fill="#dc3522"></polygon>
+                        <circle cx="280" cy="312" r="9" fill="#181818"></circle>
+                    </g>
+                </svg>

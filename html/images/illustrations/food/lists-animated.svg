@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg-lists" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 390" width="380" height="390" class="max-w-[400px]">
+                    <style>
+                        .list-board {
+                            animation: listBoardPulse 5s ease-in-out infinite;
+                            transform-origin: 180px 190px;
+                        }
+                        /* Whole ring of items slowly orbits around the central list */
+                        .items-orbit-wheel {
+                            animation: slowOrbitRing 24s linear infinite;
+                            transform-origin: 180px 195px;
+                        }
+                        /* Counter-rotation + individual floating bob so each item stays upright while orbiting */
+                        .counter-spin-float-a {
+                            animation: counterSpinBobA 24s linear infinite;
+                            transform-box: fill-box;
+                            transform-origin: center;
+                        }
+                        .counter-spin-float-b {
+                            animation: counterSpinBobB 24s linear infinite;
+                            transform-box: fill-box;
+                            transform-origin: center;
+                        }
+                        .pizza-slice-pull {
+                            animation: slicePullOut 3.8s ease-in-out infinite;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes listBoardPulse {
+                            0%, 100% { transform: rotate(-5deg) scale(1); }
+                            50% { transform: rotate(-2deg) scale(1.03); }
+                        }
+                        @keyframes slowOrbitRing {
+                            0% { transform: rotate(0deg); }
+                            100% { transform: rotate(360deg); }
+                        }
+                        @keyframes counterSpinBobA {
+                            0%   { transform: rotate(0deg) translateY(0px); }
+                            25%  { transform: rotate(-90deg) translateY(-7px); }
+                            50%  { transform: rotate(-180deg) translateY(0px); }
+                            75%  { transform: rotate(-270deg) translateY(7px); }
+                            100% { transform: rotate(-360deg) translateY(0px); }
+                        }
+                        @keyframes counterSpinBobB {
+                            0%   { transform: rotate(0deg) translateY(0px); }
+                            25%  { transform: rotate(-90deg) translateY(7px); }
+                            50%  { transform: rotate(-180deg) translateY(0px); }
+                            75%  { transform: rotate(-270deg) translateY(-7px); }
+                            100% { transform: rotate(-360deg) translateY(0px); }
+                        }
+                        @keyframes slicePullOut {
+                            0%, 100% { transform: translate(0px, 0px); }
+                            50% { transform: translate(7px, -7px); }
+                        }
+                    </style>
+
+                    <defs>
+                        <!-- Bite Mask for Top Donut -->
+                        <mask id="donut-bite-mask">
+                            <rect x="115" y="-10" width="120" height="120" fill="white"></rect>
+                            <circle cx="182" cy="10" r="18" fill="black"></circle>
+                            <circle cx="204" cy="18" r="16" fill="black"></circle>
+                        </mask>
+                    </defs>
+
+                    <!-- 1. CENTRAL CYAN CHECKLIST CLIPBOARD -->
+                    <g class="list-board">
+                        <rect x="122" y="114" width="112" height="148" rx="18" fill="#00bdf2"></rect>
+                        <rect x="134" y="126" width="88" height="124" rx="10" fill="#ffffff"></rect>
+                        <rect x="158" y="109" width="38" height="24" rx="5" fill="#aeaeae"></rect>
+                        <g stroke="#0077c8" stroke-width="2.2" fill="none">
+                            <circle cx="151" cy="147" r="5.5"></circle>
+                            <circle cx="151" cy="168" r="5.5"></circle>
+                            <circle cx="151" cy="189" r="5.5"></circle>
+                            <circle cx="151" cy="210" r="5.5"></circle>
+                            <circle cx="151" cy="231" r="5.5"></circle>
+                        </g>
+                        <g stroke="#181818" stroke-width="2.5" stroke-linecap="round">
+                            <line x1="164" y1="147" x2="207" y2="147"></line>
+                            <line x1="164" y1="168" x2="207" y2="168"></line>
+                            <line x1="164" y1="189" x2="207" y2="189"></line>
+                            <line x1="164" y1="210" x2="207" y2="210"></line>
+                            <line x1="164" y1="231" x2="207" y2="231"></line>
+                        </g>
+                    </g>
+
+                    <!-- ORBITING RING OF 6 FOOD ITEMS -->
+                    <g class="items-orbit-wheel">
+                        <!-- 2. TOP BITTEN FROSTED DONUT -->
+                        <g class="counter-spin-float-a" mask="url(#donut-bite-mask)">
+                            <circle cx="176" cy="42" r="41" fill="#ffd8b8"></circle>
+                            <circle cx="176" cy="42" r="32" fill="#f0abff"></circle>
+                            <circle cx="176" cy="42" r="13" fill="#ffffff"></circle>
+                            <g stroke="#009dff" stroke-width="3" stroke-linecap="round">
+                                <line x1="156" y1="21" x2="162" y2="25"></line>
+                                <line x1="148" y1="41" x2="154" y2="39"></line>
+                                <line x1="156" y1="58" x2="162" y2="61"></line>
+                                <line x1="178" y1="64" x2="176" y2="70"></line>
+                                <line x1="193" y1="58" x2="199" y2="55"></line>
+                                <line x1="198" y1="40" x2="204" y2="37"></line>
+                            </g>
+                        </g>
+
+                        <!-- 3. TOP-LEFT TILTED GREEN BOTTLE -->
+                        <g transform="translate(28, 60)">
+                            <g class="counter-spin-float-b">
+                                <g transform="rotate(22 30 55)">
+                                    <rect x="22" y="0" width="17" height="8" rx="2.5" fill="#aeaeae"></rect>
+                                    <path fill="#009a49" d="M 24,8 L 36,8 L 36,24 C 46,28 51,38 51,50 L 51,98 A 8,8 0 0,1 43,106 L 17,106 A 8,8 0 0,1 9,98 L 9,50 C 9,38 14,28 24,24 Z"></path>
+                                    <rect x="16" y="45" width="28" height="42" rx="3" fill="#ffffff"></rect>
+                                    <line x1="20" y1="54" x2="40" y2="54" stroke="#999999" stroke-width="1.5"></line>
+                                    <line x1="20" y1="60" x2="40" y2="60" stroke="#999999" stroke-width="1.5"></line>
+                                    <line x1="20" y1="66" x2="40" y2="66" stroke="#999999" stroke-width="1.5"></line>
+                                </g>
+                            </g>
+                        </g>
+
+                        <!-- 4. TOP-RIGHT RED TOMATO -->
+                        <g class="counter-spin-float-a">
+                            <circle cx="312" cy="115" r="35" fill="#f02d0c"></circle>
+                            <path fill="#0b6623" d="M 310,82 C 302,75 292,74 288,78 C 292,83 300,85 306,85 C 298,89 292,94 292,98 C 299,98 306,93 310,87 C 316,92 324,94 328,91 C 325,86 318,84 313,84 C 320,80 324,74 323,71 C 316,71 312,77 310,82 Z"></path>
+                        </g>
+
+                        <!-- 5. BOTTOM-LEFT GOLDEN ORANGE CITRUS -->
+                        <g class="counter-spin-float-a">
+                            <circle cx="48" cy="292" r="36" fill="#ffbe00"></circle>
+                            <path fill="#0b6623" d="M 52,256 C 44,248 36,242 32,243 C 33,250 40,257 52,256 Z"></path>
+                            <path fill="#0b6623" d="M 52,256 C 54,245 64,240 72,243 C 70,252 62,258 52,256 Z"></path>
+                            <circle cx="56" cy="272" r="2" fill="#9c6800"></circle>
+                            <circle cx="68" cy="276" r="2" fill="#9c6800"></circle>
+                            <circle cx="60" cy="282" r="2" fill="#9c6800"></circle>
+                        </g>
+
+                        <!-- 6. BOTTOM SLICED PIZZA WITH MUSHROOMS, OLIVES & PEPPERONI -->
+                        <g transform="translate(196, 345)">
+                            <g class="counter-spin-float-b">
+                                <!-- Main 5/6 Pizza Base -->
+                                <path fill="#f5d1b0" d="M 0,0 L 11,-43 A 44,44 0 1,0 43,-9 Z"></path>
+                                <path fill="#f02d0c" d="M 0,0 L 9,-37 A 38,38 0 1,0 37,-8 Z"></path>
+                                <!-- Slice Cut Lines -->
+                                <line x1="-38" y1="8" x2="38" y2="-8" stroke="#f5d1b0" stroke-width="2"></line>
+                                <line x1="-10" y1="38" x2="10" y2="-38" stroke="#f5d1b0" stroke-width="2"></line>
+                                <line x1="-28" y1="-26" x2="28" y2="26" stroke="#f5d1b0" stroke-width="2"></line>
+                                <!-- Pepperoni, Black Olives & White Mushrooms -->
+                                <circle cx="-15" cy="-8" r="5" fill="#942911"></circle>
+                                <circle cx="16" cy="6" r="5" fill="#942911"></circle>
+                                <circle cx="-4" cy="14" r="5" fill="#942911"></circle>
+                                <circle cx="2" cy="-26" r="3" fill="#000000"></circle>
+                                <circle cx="-26" cy="2" r="3" fill="#000000"></circle>
+                                <circle cx="-14" cy="22" r="3" fill="#000000"></circle>
+                                <circle cx="11" cy="21" r="3" fill="#000000"></circle>
+                                <circle cx="32" cy="2" r="3" fill="#000000"></circle>
+                                <!-- Detached Top-Right Slice -->
+                                <g class="pizza-slice-pull">
+                                    <path fill="#f5d1b0" d="M 4,-4 L 15,-46 A 44,44 0 0,1 47,-13 Z"></path>
+                                    <path fill="#f02d0c" d="M 4,-4 L 13,-40 A 38,38 0 0,1 41,-11 Z"></path>
+                                    <circle cx="20" cy="-16" r="3" fill="#000000"></circle>
+                                    <circle cx="32" cy="-14" r="4.5" fill="#942911"></circle>
+                                </g>
+                            </g>
+                        </g>
+
+                        <!-- 7. BOTTOM-RIGHT TILTED CRISPY CEREAL PACK -->
+                        <g transform="translate(286, 232)">
+                            <g class="counter-spin-float-b">
+                                <g transform="rotate(-10)">
+                                    <rect x="0" y="0" width="72" height="94" rx="4" fill="#ffd9fa"></rect>
+                                    <path fill="#ff6b35" d="M 0,0 L 72,0 L 72,56 C 58,64 42,50 40,66 C 38,78 24,70 0,74 Z"></path>
+                                    <text x="6" y="20" fill="#d95326" font-weight="800" font-size="16">CRISPY</text>
+                                    <path fill="#bfc3c6" d="M 42,8 L 46,6 L 56,28 A 8,8 0 1,1 48,31 Z"></path>
+                                    <path fill="#00bdf2" d="M 30,36 L 72,36 L 72,56 C 58,72 34,66 30,36 Z"></path>
+                                    <g fill="#ffd0a8">
+                                        <ellipse cx="10" cy="26" rx="3.5" ry="1.8" transform="rotate(-30 10 26)"></ellipse>
+                                        <ellipse cx="22" cy="30" rx="3.5" ry="1.8" transform="rotate(25 22 30)"></ellipse>
+                                        <ellipse cx="14" cy="40" rx="3.5" ry="1.8" transform="rotate(-45 14 40)"></ellipse>
+                                        <ellipse cx="24" cy="48" rx="3.5" ry="1.8" transform="rotate(35 24 48)"></ellipse>
+                                        <ellipse cx="12" cy="56" rx="3.5" ry="1.8" transform="rotate(10 12 56)"></ellipse>
+                                        <ellipse cx="14" cy="68" rx="3.5" ry="1.8" transform="rotate(-65 14 68)"></ellipse>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>

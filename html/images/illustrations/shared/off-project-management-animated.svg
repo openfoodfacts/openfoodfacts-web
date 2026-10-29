@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg-project-management" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" width="560" height="420" class="">
+                    <style>
+                        .board-float {
+                            animation: boardTilt 4.6s ease-in-out infinite;
+                            transform-origin: 215px 210px;
+                        }
+                        .clock-float {
+                            animation: clockBob 4.6s ease-in-out infinite;
+                            transform-origin: 418px 155px;
+                        }
+                        .clock-minute-hand {
+                            animation: clockTick 4.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                            transform-origin: 418px 155px;
+                        }
+                        .chk-pop-1 { animation: rowCheck 4.6s ease-out infinite 0.2s; transform-origin: 148px 132px; }
+                        .chk-pop-2 { animation: rowCheck 4.6s ease-out infinite 0.8s; transform-origin: 152px 176px; }
+                        .chk-pop-3 { animation: rowCheck 4.6s ease-out infinite 1.4s; transform-origin: 156px 220px; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes boardTilt {
+                            0%, 100% { transform: rotate(-5deg) translateY(0px); }
+                            50% { transform: rotate(-2deg) translateY(-8px); }
+                        }
+                        @keyframes clockBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(8px); }
+                        }
+                        @keyframes clockTick {
+                            0%, 15% { transform: rotate(0deg); }
+                            45% { transform: rotate(120deg); }
+                            80%, 100% { transform: rotate(360deg); }
+                        }
+                        @keyframes rowCheck {
+                            0%, 20%, 90%, 100% { transform: scale(0); opacity: 0; }
+                            35%, 78% { transform: scale(1); opacity: 1; }
+                        }
+                    </style>
+
+                    <!-- 1. ATTACHED CHECKLIST.SVG (Cyan Clipboard #00bdf2 + Grey Clip #aeaeae) -->
+                    <g class="board-float">
+                        <!-- Cyan Clipboard Body -->
+                        <rect x="95" y="56" width="232" height="310" rx="28" fill="#00bdf2"></rect>
+                        <!-- White Paper Sheet -->
+                        <rect x="115" y="82" width="192" height="264" rx="18" fill="#ffffff"></rect>
+                        <!-- Top Grey Clip (#aeaeae) -->
+                        <rect x="172" y="38" width="78" height="54" rx="12" fill="#aeaeae"></rect>
+
+                        <!-- 5 Checklist Rows (Blue Circles #0077c8 + Black Lines) -->
+                        <!-- Row 1 -->
+                        <circle cx="152" cy="132" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="132" x2="278" y2="132" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+                        <!-- Row 2 -->
+                        <circle cx="152" cy="176" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="176" x2="278" y2="176" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+                        <!-- Row 3 -->
+                        <circle cx="152" cy="220" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="220" x2="278" y2="220" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+                        <!-- Row 4 -->
+                        <circle cx="152" cy="264" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="264" x2="278" y2="264" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+                        <!-- Row 5 -->
+                        <circle cx="152" cy="308" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="308" x2="278" y2="308" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+
+                        <!-- Animated Green Check.svg Badges Popping onto Rows 1-3 -->
+                        <g class="chk-pop-1">
+                            <circle cx="152" cy="132" r="15" fill="#0b7a3e"></circle>
+                            <path d="M 145,132 L 150,137 L 160,127" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                        <g class="chk-pop-2">
+                            <circle cx="152" cy="176" r="15" fill="#0b7a3e"></circle>
+                            <path d="M 145,176 L 150,181 L 160,171" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                        <g class="chk-pop-3">
+                            <circle cx="152" cy="220" r="15" fill="#0b7a3e"></circle>
+                            <path d="M 145,220 L 150,225 L 160,215" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                    </g>
+
+                    <!-- 2. ATTACHED HISTORY.SVG CLOCK (Light Blue Ring #7ce0ff + Grey Hands #7a7a7a) -->
+                    <g class="clock-float">
+                        <circle cx="418" cy="155" r="86" fill="#ffffff"></circle>
+                        <circle cx="418" cy="155" r="76" fill="none" stroke="#7ce0ff" stroke-width="22"></circle>
+                        <!-- Hour Hand pointing to 4 o'clock -->
+                        <line x1="418" y1="155" x2="452" y2="188" stroke="#7a7a7a" stroke-width="14" stroke-linecap="round"></line>
+                        <!-- Animated Minute Hand -->
+                        <g class="clock-minute-hand">
+                            <line x1="418" y1="155" x2="418" y2="105" stroke="#7a7a7a" stroke-width="14" stroke-linecap="round"></line>
+                        </g>
+                    </g>
+
+                    <!-- Milestone Roadmap Pill -->
+                    <g transform="translate(345, 272)">
+                        <rect x="0" y="0" width="160" height="68" rx="16" fill="#ff6b35"></rect>
+                        <text x="80" y="30" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">SPRINT MILESTONE</text>
+                        <rect x="22" y="42" width="116" height="10" rx="5" fill="#ffffff" opacity="0.35"></rect>
+                        <rect x="22" y="42" width="88" height="10" rx="5" fill="#f8c100"></rect>
+                    </g>
+                </svg>

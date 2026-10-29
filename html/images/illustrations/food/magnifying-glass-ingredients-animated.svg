@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg-magnifying-ingredients" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 300" width="360" height="300" class="max-w-[400px]">
+                    <style>
+                        .mag-lens-group {
+                            animation: lensInspect 4.6s ease-in-out infinite;
+                            transform-origin: 190px 138px;
+                        }
+                        .mag-text-pan {
+                            animation: textPan 4.6s ease-in-out infinite;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes lensInspect {
+                            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+                            35% { transform: translate(-10px, -8px) rotate(-3deg); }
+                            70% { transform: translate(8px, 6px) rotate(2.5deg); }
+                        }
+                        @keyframes textPan {
+                            0%, 100% { transform: translate(0px, 0px); }
+                            35% { transform: translate(-8px, -4px); }
+                            70% { transform: translate(6px, 4px); }
+                        }
+                    </style>
+
+                    <defs>
+                        <clipPath id="ing-lens-clip">
+                            <circle cx="190" cy="138" r="106"></circle>
+                        </clipPath>
+                    </defs>
+
+                    <!-- Left Dark Brown Soda Bottle (#331806) with Red Cap & Label (#ea330d) -->
+                    <g>
+                        <path fill="#ea330d" d="M 30,36 A 18,18 0 0,1 48,18 L 67,18 A 18,18 0 0,1 85,36 L 85,59 L 30,59 Z"></path>
+                        <path fill="#331806" d="M 0,98 C 0,76 18,59 40,59 L 75,59 C 97,59 115,76 115,98 L 115,270 C 115,286 102,300 85,300 L 30,300 C 14,300 0,286 0,270 Z"></path>
+                        <rect x="0" y="120" width="115" height="118" fill="#ea330d"></rect>
+                    </g>
+
+                    <!-- Magnifying Glass Interior & Rim -->
+                    <g class="mag-lens-group">
+                        <g clip-path="url(#ing-lens-clip)">
+                            <!-- Zoomed Bottle Interior -->
+                            <circle cx="190" cy="138" r="106" fill="#ea330d"></circle>
+                            <rect x="70" y="20" width="240" height="47" fill="#331806"></rect>
+
+                            <!-- Zoomed Ingredients Text (White in Light Mode, Black in Dark Mode) -->
+                            <g id="magnifierTextGroup" class="mag-text-pan" fill="#ffffff" font-family="Inter, sans-serif" font-size="25" font-weight="500">
+                                <text x="88" y="105">coloring: E150d</text>
+                                <text x="88" y="135">acidifier: phospho</text>
+                                <text x="88" y="165">acid - sweetening</text>
+                                <text x="88" y="195">agent: E950</text>
+                            </g>
+                        </g>
+
+                        <!-- Magnifier Handle & Outer Ring (#000000 in Light Mode, #ffffff in Dark Mode) -->
+                        <g id="magnifierFrameGroup">
+                            <line x1="278" y1="214" x2="348" y2="270" stroke="#000000" stroke-width="36" stroke-linecap="butt"></line>
+                            <circle cx="190" cy="138" r="124" fill="none" stroke="#000000" stroke-width="36"></circle>
+                        </g>
+                    </g>
+                </svg>

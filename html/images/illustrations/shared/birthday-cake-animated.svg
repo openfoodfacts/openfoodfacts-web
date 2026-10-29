@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg-birthday-cake" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 400" width="460" height="400" class="max-w-[420px]">
+                    <style>
+                        .cake-star {
+                            animation: starSpinPulse 3.6s ease-in-out infinite;
+                            transform-origin: 218px 58px;
+                        }
+                        .flame-1 { animation: flameFlicker 1.3s ease-in-out infinite; transform-origin: 162px 175px; }
+                        .flame-2 { animation: flameFlicker 1.3s ease-in-out infinite 0.3s; transform-origin: 218px 142px; }
+                        .flame-3 { animation: flameFlicker 1.3s ease-in-out infinite 0.6s; transform-origin: 277px 160px; }
+                        .cake-whole-rig {
+                            animation: cakeBounce 3.6s ease-in-out infinite;
+                            transform-origin: 235px 280px;
+                        }
+                        .confetti-float {
+                            animation: confettiBob 3.6s ease-in-out infinite;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes starSpinPulse {
+                            0%, 100% { transform: rotate(8deg) scale(1); }
+                            50% { transform: rotate(-6deg) scale(1.1); }
+                        }
+                        @keyframes flameFlicker {
+                            0%, 100% { transform: scale(1, 1) rotate(-3deg); }
+                            50% { transform: scale(0.9, 1.1) rotate(4deg); }
+                        }
+                        @keyframes cakeBounce {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-6px); }
+                        }
+                        @keyframes confettiBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-9px); }
+                        }
+                    </style>
+
+                    <!-- Confetti Rings & Squiggles -->
+                    <g class="confetti-float">
+                        <circle cx="99" cy="134" r="18" fill="none" stroke="#009dff" stroke-width="10"></circle>
+                        <circle cx="389" cy="187" r="20" fill="none" stroke="#009dff" stroke-width="10"></circle>
+                        <circle cx="40" cy="313" r="11" fill="none" stroke="#009dff" stroke-width="9"></circle>
+                        <path d="M 328,114 C 342,107 349,96 351,86" fill="none" stroke="#f0abff" stroke-width="9" stroke-linecap="round"></path>
+                        <path d="M 30,206 C 35,219 44,225 53,226" fill="none" stroke="#f0abff" stroke-width="9" stroke-linecap="round"></path>
+                        <path d="M 418,300 C 426,292 435,288 444,287" fill="none" stroke="#f0abff" stroke-width="9" stroke-linecap="round"></path>
+                    </g>
+
+                    <!-- Cake + Candles + Flames + Star Moving Together -->
+                    <g class="cake-whole-rig">
+                        <!-- Top Golden Star (#ffbe00) -->
+                        <g class="cake-star">
+                            <path fill="#ffbe00" stroke="#ffbe00" stroke-width="8" stroke-linejoin="round" d="
+                                M 220,22 L 230,42 L 252,47 L 235,62 L 237,85 L 217,74 L 195,82 L 200,60 L 185,42 L 208,41 Z"></path>
+                        </g>
+
+                        <!-- 3 Tilted Birthday Candles (White Wax Pillars + Wicks + Golden Teardrop Flames) -->
+                        <!-- Left Candle -->
+                        <g transform="rotate(-4.5 162 210)">
+                            <rect x="150" y="182" width="24" height="58" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"></rect>
+                            <path d="M 150,200 L 174,192 M 150,218 L 174,210" stroke="#f0abff" stroke-width="4"></path>
+                            <line x1="162" y1="174" x2="162" y2="182" stroke="#475569" stroke-width="2.5" stroke-linecap="round"></line>
+                        </g>
+                        <path class="flame-1" fill="#ffbe00" d="M 161,134 C 170,144 175,158 174,167 C 173,174 167,179 161,179 C 155,179 149,174 148,167 C 147,158 152,144 161,134 Z"></path>
+
+                        <!-- Middle Tall Candle -->
+                        <g transform="rotate(-4.5 220 195)">
+                            <rect x="208" y="150" width="24" height="86" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"></rect>
+                            <path d="M 208,172 L 232,164 M 208,192 L 232,184 M 208,212 L 232,204" stroke="#009dff" stroke-width="4"></path>
+                            <line x1="220" y1="142" x2="220" y2="150" stroke="#475569" stroke-width="2.5" stroke-linecap="round"></line>
+                        </g>
+                        <path class="flame-2" fill="#ffbe00" d="M 218,102 C 227,112 232,126 231,135 C 230,142 224,147 218,147 C 212,147 206,142 205,135 C 204,126 209,112 218,102 Z"></path>
+
+                        <!-- Right Candle -->
+                        <g transform="rotate(-4.5 278 202)">
+                            <rect x="266" y="166" width="24" height="68" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"></rect>
+                            <path d="M 266,186 L 290,178 M 266,206 L 290,198" stroke="#f0abff" stroke-width="4"></path>
+                            <line x1="278" y1="158" x2="278" y2="166" stroke="#475569" stroke-width="2.5" stroke-linecap="round"></line>
+                        </g>
+                        <path class="flame-3" fill="#ffbe00" d="M 277,118 C 286,128 291,142 290,151 C 289,158 283,163 277,163 C 271,163 265,158 264,151 C 263,142 268,128 277,118 Z"></path>
+
+                        <!-- Tilted Frosted Birthday Cake -->
+                        <g transform="rotate(-4.5 235 305)">
+                            <!-- Peach Sponge Base (#ffd8b8) Starts Lower So Top Corners Never Peek Behind Frosting -->
+                            <rect x="90" y="255" width="286" height="121" rx="20" fill="#ffd8b8"></rect>
+                            <!-- Lavender Scalloped Frosting (#f0abff) Completely Covering the Top -->
+                            <path fill="#f0abff" d="
+                                M 90,276
+                                C 90,248 112,232 138,232
+                                L 328,232
+                                C 354,232 376,248 376,276
+                                L 376,308
+                                C 355,326 312,326 286,298
+                                C 262,332 204,332 180,298
+                                C 155,332 110,326 90,312
+                                Z"></path>
+                            <!-- 8 Blue Sprinkles (#009dff) -->
+                            <g stroke="#009dff" stroke-width="8.5" stroke-linecap="round">
+                                <line x1="120" y1="260" x2="136" y2="270"></line>
+                                <line x1="125" y1="296" x2="144" y2="293"></line>
+                                <line x1="168" y1="274" x2="177" y2="258"></line>
+                                <line x1="212" y1="281" x2="225" y2="294"></line>
+                                <line x1="244" y1="268" x2="254" y2="252"></line>
+                                <line x1="282" y1="264" x2="297" y2="274"></line>
+                                <line x1="326" y1="260" x2="335" y2="244"></line>
+                                <line x1="329" y1="278" x2="346" y2="275"></line>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
