@@ -1,156 +1,628 @@
 <!-- no side column -->
+<style>
+/* ==========================================================================
+   Open Beauty Facts — Modern Contribute Page
+   ========================================================================== */
 
-<div class="row">
+#obf-contribute-page {
+    --obf-primary: #d81b60;
+    --obf-primary-hover: #ad1457;
+    --obf-secondary: #00838f;
+    --obf-secondary-hover: #006064;
+    --obf-cyan: #00bcd4;
+    --obf-dark: #2c101c;
+    --obf-cream: #fdf8fa;
+    --obf-warm-bg: #fff5f8;
+    --obf-border: #f5dce6;
+    --obf-card-border: #edd5e0;
+    --obf-text-muted: #6e5863;
+    --obf-green: #209552;
+    --obf-blue: #2563eb;
+    --obf-radius-card: 22px;
+    --obf-radius-pill: 9999px;
+    --obf-shadow-sm: 0 2px 10px rgba(44, 16, 28, 0.04);
+    --obf-shadow-md: 0 10px 24px rgba(44, 16, 28, 0.07);
+    --obf-shadow-hover: 0 16px 36px rgba(216, 27, 96, 0.14);
 
-    <div class="small-12 medium-8 columns">
-        <h1>Contribute to Open Beauty Facts</h1>
-        <h2 class="subheader">All you need is a scan-do attitude! :-)</h2>
-        <!-- note to translators: you can replace "All you need is a scan-do attitude!" by a sentence that works better
-        for your language. Something that says that it's easy to contribute and that all that is needed is good will and a positive / can-do attitude -->
-        <blockquote>Can we make the cosmetics industry more open and transparent? Yes we scan!
-        <!-- note to translators: please translate "Can we make the cosmetics industry more open and transparent" but keep "Yes we scan!" in English -->
-        <cite>In barely a week, already 30 Open Beauty Facts contributors and growing !</cite></blockquote>
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--obf-dark);
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+}
+
+#obf-contribute-page * {
+    box-sizing: border-box;
+}
+
+/* Badge Pills */
+.obf-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--obf-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+}
+.obf-badge-pill.pink { background: #fce4ec; color: #ad1457; }
+.obf-badge-pill.cyan { background: #e0f7fa; color: #00838f; }
+.obf-badge-pill.purple { background: #f3e5f5; color: #7b1fa2; }
+.obf-badge-pill.green { background: #ddf6e6; color: #156937; }
+.obf-badge-pill.blue { background: #e0f2fe; color: #0369a1; }
+
+/* Hero Banner */
+.obf-hero {
+    background: linear-gradient(145deg, #ffffff 0%, var(--obf-warm-bg) 100%);
+    border: 1px solid var(--obf-border);
+    border-radius: 28px;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 3.5rem;
+    box-shadow: var(--obf-shadow-md);
+}
+
+.hero-content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--obf-dark);
+    line-height: 1.15;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+}
+
+.hero-lead {
+    font-size: 1.15rem;
+    color: var(--obf-text-muted);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+.hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-media img {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    filter: drop-shadow(0 14px 32px rgba(44, 16, 28, 0.12));
+    border-radius: 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-media img:hover {
+    transform: translateY(-4px) scale(1.015);
+}
+
+/* Call to Action Buttons */
+.off-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--obf-radius-pill);
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    line-height: 1.2;
+    border: none;
+}
+.off-btn-primary {
+    background: var(--obf-primary);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(216, 27, 96, 0.3);
+}
+.off-btn-primary:hover {
+    background: var(--obf-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(216, 27, 96, 0.4);
+    color: #ffffff !important;
+}
+.off-btn-secondary {
+    background: #ffffff;
+    color: var(--obf-dark) !important;
+    border: 1px solid var(--obf-border);
+    box-shadow: var(--obf-shadow-sm);
+}
+.off-btn-secondary:hover {
+    background: var(--obf-cream);
+    border-color: var(--obf-primary);
+    transform: translateY(-2px);
+    color: var(--obf-primary) !important;
+}
+.off-btn-cyan {
+    background: var(--obf-secondary);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 131, 143, 0.3);
+}
+.off-btn-cyan:hover {
+    background: var(--obf-secondary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 131, 143, 0.4);
+    color: #ffffff !important;
+}
+.off-btn-block {
+    width: 100%;
+}
+
+/* Section Header */
+.section-header {
+    text-align: left;
+    margin-bottom: 2.25rem;
+}
+.section-header h2 {
+    font-size: clamp(1.8rem, 3vw, 2.35rem);
+    font-weight: 800;
+    color: var(--obf-dark);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.015em;
+}
+.section-header p {
+    font-size: 1.08rem;
+    color: var(--obf-text-muted);
+    margin: 0;
+    max-width: 760px;
+}
+
+/* Grids */
+.off-card-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+.off-card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+
+/* Feature Cards */
+.off-feature-card {
+    background: #ffffff;
+    border: 1px solid var(--obf-card-border);
+    border-radius: var(--obf-radius-card);
+    padding: 1.85rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--obf-shadow-sm);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+.off-feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--obf-shadow-hover);
+    border-color: var(--obf-primary);
+}
+
+.off-card-art {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+.off-card-art img,
+.off-card-art svg {
+    max-height: 140px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.off-feature-card:hover .off-card-art img,
+.off-feature-card:hover .off-card-art svg {
+    transform: scale(1.05);
+}
+
+/* Animations: on hover only */
+#obf-contribute-page svg,
+#obf-contribute-page svg * {
+    animation-play-state: paused !important;
+}
+
+#obf-contribute-page .obf-hero:hover svg,
+#obf-contribute-page .obf-hero:hover svg *,
+#obf-contribute-page .off-feature-card:hover svg,
+#obf-contribute-page .off-feature-card:hover svg *,
+#obf-contribute-page .expert-banner:hover svg,
+#obf-contribute-page .expert-banner:hover svg *,
+#obf-contribute-page .hero-media:hover svg,
+#obf-contribute-page .hero-media:hover svg *,
+#obf-contribute-page svg:hover,
+#obf-contribute-page svg:hover * {
+    animation-play-state: running !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #obf-contribute-page svg,
+    #obf-contribute-page svg * {
+        animation: none !important;
+    }
+}
+
+.off-feature-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--obf-dark);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+}
+.off-feature-card p {
+    font-size: 0.95rem;
+    color: var(--obf-text-muted);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.off-feature-card .card-footer-action {
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
+/* Divider */
+#obf-contribute-page hr.off-divider {
+    border: none;
+    border-top: 1px solid var(--obf-border);
+    margin: 3.5rem 0;
+}
+
+/* Expert Banner */
+.expert-banner {
+    background: linear-gradient(135deg, var(--obf-warm-bg) 0%, #ffffff 100%);
+    border: 1px solid var(--obf-border);
+    border-radius: 24px;
+    padding: clamp(1.8rem, 3.5vw, 2.5rem);
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--obf-shadow-sm);
+}
+.expert-banner-art {
+    display: flex;
+    justify-content: center;
+}
+.expert-banner-art img {
+    max-width: 280px;
+    height: auto;
+}
+.expert-banner-text h2 {
+    font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+    font-weight: 800;
+    color: var(--obf-dark);
+    margin: 0 0 0.75rem 0;
+}
+.expert-banner-text p {
+    color: var(--obf-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 1.25rem 0;
+}
+
+/* Bottom CTA */
+.bottom-projects-cta {
+    background: linear-gradient(135deg, var(--obf-dark) 0%, #15050c 100%);
+    border-radius: 24px;
+    padding: clamp(2.2rem, 4vw, 3.2rem);
+    text-align: center;
+    color: #ffffff;
+    margin-top: 3.5rem;
+    box-shadow: var(--obf-shadow-md);
+}
+.bottom-projects-cta h2 {
+    color: #ffffff;
+    font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+    font-weight: 800;
+    margin: 0 0 0.85rem 0;
+}
+.bottom-projects-cta p {
+    color: #fce4ec;
+    font-size: 1.1rem;
+    max-width: 680px;
+    margin: 0 auto 1.75rem auto;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .hero-content-grid,
+    .expert-banner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .section-header {
+        text-align: center;
+    }
+}
+</style>
+
+<div id="obf-contribute-page">
+
+    <!-- Hero Banner -->
+    <header class="obf-hero">
+        <div class="hero-content-grid">
+            <div class="hero-text">
+                <span class="obf-badge-pill pink">✨ 100% Volunteer Driven • Cosmetics Transparency</span>
+                <h1>Contribute to Open Beauty Facts</h1>
+                <p class="hero-lead">
+                    All you need is a scan-do attitude! Scan your cosmetics, shampoos, and skincare products using the universal Open Food Facts app to give everyone honest ingredient transparency.
+                </p>
+                <div class="hero-actions">
+                    <a href="/open-beauty-facts-mobile-app?utm_source=obf&amp;utm_medium=web&amp;utm_campaign=contribute_hero" class="off-btn off-btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        Install Free Universal App
+                    </a>
+                    <a href="https://wiki.openfoodfacts.org/Contributor" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        Join our Community &rarr;
+                    </a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img src="/images/illustrations/beauty/person-scanning-product-with-smartphone-open-beauty-facts.svg" alt="Person scanning a cosmetic product with smartphone" width="440" height="360">
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: Everyone can contribute -->
+    <section>
+        <div class="section-header">
+            <span class="obf-badge-pill cyan">🌟 Quick Micro-Contributions</span>
+            <h2>Everyone can contribute</h2>
+            <p>
+                Take two minutes while getting ready in the morning to scan a cosmetic barcode, or help extract INCI ingredient lists online!
+            </p>
+        </div>
+
+        <div class="off-card-grid-4">
+            <!-- Card 1: Add cosmetics -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/beauty/off-add-products-cosmetics-animated.svg" alt="Barcode scanner scanning cosmetics and beauty product labels" width="560" height="420" loading="lazy">
+                </div>
+                <span class="obf-badge-pill pink">📱 Mobile &amp; Web</span>
+                <h3>Add cosmetics</h3>
+                <p>
+                    Use the free universal Open Food Facts mobile app (supporting food, cosmetics, and pet food) to easily scan barcodes of shampoos, creams, and soaps from your bathroom, and upload clear label photos.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/open-beauty-facts-mobile-app" class="off-btn off-btn-primary off-btn-block">
+                        Get Universal App
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 2: Complete INCI lists -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/beauty/off-data-quality-cosmetics-animated.svg" alt="Magnifying glass inspecting cosmetic ingredients and INCI lists" width="560" height="420" loading="lazy">
+                </div>
+                <span class="obf-badge-pill cyan">🔬 INCI &amp; OCR</span>
+                <h3>Extract ingredients</h3>
+                <p>
+                    Verify optical character recognition (OCR) on ingredient lists, flag cosmetic allergens, and categorize makeup or sunscreen products.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/cgi/search.pl" class="off-btn off-btn-secondary off-btn-block">
+                        Explore Products
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 3: Tell the world -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-community-building-animated.svg" alt="Community celebration and collaboration" width="560" height="420" loading="lazy">
+                </div>
+                <span class="obf-badge-pill purple">📢 Spread the Word</span>
+                <h3>Tell the world</h3>
+                <p>
+                    Share Open Beauty Facts with friends, family, and beauty enthusiasts. Write articles, share reviews, or organize a local scan party.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/follow-open-food-facts" class="off-btn off-btn-secondary off-btn-block">
+                        Share on Social Media
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 4: Make it local -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-make-it-local-animated.svg" alt="Multilingual world globe representing global communities" width="560" height="420" loading="lazy">
+                </div>
+                <span class="obf-badge-pill green">🌍 Local Communities</span>
+                <h3>Make it local</h3>
+                <p>
+                    Help translate the platform into your language, catalog regional cosmetic brands, and verify local eco-certifications and organic labels.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://translate.openfoodfacts.org" class="off-btn off-btn-cyan off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Help Translate
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Section 2: Expert Help Needed -->
+    <section>
+        <div class="expert-banner">
+            <div class="expert-banner-art">
+                <img src="/images/illustrations/shared/off-expert-help-needed-animated.svg" alt="Scientists and developers working together on open data" width="560" height="420" loading="lazy">
+            </div>
+            <div class="expert-banner-text">
+                <span class="obf-badge-pill pink">🛠️ Specialized Talents</span>
+                <h2>Expert help needed</h2>
+                <p>
+                    Scaling Open Beauty Facts requires expertise across toxicology, chemistry, mobile engineering, design, and scientific taxonomies. Lend your skills to an open common good!
+                </p>
+                <a href="https://connect.openfoodfacts.org/join-the-contributor-skill-pool-open-food-facts" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer">
+                    Join the Contributor Skill Pool &rarr;
+                </a>
+            </div>
+        </div>
+
+        <div class="off-card-grid-3">
+            <!-- Project management -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-project-management-animated.svg" alt="Project roadmap and milestone checklist" width="560" height="420" loading="lazy">
+                </div>
+                <span class="obf-badge-pill blue">Strategy &amp; Coordination</span>
+                <h3>Project management</h3>
+                <p>
+                    Coordinate volunteer working groups, curate cosmetic data taxonomies, and prioritize community feature roadmaps.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Projects_homepage" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        View Projects Wiki
+                    </a>
+                </div>
+            </article>
+
+            <!-- Design & UX -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-design-ux-animated.svg" alt="Design wireframe and pen tool" width="560" height="420" loading="lazy">
+                </div>
+                <span class="obf-badge-pill purple">UI / UX Design</span>
+                <h3>Design &amp; UX</h3>
+                <p>
+                    Design delightful, accessible interfaces for cosmetics scanning, ingredient risk displays, and brand comparisons.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts/openfoodfacts-design" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Join Design Team
+                    </a>
+                </div>
+            </article>
+
+            <!-- Development & AI -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-developers-ai-animated.svg" alt="Code editor and machine learning diagrams" width="560" height="420" loading="lazy">
+                </div>
+                <span class="obf-badge-pill cyan">Code &amp; AI</span>
+                <h3>Development &amp; AI</h3>
+                <p>
+                    Build on our Perl &amp; MongoDB backend, Flutter mobile app, JSON API, and computer vision models for complex ingredient packaging.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts" class="off-btn off-btn-cyan off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Explore GitHub Repos
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="bottom-projects-cta">
+        <h2>Ready to join the beauty transparency movement?</h2>
+        <p>
+            Connect with our volunteers and help build an independent database for everyone's health and safety.
+        </p>
+        <a href="https://slack.openfoodfacts.org" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer" style="font-size: 1.05rem; padding: 0.85rem 1.85rem;">
+            Join Our Slack Workspace &rarr;
+        </a>
     </div>
-    
-    <div class="text-center small-12 medium-4 columns">
-        <img src="https://static.openbeautyfacts.org/images/svg/crowdsourcing-icon.svg" width="100%" style="max-width:356px" alt="Yes we scan!" />
-    </div>  
 
 </div>
 
-<hr>
+<script>
+    function onMount(fn) {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+        } else {
+            fn();
+        }
+    }
 
-<div class="row text-center">
-    <div class="large-12 columns">
-        <h2>Everyone can contribute</h2>
-        <h4 class="subheader">Be part of our collaborative, free and open database of cosmetic products from around the world!</h4>
-        <p>Open Beauty Facts is a non-profit project made entirely by volunteers, we do need you.</p>
+    onMount(() => {
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            if (typeof parent !== 'undefined' && parent !== window) {
+                parent.postMessage({ frameHeight: height }, '*');
+            }
+        }
+        sendHeight();
+        window.addEventListener("resize", sendHeight);
 
-    </div>
-</div>
-<div class="row text-center">
-    <div class="medium-4 columns">
-        <h3>Add products</h3>
-        <p>Use the Open Food Facts app for <a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en&utm_source=obf&utm_campaign=contribute-promo&utm_medium=website">Android</a> or <a href="https://apps.apple.com/app/open-food-facts/id588797948?utm_source=obf&utm_campaign=contribute-promo&utm_medium=website">iPhone</a> to easily scan the barcode of cosmetic products from your home or local stores and upload pictures of their label.</p>
-        <p>The mobile apps have been merged, so you can now scan cosmetics, pet food, and other products from the same Open Food Facts app!</p>
-        <p>No smartphone? No problem: you can also use your camera to add products directly on the web site.</p>
-        <p><a href="/open-beauty-facts-mobile-app?utm_source=obf&utm_medium=web&utm_campaign=contribute-promo" class="button round" style="margin-bottom: 0">Install the app to contribute to cosmetic transparency</a></p>
-    </div>
-    
-    <div class="medium-4 columns">
-        <h3>Tell the world</h3>
-        <p>Do you like Open Beauty Facts? Tell others about it!</p>
-        <p>You can present the project to your family and friends, show them how to install the app and contribute,
-        write a blog post, share Open Beauty Facts on social media...</p>
-        <p>And present it live! We have presented Open Beauty Facts to very different audiences in very different settings, and
-we always get a very enthusiastic response when we show what can be done when the data for products is open. We have lots
-of <a href="/presentations">presentation materials</a> (slides etc.) that you can adapt or present as-is.</p>
-    
-    </div>
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
+                    }
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
 
-    <div class="medium-4 columns">
-        <h3>Make it local</h3>
-        <p>You can help to <a href="https://translate.openfoodfacts.org">translate</a> the site and mobile app in your language,
-and to translate presentations, announcements etc.</p>
-        <p>We can work together to support and add logos for local labels, to decode local packager codes so that we can map products etc.</p>
-        <p>Start or join a local contributors community: add local products, recruit friends, present the project in local meetups and
-        conferences etc.</p>
-    </div>
-</div>
-
-<hr>
-
-<div class="row text-center">
-    <div class="large-12 columns">
-        <h2>Expert help needed</h2>
-        <p>Developing Open Beauty Facts also requires specialized knowledge and expertise in many different areas:</p>
-    </div>
-</div>
-
-<ul class="text-center small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-    <li>
-        <h3>Project management</h3>
-        <p>We have tons of ideas and you probably have even more, but it is quite a challenge to prioritize them,
-to build a roadmap, and to manage projects when every participant is a volunteer with often limited time available.</p>
-    </li>
-    
-    <li>
-        <h3>Design</h3>
-        <p>We need help to build a better user experience on the Open Beauty Facts web site and mobile app, to improve
-their design, to create impactful presentation materials etc.</p>
-    </li>
-
-    <li>
-        <h3>Development</h3>
-        <p>We have a lot of development work to do: on the Open Beauty Facts backend (Perl and MongoDB), API (JSON),
-        web site (HTML5, JS, Foundation), iOS and Android apps (currently Apache Cordova / Phonegap, with a native 
-          Android version almost ready and much work to do on iOS), to build new cool reuses etc.
-          Our code is on GitHub (<a href="https://github.com/openfoodfacts/openfoodfacts-androidapp">Android</a>, 
-          <a href="https://github.com/openfoodfacts/openfoodfacts-ios">iOS</a>, 
-          <a href="https://github.com/openfoodfacts/openbeautyfacts-cordova-app">Cordova</a>.)
-
-    </li>
-    
-    <li>
-        <h3>Community building</h3>
-        <p>We need to build local communities in all countries and at the same time unite them globally.</p>
-        <p>It is very difficult to bootstrap a local community in a country without living there, so your help
-        to find the first very motivated participants is essential. Are you one of them?</p>
-    </li>
-
-    <li>
-        <h3>Communication</h3>
-        <p>We are not sure what to write here, could you help?</p>
-        <p>More seriously, there are lot of cool things that users, contributors and reusers do with Open Beauty Facts,
-        it would be great to get more people to know about it. In particular, we need help for public
-        and <a href="/press">media relations</a>.</p>
-        
-    </li>   
-    
-    <li>
-        <h3>Special projects</h3>
-        <p>There are lots of interesting and original applications of cosmetic open data that we could work on with
-        government cosmetic agencies, cosmetic producers, researchers, universities, schools, NGOs etc. Maybe you already have ideas?
-        If you do, please help us to push them forward.</p>
-    </li>   
-</ul>
-
-<hr>
-
-<div class="row text-center">
-    <div class="large-12 columns">
-        <h2>Let's talk!</h2>
-        <h4 class="subheader">A lot of ideas, energy and enthusiasm are shared in our contributors community, join us!</h4>
-        <p>Here are some places where you can meet other contributors, talk to them and work with them:</p>
-    </div>
-</div>
-
-<ul class="text-center small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-    <li>
-        <h3>Slack</h3>
-        <p>Slack is the best way to interact and collaborate with other contributors, developers and reusers. It's a discussion forum
-        you can access from your browser or your phone. It completely changed how we work together. Please try it, click on the button
-        below to get invited to our Slack.</p>
-        <script async defer src="https://slack.openfoodfacts.org/slackin.js"></script>
-    </li>
-    
-    <li>
-        <h3>Facebook groups</h3>
-        <p>We have <a href="https://www.facebook.com/groups/openbeautyfacts/">Facebook groups</a> in many languages for Open Beauty Facts contributors. Joining them is a good way to get news about
-        the project and to share announcements to a wider audience. </p>
-    </li>
-
-    <li>
-        <h3>Wiki</h3>
-        <p>We also have a <a href="https://en.wiki.openbeautyfacts.org/">wiki</a> that we use to collaboratively document Open Beauty Facts and its sub-projects. We also use the wiki
-        to manage <a href="https://en.wiki.openbeautyfacts.org/Translations">translations</a> and to work on the <a href="https://en.wiki.openbeautyfacts.org/Global_taxonomies">taxonomies / hierarchies</a> of categories, labels etc.</p>
-    </li>   
-</ul>
-
-<hr>
-
-<div class="row text-center">
-    <div class="large-12 columns">
-        <p>There are many more ways to contribute to Open Beauty Facts, please <a href="https://slack.openfoodfacts.org">join us on Slack</a> (in the #openbeautyfacts channel) and let's start the discussion!</p>
-    </div>
-</div>
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
+        });
+    });
+</script>
