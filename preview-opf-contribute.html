@@ -586,104 +586,106 @@
             <!-- Card 1: Add products -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <svg id="svg-add-products" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Barcode scanner scanning and uploading product labels">
+                    <svg id="svg-add-products-nonfood" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Barcode scanner scanning and uploading manufactured and household product labels">
                     <style>
-                        .cereal-float {
-                            animation: cerealBob 4.2s ease-in-out infinite;
-                            transform-origin: 135px 210px;
+                        .nf-washer-float {
+                            animation: nfWasherBob 4.2s ease-in-out infinite;
+                            transform-origin: 138px 235px;
                         }
-                        .bottle-float {
-                            animation: bottleBob 4.2s ease-in-out infinite;
-                            transform-origin: 265px 210px;
+                        .nf-drum-glare {
+                            animation: drumSpin 4.2s ease-in-out infinite;
+                            transform-origin: 138px 250px;
                         }
-                        .scanner-hand {
-                            animation: phoneScanMove 4.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+                        .nf-drill-float {
+                            animation: nfDrillBob 4.2s ease-in-out infinite 0.35s;
+                            transform-origin: 265px 155px;
+                        }
+                        .nf-scanner-hand {
+                            animation: nfPhoneScanMove 4.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
                             transform-origin: 520px 360px;
                         }
-                        .laser-line {
-                            animation: laserSweep 2.1s ease-in-out infinite;
+                        .nf-laser-line {
+                            animation: nfLaserSweep 2.1s ease-in-out infinite;
                         }
-                        .scan-badge {
-                            animation: badgePop 4.2s ease-out infinite;
-                            transform-origin: 355px 155px;
+                        .nf-scan-badge {
+                            animation: nfBadgePop 4.2s ease-out infinite;
+                            transform-origin: 355px 245px;
                         }
-                        svg.paused * {
-                            animation-play-state: paused !important;
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes nfWasherBob {
+                            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+                            50% { transform: translateY(-8px) rotate(-1deg); }
                         }
-                        @keyframes cerealBob {
-                            0%, 100% { transform: translateY(0px) rotate(-6deg); }
-                            50% { transform: translateY(-8px) rotate(-4deg); }
+                        @keyframes drumSpin {
+                            0%, 100% { transform: rotate(0deg); }
+                            50% { transform: rotate(22deg); }
                         }
-                        @keyframes bottleBob {
-                            0%, 100% { transform: translateY(0px) rotate(18deg); }
-                            50% { transform: translateY(-10px) rotate(21deg); }
+                        @keyframes nfDrillBob {
+                            0%, 100% { transform: translateY(0px) rotate(12deg); }
+                            50% { transform: translateY(-10px) rotate(16deg); }
                         }
-                        @keyframes phoneScanMove {
+                        @keyframes nfPhoneScanMove {
                             0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
                             45%, 60% { transform: translate(-18px, -10px) rotate(-3deg); }
                         }
-                        @keyframes laserSweep {
+                        @keyframes nfLaserSweep {
                             0%, 100% { transform: translateY(-38px); opacity: 0.35; }
                             50% { transform: translateY(42px); opacity: 1; }
                         }
-                        @keyframes badgePop {
+                        @keyframes nfBadgePop {
                             0%, 38%, 90%, 100% { transform: scale(0); opacity: 0; }
                             48%, 78% { transform: scale(1); opacity: 1; }
                         }
                     </style>
 
-                    <!-- 1. ATTACHED CEREAL PACK ("CRISPY") -->
-                    <g class="cereal-float">
-                        <path fill="#ff6b35" d="M 55,95 L 205,95 A 12,12 0 0,1 217,107 L 217,245 C 217,265 180,275 162,295 C 145,315 168,342 135,350 C 102,358 75,342 55,352 L 43,107 A 12,12 0 0,1 55,95 Z"></path>
-                        <text x="72" y="152" fill="#d95326" font-family="Inter, sans-serif" font-weight="800" font-size="38" letter-spacing="1">CRISPY</text>
-                        <!-- Silver Spoon -->
-                        <path fill="#bfc3c6" d="M 145,112 A 7,7 0 0,1 158,108 L 182,175 A 22,22 0 1,1 162,182 Z"></path>
-                        <!-- Bright Cyan Bowl (#00bdf2) -->
-                        <path fill="#00bdf2" d="M 118,215 L 217,215 L 217,270 C 195,302 132,298 118,215 Z"></path>
-                        <!-- Falling Golden Cereal Flakes (#f8c100) -->
-                        <ellipse cx="75" cy="105" rx="9" ry="5" transform="rotate(35 75 105)" fill="#f8c100"></ellipse>
-                        <ellipse cx="112" cy="98" rx="8" ry="4" transform="rotate(-15 112 98)" fill="#f8c100"></ellipse>
-                        <ellipse cx="122" cy="135" rx="10" ry="5" transform="rotate(30 122 135)" fill="#f8c100"></ellipse>
-                        <ellipse cx="72" cy="162" rx="10" ry="5" transform="rotate(-25 72 162)" fill="#f8c100"></ellipse>
-                        <ellipse cx="105" cy="182" rx="9" ry="5" transform="rotate(75 105 182)" fill="#f8c100"></ellipse>
-                        <ellipse cx="82" cy="212" rx="10" ry="5" transform="rotate(-55 82 212)" fill="#f8c100"></ellipse>
-                        <ellipse cx="104" cy="245" rx="10" ry="5" transform="rotate(40 104 245)" fill="#f8c100"></ellipse>
-                        <ellipse cx="78" cy="278" rx="10" ry="5" transform="rotate(8 78 278)" fill="#f8c100"></ellipse>
-                        <ellipse cx="110" cy="305" rx="10" ry="5" transform="rotate(-58 110 305)" fill="#f8c100"></ellipse>
-                        <ellipse cx="82" cy="328" rx="10" ry="5" transform="rotate(-75 82 328)" fill="#f8c100"></ellipse>
-                        <ellipse cx="122" cy="348" rx="10" ry="5" transform="rotate(35 122 348)" fill="#f8c100"></ellipse>
+                    <!-- 1. ATTACHED WASHING-MACHINE.SVG -->
+                    <g class="nf-washer-float">
+                        <!-- Bottom Dark Grey Feet (#606362) -->
+                        <path fill="#606362" d="M 54,352 L 74,352 L 71,360 L 57,360 Z"></path>
+                        <path fill="#606362" d="M 202,352 L 222,352 L 219,360 L 205,360 Z"></path>
+                        <!-- Main Light Grey Body (#b1b1b1) -->
+                        <rect x="42" y="112" width="192" height="240" rx="10" fill="#b1b1b1"></rect>
+                        <!-- Top Dark Grey Control Bar (#606362) -->
+                        <path fill="#606362" d="M 52,112 L 224,112 A 10,10 0 0,1 234,122 L 234,144 L 42,144 L 42,122 A 10,10 0 0,1 52,112 Z"></path>
+                        <!-- Top-Left White Dispenser Drawer -->
+                        <rect x="52" y="119" width="42" height="18" rx="3" fill="#ffffff"></rect>
+                        <!-- Top-Right 3 Cyan Indicator Dots (#7ce0ff) -->
+                        <circle cx="162" cy="128" r="5" fill="#7ce0ff"></circle>
+                        <circle cx="190" cy="128" r="5" fill="#7ce0ff"></circle>
+                        <circle cx="218" cy="128" r="5" fill="#7ce0ff"></circle>
+                        <!-- Center Drum Outer Ring (#606362) & Cyan Glass Window (#7ce0ff) -->
+                        <circle cx="138" cy="248" r="66" fill="#606362"></circle>
+                        <circle cx="138" cy="248" r="50" fill="#7ce0ff"></circle>
+                        <!-- White Glass Reflection Highlights -->
+                        <g class="nf-drum-glare">
+                            <ellipse cx="150" cy="212" rx="6" ry="4" transform="rotate(28 150 212)" fill="#ffffff"></ellipse>
+                            <rect x="160" y="216" width="22" height="8" rx="4" transform="rotate(42 171 220)" fill="#ffffff"></rect>
+                        </g>
                     </g>
 
-                    <!-- 2. ATTACHED GREEN BOTTLE -->
-                    <g class="bottle-float">
-                        <!-- Bottle Body (#009a49) -->
-                        <path fill="#009a49" d="M 248,62 L 282,62 L 282,115 C 312,126 328,155 328,192 L 328,348 A 18,18 0 0,1 310,366 L 220,366 A 18,18 0 0,1 202,348 L 202,192 C 202,155 218,126 248,115 Z"></path>
-                        <!-- Grey Cap (#aeaeae) -->
-                        <rect x="242" y="42" width="46" height="22" rx="6" fill="#aeaeae"></rect>
-                        <!-- White Bottle Label with 3 Grey Lines -->
-                        <rect x="222" y="185" width="86" height="126" rx="8" fill="#ffffff"></rect>
-                        <line x1="236" y1="212" x2="294" y2="212" stroke="#999999" stroke-width="5" stroke-linecap="round"></line>
-                        <line x1="236" y1="228" x2="294" y2="228" stroke="#999999" stroke-width="5" stroke-linecap="round"></line>
-                        <line x1="236" y1="244" x2="294" y2="244" stroke="#999999" stroke-width="5" stroke-linecap="round"></line>
+                    <!-- 2. CORDLESS DRILL (From hero-openprices.svg) -->
+                    <g class="nf-drill-float">
+                        <rect x="192" y="88" width="32" height="7" rx="3" fill="#aeaeae"></rect>
+                        <rect x="220" y="82" width="18" height="18" rx="3" fill="#aeaeae"></rect>
+                        <rect x="236" y="76" width="14" height="30" rx="3" fill="#606362"></rect>
+                        <path fill="#ffc412" d="M 250,68 L 328,68 A 14,14 0 0,1 342,82 L 342,116 A 14,14 0 0,1 328,130 L 320,130 L 320,185 L 256,185 L 278,164 L 266,130 L 250,122 Z"></path>
+                        <rect x="298" y="82" width="30" height="5" rx="2.5" fill="#606362"></rect>
+                        <rect x="298" y="92" width="30" height="5" rx="2.5" fill="#606362"></rect>
+                        <rect x="246" y="182" width="78" height="28" rx="5" fill="#606362"></rect>
                     </g>
 
-                    <!-- 3. HAND WITH SMARTPHONE SCANNING THE PRODUCTS -->
-                    <g class="scanner-hand">
-                        <!-- Back gripping fingers -->
+                    <!-- 3. HAND WITH SMARTPHONE SCANNING NON-FOOD PRODUCTS -->
+                    <g class="nf-scanner-hand">
                         <g fill="#955830">
                             <rect x="292" y="142" width="45" height="22" rx="11" transform="rotate(35 314 153)"></rect>
                             <rect x="275" y="164" width="58" height="22" rx="11" transform="rotate(35 304 175)"></rect>
                             <rect x="260" y="186" width="66" height="22" rx="11" transform="rotate(35 293 197)"></rect>
                         </g>
-                        <!-- Forearm & Palm -->
                         <path fill="#955830" d="M 380,210 L 432,216 C 470,252 508,270 555,280 L 555,375 C 488,365 436,336 385,292 Z"></path>
-                        <!-- Smartphone Frame -->
                         <g transform="rotate(5 355 200)">
                             <rect x="294" y="88" width="122" height="214" rx="14" fill="#606362"></rect>
                             <rect x="300" y="95" width="110" height="200" rx="11" fill="#e1f3fe"></rect>
-                            <!-- Mini Product Preview + Barcode on Screen -->
                             <rect x="314" y="122" width="82" height="90" rx="8" fill="#ffffff"></rect>
-                            <!-- Barcode Bars -->
                             <g fill="#222222">
                                 <rect x="325" y="140" width="4" height="44"></rect>
                                 <rect x="333" y="140" width="8" height="44"></rect>
@@ -693,17 +695,13 @@
                                 <rect x="376" y="140" width="3" height="44"></rect>
                                 <rect x="383" y="140" width="5" height="44"></rect>
                             </g>
-                            <!-- Red Laser Scan Line -->
-                            <rect class="laser-line" x="304" y="162" width="102" height="3.5" rx="1.5" fill="#dc3522"></rect>
-                            <!-- Green Checkmark Pill -->
-                            <g class="scan-badge">
+                            <rect class="nf-laser-line" x="304" y="162" width="102" height="3.5" rx="1.5" fill="#dc3522"></rect>
+                            <g class="nf-scan-badge">
                                 <rect x="320" y="232" width="70" height="26" rx="13" fill="#009a49"></rect>
                                 <path d="M 346,245 L 352,251 L 365,239" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
                             </g>
-                            <!-- Notch -->
                             <path fill="#606362" d="M 332,93 L 378,93 L 375,102 L 335,102 Z"></path>
                         </g>
-                        <!-- Thumb -->
                         <path fill="#955830" d="M 404,268 L 410,162 A 12,12 0 0,1 434,162 L 440,220 L 430,274 Z"></path>
                     </g>
                 </svg>
@@ -723,7 +721,79 @@
             <!-- Card 2: Document repairability -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODYiIGhlaWdodD0iODkiIHZpZXdCb3g9IjAgMCA4NiA4OSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQzLjI3OCAxLjYyNzI2TDQzLjI3MzMgMS42MTg0MkM0Mi45ODAxIDEuMDYxMjggNDIuMjkwNyAwLjg0NzM1MyA0MS43MzM2IDEuMTQwNkw1LjA3MTkxIDIwLjQzNzRDNC41MTQ3NyAyMC43MzA3IDQuMzAwODQgMjEuNDIgNC41OTQwOSAyMS45NzcyTDQuNTk4NzQgMjEuOTg2QzQuODkxOTkgMjIuNTQzMiA1LjU4MTM3IDIyLjc1NzEgNi4xMzg1MiAyMi40NjM4TDQyLjgwMDIgMy4xNjcwM0M0My4zNTczIDIuODczNzggNDMuNTcxMyAyLjE4NDQgNDMuMjc4IDEuNjI3MjZaIiBmaWxsPSIjQjVCNUI1Ii8+CjxwYXRoIGQ9Ik03OS4zMSAyMS4xQzc5LjAyIDIxLjY2IDc4LjQ4IDIxLjk2IDc4LjEgMjEuNzZMNTMuMTYgOC45NEM1Mi43OCA4Ljc0IDUyLjcxIDguMTMgNTMgNy41N0M1My4yOSA3LjAxIDUzLjgzIDYuNzEgNTQuMjEgNi45MUw3OS4xNSAxOS43M0M3OS41MyAxOS45MyA3OS42IDIwLjU0IDc5LjMxIDIxLjFaIiBmaWxsPSIjQjVCNUI1Ii8+CjxwYXRoIGQ9Ik04NS4yMiAyMi4wN1Y4NC4yN0M4NS4yMiA4Ni40NiA4My40NCA4OC4yNCA4MS4yNSA4OC4yNEg0LjI0MDAyQzIuMDQwMDIgODguMjQgMC4yNzAwMiA4Ni40NiAwLjI3MDAyIDg0LjI3VjIyLjA3QzAuMjcwMDIgMTkuODggMi4wNDAwMiAxOC4xIDQuMjQwMDIgMTguMUg4MS4yNUM4My40NCAxOC4xIDg1LjIyIDE5Ljg4IDg1LjIyIDIyLjA3WiIgZmlsbD0iIzY0NjQ2NCIvPgo8cGF0aCBkPSJNODUuMjIgMjMuMDJWMzguMTFIMC4yNzAwMlYyMy4wMkMwLjI3MDAyIDIwLjMxIDIuMDQwMDIgMTguMSA0LjI0MDAyIDE4LjFIODEuMjVDODMuNDQgMTguMSA4NS4yMiAyMC4zIDg1LjIyIDIzLjAyWiIgZmlsbD0iI0ZGQzUxQyIvPgo8cGF0aCBkPSJNODUuMjIgNDAuMDRIMC4yNzAwMlY0My4yMUg4NS4yMlY0MC4wNFoiIGZpbGw9IiNGRkM1MUMiLz4KPC9zdmc+Cg==" alt="Battery and repairability specifications" width="160" height="130" loading="lazy">
+                    <svg id="svg-data-quality-nonfood" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Magnifying glass inspecting non-food product durability and repairability data quality">
+                    <style>
+                        .dq-nf-lens {
+                            animation: dqNfSweep 4.5s ease-in-out infinite;
+                            transform-origin: 310px 210px;
+                        }
+                        .dq-nf-badge {
+                            animation: dqNfPop 4.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 432px 115px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes dqNfSweep {
+                            0%, 100% { transform: translate(-45px, -25px) rotate(-6deg); }
+                            50% { transform: translate(35px, 20px) rotate(6deg); }
+                        }
+                        @keyframes dqNfPop {
+                            0%, 30%, 90%, 100% { transform: scale(0.85); }
+                            50%, 75% { transform: scale(1.08); }
+                        }
+                    </style>
+
+                    <!-- Left: Attached Checklist.svg Data Sheet -->
+                    <g transform="translate(55, 58) rotate(-4)">
+                        <rect x="0" y="14" width="185" height="250" rx="22" fill="#00bdf2"></rect>
+                        <rect x="16" y="34" width="153" height="214" rx="14" fill="#ffffff"></rect>
+                        <rect x="60" y="0" width="65" height="42" rx="10" fill="#aeaeae"></rect>
+                        <circle cx="46" cy="78" r="10" fill="none" stroke="#0077c8" stroke-width="4"></circle>
+                        <line x1="72" y1="78" x2="146" y2="78" stroke="#181818" stroke-width="5" stroke-linecap="round"></line>
+                        <circle cx="46" cy="116" r="10" fill="none" stroke="#0077c8" stroke-width="4"></circle>
+                        <line x1="72" y1="116" x2="146" y2="116" stroke="#181818" stroke-width="5" stroke-linecap="round"></line>
+                        <circle cx="46" cy="154" r="10" fill="none" stroke="#0077c8" stroke-width="4"></circle>
+                        <line x1="72" y1="154" x2="146" y2="154" stroke="#009a49" stroke-width="5" stroke-linecap="round"></line>
+                        <circle cx="46" cy="192" r="10" fill="none" stroke="#0077c8" stroke-width="4"></circle>
+                        <line x1="72" y1="192" x2="146" y2="192" stroke="#181818" stroke-width="5" stroke-linecap="round"></line>
+                    </g>
+
+                    <!-- Center-Right: Attached washing-machine.svg -->
+                    <g transform="translate(216, 108) rotate(4)">
+                        <!-- Bottom Feet (#606362) -->
+                        <path fill="#606362" d="M 14,228 L 36,228 L 33,236 L 17,236 Z"></path>
+                        <path fill="#606362" d="M 148,228 L 170,228 L 167,236 L 151,236 Z"></path>
+                        <!-- Main Light Grey Body (#b1b1b1) -->
+                        <rect x="0" y="0" width="184" height="228" rx="10" fill="#b1b1b1"></rect>
+                        <!-- Top Dark Grey Control Bar (#606362) -->
+                        <path fill="#606362" d="M 10,0 L 174,0 A 10,10 0 0,1 184,10 L 184,32 L 0,32 L 0,10 A 10,10 0 0,1 10,0 Z"></path>
+                        <!-- Top-Left White Dispenser Drawer -->
+                        <rect x="10" y="7" width="40" height="18" rx="3" fill="#ffffff"></rect>
+                        <!-- Top-Right 3 Cyan Dots (#7ce0ff) -->
+                        <circle cx="114" cy="16" r="4.8" fill="#7ce0ff"></circle>
+                        <circle cx="141" cy="16" r="4.8" fill="#7ce0ff"></circle>
+                        <circle cx="168" cy="16" r="4.8" fill="#7ce0ff"></circle>
+                        <!-- Center Drum Outer Ring (#606362) & Cyan Glass (#7ce0ff) -->
+                        <circle cx="92" cy="130" r="62" fill="#606362"></circle>
+                        <circle cx="92" cy="130" r="47" fill="#7ce0ff"></circle>
+                        <!-- White Glass Reflection Highlights -->
+                        <ellipse cx="104" cy="96" rx="5.5" ry="3.8" transform="rotate(28 104 96)" fill="#ffffff"></ellipse>
+                        <rect x="112" y="100" width="20" height="7.5" rx="3.8" transform="rotate(42 122 104)" fill="#ffffff"></rect>
+                    </g>
+
+                    <!-- Attached Green check.svg Quality Seal -->
+                    <g class="dq-nf-badge">
+                        <circle cx="430" cy="118" r="44" fill="#000000" opacity="0.1"></circle>
+                        <circle cx="432" cy="115" r="42" fill="#0b7a3e"></circle>
+                        <path d="M 412,116 L 426,130 L 454,102" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+
+                    <!-- Animated Magnifying Glass Inspecting Washing Machine -->
+                    <g class="dq-nf-lens">
+                        <rect x="336" y="255" width="24" height="95" rx="12" transform="rotate(-38 348 302)" fill="#181818"></rect>
+                        <circle cx="290" cy="215" r="64" fill="#ffffff" fill-opacity="0.35" stroke="#181818" stroke-width="16"></circle>
+                        <path d="M 252,182 A 44,44 0 0,1 295,168" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"></path>
+                    </g>
+                </svg>
                 </div>
                 <span class="opf-badge-pill amber">🔧 Repair Specs</span>
                 <h3>Document durability</h3>
