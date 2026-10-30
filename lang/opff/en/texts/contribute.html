@@ -233,6 +233,25 @@
     transform: scale(1.05);
 }
 
+/* Animations: on hover only */
+@media (hover: hover) {
+    #opff-contribute-page .opff-hero:not(:hover) svg *,
+    #opff-contribute-page .off-feature-card:not(:hover) svg *,
+    #opff-contribute-page .expert-banner:not(:hover) svg * {
+        animation-play-state: paused !important;
+    }
+    #opff-contribute-page .opff-hero:hover svg *,
+    #opff-contribute-page .off-feature-card:hover svg *,
+    #opff-contribute-page .expert-banner:hover svg * {
+        animation-play-state: running !important;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    #opff-contribute-page svg * {
+        animation: none !important;
+    }
+}
+
 .off-feature-card h3 {
     font-size: 1.35rem;
     font-weight: 700;
@@ -352,12 +371,12 @@
                 <span class="opff-badge-pill orange">✨ 100% Volunteer Driven • Pet Nutrition</span>
                 <h1>Contribute to Open Pet Food Facts</h1>
                 <p class="hero-lead">
-                    Help build an independent, open database of dog food, cat food, and pet treats. Together, we can ensure every pet parent knows exactly what fuels their animal companions.
+                    Help build an independent, open database of dog food, cat food, and pet treats using the universal Open Food Facts app. Together, we can ensure every pet parent knows exactly what fuels their animal companions.
                 </p>
                 <div class="hero-actions">
                     <a href="/open-pet-food-facts-mobile-app?utm_source=opff&amp;utm_medium=web&amp;utm_campaign=contribute_hero" class="off-btn off-btn-primary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-                        Install the Scanner App
+                        Install Free Universal App
                     </a>
                     <a href="https://wiki.openfoodfacts.org/Contributor" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
                         Join our Community &rarr;
@@ -384,16 +403,16 @@
             <!-- Card 1: Add pet food -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/food/off-add-products-animated.svg" alt="Animated barcode scanner uploading product" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/food/off-add-products-animated.svg" alt="Barcode scanner scanning and uploading product labels" width="560" height="420" loading="lazy">
                 </div>
                 <span class="opff-badge-pill orange">📱 Mobile &amp; Web</span>
                 <h3>Add pet food</h3>
                 <p>
-                    Scan barcodes of dry kibbles, canned wet food, or dental sticks using our free mobile app, and photograph the guaranteed analysis table.
+                    Scan barcodes of dry kibbles, canned wet food, or pet treats using the free universal Open Food Facts app (which supports food, beauty, and pet food), and photograph the guaranteed analysis table.
                 </p>
                 <div class="card-footer-action">
                     <a href="/open-pet-food-facts-mobile-app" class="off-btn off-btn-primary off-btn-block">
-                        Get Mobile App
+                        Get Universal App
                     </a>
                 </div>
             </article>
@@ -418,7 +437,7 @@
             <!-- Card 3: Tell the world -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-community-building-animated.svg" alt="Animated community celebration" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-community-building-animated.svg" alt="Community celebration and collaboration" width="560" height="420" loading="lazy">
                 </div>
                 <span class="opff-badge-pill purple">📢 Spread the Word</span>
                 <h3>Tell pet owners</h3>
@@ -435,7 +454,7 @@
             <!-- Card 4: Make it local -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-make-it-local-animated.svg" alt="Animated spinning multilingual world globe" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-make-it-local-animated.svg" alt="Multilingual world globe representing global communities" width="560" height="420" loading="lazy">
                 </div>
                 <span class="opff-badge-pill green">🌍 Local Communities</span>
                 <h3>Make it local</h3>
@@ -455,7 +474,7 @@
     <section>
         <div class="expert-banner">
             <div class="expert-banner-art">
-                <img src="/images/illustrations/shared/off-expert-help-needed-animated.svg" alt="Animated experts working together" width="560" height="420" loading="lazy">
+                <img src="/images/illustrations/shared/off-expert-help-needed-animated.svg" alt="Veterinary experts and developers working together on open data" width="560" height="420" loading="lazy">
             </div>
             <div class="expert-banner-text">
                 <span class="opff-badge-pill orange">🛠️ Specialized Skills</span>
@@ -473,7 +492,7 @@
             <!-- Project management -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-project-management-animated.svg" alt="Animated roadmap and checklist" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-project-management-animated.svg" alt="Project roadmap and milestone checklist" width="560" height="420" loading="lazy">
                 </div>
                 <span class="opff-badge-pill blue">Strategy &amp; Roadmap</span>
                 <h3>Project management</h3>
@@ -490,7 +509,7 @@
             <!-- Design & UX -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-design-ux-animated.svg" alt="Animated vector pen tool and design wireframe" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-design-ux-animated.svg" alt="Design wireframe and pen tool" width="560" height="420" loading="lazy">
                 </div>
                 <span class="opff-badge-pill purple">UI / UX Design</span>
                 <h3>Design &amp; UX</h3>
@@ -507,7 +526,7 @@
             <!-- Development & AI -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-developers-ai-animated.svg" alt="Animated code and AI illustration" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-developers-ai-animated.svg" alt="Code editor and machine learning diagrams" width="560" height="420" loading="lazy">
                 </div>
                 <span class="opff-badge-pill green">Code &amp; AI</span>
                 <h3>Development &amp; AI</h3>
@@ -554,5 +573,28 @@
         }
         sendHeight();
         window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        document.querySelectorAll('img[src$="-animated.svg"], img[src*="animated"]').forEach(img => {
+            fetch(img.src)
+                .then(r => r.ok ? r.text() : Promise.reject())
+                .then(svgText => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                    const svg = doc.querySelector('svg');
+                    if (svg) {
+                        if (img.id) svg.id = img.id;
+                        if (img.className) svg.classList.add(...img.classList);
+                        if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                        if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                        if (img.getAttribute('alt')) {
+                            svg.setAttribute('role', 'img');
+                            svg.setAttribute('aria-label', img.getAttribute('alt'));
+                        }
+                        img.parentNode.replaceChild(svg, img);
+                    }
+                })
+                .catch(() => {});
+        });
     });
 </script>

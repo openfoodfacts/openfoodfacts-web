@@ -293,6 +293,25 @@
     transform: scale(1.04);
 }
 
+/* Animations: on hover only */
+@media (hover: hover) {
+    #off-contribute-page .contribute-hero:not(:hover) svg *,
+    #off-contribute-page .off-feature-card:not(:hover) svg *,
+    #off-contribute-page .expert-banner:not(:hover) svg * {
+        animation-play-state: paused !important;
+    }
+    #off-contribute-page .contribute-hero:hover svg *,
+    #off-contribute-page .off-feature-card:hover svg *,
+    #off-contribute-page .expert-banner:hover svg * {
+        animation-play-state: running !important;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    #off-contribute-page svg * {
+        animation: none !important;
+    }
+}
+
 .off-feature-card h3 {
     font-size: 1.35rem;
     font-weight: 700;
@@ -506,7 +525,10 @@
                 </div>
             </div>
             <div class="hero-media">
-                <img src="/images/illustrations/shared/community-puzzle-faces.png" alt="Open Food Facts Community Contributors Puzzle" width="600" height="425" class="hero-puzzle-faces">
+                <picture>
+                    <source srcset="/images/illustrations/shared/community-puzzle-faces.webp" type="image/webp">
+                    <img src="/images/illustrations/shared/community-puzzle-faces.png" alt="Open Food Facts community contributors puzzle pieces fitting together" width="600" height="425" class="hero-puzzle-faces">
+                </picture>
             </div>
         </div>
     </header>
@@ -525,7 +547,7 @@
             <!-- Card 1: Add products -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/food/off-add-products-animated.svg" alt="Animated barcode scanner uploading product" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/food/off-add-products-animated.svg" alt="Barcode scanner scanning and uploading product labels" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill blue">📱 Mobile &amp; Web</span>
                 <h3>Add products</h3>
@@ -533,7 +555,7 @@
                     Use our free Android or iPhone app to easily scan barcodes from your pantry or grocery store shelves and upload clear photos of labels. No smartphone? You can snap photos with your camera and upload directly on the web.
                 </p>
                 <div class="card-footer-action">
-                    <a href="https://world.openfoodfacts.org/open-food-facts-mobile-app?utm_source=off&amp;utm_medium=web&amp;utm_campaign=contribute_page" class="off-btn off-btn-primary off-btn-block">
+                    <a href="/open-food-facts-mobile-app?utm_source=off&amp;utm_medium=web&amp;utm_campaign=contribute_page" class="off-btn off-btn-primary off-btn-block">
                         Install Mobile App
                     </a>
                 </div>
@@ -542,7 +564,7 @@
             <!-- Card 2: Complete products -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-hunger-games-category-validation-animated.svg" alt="Animated gamification controller and category validation" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-hunger-games-category-validation-animated.svg" alt="Game controller representing category validation games" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill amber">🎮 Fun &amp; Gamified</span>
                 <h3>Complete products</h3>
@@ -559,7 +581,7 @@
             <!-- Card 3: Tell the world -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-community-building-animated.svg" alt="Animated community celebration and sharing" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-community-building-animated.svg" alt="People collaborating and sharing food information" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill purple">📢 Spread the Word</span>
                 <h3>Tell the world</h3>
@@ -567,7 +589,7 @@
                     Passionate about honest food information? Introduce Open Food Facts to friends, family, and local consumer co-ops. Share articles on social media or organize a local scan party.
                 </p>
                 <div class="card-footer-action">
-                    <a href="https://world.openfoodfacts.org/follow-open-food-facts" class="off-btn off-btn-secondary off-btn-block">
+                    <a href="/follow-open-food-facts" class="off-btn off-btn-secondary off-btn-block">
                         Share on Social Media
                     </a>
                 </div>
@@ -576,7 +598,7 @@
             <!-- Card 4: Make it local -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-make-it-local-animated.svg" alt="Animated spinning multilingual world globe" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-make-it-local-animated.svg" alt="World globe representing international and local communities" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill green">🌍 Local Communities</span>
                 <h3>Make it local</h3>
@@ -584,7 +606,7 @@
                     Help translate the mobile application, web portal, and documentation into your native tongue. Bootstrap or join a local chapter to catalog regional specialties and local brands.
                 </p>
                 <div class="card-footer-action">
-                    <a href="https://wiki.openfoodfacts.org/Translations" class="off-btn off-btn-green off-btn-block">
+                    <a href="https://wiki.openfoodfacts.org/Translations" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
                         Help Translate OFF
                     </a>
                 </div>
@@ -596,7 +618,7 @@
     <section>
         <div class="expert-banner">
             <div class="expert-banner-art">
-                <img src="/images/illustrations/shared/off-expert-help-needed-animated.svg" alt="Animated scientist and developers working together" width="560" height="420" loading="lazy">
+                <img src="/images/illustrations/shared/off-expert-help-needed-animated.svg" alt="Scientist and developer collaborating on open food data" width="560" height="420" loading="lazy">
             </div>
             <div class="expert-banner-text">
                 <span class="off-badge-pill amber">🛠️ Specialized Skills Wanted</span>
@@ -614,7 +636,7 @@
             <!-- Project management -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-project-management-animated.svg" alt="Animated roadmap and checklist illustration" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-project-management-animated.svg" alt="Project roadmap and milestone checklist" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill blue">Strategy &amp; Roadmap</span>
                 <h3>Project management</h3>
@@ -631,7 +653,7 @@
             <!-- Design & UX -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-design-ux-animated.svg" alt="Animated vector pen tool and design wireframe" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-design-ux-animated.svg" alt="Design wireframe and pen tool" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill purple">UI / UX &amp; Branding</span>
                 <h3>Design &amp; UX</h3>
@@ -648,7 +670,7 @@
             <!-- Development & AI -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-developers-ai-animated.svg" alt="Animated Python mascot and neural circuit code illustration" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-developers-ai-animated.svg" alt="Code editor, algorithms and machine learning diagrams" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill orange">Code &amp; Machine Learning</span>
                 <h3>Development &amp; AI</h3>
@@ -656,7 +678,7 @@
                     Hack on our Perl &amp; MongoDB backend, high-volume JSON API, cross-platform Flutter mobile app (Smooth App), Python computer vision / OCR models, and SDKs.
                 </p>
                 <div class="card-footer-action">
-                    <a href="https://world.openfoodfacts.org/development" class="off-btn off-btn-primary off-btn-block">
+                    <a href="/development" class="off-btn off-btn-primary off-btn-block">
                         Explore Developer Portal
                     </a>
                 </div>
@@ -665,7 +687,7 @@
             <!-- Community building -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-community-building-animated.svg" alt="Animated community connection" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-community-building-animated.svg" alt="Global volunteer community network" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill green">Global Movement</span>
                 <h3>Community building</h3>
@@ -673,7 +695,7 @@
                     Help recruit, welcome, and mentor volunteers worldwide. Support local chapters in Europe, the Americas, Africa, and Asia to unite food transparency ambassadors.
                 </p>
                 <div class="card-footer-action">
-                    <a href="https://wiki.openfoodfacts.org/Contributor" class="off-btn off-btn-secondary off-btn-block">
+                    <a href="https://wiki.openfoodfacts.org/Contributor" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
                         Join Community Team
                     </a>
                 </div>
@@ -682,7 +704,7 @@
             <!-- Communication & Media -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-lets-talk-animated.svg" alt="Animated conversation bubble and megaphone" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-lets-talk-animated.svg" alt="Megaphone and speech bubbles for press and communication" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill amber">Press &amp; Outreach</span>
                 <h3>Communication</h3>
@@ -699,7 +721,7 @@
             <!-- Special Projects & Research -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-discover-open-science-animated.svg" alt="Animated open data dashboard and scientific network" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-discover-open-science-animated.svg" alt="Research metrics dashboard and scientific data network" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill blue">Research &amp; Open Science</span>
                 <h3>Special projects &amp; Science</h3>
@@ -743,7 +765,7 @@
                 <p>
                     Follow Open Food Facts on Mastodon, Bluesky, LinkedIn, YouTube, and Instagram to stay up to date with new features, campaigns, and news.
                 </p>
-                <a href="https://world.openfoodfacts.org/follow-open-food-facts" class="off-btn off-btn-secondary off-btn-block">
+                <a href="/follow-open-food-facts" class="off-btn off-btn-secondary off-btn-block">
                     Follow Our Channels
                 </a>
             </div>
@@ -777,7 +799,7 @@
             <!-- Operation Packaging -->
             <article class="off-feature-card operation-card green-accent">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-operation-packaging-animated.svg" alt="Animated scale weighing food packaging" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-operation-packaging-animated.svg" alt="Kitchen scale weighing recyclable food packaging" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill green">Eco-Impact</span>
                 <h3>Operation Packaging</h3>
@@ -785,7 +807,7 @@
                     Weigh and photograph food containers and wrappers to calculate packaging footprints and hold manufacturers accountable for waste reduction.
                 </p>
                 <div class="card-footer-action">
-                    <a href="https://blog.openfoodfacts.org/en/plein-pot-presse" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                    <a href="https://blog.openfoodfacts.org/en/join-the-tackling-food-packaging-operation" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
                         Join Operation Packaging
                     </a>
                 </div>
@@ -794,7 +816,7 @@
             <!-- Data Quality Effort -->
             <article class="off-feature-card operation-card orange">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/food/off-data-quality-animated.svg" alt="Animated data quality magnifying glass and checkmarks" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/food/off-data-quality-animated.svg" alt="Magnifying glass inspecting data quality checkmarks" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill orange">Accuracy &amp; OCR</span>
                 <h3>Data quality effort</h3>
@@ -811,7 +833,7 @@
             <!-- Become a Patron -->
             <article class="off-feature-card operation-card purple-accent">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-become-a-patron-animated.svg" alt="Animated heart and patron badge support" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-become-a-patron-animated.svg" alt="Patron support badge with heart symbol" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill purple">Financial Support</span>
                 <h3>Become a patron</h3>
@@ -828,7 +850,7 @@
             <!-- Your own operation -->
             <article class="off-feature-card operation-card blue-accent">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/contact-us-animated.svg" alt="Contact us illustration" width="247" height="200" loading="lazy">
+                    <img src="/images/illustrations/shared/contact-us-animated.svg" alt="Contact us envelope and message bubbles" width="247" height="200" loading="lazy">
                 </div>
                 <span class="off-badge-pill blue">Your Initiative</span>
                 <h3>Your own operation</h3>
@@ -878,5 +900,28 @@
         sendHeight();
         // Send the height whenever the window is resized
         window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        document.querySelectorAll('img[src$="-animated.svg"], img[src*="animated"]').forEach(img => {
+            fetch(img.src)
+                .then(r => r.ok ? r.text() : Promise.reject())
+                .then(svgText => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                    const svg = doc.querySelector('svg');
+                    if (svg) {
+                        if (img.id) svg.id = img.id;
+                        if (img.className) svg.classList.add(...img.classList);
+                        if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                        if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                        if (img.getAttribute('alt')) {
+                            svg.setAttribute('role', 'img');
+                            svg.setAttribute('aria-label', img.getAttribute('alt'));
+                        }
+                        img.parentNode.replaceChild(svg, img);
+                    }
+                })
+                .catch(() => {});
+        });
     });
 </script>

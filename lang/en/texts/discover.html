@@ -323,6 +323,23 @@
     transform: scale(1.04);
 }
 
+/* Animations: on hover only */
+@media (hover: hover) {
+    #off-discover-page .discover-hero:not(:hover) svg *,
+    #off-discover-page .off-feature-card:not(:hover) svg * {
+        animation-play-state: paused !important;
+    }
+    #off-discover-page .discover-hero:hover svg *,
+    #off-discover-page .off-feature-card:hover svg * {
+        animation-play-state: running !important;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    #off-discover-page svg * {
+        animation: none !important;
+    }
+}
+
 /* Rounded Corner Utility for Screenshots / Legacy Icons */
 .off-img-rounded {
     border-radius: 14px;
@@ -393,6 +410,23 @@
     border-top: 1px solid #fed7aa;
     margin: 3.5rem 0;
     opacity: 0.6;
+}
+
+/* Animations: on hover only */
+@media (hover: hover) {
+    #off-discover-page .off-feature-card:not(:hover) svg *,
+    #off-discover-page .discover-hero:not(:hover) svg * {
+        animation-play-state: paused !important;
+    }
+    #off-discover-page .off-feature-card:hover svg *,
+    #off-discover-page .discover-hero:hover svg * {
+        animation-play-state: running !important;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    #off-discover-page svg * {
+        animation: none !important;
+    }
 }
 
 /* Responsive Breakpoints */
@@ -497,7 +531,7 @@
             <!-- Pillar 2: Made by everyone -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/puzzle-animated.svg" alt="Animated collaborative community puzzle" width="340" height="260" loading="lazy">
+                    <img src="/images/illustrations/shared/puzzle-animated.svg" alt="Collaborative community puzzle pieces uniting together" width="340" height="260" loading="lazy">
                 </div>
                 <span class="off-badge-pill amber">100,000+ Volunteers</span>
                 <h3>Made by everyone</h3>
@@ -514,7 +548,7 @@
             <!-- Pillar 3: For everyone - Open data -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-discover-open-science-animated.svg" alt="Animated open data network and pulsing dashboard" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-discover-open-science-animated.svg" alt="Open data metrics and global scientific research network" width="560" height="420" loading="lazy">
                 </div>
                 <span class="off-badge-pill green">100% Open Data</span>
                 <h3>For everyone</h3>
@@ -583,8 +617,8 @@
             <!-- Compare and change (Rounded Corners) -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <a href="https://world.openfoodfacts.org/cgi/search.pl?action=process&amp;tagtype_0=categories&amp;tag_contains_0=contains&amp;tag_0=Breakfast%20cereals&amp;sort_by=unique_scans_n&amp;page_size=20&amp;axis_x=sugars&amp;axis_y=fat&amp;series_nutrition_grades=on&amp;graph=1" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/svg/compare-graph-icon.320x240.png" alt="Compare products graph" width="320" height="240" loading="lazy" class="off-img-rounded">
+                    <a href="/cgi/search.pl?action=process&amp;tagtype_0=categories&amp;tag_contains_0=contains&amp;tag_0=Breakfast%20cereals&amp;sort_by=unique_scans_n&amp;page_size=20&amp;axis_x=sugars&amp;axis_y=fat&amp;series_nutrition_grades=on&amp;graph=1">
+                        <img src="/images/svg/compare-graph-icon.320x240.png" alt="Interactive scatter plot comparing sugar and fat across breakfast cereals" width="320" height="240" loading="lazy" class="off-img-rounded">
                     </a>
                 </div>
                 <span class="off-badge-pill amber">Dataviz in 3 Clicks</span>
@@ -675,7 +709,7 @@
             <article class="off-feature-card reuse-card blue-top">
                 <div class="off-card-art">
                     <a href="/science">
-                        <img src="/images/illustrations/shared/science-icon-animated.svg" alt="Animated scientific research flask" width="160" height="130" loading="lazy">
+                        <img src="/images/illustrations/shared/science-icon-animated.svg" alt="Laboratory flask analyzing nutritional chemistry" width="160" height="130" loading="lazy">
                     </a>
                 </div>
                 <span class="off-badge-pill blue">Citizen Science &amp; Health</span>
@@ -726,5 +760,28 @@
         sendHeight();
         // Send the height whenever the window is resized
         window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        document.querySelectorAll('img[src$="-animated.svg"], img[src*="animated"]').forEach(img => {
+            fetch(img.src)
+                .then(r => r.ok ? r.text() : Promise.reject())
+                .then(svgText => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                    const svg = doc.querySelector('svg');
+                    if (svg) {
+                        if (img.id) svg.id = img.id;
+                        if (img.className) svg.classList.add(...img.classList);
+                        if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                        if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                        if (img.getAttribute('alt')) {
+                            svg.setAttribute('role', 'img');
+                            svg.setAttribute('aria-label', img.getAttribute('alt'));
+                        }
+                        img.parentNode.replaceChild(svg, img);
+                    }
+                })
+                .catch(() => {});
+        });
     });
 </script>

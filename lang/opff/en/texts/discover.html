@@ -256,6 +256,23 @@
     transform: scale(1.05);
 }
 
+/* Animations: on hover only */
+@media (hover: hover) {
+    #opff-discover-page .opff-hero:not(:hover) svg *,
+    #opff-discover-page .off-feature-card:not(:hover) svg * {
+        animation-play-state: paused !important;
+    }
+    #opff-discover-page .opff-hero:hover svg *,
+    #opff-discover-page .off-feature-card:hover svg * {
+        animation-play-state: running !important;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    #opff-discover-page svg * {
+        animation: none !important;
+    }
+}
+
 .off-feature-card h3 {
     font-size: 1.35rem;
     font-weight: 700;
@@ -360,7 +377,7 @@
             <div class="hero-text">
                 <span class="opff-badge-pill orange">🐾 Free • Collaborative • Open Pet Database</span>
                 <h1>Open Pet Food Facts</h1>
-                <p class="hero-lead">The collaborative pet food products database for healthy, happy pets.</p>
+                <p class="hero-lead">The collaborative pet food products database for healthy, happy pets, powered by the universal Open Food Facts app.</p>
 
                 <div class="hero-quote">
                     <blockquote>&ldquo;Open pet food and know what your furry friends are eating.&rdquo;</blockquote>
@@ -370,7 +387,7 @@
                 <div class="hero-actions">
                     <a href="/open-pet-food-facts-mobile-app?utm_source=opff&amp;utm_medium=web&amp;utm_campaign=discover_hero" class="off-btn off-btn-primary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-                        Get the Free App
+                        Get Free Universal App
                     </a>
                     <a href="/cgi/search.pl" class="off-btn off-btn-secondary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -406,11 +423,11 @@
                 <span class="opff-badge-pill orange">Open Database</span>
                 <h3>A pet food database</h3>
                 <p>
-                    Open Pet Food Facts collects ingredients, crude protein, fat, ash, moisture, and vitamins found on pet food labels for dogs, cats, and small animals.
+                    Open Pet Food Facts collects ingredients, crude protein, fat, ash, moisture, and vitamins found on pet food labels for dogs, cats, and small animals. Scan them with the universal Open Food Facts app!
                 </p>
                 <div class="card-footer-action">
                     <a href="/open-pet-food-facts-mobile-app?utm_source=opff&amp;utm_medium=web&amp;utm_campaign=discover_pillars" class="off-btn off-btn-primary off-btn-block">
-                        Get App to Scan
+                        Get Universal App to Scan
                     </a>
                 </div>
             </article>
@@ -418,7 +435,7 @@
             <!-- Pillar 2: Made by everyone -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/puzzle-animated.svg" alt="Animated collaborative community puzzle" width="340" height="260" loading="lazy">
+                    <img src="/images/illustrations/shared/puzzle-animated.svg" alt="Collaborative community puzzle pieces fitting together" width="340" height="260" loading="lazy">
                 </div>
                 <span class="opff-badge-pill amber">Pet Lovers Community</span>
                 <h3>Made by everyone</h3>
@@ -435,7 +452,7 @@
             <!-- Pillar 3: For everyone - Open data -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/opendata-crowd-icon-animated.svg" alt="Animated open data crowd" width="160" height="130" loading="lazy">
+                    <img src="/images/illustrations/shared/opendata-crowd-icon-animated.svg" alt="Citizen community contributing open pet food data" width="160" height="130" loading="lazy">
                 </div>
                 <span class="opff-badge-pill green">100% Open Data</span>
                 <h3>For everyone</h3>
@@ -484,16 +501,18 @@
             <!-- Find products -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/pet-food/animals/dog.svg" alt="Find dog food and cat food" width="160" height="130" loading="lazy">
+                    <a href="/facets/categories">
+                        <img src="/images/illustrations/pet-food/animals/dog.svg" alt="Find dog food and cat food by animal categories" width="160" height="130" loading="lazy">
+                    </a>
                 </div>
                 <span class="opff-badge-pill green">Tailored Search</span>
                 <h3>Find food by animal</h3>
                 <p>
-                    Search specifically for dogs, cats, puppies, seniors, sterilized diets, grain-free options, or veterinary prescription formulas.
+                    Explore categories specifically for dogs, cats, puppies, seniors, sterilized diets, grain-free options, or veterinary prescription formulas.
                 </p>
                 <div class="card-footer-action">
-                    <a href="/cgi/search.pl" class="off-btn off-btn-secondary off-btn-block">
-                        Search Form
+                    <a href="/facets/categories" class="off-btn off-btn-secondary off-btn-block">
+                        Explore Categories
                     </a>
                 </div>
             </article>
@@ -502,7 +521,7 @@
             <article class="off-feature-card">
                 <div class="off-card-art">
                     <a href="/cgi/search.pl?action=process&amp;tagtype_0=categories&amp;tag_contains_0=contains&amp;tag_0=Cat%20food&amp;graph=1" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/svg/compare-graph-icon.320x240.png" alt="Compare pet food graph" width="320" height="240" loading="lazy" class="off-img-rounded">
+                        <img src="/images/svg/compare-graph-opff.svg" alt="Compare pet food products and nutrition graph" width="320" height="240" loading="lazy" class="off-img-rounded">
                     </a>
                 </div>
                 <span class="opff-badge-pill amber">Nutrition Comparison</span>
@@ -568,19 +587,19 @@
                 </div>
             </article>
 
-            <!-- Reuse 2: Smart Bowls & Devices -->
+            <!-- Reuse 2: Innovate for pets -->
             <article class="off-feature-card reuse-card green-top">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/pet-food/pet-food-bowl.svg" alt="Smart feeders and apps" width="160" height="130" loading="lazy">
+                    <img src="/images/illustrations/pet-food/pet-food-bowl.svg" alt="Innovate for pets with open data" width="160" height="130" loading="lazy">
                 </div>
                 <span class="opff-badge-pill green">Apps &amp; Hardware</span>
-                <h3>Smart Feeders &amp; Apps</h3>
+                <h3>Innovate for pets with Open Pet Food Facts data</h3>
                 <p>
-                    Connected pet bowl manufacturers and companion tracking apps use Open Pet Food Facts data to calculate personalized daily calorie portions.
+                    Developers, smart pet bowl manufacturers, and connected feeder startups could create personalized portion calculators, feeding schedules, or pet health trackers with our open database.
                 </p>
                 <div class="card-footer-action">
                     <a href="/data" class="off-btn off-btn-green off-btn-block">
-                        Connect Your Device
+                        Explore the data
                     </a>
                 </div>
             </article>
@@ -589,7 +608,7 @@
             <article class="off-feature-card reuse-card blue-top">
                 <div class="off-card-art">
                     <a href="/science">
-                        <img src="/images/illustrations/shared/science-icon-animated.svg" alt="Animated scientific research flask" width="160" height="130" loading="lazy">
+                        <img src="/images/illustrations/shared/science-icon-animated.svg" alt="Scientific research flask analyzing veterinary nutrition" width="160" height="130" loading="lazy">
                     </a>
                 </div>
                 <span class="opff-badge-pill blue">Veterinary Research</span>
@@ -610,7 +629,7 @@
     <div class="bottom-explore-banner">
         <h2>Ready to champion healthier food for pets?</h2>
         <p>
-            Scan your pet's food bag or can today! Download our free mobile app and help millions of pet owners make informed nutrition choices.
+            Scan your pet's food bag or can today! Download the free universal Open Food Facts app and help millions of pet owners make informed nutrition choices.
         </p>
         <a href="/open-pet-food-facts-mobile-app?utm_source=opff&amp;utm_medium=web&amp;utm_campaign=discover_footer" class="off-btn off-btn-primary" style="font-size: 1.05rem; padding: 0.85rem 1.85rem;">
             Download the Free App &rarr;
@@ -637,5 +656,28 @@
         }
         sendHeight();
         window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        document.querySelectorAll('img[src$="-animated.svg"], img[src*="animated"]').forEach(img => {
+            fetch(img.src)
+                .then(r => r.ok ? r.text() : Promise.reject())
+                .then(svgText => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                    const svg = doc.querySelector('svg');
+                    if (svg) {
+                        if (img.id) svg.id = img.id;
+                        if (img.className) svg.classList.add(...img.classList);
+                        if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                        if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                        if (img.getAttribute('alt')) {
+                            svg.setAttribute('role', 'img');
+                            svg.setAttribute('aria-label', img.getAttribute('alt'));
+                        }
+                        img.parentNode.replaceChild(svg, img);
+                    }
+                })
+                .catch(() => {});
+        });
     });
 </script>

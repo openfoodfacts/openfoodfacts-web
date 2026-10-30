@@ -114,15 +114,82 @@
     align-items: center;
 }
 
-.contact-hero-media img {
+.contact-hero-media img,
+.contact-hero-media svg {
     width: 100%;
     max-width: 360px;
     height: auto;
     filter: drop-shadow(0 14px 28px rgba(52, 17, 0, 0.08));
     transition: transform 0.3s ease;
 }
-.contact-hero-media img:hover {
+.contact-hero-media:hover img,
+.contact-hero-media:hover svg {
     transform: scale(1.02);
+}
+
+/* Animations: on hover only */
+@media (hover: hover) {
+    #off-contact-page .contact-hero:not(:hover) svg *,
+    #off-contact-page .contact-card:not(:hover) svg * {
+        animation-play-state: paused !important;
+    }
+    #off-contact-page .contact-hero:hover svg *,
+    #off-contact-page .contact-card:hover svg * {
+        animation-play-state: running !important;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    #off-contact-page svg * {
+        animation: none !important;
+    }
+}
+
+/* Deflection Grid */
+.deflection-section {
+    margin-bottom: 3.5rem;
+}
+
+.deflection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.deflection-card {
+    background: #ffffff;
+    border: 1px solid var(--off-border);
+    border-radius: 16px;
+    padding: 1.15rem 1.1rem;
+    text-decoration: none !important;
+    color: var(--off-espresso);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: var(--off-shadow-sm);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.deflection-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--off-orange);
+    box-shadow: var(--off-shadow-hover);
+    color: var(--off-orange-hover) !important;
+}
+
+.deflection-card .deflect-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+.deflection-card .deflect-title {
+    font-size: 0.98rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 0.25rem;
+}
+.deflection-card .deflect-desc {
+    font-size: 0.82rem;
+    color: var(--off-text-muted);
+    line-height: 1.4;
 }
 
 /* Buttons */
@@ -238,9 +305,24 @@
 .contact-card p {
     font-size: 0.92rem;
     color: var(--off-text-muted);
-    margin: 0 0 1.25rem;
+    margin: 0 0 0.85rem;
     line-height: 1.55;
     flex-grow: 1;
+}
+
+.contact-card .deflect-hint {
+    font-size: 0.82rem;
+    background: var(--off-cream);
+    border: 1px solid var(--off-border);
+    border-radius: 8px;
+    padding: 0.45rem 0.65rem;
+    margin-bottom: 1rem;
+    color: var(--off-text-muted);
+}
+.contact-card .deflect-hint a {
+    color: var(--off-orange-hover);
+    font-weight: 700;
+    text-decoration: underline;
 }
 
 .contact-card .email-action {
@@ -363,7 +445,7 @@
                 </p>
 
                 <div class="contact-faq-callout">
-                    <p><strong>💡 Have a common question?</strong> We might have already answered it!</p>
+                    <p><strong>💡 Have a question?</strong> Many common inquiries are already documented in detail:</p>
                     <div class="contact-hero-actions">
                         <a href="/faq" class="off-btn off-btn-primary">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
@@ -376,18 +458,67 @@
                 </div>
             </div>
             <div class="contact-hero-media">
-                <img src="/images/illustrations/shared/contact-us-animated.svg" alt="Animated illustration of contact and communication" width="360" height="290">
+                <img src="/images/illustrations/shared/contact-us-animated.svg" alt="Illustration of message envelope, notepad, and pencil for contact" width="360" height="290">
             </div>
         </div>
     </header>
 
+    <!-- Deflection Section: Fast Answers & Dedicated Portals -->
+    <section class="deflection-section">
+        <div class="section-header">
+            <span class="off-badge-pill green">⚡ Instant Answers Before Emailing</span>
+            <h2>Find what you are looking for in seconds</h2>
+            <p>
+                To get the fastest answer, explore our dedicated knowledge hubs and self-service portals:
+            </p>
+        </div>
+
+        <div class="deflection-grid">
+            <a href="/faq" class="deflection-card">
+                <span class="deflect-icon">❓</span>
+                <span class="deflect-title">Knowledge Base</span>
+                <span class="deflect-desc">Browse 50+ answers on Nutri-Score, mobile app, and accounts.</span>
+            </a>
+
+            <a href="/science" class="deflection-card">
+                <span class="deflect-icon">🔬</span>
+                <span class="deflect-title">Science &amp; Research</span>
+                <span class="deflect-desc">Academic papers, research collaborations, and epidemiological studies.</span>
+            </a>
+
+            <a href="/donors" class="deflection-card">
+                <span class="deflect-icon">💛</span>
+                <span class="deflect-title">Donations &amp; Support</span>
+                <span class="deflect-desc">Tax receipts, membership dues, and individual patron donations.</span>
+            </a>
+
+            <a href="/data" class="deflection-card">
+                <span class="deflect-icon">💾</span>
+                <span class="deflect-title">Data &amp; Downloads</span>
+                <span class="deflect-desc">Database dumps, JSON exports, CSV files, and API docs.</span>
+            </a>
+
+            <a href="/reuses" class="deflection-card">
+                <span class="deflect-icon">🚀</span>
+                <span class="deflect-title">Reusers Showcase</span>
+                <span class="deflect-desc">Explore 200+ mobile apps, digital services, and smart tools.</span>
+            </a>
+
+            <a href="/press" class="deflection-card">
+                <span class="deflect-icon">📰</span>
+                <span class="deflect-title">Press Room</span>
+                <span class="deflect-desc">Download brand logos, press releases, media kits, and founder bios.</span>
+            </a>
+        </div>
+    </section>
+
     <!-- Section: Team Email Directory -->
     <section>
         <div class="section-header">
-            <span class="off-badge-pill green">👥 Dedicated Team Contacts</span>
+            <span class="off-badge-pill orange">👥 Dedicated Team Contacts</span>
             <h2>Direct Email Directory</h2>
             <p>
-                To ensure your message reaches the right volunteers and staff quickly, please choose the most relevant inbox:
+                Need to reach a specific working group? Choose the most relevant inbox below:
             </p>
         </div>
 
@@ -400,6 +531,9 @@
                 <p>
                     Questions about Open Food Facts, general suggestions, website feedback, and community inquiries.
                 </p>
+                <div class="deflect-hint">
+                    Check our <a href="/faq">FAQ</a> first for rapid answers.
+                </div>
                 <div class="email-action">
                     <a href="mailto:contact@openfoodfacts.org" class="email-link">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -414,8 +548,11 @@
                 <span class="off-badge-pill blue">Mobile App</span>
                 <h3>Mobile Application</h3>
                 <p>
-                    Bug reports, feedback on the Smooth App (Flutter), scanner issues, or feature suggestions for iOS &amp; Android.
+                    Bug reports, scanner issues, or feature suggestions for our iOS &amp; Android app (Smooth App).
                 </p>
+                <div class="deflect-hint">
+                    See the <a href="/open-food-facts-mobile-app">Mobile App page</a> for direct store download links.
+                </div>
                 <div class="email-action">
                     <a href="mailto:mobile@openfoodfacts.org" class="email-link">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -432,6 +569,9 @@
                 <p>
                     Academic collaborations, public health studies, nutritional epidemiologists, and scientific dataset inquiries.
                 </p>
+                <div class="deflect-hint">
+                    Explore publications on our <a href="/science">Science Portal</a>.
+                </div>
                 <div class="email-action">
                     <a href="mailto:science@openfoodfacts.org" class="email-link">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -448,6 +588,9 @@
                 <p>
                     Individual donations, foundation grants, corporate matching, patron memberships, and non-profit sponsorships.
                 </p>
+                <div class="deflect-hint">
+                    Tax deduction info on the <a href="/donors">Donors Page</a>.
+                </div>
                 <div class="email-action">
                     <a href="mailto:fundraising@openfoodfacts.org" class="email-link">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -464,6 +607,9 @@
                 <p>
                     Direct product data sharing via the Pro Platform, automated data sync, and manufacturer assistance.
                 </p>
+                <div class="deflect-hint">
+                    Upload catalogue directly on <a href="https://pro.openfoodfacts.org" target="_blank" rel="noopener noreferrer">pro.openfoodfacts.org &rarr;</a>
+                </div>
                 <div class="email-action">
                     <a href="mailto:producers@openfoodfacts.org" class="email-link">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -480,6 +626,9 @@
                 <p>
                     Interview requests, media inquiries, press kits, official statements, and data investigation support.
                 </p>
+                <div class="deflect-hint">
+                    Download visual kit in the <a href="/press">Press Room</a>.
+                </div>
                 <div class="email-action">
                     <a href="mailto:presse@openfoodfacts.org" class="email-link">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -496,6 +645,9 @@
                 <p>
                     Developers integrating our open API, commercial or non-profit data reusers, and open database queries.
                 </p>
+                <div class="deflect-hint">
+                    Documentation on the <a href="/data">Open Data page</a> and <a href="/reuses">Reuses showcase</a>.
+                </div>
                 <div class="email-action">
                     <a href="mailto:reuse@openfoodfacts.org" class="email-link">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -559,6 +711,7 @@
     }
 
     onMount(() => {
+        // Send height to parent frame if embedded
         function sendHeight() {
             const height = document.body.scrollHeight;
             if (typeof parent !== 'undefined' && parent !== window) {
@@ -567,5 +720,28 @@
         }
         sendHeight();
         window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        document.querySelectorAll('img[src$="-animated.svg"], img[src*="animated"]').forEach(img => {
+            fetch(img.src)
+                .then(r => r.ok ? r.text() : Promise.reject())
+                .then(svgText => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                    const svg = doc.querySelector('svg');
+                    if (svg) {
+                        if (img.id) svg.id = img.id;
+                        if (img.className) svg.classList.add(...img.classList);
+                        if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                        if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                        if (img.getAttribute('alt')) {
+                            svg.setAttribute('role', 'img');
+                            svg.setAttribute('aria-label', img.getAttribute('alt'));
+                        }
+                        img.parentNode.replaceChild(svg, img);
+                    }
+                })
+                .catch(() => {});
+        });
     });
 </script>

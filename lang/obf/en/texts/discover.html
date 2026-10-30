@@ -257,6 +257,23 @@
     transform: scale(1.05);
 }
 
+/* Animations: on hover only */
+@media (hover: hover) {
+    #obf-discover-page .obf-hero:not(:hover) svg *,
+    #obf-discover-page .off-feature-card:not(:hover) svg * {
+        animation-play-state: paused !important;
+    }
+    #obf-discover-page .obf-hero:hover svg *,
+    #obf-discover-page .off-feature-card:hover svg * {
+        animation-play-state: running !important;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    #obf-discover-page svg * {
+        animation: none !important;
+    }
+}
+
 .off-feature-card h3 {
     font-size: 1.35rem;
     font-weight: 700;
@@ -361,7 +378,7 @@
             <div class="hero-text">
                 <span class="obf-badge-pill pink">✨ Free • Collaborative • Open Source</span>
                 <h1>Open Beauty Facts</h1>
-                <p class="hero-lead">The collaborative cosmetics and personal care database for everyone.</p>
+                <p class="hero-lead">The collaborative cosmetics and personal care database for everyone, powered by the universal Open Food Facts app.</p>
 
                 <div class="hero-quote">
                     <blockquote>&ldquo;Can we make the cosmetics industry more open and transparent? Yes we scan!&rdquo;</blockquote>
@@ -371,7 +388,7 @@
                 <div class="hero-actions">
                     <a href="/open-beauty-facts-mobile-app?utm_source=obf&amp;utm_medium=web&amp;utm_campaign=discover_hero" class="off-btn off-btn-primary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-                        Get the Free App
+                        Get Free Universal App
                     </a>
                     <a href="/cgi/search.pl" class="off-btn off-btn-secondary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -407,11 +424,11 @@
                 <span class="obf-badge-pill pink">Open Database</span>
                 <h3>A cosmetics database</h3>
                 <p>
-                    Open Beauty Facts is a comprehensive database of cosmetics and personal care products with INCI ingredients, allergens, hazard warnings, packaging, and label data.
+                    Open Beauty Facts is a comprehensive database of cosmetics and personal care products with INCI ingredients, allergens, hazard warnings, packaging, and label data. Scan them with the universal Open Food Facts app!
                 </p>
                 <div class="card-footer-action">
                     <a href="/open-beauty-facts-mobile-app?utm_source=obf&amp;utm_medium=web&amp;utm_campaign=discover_pillars" class="off-btn off-btn-primary off-btn-block">
-                        Get App to Scan
+                        Get Universal App to Scan
                     </a>
                 </div>
             </article>
@@ -419,7 +436,7 @@
             <!-- Pillar 2: Made by everyone -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/puzzle-animated.svg" alt="Animated collaborative community puzzle" width="340" height="260" loading="lazy">
+                    <img src="/images/illustrations/shared/puzzle-animated.svg" alt="Collaborative community puzzle pieces fitting together" width="340" height="260" loading="lazy">
                 </div>
                 <span class="obf-badge-pill purple">Volunteer Driven</span>
                 <h3>Made by everyone</h3>
@@ -436,7 +453,7 @@
             <!-- Pillar 3: For everyone - Open data -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/opendata-crowd-icon-animated.svg" alt="Animated open data crowd" width="160" height="130" loading="lazy">
+                    <img src="/images/illustrations/shared/opendata-crowd-icon-animated.svg" alt="Citizen community contributing open data" width="160" height="130" loading="lazy">
                 </div>
                 <span class="obf-badge-pill cyan">100% Open Data</span>
                 <h3>For everyone</h3>
@@ -502,8 +519,8 @@
             <!-- Compare and change -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <a href="https://world.openbeautyfacts.org/cgi/search.pl?action=process&amp;tagtype_0=categories&amp;tag_contains_0=contains&amp;tag_0=Shampoos&amp;sort_by=unique_scans_n&amp;page_size=20&amp;graph=1" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/svg/compare-graph-icon.320x240.png" alt="Compare cosmetics products graph" width="320" height="240" loading="lazy" class="off-img-rounded">
+                    <a href="/cgi/search.pl?action=process&amp;tagtype_0=categories&amp;tag_contains_0=contains&amp;tag_0=Shampoos&amp;sort_by=unique_scans_n&amp;page_size=20&amp;graph=1" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/svg/compare-graph-obf.svg" alt="Compare cosmetics products and ingredients graph" width="320" height="240" loading="lazy" class="off-img-rounded">
                     </a>
                 </div>
                 <span class="obf-badge-pill purple">Interactive Dataviz</span>
@@ -512,7 +529,7 @@
                     Do you know which shampoos or moisturizers have the cleanest formulas? In 3 clicks, generate interactive charts to compare brands and find alternatives.
                 </p>
                 <div class="card-footer-action">
-                    <a href="https://world.openbeautyfacts.org/cgi/search.pl?action=process&amp;tagtype_0=categories&amp;tag_contains_0=contains&amp;tag_0=Shampoos&amp;sort_by=unique_scans_n&amp;page_size=20&amp;graph=1" class="off-btn off-btn-primary off-btn-block" target="_blank" rel="noopener noreferrer">
+                    <a href="/cgi/search.pl?action=process&amp;tagtype_0=categories&amp;tag_contains_0=contains&amp;tag_0=Shampoos&amp;sort_by=unique_scans_n&amp;page_size=20&amp;graph=1" class="off-btn off-btn-primary off-btn-block" target="_blank" rel="noopener noreferrer">
                         Compare Shampoos
                     </a>
                 </div>
@@ -577,7 +594,7 @@
                 <span class="obf-badge-pill cyan">Apps &amp; Services</span>
                 <h3>App Integrations</h3>
                 <p>
-                    Open Beauty Facts data powers third-party applications, ingredient analysis bots, and eco-packaging audits around the globe.
+                    Open Beauty Facts data powers third-party applications and services around the globe.
                 </p>
                 <div class="card-footer-action">
                     <a href="/data" class="off-btn off-btn-cyan off-btn-block">
@@ -590,7 +607,7 @@
             <article class="off-feature-card reuse-card purple-top">
                 <div class="off-card-art">
                     <a href="/science">
-                        <img src="/images/illustrations/shared/science-icon-animated.svg" alt="Animated scientific research flask" width="160" height="130" loading="lazy">
+                        <img src="/images/illustrations/shared/science-icon-animated.svg" alt="Scientific research flask analyzing cosmetic chemistry" width="160" height="130" loading="lazy">
                     </a>
                 </div>
                 <span class="obf-badge-pill purple">Citizen Science</span>
@@ -611,7 +628,7 @@
     <div class="bottom-explore-banner">
         <h2>Ready to bring transparency to cosmetics?</h2>
         <p>
-            Scan your bathroom shelf today! Download our free application and help thousands of consumers choose healthier products.
+            Scan your bathroom shelf today! Download the free universal Open Food Facts app and help thousands of consumers choose healthier products.
         </p>
         <a href="/open-beauty-facts-mobile-app?utm_source=obf&amp;utm_medium=web&amp;utm_campaign=discover_footer" class="off-btn off-btn-primary" style="font-size: 1.05rem; padding: 0.85rem 1.85rem;">
             Download the Free App &rarr;
@@ -638,5 +655,28 @@
         }
         sendHeight();
         window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        document.querySelectorAll('img[src$="-animated.svg"], img[src*="animated"]').forEach(img => {
+            fetch(img.src)
+                .then(r => r.ok ? r.text() : Promise.reject())
+                .then(svgText => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                    const svg = doc.querySelector('svg');
+                    if (svg) {
+                        if (img.id) svg.id = img.id;
+                        if (img.className) svg.classList.add(...img.classList);
+                        if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                        if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                        if (img.getAttribute('alt')) {
+                            svg.setAttribute('role', 'img');
+                            svg.setAttribute('aria-label', img.getAttribute('alt'));
+                        }
+                        img.parentNode.replaceChild(svg, img);
+                    }
+                })
+                .catch(() => {});
+        });
     });
 </script>

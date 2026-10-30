@@ -10,6 +10,8 @@ def get_base64_data_uri(file_path):
         mime = 'image/svg+xml'
     elif file_path.endswith('.png'):
         mime = 'image/png'
+    elif file_path.endswith('.webp'):
+        mime = 'image/webp'
     elif file_path.endswith('.jpg') or file_path.endswith('.jpeg'):
         mime = 'image/jpeg'
     else:
@@ -147,9 +149,12 @@ def build_preview(page_key, src_file, title):
             <a href="preview-discover.html" class="nav-switch-link {'active' if page_key == 'discover' else ''}">OFF Discover</a>
             <a href="preview-contribute.html" class="nav-switch-link {'active' if page_key == 'contribute' else ''}">OFF Contribute</a>
             <a href="preview-contact.html" class="nav-switch-link {'active' if page_key == 'contact' else ''}">Contact</a>
-            <a href="preview-obf-discover.html" class="nav-switch-link {'active' if page_key == 'obf-discover' else ''}">OBF</a>
-            <a href="preview-opff-discover.html" class="nav-switch-link {'active' if page_key == 'opff-discover' else ''}">OPFF</a>
-            <a href="preview-opf-discover.html" class="nav-switch-link {'active' if page_key == 'opf-discover' else ''}">OPF</a>
+            <a href="preview-obf-discover.html" class="nav-switch-link {'active' if page_key == 'obf-discover' else ''}">OBF Discover</a>
+            <a href="preview-obf-contribute.html" class="nav-switch-link {'active' if page_key == 'obf-contribute' else ''}">OBF Contribute</a>
+            <a href="preview-opff-discover.html" class="nav-switch-link {'active' if page_key == 'opff-discover' else ''}">OPFF Discover</a>
+            <a href="preview-opff-contribute.html" class="nav-switch-link {'active' if page_key == 'opff-contribute' else ''}">OPFF Contribute</a>
+            <a href="preview-opf-discover.html" class="nav-switch-link {'active' if page_key == 'opf-discover' else ''}">OPF Discover</a>
+            <a href="preview-opf-contribute.html" class="nav-switch-link {'active' if page_key == 'opf-contribute' else ''}">OPF Contribute</a>
         </div>
     </header>
 
