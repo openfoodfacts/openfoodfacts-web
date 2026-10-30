@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg-op-receipt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" width="560" height="420" class="">
+                    <style>
+                        .op-rec-paper {
+                            animation: recPaperBob 4.2s ease-in-out infinite;
+                            transform-origin: 265px 210px;
+                        }
+                        .op-rec-row-1 { animation: recRowHighlight 4.2s ease-in-out infinite 0.2s; }
+                        .op-rec-row-2 { animation: recRowHighlight 4.2s ease-in-out infinite 0.7s; }
+                        .op-rec-row-3 { animation: recRowHighlight 4.2s ease-in-out infinite 1.2s; }
+                        .op-rec-coin {
+                            animation: recCoinFloat 4.2s ease-in-out infinite;
+                            transform-origin: 425px 115px;
+                        }
+                        .op-rec-check {
+                            animation: recCheckPop 4.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 120px 305px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes recPaperBob {
+                            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+                            50% { transform: translateY(-8px) rotate(1deg); }
+                        }
+                        @keyframes recRowHighlight {
+                            0%, 100% { opacity: 0.45; }
+                            50% { opacity: 1; }
+                        }
+                        @keyframes recCoinFloat {
+                            0%, 100% { transform: translateY(0px) rotate(0deg); }
+                            50% { transform: translateY(-12px) rotate(8deg); }
+                        }
+                        @keyframes recCheckPop {
+                            0%, 25%, 90%, 100% { transform: scale(0.85); }
+                            50%, 75% { transform: scale(1.08); }
+                        }
+                    </style>
+
+                    <!-- Soft Circular Backdrop (#dcf0f7 from hero-openprices.svg) -->
+                    <circle cx="275" cy="215" r="165" fill="#dcf0f7"></circle>
+
+                    <!-- Main Zigzag Paper Receipt -->
+                    <g class="op-rec-paper">
+                        <!-- Subtle Flat Drop Shadow -->
+                        <path fill="#b8dce8" d="
+                            M 168,54
+                            L 186,42 L 204,54 L 222,42 L 240,54 L 258,42 L 276,54 L 294,42 L 312,54 L 330,42 L 348,54 L 366,42 L 384,54
+                            L 384,374
+                            L 366,386 L 348,374 L 330,386 L 312,374 L 294,386 L 276,374 L 258,386 L 240,374 L 222,386 L 204,374 L 186,386 L 168,374
+                            Z" transform="translate(8, 8)"></path>
+
+                        <!-- White Paper Body with Top & Bottom Sawtooth Zigzag -->
+                        <path fill="#ffffff" d="
+                            M 168,54
+                            L 186,42 L 204,54 L 222,42 L 240,54 L 258,42 L 276,54 L 294,42 L 312,54 L 330,42 L 348,54 L 366,42 L 384,54
+                            L 384,374
+                            L 366,386 L 348,374 L 330,386 L 312,374 L 294,386 L 276,374 L 258,386 L 240,374 L 222,386 L 204,374 L 186,386 L 168,374
+                            Z"></path>
+
+                        <!-- Top Store Banner Pill (#009a49) -->
+                        <rect x="206" y="74" width="140" height="28" rx="14" fill="#009a49"></rect>
+                        <text x="276" y="93" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="14" font-weight="800" letter-spacing="1.5">OPEN PRICES</text>
+
+                        <!-- Dashed Separator -->
+                        <line x1="192" y1="120" x2="360" y2="120" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="6 6" stroke-linecap="round"></line>
+
+                        <!-- Line Item 1 (Orange Dot + Product Bar + Euro Price Pill) -->
+                        <g class="op-rec-row-1">
+                            <circle cx="202" cy="148" r="8" fill="#ff6b35"></circle>
+                            <rect x="220" y="142" width="76" height="12" rx="6" fill="#606362"></rect>
+                            <rect x="312" y="137" width="48" height="22" rx="7" fill="#fff3ed"></rect>
+                            <text x="336" y="153" text-anchor="middle" fill="#ff6b35" font-size="13" font-weight="800">2.49€</text>
+                        </g>
+
+                        <!-- Line Item 2 (Green Dot + Product Bar + Euro Price Pill) -->
+                        <g class="op-rec-row-2">
+                            <circle cx="202" cy="186" r="8" fill="#009a49"></circle>
+                            <rect x="220" y="180" width="62" height="12" rx="6" fill="#606362"></rect>
+                            <rect x="312" y="175" width="48" height="22" rx="7" fill="#e8f8ef"></rect>
+                            <text x="336" y="191" text-anchor="middle" fill="#009a49" font-size="13" font-weight="800">1.85€</text>
+                        </g>
+
+                        <!-- Line Item 3 (Cyan Dot + Product Bar + Euro Price Pill) -->
+                        <g class="op-rec-row-3">
+                            <circle cx="202" cy="224" r="8" fill="#00bdf2"></circle>
+                            <rect x="220" y="218" width="82" height="12" rx="6" fill="#606362"></rect>
+                            <rect x="312" y="213" width="48" height="22" rx="7" fill="#e1f3fe"></rect>
+                            <text x="336" y="229" text-anchor="middle" fill="#0077c8" font-size="13" font-weight="800">3.20€</text>
+                        </g>
+
+                        <!-- Dashed Separator -->
+                        <line x1="192" y1="254" x2="360" y2="254" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="6 6" stroke-linecap="round"></line>
+
+                        <!-- Total Highlight Bar (#ffc412) -->
+                        <rect x="192" y="268" width="168" height="36" rx="10" fill="#ffc412"></rect>
+                        <text x="208" y="291" fill="#181818" font-size="14" font-weight="800">TOTAL</text>
+                        <text x="346" y="291" text-anchor="end" fill="#181818" font-size="16" font-weight="800">7.54 €</text>
+
+                        <!-- Receipt Bottom Barcode -->
+                        <g fill="#181818" transform="translate(212, 318)">
+                            <rect x="0" y="0" width="5" height="34"></rect>
+                            <rect x="9" y="0" width="3" height="34"></rect>
+                            <rect x="16" y="0" width="8" height="34"></rect>
+                            <rect x="28" y="0" width="4" height="34"></rect>
+                            <rect x="36" y="0" width="9" height="34"></rect>
+                            <rect x="49" y="0" width="3" height="34"></rect>
+                            <rect x="56" y="0" width="6" height="34"></rect>
+                            <rect x="66" y="0" width="10" height="34"></rect>
+                            <rect x="80" y="0" width="4" height="34"></rect>
+                            <rect x="88" y="0" width="7" height="34"></rect>
+                            <rect x="99" y="0" width="3" height="34"></rect>
+                            <rect x="106" y="0" width="8" height="34"></rect>
+                            <rect x="118" y="0" width="5" height="34"></rect>
+                        </g>
+                    </g>
+
+                    <!-- Floating Attached coin-euro.svg (Top Right) -->
+                    <g class="op-rec-coin" transform="translate(382, 72)">
+                        <circle cx="44" cy="44" r="44" fill="#ffc412"></circle>
+                        <circle cx="44" cy="44" r="32" fill="#d49619"></circle>
+                        <path d="M 54,28 C 44,24 33,30 31,41 L 30,47 C 32,57 44,63 54,59" fill="none" stroke="#6c3c00" stroke-width="7" stroke-linecap="round"></path>
+                        <line x1="24" y1="41" x2="50" y2="41" stroke="#6c3c00" stroke-width="5.5"></line>
+                        <line x1="24" y1="48" x2="50" y2="48" stroke="#6c3c00" stroke-width="5.5"></line>
+                        <path d="M 54,10 A 35,35 0 0,1 60,12" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"></path>
+                        <path d="M 67,17 A 35,35 0 0,1 76,29" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"></path>
+                    </g>
+
+                    <!-- Floating Attached Green check.svg (Bottom Left) -->
+                    <g class="op-rec-check">
+                        <circle cx="118" cy="308" r="38" fill="#000000" opacity="0.1"></circle>
+                        <circle cx="120" cy="305" r="36" fill="#0b7a3e"></circle>
+                        <path d="M 103,306 L 115,318 L 139,294" fill="none" stroke="#ffffff" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                </svg>

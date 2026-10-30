@@ -44,7 +44,7 @@ def build_preview(page_key, src_file, title):
         if not src_match:
             return img_tag
         src = src_match.group(1)
-        if 'animated' not in src or not src.endswith('.svg'):
+        if not src.endswith('.svg'):
             return img_tag
 
         local_path = "html" + src
@@ -54,6 +54,10 @@ def build_preview(page_key, src_file, title):
 
         with open(local_path, 'r', encoding='utf-8') as sf:
             svg_text = sf.read()
+
+        # Check if the SVG is animated (via keyframes, SMIL animate tags, or filename)
+        if '@keyframes' not in svg_text and '<animate' not in svg_text and 'animated' not in src:
+            return img_tag
 
         svg_text = re.sub(r'<\?xml[^>]*\?>\s*', '', svg_text)
         svg_text = re.sub(r'<!DOCTYPE[^>]*>\s*', '', svg_text)
