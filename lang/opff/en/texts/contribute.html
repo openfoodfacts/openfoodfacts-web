@@ -190,11 +190,13 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
+    margin-bottom: 3.5rem;
 }
 .off-card-grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.75rem;
+    margin-bottom: 3.5rem;
 }
 
 /* Feature Cards */
@@ -221,32 +223,44 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
 }
-.off-card-art img {
+.off-card-art img,
+.off-card-art svg {
     max-height: 140px;
     max-width: 100%;
     width: auto;
+    height: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
 }
-.off-feature-card:hover .off-card-art img {
+.off-feature-card:hover .off-card-art img,
+.off-feature-card:hover .off-card-art svg {
     transform: scale(1.05);
 }
 
 /* Animations: on hover only */
-@media (hover: hover) {
-    #opff-contribute-page .opff-hero:not(:hover) svg *,
-    #opff-contribute-page .off-feature-card:not(:hover) svg *,
-    #opff-contribute-page .expert-banner:not(:hover) svg * {
-        animation-play-state: paused !important;
-    }
-    #opff-contribute-page .opff-hero:hover svg *,
-    #opff-contribute-page .off-feature-card:hover svg *,
-    #opff-contribute-page .expert-banner:hover svg * {
-        animation-play-state: running !important;
-    }
+#opff-contribute-page svg,
+#opff-contribute-page svg * {
+    animation-play-state: paused !important;
 }
+
+#opff-contribute-page .opff-hero:hover svg,
+#opff-contribute-page .opff-hero:hover svg *,
+#opff-contribute-page .off-feature-card:hover svg,
+#opff-contribute-page .off-feature-card:hover svg *,
+#opff-contribute-page .expert-banner:hover svg,
+#opff-contribute-page .expert-banner:hover svg *,
+#opff-contribute-page .hero-media:hover svg,
+#opff-contribute-page .hero-media:hover svg *,
+#opff-contribute-page svg:hover,
+#opff-contribute-page svg:hover * {
+    animation-play-state: running !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
+    #opff-contribute-page svg,
     #opff-contribute-page svg * {
         animation: none !important;
     }
@@ -575,26 +589,39 @@
         window.addEventListener("resize", sendHeight);
 
         // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
-        document.querySelectorAll('img[src$="-animated.svg"], img[src*="animated"]').forEach(img => {
-            fetch(img.src)
-                .then(r => r.ok ? r.text() : Promise.reject())
-                .then(svgText => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(svgText, 'image/svg+xml');
-                    const svg = doc.querySelector('svg');
-                    if (svg) {
-                        if (img.id) svg.id = img.id;
-                        if (img.className) svg.classList.add(...img.classList);
-                        if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
-                        if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
-                        if (img.getAttribute('alt')) {
-                            svg.setAttribute('role', 'img');
-                            svg.setAttribute('aria-label', img.getAttribute('alt'));
-                        }
-                        img.parentNode.replaceChild(svg, img);
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
                     }
-                })
-                .catch(() => {});
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
+
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
         });
     });
 </script>

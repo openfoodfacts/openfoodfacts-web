@@ -128,17 +128,22 @@
 }
 
 /* Animations: on hover only */
-@media (hover: hover) {
-    #off-contact-page .contact-hero:not(:hover) svg *,
-    #off-contact-page .contact-card:not(:hover) svg * {
-        animation-play-state: paused !important;
-    }
-    #off-contact-page .contact-hero:hover svg *,
-    #off-contact-page .contact-card:hover svg * {
-        animation-play-state: running !important;
-    }
+#off-contact-page svg,
+#off-contact-page svg * {
+    animation-play-state: paused !important;
 }
+
+#off-contact-page .contact-hero:hover svg,
+#off-contact-page .contact-hero:hover svg *,
+#off-contact-page .contact-card:hover svg,
+#off-contact-page .contact-card:hover svg *,
+#off-contact-page svg:hover,
+#off-contact-page svg:hover * {
+    animation-play-state: running !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
+    #off-contact-page svg,
     #off-contact-page svg * {
         animation: none !important;
     }
@@ -722,26 +727,39 @@
         window.addEventListener("resize", sendHeight);
 
         // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
-        document.querySelectorAll('img[src$="-animated.svg"], img[src*="animated"]').forEach(img => {
-            fetch(img.src)
-                .then(r => r.ok ? r.text() : Promise.reject())
-                .then(svgText => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(svgText, 'image/svg+xml');
-                    const svg = doc.querySelector('svg');
-                    if (svg) {
-                        if (img.id) svg.id = img.id;
-                        if (img.className) svg.classList.add(...img.classList);
-                        if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
-                        if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
-                        if (img.getAttribute('alt')) {
-                            svg.setAttribute('role', 'img');
-                            svg.setAttribute('aria-label', img.getAttribute('alt'));
-                        }
-                        img.parentNode.replaceChild(svg, img);
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
                     }
-                })
-                .catch(() => {});
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
+
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
         });
     });
 </script>

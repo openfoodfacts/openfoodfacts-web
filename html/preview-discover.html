@@ -15,6 +15,69 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             color: #1f2937;
         }
+        /* Global animation play-state rule: ALL SVGs PAUSED by default, RUN ONLY on hover */
+        svg, svg * {
+            animation-play-state: paused !important;
+        }
+        .off-feature-card:hover svg, .off-feature-card:hover svg *,
+        .expert-banner:hover svg, .expert-banner:hover svg *,
+        .contribute-hero:hover svg, .contribute-hero:hover svg *,
+        .discover-hero:hover svg, .discover-hero:hover svg *,
+        .contact-hero:hover svg, .contact-hero:hover svg *,
+        .contact-card:hover svg, .contact-card:hover svg *,
+        .hero-media:hover svg, .hero-media:hover svg *,
+        .opff-hero:hover svg, .opff-hero:hover svg *,
+        .obf-hero:hover svg, .obf-hero:hover svg *,
+        .opf-hero:hover svg, .opf-hero:hover svg *,
+        svg:hover, svg:hover * {
+            animation-play-state: running !important;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            svg, svg * {
+                animation: none !important;
+            }
+        }
+        /* Strictly constrain card art and prevent any SVG/image overflow */
+        .off-card-art {
+            height: 160px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+            position: relative !important;
+            margin-bottom: 1.25rem !important;
+        }
+        .off-card-art img,
+        .off-card-art svg {
+            max-width: 100% !important;
+            max-height: 140px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+            display: block !important;
+            margin: 0 auto !important;
+            transition: transform 0.3s ease !important;
+        }
+        .off-feature-card:hover .off-card-art img,
+        .off-feature-card:hover .off-card-art svg {
+            transform: scale(1.05) !important;
+        }
+        .expert-banner-art img,
+        .expert-banner-art svg {
+            max-width: 280px !important;
+            max-height: 200px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        .hero-media img,
+        .hero-media svg {
+            max-width: 440px !important;
+            max-height: 340px !important;
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
         /* Simulated Site Header */
         .site-header-preview {
             background: #ffffff;
@@ -416,7 +479,8 @@
     overflow: hidden;
 }
 
-.off-card-art img {
+.off-card-art img,
+.off-card-art svg {
     max-width: 100%;
     max-height: 155px;
     width: auto;
@@ -425,22 +489,30 @@
     transition: transform 0.3s ease;
 }
 
-.off-feature-card:hover .off-card-art img {
+.off-feature-card:hover .off-card-art img,
+.off-feature-card:hover .off-card-art svg {
     transform: scale(1.04);
 }
 
 /* Animations: on hover only */
-@media (hover: hover) {
-    #off-discover-page .discover-hero:not(:hover) svg *,
-    #off-discover-page .off-feature-card:not(:hover) svg * {
-        animation-play-state: paused !important;
-    }
-    #off-discover-page .discover-hero:hover svg *,
-    #off-discover-page .off-feature-card:hover svg * {
-        animation-play-state: running !important;
-    }
+#off-discover-page svg,
+#off-discover-page svg * {
+    animation-play-state: paused !important;
 }
+
+#off-discover-page .discover-hero:hover svg,
+#off-discover-page .discover-hero:hover svg *,
+#off-discover-page .off-feature-card:hover svg,
+#off-discover-page .off-feature-card:hover svg *,
+#off-discover-page .hero-media:hover svg,
+#off-discover-page .hero-media:hover svg *,
+#off-discover-page svg:hover,
+#off-discover-page svg:hover * {
+    animation-play-state: running !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
+    #off-discover-page svg,
     #off-discover-page svg * {
         animation: none !important;
     }
@@ -637,7 +709,268 @@
             <!-- Pillar 2: Made by everyone -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0icHV6emxlU3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNTAwIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjUwMCIgY2xhc3M9IiI+CiAgICAgICAgICAgICAgICA8c3R5bGU+CiAgICAgICAgICAgICAgICAgICAgLyogU21vb3RoIDQtc2Vjb25kIGxvb3BpbmcgYXNzZW1ibHkgYW5pbWF0aW9uICovCiAgICAgICAgICAgICAgICAgICAgLmFuaW0tbGVmdC1oYW5kIHsKICAgICAgICAgICAgICAgICAgICAgICAgYW5pbWF0aW9uOiBzbmFwTGVmdCA0LjJzIGN1YmljLWJlemllcigwLjQsIDAsIDAuMiwgMSkgaW5maW5pdGU7CiAgICAgICAgICAgICAgICAgICAgICAgIHRyYW5zZm9ybS1vcmlnaW46IGNlbnRlcjsKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgLmFuaW0tYm90dG9tLWhhbmQgewogICAgICAgICAgICAgICAgICAgICAgICBhbmltYXRpb246IHNuYXBCb3R0b20gNC4ycyBjdWJpYy1iZXppZXIoMC40LCAwLCAwLjIsIDEpIGluZmluaXRlOwogICAgICAgICAgICAgICAgICAgICAgICB0cmFuc2Zvcm0tb3JpZ2luOiBjZW50ZXI7CiAgICAgICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgICAgICAucHV6emxlLWNsdXN0ZXIgewogICAgICAgICAgICAgICAgICAgICAgICBhbmltYXRpb246IGNsdXN0ZXJQdWxzZSA0LjJzIGN1YmljLWJlemllcigwLjQsIDAsIDAuMiwgMSkgaW5maW5pdGU7CiAgICAgICAgICAgICAgICAgICAgICAgIHRyYW5zZm9ybS1vcmlnaW46IDMzMHB4IDIxMHB4OwogICAgICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAgICAgLnNuYXAtZ2xvdyB7CiAgICAgICAgICAgICAgICAgICAgICAgIGFuaW1hdGlvbjogZ2xvd0ZsYXNoIDQuMnMgZWFzZS1vdXQgaW5maW5pdGU7CiAgICAgICAgICAgICAgICAgICAgICAgIHBvaW50ZXItZXZlbnRzOiBub25lOwogICAgICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAgICAgLyogUGF1c2VkIHN0YXRlIHRvZ2dsZSAqLwogICAgICAgICAgICAgICAgICAgIHN2Zy5wYXVzZWQgLmFuaW0tbGVmdC1oYW5kLAogICAgICAgICAgICAgICAgICAgIHN2Zy5wYXVzZWQgLmFuaW0tYm90dG9tLWhhbmQsCiAgICAgICAgICAgICAgICAgICAgc3ZnLnBhdXNlZCAucHV6emxlLWNsdXN0ZXIsCiAgICAgICAgICAgICAgICAgICAgc3ZnLnBhdXNlZCAuc25hcC1nbG93IHsKICAgICAgICAgICAgICAgICAgICAgICAgYW5pbWF0aW9uLXBsYXktc3RhdGU6IHBhdXNlZCAhaW1wb3J0YW50OwogICAgICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAgICAgQGtleWZyYW1lcyBzbmFwTGVmdCB7CiAgICAgICAgICAgICAgICAgICAgICAgIDAlLCAxMiUgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMHB4LCAwcHgpIHJvdGF0ZSgzZGVnKTsKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA0MiUsIDc0JSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAvKiBNb3ZlcyByaWdodCBieSA3OHB4IGFuZCBsZXZlbHMgb3V0IHRvIGxvY2sgY2xlYW5seSBpbnRvIHRoZSBncmV5IHBpZWNlIHNvY2tldCAqLwogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoNzhweCwgMHB4KSByb3RhdGUoMGRlZyk7CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgOTAlLCAxMDAlIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKDBweCwgMHB4KSByb3RhdGUoM2RlZyk7CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgICAgIEBrZXlmcmFtZXMgc25hcEJvdHRvbSB7CiAgICAgICAgICAgICAgICAgICAgICAgIDAlLCAxNiUgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMHB4LCAwcHgpIHJvdGF0ZSg1ZGVnKTsKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA0NiUsIDc0JSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAvKiBNb3ZlcyB1cCBieSA3NHB4IGFuZCBsZXZlbHMgb3V0IHRvIGxvY2sgY2xlYW5seSBpbnRvIHRoZSBsaWdodC1ibHVlIHBpZWNlIHNvY2tldCAqLwogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMHB4LCAtNzRweCkgcm90YXRlKDBkZWcpOwogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDkwJSwgMTAwJSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgwcHgsIDBweCkgcm90YXRlKDVkZWcpOwogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgICAgICBAa2V5ZnJhbWVzIGNsdXN0ZXJQdWxzZSB7CiAgICAgICAgICAgICAgICAgICAgICAgIDAlLCA0MyUgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtOiBzY2FsZSgxKTsKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA0OCUgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtOiBzY2FsZSgxLjAxOCk7CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgNTUlLCAxMDAlIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRyYW5zZm9ybTogc2NhbGUoMSk7CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgICAgIEBrZXlmcmFtZXMgZ2xvd0ZsYXNoIHsKICAgICAgICAgICAgICAgICAgICAgICAgMCUsIDQyJSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBvcGFjaXR5OiAwOwogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDQ3JSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBvcGFjaXR5OiAwLjc1OwogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDYyJSwgMTAwJSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBvcGFjaXR5OiAwOwogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgPC9zdHlsZT4KCiAgICAgICAgICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgICAgICAgICA8IS0tIFJldXNhYmxlIDEwMHgxMDAgQmFzZSBTcXVhcmUgd2l0aCBSb3VuZGVkIENvcm5lcnMgLS0+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBUb3AtTGVmdCBZZWxsb3cgUGllY2U6IFRvcChJbiksIFJpZ2h0KE91dCksIEJvdHRvbShJbiksIExlZnQoT3V0KSAtLT4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBpZD0icGllY2UtdGwteWVsbG93IiBkPSIKICAgICAgICAgICAgICAgICAgICAgICAgTSAyMDAsOTAgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMjMzLDkwIEMgMjMwLDExNCAyNzAsMTE0IDI2Nyw5MCBMIDI4NCw5MCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAzMDAsMTA2IAogICAgICAgICAgICAgICAgICAgICAgICBMIDMwMCwxMjMgQyAzMjQsMTIwIDMyNCwxNjAgMzAwLDE1NyBMIDMwMCwxNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMjg0LDE5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCAyNjcsMTkwIEMgMjcwLDE2NiAyMzAsMTY2IDIzMywxOTAgTCAyMTYsMTkwIAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDIwMCwxNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMjAwLDE1NyBDIDE3NiwxNjAgMTc2LDEyMCAyMDAsMTIzIEwgMjAwLDEwNiAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAyMTYsOTAgWiI+PC9wYXRoPgoKICAgICAgICAgICAgICAgICAgICA8IS0tIFRvcC1NaWRkbGUgR3JlZW4gUGllY2U6IFRvcChPdXQpLCBSaWdodChJbiksIEJvdHRvbShPdXQpLCBMZWZ0KEluKSAtLT4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBpZD0icGllY2UtdG0tZ3JlZW4iIGQ9IgogICAgICAgICAgICAgICAgICAgICAgICBNIDMxNiw5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCAzMzMsOTAgQyAzMzAsNjYgMzcwLDY2IDM2Nyw5MCBMIDM4NCw5MCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSA0MDAsMTA2IAogICAgICAgICAgICAgICAgICAgICAgICBMIDQwMCwxMjMgQyAzNzYsMTIwIDM3NiwxNjAgNDAwLDE1NyBMIDQwMCwxNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMzg0LDE5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCAzNjcsMTkwIEMgMzcwLDIxNCAzMzAsMjE0IDMzMywxOTAgTCAzMTYsMTkwIAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDMwMCwxNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzAwLDE1NyBDIDMyNCwxNjAgMzI0LDEyMCAzMDAsMTIzIEwgMzAwLDEwNiAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAzMTYsOTAgWiI+PC9wYXRoPgoKICAgICAgICAgICAgICAgICAgICA8IS0tIFRvcC1SaWdodCBHcmV5IFBpZWNlOiBUb3AoSW4pLCBSaWdodChPdXQpLCBCb3R0b20oSW4pLCBMZWZ0KE91dCkgLS0+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggaWQ9InBpZWNlLXRyLWdyZXkiIGQ9IgogICAgICAgICAgICAgICAgICAgICAgICBNIDQxNiw5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCA0MzMsOTAgQyA0MzAsMTE0IDQ3MCwxMTQgNDY3LDkwIEwgNDg0LDkwIAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDUwMCwxMDYgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgNTAwLDEyMyBDIDUyNCwxMjAgNTI0LDE2MCA1MDAsMTU3IEwgNTAwLDE3NCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSA0ODQsMTkwIAogICAgICAgICAgICAgICAgICAgICAgICBMIDQ2NywxOTAgQyA0NzAsMTY2IDQzMCwxNjYgNDMzLDE5MCBMIDQxNiwxOTAgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgNDAwLDE3NCAKICAgICAgICAgICAgICAgICAgICAgICAgTCA0MDAsMTU3IEMgMzc2LDE2MCAzNzYsMTIwIDQwMCwxMjMgTCA0MDAsMTA2IAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDQxNiw5MCBaIj48L3BhdGg+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gQm90dG9tLUxlZnQgR3JleSBQaWVjZTogVG9wKE91dCksIFJpZ2h0KEluKSwgQm90dG9tKE91dCksIExlZnQoSW4pIC0tPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGlkPSJwaWVjZS1ibC1ncmV5IiBkPSIKICAgICAgICAgICAgICAgICAgICAgICAgTSAyMTYsMTkwIAogICAgICAgICAgICAgICAgICAgICAgICBMIDIzMywxOTAgQyAyMzAsMTY2IDI3MCwxNjYgMjY3LDE5MCBMIDI4NCwxOTAgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMzAwLDIwNiAKICAgICAgICAgICAgICAgICAgICAgICAgTCAzMDAsMjIzIEMgMjc2LDIyMCAyNzYsMjYwIDMwMCwyNTcgTCAzMDAsMjc0IAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDI4NCwyOTAgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMjY3LDI5MCBDIDI3MCwzMTQgMjMwLDMxNCAyMzMsMjkwIEwgMjE2LDI5MCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAyMDAsMjc0IAogICAgICAgICAgICAgICAgICAgICAgICBMIDIwMCwyNTcgQyAyMjQsMjYwIDIyNCwyMjAgMjAwLDIyMyBMIDIwMCwyMDYgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMjE2LDE5MCBaIj48L3BhdGg+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gQm90dG9tLU1pZGRsZSBMaWdodCBCbHVlIFBpZWNlOiBUb3AoSW4pLCBSaWdodChPdXQpLCBCb3R0b20oSW4pLCBMZWZ0KE91dCkgLS0+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggaWQ9InBpZWNlLWJtLWJsdWUiIGQ9IgogICAgICAgICAgICAgICAgICAgICAgICBNIDMxNiwxOTAgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzMzLDE5MCBDIDMzMCwyMTQgMzcwLDIxNCAzNjcsMTkwIEwgMzg0LDE5MCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSA0MDAsMjA2IAogICAgICAgICAgICAgICAgICAgICAgICBMIDQwMCwyMjMgQyA0MjQsMjIwIDQyNCwyNjAgNDAwLDI1NyBMIDQwMCwyNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMzg0LDI5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCAzNjcsMjkwIEMgMzcwLDI2NiAzMzAsMjY2IDMzMywyOTAgTCAzMTYsMjkwIAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDMwMCwyNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzAwLDI1NyBDIDI3NiwyNjAgMjc2LDIyMCAzMDAsMjIzIEwgMzAwLDIwNiAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAzMTYsMTkwIFoiPjwvcGF0aD4KCiAgICAgICAgICAgICAgICAgICAgPCEtLSBCb3R0b20tUmlnaHQgU2FsbW9uIFBpZWNlOiBUb3AoT3V0KSwgUmlnaHQoSW4pLCBCb3R0b20oT3V0KSwgTGVmdChJbikgLS0+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggaWQ9InBpZWNlLWJyLXNhbG1vbiIgZD0iCiAgICAgICAgICAgICAgICAgICAgICAgIE0gNDE2LDE5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCA0MzMsMTkwIEMgNDMwLDE2NiA0NzAsMTY2IDQ2NywxOTAgTCA0ODQsMTkwIAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDUwMCwyMDYgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgNTAwLDIyMyBDIDQ3NiwyMjAgNDc2LDI2MCA1MDAsMjU3IEwgNTAwLDI3NCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSA0ODQsMjkwIAogICAgICAgICAgICAgICAgICAgICAgICBMIDQ2NywyOTAgQyA0NzAsMzE0IDQzMCwzMTQgNDMzLDI5MCBMIDQxNiwyOTAgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgNDAwLDI3NCAKICAgICAgICAgICAgICAgICAgICAgICAgTCA0MDAsMjU3IEMgNDI0LDI2MCA0MjQsMjIwIDQwMCwyMjMgTCA0MDAsMjA2IAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDQxNiwxOTAgWiI+PC9wYXRoPgogICAgICAgICAgICAgICAgPC9kZWZzPgoKICAgICAgICAgICAgICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgICAgICAgICAgICAgPCEtLSBNQUlOIENFTlRSQUwgNi1QSUVDRSBQVVpaTEUgQ0xVU1RFUiAgICAgICAgLS0+CiAgICAgICAgICAgICAgICA8IS0tID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAtLT4KICAgICAgICAgICAgICAgIDxnIGNsYXNzPSJwdXp6bGUtY2x1c3RlciI+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBCb3R0b20tTGVmdCBHcmV5IC0tPgogICAgICAgICAgICAgICAgICAgIDx1c2UgaHJlZj0iI3BpZWNlLWJsLWdyZXkiIGZpbGw9IiNkM2Q1ZDciPjwvdXNlPgogICAgICAgICAgICAgICAgICAgIDwhLS0gVG9wLUxlZnQgWWVsbG93IC0tPgogICAgICAgICAgICAgICAgICAgIDx1c2UgaHJlZj0iI3BpZWNlLXRsLXllbGxvdyIgZmlsbD0iI2YzYmUwMCI+PC91c2U+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBCb3R0b20tTWlkZGxlIExpZ2h0IEJsdWUgLS0+CiAgICAgICAgICAgICAgICAgICAgPHVzZSBocmVmPSIjcGllY2UtYm0tYmx1ZSIgZmlsbD0iI2JjZTNmYSI+PC91c2U+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBCb3R0b20tUmlnaHQgU2FsbW9uIC0tPgogICAgICAgICAgICAgICAgICAgIDx1c2UgaHJlZj0iI3BpZWNlLWJyLXNhbG1vbiIgZmlsbD0iI2ZmOGY3ZCI+PC91c2U+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBUb3AtUmlnaHQgR3JleSAtLT4KICAgICAgICAgICAgICAgICAgICA8dXNlIGhyZWY9IiNwaWVjZS10ci1ncmV5IiBmaWxsPSIjZDNkNWQ3Ij48L3VzZT4KICAgICAgICAgICAgICAgICAgICA8IS0tIFRvcC1NaWRkbGUgR3JlZW4gKFJlbmRlcmVkIG9uIHRvcCBzbyBpdHMgdGFicyBvdmVybGFwIGNsZWFubHkpIC0tPgogICAgICAgICAgICAgICAgICAgIDx1c2UgaHJlZj0iI3BpZWNlLXRtLWdyZWVuIiBmaWxsPSIjMjhjOTZmIj48L3VzZT4KCiAgICAgICAgICAgICAgICAgICAgPCEtLSBTdWJ0bGUgQ29ubmVjdGlvbiBIaWdobGlnaHQgTGluZXMgd2hlbiBwaWVjZXMgbG9jayBpbiAtLT4KICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIyNDAiIHI9IjI2IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZjhmN2QiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMCIgY2xhc3M9InNuYXAtZ2xvdyI+PC9jaXJjbGU+CiAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBjeD0iMzUwIiBjeT0iMjkwIiByPSIyNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjNiZTAwIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAiIGNsYXNzPSJzbmFwLWdsb3ciPjwvY2lyY2xlPgogICAgICAgICAgICAgICAgPC9nPgoKICAgICAgICAgICAgICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgICAgICAgICAgICAgPCEtLSBMRUZUIEFOSU1BVEVEIEhBTkQgJiBTQUxNT04gUFVaWkxFIFBJRUNFICAgLS0+CiAgICAgICAgICAgICAgICA8IS0tID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAtLT4KICAgICAgICAgICAgICAgIDxnIGNsYXNzPSJhbmltLWxlZnQtaGFuZCIgc3R5bGU9InRyYW5zZm9ybS1vcmlnaW46IDcycHggMjQwcHg7Ij4KICAgICAgICAgICAgICAgICAgICA8IS0tIEhlbGQgU2FsbW9uIFBpZWNlIChTdGFydHMgYXQgWDogMjIuLjEyMiwgWTogMTkwLi4yOTA7IG1vdmVzICs3OHB4IHJpZ2h0IHRvIGxvY2sgaW50byBYOiAxMDAuLjIwMCkgLS0+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmOGY3ZCIgZD0iCiAgICAgICAgICAgICAgICAgICAgICAgIE0gMzgsMTkwIAogICAgICAgICAgICAgICAgICAgICAgICBMIDU1LDE5MCBDIDUyLDIxNCA5MiwyMTQgODksMTkwIEwgMTA2LDE5MCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAxMjIsMjA2IAogICAgICAgICAgICAgICAgICAgICAgICBMIDEyMiwyMjMgQyAxNDYsMjIwIDE0NiwyNjAgMTIyLDI1NyBMIDEyMiwyNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMTA2LDI5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCA4OSwyOTAgQyA5MiwyNjYgNTIsMjY2IDU1LDI5MCBMIDM4LDI5MCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAyMiwyNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMjIsMjU3IEMgLTIsMjYwIC0yLDIyMCAyMiwyMjMgTCAyMiwyMDYgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMzgsMTkwIFoiPjwvcGF0aD4KCiAgICAgICAgICAgICAgICAgICAgPCEtLSBMaWdodCBTa2luIFRvbmUgQXJtLCBDb250aW51b3VzIFBhbG0sIFRodW1iICYgNCBQYXJhbGxlbCBGaW5nZXJzIHdpdGggVGhpbiBTbGl0cyAtLT4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjZmZjYjk0IiBkPSIKICAgICAgICAgICAgICAgICAgICAgICAgTSA1OCwwCiAgICAgICAgICAgICAgICAgICAgICAgIEMgMTYsNzIgMTgsMTQ1IDIxLDI2MAogICAgICAgICAgICAgICAgICAgICAgICBBIDkuNSw5LjUgMCAwLDAgNDAsMjYwCiAgICAgICAgICAgICAgICAgICAgICAgIEwgNDAsMjA0CiAgICAgICAgICAgICAgICAgICAgICAgIEwgNDMsMjA0CiAgICAgICAgICAgICAgICAgICAgICAgIEwgNDMsMjYyCiAgICAgICAgICAgICAgICAgICAgICAgIEEgOS41LDkuNSAwIDAsMCA2MiwyNjIKICAgICAgICAgICAgICAgICAgICAgICAgTCA2MiwyMDQKICAgICAgICAgICAgICAgICAgICAgICAgTCA2NSwyMDQKICAgICAgICAgICAgICAgICAgICAgICAgTCA2NSwyNjAKICAgICAgICAgICAgICAgICAgICAgICAgQSA5LjUsOS41IDAgMCwwIDg0LDI2MAogICAgICAgICAgICAgICAgICAgICAgICBMIDg0LDIwNAogICAgICAgICAgICAgICAgICAgICAgICBMIDg3LDIwNAogICAgICAgICAgICAgICAgICAgICAgICBMIDg3LDI1OAogICAgICAgICAgICAgICAgICAgICAgICBBIDkuNSw5LjUgMCAwLDAgMTA2LDI1OAogICAgICAgICAgICAgICAgICAgICAgICBMIDEwNiwxNzAKICAgICAgICAgICAgICAgICAgICAgICAgTCAxMjEsMTgzCiAgICAgICAgICAgICAgICAgICAgICAgIEMgMTI3LDE4OCAxMzQsMTgyIDEyOSwxNzQKICAgICAgICAgICAgICAgICAgICAgICAgTCAxMDEsMTQyCiAgICAgICAgICAgICAgICAgICAgICAgIEMgMTAzLDk1IDExOCw0NSAxNTYsMAogICAgICAgICAgICAgICAgICAgICAgICBaIj48L3BhdGg+CiAgICAgICAgICAgICAgICA8L2c+CgogICAgICAgICAgICAgICAgPCEtLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gLS0+CiAgICAgICAgICAgICAgICA8IS0tIEJPVFRPTSBBTklNQVRFRCBIQU5EICYgWUVMTE9XIFBVWlpMRSBQSUVDRSAtLT4KICAgICAgICAgICAgICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgICAgICAgICAgICAgPGcgY2xhc3M9ImFuaW0tYm90dG9tLWhhbmQiIHN0eWxlPSJ0cmFuc2Zvcm0tb3JpZ2luOiAzNTBweCA0MTRweDsiPgogICAgICAgICAgICAgICAgICAgIDwhLS0gSGVsZCBZZWxsb3cgUGllY2UgKFN0YXJ0cyBhdCBYOiAzMDAuLjQwMCwgWTogMzY0Li40NjQ7IG1vdmVzIC03NHB4IHVwIHRvIGxvY2sgaW50byBZOiAyOTAuLjM5MCkgLS0+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI2YzYmUwMCIgZD0iCiAgICAgICAgICAgICAgICAgICAgICAgIE0gMzE2LDM2NCAKICAgICAgICAgICAgICAgICAgICAgICAgTCAzMzMsMzY0IEMgMzMwLDM0MCAzNzAsMzQwIDM2NywzNjQgTCAzODQsMzY0IAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDQwMCwzODAgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgNDAwLDM5NyBDIDM3NiwzOTQgMzc2LDQzNCA0MDAsNDMxIEwgNDAwLDQ0OCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAzODQsNDY0IAogICAgICAgICAgICAgICAgICAgICAgICBMIDM2Nyw0NjQgQyAzNzAsNDg4IDMzMCw0ODggMzMzLDQ2NCBMIDMxNiw0NjQgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMzAwLDQ0OCAKICAgICAgICAgICAgICAgICAgICAgICAgTCAzMDAsNDMxIEMgMzI0LDQzNCAzMjQsMzk0IDMwMCwzOTcgTCAzMDAsMzgwIAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDMxNiwzNjQgWiI+PC9wYXRoPgoKICAgICAgICAgICAgICAgICAgICA8IS0tIEJyb3duIFNraW4gVG9uZSBBcm0sIENvbnRpbnVvdXMgUGFsbSwgVGh1bWIgJiA0IFBhcmFsbGVsIEZpbmdlcnMgd2l0aCBUaGluIFNsaXRzIC0tPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGZpbGw9IiM5MzVkMzciIGQ9IgogICAgICAgICAgICAgICAgICAgICAgICBNIDYwMCwzMzQKICAgICAgICAgICAgICAgICAgICAgICAgQyA1MzgsMzkyIDQ3OCw0MTIgNDI2LDQxMgogICAgICAgICAgICAgICAgICAgICAgICBMIDM5NiwzNzIKICAgICAgICAgICAgICAgICAgICAgICAgQyAzOTAsMzY0IDM3OCwzNzEgMzgzLDM4MQogICAgICAgICAgICAgICAgICAgICAgICBMIDM5OSw0MDUKICAgICAgICAgICAgICAgICAgICAgICAgTCAzMTQsNDA1CiAgICAgICAgICAgICAgICAgICAgICAgIEEgOC41LDguNSAwIDAsMCAzMTQsNDIyCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzY4LDQyMgogICAgICAgICAgICAgICAgICAgICAgICBMIDM2OCw0MjUuNQogICAgICAgICAgICAgICAgICAgICAgICBMIDMxMSw0MjUuNQogICAgICAgICAgICAgICAgICAgICAgICBBIDguNSw4LjUgMCAwLDAgMzExLDQ0Mi41CiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzY4LDQ0Mi41CiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzY4LDQ0NgogICAgICAgICAgICAgICAgICAgICAgICBMIDMxMSw0NDYKICAgICAgICAgICAgICAgICAgICAgICAgQSA4LjUsOC41IDAgMCwwIDMxMSw0NjMKICAgICAgICAgICAgICAgICAgICAgICAgTCAzNjgsNDYzCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzY4LDQ2Ni41CiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzE0LDQ2Ni41CiAgICAgICAgICAgICAgICAgICAgICAgIEEgOC41LDguNSAwIDAsMCAzMTQsNDgzLjUKICAgICAgICAgICAgICAgICAgICAgICAgTCA0MTUsNDgzLjUKICAgICAgICAgICAgICAgICAgICAgICAgQyA0ODIsNDgzLjUgNTQ1LDQ2MiA2MDAsNDI0CiAgICAgICAgICAgICAgICAgICAgICAgIFoiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9zdmc+" alt="Collaborative community puzzle pieces uniting together" width="340" height="260" loading="lazy">
+                    <svg id="puzzleSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" class="" role="img" aria-label="Collaborative community puzzle pieces uniting together">
+                <style>
+                    /* Smooth 4-second looping assembly animation */
+                    .anim-left-hand {
+                        animation: snapLeft 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        transform-origin: center;
+                    }
+                    
+                    .anim-bottom-hand {
+                        animation: snapBottom 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        transform-origin: center;
+                    }
+
+                    .puzzle-cluster {
+                        animation: clusterPulse 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        transform-origin: 330px 210px;
+                    }
+
+                    .snap-glow {
+                        animation: glowFlash 4.2s ease-out infinite;
+                        pointer-events: none;
+                    }
+
+                    /* Paused state toggle */
+                    svg.paused .anim-left-hand,
+                    svg.paused .anim-bottom-hand,
+                    svg.paused .puzzle-cluster,
+                    svg.paused .snap-glow {
+                        animation-play-state: paused !important;
+                    }
+
+                    @keyframes snapLeft {
+                        0%, 12% {
+                            transform: translate(0px, 0px) rotate(3deg);
+                        }
+                        42%, 74% {
+                            /* Moves right by 78px and levels out to lock cleanly into the grey piece socket */
+                            transform: translate(78px, 0px) rotate(0deg);
+                        }
+                        90%, 100% {
+                            transform: translate(0px, 0px) rotate(3deg);
+                        }
+                    }
+
+                    @keyframes snapBottom {
+                        0%, 16% {
+                            transform: translate(0px, 0px) rotate(5deg);
+                        }
+                        46%, 74% {
+                            /* Moves up by 74px and levels out to lock cleanly into the light-blue piece socket */
+                            transform: translate(0px, -74px) rotate(0deg);
+                        }
+                        90%, 100% {
+                            transform: translate(0px, 0px) rotate(5deg);
+                        }
+                    }
+
+                    @keyframes clusterPulse {
+                        0%, 43% {
+                            transform: scale(1);
+                        }
+                        48% {
+                            transform: scale(1.018);
+                        }
+                        55%, 100% {
+                            transform: scale(1);
+                        }
+                    }
+
+                    @keyframes glowFlash {
+                        0%, 42% {
+                            opacity: 0;
+                        }
+                        47% {
+                            opacity: 0.75;
+                        }
+                        62%, 100% {
+                            opacity: 0;
+                        }
+                    }
+                </style>
+
+                <defs>
+                    <!-- Reusable 100x100 Base Square with Rounded Corners -->
+                    <!-- Top-Left Yellow Piece: Top(In), Right(Out), Bottom(In), Left(Out) -->
+                    <path id="piece-tl-yellow" d="
+                        M 200,90 
+                        L 233,90 C 230,114 270,114 267,90 L 284,90 
+                        A 16,16 0 0,1 300,106 
+                        L 300,123 C 324,120 324,160 300,157 L 300,174 
+                        A 16,16 0 0,1 284,190 
+                        L 267,190 C 270,166 230,166 233,190 L 216,190 
+                        A 16,16 0 0,1 200,174 
+                        L 200,157 C 176,160 176,120 200,123 L 200,106 
+                        A 16,16 0 0,1 216,90 Z"></path>
+
+                    <!-- Top-Middle Green Piece: Top(Out), Right(In), Bottom(Out), Left(In) -->
+                    <path id="piece-tm-green" d="
+                        M 316,90 
+                        L 333,90 C 330,66 370,66 367,90 L 384,90 
+                        A 16,16 0 0,1 400,106 
+                        L 400,123 C 376,120 376,160 400,157 L 400,174 
+                        A 16,16 0 0,1 384,190 
+                        L 367,190 C 370,214 330,214 333,190 L 316,190 
+                        A 16,16 0 0,1 300,174 
+                        L 300,157 C 324,160 324,120 300,123 L 300,106 
+                        A 16,16 0 0,1 316,90 Z"></path>
+
+                    <!-- Top-Right Grey Piece: Top(In), Right(Out), Bottom(In), Left(Out) -->
+                    <path id="piece-tr-grey" d="
+                        M 416,90 
+                        L 433,90 C 430,114 470,114 467,90 L 484,90 
+                        A 16,16 0 0,1 500,106 
+                        L 500,123 C 524,120 524,160 500,157 L 500,174 
+                        A 16,16 0 0,1 484,190 
+                        L 467,190 C 470,166 430,166 433,190 L 416,190 
+                        A 16,16 0 0,1 400,174 
+                        L 400,157 C 376,160 376,120 400,123 L 400,106 
+                        A 16,16 0 0,1 416,90 Z"></path>
+
+                    <!-- Bottom-Left Grey Piece: Top(Out), Right(In), Bottom(Out), Left(In) -->
+                    <path id="piece-bl-grey" d="
+                        M 216,190 
+                        L 233,190 C 230,166 270,166 267,190 L 284,190 
+                        A 16,16 0 0,1 300,206 
+                        L 300,223 C 276,220 276,260 300,257 L 300,274 
+                        A 16,16 0 0,1 284,290 
+                        L 267,290 C 270,314 230,314 233,290 L 216,290 
+                        A 16,16 0 0,1 200,274 
+                        L 200,257 C 224,260 224,220 200,223 L 200,206 
+                        A 16,16 0 0,1 216,190 Z"></path>
+
+                    <!-- Bottom-Middle Light Blue Piece: Top(In), Right(Out), Bottom(In), Left(Out) -->
+                    <path id="piece-bm-blue" d="
+                        M 316,190 
+                        L 333,190 C 330,214 370,214 367,190 L 384,190 
+                        A 16,16 0 0,1 400,206 
+                        L 400,223 C 424,220 424,260 400,257 L 400,274 
+                        A 16,16 0 0,1 384,290 
+                        L 367,290 C 370,266 330,266 333,290 L 316,290 
+                        A 16,16 0 0,1 300,274 
+                        L 300,257 C 276,260 276,220 300,223 L 300,206 
+                        A 16,16 0 0,1 316,190 Z"></path>
+
+                    <!-- Bottom-Right Salmon Piece: Top(Out), Right(In), Bottom(Out), Left(In) -->
+                    <path id="piece-br-salmon" d="
+                        M 416,190 
+                        L 433,190 C 430,166 470,166 467,190 L 484,190 
+                        A 16,16 0 0,1 500,206 
+                        L 500,223 C 476,220 476,260 500,257 L 500,274 
+                        A 16,16 0 0,1 484,290 
+                        L 467,290 C 470,314 430,314 433,290 L 416,290 
+                        A 16,16 0 0,1 400,274 
+                        L 400,257 C 424,260 424,220 400,223 L 400,206 
+                        A 16,16 0 0,1 416,190 Z"></path>
+                </defs>
+
+                <!-- ========================================== -->
+                <!-- MAIN CENTRAL 6-PIECE PUZZLE CLUSTER        -->
+                <!-- ========================================== -->
+                <g class="puzzle-cluster">
+                    <!-- Bottom-Left Grey -->
+                    <use href="#piece-bl-grey" fill="#d3d5d7"></use>
+                    <!-- Top-Left Yellow -->
+                    <use href="#piece-tl-yellow" fill="#f3be00"></use>
+                    <!-- Bottom-Middle Light Blue -->
+                    <use href="#piece-bm-blue" fill="#bce3fa"></use>
+                    <!-- Bottom-Right Salmon -->
+                    <use href="#piece-br-salmon" fill="#ff8f7d"></use>
+                    <!-- Top-Right Grey -->
+                    <use href="#piece-tr-grey" fill="#d3d5d7"></use>
+                    <!-- Top-Middle Green (Rendered on top so its tabs overlap cleanly) -->
+                    <use href="#piece-tm-green" fill="#28c96f"></use>
+
+                    <!-- Subtle Connection Highlight Lines when pieces lock in -->
+                    <circle cx="200" cy="240" r="26" fill="none" stroke="#ff8f7d" stroke-width="3" opacity="0" class="snap-glow"></circle>
+                    <circle cx="350" cy="290" r="26" fill="none" stroke="#f3be00" stroke-width="3" opacity="0" class="snap-glow"></circle>
+                </g>
+
+                <!-- ========================================== -->
+                <!-- LEFT ANIMATED HAND & SALMON PUZZLE PIECE   -->
+                <!-- ========================================== -->
+                <g class="anim-left-hand" style="transform-origin: 72px 240px;">
+                    <!-- Held Salmon Piece (Starts at X: 22..122, Y: 190..290; moves +78px right to lock into X: 100..200) -->
+                    <path fill="#ff8f7d" d="
+                        M 38,190 
+                        L 55,190 C 52,214 92,214 89,190 L 106,190 
+                        A 16,16 0 0,1 122,206 
+                        L 122,223 C 146,220 146,260 122,257 L 122,274 
+                        A 16,16 0 0,1 106,290 
+                        L 89,290 C 92,266 52,266 55,290 L 38,290 
+                        A 16,16 0 0,1 22,274 
+                        L 22,257 C -2,260 -2,220 22,223 L 22,206 
+                        A 16,16 0 0,1 38,190 Z"></path>
+
+                    <!-- Light Skin Tone Arm, Continuous Palm, Thumb & 4 Parallel Fingers with Thin Slits -->
+                    <path fill="#ffcb94" d="
+                        M 58,0
+                        C 16,72 18,145 21,260
+                        A 9.5,9.5 0 0,0 40,260
+                        L 40,204
+                        L 43,204
+                        L 43,262
+                        A 9.5,9.5 0 0,0 62,262
+                        L 62,204
+                        L 65,204
+                        L 65,260
+                        A 9.5,9.5 0 0,0 84,260
+                        L 84,204
+                        L 87,204
+                        L 87,258
+                        A 9.5,9.5 0 0,0 106,258
+                        L 106,170
+                        L 121,183
+                        C 127,188 134,182 129,174
+                        L 101,142
+                        C 103,95 118,45 156,0
+                        Z"></path>
+                </g>
+
+                <!-- ========================================== -->
+                <!-- BOTTOM ANIMATED HAND & YELLOW PUZZLE PIECE -->
+                <!-- ========================================== -->
+                <g class="anim-bottom-hand" style="transform-origin: 350px 414px;">
+                    <!-- Held Yellow Piece (Starts at X: 300..400, Y: 364..464; moves -74px up to lock into Y: 290..390) -->
+                    <path fill="#f3be00" d="
+                        M 316,364 
+                        L 333,364 C 330,340 370,340 367,364 L 384,364 
+                        A 16,16 0 0,1 400,380 
+                        L 400,397 C 376,394 376,434 400,431 L 400,448 
+                        A 16,16 0 0,1 384,464 
+                        L 367,464 C 370,488 330,488 333,464 L 316,464 
+                        A 16,16 0 0,1 300,448 
+                        L 300,431 C 324,434 324,394 300,397 L 300,380 
+                        A 16,16 0 0,1 316,364 Z"></path>
+
+                    <!-- Brown Skin Tone Arm, Continuous Palm, Thumb & 4 Parallel Fingers with Thin Slits -->
+                    <path fill="#935d37" d="
+                        M 600,334
+                        C 538,392 478,412 426,412
+                        L 396,372
+                        C 390,364 378,371 383,381
+                        L 399,405
+                        L 314,405
+                        A 8.5,8.5 0 0,0 314,422
+                        L 368,422
+                        L 368,425.5
+                        L 311,425.5
+                        A 8.5,8.5 0 0,0 311,442.5
+                        L 368,442.5
+                        L 368,446
+                        L 311,446
+                        A 8.5,8.5 0 0,0 311,463
+                        L 368,463
+                        L 368,466.5
+                        L 314,466.5
+                        A 8.5,8.5 0 0,0 314,483.5
+                        L 415,483.5
+                        C 482,483.5 545,462 600,424
+                        Z"></path>
+                </g>
+            </svg>
                 </div>
                 <span class="off-badge-pill amber">100,000+ Volunteers</span>
                 <h3>Made by everyone</h3>
@@ -654,7 +987,55 @@
             <!-- Pillar 3: For everyone - Open data -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0ic3ZnLWRpc2NvdmVyLXNjaWVuY2UiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDU2MCA0MjAiIHdpZHRoPSI1NjAiIGhlaWdodD0iNDIwIiBjbGFzcz0iIj4KICAgICAgICAgICAgICAgICAgICA8c3R5bGU+CiAgICAgICAgICAgICAgICAgICAgICAgIC5iYXItZ3Jvdy0xIHsgYW5pbWF0aW9uOiBiYXJQdWxzZTEgMy44cyBlYXNlLWluLW91dCBpbmZpbml0ZTsgdHJhbnNmb3JtLW9yaWdpbjogMjUwcHggMjYwcHg7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmJhci1ncm93LTIgeyBhbmltYXRpb246IGJhclB1bHNlMiAzLjhzIGVhc2UtaW4tb3V0IGluZmluaXRlIDAuNHM7IHRyYW5zZm9ybS1vcmlnaW46IDI5MHB4IDI2MHB4OyB9CiAgICAgICAgICAgICAgICAgICAgICAgIC5iYXItZ3Jvdy0zIHsgYW5pbWF0aW9uOiBiYXJQdWxzZTEgMy44cyBlYXNlLWluLW91dCBpbmZpbml0ZSAwLjhzOyB0cmFuc2Zvcm0tb3JpZ2luOiAzMzBweCAyNjBweDsgfQogICAgICAgICAgICAgICAgICAgICAgICBzdmcucGF1c2VkICogeyBhbmltYXRpb24tcGxheS1zdGF0ZTogcGF1c2VkICFpbXBvcnRhbnQ7IH0KICAgICAgICAgICAgICAgICAgICAgICAgQGtleWZyYW1lcyBiYXJQdWxzZTEgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgMCUsIDEwMCUgeyB0cmFuc2Zvcm06IHNjYWxlWSgxKTsgfQogICAgICAgICAgICAgICAgICAgICAgICAgICAgNTAlIHsgdHJhbnNmb3JtOiBzY2FsZVkoMC43Mik7IH0KICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBAa2V5ZnJhbWVzIGJhclB1bHNlMiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAwJSwgMTAwJSB7IHRyYW5zZm9ybTogc2NhbGVZKDAuOCk7IH0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDUwJSB7IHRyYW5zZm9ybTogc2NhbGVZKDEuMSk7IH0KICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIDwvc3R5bGU+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gRGFzaGVkIE5ldHdvcmsgQ29ubmVjdGlvbiBMaW5lcyAtLT4KICAgICAgICAgICAgICAgICAgICA8bGluZSB4MT0iMTIwIiB5MT0iMTI1IiB4Mj0iMjgwIiB5Mj0iMjEwIiBzdHJva2U9IiMwMGJkZjIiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTAgOCI+PC9saW5lPgogICAgICAgICAgICAgICAgICAgIDxsaW5lIHgxPSIxMjAiIHkxPSIzMTAiIHgyPSIyODAiIHkyPSIyMTAiIHN0cm9rZT0iIzAwOWE0OSIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtZGFzaGFycmF5PSIxMCA4Ij48L2xpbmU+CiAgICAgICAgICAgICAgICAgICAgPGxpbmUgeDE9IjQ0NSIgeTE9IjEyNSIgeDI9IjI4MCIgeTI9IjIxMCIgc3Ryb2tlPSIjZmY2YjM1IiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1kYXNoYXJyYXk9IjEwIDgiPjwvbGluZT4KICAgICAgICAgICAgICAgICAgICA8bGluZSB4MT0iNDQ1IiB5MT0iMzEwIiB4Mj0iMjgwIiB5Mj0iMjEwIiBzdHJva2U9IiNmOGMxMDAiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWRhc2hhcnJheT0iMTAgOCI+PC9saW5lPgoKICAgICAgICAgICAgICAgICAgICA8IS0tIENlbnRyYWwgT3BlbiBTY2llbmNlIERhc2hib2FyZCBDYXJkIC0tPgogICAgICAgICAgICAgICAgICAgIDxyZWN0IHg9IjE5NSIgeT0iMTEwIiB3aWR0aD0iMTcwIiBoZWlnaHQ9IjE5NSIgcng9IjIyIiBmaWxsPSIjMTgxODE4Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHRleHQgeD0iMjgwIiB5PSIxNDIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSI4MDAiIGxldHRlci1zcGFjaW5nPSIxIj5PUEVOIERBVEE8L3RleHQ+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9ImJhci1ncm93LTEiIHg9IjIyNSIgeT0iMTc1IiB3aWR0aD0iMjQiIGhlaWdodD0iODUiIHJ4PSI2IiBmaWxsPSIjMDA5YTQ5Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9ImJhci1ncm93LTIiIHg9IjI2OCIgeT0iMTYwIiB3aWR0aD0iMjQiIGhlaWdodD0iMTAwIiByeD0iNiIgZmlsbD0iIzAwYmRmMiI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJiYXItZ3Jvdy0zIiB4PSIzMTEiIHk9IjE5MCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjcwIiByeD0iNiIgZmlsbD0iI2Y4YzEwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IHg9IjIxNSIgeT0iMjY4IiB3aWR0aD0iMTMwIiBoZWlnaHQ9IjgiIHJ4PSI0IiBmaWxsPSIjNjA2MzYyIj48L3JlY3Q+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gTm9kZSAxIChUb3AtTGVmdCk6IE1pbmkgQ2VyZWFsIFBhY2sgLS0+CiAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBjeD0iMTA1IiBjeT0iMTE1IiByPSI1MiIgZmlsbD0iI2ZmZjNlZCI+PC9jaXJjbGU+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgeD0iODIiIHk9IjgyIiB3aWR0aD0iNDYiIGhlaWdodD0iNjQiIHJ4PSI2IiBmaWxsPSIjZmY2YjM1Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iIzAwYmRmMiIgZD0iTSA5NCwxMTggTCAxMjgsMTE4IEMgMTI0LDEzNCA5OCwxMzQgOTQsMTE4IFoiPjwvcGF0aD4KCiAgICAgICAgICAgICAgICAgICAgPCEtLSBOb2RlIDIgKEJvdHRvbS1MZWZ0KTogTWluaSBHcmVlbiBCb3R0bGUgLS0+CiAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBjeD0iMTA1IiBjeT0iMzEwIiByPSI1MiIgZmlsbD0iI2U4ZjhlZiI+PC9jaXJjbGU+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iIzAwOWE0OSIgZD0iTSA5OCwyNzAgTCAxMTIsMjcwIEwgMTEyLDI4NiBDIDEyMiwyOTIgMTI2LDMwMiAxMjYsMzE1IEwgMTI2LDM0NiBBIDYsNiAwIDAsMSAxMjAsMzUyIEwgOTAsMzUyIEEgNiw2IDAgMCwxIDg0LDM0NiBMIDg0LDMxNSBDIDg0LDMwMiA4OCwyOTIgOTgsMjg2IFoiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8cmVjdCB4PSI5MiIgeT0iMzA4IiB3aWR0aD0iMjYiIGhlaWdodD0iMzIiIHJ4PSI0IiBmaWxsPSIjZmZmZmZmIj48L3JlY3Q+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gTm9kZSAzIChUb3AtUmlnaHQpOiBFYXJ0aCBHbG9iZSAtLT4KICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSI0NTUiIGN5PSIxMTUiIHI9IjQ4IiBmaWxsPSIjNmFlM2ZmIj48L2NpcmNsZT4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjMDA5YTQ5IiBkPSJNIDQzNSw3OCBDIDQ1NSw4OCA0NDIsMTE1IDQyNSwxMTggQSA0OCw0OCAwIDAsMSA0MzUsNzggWiI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGZpbGw9IiMwMDlhNDkiIGQ9Ik0gNDU1LDEwMiBDIDQ3MiwxMDAgNDgyLDEyMiA0NjgsMTQ1IEMgNDU1LDE2MCA0NDIsMTQyIDQ1NSwxMDIgWiI+PC9wYXRoPgoKICAgICAgICAgICAgICAgICAgICA8IS0tIE5vZGUgNCAoQm90dG9tLVJpZ2h0KTogR3JlZW4gQ2hlY2sgVmVyaWZpZWQgUmVzZWFyY2ggLS0+CiAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBjeD0iNDU1IiBjeT0iMzEwIiByPSI0NiIgZmlsbD0iIzBiN2EzZSI+PC9jaXJjbGU+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTSA0MzUsMzEwIEwgNDQ5LDMyNCBMIDQ3NywyOTYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxMSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L3BhdGg+CiAgICAgICAgICAgICAgICA8L3N2Zz4=" alt="Open data metrics and global scientific research network" width="560" height="420" loading="lazy">
+                    <svg id="svg-discover-science" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Open data metrics and global scientific research network">
+                    <style>
+                        .bar-grow-1 { animation: barPulse1 3.8s ease-in-out infinite; transform-origin: 250px 260px; }
+                        .bar-grow-2 { animation: barPulse2 3.8s ease-in-out infinite 0.4s; transform-origin: 290px 260px; }
+                        .bar-grow-3 { animation: barPulse1 3.8s ease-in-out infinite 0.8s; transform-origin: 330px 260px; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes barPulse1 {
+                            0%, 100% { transform: scaleY(1); }
+                            50% { transform: scaleY(0.72); }
+                        }
+                        @keyframes barPulse2 {
+                            0%, 100% { transform: scaleY(0.8); }
+                            50% { transform: scaleY(1.1); }
+                        }
+                    </style>
+
+                    <!-- Dashed Network Connection Lines -->
+                    <line x1="120" y1="125" x2="280" y2="210" stroke="#00bdf2" stroke-width="5" stroke-dasharray="10 8"></line>
+                    <line x1="120" y1="310" x2="280" y2="210" stroke="#009a49" stroke-width="5" stroke-dasharray="10 8"></line>
+                    <line x1="445" y1="125" x2="280" y2="210" stroke="#ff6b35" stroke-width="5" stroke-dasharray="10 8"></line>
+                    <line x1="445" y1="310" x2="280" y2="210" stroke="#f8c100" stroke-width="5" stroke-dasharray="10 8"></line>
+
+                    <!-- Central Open Science Dashboard Card -->
+                    <rect x="195" y="110" width="170" height="195" rx="22" fill="#181818"></rect>
+                    <text x="280" y="142" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="800" letter-spacing="1">OPEN DATA</text>
+                    <rect class="bar-grow-1" x="225" y="175" width="24" height="85" rx="6" fill="#009a49"></rect>
+                    <rect class="bar-grow-2" x="268" y="160" width="24" height="100" rx="6" fill="#00bdf2"></rect>
+                    <rect class="bar-grow-3" x="311" y="190" width="24" height="70" rx="6" fill="#f8c100"></rect>
+                    <rect x="215" y="268" width="130" height="8" rx="4" fill="#606362"></rect>
+
+                    <!-- Node 1 (Top-Left): Mini Cereal Pack -->
+                    <circle cx="105" cy="115" r="52" fill="#fff3ed"></circle>
+                    <rect x="82" y="82" width="46" height="64" rx="6" fill="#ff6b35"></rect>
+                    <path fill="#00bdf2" d="M 94,118 L 128,118 C 124,134 98,134 94,118 Z"></path>
+
+                    <!-- Node 2 (Bottom-Left): Mini Green Bottle -->
+                    <circle cx="105" cy="310" r="52" fill="#e8f8ef"></circle>
+                    <path fill="#009a49" d="M 98,270 L 112,270 L 112,286 C 122,292 126,302 126,315 L 126,346 A 6,6 0 0,1 120,352 L 90,352 A 6,6 0 0,1 84,346 L 84,315 C 84,302 88,292 98,286 Z"></path>
+                    <rect x="92" y="308" width="26" height="32" rx="4" fill="#ffffff"></rect>
+
+                    <!-- Node 3 (Top-Right): Earth Globe -->
+                    <circle cx="455" cy="115" r="48" fill="#6ae3ff"></circle>
+                    <path fill="#009a49" d="M 435,78 C 455,88 442,115 425,118 A 48,48 0 0,1 435,78 Z"></path>
+                    <path fill="#009a49" d="M 455,102 C 472,100 482,122 468,145 C 455,160 442,142 455,102 Z"></path>
+
+                    <!-- Node 4 (Bottom-Right): Green Check Verified Research -->
+                    <circle cx="455" cy="310" r="46" fill="#0b7a3e"></circle>
+                    <path d="M 435,310 L 449,324 L 477,296" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
                 </div>
                 <span class="off-badge-pill green">100% Open Data</span>
                 <h3>For everyone</h3>
@@ -815,7 +1196,74 @@
             <article class="off-feature-card reuse-card blue-top">
                 <div class="off-card-art">
                     <a href="/science">
-                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0ic3ZnLXNjaWVuY2UtaWNvbiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMzgwIDI4MCIgd2lkdGg9IjM4MCIgaGVpZ2h0PSIyODAiIGNsYXNzPSJtYXgtdy1bNDIwcHhdIj4KICAgICAgICAgICAgICAgICAgICA8c3R5bGU+CiAgICAgICAgICAgICAgICAgICAgICAgIC5zY2ktYmFyIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRyYW5zZm9ybS1ib3g6IGZpbGwtYm94OwogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtLW9yaWdpbjogYm90dG9tIGNlbnRlcjsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFuaW1hdGlvbjogYmFyV2F2ZSAzLjJzIGN1YmljLWJlemllcigwLjQsIDAsIDAuMiwgMSkgaW5maW5pdGU7CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIxICB7IGFuaW1hdGlvbi1kZWxheTogMC4wMHM7IH0gLmIyICB7IGFuaW1hdGlvbi1kZWxheTogMC4wNnM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIzICB7IGFuaW1hdGlvbi1kZWxheTogMC4xMnM7IH0gLmI0ICB7IGFuaW1hdGlvbi1kZWxheTogMC4xOHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmI1ICB7IGFuaW1hdGlvbi1kZWxheTogMC4yNHM7IH0gLmI2ICB7IGFuaW1hdGlvbi1kZWxheTogMC4zMHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmI3ICB7IGFuaW1hdGlvbi1kZWxheTogMC4zNnM7IH0gLmI4ICB7IGFuaW1hdGlvbi1kZWxheTogMC40MnM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmI5ICB7IGFuaW1hdGlvbi1kZWxheTogMC40OHM7IH0gLmIxMCB7IGFuaW1hdGlvbi1kZWxheTogMC41NHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIxMSB7IGFuaW1hdGlvbi1kZWxheTogMC42MHM7IH0gLmIxMiB7IGFuaW1hdGlvbi1kZWxheTogMC42NnM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIxMyB7IGFuaW1hdGlvbi1kZWxheTogMC43MnM7IH0gLmIxNCB7IGFuaW1hdGlvbi1kZWxheTogMC43OHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIxNSB7IGFuaW1hdGlvbi1kZWxheTogMC44NHM7IH0gLmIxNiB7IGFuaW1hdGlvbi1kZWxheTogMC45MHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIxNyB7IGFuaW1hdGlvbi1kZWxheTogMC45NnM7IH0gLmIxOCB7IGFuaW1hdGlvbi1kZWxheTogMS4wMnM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIxOSB7IGFuaW1hdGlvbi1kZWxheTogMS4wOHM7IH0gLmIyMCB7IGFuaW1hdGlvbi1kZWxheTogMS4xNHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIyMSB7IGFuaW1hdGlvbi1kZWxheTogMS4yMHM7IH0gLmIyMiB7IGFuaW1hdGlvbi1kZWxheTogMS4yNnM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIyMyB7IGFuaW1hdGlvbi1kZWxheTogMS4zMnM7IH0gLmIyNCB7IGFuaW1hdGlvbi1kZWxheTogMS4zOHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgc3ZnLnBhdXNlZCAqIHsgYW5pbWF0aW9uLXBsYXktc3RhdGU6IHBhdXNlZCAhaW1wb3J0YW50OyB9CiAgICAgICAgICAgICAgICAgICAgICAgIEBrZXlmcmFtZXMgYmFyV2F2ZSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAwJSwgMTAwJSB7IHRyYW5zZm9ybTogc2NhbGVZKDEpOyB9CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAzMCUgeyB0cmFuc2Zvcm06IHNjYWxlWSgwLjE4KTsgfQogICAgICAgICAgICAgICAgICAgICAgICAgICAgNjUlIHsgdHJhbnNmb3JtOiBzY2FsZVkoMS4wNik7IH0KICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIDwvc3R5bGU+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gNCBIb3Jpem9udGFsIFJlZmVyZW5jZSBHcmlkIExpbmVzIC0tPgogICAgICAgICAgICAgICAgICAgIDxsaW5lIHgxPSIxMiIgeTE9IjMyIiB4Mj0iMzY4IiB5Mj0iMzIiIHN0cm9rZT0iI2NjY2NjYyIgc3Ryb2tlLXdpZHRoPSIxIj48L2xpbmU+CiAgICAgICAgICAgICAgICAgICAgPGxpbmUgeDE9IjEyIiB5MT0iMTEyIiB4Mj0iMzY4IiB5Mj0iMTEyIiBzdHJva2U9IiNjY2NjY2MiIHN0cm9rZS13aWR0aD0iMSI+PC9saW5lPgogICAgICAgICAgICAgICAgICAgIDxsaW5lIHgxPSIxMiIgeTE9IjE5MiIgeDI9IjM2OCIgeTI9IjE5MiIgc3Ryb2tlPSIjY2NjY2NjIiBzdHJva2Utd2lkdGg9IjEiPjwvbGluZT4KICAgICAgICAgICAgICAgICAgICA8bGluZSB4MT0iMTIiIHkxPSIyNzIiIHgyPSIzNjgiIHkyPSIyNzIiIHN0cm9rZT0iI2NjY2NjYyIgc3Ryb2tlLXdpZHRoPSIxIj48L2xpbmU+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gNCBHcmVlbiBCYXJzICgjMDBhNjAwKSAtLT4KICAgICAgICAgICAgICAgICAgICA8cmVjdCBjbGFzcz0ic2NpLWJhciBiMSIgeD0iMTQiIHk9IjI2MSIgd2lkdGg9IjEyIiBoZWlnaHQ9IjExIiBmaWxsPSIjMDBhNjAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjIiIHg9IjI4IiB5PSIyMzYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIzNiIgZmlsbD0iIzAwYTYwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIzIiB4PSI0MiIgeT0iMjE0IiB3aWR0aD0iMTIiIGhlaWdodD0iNTgiIGZpbGw9IiMwMGE2MDAiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICA8cmVjdCBjbGFzcz0ic2NpLWJhciBiNCIgeD0iNTciIHk9IjIxNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjU4IiBmaWxsPSIjMDBhNjAwIj48L3JlY3Q+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gNiBZZWxsb3cgQmFycyAoI2ZmZTUwMCkgLS0+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjUiIHg9IjcxIiB5PSIyNjQiIHdpZHRoPSIxMiIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZlNTAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjYiIHg9Ijg1IiB5PSIyMTYiIHdpZHRoPSIxMiIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmZTUwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGI3IiB4PSIxMDAiIHk9IjIzMyIgd2lkdGg9IjEyIiBoZWlnaHQ9IjM5IiBmaWxsPSIjZmZlNTAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjgiIHg9IjExNCIgeT0iMjQwIiB3aWR0aD0iMTIiIGhlaWdodD0iMzIiIGZpbGw9IiNmZmU1MDAiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICA8cmVjdCBjbGFzcz0ic2NpLWJhciBiOSIgeD0iMTI4IiB5PSIyNDAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIzMiIgZmlsbD0iI2ZmZTUwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIxMCIgeD0iMTQzIiB5PSIyNDciIHdpZHRoPSIxMiIgaGVpZ2h0PSIyNSIgZmlsbD0iI2ZmZTUwMCI+PC9yZWN0PgoKICAgICAgICAgICAgICAgICAgICA8IS0tIDcgT3JhbmdlIEJhcnMgKCNmZjdiMDApIC0tPgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIxMSIgeD0iMTU3IiB5PSIyNTMiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxOSIgZmlsbD0iI2ZmN2IwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIxMiIgeD0iMTcxIiB5PSIyNjEiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMSIgZmlsbD0iI2ZmN2IwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIxMyIgeD0iMTg1IiB5PSIyNjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSI2IiBmaWxsPSIjZmY3YjAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjE0IiB4PSIyMDAiIHk9IjI1NyIgd2lkdGg9IjEyIiBoZWlnaHQ9IjE1IiBmaWxsPSIjZmY3YjAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjE1IiB4PSIyMTQiIHk9IjIzMSIgd2lkdGg9IjEyIiBoZWlnaHQ9IjQxIiBmaWxsPSIjZmY3YjAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjE2IiB4PSIyMjgiIHk9IjE5MiIgd2lkdGg9IjEyIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZmY3YjAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjE3IiB4PSIyNDIiIHk9IjExOCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjE1NCIgZmlsbD0iI2ZmN2IwMCI+PC9yZWN0PgoKICAgICAgICAgICAgICAgICAgICA8IS0tIDUgTWFnZW50YSBCYXJzICgjZmYwMGQ0KSAtLT4KICAgICAgICAgICAgICAgICAgICA8cmVjdCBjbGFzcz0ic2NpLWJhciBiMTgiIHg9IjI1NyIgeT0iMTI4IiB3aWR0aD0iMTIiIGhlaWdodD0iMTQ0IiBmaWxsPSIjZmYwMGQ0Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjE5IiB4PSIyNzEiIHk9IjkwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTgyIiBmaWxsPSIjZmYwMGQ0Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjIwIiB4PSIyODUiIHk9IjU4IiB3aWR0aD0iMTIiIGhlaWdodD0iMjE0IiBmaWxsPSIjZmYwMGQ0Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjIxIiB4PSIyOTkiIHk9IjQ0IiB3aWR0aD0iMTIiIGhlaWdodD0iMjI4IiBmaWxsPSIjZmYwMGQ0Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjIyIiB4PSIzMTQiIHk9IjExMiIgd2lkdGg9IjEyIiBoZWlnaHQ9IjE2MCIgZmlsbD0iI2ZmMDBkNCI+PC9yZWN0PgoKICAgICAgICAgICAgICAgICAgICA8IS0tIDMgUmVkIEJhcnMgKCNmZjAwMDApIC0tPgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIyMyIgeD0iMzI4IiB5PSIxOTIiIHdpZHRoPSIxMiIgaGVpZ2h0PSI4MCIgZmlsbD0iI2ZmMDAwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIyNCIgeD0iMzQyIiB5PSIyMTYiIHdpZHRoPSIxMiIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmMDAwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIyNCIgeD0iMzU2IiB5PSIyMDQiIHdpZHRoPSIxMiIgaGVpZ2h0PSI2OCIgZmlsbD0iI2ZmMDAwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgPC9zdmc+" alt="Laboratory flask analyzing nutritional chemistry" width="160" height="130" loading="lazy">
+                        <svg id="svg-science-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 280" class="max-w-[420px]" role="img" aria-label="Laboratory flask analyzing nutritional chemistry">
+                    <style>
+                        .sci-bar {
+                            transform-box: fill-box;
+                            transform-origin: bottom center;
+                            animation: barWave 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        }
+                        .b1  { animation-delay: 0.00s; } .b2  { animation-delay: 0.06s; }
+                        .b3  { animation-delay: 0.12s; } .b4  { animation-delay: 0.18s; }
+                        .b5  { animation-delay: 0.24s; } .b6  { animation-delay: 0.30s; }
+                        .b7  { animation-delay: 0.36s; } .b8  { animation-delay: 0.42s; }
+                        .b9  { animation-delay: 0.48s; } .b10 { animation-delay: 0.54s; }
+                        .b11 { animation-delay: 0.60s; } .b12 { animation-delay: 0.66s; }
+                        .b13 { animation-delay: 0.72s; } .b14 { animation-delay: 0.78s; }
+                        .b15 { animation-delay: 0.84s; } .b16 { animation-delay: 0.90s; }
+                        .b17 { animation-delay: 0.96s; } .b18 { animation-delay: 1.02s; }
+                        .b19 { animation-delay: 1.08s; } .b20 { animation-delay: 1.14s; }
+                        .b21 { animation-delay: 1.20s; } .b22 { animation-delay: 1.26s; }
+                        .b23 { animation-delay: 1.32s; } .b24 { animation-delay: 1.38s; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes barWave {
+                            0%, 100% { transform: scaleY(1); }
+                            30% { transform: scaleY(0.18); }
+                            65% { transform: scaleY(1.06); }
+                        }
+                    </style>
+
+                    <!-- 4 Horizontal Reference Grid Lines -->
+                    <line x1="12" y1="32" x2="368" y2="32" stroke="#cccccc" stroke-width="1"></line>
+                    <line x1="12" y1="112" x2="368" y2="112" stroke="#cccccc" stroke-width="1"></line>
+                    <line x1="12" y1="192" x2="368" y2="192" stroke="#cccccc" stroke-width="1"></line>
+                    <line x1="12" y1="272" x2="368" y2="272" stroke="#cccccc" stroke-width="1"></line>
+
+                    <!-- 4 Green Bars (#00a600) -->
+                    <rect class="sci-bar b1" x="14" y="261" width="12" height="11" fill="#00a600"></rect>
+                    <rect class="sci-bar b2" x="28" y="236" width="12" height="36" fill="#00a600"></rect>
+                    <rect class="sci-bar b3" x="42" y="214" width="12" height="58" fill="#00a600"></rect>
+                    <rect class="sci-bar b4" x="57" y="214" width="12" height="58" fill="#00a600"></rect>
+
+                    <!-- 6 Yellow Bars (#ffe500) -->
+                    <rect class="sci-bar b5" x="71" y="264" width="12" height="8" fill="#ffe500"></rect>
+                    <rect class="sci-bar b6" x="85" y="216" width="12" height="56" fill="#ffe500"></rect>
+                    <rect class="sci-bar b7" x="100" y="233" width="12" height="39" fill="#ffe500"></rect>
+                    <rect class="sci-bar b8" x="114" y="240" width="12" height="32" fill="#ffe500"></rect>
+                    <rect class="sci-bar b9" x="128" y="240" width="12" height="32" fill="#ffe500"></rect>
+                    <rect class="sci-bar b10" x="143" y="247" width="12" height="25" fill="#ffe500"></rect>
+
+                    <!-- 7 Orange Bars (#ff7b00) -->
+                    <rect class="sci-bar b11" x="157" y="253" width="12" height="19" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b12" x="171" y="261" width="12" height="11" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b13" x="185" y="266" width="12" height="6" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b14" x="200" y="257" width="12" height="15" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b15" x="214" y="231" width="12" height="41" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b16" x="228" y="192" width="12" height="80" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b17" x="242" y="118" width="12" height="154" fill="#ff7b00"></rect>
+
+                    <!-- 5 Magenta Bars (#ff00d4) -->
+                    <rect class="sci-bar b18" x="257" y="128" width="12" height="144" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b19" x="271" y="90" width="12" height="182" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b20" x="285" y="58" width="12" height="214" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b21" x="299" y="44" width="12" height="228" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b22" x="314" y="112" width="12" height="160" fill="#ff00d4"></rect>
+
+                    <!-- 3 Red Bars (#ff0000) -->
+                    <rect class="sci-bar b23" x="328" y="192" width="12" height="80" fill="#ff0000"></rect>
+                    <rect class="sci-bar b24" x="342" y="216" width="12" height="56" fill="#ff0000"></rect>
+                    <rect class="sci-bar b24" x="356" y="204" width="12" height="68" fill="#ff0000"></rect>
+                </svg>
                     </a>
                 </div>
                 <span class="off-badge-pill blue">Citizen Science &amp; Health</span>
@@ -868,26 +1316,39 @@
         window.addEventListener("resize", sendHeight);
 
         // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
-        document.querySelectorAll('img[src$="-animated.svg"], img[src*="animated"]').forEach(img => {
-            fetch(img.src)
-                .then(r => r.ok ? r.text() : Promise.reject())
-                .then(svgText => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(svgText, 'image/svg+xml');
-                    const svg = doc.querySelector('svg');
-                    if (svg) {
-                        if (img.id) svg.id = img.id;
-                        if (img.className) svg.classList.add(...img.classList);
-                        if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
-                        if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
-                        if (img.getAttribute('alt')) {
-                            svg.setAttribute('role', 'img');
-                            svg.setAttribute('aria-label', img.getAttribute('alt'));
-                        }
-                        img.parentNode.replaceChild(svg, img);
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
                     }
-                })
-                .catch(() => {});
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
+
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
         });
     });
 </script>

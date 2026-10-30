@@ -280,7 +280,8 @@
     overflow: hidden;
 }
 
-.off-card-art img {
+.off-card-art img,
+.off-card-art svg {
     max-width: 100%;
     max-height: 155px;
     width: auto;
@@ -289,24 +290,32 @@
     transition: transform 0.3s ease;
 }
 
-.off-feature-card:hover .off-card-art img {
+.off-feature-card:hover .off-card-art img,
+.off-feature-card:hover .off-card-art svg {
     transform: scale(1.04);
 }
 
 /* Animations: on hover only */
-@media (hover: hover) {
-    #off-contribute-page .contribute-hero:not(:hover) svg *,
-    #off-contribute-page .off-feature-card:not(:hover) svg *,
-    #off-contribute-page .expert-banner:not(:hover) svg * {
-        animation-play-state: paused !important;
-    }
-    #off-contribute-page .contribute-hero:hover svg *,
-    #off-contribute-page .off-feature-card:hover svg *,
-    #off-contribute-page .expert-banner:hover svg * {
-        animation-play-state: running !important;
-    }
+#off-contribute-page svg,
+#off-contribute-page svg * {
+    animation-play-state: paused !important;
 }
+
+#off-contribute-page .contribute-hero:hover svg,
+#off-contribute-page .contribute-hero:hover svg *,
+#off-contribute-page .off-feature-card:hover svg,
+#off-contribute-page .off-feature-card:hover svg *,
+#off-contribute-page .expert-banner:hover svg,
+#off-contribute-page .expert-banner:hover svg *,
+#off-contribute-page .hero-media:hover svg,
+#off-contribute-page .hero-media:hover svg *,
+#off-contribute-page svg:hover,
+#off-contribute-page svg:hover * {
+    animation-play-state: running !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
+    #off-contribute-page svg,
     #off-contribute-page svg * {
         animation: none !important;
     }
@@ -902,26 +911,39 @@
         window.addEventListener("resize", sendHeight);
 
         // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
-        document.querySelectorAll('img[src$="-animated.svg"], img[src*="animated"]').forEach(img => {
-            fetch(img.src)
-                .then(r => r.ok ? r.text() : Promise.reject())
-                .then(svgText => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(svgText, 'image/svg+xml');
-                    const svg = doc.querySelector('svg');
-                    if (svg) {
-                        if (img.id) svg.id = img.id;
-                        if (img.className) svg.classList.add(...img.classList);
-                        if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
-                        if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
-                        if (img.getAttribute('alt')) {
-                            svg.setAttribute('role', 'img');
-                            svg.setAttribute('aria-label', img.getAttribute('alt'));
-                        }
-                        img.parentNode.replaceChild(svg, img);
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
                     }
-                })
-                .catch(() => {});
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
+
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
         });
     });
 </script>

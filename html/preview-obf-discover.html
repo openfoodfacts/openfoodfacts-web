@@ -15,6 +15,69 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             color: #1f2937;
         }
+        /* Global animation play-state rule: ALL SVGs PAUSED by default, RUN ONLY on hover */
+        svg, svg * {
+            animation-play-state: paused !important;
+        }
+        .off-feature-card:hover svg, .off-feature-card:hover svg *,
+        .expert-banner:hover svg, .expert-banner:hover svg *,
+        .contribute-hero:hover svg, .contribute-hero:hover svg *,
+        .discover-hero:hover svg, .discover-hero:hover svg *,
+        .contact-hero:hover svg, .contact-hero:hover svg *,
+        .contact-card:hover svg, .contact-card:hover svg *,
+        .hero-media:hover svg, .hero-media:hover svg *,
+        .opff-hero:hover svg, .opff-hero:hover svg *,
+        .obf-hero:hover svg, .obf-hero:hover svg *,
+        .opf-hero:hover svg, .opf-hero:hover svg *,
+        svg:hover, svg:hover * {
+            animation-play-state: running !important;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            svg, svg * {
+                animation: none !important;
+            }
+        }
+        /* Strictly constrain card art and prevent any SVG/image overflow */
+        .off-card-art {
+            height: 160px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+            position: relative !important;
+            margin-bottom: 1.25rem !important;
+        }
+        .off-card-art img,
+        .off-card-art svg {
+            max-width: 100% !important;
+            max-height: 140px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+            display: block !important;
+            margin: 0 auto !important;
+            transition: transform 0.3s ease !important;
+        }
+        .off-feature-card:hover .off-card-art img,
+        .off-feature-card:hover .off-card-art svg {
+            transform: scale(1.05) !important;
+        }
+        .expert-banner-art img,
+        .expert-banner-art svg {
+            max-width: 280px !important;
+            max-height: 200px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        .hero-media img,
+        .hero-media svg {
+            max-width: 440px !important;
+            max-height: 340px !important;
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
         /* Simulated Site Header */
         .site-header-preview {
             background: #ffffff;
@@ -351,30 +414,42 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
 }
-.off-card-art img {
+.off-card-art img,
+.off-card-art svg {
     max-height: 140px;
     max-width: 100%;
     width: auto;
+    height: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
 }
-.off-feature-card:hover .off-card-art img {
+.off-feature-card:hover .off-card-art img,
+.off-feature-card:hover .off-card-art svg {
     transform: scale(1.05);
 }
 
 /* Animations: on hover only */
-@media (hover: hover) {
-    #obf-discover-page .obf-hero:not(:hover) svg *,
-    #obf-discover-page .off-feature-card:not(:hover) svg * {
-        animation-play-state: paused !important;
-    }
-    #obf-discover-page .obf-hero:hover svg *,
-    #obf-discover-page .off-feature-card:hover svg * {
-        animation-play-state: running !important;
-    }
+#obf-discover-page svg,
+#obf-discover-page svg * {
+    animation-play-state: paused !important;
 }
+
+#obf-discover-page .obf-hero:hover svg,
+#obf-discover-page .obf-hero:hover svg *,
+#obf-discover-page .off-feature-card:hover svg,
+#obf-discover-page .off-feature-card:hover svg *,
+#obf-discover-page .hero-media:hover svg,
+#obf-discover-page .hero-media:hover svg *,
+#obf-discover-page svg:hover,
+#obf-discover-page svg:hover * {
+    animation-play-state: running !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
+    #obf-discover-page svg,
     #obf-discover-page svg * {
         animation: none !important;
     }
@@ -542,7 +617,268 @@
             <!-- Pillar 2: Made by everyone -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0icHV6emxlU3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNTAwIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjUwMCIgY2xhc3M9IiI+CiAgICAgICAgICAgICAgICA8c3R5bGU+CiAgICAgICAgICAgICAgICAgICAgLyogU21vb3RoIDQtc2Vjb25kIGxvb3BpbmcgYXNzZW1ibHkgYW5pbWF0aW9uICovCiAgICAgICAgICAgICAgICAgICAgLmFuaW0tbGVmdC1oYW5kIHsKICAgICAgICAgICAgICAgICAgICAgICAgYW5pbWF0aW9uOiBzbmFwTGVmdCA0LjJzIGN1YmljLWJlemllcigwLjQsIDAsIDAuMiwgMSkgaW5maW5pdGU7CiAgICAgICAgICAgICAgICAgICAgICAgIHRyYW5zZm9ybS1vcmlnaW46IGNlbnRlcjsKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgLmFuaW0tYm90dG9tLWhhbmQgewogICAgICAgICAgICAgICAgICAgICAgICBhbmltYXRpb246IHNuYXBCb3R0b20gNC4ycyBjdWJpYy1iZXppZXIoMC40LCAwLCAwLjIsIDEpIGluZmluaXRlOwogICAgICAgICAgICAgICAgICAgICAgICB0cmFuc2Zvcm0tb3JpZ2luOiBjZW50ZXI7CiAgICAgICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgICAgICAucHV6emxlLWNsdXN0ZXIgewogICAgICAgICAgICAgICAgICAgICAgICBhbmltYXRpb246IGNsdXN0ZXJQdWxzZSA0LjJzIGN1YmljLWJlemllcigwLjQsIDAsIDAuMiwgMSkgaW5maW5pdGU7CiAgICAgICAgICAgICAgICAgICAgICAgIHRyYW5zZm9ybS1vcmlnaW46IDMzMHB4IDIxMHB4OwogICAgICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAgICAgLnNuYXAtZ2xvdyB7CiAgICAgICAgICAgICAgICAgICAgICAgIGFuaW1hdGlvbjogZ2xvd0ZsYXNoIDQuMnMgZWFzZS1vdXQgaW5maW5pdGU7CiAgICAgICAgICAgICAgICAgICAgICAgIHBvaW50ZXItZXZlbnRzOiBub25lOwogICAgICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAgICAgLyogUGF1c2VkIHN0YXRlIHRvZ2dsZSAqLwogICAgICAgICAgICAgICAgICAgIHN2Zy5wYXVzZWQgLmFuaW0tbGVmdC1oYW5kLAogICAgICAgICAgICAgICAgICAgIHN2Zy5wYXVzZWQgLmFuaW0tYm90dG9tLWhhbmQsCiAgICAgICAgICAgICAgICAgICAgc3ZnLnBhdXNlZCAucHV6emxlLWNsdXN0ZXIsCiAgICAgICAgICAgICAgICAgICAgc3ZnLnBhdXNlZCAuc25hcC1nbG93IHsKICAgICAgICAgICAgICAgICAgICAgICAgYW5pbWF0aW9uLXBsYXktc3RhdGU6IHBhdXNlZCAhaW1wb3J0YW50OwogICAgICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAgICAgQGtleWZyYW1lcyBzbmFwTGVmdCB7CiAgICAgICAgICAgICAgICAgICAgICAgIDAlLCAxMiUgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMHB4LCAwcHgpIHJvdGF0ZSgzZGVnKTsKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA0MiUsIDc0JSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAvKiBNb3ZlcyByaWdodCBieSA3OHB4IGFuZCBsZXZlbHMgb3V0IHRvIGxvY2sgY2xlYW5seSBpbnRvIHRoZSBncmV5IHBpZWNlIHNvY2tldCAqLwogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoNzhweCwgMHB4KSByb3RhdGUoMGRlZyk7CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgOTAlLCAxMDAlIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKDBweCwgMHB4KSByb3RhdGUoM2RlZyk7CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgICAgIEBrZXlmcmFtZXMgc25hcEJvdHRvbSB7CiAgICAgICAgICAgICAgICAgICAgICAgIDAlLCAxNiUgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMHB4LCAwcHgpIHJvdGF0ZSg1ZGVnKTsKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA0NiUsIDc0JSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAvKiBNb3ZlcyB1cCBieSA3NHB4IGFuZCBsZXZlbHMgb3V0IHRvIGxvY2sgY2xlYW5seSBpbnRvIHRoZSBsaWdodC1ibHVlIHBpZWNlIHNvY2tldCAqLwogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMHB4LCAtNzRweCkgcm90YXRlKDBkZWcpOwogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDkwJSwgMTAwJSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgwcHgsIDBweCkgcm90YXRlKDVkZWcpOwogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgICAgICBAa2V5ZnJhbWVzIGNsdXN0ZXJQdWxzZSB7CiAgICAgICAgICAgICAgICAgICAgICAgIDAlLCA0MyUgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtOiBzY2FsZSgxKTsKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA0OCUgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtOiBzY2FsZSgxLjAxOCk7CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgNTUlLCAxMDAlIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRyYW5zZm9ybTogc2NhbGUoMSk7CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgICAgIEBrZXlmcmFtZXMgZ2xvd0ZsYXNoIHsKICAgICAgICAgICAgICAgICAgICAgICAgMCUsIDQyJSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBvcGFjaXR5OiAwOwogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDQ3JSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBvcGFjaXR5OiAwLjc1OwogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDYyJSwgMTAwJSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBvcGFjaXR5OiAwOwogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgPC9zdHlsZT4KCiAgICAgICAgICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgICAgICAgICA8IS0tIFJldXNhYmxlIDEwMHgxMDAgQmFzZSBTcXVhcmUgd2l0aCBSb3VuZGVkIENvcm5lcnMgLS0+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBUb3AtTGVmdCBZZWxsb3cgUGllY2U6IFRvcChJbiksIFJpZ2h0KE91dCksIEJvdHRvbShJbiksIExlZnQoT3V0KSAtLT4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBpZD0icGllY2UtdGwteWVsbG93IiBkPSIKICAgICAgICAgICAgICAgICAgICAgICAgTSAyMDAsOTAgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMjMzLDkwIEMgMjMwLDExNCAyNzAsMTE0IDI2Nyw5MCBMIDI4NCw5MCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAzMDAsMTA2IAogICAgICAgICAgICAgICAgICAgICAgICBMIDMwMCwxMjMgQyAzMjQsMTIwIDMyNCwxNjAgMzAwLDE1NyBMIDMwMCwxNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMjg0LDE5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCAyNjcsMTkwIEMgMjcwLDE2NiAyMzAsMTY2IDIzMywxOTAgTCAyMTYsMTkwIAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDIwMCwxNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMjAwLDE1NyBDIDE3NiwxNjAgMTc2LDEyMCAyMDAsMTIzIEwgMjAwLDEwNiAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAyMTYsOTAgWiI+PC9wYXRoPgoKICAgICAgICAgICAgICAgICAgICA8IS0tIFRvcC1NaWRkbGUgR3JlZW4gUGllY2U6IFRvcChPdXQpLCBSaWdodChJbiksIEJvdHRvbShPdXQpLCBMZWZ0KEluKSAtLT4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBpZD0icGllY2UtdG0tZ3JlZW4iIGQ9IgogICAgICAgICAgICAgICAgICAgICAgICBNIDMxNiw5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCAzMzMsOTAgQyAzMzAsNjYgMzcwLDY2IDM2Nyw5MCBMIDM4NCw5MCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSA0MDAsMTA2IAogICAgICAgICAgICAgICAgICAgICAgICBMIDQwMCwxMjMgQyAzNzYsMTIwIDM3NiwxNjAgNDAwLDE1NyBMIDQwMCwxNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMzg0LDE5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCAzNjcsMTkwIEMgMzcwLDIxNCAzMzAsMjE0IDMzMywxOTAgTCAzMTYsMTkwIAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDMwMCwxNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzAwLDE1NyBDIDMyNCwxNjAgMzI0LDEyMCAzMDAsMTIzIEwgMzAwLDEwNiAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAzMTYsOTAgWiI+PC9wYXRoPgoKICAgICAgICAgICAgICAgICAgICA8IS0tIFRvcC1SaWdodCBHcmV5IFBpZWNlOiBUb3AoSW4pLCBSaWdodChPdXQpLCBCb3R0b20oSW4pLCBMZWZ0KE91dCkgLS0+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggaWQ9InBpZWNlLXRyLWdyZXkiIGQ9IgogICAgICAgICAgICAgICAgICAgICAgICBNIDQxNiw5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCA0MzMsOTAgQyA0MzAsMTE0IDQ3MCwxMTQgNDY3LDkwIEwgNDg0LDkwIAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDUwMCwxMDYgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgNTAwLDEyMyBDIDUyNCwxMjAgNTI0LDE2MCA1MDAsMTU3IEwgNTAwLDE3NCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSA0ODQsMTkwIAogICAgICAgICAgICAgICAgICAgICAgICBMIDQ2NywxOTAgQyA0NzAsMTY2IDQzMCwxNjYgNDMzLDE5MCBMIDQxNiwxOTAgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgNDAwLDE3NCAKICAgICAgICAgICAgICAgICAgICAgICAgTCA0MDAsMTU3IEMgMzc2LDE2MCAzNzYsMTIwIDQwMCwxMjMgTCA0MDAsMTA2IAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDQxNiw5MCBaIj48L3BhdGg+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gQm90dG9tLUxlZnQgR3JleSBQaWVjZTogVG9wKE91dCksIFJpZ2h0KEluKSwgQm90dG9tKE91dCksIExlZnQoSW4pIC0tPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGlkPSJwaWVjZS1ibC1ncmV5IiBkPSIKICAgICAgICAgICAgICAgICAgICAgICAgTSAyMTYsMTkwIAogICAgICAgICAgICAgICAgICAgICAgICBMIDIzMywxOTAgQyAyMzAsMTY2IDI3MCwxNjYgMjY3LDE5MCBMIDI4NCwxOTAgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMzAwLDIwNiAKICAgICAgICAgICAgICAgICAgICAgICAgTCAzMDAsMjIzIEMgMjc2LDIyMCAyNzYsMjYwIDMwMCwyNTcgTCAzMDAsMjc0IAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDI4NCwyOTAgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMjY3LDI5MCBDIDI3MCwzMTQgMjMwLDMxNCAyMzMsMjkwIEwgMjE2LDI5MCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAyMDAsMjc0IAogICAgICAgICAgICAgICAgICAgICAgICBMIDIwMCwyNTcgQyAyMjQsMjYwIDIyNCwyMjAgMjAwLDIyMyBMIDIwMCwyMDYgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMjE2LDE5MCBaIj48L3BhdGg+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gQm90dG9tLU1pZGRsZSBMaWdodCBCbHVlIFBpZWNlOiBUb3AoSW4pLCBSaWdodChPdXQpLCBCb3R0b20oSW4pLCBMZWZ0KE91dCkgLS0+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggaWQ9InBpZWNlLWJtLWJsdWUiIGQ9IgogICAgICAgICAgICAgICAgICAgICAgICBNIDMxNiwxOTAgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzMzLDE5MCBDIDMzMCwyMTQgMzcwLDIxNCAzNjcsMTkwIEwgMzg0LDE5MCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSA0MDAsMjA2IAogICAgICAgICAgICAgICAgICAgICAgICBMIDQwMCwyMjMgQyA0MjQsMjIwIDQyNCwyNjAgNDAwLDI1NyBMIDQwMCwyNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMzg0LDI5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCAzNjcsMjkwIEMgMzcwLDI2NiAzMzAsMjY2IDMzMywyOTAgTCAzMTYsMjkwIAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDMwMCwyNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzAwLDI1NyBDIDI3NiwyNjAgMjc2LDIyMCAzMDAsMjIzIEwgMzAwLDIwNiAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAzMTYsMTkwIFoiPjwvcGF0aD4KCiAgICAgICAgICAgICAgICAgICAgPCEtLSBCb3R0b20tUmlnaHQgU2FsbW9uIFBpZWNlOiBUb3AoT3V0KSwgUmlnaHQoSW4pLCBCb3R0b20oT3V0KSwgTGVmdChJbikgLS0+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggaWQ9InBpZWNlLWJyLXNhbG1vbiIgZD0iCiAgICAgICAgICAgICAgICAgICAgICAgIE0gNDE2LDE5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCA0MzMsMTkwIEMgNDMwLDE2NiA0NzAsMTY2IDQ2NywxOTAgTCA0ODQsMTkwIAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDUwMCwyMDYgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgNTAwLDIyMyBDIDQ3NiwyMjAgNDc2LDI2MCA1MDAsMjU3IEwgNTAwLDI3NCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSA0ODQsMjkwIAogICAgICAgICAgICAgICAgICAgICAgICBMIDQ2NywyOTAgQyA0NzAsMzE0IDQzMCwzMTQgNDMzLDI5MCBMIDQxNiwyOTAgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgNDAwLDI3NCAKICAgICAgICAgICAgICAgICAgICAgICAgTCA0MDAsMjU3IEMgNDI0LDI2MCA0MjQsMjIwIDQwMCwyMjMgTCA0MDAsMjA2IAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDQxNiwxOTAgWiI+PC9wYXRoPgogICAgICAgICAgICAgICAgPC9kZWZzPgoKICAgICAgICAgICAgICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgICAgICAgICAgICAgPCEtLSBNQUlOIENFTlRSQUwgNi1QSUVDRSBQVVpaTEUgQ0xVU1RFUiAgICAgICAgLS0+CiAgICAgICAgICAgICAgICA8IS0tID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAtLT4KICAgICAgICAgICAgICAgIDxnIGNsYXNzPSJwdXp6bGUtY2x1c3RlciI+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBCb3R0b20tTGVmdCBHcmV5IC0tPgogICAgICAgICAgICAgICAgICAgIDx1c2UgaHJlZj0iI3BpZWNlLWJsLWdyZXkiIGZpbGw9IiNkM2Q1ZDciPjwvdXNlPgogICAgICAgICAgICAgICAgICAgIDwhLS0gVG9wLUxlZnQgWWVsbG93IC0tPgogICAgICAgICAgICAgICAgICAgIDx1c2UgaHJlZj0iI3BpZWNlLXRsLXllbGxvdyIgZmlsbD0iI2YzYmUwMCI+PC91c2U+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBCb3R0b20tTWlkZGxlIExpZ2h0IEJsdWUgLS0+CiAgICAgICAgICAgICAgICAgICAgPHVzZSBocmVmPSIjcGllY2UtYm0tYmx1ZSIgZmlsbD0iI2JjZTNmYSI+PC91c2U+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBCb3R0b20tUmlnaHQgU2FsbW9uIC0tPgogICAgICAgICAgICAgICAgICAgIDx1c2UgaHJlZj0iI3BpZWNlLWJyLXNhbG1vbiIgZmlsbD0iI2ZmOGY3ZCI+PC91c2U+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBUb3AtUmlnaHQgR3JleSAtLT4KICAgICAgICAgICAgICAgICAgICA8dXNlIGhyZWY9IiNwaWVjZS10ci1ncmV5IiBmaWxsPSIjZDNkNWQ3Ij48L3VzZT4KICAgICAgICAgICAgICAgICAgICA8IS0tIFRvcC1NaWRkbGUgR3JlZW4gKFJlbmRlcmVkIG9uIHRvcCBzbyBpdHMgdGFicyBvdmVybGFwIGNsZWFubHkpIC0tPgogICAgICAgICAgICAgICAgICAgIDx1c2UgaHJlZj0iI3BpZWNlLXRtLWdyZWVuIiBmaWxsPSIjMjhjOTZmIj48L3VzZT4KCiAgICAgICAgICAgICAgICAgICAgPCEtLSBTdWJ0bGUgQ29ubmVjdGlvbiBIaWdobGlnaHQgTGluZXMgd2hlbiBwaWVjZXMgbG9jayBpbiAtLT4KICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIyNDAiIHI9IjI2IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZjhmN2QiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMCIgY2xhc3M9InNuYXAtZ2xvdyI+PC9jaXJjbGU+CiAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBjeD0iMzUwIiBjeT0iMjkwIiByPSIyNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjNiZTAwIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAiIGNsYXNzPSJzbmFwLWdsb3ciPjwvY2lyY2xlPgogICAgICAgICAgICAgICAgPC9nPgoKICAgICAgICAgICAgICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgICAgICAgICAgICAgPCEtLSBMRUZUIEFOSU1BVEVEIEhBTkQgJiBTQUxNT04gUFVaWkxFIFBJRUNFICAgLS0+CiAgICAgICAgICAgICAgICA8IS0tID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAtLT4KICAgICAgICAgICAgICAgIDxnIGNsYXNzPSJhbmltLWxlZnQtaGFuZCIgc3R5bGU9InRyYW5zZm9ybS1vcmlnaW46IDcycHggMjQwcHg7Ij4KICAgICAgICAgICAgICAgICAgICA8IS0tIEhlbGQgU2FsbW9uIFBpZWNlIChTdGFydHMgYXQgWDogMjIuLjEyMiwgWTogMTkwLi4yOTA7IG1vdmVzICs3OHB4IHJpZ2h0IHRvIGxvY2sgaW50byBYOiAxMDAuLjIwMCkgLS0+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmOGY3ZCIgZD0iCiAgICAgICAgICAgICAgICAgICAgICAgIE0gMzgsMTkwIAogICAgICAgICAgICAgICAgICAgICAgICBMIDU1LDE5MCBDIDUyLDIxNCA5MiwyMTQgODksMTkwIEwgMTA2LDE5MCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAxMjIsMjA2IAogICAgICAgICAgICAgICAgICAgICAgICBMIDEyMiwyMjMgQyAxNDYsMjIwIDE0NiwyNjAgMTIyLDI1NyBMIDEyMiwyNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMTA2LDI5MCAKICAgICAgICAgICAgICAgICAgICAgICAgTCA4OSwyOTAgQyA5MiwyNjYgNTIsMjY2IDU1LDI5MCBMIDM4LDI5MCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAyMiwyNzQgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMjIsMjU3IEMgLTIsMjYwIC0yLDIyMCAyMiwyMjMgTCAyMiwyMDYgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMzgsMTkwIFoiPjwvcGF0aD4KCiAgICAgICAgICAgICAgICAgICAgPCEtLSBMaWdodCBTa2luIFRvbmUgQXJtLCBDb250aW51b3VzIFBhbG0sIFRodW1iICYgNCBQYXJhbGxlbCBGaW5nZXJzIHdpdGggVGhpbiBTbGl0cyAtLT4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjZmZjYjk0IiBkPSIKICAgICAgICAgICAgICAgICAgICAgICAgTSA1OCwwCiAgICAgICAgICAgICAgICAgICAgICAgIEMgMTYsNzIgMTgsMTQ1IDIxLDI2MAogICAgICAgICAgICAgICAgICAgICAgICBBIDkuNSw5LjUgMCAwLDAgNDAsMjYwCiAgICAgICAgICAgICAgICAgICAgICAgIEwgNDAsMjA0CiAgICAgICAgICAgICAgICAgICAgICAgIEwgNDMsMjA0CiAgICAgICAgICAgICAgICAgICAgICAgIEwgNDMsMjYyCiAgICAgICAgICAgICAgICAgICAgICAgIEEgOS41LDkuNSAwIDAsMCA2MiwyNjIKICAgICAgICAgICAgICAgICAgICAgICAgTCA2MiwyMDQKICAgICAgICAgICAgICAgICAgICAgICAgTCA2NSwyMDQKICAgICAgICAgICAgICAgICAgICAgICAgTCA2NSwyNjAKICAgICAgICAgICAgICAgICAgICAgICAgQSA5LjUsOS41IDAgMCwwIDg0LDI2MAogICAgICAgICAgICAgICAgICAgICAgICBMIDg0LDIwNAogICAgICAgICAgICAgICAgICAgICAgICBMIDg3LDIwNAogICAgICAgICAgICAgICAgICAgICAgICBMIDg3LDI1OAogICAgICAgICAgICAgICAgICAgICAgICBBIDkuNSw5LjUgMCAwLDAgMTA2LDI1OAogICAgICAgICAgICAgICAgICAgICAgICBMIDEwNiwxNzAKICAgICAgICAgICAgICAgICAgICAgICAgTCAxMjEsMTgzCiAgICAgICAgICAgICAgICAgICAgICAgIEMgMTI3LDE4OCAxMzQsMTgyIDEyOSwxNzQKICAgICAgICAgICAgICAgICAgICAgICAgTCAxMDEsMTQyCiAgICAgICAgICAgICAgICAgICAgICAgIEMgMTAzLDk1IDExOCw0NSAxNTYsMAogICAgICAgICAgICAgICAgICAgICAgICBaIj48L3BhdGg+CiAgICAgICAgICAgICAgICA8L2c+CgogICAgICAgICAgICAgICAgPCEtLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gLS0+CiAgICAgICAgICAgICAgICA8IS0tIEJPVFRPTSBBTklNQVRFRCBIQU5EICYgWUVMTE9XIFBVWlpMRSBQSUVDRSAtLT4KICAgICAgICAgICAgICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgICAgICAgICAgICAgPGcgY2xhc3M9ImFuaW0tYm90dG9tLWhhbmQiIHN0eWxlPSJ0cmFuc2Zvcm0tb3JpZ2luOiAzNTBweCA0MTRweDsiPgogICAgICAgICAgICAgICAgICAgIDwhLS0gSGVsZCBZZWxsb3cgUGllY2UgKFN0YXJ0cyBhdCBYOiAzMDAuLjQwMCwgWTogMzY0Li40NjQ7IG1vdmVzIC03NHB4IHVwIHRvIGxvY2sgaW50byBZOiAyOTAuLjM5MCkgLS0+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI2YzYmUwMCIgZD0iCiAgICAgICAgICAgICAgICAgICAgICAgIE0gMzE2LDM2NCAKICAgICAgICAgICAgICAgICAgICAgICAgTCAzMzMsMzY0IEMgMzMwLDM0MCAzNzAsMzQwIDM2NywzNjQgTCAzODQsMzY0IAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDQwMCwzODAgCiAgICAgICAgICAgICAgICAgICAgICAgIEwgNDAwLDM5NyBDIDM3NiwzOTQgMzc2LDQzNCA0MDAsNDMxIEwgNDAwLDQ0OCAKICAgICAgICAgICAgICAgICAgICAgICAgQSAxNiwxNiAwIDAsMSAzODQsNDY0IAogICAgICAgICAgICAgICAgICAgICAgICBMIDM2Nyw0NjQgQyAzNzAsNDg4IDMzMCw0ODggMzMzLDQ2NCBMIDMxNiw0NjQgCiAgICAgICAgICAgICAgICAgICAgICAgIEEgMTYsMTYgMCAwLDEgMzAwLDQ0OCAKICAgICAgICAgICAgICAgICAgICAgICAgTCAzMDAsNDMxIEMgMzI0LDQzNCAzMjQsMzk0IDMwMCwzOTcgTCAzMDAsMzgwIAogICAgICAgICAgICAgICAgICAgICAgICBBIDE2LDE2IDAgMCwxIDMxNiwzNjQgWiI+PC9wYXRoPgoKICAgICAgICAgICAgICAgICAgICA8IS0tIEJyb3duIFNraW4gVG9uZSBBcm0sIENvbnRpbnVvdXMgUGFsbSwgVGh1bWIgJiA0IFBhcmFsbGVsIEZpbmdlcnMgd2l0aCBUaGluIFNsaXRzIC0tPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGZpbGw9IiM5MzVkMzciIGQ9IgogICAgICAgICAgICAgICAgICAgICAgICBNIDYwMCwzMzQKICAgICAgICAgICAgICAgICAgICAgICAgQyA1MzgsMzkyIDQ3OCw0MTIgNDI2LDQxMgogICAgICAgICAgICAgICAgICAgICAgICBMIDM5NiwzNzIKICAgICAgICAgICAgICAgICAgICAgICAgQyAzOTAsMzY0IDM3OCwzNzEgMzgzLDM4MQogICAgICAgICAgICAgICAgICAgICAgICBMIDM5OSw0MDUKICAgICAgICAgICAgICAgICAgICAgICAgTCAzMTQsNDA1CiAgICAgICAgICAgICAgICAgICAgICAgIEEgOC41LDguNSAwIDAsMCAzMTQsNDIyCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzY4LDQyMgogICAgICAgICAgICAgICAgICAgICAgICBMIDM2OCw0MjUuNQogICAgICAgICAgICAgICAgICAgICAgICBMIDMxMSw0MjUuNQogICAgICAgICAgICAgICAgICAgICAgICBBIDguNSw4LjUgMCAwLDAgMzExLDQ0Mi41CiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzY4LDQ0Mi41CiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzY4LDQ0NgogICAgICAgICAgICAgICAgICAgICAgICBMIDMxMSw0NDYKICAgICAgICAgICAgICAgICAgICAgICAgQSA4LjUsOC41IDAgMCwwIDMxMSw0NjMKICAgICAgICAgICAgICAgICAgICAgICAgTCAzNjgsNDYzCiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzY4LDQ2Ni41CiAgICAgICAgICAgICAgICAgICAgICAgIEwgMzE0LDQ2Ni41CiAgICAgICAgICAgICAgICAgICAgICAgIEEgOC41LDguNSAwIDAsMCAzMTQsNDgzLjUKICAgICAgICAgICAgICAgICAgICAgICAgTCA0MTUsNDgzLjUKICAgICAgICAgICAgICAgICAgICAgICAgQyA0ODIsNDgzLjUgNTQ1LDQ2MiA2MDAsNDI0CiAgICAgICAgICAgICAgICAgICAgICAgIFoiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9zdmc+" alt="Collaborative community puzzle pieces fitting together" width="340" height="260" loading="lazy">
+                    <svg id="puzzleSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" class="" role="img" aria-label="Collaborative community puzzle pieces fitting together">
+                <style>
+                    /* Smooth 4-second looping assembly animation */
+                    .anim-left-hand {
+                        animation: snapLeft 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        transform-origin: center;
+                    }
+                    
+                    .anim-bottom-hand {
+                        animation: snapBottom 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        transform-origin: center;
+                    }
+
+                    .puzzle-cluster {
+                        animation: clusterPulse 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        transform-origin: 330px 210px;
+                    }
+
+                    .snap-glow {
+                        animation: glowFlash 4.2s ease-out infinite;
+                        pointer-events: none;
+                    }
+
+                    /* Paused state toggle */
+                    svg.paused .anim-left-hand,
+                    svg.paused .anim-bottom-hand,
+                    svg.paused .puzzle-cluster,
+                    svg.paused .snap-glow {
+                        animation-play-state: paused !important;
+                    }
+
+                    @keyframes snapLeft {
+                        0%, 12% {
+                            transform: translate(0px, 0px) rotate(3deg);
+                        }
+                        42%, 74% {
+                            /* Moves right by 78px and levels out to lock cleanly into the grey piece socket */
+                            transform: translate(78px, 0px) rotate(0deg);
+                        }
+                        90%, 100% {
+                            transform: translate(0px, 0px) rotate(3deg);
+                        }
+                    }
+
+                    @keyframes snapBottom {
+                        0%, 16% {
+                            transform: translate(0px, 0px) rotate(5deg);
+                        }
+                        46%, 74% {
+                            /* Moves up by 74px and levels out to lock cleanly into the light-blue piece socket */
+                            transform: translate(0px, -74px) rotate(0deg);
+                        }
+                        90%, 100% {
+                            transform: translate(0px, 0px) rotate(5deg);
+                        }
+                    }
+
+                    @keyframes clusterPulse {
+                        0%, 43% {
+                            transform: scale(1);
+                        }
+                        48% {
+                            transform: scale(1.018);
+                        }
+                        55%, 100% {
+                            transform: scale(1);
+                        }
+                    }
+
+                    @keyframes glowFlash {
+                        0%, 42% {
+                            opacity: 0;
+                        }
+                        47% {
+                            opacity: 0.75;
+                        }
+                        62%, 100% {
+                            opacity: 0;
+                        }
+                    }
+                </style>
+
+                <defs>
+                    <!-- Reusable 100x100 Base Square with Rounded Corners -->
+                    <!-- Top-Left Yellow Piece: Top(In), Right(Out), Bottom(In), Left(Out) -->
+                    <path id="piece-tl-yellow" d="
+                        M 200,90 
+                        L 233,90 C 230,114 270,114 267,90 L 284,90 
+                        A 16,16 0 0,1 300,106 
+                        L 300,123 C 324,120 324,160 300,157 L 300,174 
+                        A 16,16 0 0,1 284,190 
+                        L 267,190 C 270,166 230,166 233,190 L 216,190 
+                        A 16,16 0 0,1 200,174 
+                        L 200,157 C 176,160 176,120 200,123 L 200,106 
+                        A 16,16 0 0,1 216,90 Z"></path>
+
+                    <!-- Top-Middle Green Piece: Top(Out), Right(In), Bottom(Out), Left(In) -->
+                    <path id="piece-tm-green" d="
+                        M 316,90 
+                        L 333,90 C 330,66 370,66 367,90 L 384,90 
+                        A 16,16 0 0,1 400,106 
+                        L 400,123 C 376,120 376,160 400,157 L 400,174 
+                        A 16,16 0 0,1 384,190 
+                        L 367,190 C 370,214 330,214 333,190 L 316,190 
+                        A 16,16 0 0,1 300,174 
+                        L 300,157 C 324,160 324,120 300,123 L 300,106 
+                        A 16,16 0 0,1 316,90 Z"></path>
+
+                    <!-- Top-Right Grey Piece: Top(In), Right(Out), Bottom(In), Left(Out) -->
+                    <path id="piece-tr-grey" d="
+                        M 416,90 
+                        L 433,90 C 430,114 470,114 467,90 L 484,90 
+                        A 16,16 0 0,1 500,106 
+                        L 500,123 C 524,120 524,160 500,157 L 500,174 
+                        A 16,16 0 0,1 484,190 
+                        L 467,190 C 470,166 430,166 433,190 L 416,190 
+                        A 16,16 0 0,1 400,174 
+                        L 400,157 C 376,160 376,120 400,123 L 400,106 
+                        A 16,16 0 0,1 416,90 Z"></path>
+
+                    <!-- Bottom-Left Grey Piece: Top(Out), Right(In), Bottom(Out), Left(In) -->
+                    <path id="piece-bl-grey" d="
+                        M 216,190 
+                        L 233,190 C 230,166 270,166 267,190 L 284,190 
+                        A 16,16 0 0,1 300,206 
+                        L 300,223 C 276,220 276,260 300,257 L 300,274 
+                        A 16,16 0 0,1 284,290 
+                        L 267,290 C 270,314 230,314 233,290 L 216,290 
+                        A 16,16 0 0,1 200,274 
+                        L 200,257 C 224,260 224,220 200,223 L 200,206 
+                        A 16,16 0 0,1 216,190 Z"></path>
+
+                    <!-- Bottom-Middle Light Blue Piece: Top(In), Right(Out), Bottom(In), Left(Out) -->
+                    <path id="piece-bm-blue" d="
+                        M 316,190 
+                        L 333,190 C 330,214 370,214 367,190 L 384,190 
+                        A 16,16 0 0,1 400,206 
+                        L 400,223 C 424,220 424,260 400,257 L 400,274 
+                        A 16,16 0 0,1 384,290 
+                        L 367,290 C 370,266 330,266 333,290 L 316,290 
+                        A 16,16 0 0,1 300,274 
+                        L 300,257 C 276,260 276,220 300,223 L 300,206 
+                        A 16,16 0 0,1 316,190 Z"></path>
+
+                    <!-- Bottom-Right Salmon Piece: Top(Out), Right(In), Bottom(Out), Left(In) -->
+                    <path id="piece-br-salmon" d="
+                        M 416,190 
+                        L 433,190 C 430,166 470,166 467,190 L 484,190 
+                        A 16,16 0 0,1 500,206 
+                        L 500,223 C 476,220 476,260 500,257 L 500,274 
+                        A 16,16 0 0,1 484,290 
+                        L 467,290 C 470,314 430,314 433,290 L 416,290 
+                        A 16,16 0 0,1 400,274 
+                        L 400,257 C 424,260 424,220 400,223 L 400,206 
+                        A 16,16 0 0,1 416,190 Z"></path>
+                </defs>
+
+                <!-- ========================================== -->
+                <!-- MAIN CENTRAL 6-PIECE PUZZLE CLUSTER        -->
+                <!-- ========================================== -->
+                <g class="puzzle-cluster">
+                    <!-- Bottom-Left Grey -->
+                    <use href="#piece-bl-grey" fill="#d3d5d7"></use>
+                    <!-- Top-Left Yellow -->
+                    <use href="#piece-tl-yellow" fill="#f3be00"></use>
+                    <!-- Bottom-Middle Light Blue -->
+                    <use href="#piece-bm-blue" fill="#bce3fa"></use>
+                    <!-- Bottom-Right Salmon -->
+                    <use href="#piece-br-salmon" fill="#ff8f7d"></use>
+                    <!-- Top-Right Grey -->
+                    <use href="#piece-tr-grey" fill="#d3d5d7"></use>
+                    <!-- Top-Middle Green (Rendered on top so its tabs overlap cleanly) -->
+                    <use href="#piece-tm-green" fill="#28c96f"></use>
+
+                    <!-- Subtle Connection Highlight Lines when pieces lock in -->
+                    <circle cx="200" cy="240" r="26" fill="none" stroke="#ff8f7d" stroke-width="3" opacity="0" class="snap-glow"></circle>
+                    <circle cx="350" cy="290" r="26" fill="none" stroke="#f3be00" stroke-width="3" opacity="0" class="snap-glow"></circle>
+                </g>
+
+                <!-- ========================================== -->
+                <!-- LEFT ANIMATED HAND & SALMON PUZZLE PIECE   -->
+                <!-- ========================================== -->
+                <g class="anim-left-hand" style="transform-origin: 72px 240px;">
+                    <!-- Held Salmon Piece (Starts at X: 22..122, Y: 190..290; moves +78px right to lock into X: 100..200) -->
+                    <path fill="#ff8f7d" d="
+                        M 38,190 
+                        L 55,190 C 52,214 92,214 89,190 L 106,190 
+                        A 16,16 0 0,1 122,206 
+                        L 122,223 C 146,220 146,260 122,257 L 122,274 
+                        A 16,16 0 0,1 106,290 
+                        L 89,290 C 92,266 52,266 55,290 L 38,290 
+                        A 16,16 0 0,1 22,274 
+                        L 22,257 C -2,260 -2,220 22,223 L 22,206 
+                        A 16,16 0 0,1 38,190 Z"></path>
+
+                    <!-- Light Skin Tone Arm, Continuous Palm, Thumb & 4 Parallel Fingers with Thin Slits -->
+                    <path fill="#ffcb94" d="
+                        M 58,0
+                        C 16,72 18,145 21,260
+                        A 9.5,9.5 0 0,0 40,260
+                        L 40,204
+                        L 43,204
+                        L 43,262
+                        A 9.5,9.5 0 0,0 62,262
+                        L 62,204
+                        L 65,204
+                        L 65,260
+                        A 9.5,9.5 0 0,0 84,260
+                        L 84,204
+                        L 87,204
+                        L 87,258
+                        A 9.5,9.5 0 0,0 106,258
+                        L 106,170
+                        L 121,183
+                        C 127,188 134,182 129,174
+                        L 101,142
+                        C 103,95 118,45 156,0
+                        Z"></path>
+                </g>
+
+                <!-- ========================================== -->
+                <!-- BOTTOM ANIMATED HAND & YELLOW PUZZLE PIECE -->
+                <!-- ========================================== -->
+                <g class="anim-bottom-hand" style="transform-origin: 350px 414px;">
+                    <!-- Held Yellow Piece (Starts at X: 300..400, Y: 364..464; moves -74px up to lock into Y: 290..390) -->
+                    <path fill="#f3be00" d="
+                        M 316,364 
+                        L 333,364 C 330,340 370,340 367,364 L 384,364 
+                        A 16,16 0 0,1 400,380 
+                        L 400,397 C 376,394 376,434 400,431 L 400,448 
+                        A 16,16 0 0,1 384,464 
+                        L 367,464 C 370,488 330,488 333,464 L 316,464 
+                        A 16,16 0 0,1 300,448 
+                        L 300,431 C 324,434 324,394 300,397 L 300,380 
+                        A 16,16 0 0,1 316,364 Z"></path>
+
+                    <!-- Brown Skin Tone Arm, Continuous Palm, Thumb & 4 Parallel Fingers with Thin Slits -->
+                    <path fill="#935d37" d="
+                        M 600,334
+                        C 538,392 478,412 426,412
+                        L 396,372
+                        C 390,364 378,371 383,381
+                        L 399,405
+                        L 314,405
+                        A 8.5,8.5 0 0,0 314,422
+                        L 368,422
+                        L 368,425.5
+                        L 311,425.5
+                        A 8.5,8.5 0 0,0 311,442.5
+                        L 368,442.5
+                        L 368,446
+                        L 311,446
+                        A 8.5,8.5 0 0,0 311,463
+                        L 368,463
+                        L 368,466.5
+                        L 314,466.5
+                        A 8.5,8.5 0 0,0 314,483.5
+                        L 415,483.5
+                        C 482,483.5 545,462 600,424
+                        Z"></path>
+                </g>
+            </svg>
                 </div>
                 <span class="obf-badge-pill purple">Volunteer Driven</span>
                 <h3>Made by everyone</h3>
@@ -559,7 +895,296 @@
             <!-- Pillar 3: For everyone - Open data -->
             <article class="off-feature-card">
                 <div class="off-card-art">
-                    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0ic3ZnLW9wZW5kYXRhLWNyb3dkLWljb24iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDQ4MCAzNjAiIHdpZHRoPSI0ODAiIGhlaWdodD0iMzYwIiBjbGFzcz0iIj4KICAgICAgICAgICAgICAgICAgICA8c3R5bGU+CiAgICAgICAgICAgICAgICAgICAgICAgIC5jcm93ZC1zaWwgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgYW5pbWF0aW9uOiBzaWxCb2IgNC40cyBlYXNlLWluLW91dCBpbmZpbml0ZTsKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICAuY2hhci1sZWZ0LWJvYiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBhbmltYXRpb246IGNoYXJCb2IgNC40cyBlYXNlLWluLW91dCBpbmZpbml0ZSAwLjJzOwogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIC53YXZlLWxlZnQtYXJtIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFuaW1hdGlvbjogd2F2ZUhlbGxvIDIuOHMgZWFzZS1pbi1vdXQgaW5maW5pdGU7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAvKiBDaXJjdWxhciBzaG91bGRlciBzb2NrZXQgaGlkZGVuIGluc2lkZSB0aGUgcmVkIHNsZWV2ZSAqLwogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtLW9yaWdpbjogNDRweCAxOTRweDsKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICAuY2hhci1jZW50ZXItYm9iIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFuaW1hdGlvbjogY2hhckJvYiA0LjRzIGVhc2UtaW4tb3V0IGluZmluaXRlIDAuNnM7CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgLmNoYXItcmlnaHQtYm9iIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFuaW1hdGlvbjogY2hhckJvYiA0LjRzIGVhc2UtaW4tb3V0IGluZmluaXRlIDEuMHM7CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgLm9kLWhlYXJ0IHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFuaW1hdGlvbjogb2RIZWFydFB1bHNlIDIuMnMgZWFzZS1pbi1vdXQgaW5maW5pdGU7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAyNDhweCAyMzZweDsKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICAudGFibGV0LWxpZnQgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgYW5pbWF0aW9uOiB0YWJsZXRCb2IgNC40cyBlYXNlLWluLW91dCBpbmZpbml0ZTsKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBzdmcucGF1c2VkICogeyBhbmltYXRpb24tcGxheS1zdGF0ZTogcGF1c2VkICFpbXBvcnRhbnQ7IH0KICAgICAgICAgICAgICAgICAgICAgICAgQGtleWZyYW1lcyBzaWxCb2IgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgMCUsIDEwMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMHB4KTsgfQogICAgICAgICAgICAgICAgICAgICAgICAgICAgNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC01cHgpOyB9CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgQGtleWZyYW1lcyBjaGFyQm9iIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAlLCAxMDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDBweCk7IH0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDUwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtNHB4KTsgfQogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIEBrZXlmcmFtZXMgd2F2ZUhlbGxvIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAlLCAxMDAlIHsgdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7IH0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDUwJSB7IHRyYW5zZm9ybTogcm90YXRlKDdkZWcpOyB9CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgQGtleWZyYW1lcyBvZEhlYXJ0UHVsc2UgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgMCUsIDEwMCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEpOyB9CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA1MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMTMpOyB9CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgQGtleWZyYW1lcyB0YWJsZXRCb2IgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgMCUsIDEwMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMHB4KTsgfQogICAgICAgICAgICAgICAgICAgICAgICAgICAgNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC00cHgpOyB9CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICA8L3N0eWxlPgoKICAgICAgICAgICAgICAgICAgICA8IS0tID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAtLT4KICAgICAgICAgICAgICAgICAgICA8IS0tIEJBQ0tHUk9VTkQgU0lMSE9VRVRURSBDUk9XRCAoIzlkOWQ5YykgICAgICAgICAgICAgICAgICAgICAtLT4KICAgICAgICAgICAgICAgICAgICA8IS0tID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAtLT4KICAgICAgICAgICAgICAgICAgICA8ZyBjbGFzcz0iY3Jvd2Qtc2lsIiBmaWxsPSIjOWQ5ZDljIj4KICAgICAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBjeD0iMTY0IiBjeT0iMTE2IiByPSI0MiI+PC9jaXJjbGU+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0gMTEyLDIxNSBDIDExMiwxNzQgMTM1LDE1NiAxNjQsMTU2IEMgMTkzLDE1NiAyMTYsMTc0IDIxNiwyMTUgTCAyMTYsMzU1IEwgMTEyLDM1NSBaIj48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjMxNiIgY3k9IjExNiIgcj0iNDIiPjwvY2lyY2xlPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNIDI2NCwyMTUgQyAyNjQsMTc0IDI4NywxNTYgMzE2LDE1NiBDIDM0NSwxNTYgMzY4LDE3NCAzNjgsMjE1IEwgMzY4LDM1NSBMIDI2NCwzNTUgWiI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDwvZz4KCiAgICAgICAgICAgICAgICAgICAgPCEtLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gLS0+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBMRUZUIENIQVJBQ1RFUjogUkVEIFNISVJUICsgV0FWSU5HIEFSTSAoT3BlbiBCZWF1dHkgUmVmKSAgLS0+CiAgICAgICAgICAgICAgICAgICAgPCEtLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gLS0+CiAgICAgICAgICAgICAgICAgICAgPGcgY2xhc3M9ImNoYXItbGVmdC1ib2IiPgogICAgICAgICAgICAgICAgICAgICAgICA8IS0tIDEuIFdhdmluZyBMZWZ0IEFybSAoUGl2b3RzIGluc2lkZSB0aGUgcmVkIGxlZnQgc2xlZXZlIGF0IDQ0LDE5NCkgLS0+CiAgICAgICAgICAgICAgICAgICAgICAgIDxnIGNsYXNzPSJ3YXZlLWxlZnQtYXJtIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGZpbGw9IiM5MzU4MzMiIGQ9IgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE0gNDQsMjA4CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgQyAxOCwyMDAgNiwxNjYgOCwxMTgKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDcsOTYgQSAzLjIsMy4yIDAgMCwxIDEzLjUsOTYgTCAxMy41LDExNCBMIDE1LjUsMTE0CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAxNS41LDkzIEEgMy4yLDMuMiAwIDAsMSAyMiw5MyBMIDIyLDExNCBMIDI0LDExNAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgMjQsOTMgQSAzLjIsMy4yIDAgMCwxIDMwLjUsOTMgTCAzMC41LDExNCBMIDMyLjUsMTE0CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAzMi41LDk2IEEgMy4yLDMuMiAwIDAsMSAzOSw5NiBMIDM5LDEyMgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgNDYsMTEyIEMgNDksMTA4IDU0LDExMiA1MSwxMTcKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDM4LDEzNAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEMgMzUsMTYwIDQwLDE3NiA1NCwxODAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBBIDE0LDE0IDAgMCwxIDQ0LDIwOCBaIj48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KCiAgICAgICAgICAgICAgICAgICAgICAgIDwhLS0gMi4gUmVsYXhlZCBSaWdodCBBcm0gRW1lcmdpbmcgRnJvbSBVbmRlciB0aGUgUmlnaHQgU2xlZXZlIC0tPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjOTM1ODMzIiBkPSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIE0gMTM0LDIwNgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAxNTYsMjA2CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDE2NCwyOTYKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEEgMy4yLDMuMiAwIDAsMSAxNTcuNSwyOTYgTCAxNTcuNSwyNzggTCAxNTUuNSwyNzgKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgMTU1LjUsMjk3IEEgMy4yLDMuMiAwIDAsMSAxNDksMjk3IEwgMTQ5LDI3OCBMIDE0NywyNzgKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgMTQ3LDI5NyBBIDMuMiwzLjIgMCAwLDEgMTQwLjUsMjk3IEwgMTQwLjUsMjc4IEwgMTM4LjUsMjc4CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDEzOC41LDI5NSBBIDMuMiwzLjIgMCAwLDEgMTMyLDI5NSBMIDEzMiwyNzAKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgMTI0LDI3OCBDIDEyMSwyODEgMTE3LDI3NyAxMjAsMjczCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDEzMiwyNTggWiI+PC9wYXRoPgoKICAgICAgICAgICAgICAgICAgICAgICAgPCEtLSAzLiBTaW5nbGUgVW5pZmllZCBSZWQgVC1TaGlydCAoVG9yc28gKyBCb3RoIFNsZWV2ZXMgKyBTbW9vdGggU2hvdWxkZXJzKSAtLT4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmMDAwMCIgZD0iCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBNIDI2LDE2NgogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyA0NiwxNjIgNjgsMTYyIDkyLDE2MgogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyAxMjIsMTYyIDE0MCwxNjggMTUyLDE4NgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAxNjYsMjI2CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDE0MCwyMzQKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgMTQyLDM1NQogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCA0MiwzNTUKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgNDIsMjA4CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDIwLDIwMiBaIj48L3BhdGg+CgogICAgICAgICAgICAgICAgICAgICAgICA8IS0tIE5lY2sgKCM3YTQ4MjkpIHdpdGggUm91bmRlZCBDb2xsYXIgQm90dG9tIC0tPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjN2E0ODI5IiBkPSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIE0gNzksMTM2CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDEwNSwxMzYKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgMTA1LDE2NgogICAgICAgICAgICAgICAgICAgICAgICAgICAgQSAxMywxNCAwIDAsMSA3OSwxNjYgWiI+PC9wYXRoPgoKICAgICAgICAgICAgICAgICAgICAgICAgPCEtLSA0LiBIZWFkICsgQWZybyBQdWZmIEhhaXIgKyBHcmVlbiBIZWFkYmFuZCAtLT4KICAgICAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBjeD0iOTIiIGN5PSI4NiIgcj0iNTIiIGZpbGw9IiMyMzEyMGIiPjwvY2lyY2xlPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjMDA2ODJjIiBkPSJNIDUyLDEwNCBBIDQwLDM4IDAgMCwxIDEzMiwxMDQgWiI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjExNSIgcj0iMTAiIGZpbGw9IiM5MzU4MzMiPjwvY2lyY2xlPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMzQiIGN5PSIxMTUiIHI9IjEwIiBmaWxsPSIjOTM1ODMzIj48L2NpcmNsZT4KICAgICAgICAgICAgICAgICAgICAgICAgPGVsbGlwc2UgY3g9IjkyIiBjeT0iMTEyIiByeD0iNDAiIHJ5PSI0MyIgZmlsbD0iIzkzNTgzMyI+PC9lbGxpcHNlPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNIDY4LDk2IEMgNzQsOTMgODIsOTMgODYsOTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzIzMTIwYiIgc3Ryb2tlLXdpZHRoPSIzLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNIDk4LDk1IEMgMTAyLDkzIDExMCw5MyAxMTYsOTYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzIzMTIwYiIgc3Ryb2tlLXdpZHRoPSIzLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSI3NyIgY3k9IjEwOCIgcj0iNC4yIiBmaWxsPSIjMGQwZDBkIj48L2NpcmNsZT4KICAgICAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBjeD0iMTA3IiBjeT0iMTA4IiByPSI0LjIiIGZpbGw9IiMwZDBkMGQiPjwvY2lyY2xlPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNIDc5LDEyNCBMIDEwNSwxMjQgQSAxMywxMiAwIDAsMSA3OSwxMjQgWiI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDwvZz4KCiAgICAgICAgICAgICAgICAgICAgPCEtLSA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gLS0+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBDRU5URVIgQ0hBUkFDVEVSOiBDWUFOICJJIOKdpO+4jyBPcGVuIERhdGEiIFNISVJUIFdJVEggQVJNUyAgICAtLT4KICAgICAgICAgICAgICAgICAgICA8IS0tID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAtLT4KICAgICAgICAgICAgICAgICAgICA8ZyBjbGFzcz0iY2hhci1jZW50ZXItYm9iIj4KICAgICAgICAgICAgICAgICAgICAgICAgPCEtLSAxLiBCYWNrIExvbmcgT3JhbmdlIEhhaXIgTGF5ZXIgKCNmZjY2MDApIC0tPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjZmY2NjAwIiBkPSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIE0gMjQwLDU0CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBDIDE5OCw1NCAxODYsODQgMTgyLDEyNgogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyAxNzgsMTYyIDE3MCwxOTIgMTc0LDIwOAogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAzMDYsMjA4CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBDIDMxMCwxOTIgMzAyLDE2MiAyOTgsMTI2CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBDIDI5NCw4NCAyODIsNTQgMjQwLDU0IFoiPjwvcGF0aD4KCiAgICAgICAgICAgICAgICAgICAgICAgIDwhLS0gMi4gTGVmdCAmIFJpZ2h0IEJhcmUgQXJtcyBFbWVyZ2luZyBGcm9tIFVuZGVyIHRoZSBDeWFuIFNsZWV2ZXMgLS0+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGZpbGw9IiNmZmQ4YjQiIGQ9IgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTSAxNjQsMjEyCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDE4OCwyMTIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgMTg4LDI2MgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAyMDAsMjc4IEMgMjAzLDI4MiAxOTksMjg2IDE5NiwyODMgTCAxODgsMjc1CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDE4OCwzMDEgQSAzLjIsMy4yIDAgMCwxIDE4MS41LDMwMSBMIDE4MS41LDI4MiBMIDE3OS41LDI4MgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAxNzkuNSwzMDMgQSAzLjIsMy4yIDAgMCwxIDE3MywzMDMgTCAxNzMsMjgyIEwgMTcxLDI4MgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAxNzEsMzAzIEEgMy4yLDMuMiAwIDAsMSAxNjQuNSwzMDMgTCAxNjQuNSwyODIgTCAxNjIuNSwyODIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgMTYyLjUsMzAyIEEgMy4yLDMuMiAwIDAsMSAxNTYsMzAyIFoiPjwvcGF0aD4KCiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGZpbGw9IiNmZmQ4YjQiIGQ9IgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTSAzMTYsMjEyCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDI5MiwyMTIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgMjkyLDI2MgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAyODAsMjc4IEMgMjc3LDI4MiAyODEsMjg2IDI4NCwyODMgTCAyOTIsMjc1CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDI5MiwzMDEgQSAzLjIsMy4yIDAgMCwwIDI5OC41LDMwMSBMIDI5OC41LDI4MiBMIDMwMC41LDI4MgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAzMDAuNSwzMDMgQSAzLjIsMy4yIDAgMCwwIDMwNywzMDMgTCAzMDcsMjgyIEwgMzA5LDI4MgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAzMDksMzAzIEEgMy4yLDMuMiAwIDAsMCAzMTUuNSwzMDMgTCAzMTUuNSwyODIgTCAzMTcuNSwyODIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgMzE3LjUsMzAyIEEgMy4yLDMuMiAwIDAsMCAzMjQsMzAyIFoiPjwvcGF0aD4KCiAgICAgICAgICAgICAgICAgICAgICAgIDwhLS0gMy4gU2luZ2xlIFVuaWZpZWQgQ3lhbiBULVNoaXJ0IChUb3JzbyArIEJvdGggU2xlZXZlcyArIFNtb290aCBTaG91bGRlcnMpIC0tPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjMDBiZGYyIiBkPSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIE0gMTU2LDIyNgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAxNjgsMTg2CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBDIDE3OCwxNjggMTk4LDE2MiAyNDAsMTYyCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBDIDI4MiwxNjIgMzAyLDE2OCAzMTIsMTg2CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDMyNCwyMjYKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgMjk4LDIzNAogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAzMDAsMzU1CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDE4MCwzNTUKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgMTgyLDIzNCBaIj48L3BhdGg+CgogICAgICAgICAgICAgICAgICAgICAgICA8IS0tIE5lY2sgKCNjODlkN2MpIHdpdGggUm91bmRlZCBDb2xsYXIgQm90dG9tIC0tPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjYzg5ZDdjIiBkPSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIE0gMjI2LDEzNgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAyNTQsMTM2CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDI1NCwxNjYKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEEgMTQsMTUgMCAwLDEgMjI2LDE2NiBaIj48L3BhdGg+CgogICAgICAgICAgICAgICAgICAgICAgICA8IS0tICJJIOKdpO+4jyBPcGVuIERhdGEiIEdyYXBoaWMgb24gU2hpcnQgLS0+CiAgICAgICAgICAgICAgICAgICAgICAgIDxyZWN0IHg9IjIwNiIgeT0iMjE2IiB3aWR0aD0iNSIgaGVpZ2h0PSIzOCIgcng9IjIiIGZpbGw9IiNmZmZmZmYiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggY2xhc3M9Im9kLWhlYXJ0IiBmaWxsPSIjZmYwMDAwIiBkPSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIE0gMjQ4LDI2MgogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyAyNDgsMjYyIDIyMiwyNDQgMjIyLDIyNgogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyAyMjIsMjE2IDIzMCwyMTAgMjM4LDIxMAogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyAyNDMsMjEwIDI0NiwyMTQgMjQ4LDIxOAogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyAyNTAsMjE0IDI1MywyMTAgMjU4LDIxMAogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyAyNjYsMjEwIDI3NCwyMTYgMjc0LDIyNgogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyAyNzQsMjQ0IDI0OCwyNjIgMjQ4LDI2MiBaIj48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZXh0IHg9IjI0MCIgeT0iMzAyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LWZhbWlseT0iSW50ZXIsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDAiIGZvbnQtd2VpZ2h0PSI1MDAiPk9wZW48L3RleHQ+CiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZXh0IHg9IjI0MCIgeT0iMzQ0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LWZhbWlseT0iSW50ZXIsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDAiIGZvbnQtd2VpZ2h0PSI1MDAiPkRhdGE8L3RleHQ+CgogICAgICAgICAgICAgICAgICAgICAgICA8IS0tIDQuIEZhY2UgJiBVbmlmaWVkIE9yYW5nZSBIYWlyIEJhbmdzIC0tPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxOTUiIGN5PSIxMTUiIHI9IjEwIiBmaWxsPSIjZmZkOGI0Ij48L2NpcmNsZT4KICAgICAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBjeD0iMjg1IiBjeT0iMTE1IiByPSIxMCIgZmlsbD0iI2ZmZDhiNCI+PC9jaXJjbGU+CiAgICAgICAgICAgICAgICAgICAgICAgIDxlbGxpcHNlIGN4PSIyNDAiIGN5PSIxMTIiIHJ4PSI0MyIgcnk9IjQ1IiBmaWxsPSIjZmZkOGI0Ij48L2VsbGlwc2U+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGZpbGw9IiNmZjY2MDAiIGQ9IgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTSAxOTIsMTA4CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBDIDE5MCw2NiAyMTIsNTQgMjQwLDU0CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBDIDI2OCw1NCAyOTAsNjYgMjg4LDEwOAogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyAyNzAsMTA4IDI1Miw5NiAyNDAsNzgKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEMgMjI4LDk2IDIxMCwxMDggMTkyLDEwOCBaIj48L3BhdGg+CgogICAgICAgICAgICAgICAgICAgICAgICA8IS0tIEV5ZWJyb3dzLCBFeWVzICYgU21pbGUgLS0+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0gMjE1LDk2IEMgMjIxLDkzIDIyOCw5MyAyMzMsOTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2I5NDcwMCIgc3Ryb2tlLXdpZHRoPSIzLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNIDI0Nyw5NSBDIDI1Miw5MyAyNTksOTMgMjY1LDk2IiBmaWxsPSJub25lIiBzdHJva2U9IiNiOTQ3MDAiIHN0cm9rZS13aWR0aD0iMy41IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBjeD0iMjI0IiBjeT0iMTA4IiByPSI0LjUiIGZpbGw9IiMwZDBkMGQiPjwvY2lyY2xlPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIyNTYiIGN5PSIxMDgiIHI9IjQuNSIgZmlsbD0iIzBkMGQwZCI+PC9jaXJjbGU+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0gMjMxLDEyNiBDIDIzNiwxMzIgMjQ0LDEzMiAyNDksMTI2IiBmaWxsPSJub25lIiBzdHJva2U9IiMwZDBkMGQiIHN0cm9rZS13aWR0aD0iNC4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8L2c+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgICAgICAgICAgICAgICAgIDwhLS0gUklHSFQgQ0hBUkFDVEVSOiBHUkVFTiBTSElSVCArIEFSTVMgSE9MRElORyBUQUJMRVQgICAgICAgIC0tPgogICAgICAgICAgICAgICAgICAgIDwhLS0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IC0tPgogICAgICAgICAgICAgICAgICAgIDxnIGNsYXNzPSJjaGFyLXJpZ2h0LWJvYiI+CiAgICAgICAgICAgICAgICAgICAgICAgIDwhLS0gMS4gTGVmdCAmIFJpZ2h0IEZvcmVhcm1zIEVtZXJnaW5nIEZyb20gVW5kZXIgdGhlIEdyZWVuIFNsZWV2ZXMgLS0+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGZpbGw9IiNkYWIzOTYiIGQ9Ik0gMzI2LDIxNCBDIDMxNCwyNTIgMzIwLDI5NSAzNDQsMzI4IEwgMzYyLDMxNiBDIDM0NCwyODggMzQwLDI1MiAzNDgsMjE4IFoiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI2RhYjM5NiIgZD0iTSA0NTgsMjE0IEMgNDcwLDI1MiA0NjQsMjk1IDQ0MCwzMjggTCA0MjIsMzE2IEMgNDQwLDI4OCA0NDQsMjUyIDQzNiwyMTggWiI+PC9wYXRoPgoKICAgICAgICAgICAgICAgICAgICAgICAgPCEtLSAyLiBTaW5nbGUgVW5pZmllZCBCcmlnaHQgR3JlZW4gVC1TaGlydCAoVG9yc28gKyBCb3RoIFNsZWV2ZXMgKyBTbW9vdGggU2hvdWxkZXJzKSAtLT4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iIzAwY2MwMCIgZD0iCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBNIDMxNCwyMjQKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgMzI2LDE4NgogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyAzMzYsMTY4IDM1NiwxNjIgMzkyLDE2MgogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyA0MjgsMTYyIDQ0OCwxNjggNDU4LDE4NgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCA0NzAsMjI0CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDQ0NCwyMzIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgNDQ4LDM1NQogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCAzMzYsMzU1CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBMIDM0MCwyMzIgWiI+PC9wYXRoPgoKICAgICAgICAgICAgICAgICAgICAgICAgPCEtLSBOZWNrICgjYzg5ZDdjKSB3aXRoIFJvdW5kZWQgQ29sbGFyIEJvdHRvbSAtLT4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI2M4OWQ3YyIgZD0iCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBNIDM3OCwxMzYKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEwgNDA2LDEzNgogICAgICAgICAgICAgICAgICAgICAgICAgICAgTCA0MDYsMTY2CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBBIDE0LDE1IDAgMCwxIDM3OCwxNjYgWiI+PC9wYXRoPgoKICAgICAgICAgICAgICAgICAgICAgICAgPCEtLSAzLiBGYWNlICYgVW5pZmllZCBEYXJrLUJyb3duIEhhaXIgQ2FwICgjMjYxMjA0KSAtLT4KICAgICAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBjeD0iMzQ4IiBjeT0iMTE1IiByPSIxMCIgZmlsbD0iI2RhYjM5NiI+PC9jaXJjbGU+CiAgICAgICAgICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjQzNiIgY3k9IjExNSIgcj0iMTAiIGZpbGw9IiNkYWIzOTYiPjwvY2lyY2xlPgogICAgICAgICAgICAgICAgICAgICAgICA8ZWxsaXBzZSBjeD0iMzkyIiBjeT0iMTEyIiByeD0iNDMiIHJ5PSI0NSIgZmlsbD0iI2RhYjM5NiI+PC9lbGxpcHNlPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjMjYxMjA0IiBkPSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIE0gMzQ2LDEwNAogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyAzNDYsNjYgMzY2LDU0IDM5Miw1NAogICAgICAgICAgICAgICAgICAgICAgICAgICAgQyA0MTgsNTQgNDM4LDY4IDQzOCwxMDQKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEMgNDI0LDk4IDQxNCw5MCA0MDYsODAKICAgICAgICAgICAgICAgICAgICAgICAgICAgIEMgMzkyLDk2IDM3MCwxMDYgMzQ2LDEwNCBaIj48L3BhdGg+CgogICAgICAgICAgICAgICAgICAgICAgICA8IS0tIEV5ZWJyb3dzLCBFeWVzICYgU21pbGUgLS0+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0gMzY4LDk2IEMgMzc0LDk0IDM4MSw5NCAzODYsOTYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI2MTIwNCIgc3Ryb2tlLXdpZHRoPSIzLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNIDM5OCw5NiBDIDQwMyw5NCA0MTAsOTQgNDE2LDk2IiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjEyMDQiIHN0cm9rZS13aWR0aD0iMy41IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgPGNpcmNsZSBjeD0iMzc2IiBjeT0iMTA4IiByPSI0LjUiIGZpbGw9IiMwZDBkMGQiPjwvY2lyY2xlPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSI0MDgiIGN5PSIxMDgiIHI9IjQuNSIgZmlsbD0iIzBkMGQwZCI+PC9jaXJjbGU+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0gMzgzLDEyNiBDIDM4OCwxMzIgMzk2LDEzMiA0MDEsMTI2IiBmaWxsPSJub25lIiBzdHJva2U9IiMwZDBkMGQiIHN0cm9rZS13aWR0aD0iNC4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD4KCiAgICAgICAgICAgICAgICAgICAgICAgIDwhLS0gNC4gSGVsZCBUYWJsZXQgJiBHcmlwcGluZyBGaW5nZXJzIC0tPgogICAgICAgICAgICAgICAgICAgICAgICA8ZyBjbGFzcz0idGFibGV0LWxpZnQiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPCEtLSBUYWJsZXQgRnJhbWUgKCMxOTE5MTkpICYgQmx1ZSBTY3JlZW4gKCMwMDY2ZmYpIC0tPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPHJlY3QgeD0iMzM2IiB5PSIyNDIiIHdpZHRoPSIxMTIiIGhlaWdodD0iOTAiIHJ4PSIxMCIgZmlsbD0iIzE5MTkxOSI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPHJlY3QgeD0iMzQzIiB5PSIyNDkiIHdpZHRoPSI5OCIgaGVpZ2h0PSI3NiIgcng9IjciIGZpbGw9IiMwMDY2ZmYiPjwvcmVjdD4KCiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8IS0tIE1pbmkgQm90dGxlIGluc2lkZSBUYWJsZXQgLS0+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCB4PSIzNTUiIHk9IjI1NiIgd2lkdGg9IjEyIiBoZWlnaHQ9IjciIHJ4PSIzIiBmaWxsPSIjZmYwMDAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCB4PSIzNDkiIHk9IjI2MyIgd2lkdGg9IjI0IiBoZWlnaHQ9IjU0IiByeD0iNyIgZmlsbD0iIzRhMjUxMSI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPHJlY3QgeD0iMzQ5IiB5PSIyNzYiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNiIgZmlsbD0iI2ZmM2IzMCI+PC9yZWN0PgoKICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwhLS0gNiBTdWdhciBDdWJlIFB5cmFtaWQgaW5zaWRlIFRhYmxldCAtLT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxnIGZpbGw9IiNmYWZhZmEiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxyZWN0IHg9IjM4MCIgeT0iMzAyIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCB4PSIzOTgiIHk9IjMwMiIgd2lkdGg9IjE1IiBoZWlnaHQ9IjE1Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHJlY3QgeD0iNDE2IiB5PSIzMDIiIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxyZWN0IHg9IjM4OSIgeT0iMjg1IiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCB4PSI0MDciIHk9IjI4NSIgd2lkdGg9IjE1IiBoZWlnaHQ9IjE1Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHJlY3QgeD0iMzk4IiB5PSIyNjgiIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9nPgoKICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwhLS0gRGlhZ29uYWwgV2hpdGUgU2NyZWVuIEdsYXJlIC0tPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4yIiBkPSJNIDM0MywyNDkgTCA0NDEsMzI1IEwgMzQzLDMyNSBaIj48L3BhdGg+CgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPCEtLSBMZWZ0ICYgUmlnaHQgSGFuZHMgR3JpcHBpbmcgVGFibGV0IEJvdHRvbSBDb3JuZXJzICg0IEZpbmdlcnMgRWFjaCkgLS0+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZyBmaWxsPSIjZGFiMzk2Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCB4PSIzMzQiIHk9IjMyMCIgd2lkdGg9IjciIGhlaWdodD0iMTYiIHJ4PSIzLjUiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCB4PSIzNDIiIHk9IjMyMCIgd2lkdGg9IjciIGhlaWdodD0iMTYiIHJ4PSIzLjUiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCB4PSIzNTAiIHk9IjMyMCIgd2lkdGg9IjciIGhlaWdodD0iMTYiIHJ4PSIzLjUiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCB4PSIzNTgiIHk9IjMyMCIgd2lkdGg9IjciIGhlaWdodD0iMTYiIHJ4PSIzLjUiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCB4PSI0MTkiIHk9IjMyMCIgd2lkdGg9IjciIGhlaWdodD0iMTYiIHJ4PSIzLjUiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCB4PSI0MjciIHk9IjMyMCIgd2lkdGg9IjciIGhlaWdodD0iMTYiIHJ4PSIzLjUiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCB4PSI0MzUiIHk9IjMyMCIgd2lkdGg9IjciIGhlaWdodD0iMTYiIHJ4PSIzLjUiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCB4PSI0NDMiIHk9IjMyMCIgd2lkdGg9IjciIGhlaWdodD0iMTYiIHJ4PSIzLjUiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgIDwvc3ZnPg==" alt="Citizen community contributing open data" width="160" height="130" loading="lazy">
+                    <svg id="svg-opendata-crowd-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" class="" role="img" aria-label="Citizen community contributing open data">
+                    <style>
+                        .crowd-sil {
+                            animation: silBob 4.4s ease-in-out infinite;
+                        }
+                        .char-left-bob {
+                            animation: charBob 4.4s ease-in-out infinite 0.2s;
+                        }
+                        .wave-left-arm {
+                            animation: waveHello 2.8s ease-in-out infinite;
+                            /* Circular shoulder socket hidden inside the red sleeve */
+                            transform-origin: 44px 194px;
+                        }
+                        .char-center-bob {
+                            animation: charBob 4.4s ease-in-out infinite 0.6s;
+                        }
+                        .char-right-bob {
+                            animation: charBob 4.4s ease-in-out infinite 1.0s;
+                        }
+                        .od-heart {
+                            animation: odHeartPulse 2.2s ease-in-out infinite;
+                            transform-origin: 248px 236px;
+                        }
+                        .tablet-lift {
+                            animation: tabletBob 4.4s ease-in-out infinite;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes silBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-5px); }
+                        }
+                        @keyframes charBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-4px); }
+                        }
+                        @keyframes waveHello {
+                            0%, 100% { transform: rotate(0deg); }
+                            50% { transform: rotate(7deg); }
+                        }
+                        @keyframes odHeartPulse {
+                            0%, 100% { transform: scale(1); }
+                            50% { transform: scale(1.13); }
+                        }
+                        @keyframes tabletBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-4px); }
+                        }
+                    </style>
+
+                    <!-- ========================================================= -->
+                    <!-- BACKGROUND SILHOUETTE CROWD (#9d9d9c)                     -->
+                    <!-- ========================================================= -->
+                    <g class="crowd-sil" fill="#9d9d9c">
+                        <circle cx="164" cy="116" r="42"></circle>
+                        <path d="M 112,215 C 112,174 135,156 164,156 C 193,156 216,174 216,215 L 216,355 L 112,355 Z"></path>
+                        <circle cx="316" cy="116" r="42"></circle>
+                        <path d="M 264,215 C 264,174 287,156 316,156 C 345,156 368,174 368,215 L 368,355 L 264,355 Z"></path>
+                    </g>
+
+                    <!-- ========================================================= -->
+                    <!-- LEFT CHARACTER: RED SHIRT + WAVING ARM (Open Beauty Ref)  -->
+                    <!-- ========================================================= -->
+                    <g class="char-left-bob">
+                        <!-- 1. Waving Left Arm (Pivots inside the red left sleeve at 44,194) -->
+                        <g class="wave-left-arm">
+                            <path fill="#935833" d="
+                                M 44,208
+                                C 18,200 6,166 8,118
+                                L 7,96 A 3.2,3.2 0 0,1 13.5,96 L 13.5,114 L 15.5,114
+                                L 15.5,93 A 3.2,3.2 0 0,1 22,93 L 22,114 L 24,114
+                                L 24,93 A 3.2,3.2 0 0,1 30.5,93 L 30.5,114 L 32.5,114
+                                L 32.5,96 A 3.2,3.2 0 0,1 39,96 L 39,122
+                                L 46,112 C 49,108 54,112 51,117
+                                L 38,134
+                                C 35,160 40,176 54,180
+                                A 14,14 0 0,1 44,208 Z"></path>
+                        </g>
+
+                        <!-- 2. Relaxed Right Arm Emerging From Under the Right Sleeve -->
+                        <path fill="#935833" d="
+                            M 134,206
+                            L 156,206
+                            L 164,296
+                            A 3.2,3.2 0 0,1 157.5,296 L 157.5,278 L 155.5,278
+                            L 155.5,297 A 3.2,3.2 0 0,1 149,297 L 149,278 L 147,278
+                            L 147,297 A 3.2,3.2 0 0,1 140.5,297 L 140.5,278 L 138.5,278
+                            L 138.5,295 A 3.2,3.2 0 0,1 132,295 L 132,270
+                            L 124,278 C 121,281 117,277 120,273
+                            L 132,258 Z"></path>
+
+                        <!-- 3. Single Unified Red T-Shirt (Torso + Both Sleeves + Smooth Shoulders) -->
+                        <path fill="#ff0000" d="
+                            M 26,166
+                            C 46,162 68,162 92,162
+                            C 122,162 140,168 152,186
+                            L 166,226
+                            L 140,234
+                            L 142,355
+                            L 42,355
+                            L 42,208
+                            L 20,202 Z"></path>
+
+                        <!-- Neck (#7a4829) with Rounded Collar Bottom -->
+                        <path fill="#7a4829" d="
+                            M 79,136
+                            L 105,136
+                            L 105,166
+                            A 13,14 0 0,1 79,166 Z"></path>
+
+                        <!-- 4. Head + Afro Puff Hair + Green Headband -->
+                        <circle cx="92" cy="86" r="52" fill="#23120b"></circle>
+                        <path fill="#00682c" d="M 52,104 A 40,38 0 0,1 132,104 Z"></path>
+                        <circle cx="50" cy="115" r="10" fill="#935833"></circle>
+                        <circle cx="134" cy="115" r="10" fill="#935833"></circle>
+                        <ellipse cx="92" cy="112" rx="40" ry="43" fill="#935833"></ellipse>
+                        <path d="M 68,96 C 74,93 82,93 86,95" fill="none" stroke="#23120b" stroke-width="3.5" stroke-linecap="round"></path>
+                        <path d="M 98,95 C 102,93 110,93 116,96" fill="none" stroke="#23120b" stroke-width="3.5" stroke-linecap="round"></path>
+                        <circle cx="77" cy="108" r="4.2" fill="#0d0d0d"></circle>
+                        <circle cx="107" cy="108" r="4.2" fill="#0d0d0d"></circle>
+                        <path fill="#ffffff" d="M 79,124 L 105,124 A 13,12 0 0,1 79,124 Z"></path>
+                    </g>
+
+                    <!-- ========================================================= -->
+                    <!-- CENTER CHARACTER: CYAN "I ❤️ Open Data" SHIRT WITH ARMS    -->
+                    <!-- ========================================================= -->
+                    <g class="char-center-bob">
+                        <!-- 1. Back Long Orange Hair Layer (#ff6600) -->
+                        <path fill="#ff6600" d="
+                            M 240,54
+                            C 198,54 186,84 182,126
+                            C 178,162 170,192 174,208
+                            L 306,208
+                            C 310,192 302,162 298,126
+                            C 294,84 282,54 240,54 Z"></path>
+
+                        <!-- 2. Left & Right Bare Arms Emerging From Under the Cyan Sleeves -->
+                        <path fill="#ffd8b4" d="
+                            M 164,212
+                            L 188,212
+                            L 188,262
+                            L 200,278 C 203,282 199,286 196,283 L 188,275
+                            L 188,301 A 3.2,3.2 0 0,1 181.5,301 L 181.5,282 L 179.5,282
+                            L 179.5,303 A 3.2,3.2 0 0,1 173,303 L 173,282 L 171,282
+                            L 171,303 A 3.2,3.2 0 0,1 164.5,303 L 164.5,282 L 162.5,282
+                            L 162.5,302 A 3.2,3.2 0 0,1 156,302 Z"></path>
+
+                        <path fill="#ffd8b4" d="
+                            M 316,212
+                            L 292,212
+                            L 292,262
+                            L 280,278 C 277,282 281,286 284,283 L 292,275
+                            L 292,301 A 3.2,3.2 0 0,0 298.5,301 L 298.5,282 L 300.5,282
+                            L 300.5,303 A 3.2,3.2 0 0,0 307,303 L 307,282 L 309,282
+                            L 309,303 A 3.2,3.2 0 0,0 315.5,303 L 315.5,282 L 317.5,282
+                            L 317.5,302 A 3.2,3.2 0 0,0 324,302 Z"></path>
+
+                        <!-- 3. Single Unified Cyan T-Shirt (Torso + Both Sleeves + Smooth Shoulders) -->
+                        <path fill="#00bdf2" d="
+                            M 156,226
+                            L 168,186
+                            C 178,168 198,162 240,162
+                            C 282,162 302,168 312,186
+                            L 324,226
+                            L 298,234
+                            L 300,355
+                            L 180,355
+                            L 182,234 Z"></path>
+
+                        <!-- Neck (#c89d7c) with Rounded Collar Bottom -->
+                        <path fill="#c89d7c" d="
+                            M 226,136
+                            L 254,136
+                            L 254,166
+                            A 14,15 0 0,1 226,166 Z"></path>
+
+                        <!-- "I ❤️ Open Data" Graphic on Shirt -->
+                        <rect x="206" y="216" width="5" height="38" rx="2" fill="#ffffff"></rect>
+                        <path class="od-heart" fill="#ff0000" d="
+                            M 248,262
+                            C 248,262 222,244 222,226
+                            C 222,216 230,210 238,210
+                            C 243,210 246,214 248,218
+                            C 250,214 253,210 258,210
+                            C 266,210 274,216 274,226
+                            C 274,244 248,262 248,262 Z"></path>
+                        <text x="240" y="302" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="40" font-weight="500">Open</text>
+                        <text x="240" y="344" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="40" font-weight="500">Data</text>
+
+                        <!-- 4. Face & Unified Orange Hair Bangs -->
+                        <circle cx="195" cy="115" r="10" fill="#ffd8b4"></circle>
+                        <circle cx="285" cy="115" r="10" fill="#ffd8b4"></circle>
+                        <ellipse cx="240" cy="112" rx="43" ry="45" fill="#ffd8b4"></ellipse>
+                        <path fill="#ff6600" d="
+                            M 192,108
+                            C 190,66 212,54 240,54
+                            C 268,54 290,66 288,108
+                            C 270,108 252,96 240,78
+                            C 228,96 210,108 192,108 Z"></path>
+
+                        <!-- Eyebrows, Eyes & Smile -->
+                        <path d="M 215,96 C 221,93 228,93 233,95" fill="none" stroke="#b94700" stroke-width="3.5" stroke-linecap="round"></path>
+                        <path d="M 247,95 C 252,93 259,93 265,96" fill="none" stroke="#b94700" stroke-width="3.5" stroke-linecap="round"></path>
+                        <circle cx="224" cy="108" r="4.5" fill="#0d0d0d"></circle>
+                        <circle cx="256" cy="108" r="4.5" fill="#0d0d0d"></circle>
+                        <path d="M 231,126 C 236,132 244,132 249,126" fill="none" stroke="#0d0d0d" stroke-width="4.2" stroke-linecap="round"></path>
+                    </g>
+
+                    <!-- ========================================================= -->
+                    <!-- RIGHT CHARACTER: GREEN SHIRT + ARMS HOLDING TABLET        -->
+                    <!-- ========================================================= -->
+                    <g class="char-right-bob">
+                        <!-- 1. Left & Right Forearms Emerging From Under the Green Sleeves -->
+                        <path fill="#dab396" d="M 326,214 C 314,252 320,295 344,328 L 362,316 C 344,288 340,252 348,218 Z"></path>
+                        <path fill="#dab396" d="M 458,214 C 470,252 464,295 440,328 L 422,316 C 440,288 444,252 436,218 Z"></path>
+
+                        <!-- 2. Single Unified Bright Green T-Shirt (Torso + Both Sleeves + Smooth Shoulders) -->
+                        <path fill="#00cc00" d="
+                            M 314,224
+                            L 326,186
+                            C 336,168 356,162 392,162
+                            C 428,162 448,168 458,186
+                            L 470,224
+                            L 444,232
+                            L 448,355
+                            L 336,355
+                            L 340,232 Z"></path>
+
+                        <!-- Neck (#c89d7c) with Rounded Collar Bottom -->
+                        <path fill="#c89d7c" d="
+                            M 378,136
+                            L 406,136
+                            L 406,166
+                            A 14,15 0 0,1 378,166 Z"></path>
+
+                        <!-- 3. Face & Unified Dark-Brown Hair Cap (#261204) -->
+                        <circle cx="348" cy="115" r="10" fill="#dab396"></circle>
+                        <circle cx="436" cy="115" r="10" fill="#dab396"></circle>
+                        <ellipse cx="392" cy="112" rx="43" ry="45" fill="#dab396"></ellipse>
+                        <path fill="#261204" d="
+                            M 346,104
+                            C 346,66 366,54 392,54
+                            C 418,54 438,68 438,104
+                            C 424,98 414,90 406,80
+                            C 392,96 370,106 346,104 Z"></path>
+
+                        <!-- Eyebrows, Eyes & Smile -->
+                        <path d="M 368,96 C 374,94 381,94 386,96" fill="none" stroke="#261204" stroke-width="3.5" stroke-linecap="round"></path>
+                        <path d="M 398,96 C 403,94 410,94 416,96" fill="none" stroke="#261204" stroke-width="3.5" stroke-linecap="round"></path>
+                        <circle cx="376" cy="108" r="4.5" fill="#0d0d0d"></circle>
+                        <circle cx="408" cy="108" r="4.5" fill="#0d0d0d"></circle>
+                        <path d="M 383,126 C 388,132 396,132 401,126" fill="none" stroke="#0d0d0d" stroke-width="4.2" stroke-linecap="round"></path>
+
+                        <!-- 4. Held Tablet & Gripping Fingers -->
+                        <g class="tablet-lift">
+                            <!-- Tablet Frame (#191919) & Blue Screen (#0066ff) -->
+                            <rect x="336" y="242" width="112" height="90" rx="10" fill="#191919"></rect>
+                            <rect x="343" y="249" width="98" height="76" rx="7" fill="#0066ff"></rect>
+
+                            <!-- Mini Bottle inside Tablet -->
+                            <rect x="355" y="256" width="12" height="7" rx="3" fill="#ff0000"></rect>
+                            <rect x="349" y="263" width="24" height="54" rx="7" fill="#4a2511"></rect>
+                            <rect x="349" y="276" width="24" height="26" fill="#ff3b30"></rect>
+
+                            <!-- 6 Sugar Cube Pyramid inside Tablet -->
+                            <g fill="#fafafa">
+                                <rect x="380" y="302" width="15" height="15"></rect>
+                                <rect x="398" y="302" width="15" height="15"></rect>
+                                <rect x="416" y="302" width="15" height="15"></rect>
+                                <rect x="389" y="285" width="15" height="15"></rect>
+                                <rect x="407" y="285" width="15" height="15"></rect>
+                                <rect x="398" y="268" width="15" height="15"></rect>
+                            </g>
+
+                            <!-- Diagonal White Screen Glare -->
+                            <path fill="#ffffff" opacity="0.2" d="M 343,249 L 441,325 L 343,325 Z"></path>
+
+                            <!-- Left & Right Hands Gripping Tablet Bottom Corners (4 Fingers Each) -->
+                            <g fill="#dab396">
+                                <rect x="334" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="342" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="350" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="358" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="419" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="427" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="435" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="443" y="320" width="7" height="16" rx="3.5"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
                 </div>
                 <span class="obf-badge-pill cyan">100% Open Data</span>
                 <h3>For everyone</h3>
@@ -713,7 +1338,74 @@
             <article class="off-feature-card reuse-card purple-top">
                 <div class="off-card-art">
                     <a href="/science">
-                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0ic3ZnLXNjaWVuY2UtaWNvbiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMzgwIDI4MCIgd2lkdGg9IjM4MCIgaGVpZ2h0PSIyODAiIGNsYXNzPSJtYXgtdy1bNDIwcHhdIj4KICAgICAgICAgICAgICAgICAgICA8c3R5bGU+CiAgICAgICAgICAgICAgICAgICAgICAgIC5zY2ktYmFyIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRyYW5zZm9ybS1ib3g6IGZpbGwtYm94OwogICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtLW9yaWdpbjogYm90dG9tIGNlbnRlcjsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFuaW1hdGlvbjogYmFyV2F2ZSAzLjJzIGN1YmljLWJlemllcigwLjQsIDAsIDAuMiwgMSkgaW5maW5pdGU7CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIxICB7IGFuaW1hdGlvbi1kZWxheTogMC4wMHM7IH0gLmIyICB7IGFuaW1hdGlvbi1kZWxheTogMC4wNnM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIzICB7IGFuaW1hdGlvbi1kZWxheTogMC4xMnM7IH0gLmI0ICB7IGFuaW1hdGlvbi1kZWxheTogMC4xOHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmI1ICB7IGFuaW1hdGlvbi1kZWxheTogMC4yNHM7IH0gLmI2ICB7IGFuaW1hdGlvbi1kZWxheTogMC4zMHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmI3ICB7IGFuaW1hdGlvbi1kZWxheTogMC4zNnM7IH0gLmI4ICB7IGFuaW1hdGlvbi1kZWxheTogMC40MnM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmI5ICB7IGFuaW1hdGlvbi1kZWxheTogMC40OHM7IH0gLmIxMCB7IGFuaW1hdGlvbi1kZWxheTogMC41NHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIxMSB7IGFuaW1hdGlvbi1kZWxheTogMC42MHM7IH0gLmIxMiB7IGFuaW1hdGlvbi1kZWxheTogMC42NnM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIxMyB7IGFuaW1hdGlvbi1kZWxheTogMC43MnM7IH0gLmIxNCB7IGFuaW1hdGlvbi1kZWxheTogMC43OHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIxNSB7IGFuaW1hdGlvbi1kZWxheTogMC44NHM7IH0gLmIxNiB7IGFuaW1hdGlvbi1kZWxheTogMC45MHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIxNyB7IGFuaW1hdGlvbi1kZWxheTogMC45NnM7IH0gLmIxOCB7IGFuaW1hdGlvbi1kZWxheTogMS4wMnM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIxOSB7IGFuaW1hdGlvbi1kZWxheTogMS4wOHM7IH0gLmIyMCB7IGFuaW1hdGlvbi1kZWxheTogMS4xNHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIyMSB7IGFuaW1hdGlvbi1kZWxheTogMS4yMHM7IH0gLmIyMiB7IGFuaW1hdGlvbi1kZWxheTogMS4yNnM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgLmIyMyB7IGFuaW1hdGlvbi1kZWxheTogMS4zMnM7IH0gLmIyNCB7IGFuaW1hdGlvbi1kZWxheTogMS4zOHM7IH0KICAgICAgICAgICAgICAgICAgICAgICAgc3ZnLnBhdXNlZCAqIHsgYW5pbWF0aW9uLXBsYXktc3RhdGU6IHBhdXNlZCAhaW1wb3J0YW50OyB9CiAgICAgICAgICAgICAgICAgICAgICAgIEBrZXlmcmFtZXMgYmFyV2F2ZSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAwJSwgMTAwJSB7IHRyYW5zZm9ybTogc2NhbGVZKDEpOyB9CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAzMCUgeyB0cmFuc2Zvcm06IHNjYWxlWSgwLjE4KTsgfQogICAgICAgICAgICAgICAgICAgICAgICAgICAgNjUlIHsgdHJhbnNmb3JtOiBzY2FsZVkoMS4wNik7IH0KICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIDwvc3R5bGU+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gNCBIb3Jpem9udGFsIFJlZmVyZW5jZSBHcmlkIExpbmVzIC0tPgogICAgICAgICAgICAgICAgICAgIDxsaW5lIHgxPSIxMiIgeTE9IjMyIiB4Mj0iMzY4IiB5Mj0iMzIiIHN0cm9rZT0iI2NjY2NjYyIgc3Ryb2tlLXdpZHRoPSIxIj48L2xpbmU+CiAgICAgICAgICAgICAgICAgICAgPGxpbmUgeDE9IjEyIiB5MT0iMTEyIiB4Mj0iMzY4IiB5Mj0iMTEyIiBzdHJva2U9IiNjY2NjY2MiIHN0cm9rZS13aWR0aD0iMSI+PC9saW5lPgogICAgICAgICAgICAgICAgICAgIDxsaW5lIHgxPSIxMiIgeTE9IjE5MiIgeDI9IjM2OCIgeTI9IjE5MiIgc3Ryb2tlPSIjY2NjY2NjIiBzdHJva2Utd2lkdGg9IjEiPjwvbGluZT4KICAgICAgICAgICAgICAgICAgICA8bGluZSB4MT0iMTIiIHkxPSIyNzIiIHgyPSIzNjgiIHkyPSIyNzIiIHN0cm9rZT0iI2NjY2NjYyIgc3Ryb2tlLXdpZHRoPSIxIj48L2xpbmU+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gNCBHcmVlbiBCYXJzICgjMDBhNjAwKSAtLT4KICAgICAgICAgICAgICAgICAgICA8cmVjdCBjbGFzcz0ic2NpLWJhciBiMSIgeD0iMTQiIHk9IjI2MSIgd2lkdGg9IjEyIiBoZWlnaHQ9IjExIiBmaWxsPSIjMDBhNjAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjIiIHg9IjI4IiB5PSIyMzYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIzNiIgZmlsbD0iIzAwYTYwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIzIiB4PSI0MiIgeT0iMjE0IiB3aWR0aD0iMTIiIGhlaWdodD0iNTgiIGZpbGw9IiMwMGE2MDAiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICA8cmVjdCBjbGFzcz0ic2NpLWJhciBiNCIgeD0iNTciIHk9IjIxNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjU4IiBmaWxsPSIjMDBhNjAwIj48L3JlY3Q+CgogICAgICAgICAgICAgICAgICAgIDwhLS0gNiBZZWxsb3cgQmFycyAoI2ZmZTUwMCkgLS0+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjUiIHg9IjcxIiB5PSIyNjQiIHdpZHRoPSIxMiIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZlNTAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjYiIHg9Ijg1IiB5PSIyMTYiIHdpZHRoPSIxMiIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmZTUwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGI3IiB4PSIxMDAiIHk9IjIzMyIgd2lkdGg9IjEyIiBoZWlnaHQ9IjM5IiBmaWxsPSIjZmZlNTAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjgiIHg9IjExNCIgeT0iMjQwIiB3aWR0aD0iMTIiIGhlaWdodD0iMzIiIGZpbGw9IiNmZmU1MDAiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICA8cmVjdCBjbGFzcz0ic2NpLWJhciBiOSIgeD0iMTI4IiB5PSIyNDAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIzMiIgZmlsbD0iI2ZmZTUwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIxMCIgeD0iMTQzIiB5PSIyNDciIHdpZHRoPSIxMiIgaGVpZ2h0PSIyNSIgZmlsbD0iI2ZmZTUwMCI+PC9yZWN0PgoKICAgICAgICAgICAgICAgICAgICA8IS0tIDcgT3JhbmdlIEJhcnMgKCNmZjdiMDApIC0tPgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIxMSIgeD0iMTU3IiB5PSIyNTMiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxOSIgZmlsbD0iI2ZmN2IwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIxMiIgeD0iMTcxIiB5PSIyNjEiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMSIgZmlsbD0iI2ZmN2IwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIxMyIgeD0iMTg1IiB5PSIyNjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSI2IiBmaWxsPSIjZmY3YjAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjE0IiB4PSIyMDAiIHk9IjI1NyIgd2lkdGg9IjEyIiBoZWlnaHQ9IjE1IiBmaWxsPSIjZmY3YjAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjE1IiB4PSIyMTQiIHk9IjIzMSIgd2lkdGg9IjEyIiBoZWlnaHQ9IjQxIiBmaWxsPSIjZmY3YjAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjE2IiB4PSIyMjgiIHk9IjE5MiIgd2lkdGg9IjEyIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZmY3YjAwIj48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjE3IiB4PSIyNDIiIHk9IjExOCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjE1NCIgZmlsbD0iI2ZmN2IwMCI+PC9yZWN0PgoKICAgICAgICAgICAgICAgICAgICA8IS0tIDUgTWFnZW50YSBCYXJzICgjZmYwMGQ0KSAtLT4KICAgICAgICAgICAgICAgICAgICA8cmVjdCBjbGFzcz0ic2NpLWJhciBiMTgiIHg9IjI1NyIgeT0iMTI4IiB3aWR0aD0iMTIiIGhlaWdodD0iMTQ0IiBmaWxsPSIjZmYwMGQ0Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjE5IiB4PSIyNzEiIHk9IjkwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTgyIiBmaWxsPSIjZmYwMGQ0Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjIwIiB4PSIyODUiIHk9IjU4IiB3aWR0aD0iMTIiIGhlaWdodD0iMjE0IiBmaWxsPSIjZmYwMGQ0Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjIxIiB4PSIyOTkiIHk9IjQ0IiB3aWR0aD0iMTIiIGhlaWdodD0iMjI4IiBmaWxsPSIjZmYwMGQ0Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgPHJlY3QgY2xhc3M9InNjaS1iYXIgYjIyIiB4PSIzMTQiIHk9IjExMiIgd2lkdGg9IjEyIiBoZWlnaHQ9IjE2MCIgZmlsbD0iI2ZmMDBkNCI+PC9yZWN0PgoKICAgICAgICAgICAgICAgICAgICA8IS0tIDMgUmVkIEJhcnMgKCNmZjAwMDApIC0tPgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIyMyIgeD0iMzI4IiB5PSIxOTIiIHdpZHRoPSIxMiIgaGVpZ2h0PSI4MCIgZmlsbD0iI2ZmMDAwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIyNCIgeD0iMzQyIiB5PSIyMTYiIHdpZHRoPSIxMiIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmMDAwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGNsYXNzPSJzY2ktYmFyIGIyNCIgeD0iMzU2IiB5PSIyMDQiIHdpZHRoPSIxMiIgaGVpZ2h0PSI2OCIgZmlsbD0iI2ZmMDAwMCI+PC9yZWN0PgogICAgICAgICAgICAgICAgPC9zdmc+" alt="Scientific research flask analyzing cosmetic chemistry" width="160" height="130" loading="lazy">
+                        <svg id="svg-science-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 280" class="max-w-[420px]" role="img" aria-label="Scientific research flask analyzing cosmetic chemistry">
+                    <style>
+                        .sci-bar {
+                            transform-box: fill-box;
+                            transform-origin: bottom center;
+                            animation: barWave 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        }
+                        .b1  { animation-delay: 0.00s; } .b2  { animation-delay: 0.06s; }
+                        .b3  { animation-delay: 0.12s; } .b4  { animation-delay: 0.18s; }
+                        .b5  { animation-delay: 0.24s; } .b6  { animation-delay: 0.30s; }
+                        .b7  { animation-delay: 0.36s; } .b8  { animation-delay: 0.42s; }
+                        .b9  { animation-delay: 0.48s; } .b10 { animation-delay: 0.54s; }
+                        .b11 { animation-delay: 0.60s; } .b12 { animation-delay: 0.66s; }
+                        .b13 { animation-delay: 0.72s; } .b14 { animation-delay: 0.78s; }
+                        .b15 { animation-delay: 0.84s; } .b16 { animation-delay: 0.90s; }
+                        .b17 { animation-delay: 0.96s; } .b18 { animation-delay: 1.02s; }
+                        .b19 { animation-delay: 1.08s; } .b20 { animation-delay: 1.14s; }
+                        .b21 { animation-delay: 1.20s; } .b22 { animation-delay: 1.26s; }
+                        .b23 { animation-delay: 1.32s; } .b24 { animation-delay: 1.38s; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes barWave {
+                            0%, 100% { transform: scaleY(1); }
+                            30% { transform: scaleY(0.18); }
+                            65% { transform: scaleY(1.06); }
+                        }
+                    </style>
+
+                    <!-- 4 Horizontal Reference Grid Lines -->
+                    <line x1="12" y1="32" x2="368" y2="32" stroke="#cccccc" stroke-width="1"></line>
+                    <line x1="12" y1="112" x2="368" y2="112" stroke="#cccccc" stroke-width="1"></line>
+                    <line x1="12" y1="192" x2="368" y2="192" stroke="#cccccc" stroke-width="1"></line>
+                    <line x1="12" y1="272" x2="368" y2="272" stroke="#cccccc" stroke-width="1"></line>
+
+                    <!-- 4 Green Bars (#00a600) -->
+                    <rect class="sci-bar b1" x="14" y="261" width="12" height="11" fill="#00a600"></rect>
+                    <rect class="sci-bar b2" x="28" y="236" width="12" height="36" fill="#00a600"></rect>
+                    <rect class="sci-bar b3" x="42" y="214" width="12" height="58" fill="#00a600"></rect>
+                    <rect class="sci-bar b4" x="57" y="214" width="12" height="58" fill="#00a600"></rect>
+
+                    <!-- 6 Yellow Bars (#ffe500) -->
+                    <rect class="sci-bar b5" x="71" y="264" width="12" height="8" fill="#ffe500"></rect>
+                    <rect class="sci-bar b6" x="85" y="216" width="12" height="56" fill="#ffe500"></rect>
+                    <rect class="sci-bar b7" x="100" y="233" width="12" height="39" fill="#ffe500"></rect>
+                    <rect class="sci-bar b8" x="114" y="240" width="12" height="32" fill="#ffe500"></rect>
+                    <rect class="sci-bar b9" x="128" y="240" width="12" height="32" fill="#ffe500"></rect>
+                    <rect class="sci-bar b10" x="143" y="247" width="12" height="25" fill="#ffe500"></rect>
+
+                    <!-- 7 Orange Bars (#ff7b00) -->
+                    <rect class="sci-bar b11" x="157" y="253" width="12" height="19" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b12" x="171" y="261" width="12" height="11" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b13" x="185" y="266" width="12" height="6" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b14" x="200" y="257" width="12" height="15" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b15" x="214" y="231" width="12" height="41" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b16" x="228" y="192" width="12" height="80" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b17" x="242" y="118" width="12" height="154" fill="#ff7b00"></rect>
+
+                    <!-- 5 Magenta Bars (#ff00d4) -->
+                    <rect class="sci-bar b18" x="257" y="128" width="12" height="144" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b19" x="271" y="90" width="12" height="182" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b20" x="285" y="58" width="12" height="214" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b21" x="299" y="44" width="12" height="228" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b22" x="314" y="112" width="12" height="160" fill="#ff00d4"></rect>
+
+                    <!-- 3 Red Bars (#ff0000) -->
+                    <rect class="sci-bar b23" x="328" y="192" width="12" height="80" fill="#ff0000"></rect>
+                    <rect class="sci-bar b24" x="342" y="216" width="12" height="56" fill="#ff0000"></rect>
+                    <rect class="sci-bar b24" x="356" y="204" width="12" height="68" fill="#ff0000"></rect>
+                </svg>
                     </a>
                 </div>
                 <span class="obf-badge-pill purple">Citizen Science</span>
@@ -763,26 +1455,39 @@
         window.addEventListener("resize", sendHeight);
 
         // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
-        document.querySelectorAll('img[src$="-animated.svg"], img[src*="animated"]').forEach(img => {
-            fetch(img.src)
-                .then(r => r.ok ? r.text() : Promise.reject())
-                .then(svgText => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(svgText, 'image/svg+xml');
-                    const svg = doc.querySelector('svg');
-                    if (svg) {
-                        if (img.id) svg.id = img.id;
-                        if (img.className) svg.classList.add(...img.classList);
-                        if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
-                        if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
-                        if (img.getAttribute('alt')) {
-                            svg.setAttribute('role', 'img');
-                            svg.setAttribute('aria-label', img.getAttribute('alt'));
-                        }
-                        img.parentNode.replaceChild(svg, img);
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
                     }
-                })
-                .catch(() => {});
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
+
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
         });
     });
 </script>
