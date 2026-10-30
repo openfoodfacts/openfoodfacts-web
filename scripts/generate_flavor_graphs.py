@@ -191,7 +191,34 @@ opf_svg = generate_svg_scatter(
     border_color='#4338ca'
 )
 
-# Save SVGs in html/images/svg/ and openfoodfacts-design/images/
+# 4. Open Prices (OP)
+prices_thumb = '''
+<rect width="133" height="74" fill="#ecfdf5" rx="4" />
+<!-- Price tag & coin icon -->
+<g transform="translate(48, 10) scale(0.72)">
+  <path d="M12 28 L32 8 L54 8 L54 30 L34 50 Z" fill="#ffffff" stroke="#059669" stroke-width="2.5" />
+  <circle cx="44" cy="18" r="3.5" fill="#059669" />
+  <circle cx="24" cy="38" r="12" fill="#f59e0b" stroke="#ffffff" stroke-width="2" />
+  <text x="24" y="42" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">€</text>
+</g>
+'''
+prices_colors = ['#059669', '#10b981', '#34d399', '#f59e0b', '#d97706', '#0284c7', '#ef4444']
+prices_svg = generate_svg_scatter(
+    flavor='prices',
+    title='Hazelnut Spread 400g',
+    img_svg_snippet=prices_thumb,
+    metric1_label='Price / kg',
+    metric1_val='7.48 €',
+    metric2_label='Shelf price',
+    metric2_val='2.99 €',
+    unit_header='Retail price :',
+    pointer_x=115,
+    pointer_y=195,
+    dot_colors=prices_colors,
+    border_color='#059669'
+)
+
+# Save SVGs in html/images/svg/
 os.makedirs('html/images/svg', exist_ok=True)
 with open('html/images/svg/compare-graph-obf.svg', 'w') as f:
     f.write(obf_svg)
@@ -199,5 +226,7 @@ with open('html/images/svg/compare-graph-opff.svg', 'w') as f:
     f.write(opff_svg)
 with open('html/images/svg/compare-graph-opf.svg', 'w') as f:
     f.write(opf_svg)
+with open('html/images/svg/compare-graph-prices.svg', 'w') as f:
+    f.write(prices_svg)
 
-print('Successfully generated compare-graph-obf.svg, compare-graph-opff.svg, compare-graph-opf.svg')
+print('Successfully generated compare-graph-obf.svg, compare-graph-opff.svg, compare-graph-opf.svg, compare-graph-prices.svg')

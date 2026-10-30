@@ -28,6 +28,8 @@ PAGES = [
     ('opff-contribute', 'lang/opff/en/texts/contribute.html', 'Open Pet Food Facts — Contribute Preview'),
     ('opf-discover', 'lang/opf/en/texts/discover.html', 'Open Products Facts — Discover Preview'),
     ('opf-contribute', 'lang/opf/en/texts/contribute.html', 'Open Products Facts — Contribute Preview'),
+    ('prices-discover', 'lang/prices/en/texts/discover.html', 'Open Prices — Discover Preview'),
+    ('prices-contribute', 'lang/prices/en/texts/contribute.html', 'Open Prices — Contribute Preview'),
 ]
 
 def build_preview(page_key, src_file, title):
@@ -132,6 +134,7 @@ def build_preview(page_key, src_file, title):
         .opff-hero:hover svg, .opff-hero:hover svg *,
         .obf-hero:hover svg, .obf-hero:hover svg *,
         .opf-hero:hover svg, .opf-hero:hover svg *,
+        .op-hero:hover svg, .op-hero:hover svg *,
         svg:hover, svg:hover * {{
             animation-play-state: running !important;
         }}
@@ -266,6 +269,8 @@ def build_preview(page_key, src_file, title):
             <a href="preview-opff-contribute.html" class="nav-switch-link {'active' if page_key == 'opff-contribute' else ''}">OPFF Contribute</a>
             <a href="preview-opf-discover.html" class="nav-switch-link {'active' if page_key == 'opf-discover' else ''}">OPF Discover</a>
             <a href="preview-opf-contribute.html" class="nav-switch-link {'active' if page_key == 'opf-contribute' else ''}">OPF Contribute</a>
+            <a href="preview-prices-discover.html" class="nav-switch-link {'active' if page_key == 'prices-discover' else ''}">Prices Discover</a>
+            <a href="preview-prices-contribute.html" class="nav-switch-link {'active' if page_key == 'prices-contribute' else ''}">Prices Contribute</a>
         </div>
     </header>
 
