@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg-op-loyalty-cards" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" width="560" height="420" class="">
+                    <style>
+                        .loy-card-left {
+                            animation: fanLeftCard 4.4s ease-in-out infinite;
+                            transform-origin: 280px 320px;
+                        }
+                        .loy-card-mid {
+                            animation: fanMidCard 4.4s ease-in-out infinite;
+                            transform-origin: 280px 320px;
+                        }
+                        .loy-card-right {
+                            animation: fanRightCard 4.4s ease-in-out infinite;
+                            transform-origin: 280px 320px;
+                        }
+                        .loy-coin-bob {
+                            animation: loyCoinFloat 4.4s ease-in-out infinite;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes fanLeftCard {
+                            0%, 100% { transform: rotate(-16deg) translateY(0px); }
+                            50% { transform: rotate(-24deg) translate(-10px, -8px); }
+                        }
+                        @keyframes fanMidCard {
+                            0%, 100% { transform: rotate(-2deg) translateY(0px); }
+                            50% { transform: rotate(0deg) translateY(-12px); }
+                        }
+                        @keyframes fanRightCard {
+                            0%, 100% { transform: rotate(12deg) translateY(0px); }
+                            50% { transform: rotate(20deg) translate(10px, -6px); }
+                        }
+                        @keyframes loyCoinFloat {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-10px); }
+                        }
+                    </style>
+
+                    <circle cx="280" cy="215" r="165" fill="#dcf0f7"></circle>
+
+                    <!-- Card 1 (Back Left — Orange Store Card #ff6b35) -->
+                    <g class="loy-card-left">
+                        <rect x="130" y="96" width="240" height="150" rx="18" fill="#ff6b35" stroke="#ffffff" stroke-width="4"></rect>
+                        <circle cx="174" cy="140" r="20" fill="#ffc412"></circle>
+                        <rect x="206" y="128" width="110" height="12" rx="6" fill="#ffffff"></rect>
+                        <rect x="206" y="148" width="70" height="10" rx="5" fill="#ffd8b8"></rect>
+                        <rect x="154" y="182" width="192" height="44" rx="8" fill="#ffffff"></rect>
+                    </g>
+
+                    <!-- Card 2 (Middle — Cyan Store Card #00bdf2) -->
+                    <g class="loy-card-mid">
+                        <rect x="150" y="106" width="240" height="150" rx="18" fill="#00bdf2" stroke="#ffffff" stroke-width="4"></rect>
+                        <circle cx="194" cy="150" r="20" fill="#ffffff"></circle>
+                        <path fill="#ff6270" d="M 194,160 C 194,160 180,150 180,142 A 7,7 0 0,1 194,139 A 7,7 0 0,1 208,142 C 208,150 194,160 194,160 Z"></path>
+                        <rect x="228" y="138" width="120" height="12" rx="6" fill="#ffffff"></rect>
+                        <rect x="228" y="158" width="84" height="10" rx="5" fill="#dcf0f7"></rect>
+                        <rect x="174" y="192" width="192" height="44" rx="8" fill="#ffffff"></rect>
+                    </g>
+
+                    <!-- Card 3 (Front Right — Green Store Loyalty Card #009a49 with Full Barcode) -->
+                    <g class="loy-card-right">
+                        <rect x="170" y="122" width="246" height="154" rx="18" fill="#009a49" stroke="#ffffff" stroke-width="4"></rect>
+                        <!-- Loyalty Star Badge -->
+                        <circle cx="216" cy="166" r="22" fill="#ffc412"></circle>
+                        <text x="216" y="174" text-anchor="middle" fill="#181818" font-size="22" font-weight="800">★</text>
+                        <rect x="252" y="152" width="124" height="14" rx="7" fill="#ffffff"></rect>
+                        <rect x="252" y="174" width="82" height="10" rx="5" fill="#7fbc2b"></rect>
+
+                        <!-- White Barcode Strip -->
+                        <rect x="194" y="204" width="198" height="52" rx="10" fill="#ffffff"></rect>
+                        <g fill="#181818" transform="translate(212, 213)">
+                            <rect x="0" y="0" width="5" height="34"></rect><rect x="9" y="0" width="3" height="34"></rect>
+                            <rect x="16" y="0" width="8" height="34"></rect><rect x="28" y="0" width="4" height="34"></rect>
+                            <rect x="36" y="0" width="9" height="34"></rect><rect x="49" y="0" width="3" height="34"></rect>
+                            <rect x="56" y="0" width="7" height="34"></rect><rect x="67" y="0" width="10" height="34"></rect>
+                            <rect x="81" y="0" width="4" height="34"></rect><rect x="89" y="0" width="8" height="34"></rect>
+                            <rect x="101" y="0" width="3" height="34"></rect><rect x="108" y="0" width="9" height="34"></rect>
+                            <rect x="121" y="0" width="4" height="34"></rect><rect x="129" y="0" width="7" height="34"></rect>
+                            <rect x="140" y="0" width="5" height="34"></rect><rect x="149" y="0" width="8" height="34"></rect>
+                        </g>
+                    </g>
+
+                    <!-- Floating Attached coin-euro.svg & Green check.svg -->
+                    <g class="loy-coin-bob" transform="translate(76, 268) scale(0.84)">
+                        <circle cx="44" cy="44" r="44" fill="#ffc412"></circle>
+                        <circle cx="44" cy="44" r="32" fill="#d49619"></circle>
+                        <path d="M 54,28 C 44,24 33,30 31,41 L 30,47 C 32,57 44,63 54,59" fill="none" stroke="#6c3c00" stroke-width="7" stroke-linecap="round"></path>
+                        <line x1="24" y1="41" x2="50" y2="41" stroke="#6c3c00" stroke-width="5.5"></line>
+                        <line x1="24" y1="48" x2="50" y2="48" stroke="#6c3c00" stroke-width="5.5"></line>
+                    </g>
+                </svg>
