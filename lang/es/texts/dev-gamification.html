@@ -1,0 +1,366 @@
+<!-- no side column -->
+<title>Gamification &amp; Editing Tools (Hunger Games) - Open Food Facts</title>
+
+<style>
+.dev-gamification-section {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1f2937;
+    margin: 1.5rem auto 3rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.dev-gamification-section *,
+.dev-gamification-section *::before,
+.dev-gamification-section *::after {
+    box-sizing: border-box;
+}
+
+.dev-gamification-section .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.dev-gamification-section .section-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+}
+
+.dev-gamification-section .section-header p.lead {
+    font-size: 1.1rem;
+    color: #4b5563;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.dev-gamification-hero {
+    background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+    border: 2px solid #fed7aa;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 16px rgba(234, 88, 12, 0.08);
+}
+
+.dev-gamification-hero-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.dev-gamification-hero h3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #9a3412;
+    margin: 0 0 0.75rem 0;
+}
+
+.dev-gamification-hero p {
+    font-size: 1rem;
+    color: #7c2d12;
+    line-height: 1.6;
+    margin: 0 0 1.25rem 0;
+}
+
+.dev-gamification-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.dev-gamification-stat {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid #fed7aa;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+}
+
+.dev-gamification-stat-val {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #c2410c;
+    display: block;
+}
+
+.dev-gamification-stat-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #7c2d12;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.dev-gamification-games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.dev-game-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.dev-game-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-color: #f97316;
+}
+
+.dev-game-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.dev-game-card h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+}
+
+.dev-game-card p {
+    font-size: 0.9rem;
+    color: #4b5563;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+    flex: 1;
+}
+
+.dev-game-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    background: #fff7ed;
+    color: #ea580c;
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+.dev-ai-loop-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+}
+
+.dev-ai-loop-box h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dev-ai-loop-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.dev-ai-loop-step {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1.2rem;
+    position: relative;
+}
+
+.dev-ai-loop-step-num {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #0284c7;
+    background: #e0f2fe;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 0.6rem;
+}
+
+.dev-ai-loop-step h5 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 0.35rem 0;
+}
+
+.dev-ai-loop-step p {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+    .dev-gamification-hero-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<div class="dev-gamification-section" id="dev-gamification">
+    <div class="section-header">
+        <h2>Gamification &amp; Editing Tools</h2>
+        <p class="lead">
+            Open Food Facts receives thousands of product photographs every day. Our gamification tools turn the tedious work of inspecting and extracting label data into quick, addictive micro-challenges that anyone can play anywhere.
+        </p>
+    </div>
+
+    <!-- Hunger Games Hero Spotlight -->
+    <div class="dev-gamification-hero">
+        <div class="dev-gamification-hero-grid">
+            <div>
+                <span style="display: inline-block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #ea580c; margin-bottom: 0.5rem;">Production Flagship</span>
+                <h3>🏹 Hunger Games</h3>
+                <p>
+                    <strong>Hunger Games</strong> is our real-time, browser-based annotation game. Built with modern <strong>React 19</strong>, <strong>TypeScript</strong>, <strong>Vite</strong>, and <strong>Material UI</strong>, it allows contributors to validate machine learning insights in seconds—from confirming food categories to spotting obscure eco-labels.
+                </p>
+                <div class="dev-gamification-stats">
+                    <div class="dev-gamification-stat">
+                        <span class="dev-gamification-stat-val">React 19 + TS</span>
+                        <span class="dev-gamification-stat-label">Modern Frontend</span>
+                    </div>
+                    <div class="dev-gamification-stat">
+                        <span class="dev-gamification-stat-val">1-Click</span>
+                        <span class="dev-gamification-stat-label">Rapid Annotation</span>
+                    </div>
+                    <div class="dev-gamification-stat">
+                        <span class="dev-gamification-stat-val">Active Learning</span>
+                        <span class="dev-gamification-stat-label">Trained with Robotoff</span>
+                    </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+                    <a href="https://hunger.openfoodfacts.org" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+                        🎮 Play Hunger Games Now
+                    </a>
+                    <a href="https://github.com/openfoodfacts/hunger-games" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
+                        GitHub Repo
+                    </a>
+                    <a href="https://openfoodfacts.slack.com/messages/C016V60S9B8/" class="btn-dev-action btn-slack-action" target="_blank" rel="noopener noreferrer">
+                        #hunger-games on Slack
+                    </a>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <div style="background: #ffffff; border-radius: 12px; padding: 1.25rem; border: 1px solid #fed7aa; box-shadow: 0 8px 24px rgba(234, 88, 12, 0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🥗🎯🏆</div>
+                    <div style="font-weight: 700; color: #111827; margin-bottom: 0.25rem;">Turn Photos into Open Data</div>
+                    <p style="font-size: 0.85rem; color: #6b7280; margin: 0;">Every click feeds directly into Open Food Facts and retrains computer vision models in real-time.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Mini-Game Modes -->
+    <div style="margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: #111827; margin: 0 0 0.5rem 0;">The Mini-Game Modes</h3>
+        <p style="font-size: 0.95rem; color: #4b5563; margin: 0 0 1.5rem 0;">Hunger Games is organized into modular mini-games designed for specific data extraction challenges:</p>
+    </div>
+
+    <div class="dev-gamification-games-grid">
+        <div class="dev-game-card">
+            <div class="dev-game-icon">🏷️</div>
+            <h4>Logo &amp; Brand Detective</h4>
+            <p>
+                Help detect and identify food brand logos, quality certifications (AB, Fairtrade, Rainforest Alliance), and eco-labels cropped by our computer vision neural networks.
+            </p>
+            <span class="dev-game-badge">Vision &amp; Logos</span>
+        </div>
+
+        <div class="dev-game-card">
+            <div class="dev-game-icon">🗂️</div>
+            <h4>Category Chooser</h4>
+            <p>
+                Confirm or re-classify AI-predicted food categories based on product titles and ingredient lists. One keystroke confirms or rejects a suggestion.
+            </p>
+            <span class="dev-game-badge">NLP &amp; Taxonomies</span>
+        </div>
+
+        <div class="dev-game-card">
+            <div class="dev-game-icon">📊</div>
+            <h4>Nutri-Sight Table Validator</h4>
+            <p>
+                Verify OCR-extracted nutrition tables (sugars, salt, saturated fat, protein) side-by-side with original photos to ensure 100% Nutri-Score precision.
+            </p>
+            <span class="dev-game-badge">OCR Verification</span>
+        </div>
+
+        <div class="dev-game-card">
+            <div class="dev-game-icon">♻️</div>
+            <h4>Packaging &amp; Recycling</h4>
+            <p>
+                Identify packaging components (caps, trays, pouches), materials (glass, PP, PET, aluminium), and recycling instructions for Green-Score computations.
+            </p>
+            <span class="dev-game-badge">Eco-Score / Green-Score</span>
+        </div>
+
+        <div class="dev-game-card">
+            <div class="dev-game-icon">⚖️</div>
+            <h4>Weights &amp; Quantities</h4>
+            <p>
+                Spot package net weight, volume, or piece counts to unlock automatic price-per-kilogram analysis and standardized nutrition computations.
+            </p>
+            <span class="dev-game-badge">Data Extraction</span>
+        </div>
+
+        <div class="dev-game-card">
+            <div class="dev-game-icon">💡</div>
+            <h4>Write Your Own Game!</h4>
+            <p>
+                Have an idea for a fun validation flow? The Hunger Games codebase is modular and built with Vite: write a new React component game mode in an afternoon!
+            </p>
+            <span class="dev-game-badge">Open for Contributions</span>
+        </div>
+    </div>
+
+    <!-- Active Learning Loop -->
+    <div class="dev-ai-loop-box">
+        <h3>🤖 The Human-in-the-Loop AI Feedback Loop</h3>
+        <p style="font-size: 0.95rem; color: #475569; margin: 0; line-height: 1.55;">
+            Hunger Games is not just a game: it is the human heart of our active learning artificial intelligence engine.
+        </p>
+        <div class="dev-ai-loop-steps">
+            <div class="dev-ai-loop-step">
+                <span class="dev-ai-loop-step-num">1</span>
+                <h5>Robot Prediction</h5>
+                <p>Robotoff runs OCR, object detection, and NLP models over newly uploaded product packaging photos.</p>
+            </div>
+            <div class="dev-ai-loop-step">
+                <span class="dev-ai-loop-step-num">2</span>
+                <h5>Human Verification</h5>
+                <p>Hunger Games serves uncertain predictions to human players as rapid, bite-sized questions.</p>
+            </div>
+            <div class="dev-ai-loop-step">
+                <span class="dev-ai-loop-step-num">3</span>
+                <h5>Database Update</h5>
+                <p>Validated facts are instantly committed to the live product database and visible worldwide.</p>
+            </div>
+            <div class="dev-ai-loop-step">
+                <span class="dev-ai-loop-step-num">4</span>
+                <h5>Model Retraining</h5>
+                <p>Annotations become labeled training data, continuously training smarter, more accurate models.</p>
+            </div>
+        </div>
+    </div>
+</div>
