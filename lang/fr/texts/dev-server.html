@@ -1,35 +1,176 @@
-<div class="row text-center">
-	<div class="medium-4 columns">
-		<img src="" alt="" style="height: 140px;">
-		<h3>L'intelligence derrière les applications et l'API Open Food Facts</h3>
-		<p>
-		Open Food Facts collecte des données via une API WRITE, les traite et les rend disponible via une API READ et une version web. Calculer le Nutri-Score, les groupes NOVA, extraire les additifs (peu importe leur langue), repérer les synonymes ou potentielles fautes de frappes. Voilà une infime fraction des sujets traités par l'équipe serveur, qui vise à garantir la transparence alimentaire à l'échelle planétaire.
-		</p>
-	</div>
+<!-- no side column -->
+<title>Backend principal &amp; API - Open Food Facts</title>
 
-	<div class="medium-4 columns">
-		<img src="" alt="" style="height: 140px;">
-		<h3>Contribuez au Core avec Perl</h3>
-		<p>Vous voulez apprendre un nouveau langage&nbsp;? Le serveur est principalement codé en Perl. Que vous soyez un vétéran accro au Perl ou que vous ayez simplement taquiné Perl pour résoudre des tâches sys-admin, vous trouverez un bug à votre taille, et des mentors pour vous guider. Et il y a plus d'une façon d'y arriver&nbsp;;-) 
-		</p>
-	</div>
+<style>
+.dev-server-section {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1f2937;
+    margin: 1.5rem auto 3rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
 
-	<div class="medium-4 columns">
-		<img src="" alt="" style="height: 140px;">
-		<h3>Créez des outils utiles dans le langage de votre choix</h3>
-		<p>HungerGames est un exemple d'un petit jeu codé en React qui a un impact positif sur Open Food Facts. LanguageSwitcher, un autre outil, est codé en Python. Votre outil, votre langage (mais évitez l'Assembleur&nbsp;;-) 
-		</p>
-	</div>
-</div>
-<div class="row text-center">
-	<div class="medium-4 columns">
-		<img src="https://world.openfoodfacts.org/files/presskit/PressKit/developers/coderswanted.png" style="height: 140px;" alt="">	
-		<h3>Rejoignez-nous sur Slack et GitHub</h3>
-		<p>
-			Nous nous synchronisons sur Slack et GitHub. Rejoignez la conversation sur le <a href="https://slack.openfoodfacts.org">Slack d'Open Food Facts</a> (vous pouvez vous y auto-inviter) et sur le dépôt <a href="https://github.com/openfoodfacts/openfoodfacts-server">openfoodfacts-server</a> sur GitHub.
-		</p>
-	</div>
-	<div class="medium-4 columns"></div>
-	<div class="medium-4 columns"></div>
+.dev-server-section *,
+.dev-server-section *::before,
+.dev-server-section *::after {
+    box-sizing: border-box;
+}
 
+.dev-server-section .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.dev-server-section .section-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+}
+
+.dev-server-section .section-header p.lead {
+    font-size: 1.1rem;
+    color: #4b5563;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+</style>
+
+<div class="dev-server-section" id="dev-server">
+    <div class="section-header">
+        <h2>Backend principal, API &amp; Moteur de données</h2>
+        <p class="lead">
+            L'équipe serveur alimente le cœur d'Open Food Facts : nos API de lecture/écriture à haut débit, nos calculs scientifiques complexes (Nutri-Score, NOVA, Éco-Score), nos ontologies de taxonomie, nos services de recherche et nos exports quotidiens de base de données ouverte.
+        </p>
+    </div>
+
+    <div class="dev-cards-grid">
+        <!-- Product-Opener Core -->
+        <div class="dev-card">
+            <div class="dev-card-header">
+                <div class="dev-card-icon" style="background: #eef2ff; color: #4f46e5;">🐪</div>
+                <div class="dev-card-title">
+                    <h3>Product-Opener (Cœur du serveur)</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag" style="background: #e0e7ff; color: #4338ca;">Perl</span>
+                        <span class="dev-tech-tag">MongoDB</span>
+                        <span class="dev-tech-tag">Taxonomies</span>
+                        <span class="dev-tech-tag">Calculs</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <p>
+                    <strong>Product-Opener</strong> est la base de données et l'application web principale qui alimente Open Food Facts. Il gère l'historique des produits, les comptes utilisateurs, les téléchargements d'images et les calculs de scores algorithmiques.
+                </p>
+                <ul class="dev-card-features">
+                    <li>Référence de calcul officielle pour le Nutri-Score, les groupes NOVA et l'Éco-Score</li>
+                    <li>Taxonomies multilingues mondiales traduisant des millions de synonymes d'ingrédients et de catégories alimentaires</li>
+                    <li>Suites de tests approfondies garantissant la rétrocompatibilité et la précision des calculs</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="https://github.com/openfoodfacts/openfoodfacts-server" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
+                    openfoodfacts-server sur GitHub
+                </a>
+                <a href="https://openfoodfacts.slack.com/messages/C02778A7Z3W/" class="btn-dev-action btn-slack-action" target="_blank" rel="noopener noreferrer">
+                    #product-opener sur Slack
+                </a>
+            </div>
+        </div>
+
+        <!-- Search-a-licious -->
+        <div class="dev-card">
+            <div class="dev-card-header">
+                <div class="dev-card-icon" style="background: #fffbeb; color: #d97706;">🍊</div>
+                <div class="dev-card-title">
+                    <h3>Moteur de recherche ultra-performant</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag" style="background: #fef3c7; color: #b45309;">Python</span>
+                        <span class="dev-tech-tag">Elasticsearch</span>
+                        <span class="dev-tech-tag">Recherche à facettes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <p>
+                    Un service de recherche enfichable et haute performance conçu pour parcourir des millions de produits en quelques millisecondes avec des combinaisons de filtres complexes, des facettes et une recherche approximative.
+                </p>
+                <ul class="dev-card-features">
+                    <li>Requêtes plein texte multilingues sur les ingrédients, les marques et les catégories</li>
+                    <li>Agrégation rapide de facettes pour les plages nutritionnelles et les attributs écologiques</li>
+                    <li>Architecture enfichable permettant différents moteurs de recherche</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="https://github.com/openfoodfacts/search-a-licious" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
+                    search-a-licious sur GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Modern APIs v2 / v3 & OpenAPI -->
+        <div class="dev-card">
+            <div class="dev-card-header">
+                <div class="dev-card-icon" style="background: #f0fdfa; color: #0d9488;">🔌</div>
+                <div class="dev-card-title">
+                    <h3>API REST &amp; Spécification OpenAPI</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag">OpenAPI 3.0</span>
+                        <span class="dev-tech-tag">JSON Schema</span>
+                        <span class="dev-tech-tag">Panneaux de connaissances</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <p>
+                    Nos API publiques servent plus de 100 millions de requêtes par mois aux applications mobiles, aux chercheurs scientifiques, aux organisations de santé et à des milliers d'utilisateurs commerciaux.
+                </p>
+                <ul class="dev-card-features">
+                    <li>API v3 avec des points de terminaison structurés pour la recherche, l'ajout et la mise à jour de produits</li>
+                    <li>API de panneaux de connaissances fournissant des explications sémantiques sous forme de cartes</li>
+                    <li>Documentation complète basée sur les standards OpenAPI</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+                    Documentation de l'API
+                </a>
+            </div>
+        </div>
+
+        <!-- Data Exports & Query Services -->
+        <div class="dev-card">
+            <div class="dev-card-header">
+                <div class="dev-card-icon" style="background: #fdf2f8; color: #db2777;">💾</div>
+                <div class="dev-card-title">
+                    <h3>Exports en masse &amp; pipeline de requêtes</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag">PostgreSQL</span>
+                        <span class="dev-tech-tag">Parquet / CSV</span>
+                        <span class="dev-tech-tag">Python</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-card-body">
+                <p>
+                    Nous croyons au libre accès. Nous maintenons des pipelines automatisés quotidiens extrayant les données de MongoDB vers des tables relationnelles PostgreSQL et publiant des dumps de données ouvertes de plusieurs gigaoctets.
+                </p>
+                <ul class="dev-card-features">
+                    <li>Dumps quotidiens en JSONL, CSV et Parquet compressé sur world.openfoodfacts.org/data</li>
+                    <li><code>openfoodfacts-query</code> pour refléter les collections clés dans des schémas relationnels</li>
+                    <li>Gratuit pour les chercheurs, les ONG, les développeurs et le bien commun mondial</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="/data" class="btn-dev-action btn-primary-action">
+                    Explorer les téléchargements /data
+                </a>
+                <a href="https://github.com/openfoodfacts/openfoodfacts-exports" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
+                    Dépôt des exports
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
