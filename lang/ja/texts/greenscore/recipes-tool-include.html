@@ -1,0 +1,249 @@
+<style>
+.off-recipe-promo {
+    background: linear-gradient(135deg, #F4FBF7 0%, #EBF7F0 100%);
+    border: 1px solid #C7E8D6;
+    border-radius: 20px;
+    padding: 2rem 2.25rem;
+    margin: 2rem 0;
+    box-shadow: 0 8px 24px rgba(46, 125, 50, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #2D3748;
+    position: relative;
+    overflow: hidden;
+    clear: both;
+    box-sizing: border-box;
+}
+.off-recipe-promo * {
+    box-sizing: border-box;
+}
+.off-recipe-promo::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(16, 149, 74, 0.12) 0%, rgba(16, 149, 74, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+.off-recipe-promo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+}
+.off-recipe-promo-content {
+    flex: 1 1 420px;
+    min-width: 280px;
+}
+.off-recipe-promo-visual {
+    flex: 0 1 290px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.off-recipe-promo-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #DCFCE7;
+    color: #15803D;
+    border: 1px solid #BBF7D0;
+    padding: 0.3rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+}
+.off-recipe-promo-title {
+    font-size: 1.6rem;
+    line-height: 1.25;
+    font-weight: 800;
+    color: #14532D;
+    margin: 0 0 0.65rem 0;
+}
+.off-recipe-promo-title .highlight {
+    color: #16A34A;
+    white-space: nowrap;
+}
+.off-recipe-promo-desc {
+    font-size: 0.98rem;
+    line-height: 1.55;
+    color: #374151;
+    margin: 0 0 1.2rem 0;
+}
+.off-recipe-promo-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem 1rem;
+    margin: 0 0 1.35rem 0;
+    padding: 0;
+    list-style: none;
+}
+.off-recipe-promo-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    color: #1F2937;
+    line-height: 1.35;
+}
+.off-recipe-promo-feature-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E8F5E9;
+    color: #16A34A;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 1px;
+}
+.off-recipe-promo-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.85rem;
+}
+.off-recipe-btn-main {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #15803D;
+    color: #FFFFFF !important;
+    font-weight: 700;
+    font-size: 0.98rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: 12px;
+    text-decoration: none !important;
+    box-shadow: 0 4px 14px rgba(21, 128, 61, 0.35);
+    transition: all 0.2s ease;
+}
+.off-recipe-btn-main:hover {
+    background: #166534;
+    color: #FFFFFF !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(21, 128, 61, 0.45);
+}
+.off-recipe-btn-sub {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #FFFFFF;
+    color: #374151 !important;
+    border: 1px solid #D1D5DB;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.7rem 1.1rem;
+    border-radius: 12px;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+}
+.off-recipe-btn-sub:hover {
+    background: #F9FAFB;
+    border-color: #9CA3AF;
+    color: #111827 !important;
+}
+.off-recipe-card {
+    background: #FFFFFF;
+    border: 1px solid #D1E7DD;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 270px;
+}
+.off-recipe-badge {
+    display: inline-block;
+    background: #E8F5E9;
+    color: #15803D;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    margin-bottom: 0.6rem;
+}
+.off-recipe-card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 0.4rem 0;
+}
+.off-recipe-card-text {
+    font-size: 0.84rem;
+    color: #6B7280;
+    line-height: 1.4;
+    margin: 0;
+}
+@media (max-width: 640px) {
+    .off-recipe-promo {
+        padding: 1.5rem 1.25rem;
+    }
+    .off-recipe-promo-title {
+        font-size: 1.35rem;
+    }
+    .off-recipe-promo-visual {
+        flex: 1 1 100%;
+    }
+}
+</style>
+
+<div class="off-recipe-promo">
+    <div class="off-recipe-promo-grid">
+        <div class="off-recipe-promo-content">
+            <div class="off-recipe-promo-tag">
+                <span>🌱</span> Recipe Impact Calculator
+            </div>
+            <h3 class="off-recipe-promo-title">
+                Score My Recipe: Calculate the environmental impact of your recipes <span class="highlight">in real time</span>
+            </h3>
+            <p class="off-recipe-promo-desc">
+                Whether you are cooking at home or preparing menus for catering, test your dishes and menus to instantly evaluate their Green-Score and carbon footprint based on the public Agribalyse database.
+            </p>
+            <ul class="off-recipe-promo-features">
+                <li class="off-recipe-promo-feature">
+                    <span class="off-recipe-promo-feature-icon">✓</span>
+                    <span><strong>Real-time calculation:</strong> Instant Green-Score and LCA evaluation</span>
+                </li>
+                <li class="off-recipe-promo-feature">
+                    <span class="off-recipe-promo-feature-icon">✓</span>
+                    <span><strong>Smart substitutions:</strong> Test ingredient swaps to reduce impact</span>
+                </li>
+                <li class="off-recipe-promo-feature">
+                    <span class="off-recipe-promo-feature-icon">✓</span>
+                    <span><strong>Home &amp; professional kitchens:</strong> Tailored for catering and home cooks</span>
+                </li>
+                <li class="off-recipe-promo-feature">
+                    <span class="off-recipe-promo-feature-icon">✓</span>
+                    <span><strong>Transparent science:</strong> Based on official ADEME / Agribalyse data</span>
+                </li>
+            </ul>
+            <div class="off-recipe-promo-actions">
+                <a href="https://ui.recipes.openfoodfacts.net/" target="_blank" rel="noopener noreferrer" class="off-recipe-btn-main">
+                    Launch the Recipe Calculator ➔
+                </a>
+                <a href="https://github.com/openfoodfacts/score-my-recipe/" target="_blank" rel="noopener noreferrer" class="off-recipe-btn-sub">
+                    GitHub Project
+                </a>
+            </div>
+        </div>
+        <div class="off-recipe-promo-visual">
+            <div class="off-recipe-card">
+                <span class="off-recipe-badge">Open Source Commons</span>
+                <div style="font-size: 2.2rem; margin: 0.25rem 0;">🍲</div>
+                <h4 class="off-recipe-card-title">Score My Recipe</h4>
+                <p class="off-recipe-card-text">
+                    Supported by ADEME's Call for Commons to accelerate sustainable food transition across kitchens.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
