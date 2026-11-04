@@ -1,208 +1,1550 @@
 <!-- main column content - comment used to remove left column and center content on some pages -->
-<h1>Partners of Open Food Facts</h1>
+<style>
+:root {
+  --off-espresso: #341100;
+  --off-espresso-mid: #473526;
+  --off-cream: #f9f8f6;
+  --off-peach-tint: #ece0db;
+  --off-orange: #ed8857;
+  --off-orange-hover: #d77243;
+  --off-green: #209552;
+  --off-green-light: #e8f5e9;
+  --off-green-dark: #1b5e20;
+  --off-blue: #1976d2;
+  --off-blue-light: #eff6ff;
+  --off-purple: #7c3aed;
+  --off-purple-light: #f5f3ff;
+  --off-border: #e2e8f0;
+  --off-surface: #ffffff;
+  --off-text-muted: #64748b;
+  --off-radius-pill: 999px;
+  --off-radius-card: 18px;
+  --off-shadow-sm: 0 4px 14px rgba(52, 17, 0, 0.05);
+  --off-shadow-md: 0 10px 28px rgba(52, 17, 0, 0.08);
+  --off-shadow-hover: 0 16px 36px rgba(52, 17, 0, 0.12);
+}
 
-<h2>Building the food transparency commons together</h2>
+.off-partners-wrap {
+  font-family: "Plus Jakarta Sans", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--off-espresso);
+  max-width: 1240px;
+  margin: 0 auto 3.5rem auto;
+  padding: 0 1rem;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
 
-<p>Open Food Facts is a citizen project of general interest, built by tens of thousands of volunteers worldwide who believe everyone has the right to know what's in their food. Since 2012, we've grown from a small community project into a global database used by millions of people and thousands of apps and research projects—all while maintaining our independence and commitment to the common good.</p>
+.off-partners-wrap *,
+.off-partners-wrap *::before,
+.off-partners-wrap *::after {
+  box-sizing: border-box;
+}
 
-<h3>Our independence: A cornerstone of trust</h3>
+/* Hero Section */
+.off-partners-hero {
+  background: linear-gradient(180deg, #ffffff 0%, var(--off-cream) 100%);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 28px;
+  padding: clamp(2rem, 4.5vw, 3.5rem);
+  margin: 1.5rem 0 2.5rem 0;
+  box-shadow: 0 12px 36px rgba(52, 17, 0, 0.06);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
 
-<p><strong>We are strictly independent from the food industry.</strong> To ensure we remain an unbiased source of information, we do not accept any financial support from companies or foundations connected to the food industry. This independence is not negotiable—it's what allows us to provide objective, transparent information that truly serves the public interest, free from commercial influence or conflicts of interest.</p>
+.off-partners-hero::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(32, 149, 82, 0.15) 0%, rgba(32, 149, 82, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
 
-<p>While we refuse industry funding, we warmly welcome collaboration with food producers who want to contribute to transparency by automatically integrating data and photos of their products into our open database. Transparency benefits everyone: consumers, honest producers, and public health.</p>
+.off-partners-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--off-espresso-mid);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.45rem 1.15rem;
+  border-radius: var(--off-radius-pill);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
 
-<h3>Every contributor is a partner</h3>
+.off-partners-hero h1 {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  color: var(--off-espresso);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.15;
+}
 
-<p><strong>You are a partner of Open Food Facts.</strong> Whether you've scanned a single product, made a monthly donation of 2 euros, or contributed code to our platform—you are part of this collective effort. Open Food Facts belongs to everyone who contributes to it. Each individual donor, each volunteer, each person sharing their time or resources is a true partner in building this commons for food transparency.</p>
+.off-partners-hero .off-subtitle {
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 600;
+  color: var(--off-orange);
+  margin: 0 auto 1.25rem auto;
+  max-width: 820px;
+  line-height: 1.35;
+}
 
-<p>Our funding model reflects our values: we grow through individual donations and grants from public institutions and foundations committed to the common good. This community-based support ensures we remain accountable to citizens, not to corporate interests.</p>
+.off-partners-hero p.lead {
+  font-size: 1.05rem;
+  color: var(--off-espresso-mid);
+  max-width: 860px;
+  margin: 0 auto 2rem auto;
+  line-height: 1.65;
+}
 
-<h3>Funding the commons vs. project-by-project funding</h3>
+/* Impact Numbers */
+.off-partners-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
 
-<p>Most of our financial support comes in the form of project-specific grants—funding designated for particular developments like our mobile app, environmental or health impact, or advanced search features. While these targeted grants are valuable and allow us to achieve important milestones, they don't cover the day-to-day costs of running a living, growing commons.</p>
+.off-stat-card {
+  background: #ffffff;
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 16px;
+  padding: 1.25rem 1rem;
+  box-shadow: var(--off-shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-<p><strong>The infrastructure that supports millions of users (servers, databases, maintenance, community support…) requires stable, unrestricted funding.</strong> This is where individual donations make all the difference. When you donate to Open Food Facts without restrictions, you help us keep the lights on, respond to urgent needs, and invest in the long-term sustainability of this shared resource.</p>
+.off-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--off-shadow-md);
+}
 
-<p>Think of it this way: project grants build new features, but general contributions maintain the foundation. Both are essential, and both make you a valued partner in our mission.</p>
+.off-stat-num {
+  font-size: clamp(1.6rem, 2.3vw, 2.1rem);
+  font-weight: 800;
+  color: var(--off-green);
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
 
-<h2>A big thank you to all our partners!</h2>
+.off-stat-lbl {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--off-espresso-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
 
-<p>From individual citizens contributing a few euros each month, to foundations supporting ambitious development projects, to public institutions championing transparency—every partner plays a vital role. Together, we're building something that belongs to everyone and serves the common good.</p>
+/* Action Buttons Strip */
+.off-partners-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
 
-<p><a href="mailto:contact@openfoodfacts.org" class="button">Contact us if you also want to support our action!</a></p>
-<br>
-<h2>Fejlesztés</h2>
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://www.santepubliquefrance.fr/"><img src="https://static.openfoodfacts.org/images/misc/sante-publique-france-logo.png" alt="Franciaországi Közegészségügy" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p>Az Open Food Facts adatbázis és mobilalkalmazás fejlesztése a francia közegészségügyi hivatal <a href="https://www.santepubliquefrance.fr/">Santé publique France</a> anyagi támogatásával valósul meg.</p>
-      <p><b>6-12-2018:</b> <a href="https://www.santepubliquefrance.fr/Accueil-Presse/Tous-les-communiques/Sante-publique-France-et-Open-Food-Facts-s-associent-pour-renforcer-l-ouverture-des-donnees-sur-les-produits-alimentaires-et-favoriser-l-utilisation-du-Nutri-Score">Public Health France and Open Food Facts join forces to strengthen the openness of food data and promote the use of Nutri-Score</a></p>
-   </div>
+.off-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.7rem 1.35rem;
+  border-radius: var(--off-radius-pill);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.off-btn-primary {
+  background: #209552;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(32, 149, 82, 0.25);
+}
+
+.off-btn-primary:hover {
+  background: #1b5e20;
+  transform: translateY(-1px);
+  color: #ffffff !important;
+}
+
+.off-btn-secondary {
+  background: var(--off-espresso);
+  color: #ffffff !important;
+}
+
+.off-btn-secondary:hover {
+  background: var(--off-espresso-mid);
+  transform: translateY(-1px);
+  color: #ffffff !important;
+}
+
+.off-btn-outline {
+  background: #ffffff;
+  color: var(--off-espresso) !important;
+  border-color: var(--off-peach-tint);
+  box-shadow: var(--off-shadow-sm);
+}
+
+.off-btn-outline:hover {
+  border-color: var(--off-orange);
+  color: var(--off-orange) !important;
+  background: #fff8f4;
+  transform: translateY(-1px);
+}
+
+/* Section Headers */
+.off-section {
+  margin-bottom: 3.5rem;
+}
+
+.off-section-header {
+  margin-bottom: 1.75rem;
+  border-bottom: 2px solid var(--off-peach-tint);
+  padding-bottom: 0.85rem;
+}
+
+.off-section-badge {
+  display: inline-block;
+  background: var(--off-peach-tint);
+  color: var(--off-espresso);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--off-radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+
+.off-section-header h2 {
+  font-size: clamp(1.6rem, 2.7vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--off-espresso);
+  margin: 0.25rem 0 0.5rem 0;
+}
+
+.off-section-header p {
+  font-size: 1rem;
+  color: var(--off-espresso-mid);
+  max-width: 820px;
+  margin: 0;
+}
+
+/* Independence Charter Box */
+.off-charter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.off-charter-card {
+  background: #ffffff;
+  border-radius: var(--off-radius-card);
+  padding: 1.75rem;
+  border: 1px solid var(--off-peach-tint);
+  box-shadow: var(--off-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.off-charter-card h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.off-charter-card p {
+  font-size: 0.95rem;
+  color: var(--off-espresso-mid);
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.off-charter-independent {
+  border-left: 5px solid #f97316;
+}
+
+.off-charter-funding {
+  border-left: 5px solid var(--off-green);
+}
+
+/* Search & Filter Bar */
+.off-filter-container {
+  background: var(--off-cream);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 18px;
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.off-search-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.off-search-input {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 2.85rem;
+  border-radius: 12px;
+  border: 1px solid var(--off-border);
+  font-size: 0.95rem;
+  color: var(--off-espresso);
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.off-search-input:focus {
+  border-color: var(--off-green);
+  box-shadow: 0 0 0 3px rgba(32, 149, 82, 0.15);
+}
+
+.off-search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--off-text-muted);
+  pointer-events: none;
+}
+
+.off-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.off-chip-btn {
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--off-radius-pill);
+  border: 1px solid var(--off-border);
+  background: #ffffff;
+  color: var(--off-espresso-mid);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.off-chip-btn:hover,
+.off-chip-btn.active {
+  background: var(--off-espresso);
+  color: #ffffff;
+  border-color: var(--off-espresso);
+}
+
+/* Subsection Dividers */
+.off-subsection-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 2.5rem 0 1.25rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--off-peach-tint);
+}
+
+.off-subsection-heading h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.off-subsection-tag {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--off-green-dark);
+  background: var(--off-green-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--off-radius-pill);
+}
+
+/* Partners Grid */
+.off-partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.off-partner-card {
+  background: var(--off-surface);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: var(--off-radius-card);
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--off-shadow-sm);
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.off-partner-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--off-shadow-hover);
+  border-color: var(--off-green);
+}
+
+/* Wide card for comprehensive sections like EU / NLnet */
+@media (min-width: 900px) {
+  .off-partner-card-wide {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Special CTA Card to lightly incentivize new partners */
+.off-partner-card-cta {
+  background: linear-gradient(145deg, #ffffff 0%, var(--off-green-light) 100%);
+  border: 2px dashed var(--off-green);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+.off-partner-card-cta:hover {
+  border-color: var(--off-green-dark);
+  box-shadow: 0 10px 24px rgba(32, 149, 82, 0.15);
+}
+
+.off-partner-logo-box {
+  height: 90px;
+  background: var(--off-cream);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+}
+
+.off-partner-logo-box img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.off-partner-card:hover .off-partner-logo-box img {
+  transform: scale(1.05);
+}
+
+.off-partner-badge {
+  display: inline-block;
+  background: var(--off-peach-tint);
+  color: var(--off-espresso-mid);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--off-radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.6rem;
+}
+
+.off-partner-badge-active {
+  background: var(--off-green-light);
+  color: var(--off-green-dark);
+  border: 1px solid rgba(32, 149, 82, 0.25);
+}
+
+.off-partner-badge-historic {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.off-partner-name {
+  font-size: 1.22rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.35rem 0;
+}
+
+.off-partner-date-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--off-cream);
+  border: 1px solid var(--off-border);
+  color: var(--off-espresso);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--off-radius-pill);
+  margin-bottom: 0.75rem;
+}
+
+.off-partner-desc {
+  font-size: 0.92rem;
+  color: var(--off-espresso-mid);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.off-partner-milestone {
+  background: var(--off-cream);
+  border-left: 3px solid var(--off-green);
+  border-radius: 0 8px 8px 0;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.84rem;
+  color: var(--off-espresso-mid);
+  margin-bottom: 0.75rem;
+}
+
+.off-partner-milestone b {
+  color: var(--off-espresso);
+}
+
+.off-partner-milestone a {
+  color: var(--off-green-dark);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.off-partner-footer {
+  border-top: 1px solid var(--off-border);
+  padding-top: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.off-partner-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--off-green-dark);
+  text-decoration: none;
+}
+
+.off-partner-link:hover {
+  color: var(--off-green);
+  text-decoration: underline;
+}
+
+/* NLnet Projects Sub-Grid */
+.off-nlnet-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.off-nlnet-project-item {
+  background: var(--off-cream);
+  border: 1px solid var(--off-peach-tint);
+  border-radius: 12px;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.off-nlnet-project-item:hover {
+  border-color: var(--off-green);
+  background: #ffffff;
+  box-shadow: 0 6px 16px rgba(52, 17, 0, 0.06);
+}
+
+.off-nlnet-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.off-nlnet-date-badge {
+  background: var(--off-espresso);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--off-radius-pill);
+}
+
+.off-nlnet-fund-badge {
+  background: var(--off-blue-light);
+  color: var(--off-blue);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--off-radius-pill);
+  border: 1px solid rgba(25, 118, 210, 0.2);
+}
+
+.off-nlnet-item-title {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.4rem 0;
+  line-height: 1.3;
+}
+
+.off-nlnet-item-desc {
+  font-size: 0.84rem;
+  color: var(--off-espresso-mid);
+  line-height: 1.5;
+  margin-bottom: 0.85rem;
+  flex-grow: 1;
+}
+
+.off-nlnet-item-link {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--off-green-dark);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.off-nlnet-item-link:hover {
+  text-decoration: underline;
+  color: var(--off-green);
+}
+
+/* Donors & Community Banner */
+.off-donors-banner {
+  background: linear-gradient(135deg, var(--off-espresso) 0%, #473526 100%);
+  color: #ffffff;
+  border-radius: 24px;
+  padding: clamp(2rem, 3.8vw, 3rem);
+  text-align: center;
+  box-shadow: var(--off-shadow-md);
+  margin: 3.5rem 0 2.5rem 0;
+}
+
+.off-donors-banner h3 {
+  font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.75rem 0;
+}
+
+.off-donors-banner p {
+  font-size: 1.05rem;
+  color: var(--off-peach-tint);
+  max-width: 760px;
+  margin: 0 auto 1.75rem auto;
+  line-height: 1.6;
+}
+
+/* Contact Partnership Box */
+.off-contact-alliance-box {
+  background: var(--off-cream);
+  border: 2px dashed var(--off-green);
+  border-radius: 20px;
+  padding: 2.25rem 2rem;
+  margin: 2.5rem 0;
+  text-align: center;
+}
+
+.off-contact-alliance-box h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--off-espresso);
+  margin: 0 0 0.6rem 0;
+}
+
+.off-contact-alliance-box p {
+  font-size: 1rem;
+  color: var(--off-espresso-mid);
+  max-width: 700px;
+  margin: 0 auto 1.5rem auto;
+  line-height: 1.6;
+}
+
+.off-fundraising-highlight {
+  background: #ffffff;
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--off-radius-pill);
+  border: 1px solid var(--off-peach-tint);
+  font-size: 0.95rem;
+  color: var(--off-espresso);
+  margin-bottom: 1.25rem;
+}
+
+.off-fundraising-highlight b {
+  color: var(--off-green-dark);
+}
+</style>
+
+<div class="off-partners-wrap" id="partners-page">
+
+  <!-- HERO SECTION -->
+  <div class="off-partners-hero">
+    <div class="off-partners-eyebrow">🤝 INSTITUTIONAL ALLIANCES & PARTNERSHIPS</div>
+    <h1>Partners of Open Food Facts</h1>
+    <h2 class="off-subtitle">Building the Global Food Transparency Commons Together</h2>
+    <p class="lead">Open Food Facts is an independent, non-profit digital public good built by tens of thousands of volunteer citizens. We collaborate with public agencies, scientific research institutes, philanthropic foundations, and open-source pioneers to advance food transparency, planetary health, and citizen empowerment across the world.</p>
+
+    <!-- Stats strip -->
+    <div class="off-partners-stats">
+      <div class="off-stat-card">
+        <div class="off-stat-num">100%</div>
+        <div class="off-stat-lbl">Independent of Industry</div>
+      </div>
+      <div class="off-stat-card">
+        <div class="off-stat-num">1 000+</div>
+        <div class="off-stat-lbl">Scientific Studies</div>
+      </div>
+      <div class="off-stat-card">
+        <div class="off-stat-num">200+</div>
+        <div class="off-stat-lbl">Ecosystem Reuses</div>
+      </div>
+      <div class="off-stat-card">
+        <div class="off-stat-num">5 000+</div>
+        <div class="off-stat-lbl">Citizen Donors</div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="off-partners-actions">
+      <a class="off-btn off-btn-primary" href="#partner-directory">
+        <span>✨</span> Active Partnerships & Ongoing Projects
+      </a>
+      <a class="off-btn off-btn-secondary" href="#charter">
+        <span>🛡️</span> Independence Charter
+      </a>
+      <a class="off-btn off-btn-outline" href="/donors">
+        <span>🏆</span> Donors Wall & Hall of Fame
+      </a>
+      <a class="off-btn off-btn-outline" href="mailto:fundraising@openfoodfacts.org?subject=Partenariat%20ou%20M%C3%A9c%C3%A9nat%20Open%20Food%20Facts">
+        <span>✉️</span> Partner or Fund our Commons (fundraising@)
+      </a>
+    </div>
+  </div>
+
+  <!-- CHARTER & ETHICS SECTION -->
+  <div class="off-section" id="charter">
+    <div class="off-section-header">
+      <span class="off-section-badge">Ethics & Independence</span>
+      <h2>Uncompromising Independence as a Foundation of Trust</h2>
+      <p>Why do citizens, scientists, and regulators trust Open Food Facts? Here is our clear framework for independence and funding integrity.</p>
+    </div>
+
+    <div class="off-charter-grid">
+      <!-- Independence Card -->
+      <div class="off-charter-card off-charter-independent">
+        <div>
+          <h3><span>🛡️</span> Strict Independence from the Food Industry</h3>
+          <p>
+            Open Food Facts does not accept any financial support, sponsorship, or governance participation from food corporations, agribusinesses, or retail conglomerates. This principle is strictly non-negotiable.
+          </p>
+          <p>
+            This complete firewall ensures total objectivity: our algorithmic calculations for Nutri-Score, Green-Score, and NOVA are 100% impartial and insulated from corporate lobbying.
+          </p>
+        </div>
+        <div>
+          <a class="off-btn off-btn-outline" href="/producers" style="width: 100%; text-align: center; border-color: #f97316; color: #c2410c !important;">
+            Producer Collaboration: 100% Free Open Data →
+          </a>
+        </div>
+      </div>
+
+      <!-- Funding Card -->
+      <div class="off-charter-card off-charter-funding">
+        <div>
+          <h3><span>⚖️</span> Project Grants vs. Commons Infrastructure</h3>
+          <p>
+            Targeted public and philanthropic grants (Google.org, European Commission / NLnet, Santé publique France, ADEME, France 2030, Afnic Foundation) fund specific technological breakthroughs (mobile app, Green-Score, search engine, crowdsourced prices, data defragmentation, horizontal scaling).
+          </p>
+          <p>
+            However, the vital spine of the project (servers, infrastructure, backups, permanent team) relies on unrestricted individual citizen micro-donations. General donations keep our foundation resilient.
+          </p>
+        </div>
+        <div>
+          <a class="off-btn off-btn-outline" href="/donors" style="width: 100%; text-align: center; border-color: #209552; color: #166534 !important;">
+            Visit our Donors Wall & Hall of Fame →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTNER DIRECTORY & FILTER -->
+  <div class="off-section" id="partner-directory">
+    <div class="off-section-header">
+      <span class="off-section-badge">Ecosystem & Alliances</span>
+      <h2>Our Institutional, Scientific & Technical Partners</h2>
+      <p>Discover our ongoing partnerships and historic milestones that shaped this global digital commons.</p>
+    </div>
+
+    <!-- Search & Chips Filter -->
+    <div class="off-filter-container">
+      <div class="off-search-input-wrap">
+        <span class="off-search-icon">🔍</span>
+        <input type="text" id="partnerSearch" class="off-search-input" placeholder="Search by name, program, keyword (e.g. Nutri-Score, NGI, NLnet, ADEME, AIC, Envol Vert, Hyper Open X, FOODTURE)..." oninput="filterPartners()">
+      </div>
+
+      <div class="off-chips-row">
+        <button class="off-chip-btn active" onclick="setCategory('all', this)">⭐ All Partners</button>
+        <button class="off-chip-btn" onclick="setCategory('active', this)">🔥 Active Partnerships</button>
+        <button class="off-chip-btn" onclick="setCategory('public', this)">🏛️ Public Agencies & EU</button>
+        <button class="off-chip-btn" onclick="setCategory('science', this)">🎓 Scientific Research</button>
+        <button class="off-chip-btn" onclick="setCategory('philanthropy', this)">🌍 Philanthropic Foundations</button>
+        <button class="off-chip-btn" onclick="setCategory('tech', this)">💻 Tech & Hosting</button>
+        <button class="off-chip-btn" onclick="setCategory('historic', this)">📜 Milestone Grants</button>
+      </div>
+    </div>
+
+    <!-- SECTION 1: ACTIVE PARTNERSHIPS (ON TOP) -->
+    <div class="off-subsection-heading">
+      <h3><span>🔥</span> Active Partnerships & Ongoing Initiatives</h3>
+      <span class="off-subsection-tag">Current & Live Alliances</span>
+    </div>
+
+    <div class="off-partners-grid" id="partnersGridActive">
+
+      <!-- ======================================================== -->
+      <!-- 1. European Union - NGI & NLnet (WIDE CARD - 6 PROJECTS) -->
+      <!-- ======================================================== -->
+      <div class="off-partner-card off-partner-card-wide" data-category="public active" data-keywords="european union ue commission europeenne ngi nlnet next generation internet personal food facts folksonomy pomme d api open everything facts open prices explorer 2019 2020 2022 2024 2025 2026 active">
+        <div>
+          <div class="off-partner-logo-box" style="gap: 18px; height: 100px;">
+            <img src="https://static.openfoodfacts.org/images/partner_logos/NGI.png" alt="NGI Next Generation Internet" style="max-height: 52px;">
+            <img src="https://static.openfoodfacts.org/images/misc/nlnet_logo.svg" alt="NLnet Foundation" style="max-height: 48px;">
+            <img src="https://static.openfoodfacts.org/images/misc/eucommission_logo.svg" alt="European Commission" style="max-height: 46px;">
+          </div>
+          <span class="off-partner-badge off-partner-badge-active">Active Alliance • 6 Funded Projects</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin-bottom: 0.35rem;">
+            <h3 class="off-partner-name" style="margin: 0;">European Union (NGI) & NLnet Foundation</h3>
+            <span class="off-partner-date-tag">🗓️ 2019 – Present</span>
+          </div>
+          <p class="off-partner-desc">
+            The European Commission (through the Next Generation Internet - NGI initiative) and the renowned NLnet Foundation fund Open Food Facts across 6 strategic milestones to build a privacy-first, sovereign, and human-centric digital commons:
+          </p>
+
+          <!-- 6 NLnet Projects Sub-Grid -->
+          <div class="off-nlnet-projects-grid">
+
+            <!-- 1. Personal Food Facts -->
+            <div class="off-nlnet-project-item">
+              <div>
+                <div class="off-nlnet-meta">
+                  <span class="off-nlnet-date-badge">12/2019</span>
+                  <span class="off-nlnet-fund-badge">NGI0 Discovery</span>
+                </div>
+                <h4 class="off-nlnet-item-title">Personal Food Facts</h4>
+                <p class="off-nlnet-item-desc">
+                  Privacy-protecting personalized search & dietary alerts computed locally on-device without leaking sensitive health or allergen data to third parties.
+                </p>
+              </div>
+              <div>
+                <a class="off-nlnet-item-link" href="https://nlnet.nl/project/OpenFoodFacts/" target="_blank" rel="noopener noreferrer">
+                  nlnet.nl/project/OpenFoodFacts ↗
+                </a>
+              </div>
+            </div>
+
+            <!-- 2. Folksonomy Engine -->
+            <div class="off-nlnet-project-item">
+              <div>
+                <div class="off-nlnet-meta">
+                  <span class="off-nlnet-date-badge">10/2020 – 05/2022</span>
+                  <span class="off-nlnet-fund-badge">NGI0 Discovery</span>
+                </div>
+                <h4 class="off-nlnet-item-title">Folksonomy Engine for Food</h4>
+                <p class="off-nlnet-item-desc">
+                  Collaborative tagging engine allowing citizens, researchers, and innovators to add flexible, community-defined properties to food items beyond static taxonomies.
+                </p>
+              </div>
+              <div>
+                <a class="off-nlnet-item-link" href="https://nlnet.nl/project/FolksonomyEngine/" target="_blank" rel="noopener noreferrer">
+                  nlnet.nl/project/FolksonomyEngine ↗
+                </a>
+              </div>
+            </div>
+
+            <!-- 3. Pomme d’API -->
+            <div class="off-nlnet-project-item">
+              <div>
+                <div class="off-nlnet-meta">
+                  <span class="off-nlnet-date-badge">06/2024</span>
+                  <span class="off-nlnet-fund-badge">NGI0 Commons Fund</span>
+                </div>
+                <h4 class="off-nlnet-item-title">Pomme d’API</h4>
+                <p class="off-nlnet-item-desc">
+                  Major modernization of the Open Food Facts API: OpenAPI specifications, structured schemas, interactive documentation, and streamlined tools for 250+ ecosystem apps.
+                </p>
+              </div>
+              <div>
+                <a class="off-nlnet-item-link" href="https://nlnet.nl/project/Pomme-dAPI/" target="_blank" rel="noopener noreferrer">
+                  nlnet.nl/project/Pomme-dAPI ↗
+                </a>
+              </div>
+            </div>
+
+            <!-- 4. Open Everything Facts -->
+            <div class="off-nlnet-project-item">
+              <div>
+                <div class="off-nlnet-meta">
+                  <span class="off-nlnet-date-badge">06/2024</span>
+                  <span class="off-nlnet-fund-badge">NGI0 Commons Fund</span>
+                </div>
+                <h4 class="off-nlnet-item-title">Open Everything Facts</h4>
+                <p class="off-nlnet-item-desc">
+                  Extending the open commons beyond food to empower informed consumer choices on all barcoded consumer goods (cosmetics, pet food, home products).
+                </p>
+              </div>
+              <div>
+                <a class="off-nlnet-item-link" href="https://nlnet.nl/project/OpenEverythingFacts/" target="_blank" rel="noopener noreferrer">
+                  nlnet.nl/project/OpenEverythingFacts ↗
+                </a>
+              </div>
+            </div>
+
+            <!-- 5. Open Prices -->
+            <div class="off-nlnet-project-item">
+              <div>
+                <div class="off-nlnet-meta">
+                  <span class="off-nlnet-date-badge">06/2025</span>
+                  <span class="off-nlnet-fund-badge">NGI0 Commons Fund</span>
+                </div>
+                <h4 class="off-nlnet-item-title">Open Prices - Scaling Price Collection</h4>
+                <p class="off-nlnet-item-desc">
+                  World's first crowdsourced open price database: machine learning tools to extract prices and barcodes from store shelf photos, validation pipelines, and community moderation.
+                </p>
+              </div>
+              <div>
+                <a class="off-nlnet-item-link" href="https://nlnet.nl/project/OpenPrices/" target="_blank" rel="noopener noreferrer">
+                  nlnet.nl/project/OpenPrices ↗
+                </a>
+              </div>
+            </div>
+
+            <!-- 6. Open Food Facts Explorer -->
+            <div class="off-nlnet-project-item">
+              <div>
+                <div class="off-nlnet-meta">
+                  <span class="off-nlnet-date-badge">06/2026</span>
+                  <span class="off-nlnet-fund-badge">NGI0 Commons Fund</span>
+                </div>
+                <h4 class="off-nlnet-item-title">Élelmiszerinformációk Böngészőjének megnyitása</h4>
+                <p class="off-nlnet-item-desc">
+                  Modern, blazing-fast web frontend built in SvelteKit, decoupling the presentation layer from the legacy backend to boost sustainability and community developer contributions.
+                </p>
+              </div>
+              <div>
+                <a class="off-nlnet-item-link" href="https://nlnet.nl/project/OFF-Explorer/" target="_blank" rel="noopener noreferrer">
+                  nlnet.nl/project/OFF-Explorer ↗
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="off-partner-footer" style="padding-top: 1rem;">
+          <a class="off-partner-link" href="https://nlnet.nl/search/static.html?q=open+food+facts&submit=Search" target="_blank" rel="noopener noreferrer">
+            🔍 View complete list of 6 Open Food Facts projects on NLnet ↗
+          </a>
+          <span style="font-size: 0.84rem; color: var(--off-espresso-mid);">Supported by EU Horizon Europe programme</span>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- 2. ADEME (3 Key Projects) -->
+      <!-- ======================================================== -->
+      <div class="off-partner-card" data-category="public active" data-keywords="ademe agribalyse environnement acv analyse cycle de vie green-score ecoscore transition ecologique plein pot emballages appel a communs recettes cout environnemental 2020 2023 2025 2026 active">
+        <div>
+          <div class="off-partner-logo-box">
+            <img src="https://static.openfoodfacts.org/images/misc/ADEME-logo.svg" alt="ADEME">
+          </div>
+          <span class="off-partner-badge off-partner-badge-active">Active Partner • 3 Major Programmes</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">ADEME</h3>
+            <span class="off-partner-date-tag">🗓️ 2020 – Present</span>
+          </div>
+          <p class="off-partner-desc">
+            The French Agency for Ecological Transition collaborates actively with Open Food Facts across multiple core initiatives to advance environmental transparency:
+          </p>
+          <div class="off-partner-milestone" style="margin-bottom: 0.5rem;">
+            <b>Agribalyse & Environmental Cost:</b> Integrating Agribalyse Life Cycle Assessment (LCA) data to compute the Green-Score and model the true ecological cost of food in support of official environmental labeling.
+          </div>
+          <div class="off-partner-milestone" style="margin-bottom: 0.5rem;">
+            <b>Plein Pot sur les Emballages (2023):</b> Participatory citizen-science campaign funded by ADEME documenting packaging materials, weights, and recyclability on 10,000+ products to fight overpackaging.
+          </div>
+          <div class="off-partner-milestone" style="margin-bottom: 0.5rem;">
+            <b>Appel à Communs (2025-2026):</b> Laureate of ADEME's Open Commons Call to extend the Green-Score calculation to cooking recipes and collective catering.
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://www.ademe.fr/" target="_blank" rel="noopener noreferrer">
+            ademe.fr ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- 3. République Française - AIC / DINUM -->
+      <!-- ======================================================== -->
+      <div class="off-partner-card" data-category="public active" data-keywords="republique francaise dinum aic accelerateur initiatives citoyennes etat gouvernement premier ministre beta gouv communs numeriques 2021 active">
+        <div>
+          <div class="off-partner-logo-box" style="gap: 14px;">
+            <img src="https://static.openfoodfacts.org/images/partner_logos/Republique_Francaise.png" alt="République Française" style="max-height: 56px;">
+            <div style="display: flex; flex-direction: column; text-align: left; line-height: 1.15;">
+              <span style="font-size: 1.05rem; font-weight: 900; color: #000091; letter-spacing: -0.01em;">DINUM</span>
+              <span style="font-size: 0.72rem; font-weight: 700; color: var(--off-text-muted);">Accélérateur d'initiatives citoyennes</span>
+            </div>
+          </div>
+          <span class="off-partner-badge off-partner-badge-active">Active Alliance • State Digital Commons</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">French Republic (DINUM / AIC)</h3>
+            <span class="off-partner-date-tag">🗓️ 2021 – Present</span>
+          </div>
+          <p class="off-partner-desc">
+            Methodological, technical, administrative, and strategic support from the French Government's Citizen Initiative Accelerator (AIC), led by the Interministerial Digital Directorate (DINUM). Open Food Facts is an officially recognized public digital commons laureate.
+          </p>
+          <div class="off-partner-milestone">
+            <b>Communs numériques (AIC) :</b> <a href="https://communs.beta.gouv.fr/laureats/open-food-facts/" target="_blank" rel="noopener noreferrer">Official AIC Laureate Sheet on communs.beta.gouv.fr</a>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://communs.beta.gouv.fr/laureats/open-food-facts/" target="_blank" rel="noopener noreferrer">
+            communs.beta.gouv.fr/laureats/open-food-facts ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- 4. Santé publique France -->
+      <!-- ======================================================== -->
+      <div class="off-partner-card" data-category="public active" data-keywords="sante publique france nutriscore nutri-score public health gouvernement nutrition 2018 2014 active">
+        <div>
+          <div class="off-partner-logo-box">
+            <img src="https://static.openfoodfacts.org/images/misc/sante-publique-france-logo.png" alt="Santé publique France">
+          </div>
+          <span class="off-partner-badge off-partner-badge-active">Active Partner • Public Health</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">Santé publique France</h3>
+            <span class="off-partner-date-tag">🗓️ 2018 – Present</span>
+          </div>
+          <p class="off-partner-desc">
+            Historic collaboration initiated in 2014 for the pioneering computation of Nutri-Score and formalized in 2018. Historical financial support for developing the database and mobile application, jointly championing food data openness.
+          </p>
+          <div class="off-partner-milestone">
+            <b>06-12-2018 :</b> <a href="https://www.santepubliquefrance.fr/Accueil-Presse/Tous-les-communiques/Sante-publique-France-et-Open-Food-Facts-s-associent-pour-renforcer-l-ouverture-des-donnees-sur-les-produits-alimentaires-et-favoriser-l-utilisation-du-Nutri-Score" target="_blank" rel="noopener noreferrer">Official Santé publique France & Open Food Facts Alliance</a>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://www.santepubliquefrance.fr/" target="_blank" rel="noopener noreferrer">
+            santepubliquefrance.fr ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- 5. FOODTURE (Horizon Europe) -->
+      <!-- ======================================================== -->
+      <div class="off-partner-card" data-category="science active" data-keywords="foodture horizon europe acv lca recherche impact environnemental quantification commission europeenne 2023 2027 active">
+        <div>
+          <div class="off-partner-logo-box" style="gap: 12px;">
+            <img src="https://static.openfoodfacts.org/images/misc/eucommission_logo.svg" alt="European Commission" style="max-height: 42px;">
+            <span style="font-size: 1.25rem; font-weight: 900; color: #1e3a8a; letter-spacing: -0.01em;">FOOD<span style="color: #209552;">TURE</span></span>
+          </div>
+          <span class="off-partner-badge off-partner-badge-active">Active Research • Horizon Europe</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">FOODTURE (Horizon Europe)</h3>
+            <span class="off-partner-date-tag">🗓️ 2023 – 2027</span>
+          </div>
+          <p class="off-partner-desc">
+            Major research and innovation project funded under the European Commission's Horizon Europe framework ('Food for the future: Environmental quantification and impact reduction'). The consortium leverages Open Food Facts' crowdsourced data infrastructure to upgrade Life Cycle Assessment (LCA) methodologies, incorporate high-resolution inventories, and reveal the true environmental costs of European food supply chains.
+          </p>
+          <div class="off-partner-milestone">
+            <b>Horizon Europe :</b> <a href="https://foodture-project.eu" target="_blank" rel="noopener noreferrer">FOODTURE European Research Consortium</a>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://foodture-project.eu" target="_blank" rel="noopener noreferrer">
+            foodture-project.eu ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- 6. Hyper Open X (France 2030 / Bpifrance) -->
+      <!-- ======================================================== -->
+      <div class="off-partner-card" data-category="tech active" data-keywords="hyper open x france 2030 bpifrance cloud mariadb repman horizontal scaling infra 2024 active">
+        <div>
+          <div class="off-partner-logo-box" style="background: linear-gradient(135deg, #0b132b, #1c2541); color: #fff;">
+            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 1.25rem; letter-spacing: -0.02em; color: #fff; display: flex; align-items: center; gap: 8px;">
+              <span style="color: #00d084; font-size: 1.45rem;">⚡</span>
+              <span>HYPER <span style="color: #00d084;">OPEN X</span></span>
+            </div>
+          </div>
+          <span class="off-partner-badge off-partner-badge-active">Active Project • France 2030</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">Hyper Open X (France 2030 / Bpi)</h3>
+            <span class="off-partner-date-tag">🗓️ 2024 – Present</span>
+          </div>
+          <p class="off-partner-desc">
+            Flagship project funded by France 2030 (operated by Bpifrance) to develop a 100% open and sovereign European cloud. Selected as an 'Hyper Open Call 2' laureate, Open Food Facts received technical backing to scale its data infrastructure (MariaDB migration and RepMan horizontal clustering) to guarantee high availability under massive international API workloads.
+          </p>
+          <div class="off-partner-milestone">
+            <b>Hyper Open Call 2 :</b> <a href="https://hyperopenx.fr" target="_blank" rel="noopener noreferrer">Horizontal database scaling & MariaDB migration (France 2030)</a>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://hyperopenx.fr" target="_blank" rel="noopener noreferrer">
+            hyperopenx.fr ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- 7. Envol Vert (Empreinte Forêt) -->
+      <!-- ======================================================== -->
+      <div class="off-partner-card" data-category="science active" data-keywords="envol vert empreinte foret deforestation forets rdue soja huile de palme cacao cafe biodiversite 2021 active">
+        <div>
+          <div class="off-partner-logo-box" style="background: #f0fdf4; border-color: #bbf7d0;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 1.8rem;">🌳</span>
+              <span style="font-size: 1.22rem; font-weight: 900; color: #166534; letter-spacing: 0.03em;">ENVOL <span style="color: #15803d;">VERT</span></span>
+            </div>
+          </div>
+          <span class="off-partner-badge off-partner-badge-active">Active Partner • Biodiversity</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">Envol Vert (Empreinte Forêt)</h3>
+            <span class="off-partner-date-tag">🗓️ 2021 – Present</span>
+          </div>
+          <p class="off-partner-desc">
+            Strategic partnership with the NGO Envol Vert to incorporate its 'Forest Footprint' (Empreinte Forêt) algorithm directly into Open Food Facts. This tool calculates and reveals imported deforestation risks across key commodities (livestock soy, palm oil, cocoa, coffee) on over 128,000 food products, empowering consumers and paving the way for EU Deforestation Regulation (EUDR) transparency.
+          </p>
+          <div class="off-partner-milestone">
+            <b>Empreinte Forêt :</b> <a href="https://envol-vert.org" target="_blank" rel="noopener noreferrer">Imported Deforestation Risk Algorithm</a>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://envol-vert.org" target="_blank" rel="noopener noreferrer">
+            envol-vert.org ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- 8. EREN - Inserm / Univ Sorbonne Paris Nord -->
+      <!-- ======================================================== -->
+      <div class="off-partner-card" data-category="science active" data-keywords="eren inserm nutriscore nutri-score recherche epidemiologie nutritionnelle universite sorbonne paris nord 2014 active">
+        <div>
+          <div class="off-partner-logo-box">
+            <img src="https://static.openfoodfacts.org/images/misc/eren-logo.png" alt="EREN Inserm">
+          </div>
+          <span class="off-partner-badge off-partner-badge-active">Active Research • Nutri-Score</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">EREN (Inserm / Univ. Sorbonne Paris Nord)</h3>
+            <span class="off-partner-date-tag">🗓️ 2014 – Present</span>
+          </div>
+          <p class="off-partner-desc">
+            The Nutritional Epidemiology Research Team (originators of Nutri-Score) continuously relies on Open Food Facts data to validate, test, and mathematically refine the front-of-pack 5-color algorithm and its updates.
+          </p>
+          <div class="off-partner-milestone">
+            <b>Validation scientifique :</b> <a href="https://www.em-consulte.com/article/993660/article/application-aux-produits-disponibles-sur-le-marche" target="_blank" rel="noopener noreferrer">Market validation study (2015)</a>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://eren.univ-paris13.fr/" target="_blank" rel="noopener noreferrer">
+            eren.univ-paris13.fr ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- 9. NutriNet-Santé -->
+      <!-- ======================================================== -->
+      <div class="off-partner-card" data-category="science active" data-keywords="nutrinet nutrinet-sante inserm cohorte additifs ultra-transformation sante publique 2014 active">
+        <div>
+          <div class="off-partner-logo-box">
+            <img src="https://static.openfoodfacts.org/images/misc/nutrinet-logo.svg" alt="NutriNet-Santé">
+          </div>
+          <span class="off-partner-badge off-partner-badge-active">Active Research • Cohort Study</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">NutriNet-Santé</h3>
+            <span class="off-partner-date-tag">🗓️ 2014 – Present</span>
+          </div>
+          <p class="off-partner-desc">
+            World-renowned cohort study tracking hundreds of thousands of volunteers. Researchers cross-reference NutriNet diet records with Open Food Facts additive and ultra-processed food data to evaluate chronic disease risks.
+          </p>
+          <div class="off-partner-milestone">
+            <b>Recherche citoyenne :</b> <a href="https://etude-nutrinet-sante.fr/profil/introduction" target="_blank" rel="noopener noreferrer">Participate in the NutriNet-Santé Study</a>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://etude-nutrinet-sante.fr/" target="_blank" rel="noopener noreferrer">
+            etude-nutrinet-sante.fr ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- 10. Fondation Free -->
+      <!-- ======================================================== -->
+      <div class="off-partner-card" data-category="tech active" data-keywords="free fondation free iliad serveurs hebergement infrastructure data 2018 active">
+        <div>
+          <div class="off-partner-logo-box">
+            <img src="https://static.openfoodfacts.org/images/misc/fondation-free-logo.png" alt="Fondation Free">
+          </div>
+          <span class="off-partner-badge off-partner-badge-active">Active Host • Bare-Metal Servers</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">Fondation Free</h3>
+            <span class="off-partner-date-tag">🗓️ 2018 – Present</span>
+          </div>
+          <p class="off-partner-desc">
+            The core Open Food Facts database and web servers are hosted on high-performance dedicated hardware generously provided in French datacenters by the Free Foundation since 2018.
+          </p>
+          <div class="off-partner-milestone">
+            <b>10-09-2018 :</b> <a href="https://blog.openfoodfacts.org/fr/news/2-nouveaux-serveurs-pour-heberger-open-food-facts-grace-a-la-fondation-free" target="_blank" rel="noopener noreferrer">Deployment of Free Foundation Servers</a>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://www.fondation-free.fr/" target="_blank" rel="noopener noreferrer">
+            fondation-free.fr ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- 11. OVHcloud -->
+      <!-- ======================================================== -->
+      <div class="off-partner-card" data-category="tech active" data-keywords="ovh ovhcloud cloud ia serveurs intelligence artificielle calcul 2021 active">
+        <div>
+          <div class="off-partner-logo-box">
+            <img src="https://static.openfoodfacts.org/images/misc/OVHcloud_logo.png" alt="OVHcloud">
+          </div>
+          <span class="off-partner-badge off-partner-badge-active">Active Partner • Cloud & AI</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">OVHcloud</h3>
+            <span class="off-partner-date-tag">🗓️ 2021 – Present</span>
+          </div>
+          <p class="off-partner-desc">
+            Open Food Facts AI pipelines, OCR inference, and computer vision models run on enterprise cloud compute infrastructure generously provided by OVHcloud.
+          </p>
+          <div class="off-partner-milestone">
+            <b>Sovereign Cloud Partner:</b> <span>European high-performance infrastructure for open AI</span>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://www.ovhcloud.com/" target="_blank" rel="noopener noreferrer">
+            ovhcloud.com ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- 12. The Perl Foundation -->
+      <!-- ======================================================== -->
+      <div class="off-partner-card" data-category="tech active" data-keywords="perl perl foundation code backend api outreachy mentorat open source stages bourses 2020 2021 2022 2023 2024 active">
+        <div>
+          <div class="off-partner-logo-box">
+            <img src="https://static.openfoodfacts.org/images/misc/the-perl-foundation.jpg" alt="A Perl Alapítvány">
+          </div>
+          <span class="off-partner-badge off-partner-badge-active">Active Partner • Open Source Mentorship</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">A Perl Alapítvány</h3>
+            <span class="off-partner-date-tag">🗓️ 2020 – 2024</span>
+          </div>
+          <p class="off-partner-desc">
+            The core database engine and backend API of Open Food Facts are powered by Perl. The Perl Foundation provides long-term technical and financial support by sponsoring engineering internships and mentorship grants through the Outreachy diversity program (2020, 2021, 2022, 2023, and 2024) to modernize code and enhance the Producer Platform.
+          </p>
+          <div class="off-partner-milestone">
+            <b>2020 – 2024 (Outreachy) :</b> <a href="https://news.perlfoundation.org/post/outreachy2021-complete" target="_blank" rel="noopener noreferrer">Mentored internships for codebase modernization</a>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://www.perlfoundation.org/" target="_blank" rel="noopener noreferrer">
+            perlfoundation.org ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- 13. INCENTIVE CARD: YOUR ORGANIZATION HERE -->
+      <!-- ======================================================== -->
+      <div class="off-partner-card off-partner-card-cta" data-category="active philanthropy public tech" data-keywords="votre organisation ici join partnership mecenat subvention alliance sponsor">
+        <div>
+          <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">🌱</div>
+          <span class="off-partner-badge" style="background: var(--off-green); color: #ffffff;">Partnership Opportunity</span>
+          <h3 class="off-partner-name" style="font-size: 1.35rem; margin-top: 0.5rem;">Your Organization Here?</h3>
+          <p class="off-partner-desc" style="max-width: 320px; margin: 0.5rem auto 1.5rem auto;">
+            Join the institutions, foundations, and tech leaders shaping global food transparency. Partner with us to fund the next leap in open data.
+          </p>
+          <a class="off-btn off-btn-primary" href="mailto:fundraising@openfoodfacts.org?subject=Proposition%20de%20partenariat%20Open%20Food%20Facts" style="width: 100%;">
+            <span>✉️</span> Propose a Collaboration
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SECTION 2: HISTORIC & MILESTONE GRANTS -->
+    <div class="off-subsection-heading" style="margin-top: 4rem;">
+      <h3><span>🏛️</span> Major Milestone Grants & Historic Foundations</h3>
+      <span class="off-subsection-tag" style="background: #f1f5f9; color: #475569;">Key Grants & Foundational Milestones</span>
+    </div>
+
+    <div class="off-partners-grid" id="partnersGridHistoric">
+
+      <!-- 14. Google.org -->
+      <div class="off-partner-card" data-category="philanthropy historic" data-keywords="google google.org climate impact challenge fellowship mobile eco-score ecoscore green-score 2021 2023 historic">
+        <div>
+          <div class="off-partner-logo-box">
+            <img src="https://static.openfoodfacts.org/images/misc/google-org-logo.png" alt="Google.org">
+          </div>
+          <span class="off-partner-badge off-partner-badge-historic">Milestone Grant • Climate & AI</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">Google.org</h3>
+            <span class="off-partner-date-tag">🗓️ 2021 – 2023</span>
+          </div>
+          <p class="off-partner-desc">
+            Laureate of the Google Impact Challenge for Climate (2021), followed by a Google.org Fellowship (2023) featuring full-time Google engineers working pro bono for 6 months on computer vision models for packaging, Green-Score, and the modern mobile app.
+          </p>
+          <div class="off-partner-milestone">
+            <b>28-05-2021 :</b> <a href="https://blog.openfoodfacts.org/en/news/open-food-facts-laureate-of-the-google-fellowship-and-the-google-impact-challenge-for-climate" target="_blank" rel="noopener noreferrer">Laureate of the Google Impact Challenge for Climate</a>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://www.google.org/" target="_blank" rel="noopener noreferrer">
+            google.org ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- 15. Fondation AFNIC -->
+      <div class="off-partner-card" data-category="philanthropy historic" data-keywords="afnic fondation afnic solidarite numerique une planete dans mon assiette open products facts eco-score 2020 2023 circular economy historic">
+        <div>
+          <div class="off-partner-logo-box">
+            <img src="https://static.openfoodfacts.org/images/misc/logo_fondation_afnic.png" alt="Fondation AFNIC">
+          </div>
+          <span class="off-partner-badge off-partner-badge-historic">Milestone Grant • Digital Solidarity</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">Fondation AFNIC</h3>
+            <span class="off-partner-date-tag">🗓️ 2020 &amp; 2023</span>
+          </div>
+          <p class="off-partner-desc">
+            The AFNIC Foundation for Digital Solidarity supports public-interest digital innovation with strong social impact. It awarded grants to Open Food Facts across two major strategic initiatives:
+          </p>
+          <div class="off-partner-milestone">
+            <b>2020 (Lauréat) :</b> <b>A Planet on My Plate</b> — Integrating environmental impact (Eco-Score / Green-Score with ADEME) directly into the mobile app to guide sustainable food choices.
+          </div>
+          <div class="off-partner-milestone">
+            <b>2023 (Lauréat) :</b> <b>Open Products Facts</b> — Relaunching the open database for non-food everyday products to empower reuse, repair, recycling, and circular economy data interoperability.
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://www.fondation-afnic.fr/" target="_blank" rel="noopener noreferrer">
+            fondation-afnic.fr ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- 16. Ford Foundation & Mozilla MOSS -->
+      <div class="off-partner-card" data-category="philanthropy historic" data-keywords="ford foundation mozilla moss open collective open source mobile flutter civic tech 2020 historic">
+        <div>
+          <div class="off-partner-logo-box" style="gap: 15px;">
+            <img src="https://static.openfoodfacts.org/images/misc/ford_logo.svg" alt="Ford Alapítvány" style="max-height: 42px;">
+            <img src="https://static.openfoodfacts.org/images/misc/mozilla_logo.svg" alt="Mozilla MOSS" style="max-height: 38px;">
+            <img src="https://static.openfoodfacts.org/images/misc/opencollective_logo.svg" alt="Open Collective" style="max-height: 36px;">
+          </div>
+          <span class="off-partner-badge off-partner-badge-historic">Milestone Grant • Mobile App</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">Ford Foundation &amp; Mozilla MOSS</h3>
+            <span class="off-partner-date-tag">🗓️ 2020</span>
+          </div>
+          <p class="off-partner-desc">
+            Crucial grant from the Ford Foundation and Mozilla Open Source Support (MOSS) via Open Collective, funding the creation of the cross-platform Flutter mobile application.
+          </p>
+          <div class="off-partner-milestone">
+            <b>22-04-2020 :</b> <a href="https://blog.openfoodfacts.org/en/news/mozilla-and-the-ford-foundation-support-the-new-open-food-facts-app/" target="_blank" rel="noopener noreferrer">Mozilla & Ford Foundation Support Announcement</a>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://www.fordfoundation.org/" target="_blank" rel="noopener noreferrer">
+            fordfoundation.org &amp; mozilla.org ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- 17. DRG4Food (NutriSight) -->
+      <div class="off-partner-card" data-category="science historic" data-keywords="drg4food nutrisight ia vision ocr commission europeenne confiance numerique 2023 2024 historic">
+        <div>
+          <div class="off-partner-logo-box">
+            <img src="https://static.openfoodfacts.org/images/partner_logos/drg4food.png" alt="DRG4Food">
+          </div>
+          <span class="off-partner-badge off-partner-badge-historic">EU Programme • Responsible AI</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">DRG4Food (NutriSight)</h3>
+            <span class="off-partner-date-tag">🗓️ 2023 – 2024</span>
+          </div>
+          <p class="off-partner-desc">
+            Financial award from the European Commission to build NutriSight, our cutting-edge computer vision system extracting nutrition facts from smartphone photos responsibly.
+          </p>
+          <div class="off-partner-milestone">
+            <b>Digital Responsibility :</b> <a href="https://drg4food.eu/" target="_blank" rel="noopener noreferrer">European DRG4Food Initiative</a>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://drg4food.eu/" target="_blank" rel="noopener noreferrer">
+            drg4food.eu ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- 18. DIVINFOOD -->
+      <div class="off-partner-card" data-category="science historic" data-keywords="divinfood horizon 2020 agrobiodiversite legumes alimentation durable biodiversite europe 2022 2026 historic">
+        <div>
+          <div class="off-partner-logo-box">
+            <img src="https://static.openfoodfacts.org/images/partner_logos/DivinFood.png" alt="Divinfood">
+          </div>
+          <span class="off-partner-badge off-partner-badge-historic">EU Programme • Biodiversity</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">DIVINFOOD (Horizon 2020)</h3>
+            <span class="off-partner-date-tag">🗓️ 2022 – 2026</span>
+          </div>
+          <p class="off-partner-desc">
+            European consortium funded by the EU Horizon 2020 programme, DIVINFOOD develops sustainable supply chains emphasizing neglected agrobiodiversity to reverse ecological decline and support consumer health.
+          </p>
+          <div class="off-partner-milestone">
+            <b>Horizon 2020 :</b> <a href="https://divinfood.eu/" target="_blank" rel="noopener noreferrer">Explore the DIVINFOOD Project</a>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://divinfood.eu/" target="_blank" rel="noopener noreferrer">
+            divinfood.eu ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- 19. XWiki -->
+      <div class="off-partner-card" data-category="tech historic" data-keywords="xwiki wiki assemblee generale hebergement evenements paris logiciel libre 2017 historic">
+        <div>
+          <div class="off-partner-logo-box">
+            <img src="https://static.openfoodfacts.org/images/misc/xwiki-logo.svg" alt="XWiki">
+          </div>
+          <span class="off-partner-badge off-partner-badge-historic">Community Host • Venue</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+            <h3 class="off-partner-name">XWiki</h3>
+            <span class="off-partner-date-tag">🗓️ 2017 – Present</span>
+          </div>
+          <p class="off-partner-desc">
+            A pioneer of open-source collaborative software in France, XWiki regularly hosts Open Food Facts General Assemblies and community hackathons at their Paris headquarters.
+          </p>
+          <div class="off-partner-milestone">
+            <b>Communauté libre :</b> <span>Regular host for our association general assemblies</span>
+          </div>
+        </div>
+        <div class="off-partner-footer">
+          <a class="off-partner-link" href="https://xwiki.org/" target="_blank" rel="noopener noreferrer">
+            xwiki.org ↗
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DONORS WALL & COMMUNITY SPOTLIGHT -->
+  <div class="off-donors-banner">
+    <h3>👥 Every Individual Donor is a Vital Partner</h3>
+    <p>
+      Thousands of individual citizens support Open Food Facts with regular micro-donations. This grassroots funding is what guarantees our servers stay online, our algorithms stay unbiased, and our data remains a public good.
+    </p>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+      <a class="off-btn off-btn-primary" href="/donors" style="background: #ffffff; color: var(--off-espresso) !important; font-size: 1rem;">
+        <span>🏆</span> Visit Donors Wall &amp; Hall of Fame →
+      </a>
+      <a class="off-btn off-btn-outline" href="/donate" style="color: #ffffff !important; border-color: rgba(255,255,255,0.4); background: transparent;">
+        <span>🧡</span> Make a Tax-Deductible Donation
+      </a>
+    </div>
+  </div>
+
+  <!-- BECOME A PARTNER CALLOUT -->
+  <div class="off-contact-alliance-box">
+    <h3>🤝 Looking to Support our Mission, Provide Grant Funding, or Partner with Us?</h3>
+    <p>
+      Whether you represent a philanthropic foundation, a public agency, a university research lab, or an ethical digital initiative, let us join forces to make food transparency and open data a permanent global reality.
+    </p>
+    <div>
+      <div class="off-fundraising-highlight">
+        <span>📬</span> Direct contact for grants & philanthropy: <b>fundraising@openfoodfacts.org</b>
+      </div>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 0.5rem;">
+      <a class="off-btn off-btn-primary" href="mailto:fundraising@openfoodfacts.org?subject=Proposition%20de%20partenariat%20ou%20m%C3%A9c%C3%A9nat%20Open%20Food%20Facts">
+        <span>✉️</span> Contact Fundraising Team (fundraising@openfoodfacts.org)
+      </a>
+      <a class="off-btn off-btn-outline" href="/press">
+        <span>🎙️</span> Press & Media Hub →
+      </a>
+    </div>
+  </div>
+
 </div>
-<br>
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://www.google.org/"><img src="https://static.openfoodfacts.org/images/misc/google-org-logo.png" alt="Google.org" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p>Az Eco-Score nemzetközivé tételét és kiterjesztését, valamint az új Open Food Facts mobilalkalmazás fejlesztését a <a href="https://www.google.org/">Google.org</a> támogatja a Google Impact Challenge for Climate és a Google Fellowship programjain keresztül.</p>
-      <p><b>28-5-2021:</b> <a href="https://blog.openfoodfacts.org/en/news/open-food-facts-laureate-of-the-google-fellowship-and-the-google-impact-challenge-for-climate">
-                Open Food Facts laureate of the Google Fellowship and the Google Impact Challenge for Climate
-            </a>
-      </p>
-   </div>
-</div>
-<br>    
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://www.fordfoundation.org/"><img src="https://static.openfoodfacts.org/images/misc/ford_logo.svg" alt="Ford Alapítvány" width="200"></a>
-      <a href="https://www.mozilla.org/en-US/moss/"><img src="https://static.openfoodfacts.org/images/misc/mozilla_logo.svg" alt="Mozilla nyílt forráskódú támogatási program (MOSS)" width="200"></a>
-      <a href="https://opencollective.com/open-source-speed-dating/events/open-source-speed-dating-fosdem-2020-96f78c6c"><img src="https://static.openfoodfacts.org/images/misc/opencollective_logo.svg" alt="Open Collective" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p>The development of the new Open Food Facts cross-platform mobile application is sponsored thanks to the generous award of the <a href="https://www.fordfoundation.org/">Ford Foundation</a> and <a href="https://www.mozilla.org/en-US/moss/">Mozilla Open Source Support Program (MOSS)</a>, with the support of <a href="https://www.opencollective.com/">Open Collective</a>.</p>
-      <p><b>22-4-2020:</b> <a href="https://blog.openfoodfacts.org/en/news/mozilla-and-the-ford-foundation-support-the-new-open-food-facts-app/">Open Food Facts gets an award by the Mozilla and Ford foundations for a new mobile app for even greater impact.</a></p>
-   </div>
-</div>
-<br>
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://nlnet.nl/"><img src="https://static.openfoodfacts.org/images/misc/nlnet_logo.svg" alt="NLNet Alapítvány" width="200"></a>
-      <a href="https://ec.europa.eu/"><img src="https://static.openfoodfacts.org/images/misc/eucommission_logo.svg" alt="Európai Unió" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p>A személyes adatokat tiszteletben tartó, személyre szabott, egészségesebb termék javaslatokat nyújtó, többplatformos Open Food Facts mobil alkalmazás a <a href="https://nlnet.nl/">NLNet Alapítvány</a> és az <a href="https://www.ec.europa.eu">Európai Únió</a> támogatásának köszönhetően valósul meg.</p>
-      <p>A Folksonomy Engine projekt fejlesztése - amely sokak számára még hasznosabbá teszi az Open Food Facts-et - a <a href="https://nlnet.nl/">NLNet Alapítvány</a> és az </0><a href="https://www.ec.europa.eu">Európai Unió</a> támogatásának köszönhetően valósulhat meg.</p>
-   </div>
-</div>
-<br>
-<!--NGI Search-->
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://nlnet.nl/"><img src="https://static.openfoodfacts.org/images/misc/nlnet_logo.svg" alt="NLNet Alapítvány" width="200"></a>
-      <a href="https://ngi.eu/"><img src="partner_logos/NGI.png" alt="NGI - Következő generációs internet" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p>Az Open Food Facts fejlett keresési képességeinek fejlesztését, beleértve a <a href="https://blog.openfoodfacts.org/en/news/a-new-search-a-licious-experience-for-open-food-facts">Search-a-licious keresőmotort</a>, a személyre szabott keresési funkciókat és a Folksonomy Engine projektet, az <a href="https://nlnet.nl/">NLNet Alapítvány</a> és az <a href="https://ngi.eu/">Európai Unió NGI Search programja</a>támogatja.</p>
-      <p>Ezek a fejlesztések gyorsabb, relevánsabb és többnyelvű keresési lehetőségeket tesznek lehetővé, miközben védik a felhasználók adatait.</p>
-   </div>
-</div>
-<br>
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://www.perlfoundation.org/"><img src="https://static.openfoodfacts.org/images/misc/the-perl-foundation.jpg" alt="A Perl Alapítvány" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p>The backend of the Open Food Facts database, web site and API is written in the Perl programming language, and part of the development is supported by <a href="https://www.perlfoundation.org/">The Perl Foundation</a> .</p>
-      <p><b>Summer 2020:</b> <a href="https://news.perlfoundation.org/post/outreachy-2020-intern-announced">The Perl Foundation is funding one intern through the Outreachy program to work on improving the code quality of Open Food Facts.</a></p>
-      <p><b>2021 nyara:</b> <a href="https://news.perlfoundation.org/post/outreachy2021-complete">A Perl Alapítvány az Outreachy programon keresztül egy gyakornokot finanszíroz az Open Food Facts kódminőségének javítására.</a></p>
-   </div>
-</div>
-<br>
-<h2>Webtárhely és technikai infrastruktúra</h2>
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://www.fondation-free.fr/"><img src="https://static.openfoodfacts.org/images/misc/fondation-free-logo.png" alt="Free Foundation" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p>The site and the Open Food Facts database are hosted on servers generously provided by the <a href="https://www.fondation-free.fr/">Free Foundation</a> .</p>
-      <p><b>10-9-2018:</b> <a href="https://blog.openfoodfacts.org/fr/news/2-nouveaux-serveurs-pour-heberger-open-food-facts-grace-a-la-fondation-free">2 new servers to host Open Food Facts thanks to the Free Foundation</a></p>
-   </div>
-</div>
-<br>
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://www.ovhcloud.com/"><img src="https://static.openfoodfacts.org/images/misc/OVHcloud_logo.png" alt="OVH" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p>Mesterséges intelligencia algoritmusok és számos Open Food Facts projekt fut a <a href="https://www.ovhcloud.com/">OVHcloud</a> által nagylelkűen biztosított szervereken.</p>
-   </div>
-</div>
-<br>
-<!--DRG4Food-->
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://drg4food.eu/"><img src="https://static.openfoodfacts.org/images/partner_logos/drg4food.png" alt="DRG4Food" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p>Az Open Food Facts pénzügyi támogatást kapott az Európai Bizottságtól és a <a href="https://drg4food.eu/">DRG4Food programtól</a> a NutriSight fejlesztéséhez, amely egy olyan technológia, amely automatikusan kinyeri a tápértékadatokat a termékek képeiből.</p>
-      <p>A DRG4Food egy uniós projekt, amelynek célja az adatvezérelt élelmiszerrendszerbe vetett bizalom erősítése a digitális felelősségvállalási célok (DRG-k) megvalósításával.</p>
-   </div>
-</div>
-<br>
-<!--AIC/DINUM-->
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://beta.gouv.fr/startups/open-food-facts.html"><img src="https://static.openfoodfacts.org/images/partner_logos/republique-francaise.png" alt="Francia Köztársaság - AIC" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p>Open Food Facts is supported by the <a href="https://beta.gouv.fr/">Accélérateur d'initiatives citoyennes (AIC)</a>, a program launched by the French government through the <a href="https://www.numerique.gouv.fr/">Direction Interministérielle du Numérique (DINUM)</a>.</p>
-      <p>Az AIC módszertani, technikai, adminisztratív és pénzügyi támogatást nyújt a közérdeket szolgáló polgári kezdeményezéseknek, hogy segítsék őket modelljeik megszilárdításában és a kritikus fejlesztési mérföldkövek elérésében.</p>
-   </div>
-</div>
-<br>
-<h2>Scientific collaborations</h2>
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://eren.univ-paris13.fr/index.php/fr/"><img src="https://static.openfoodfacts.org/images/misc/eren-logo.png" alt="EREN" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p>The Nutri-Score was developed by the <a href="https://eren.univ-paris13.fr/index.php/fr/">EREN</a> Nutritional Epidemiology Research Team which uses the Open Food Facts database to check the validity of Nutri-Score in different countries.</p>
-      <p><b>07-08-2015:</b> <a href="https://www.em-consulte.com/article/993660/article/application-aux-produits-disponibles-sur-le-marche">Application to the products available on the French market of the nutritional profile associated with the 5-color system (5-C): consistency with the consumption benchmarks of the PNNS</a></p>
-   </div>
-</div>
-<br>
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://etude-nutrinet-sante.fr/"><img src="https://static.openfoodfacts.org/images/misc/nutrinet-logo.svg" alt="EREN" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p><a href="https://etude-nutrinet-sante.fr/">NutriNet-Santé</a> is a cohort study that tracks the nutrition and health of volunteers for several years. EREN uses NutriNet data cross-referenced with Open Food Facts data to study the long-term effects of food additives.</p>
-      <p><b>→</b> <a href="https://etude-nutrinet-sante.fr/profil/introduction">Participate in Nutri-Net</a> to help research (For French residents).</p>
-   </div>
-</div>
-<br>
-<!--DIVINFOOD-->
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://divinfood.eu/"><img src="https://static.openfoodfacts.org/images/partner_logos/DivinFood.png" alt="Divinfood" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p>Az Open Food Facts partner a <a href="https://divinfood.eu/">DIVINFOOD projektben</a>, amelyet az Európai Unió Horizont 2020 kutatási és innovációs programja finanszíroz.</p>
-      <p>A projekt célja olyan élelmiszerláncok fejlesztése, amelyek hangsúlyozzák a kihasználatlan agrárbiodiverzitást, igyekeznek ellensúlyozni a biodiverzitás csökkenését, és kielégíteni a fogyasztók igényeit az egészséges, helyi termékek iránt, amelyek hozzájárulnak a fenntartható élelmiszerrendszerekhez.</p>
-   </div>
-</div>
-<br>
-<!--AFNIC foundation-->
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://www.fondation-afnic.fr/"><img src="https://static.openfoodfacts.org/images/misc/logo_fondation_afnic.png" alt="AFNIC alapítvány" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p><a href="https://www.fondation-afnic.fr/">The AFNIC foundation</a> for Digital Solidarity supports the development of a united internet, training and awareness of its uses, by supporting local and structuring digital solidarity initiatives and research projects on the theme of digital solidarity.</p>
-      <p>The foundation is supporting Open Food Facts's environmental and educational efforts to make food not only good for you, but also good for the planet.</p>
-   </div>
-</div>
-<br>
-<!--ADEME-->
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://www.ademe.fr/en/frontpage/"><img src="https://static.openfoodfacts.org/images/misc/ADEME-logo.svg" alt="ADEME" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p><a href="https://www.ademe.fr/en/frontpage/">ADEME</a> fights against global warming and the degradation of resources.</p>
-      <p>Open Food Facts uses data on the environmental impact of food taken from ADEME's <a href="https://doc.agribalyse.fr/documentation-en/">Agribalyse database</a>.</p>
-   </div>
-</div>
-<br>
-<h2>Egyéb támogatások</h2>
-<div class="row">
-   <div class="small-5 medium-12 large-4 xlarge-3 columns">
-      <a href="https://xwiki.org/"><img src="https://static.openfoodfacts.org/images/misc/xwiki-logo.svg" alt="XWiki" width="200"></a>
-   </div>
-   <div class="small-7 medium-12 large-8 xlarge-9 columns">
-      <p><a href="https://xwiki.org/">XWiki</a> regularly hosts Open Food Facts events such as the Open Food Facts association general assembly in its office in Paris.</p>
-   </div>
-</div>
+
+<!-- INTERACTIVE FILTER & SEARCH JS -->
+<script>
+let currentCategory = 'all';
+
+function setCategory(cat, btn) {
+  currentCategory = cat;
+  document.querySelectorAll('.off-chip-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterPartners();
+}
+
+function filterPartners() {
+  const query = (document.getElementById('partnerSearch').value || '').toLowerCase().trim();
+  const allCards = document.querySelectorAll('.off-partner-card');
+
+  allCards.forEach(card => {
+    const cat = card.getAttribute('data-category') || '';
+    const keywords = (card.getAttribute('data-keywords') || '').toLowerCase();
+    const text = card.innerText.toLowerCase();
+
+    const matchesCat = (currentCategory === 'all' || cat.includes(currentCategory));
+    const matchesQuery = (!query || keywords.includes(query) || text.includes(query));
+
+    if (matchesCat && matchesQuery) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
