@@ -24,7 +24,7 @@ jobs:
       - name: Check for forbidden strings
         run: |
           FORBIDDEN_STRINGS=("Open Pet Food Facts" "Open Beauty Facts" "Open Products Facts")
-          FILES=$(find ./lang/ -name 'index.html' -path '*/texts/*')
+          FILES=$(find ./lang/ -name 'index.html' -path '*/texts/*' ! -path '*/obf/*' ! -path '*/opff/*' ! -path '*/opf/*')
           
           for file in $FILES; do
             for string in "${FORBIDDEN_STRINGS[@]}"; do
