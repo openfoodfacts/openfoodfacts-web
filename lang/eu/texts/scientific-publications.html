@@ -1042,16 +1042,16 @@ function applySciFilters(syncUrl = true) {
 function renderSciCard(p) {
   const yearBadge = p.year ? '<span class="sci-card-year">' + p.year + '</span>' : '';
   const citBadge = (p.num_citations !== null && p.num_citations !== undefined && p.num_citations > 0)
-   ? '<span class="sci-card-citations" title="' + p.num_citations + ' ' + (IS_FR ? "citations académiques" : "citations") + '">⭐ ' + p.num_citations + ' ' + (IS_FR ? "cit." : "cit.") + '</span>'
-   : '';
+    ? '<span class="sci-card-citations" title="' + p.num_citations + ' ' + (IS_FR ? "citations académiques" : "citations") + '">⭐ ' + p.num_citations + ' ' + (IS_FR ? "cit." : "cit.") + '</span>'
+    : '';
 
   const authorsStr = (p.authors && p.authors.length > 3)
-   ? p.authors.slice(0, 3).join(", ") + " et al."
-   : (p.authors || []).join(", ");
+    ? p.authors.slice(0, 3).join(", ") + " et al."
+    : (p.authors || []).join(", ");
 
   const excerptHtml = p.excerpt
-   ? '<div class="sci-card-excerpt" title="' + (IS_FR ? "Extrait mentionnant Open Food Facts" : "Excerpt mentioning Open Food Facts") + '">' + p.excerpt + '</div>'
-   : '';
+    ? '<div class="sci-card-excerpt" title="' + (IS_FR ? "Extrait mentionnant Open Food Facts" : "Excerpt mentioning Open Food Facts") + '">' + p.excerpt + '</div>'
+    : '';
 
   const tags = [];
   if (p.themes) {
@@ -1146,8 +1146,8 @@ function updateSciCountAndLoadMore() {
   const total = currentFilteredList.length;
   if (displayedCount < total) {
     count.textContent = IS_FR
-     ? "Affichage de " + displayedCount + " sur " + total + " publications (" + PUBLICATIONS_DATA.length + " au total)"
-     : "Showing " + displayedCount + " of " + total + " publications (" + PUBLICATIONS_DATA.length + " total)";
+      ? "Affichage de " + displayedCount + " sur " + total + " publications (" + PUBLICATIONS_DATA.length + " au total)"
+      : "Showing " + displayedCount + " of " + total + " publications (" + PUBLICATIONS_DATA.length + " total)";
     if (loadMoreWrap) loadMoreWrap.style.display = "flex";
     if (loadMoreBtn) {
       const remaining = total - displayedCount;
@@ -1156,8 +1156,8 @@ function updateSciCountAndLoadMore() {
     }
   } else {
     count.textContent = IS_FR
-     ? "Affichage de " + total + " sur " + PUBLICATIONS_DATA.length + " publications"
-     : "Showing " + total + " of " + PUBLICATIONS_DATA.length + " publications";
+      ? "Affichage de " + total + " sur " + PUBLICATIONS_DATA.length + " publications"
+      : "Showing " + total + " of " + PUBLICATIONS_DATA.length + " publications";
     if (loadMoreWrap) loadMoreWrap.style.display = "none";
   }
 }
