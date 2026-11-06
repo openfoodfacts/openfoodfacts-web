@@ -57,6 +57,9 @@ class TestTranslationQA(unittest.TestCase):
             (r'\b[Ff]aches alimentaris dobèrts\b', 'Occitan mistranslation of Open Food Facts'),
             (r'\b[Pp]untuación [Vv]erde\b', 'Spanish mistranslation of Green-Score'),
             (r'\b[Pp]ontuação [Vv]erde\b', 'Portuguese mistranslation of Green-Score'),
+            (r'\b[Ss]core [Vv]ert\b', 'French mistranslation of Green-Score'),
+            (r'\bGrüner Score\b', 'German mistranslation of Green-Score'),
+            (r'\bFatos Alimentares Abertos\b', 'Portuguese mistranslation of Open Food Facts'),
         ]
         violations = []
         for path in self.html_files:
@@ -291,6 +294,22 @@ class TestTranslationQA(unittest.TestCase):
             self.assertIn('[[texts/api-donation-include.html]]', content, f"lang/{lang}/texts/data.html is missing [[texts/api-donation-include.html]]")
             include_path = os.path.join(root_dir, 'lang', lang, 'texts', 'api-donation-include.html')
             self.assertTrue(os.path.isfile(include_path), f"Missing include file: {include_path}")
+
+    def test_forbidden_strings_in_index_html(self):
+        """Ensure Open Food Facts index.html files do not reference sister projects (check_strings.yml parity)."""
+        forbidden_strings = ["Open Pet Food Facts", "Open Beauty Facts", "Open Products Facts"]
+        violations = []
+        for path in self.html_files:
+            if not path.endswith('/texts/index.html'):
+                continue
+            if '/obf/' in path or '/opff/' in path or '/opf/' in path:
+                continue
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            for s in forbidden_strings:
+                if s in content:
+                    violations.append(f"{path}: contains '{s}'")
+        self.assertEqual(len(violations), 0, f"Found forbidden sister project strings in OFF index.html files:\n" + "\n".join(violations[:10]))
 
 if __name__ == '__main__':
     unittest.main()
