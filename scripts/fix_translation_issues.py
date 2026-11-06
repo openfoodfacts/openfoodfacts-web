@@ -813,6 +813,20 @@ def fix_dynamic_repetitions(content, filepath):
     return content, fixes
 
 
+def fix_repeated_substring_loops(content):
+    """
+    Fix repeated emoticons and token loops introduced by Crowdin translation memory.
+    e.g. '&nbsp;:-)&nbsp;:-)' -> '&nbsp;:-)'
+    or ' :-) :-) :-) ...' -> ' :-)'
+    """
+    pattern = re.compile(r'((?:&nbsp;|\s)*:[-~]?[)D(PpoO])(?:\s*|&nbsp;)*(?:\1)+')
+    new_content, count = pattern.subn(
+        lambda m: ('&nbsp;' if '&nbsp;' in m.group(1) else ' ') + m.group(1).strip().replace('&nbsp;', ''),
+        content
+    )
+    return new_content, count
+
+
 def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fix_badges=True, fix_brands=True, fix_typography=True, fix_facets=True, verbose=False):
     """
     Process a single HTML file to fix translation issues.
@@ -843,6 +857,11 @@ def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fi
         total_fixes += fixes
 
     if fix_repetitions:
+        content, fixes = fix_repeated_substring_loops(content)
+        if fixes > 0:
+            fix_details.append(f"{fixes} emoticon/token loops")
+        total_fixes += fixes
+
         content, fixes = fix_known_repetitions(content)
         if fixes > 0:
             fix_details.append(f"{fixes} known repetitions")

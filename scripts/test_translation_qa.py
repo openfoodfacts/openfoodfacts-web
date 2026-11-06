@@ -292,6 +292,40 @@ class TestTranslationQA(unittest.TestCase):
             include_path = os.path.join(root_dir, 'lang', lang, 'texts', 'api-donation-include.html')
             self.assertTrue(os.path.isfile(include_path), f"Missing include file: {include_path}")
 
+    def test_forbidden_strings_in_index_html(self):
+        """Ensure Open Food Facts index.html files do not reference sister projects (check_strings.yml parity)."""
+        forbidden_strings = ["Open Pet Food Facts", "Open Beauty Facts", "Open Products Facts"]
+        violations = []
+        for path in self.html_files:
+            if not path.endswith('/texts/index.html'):
+                continue
+            if '/obf/' in path or '/opff/' in path or '/opf/' in path:
+                continue
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+            for s in forbidden_strings:
+                if s in content:
+                    violations.append(f"{path}: contains '{s}'")
+        self.assertEqual(len(violations), 0, f"Found forbidden sister project strings in OFF index.html files:\n" + "\n".join(violations[:10]))
+
+    def test_no_repeated_substring_loops(self):
+        """Ensure translations do not contain repeated substrings or emoticon loops (e.g. &nbsp;:-)&nbsp;:-) or :-) :-) ...)."""
+        emoticon_loop_pattern = re.compile(r'((?:&nbsp;|\s)*:[-~]?[)D(PpoO])(?:\s*|&nbsp;)*(?:\1)+')
+        violations = []
+        for path in self.html_files:
+            try:
+                with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                    content = f.read()
+                # Exclude <style> and <script> blocks
+                clean = re.sub(r'<style[^>]*>.*?</style>', '', content, flags=re.DOTALL)
+                clean = re.sub(r'<script[^>]*>.*?</script>', '', clean, flags=re.DOTALL)
+                matches = emoticon_loop_pattern.findall(clean)
+                if matches:
+                    violations.append(f"{path}: looped substring '{matches[0]}'")
+            except Exception:
+                pass
+        self.assertEqual(len(violations), 0, f"Found repeated substring loops in translations:\n" + "\n".join(violations[:10]))
+
 if __name__ == '__main__':
     unittest.main()
 
