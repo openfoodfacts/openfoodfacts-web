@@ -322,7 +322,7 @@ class TestTranslationQA(unittest.TestCase):
                 # Exclude <style> and <script> blocks
                 clean = re.sub(r'<style[^>]*>.*?</style>', '', content, flags=re.DOTALL)
                 clean = re.sub(r'<script[^>]*>.*?</script>', '', clean, flags=re.DOTALL)
-                matches = emoticon_loop_pattern.findall(clean)
+                matches = [m.group(0).strip() for m in emoticon_loop_pattern.finditer(clean)]
                 if matches:
                     violations.append(f"{path}: looped substring '{matches[0]}'")
             except Exception:
