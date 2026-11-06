@@ -76,7 +76,7 @@
   }
 
   // Guard: hide widget on non-editable pages
-  if (nonEditablePages.indexOf(pageSlug) !==  -1) {
+  if (nonEditablePages.indexOf(pageSlug) !== -1) {
     card.style.display = 'none';
     return;
   }
@@ -87,7 +87,7 @@
     var hostParts = window.location.hostname.split('.');
     if (hostParts.length > 2) {
       var sub = hostParts[0].replace(/^world-/, '');
-      if (sub && sub !==  'world' && sub !==  'www' && sub !==  'static') {
+      if (sub && sub !== 'world' && sub !== 'www' && sub !== 'static') {
         lang = sub;
       }
     }
@@ -115,7 +115,7 @@
 
   if (localeMapping[lang]) {
     langFolder = localeMapping[lang];
-  } else if (lang.indexOf('-') !==  -1) {
+  } else if (lang.indexOf('-') !== -1) {
     var p = lang.split('-');
     langFolder = p[0].toLowerCase() + '_' + p[1].toUpperCase();
   }
@@ -129,7 +129,7 @@
 
   var enLink = document.getElementById('off-edit-page-en-link');
   var sep = document.getElementById('off-edit-page-sep');
-  if (enLink && langFolder !==  'en') {
+  if (enLink && langFolder !== 'en') {
     enLink.href = baseUrl + 'en/texts/' + pageSlug + '.html';
     enLink.style.display = 'inline';
     if (sep) {
