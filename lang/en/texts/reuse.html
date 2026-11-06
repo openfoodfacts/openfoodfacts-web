@@ -1359,8 +1359,8 @@ function renderCard(item) {
   }
 
   const nonNutrThemes = (item.themes && item.themes.length > 0)
-    ? item.themes.filter(t => t !== "nutrition")
-    : (item.theme && item.theme !== "nutrition" ? [item.theme] : []);
+   ? item.themes.filter(t => t !== "nutrition")
+   : (item.theme && item.theme !== "nutrition" ? [item.theme] : []);
   const themeBadges = nonNutrThemes.map(getThemeTag).join("");
 
   return '<div class="reuse-card" id="app-' + item.id + '">' +
@@ -1450,20 +1450,20 @@ function updateCountAndLoadMore() {
   const total = currentFilteredList.length;
   if (displayedCount < total) {
     count.textContent = IS_FR 
-      ? "Affichage de " + displayedCount + " sur " + total + " réutilisations (" + REUSES_DATA.length + " au total)"
-      : "Showing " + displayedCount + " of " + total + " reuses (" + REUSES_DATA.length + " total)";
+     ? "Affichage de " + displayedCount + " sur " + total + " réutilisations (" + REUSES_DATA.length + " au total)"
+     : "Showing " + displayedCount + " of " + total + " reuses (" + REUSES_DATA.length + " total)";
     if (loadMoreWrap) loadMoreWrap.style.display = "flex";
     if (loadMoreBtn) {
       const remaining = total - displayedCount;
       const step = Math.min(PAGE_SIZE, remaining);
       loadMoreBtn.textContent = IS_FR 
-        ? "Afficher plus de réutilisations (+" + step + ")" 
-        : "Load More Reuses (+" + step + ")";
+       ? "Afficher plus de réutilisations (+" + step + ")" 
+       : "Load More Reuses (+" + step + ")";
     }
   } else {
     count.textContent = IS_FR 
-      ? "Affichage de " + total + " sur " + REUSES_DATA.length + " réutilisations"
-      : "Showing " + total + " of " + REUSES_DATA.length + " reuses";
+     ? "Affichage de " + total + " sur " + REUSES_DATA.length + " réutilisations"
+     : "Showing " + total + " of " + REUSES_DATA.length + " reuses";
     if (loadMoreWrap) loadMoreWrap.style.display = "none";
   }
 }
@@ -1703,8 +1703,8 @@ function openAppModal(appId, event) {
   // Tags
   const flagLabel = COUNTRY_FLAGS[item.country] || item.country_label || "🌍 Global";
   const modalThemes = (item.themes && item.themes.length > 0)
-    ? item.themes
-    : (item.theme ? [item.theme] : []);
+   ? item.themes
+   : (item.theme ? [item.theme] : []);
   const modalThemeBadges = modalThemes.map(getThemeTag).join("");
   tagsEl.innerHTML = getProjectTag(item.project) + '<span class="reuse-geo-tag">' + flagLabel + '</span>' + modalThemeBadges;
 
@@ -1733,8 +1733,8 @@ function openAppModal(appId, event) {
     dataContribBox.style.display = "block";
     let dcHtml = '<p style="margin: 0 0 8px 0; font-size: 0.9rem;">' +
       (IS_FR
-        ? ('Cette application contribue activement au bien commun avec <strong>' + Number(item.data_contributions_count).toLocaleString('fr-FR') + ' produits</strong> ajoutés ou complétés dans Open Food Facts.')
-        : ('This application actively contributes back to the global commons with <strong>' + Number(item.data_contributions_count).toLocaleString('en-US') + ' products</strong> added or enriched in Open Food Facts.')
+       ? ('Cette application contribue activement au bien commun avec <strong>' + Number(item.data_contributions_count).toLocaleString('fr-FR') + ' produits</strong> ajoutés ou complétés dans Open Food Facts.')
+       : ('This application actively contributes back to the global commons with <strong>' + Number(item.data_contributions_count).toLocaleString('en-US') + ' products</strong> added or enriched in Open Food Facts.')
       ) + '</p>';
     if (item.data_source_url) {
       dcHtml += '<a href="' + item.data_source_url + '" target="_blank" rel="noopener noreferrer" class="store-mini-btn" style="display: inline-flex; align-items: center; gap: 4px; background: #059669; color: #ffffff; text-decoration: none; padding: 4px 10px; border-radius: 6px; font-weight: 600; font-size: 0.8rem;">' +

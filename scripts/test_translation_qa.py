@@ -57,6 +57,9 @@ class TestTranslationQA(unittest.TestCase):
             (r'\b[Ff]aches alimentaris dobèrts\b', 'Occitan mistranslation of Open Food Facts'),
             (r'\b[Pp]untuación [Vv]erde\b', 'Spanish mistranslation of Green-Score'),
             (r'\b[Pp]ontuação [Vv]erde\b', 'Portuguese mistranslation of Green-Score'),
+            (r'\b[Ss]core [Vv]ert\b', 'French mistranslation of Green-Score'),
+            (r'\bGrüner Score\b', 'German mistranslation of Green-Score'),
+            (r'\bFatos Alimentares Abertos\b', 'Portuguese mistranslation of Open Food Facts'),
         ]
         violations = []
         for path in self.html_files:
