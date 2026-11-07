@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Pet Food Facts — Contribute Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1f2937;
+        }
+        /* Global animation play-state rule: ALL SVGs PAUSED by default, RUN ONLY on hover */
+        svg, svg * {
+            animation-play-state: paused !important;
+        }
+        .off-feature-card:hover svg, .off-feature-card:hover svg *,
+        .expert-banner:hover svg, .expert-banner:hover svg *,
+        .contribute-hero:hover svg, .contribute-hero:hover svg *,
+        .discover-hero:hover svg, .discover-hero:hover svg *,
+        .contact-hero:hover svg, .contact-hero:hover svg *,
+        .contact-card:hover svg, .contact-card:hover svg *,
+        .hero-media:hover svg, .hero-media:hover svg *,
+        .opff-hero:hover svg, .opff-hero:hover svg *,
+        .obf-hero:hover svg, .obf-hero:hover svg *,
+        .opf-hero:hover svg, .opf-hero:hover svg *,
+        svg:hover, svg:hover * {
+            animation-play-state: running !important;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            svg, svg * {
+                animation: none !important;
+            }
+        }
+        /* Strictly constrain card art and prevent any SVG/image overflow */
+        .off-card-art {
+            height: 160px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+            position: relative !important;
+            margin-bottom: 1.25rem !important;
+        }
+        .off-card-art img,
+        .off-card-art svg {
+            max-width: 100% !important;
+            max-height: 140px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+            display: block !important;
+            margin: 0 auto !important;
+            transition: transform 0.3s ease !important;
+        }
+        .off-feature-card:hover .off-card-art img,
+        .off-feature-card:hover .off-card-art svg {
+            transform: scale(1.05) !important;
+        }
+        .expert-banner-art img,
+        .expert-banner-art svg {
+            max-width: 280px !important;
+            max-height: 200px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        .hero-media img,
+        .hero-media svg {
+            max-width: 440px !important;
+            max-height: 340px !important;
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        /* Simulated Site Header */
+        .site-header-preview {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.85rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .site-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+        .site-header-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .preview-badge {
+            background: #ea580c;
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .site-header-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .nav-switch-link {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #64748b;
+            text-decoration: none;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+        .nav-switch-link:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .nav-switch-link.active {
+            background: #e2e8f0;
+            color: #0f172a;
+            font-weight: 700;
+        }
+        .main-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header-preview">
+        <div class="site-header-left">
+            <div class="site-header-title">
+                <span>🌐 Open Pet Food Facts — Contribute Preview</span>
+                <span class="preview-badge">Revamped</span>
+            </div>
+        </div>
+        <div class="site-header-right">
+            <a href="preview-discover.html" class="nav-switch-link ">OFF Discover</a>
+            <a href="preview-contribute.html" class="nav-switch-link ">OFF Contribute</a>
+            <a href="preview-contact.html" class="nav-switch-link ">Contact</a>
+            <a href="preview-obf-discover.html" class="nav-switch-link ">OBF Discover</a>
+            <a href="preview-obf-contribute.html" class="nav-switch-link ">OBF Contribute</a>
+            <a href="preview-opff-discover.html" class="nav-switch-link ">OPFF Discover</a>
+            <a href="preview-opff-contribute.html" class="nav-switch-link active">OPFF Contribute</a>
+            <a href="preview-opf-discover.html" class="nav-switch-link ">OPF Discover</a>
+            <a href="preview-opf-contribute.html" class="nav-switch-link ">OPF Contribute</a>
+        </div>
+    </header>
+
+    <main class="main-container">
+<!-- no side column -->
+<style>
+/* ==========================================================================
+   Open Pet Food Facts — Modern Contribute Page
+   ========================================================================== */
+
+#opff-contribute-page {
+    --opff-primary: #ea580c;
+    --opff-primary-hover: #c2410c;
+    --opff-secondary: #15803d;
+    --opff-secondary-hover: #166534;
+    --opff-amber: #d97706;
+    --opff-dark: #2c1608;
+    --opff-cream: #fdfaf6;
+    --opff-warm-bg: #fff7ed;
+    --opff-border: #fed7aa;
+    --opff-card-border: #fbd0a7;
+    --opff-text-muted: #78533b;
+    --opff-blue: #2563eb;
+    --opff-radius-card: 22px;
+    --opff-radius-pill: 9999px;
+    --opff-shadow-sm: 0 2px 10px rgba(44, 22, 8, 0.04);
+    --opff-shadow-md: 0 10px 24px rgba(44, 22, 8, 0.07);
+    --opff-shadow-hover: 0 16px 36px rgba(234, 88, 12, 0.14);
+
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--opff-dark);
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+}
+
+#opff-contribute-page * {
+    box-sizing: border-box;
+}
+
+/* Badge Pills */
+.opff-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--opff-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+}
+.opff-badge-pill.orange { background: #ffedd5; color: #9a3412; }
+.opff-badge-pill.green { background: #dcfce7; color: #166534; }
+.opff-badge-pill.amber { background: #fef3c7; color: #92400e; }
+.opff-badge-pill.blue { background: #e0f2fe; color: #0369a1; }
+.opff-badge-pill.purple { background: #f3e8ff; color: #6b21a8; }
+
+/* Hero Banner */
+.opff-hero {
+    background: linear-gradient(145deg, #ffffff 0%, var(--opff-warm-bg) 100%);
+    border: 1px solid var(--opff-border);
+    border-radius: 28px;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 3.5rem;
+    box-shadow: var(--opff-shadow-md);
+}
+
+.hero-content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--opff-dark);
+    line-height: 1.15;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+}
+
+.hero-lead {
+    font-size: 1.15rem;
+    color: var(--opff-text-muted);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+.hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-media img {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    filter: drop-shadow(0 14px 32px rgba(44, 22, 8, 0.12));
+    border-radius: 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-media img:hover {
+    transform: translateY(-4px) scale(1.015);
+}
+
+/* Call to Action Buttons */
+.off-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--opff-radius-pill);
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    line-height: 1.2;
+    border: none;
+}
+.off-btn-primary {
+    background: var(--opff-primary);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+}
+.off-btn-primary:hover {
+    background: var(--opff-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(234, 88, 12, 0.4);
+    color: #ffffff !important;
+}
+.off-btn-secondary {
+    background: #ffffff;
+    color: var(--opff-dark) !important;
+    border: 1px solid var(--opff-border);
+    box-shadow: var(--opff-shadow-sm);
+}
+.off-btn-secondary:hover {
+    background: var(--opff-cream);
+    border-color: var(--opff-primary);
+    transform: translateY(-2px);
+    color: var(--opff-primary) !important;
+}
+.off-btn-green {
+    background: var(--opff-secondary);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(21, 128, 61, 0.3);
+}
+.off-btn-green:hover {
+    background: var(--opff-secondary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(21, 128, 61, 0.4);
+    color: #ffffff !important;
+}
+.off-btn-block {
+    width: 100%;
+}
+
+/* Section Header */
+.section-header {
+    text-align: left;
+    margin-bottom: 2.25rem;
+}
+.section-header h2 {
+    font-size: clamp(1.8rem, 3vw, 2.35rem);
+    font-weight: 800;
+    color: var(--opff-dark);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.015em;
+}
+.section-header p {
+    font-size: 1.08rem;
+    color: var(--opff-text-muted);
+    margin: 0;
+    max-width: 760px;
+}
+
+/* Grids */
+.off-card-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+.off-card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+
+/* Feature Cards */
+.off-feature-card {
+    background: #ffffff;
+    border: 1px solid var(--opff-card-border);
+    border-radius: var(--opff-radius-card);
+    padding: 1.85rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--opff-shadow-sm);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+.off-feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--opff-shadow-hover);
+    border-color: var(--opff-primary);
+}
+
+.off-card-art {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+.off-card-art img,
+.off-card-art svg {
+    max-height: 140px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.off-feature-card:hover .off-card-art img,
+.off-feature-card:hover .off-card-art svg {
+    transform: scale(1.05);
+}
+
+/* Animations: on hover only */
+#opff-contribute-page svg,
+#opff-contribute-page svg * {
+    animation-play-state: paused !important;
+}
+
+#opff-contribute-page .opff-hero:hover svg,
+#opff-contribute-page .opff-hero:hover svg *,
+#opff-contribute-page .off-feature-card:hover svg,
+#opff-contribute-page .off-feature-card:hover svg *,
+#opff-contribute-page .expert-banner:hover svg,
+#opff-contribute-page .expert-banner:hover svg *,
+#opff-contribute-page .hero-media:hover svg,
+#opff-contribute-page .hero-media:hover svg *,
+#opff-contribute-page svg:hover,
+#opff-contribute-page svg:hover * {
+    animation-play-state: running !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #opff-contribute-page svg,
+    #opff-contribute-page svg * {
+        animation: none !important;
+    }
+}
+
+.off-feature-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--opff-dark);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+}
+.off-feature-card p {
+    font-size: 0.95rem;
+    color: var(--opff-text-muted);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.off-feature-card .card-footer-action {
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
+/* Divider */
+#opff-contribute-page hr.off-divider {
+    border: none;
+    border-top: 1px solid var(--opff-border);
+    margin: 3.5rem 0;
+}
+
+/* Expert Banner */
+.expert-banner {
+    background: linear-gradient(135deg, var(--opff-warm-bg) 0%, #ffffff 100%);
+    border: 1px solid var(--opff-border);
+    border-radius: 24px;
+    padding: clamp(1.8rem, 3.5vw, 2.5rem);
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--opff-shadow-sm);
+}
+.expert-banner-art {
+    display: flex;
+    justify-content: center;
+}
+.expert-banner-art img {
+    max-width: 280px;
+    height: auto;
+}
+.expert-banner-text h2 {
+    font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+    font-weight: 800;
+    color: var(--opff-dark);
+    margin: 0 0 0.75rem 0;
+}
+.expert-banner-text p {
+    color: var(--opff-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 1.25rem 0;
+}
+
+/* Bottom CTA */
+.bottom-projects-cta {
+    background: linear-gradient(135deg, var(--opff-dark) 0%, #150a04 100%);
+    border-radius: 24px;
+    padding: clamp(2.2rem, 4vw, 3.2rem);
+    text-align: center;
+    color: #ffffff;
+    margin-top: 3.5rem;
+    box-shadow: var(--opff-shadow-md);
+}
+.bottom-projects-cta h2 {
+    color: #ffffff;
+    font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+    font-weight: 800;
+    margin: 0 0 0.85rem 0;
+}
+.bottom-projects-cta p {
+    color: #fed7aa;
+    font-size: 1.1rem;
+    max-width: 680px;
+    margin: 0 auto 1.75rem auto;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .hero-content-grid,
+    .expert-banner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .section-header {
+        text-align: center;
+    }
+}
+</style>
+
+<div id="opff-contribute-page">
+
+    <!-- Hero Banner -->
+    <header class="opff-hero">
+        <div class="hero-content-grid">
+            <div class="hero-text">
+                <span class="opff-badge-pill orange">✨ 100% Volunteer Driven • Pet Nutrition</span>
+                <h1>Contribute to Open Pet Food Facts</h1>
+                <p class="hero-lead">
+                    Help build an independent, open database of dog food, cat food, and pet treats using the universal Open Food Facts app. Together, we can ensure every pet parent knows exactly what fuels their animal companions.
+                </p>
+                <div class="hero-actions">
+                    <a href="/open-pet-food-facts-mobile-app?utm_source=opff&amp;utm_medium=web&amp;utm_campaign=contribute_hero" class="off-btn off-btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        Install Free Universal App
+                    </a>
+                    <a href="https://wiki.openfoodfacts.org/Contributor" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        Join our Community &rarr;
+                    </a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgMjMwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9InBldF9zaGFkb3ciIHg9Ii01JSIgeT0iLTUlIiB3aWR0aD0iMTEwJSIgaGVpZ2h0PSIxMTUlIj4KICAgICAgPGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjQiIHN0ZERldmlhdGlvbj0iNiIgZmxvb2QtY29sb3I9IiNmNTllMGIiIGZsb29kLW9wYWNpdHk9IjAuMTUiLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8ZyBmaWx0ZXI9InVybCgjcGV0X3NoYWRvdykiPgogICAgPHN2ZyB4PSIxNDUiIHk9IjM1IiB3aWR0aD0iMzgiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCA2NyA1NCIgb3ZlcmZsb3c9InZpc2libGUiPgo8ZyBjbGlwLXBhdGg9InVybCgjcGF3X3ByaW50X2NsaXAwXzQ5NF80NzYwKSI+CjxwYXRoIGQ9Ik00Ny4wNiA1MS4yMjAxQzM3LjkxIDU0LjUyMDEgMjguNzYgNTQuNTIwMSAxOS42MiA1MS4yMjAxQzE2LjA2IDQ5Ljk0MDEgMTMuNyA0Ni41MzAxIDEzLjcgNDIuNzUwMUMxMy43IDM3Ljc3MDEgMTcuNzMgMzMuNzQwMSAyMi43MSAzMy43NDAxQzIyLjcxIDE4LjU0MDEgNDMuOTcgMTcuOTAwMSA0My45NyAzMy43NDAxQzQ4Ljk1IDMzLjc0MDEgNTIuOTc5OSAzNy43NzAxIDUyLjk3OTkgNDIuNzUwMUM1Mi45Nzk5IDQ2LjUzMDEgNTAuNjIgNDkuOTQwMSA0Ny4wNiA1MS4yMjAxWiIgZmlsbD0iIzVFNTk1MyIvPgo8cGF0aCBkPSJNMTMuMDI5OCAyOS4zNDYyQzE1Ljg0OTggMjcuMDQ1NCAxNS42Njc5IDIyLjE1NTMgMTIuNjIzNSAxOC40MjM3QzkuNTc5MDEgMTQuNjkyMiA0LjgyNDg5IDEzLjUzMjMgMi4wMDQ4NCAxNS44MzMxQy0wLjgxNTIxNCAxOC4xMzM5IC0wLjYzMzI5OSAyMy4wMjQxIDIuNDExMTYgMjYuNzU1NkM1LjQ1NTYxIDMwLjQ4NzIgMTAuMjA5NyAzMS42NDcgMTMuMDI5OCAyOS4zNDYyWiIgZmlsbD0iIzVFNTk1MyIvPgo8cGF0aCBkPSJNMjQuNzYxOCAxNi45NTY1QzI4LjI1OTUgMTUuOTUwMiAzMC4wMTU1IDExLjM4MjYgMjguNjg0MSA2Ljc1NDRDMjcuMzUyNiAyLjEyNjE5IDIzLjQzNzggLTAuODA5OTc5IDE5Ljk0MDEgMC4xOTYyNzJDMTYuNDQyNCAxLjIwMjUyIDE0LjY4NjMgNS43NzAxNSAxNi4wMTc4IDEwLjM5ODRDMTcuMzQ5MyAxNS4wMjY2IDIxLjI2NDEgMTcuOTYyNyAyNC43NjE4IDE2Ljk1NjVaIiBmaWxsPSIjNUU1OTUzIi8+CjxwYXRoIGQ9Ik02NC40MzYgMjYuNzU1N0M2Ny40ODA0IDIzLjAyNDEgNjcuNjYyMyAxOC4xMzQgNjQuODQyMyAxNS44MzMyQzYyLjAyMjIgMTMuNTMyNCA1Ny4yNjgxIDE0LjY5MjIgNTQuMjIzNyAxOC40MjM3QzUxLjE3OTIgMjIuMTU1MyA1MC45OTczIDI3LjA0NTUgNTMuODE3MyAyOS4zNDYzQzU2LjYzNzQgMzEuNjQ3MSA2MS4zOTE1IDMwLjQ4NzIgNjQuNDM2IDI2Ljc1NTdaIiBmaWxsPSIjNUU1OTUzIi8+CjxwYXRoIGQ9Ik01MC44MzE4IDEwLjM5ODdDNTIuMTYzMyA1Ljc3MDU0IDUwLjQwNzIgMS4yMDI5MSA0Ni45MDk1IDAuMTk2NjYxQzQzLjQxMTggLTAuODA5NTkgMzkuNDk3IDIuMTI2NTggMzguMTY1NSA2Ljc1NDc5QzM2LjgzNCAxMS4zODMgMzguNTkwMSAxNS45NTA2IDQyLjA4NzggMTYuOTU2OUM0NS41ODU1IDE3Ljk2MzEgNDkuNTAwMyAxNS4wMjY5IDUwLjgzMTggMTAuMzk4N1oiIGZpbGw9IiM1RTU5NTMiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJwYXdfcHJpbnRfY2xpcDBfNDk0XzQ3NjAiPgo8cmVjdCB3aWR0aD0iNjYuODUiIGhlaWdodD0iNTMuNyIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgoKPC9zdmc+CiAgICA8c3ZnIHg9IjQxNSIgeT0iMzAiIHdpZHRoPSI0MiIgaGVpZ2h0PSIzNCIgdmlld0JveD0iMCAwIDY3IDU0IiBvdmVyZmxvdz0idmlzaWJsZSI+CjxnIGNsaXAtcGF0aD0idXJsKCNwYXdfcHJpbnRfY2xpcDBfNDk0XzQ3NjApIj4KPHBhdGggZD0iTTQ3LjA2IDUxLjIyMDFDMzcuOTEgNTQuNTIwMSAyOC43NiA1NC41MjAxIDE5LjYyIDUxLjIyMDFDMTYuMDYgNDkuOTQwMSAxMy43IDQ2LjUzMDEgMTMuNyA0Mi43NTAxQzEzLjcgMzcuNzcwMSAxNy43MyAzMy43NDAxIDIyLjcxIDMzLjc0MDFDMjIuNzEgMTguNTQwMSA0My45NyAxNy45MDAxIDQzLjk3IDMzLjc0MDFDNDguOTUgMzMuNzQwMSA1Mi45Nzk5IDM3Ljc3MDEgNTIuOTc5OSA0Mi43NTAxQzUyLjk3OTkgNDYuNTMwMSA1MC42MiA0OS45NDAxIDQ3LjA2IDUxLjIyMDFaIiBmaWxsPSIjNUU1OTUzIi8+CjxwYXRoIGQ9Ik0xMy4wMjk4IDI5LjM0NjJDMTUuODQ5OCAyNy4wNDU0IDE1LjY2NzkgMjIuMTU1MyAxMi42MjM1IDE4LjQyMzdDOS41NzkwMSAxNC42OTIyIDQuODI0ODkgMTMuNTMyMyAyLjAwNDg0IDE1LjgzMzFDLTAuODE1MjE0IDE4LjEzMzkgLTAuNjMzMjk5IDIzLjAyNDEgMi40MTExNiAyNi43NTU2QzUuNDU1NjEgMzAuNDg3MiAxMC4yMDk3IDMxLjY0NyAxMy4wMjk4IDI5LjM0NjJaIiBmaWxsPSIjNUU1OTUzIi8+CjxwYXRoIGQ9Ik0yNC43NjE4IDE2Ljk1NjVDMjguMjU5NSAxNS45NTAyIDMwLjAxNTUgMTEuMzgyNiAyOC42ODQxIDYuNzU0NEMyNy4zNTI2IDIuMTI2MTkgMjMuNDM3OCAtMC44MDk5NzkgMTkuOTQwMSAwLjE5NjI3MkMxNi40NDI0IDEuMjAyNTIgMTQuNjg2MyA1Ljc3MDE1IDE2LjAxNzggMTAuMzk4NEMxNy4zNDkzIDE1LjAyNjYgMjEuMjY0MSAxNy45NjI3IDI0Ljc2MTggMTYuOTU2NVoiIGZpbGw9IiM1RTU5NTMiLz4KPHBhdGggZD0iTTY0LjQzNiAyNi43NTU3QzY3LjQ4MDQgMjMuMDI0MSA2Ny42NjIzIDE4LjEzNCA2NC44NDIzIDE1LjgzMzJDNjIuMDIyMiAxMy41MzI0IDU3LjI2ODEgMTQuNjkyMiA1NC4yMjM3IDE4LjQyMzdDNTEuMTc5MiAyMi4xNTUzIDUwLjk5NzMgMjcuMDQ1NSA1My44MTczIDI5LjM0NjNDNTYuNjM3NCAzMS42NDcxIDYxLjM5MTUgMzAuNDg3MiA2NC40MzYgMjYuNzU1N1oiIGZpbGw9IiM1RTU5NTMiLz4KPHBhdGggZD0iTTUwLjgzMTggMTAuMzk4N0M1Mi4xNjMzIDUuNzcwNTQgNTAuNDA3MiAxLjIwMjkxIDQ2LjkwOTUgMC4xOTY2NjFDNDMuNDExOCAtMC44MDk1OSAzOS40OTcgMi4xMjY1OCAzOC4xNjU1IDYuNzU0NzlDMzYuODM0IDExLjM4MyAzOC41OTAxIDE1Ljk1MDYgNDIuMDg3OCAxNi45NTY5QzQ1LjU4NTUgMTcuOTYzMSA0OS41MDAzIDE1LjAyNjkgNTAuODMxOCAxMC4zOTg3WiIgZmlsbD0iIzVFNTk1MyIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9InBhd19wcmludF9jbGlwMF80OTRfNDc2MCI+CjxyZWN0IHdpZHRoPSI2Ni44NSIgaGVpZ2h0PSI1My43IiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cgo8L3N2Zz4KICAgIDxzdmcgeD0iMzAiIHk9Ijc1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjEyNSIgdmlld0JveD0iMCAwIDE1MSAxMzQiIG92ZXJmbG93PSJ2aXNpYmxlIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2RvZ19jbGlwMF80OTRfNDc1MCkiPgo8cGF0aCBkPSJNMi4zNDAwMiA0My4xNUM0Ljc2MDAzIDQ0LjkzIDguMTQwMDIgNDQuNTcgMTAuMTEgNDIuM0wxNS4wNyAzNi42MUwyMC40NCA0My4yOUw1Ny4xMiAxMy4yOEwzNC41NyAwLjc4OTk5MkMzMC43NyAtMS4yMDAwMSAyNS4xMSAwLjY4OTk5MiAyMi4wNyA1LjAwOTk5TDEuMDQwMDMgMzUuMjFDLTAuNzM5OTc1IDM3Ljc3IC0wLjE2OTk3NSA0MS4yOSAyLjM1MDAyIDQzLjE0TDIuMzQwMDIgNDMuMTVaIiBmaWxsPSIjNkY0RTM3Ii8+CjxwYXRoIGQ9Ik0yMC44NiAyOUwyOS45MSAxNi40OUMzMS4xNSAxNC43NCAzMy41MyAxNC4yMyAzNS4zNyAxNS4zMkw0OC4wNiAyMi43OUwzMS43OCA0MS4xNEwyMC44NiAyOVoiIGZpbGw9IiNGRkU2REMiLz4KPHBhdGggZD0iTTE0OC4xMyA0My4xNUMxNDUuNzEgNDQuOTMgMTQyLjMzIDQ0LjU3IDE0MC4zNiA0Mi4zTDEzNS40IDM2LjYxTDEzMC4wMyA0My4yOUw5My4zNSAxMy4yOUwxMTUuOSAwLjc4OTk5MkMxMTkuNyAtMS4yMDAwMSAxMjUuMzYgMC42ODk5OTIgMTI4LjQgNS4wMDk5OUwxNDkuNDQgMzUuMjFDMTUxLjIyIDM3Ljc3IDE1MC42NSA0MS4yOSAxNDguMTMgNDMuMTRWNDMuMTVaIiBmaWxsPSIjNkY0RTM3Ii8+CjxwYXRoIGQ9Ik0xMjkuNjEgMjlMMTIwLjU2IDE2LjQ5QzExOS4zMiAxNC43NCAxMTYuOTQgMTQuMjMgMTE1LjEgMTUuMzJMMTAyLjQxIDIyLjc5TDExOC42OSA0MS4xNEwxMjkuNjEgMjlaIiBmaWxsPSIjRkZFNkRDIi8+CjxwYXRoIGQ9Ik03NS4yMTAxIDEzMy4wNEMxMDkuMDU0IDEzMy4wNCAxMzYuNDkgMTA1LjYwNCAxMzYuNDkgNzEuNzZDMTM2LjQ5IDM3LjkxNiAxMDkuMDU0IDEwLjQ4IDc1LjIxMDEgMTAuNDhDNDEuMzY2IDEwLjQ4IDEzLjkzMDEgMzcuOTE2IDEzLjkzMDEgNzEuNzZDMTMuOTMwMSAxMDUuNjA0IDQxLjM2NiAxMzMuMDQgNzUuMjEwMSAxMzMuMDRaIiBmaWxsPSIjQUY5Mjc5Ii8+CjxwYXRoIGQ9Ik0xMTkuODYgNjIuOTNDMTE4Ljc5IDc5LjA1IDExMS4zIDgzLjI5IDk2Ljk5MDEgODMuOEM4My42NTAxIDg0LjI3IDc4LjE5MDEgNzguMzUgNzYuMDMwMSA2My43OEM3NC4xMzAxIDUwLjkxIDgwLjY5MDEgMzEuNDggOTMuNjQwMSAyOS42N0MxMDguOCAyNy41NSAxMjEgNDUuOCAxMTkuODYgNjIuOTNaIiBmaWxsPSIjNkY0RTM3Ii8+CjxwYXRoIGQ9Ik04MC4xNTAxIDU1LjY2Qzc2LjU4MDEgNzQuMjcgODIuNDkwMSA3OS4zNSA5NS4yNDAxIDc5LjM1QzEwNy45OSA3OS4zNSAxMTMuOSA3NC4yNyAxMTAuMzMgNTUuNjZDMTA3LjkxIDQzLjAyIDEwMS40MyAzNS40MSA5NS4yNDAxIDM1LjQxQzg5LjA1MDEgMzUuNDEgODIuNTcwMSA0My4wMiA4MC4xNTAxIDU1LjY2WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTcwLjMyMDEgNTUuNjZDNzMuODkwMSA3NC4yNyA2Ny45ODAxIDc5LjM1IDU1LjIzMDEgNzkuMzVDNDIuNDgwMSA3OS4zNSAzNi41NzAxIDc0LjI3IDQwLjE0MDEgNTUuNjZDNDIuNTYwMSA0My4wMiA0OS4wNDAxIDM1LjQxIDU1LjIzMDEgMzUuNDFDNjEuNDIwMSAzNS40MSA2Ny45MDAxIDQzLjAyIDcwLjMyMDEgNTUuNjZaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOTUuMjMgNDEuMTRDOTQuNzMgNDEuMTQgOTQuMjUgNDEuMjEgOTMuNzggNDEuMzFDOTQuNjYgNDEuOTYgOTUuMjMgNDIuOTkgOTUuMjMgNDQuMTdDOTUuMjMgNDYuMTQgOTMuNjIgNDcuNzQgOTEuNjQgNDcuNzRDOTAuMTQgNDcuNzQgODguODYgNDYuODIgODguMzIgNDUuNTFDODcuMTYgNDcuNDMgODYuNDYgNDkuODQgODYuNDYgNTIuNDZDODYuNDYgNTguNzEgOTAuMzggNjMuNzggOTUuMjIgNjMuNzhDMTAwLjA2IDYzLjc4IDEwMy45OCA1OC43MSAxMDMuOTggNTIuNDZDMTAzLjk4IDQ2LjIxIDEwMC4wNiA0MS4xNCA5NS4yMiA0MS4xNEg5NS4yM1oiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik02Mi4yMSA0NS42NUM2MS42NCA0Ni44OCA2MC40IDQ3Ljc0IDU4Ljk2IDQ3Ljc0QzU2Ljk4IDQ3Ljc0IDU1LjM3IDQ2LjE0IDU1LjM3IDQ0LjE3QzU1LjM3IDQzLjAxIDU1LjkzIDQxLjk5IDU2Ljc5IDQxLjM0QzU2LjI4IDQxLjIyIDU1Ljc2IDQxLjE1IDU1LjIzIDQxLjE1QzUwLjM5IDQxLjE1IDQ2LjQ3IDQ2LjIyIDQ2LjQ3IDUyLjQ3QzQ2LjQ3IDU4LjcyIDUwLjM5IDYzLjc5IDU1LjIzIDYzLjc5QzYwLjA3IDYzLjc5IDYzLjk5IDU4LjcyIDYzLjk5IDUyLjQ3QzYzLjk5IDQ5LjkxIDYzLjMyIDQ3LjU1IDYyLjIxIDQ1LjY1WiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTc1LjIzIDgyLjg1QzgxLjM2MDQgODIuODUgODYuMzMgNzcuODgwNCA4Ni4zMyA3MS43NUM4Ni4zMyA2NS42MTk3IDgxLjM2MDQgNjAuNjUgNzUuMjMgNjAuNjVDNjkuMDk5NyA2MC42NSA2NC4xMyA2NS42MTk3IDY0LjEzIDcxLjc1QzY0LjEzIDc3Ljg4MDQgNjkuMDk5NyA4Mi44NSA3NS4yMyA4Mi44NVoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik03Ni45ODAxIDgzLjAxVjgzLjI4Qzc2Ljk4MDEgODUuNzcgNzYuNDUwMSA4Ny45NCA3NS40ODAxIDg5LjcxQzc1LjQwMDEgODkuODYgNzUuMzIwMSA5MC4wMSA3NS4yMzAxIDkwLjE1QzczLjQyMDEgOTMuMTQgNzAuMzMwMSA5NC45IDY2LjUwMDEgOTUuMDFDNjYuMzEwMSA5NS4wMiA2Ni4xMzAxIDk1LjAyIDY1Ljk0MDEgOTUuMDJDNjAuMzQwMSA5NS4wMiA1NC43MjAxIDkxLjczIDUzLjU0MDEgODcuNDdDNTMuMjgwMSA4Ni41NCA1My44MzAxIDg1LjU4IDU0Ljc2MDEgODUuMzJDNTUuNjkwMSA4NS4wNiA1Ni41ODAxIDg1LjYzIDU2LjkxMDEgODYuNTRDNTcuOTkwMSA4OS41MyA2Mi41MDAxIDkxLjc5IDY2LjUwMDEgOTEuNTFDNjYuNzgwMSA5MS41IDY3LjA2MDEgOTEuNDYgNjcuMzMwMSA5MS40MkM2OC42MTAxIDkxLjIxIDcwLjAwMDEgOTAuNzUgNzEuMTQwMSA4OS43MUM3Mi40NzAxIDg4LjUxIDczLjQ0MDEgODYuNTMgNzMuNDgwMSA4My4yOFY4M0M3My40OTAxIDgyLjAzIDc0LjI3MDEgODEuMjUgNzUuMjMwMSA4MS4yNUM3Ni4xOTAxIDgxLjI1IDc2Ljk5MDEgODIuMDQgNzYuOTgwMSA4My4wMVoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik05Ni45MiA4Ny40N0M5NS43NCA5MS43MyA5MC4xMiA5NS4wMiA4NC41MyA5NS4wMkM4NC4zMiA5NS4wMiA4NC4xMiA5NS4wMiA4My45MSA5NS4wMUM4MC4xIDk0Ljg4IDc3LjAzIDkzLjEyIDc1LjIzIDkwLjE1Qzc1LjE0IDkwLjAxIDc1LjA2IDg5Ljg2IDc0Ljk4IDg5LjcxQzc0LjAxIDg3Ljk0IDczLjQ4IDg1Ljc3IDczLjQ4IDgzLjI4VjgzQzczLjQ5IDgyLjAzIDc0LjI3IDgxLjI1IDc1LjIzIDgxLjI1Qzc2LjE5IDgxLjI1IDc2Ljk5IDgyLjA0IDc2Ljk4IDgzLjAxVjgzLjI4Qzc3LjAyIDg2LjUzIDc3Ljk5IDg4LjUxIDc5LjMyIDg5LjcxQzgwLjQ2IDkwLjc1IDgxLjg1IDkxLjIxIDgzLjEzIDkxLjQyQzgzLjM5IDkxLjQ2IDgzLjY1IDkxLjQ5IDgzLjkxIDkxLjUxQzg3LjkzIDkxLjgxIDkyLjQ2IDg5LjU0IDkzLjU1IDg2LjU0QzkzLjg4IDg1LjYzIDk0Ljc3IDg1LjA2IDk1LjcgODUuMzJDOTYuNjMgODUuNTggOTcuMTggODYuNTQgOTYuOTIgODcuNDdaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNODMuOTEgOTUuMDFWOTcuNkM4My45MSAxMDIuNDEgODAuMDEgMTA2LjMxIDc1LjIxIDEwNi4zMUM3MC40MSAxMDYuMzEgNjYuNSAxMDIuNDEgNjYuNSA5Ny42Vjk1LjAxQzcwLjMzIDk0LjkgNzMuNDIgOTMuMTQgNzUuMjMgOTAuMTVDNzcuMDMgOTMuMTIgODAuMSA5NC44OCA4My45MSA5NS4wMVoiIGZpbGw9IiNGRjZFNzkiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJkb2dfY2xpcDBfNDk0XzQ3NTAiPgo8cmVjdCB3aWR0aD0iMTUwLjQ3IiBoZWlnaHQ9IjEzMy4wNCIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgoKPC9zdmc+CiAgICA8c3ZnIHg9IjE4MCIgeT0iMjUiIHdpZHRoPSIxMTUiIGhlaWdodD0iMTY1IiB2aWV3Qm94PSIwIDAgMTI0IDE4MCIgb3ZlcmZsb3c9InZpc2libGUiPgo8cGF0aCBkPSJNMTIzLjE2IDUwLjUyVjE3My4yOUMxMjMuMTYgMTc2LjQ3IDEyMC41OSAxNzkuMDQgMTE3LjQxIDE3OS4wNEg1Ljc1QzIuNTggMTc5LjA0IDAgMTc2LjQ3IDAgMTczLjI5VjUwLjUyQzAgNDYuOTkgMC45MyA0My41MiAyLjcxIDQwLjQ3TDE4LjY0IDEzLjA0SDEwNC41MkwxMjAuNDUgNDAuNDdDMTIyLjIyIDQzLjUyIDEyMy4xNiA0Ni45OSAxMjMuMTYgNTAuNTJaIiBmaWxsPSIjRjlCQjVBIi8+CjxwYXRoIGQ9Ik0yMS40NyAwSDEwMS43QzEwMy4yNiAwIDEwNC41MyAxLjI3IDEwNC41MyAyLjgzVjEzLjA1SDE4LjY0VjIuODNDMTguNjQgMS4yNyAxOS45MSAwIDIxLjQ3IDBaIiBmaWxsPSIjRDY5MjM4Ii8+CjxwYXRoIGQ9Ik02MS41OCAxNDMuN0M4Ny43NzQ5IDE0My43IDEwOS4wMSAxMjIuNDY1IDEwOS4wMSA5Ni4yN0MxMDkuMDEgNzAuMDc1MiA4Ny43NzQ5IDQ4Ljg0IDYxLjU4IDQ4Ljg0QzM1LjM4NTIgNDguODQgMTQuMTUgNzAuMDc1MiAxNC4xNSA5Ni4yN0MxNC4xNSAxMjIuNDY1IDM1LjM4NTIgMTQzLjcgNjEuNTggMTQzLjdaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNzUuMjIgMTIwLjA4QzY2LjA3IDEyMy4zOCA1Ni45MiAxMjMuMzggNDcuNzggMTIwLjA4QzQ0LjIyIDExOC44IDQxLjg2IDExNS4zOSA0MS44NiAxMTEuNjFDNDEuODYgMTA2LjYzIDQ1Ljg5IDEwMi42IDUwLjg3IDEwMi42QzUwLjg3IDg3LjQgNzIuMTMgODYuNzYgNzIuMTMgMTAyLjZDNzcuMTEgMTAyLjYgODEuMTQgMTA2LjYzIDgxLjE0IDExMS42MUM4MS4xNCAxMTUuMzkgNzguNzggMTE4LjggNzUuMjIgMTIwLjA4WiIgZmlsbD0iIzVFNTk1MyIvPgo8cGF0aCBkPSJNNDEuMTgyMiA5OC4yMTU5QzQ0LjAwMjMgOTUuOTE1MSA0My44MjA0IDkxLjAyNDkgNDAuNzc1OSA4Ny4yOTMzQzM3LjczMTUgODMuNTYxOCAzMi45Nzc0IDgyLjQwMiAzMC4xNTczIDg0LjcwMjhDMjcuMzM3MyA4Ny4wMDM1IDI3LjUxOTIgOTEuODkzNyAzMC41NjM2IDk1LjYyNTNDMzMuNjA4MSA5OS4zNTY4IDM4LjM2MjIgMTAwLjUxNyA0MS4xODIyIDk4LjIxNTlaIiBmaWxsPSIjNUU1OTUzIi8+CjxwYXRoIGQ9Ik01Mi45MjIzIDg1LjgxNjhDNTYuNDIgODQuODEwNSA1OC4xNzYxIDgwLjI0MjkgNTYuODQ0NiA3NS42MTQ3QzU1LjUxMzEgNzAuOTg2NSA1MS41OTgzIDY4LjA1MDMgNDguMTAwNiA2OS4wNTY2QzQ0LjYwMjkgNzAuMDYyOCA0Mi44NDY4IDc0LjYzMDQgNDQuMTc4MyA3OS4yNTg2QzQ1LjUwOTggODMuODg2OCA0OS40MjQ2IDg2LjgyMyA1Mi45MjIzIDg1LjgxNjhaIiBmaWxsPSIjNUU1OTUzIi8+CjxwYXRoIGQ9Ik05Mi41OTI4IDk1LjYwNzJDOTUuNjM3MyA5MS44NzU2IDk1LjgxOTIgODYuOTg1NSA5Mi45OTkxIDg0LjY4NDdDOTAuMTc5MSA4Mi4zODM5IDg1LjQyNSA4My41NDM3IDgyLjM4MDUgODcuMjc1MkM3OS4zMzYxIDkxLjAwNjggNzkuMTU0MSA5NS44OTcgODEuOTc0MiA5OC4xOTc4Qzg0Ljc5NDIgMTAwLjQ5OSA4OS41NDg0IDk5LjMzODcgOTIuNTkyOCA5NS42MDcyWiIgZmlsbD0iIzVFNTk1MyIvPgo8cGF0aCBkPSJNNzguOTgzNCA3OS4yNjQ1QzgwLjMxNDkgNzQuNjM2MyA3OC41NTg4IDcwLjA2ODcgNzUuMDYxMSA2OS4wNjI0QzcxLjU2MzQgNjguMDU2MiA2Ny42NDg2IDcwLjk5MjQgNjYuMzE3MSA3NS42MjA2QzY0Ljk4NTYgODAuMjQ4OCA2Ni43NDE3IDg0LjgxNjQgNzAuMjM5NCA4NS44MjI3QzczLjczNzEgODYuODI4OSA3Ny42NTE5IDgzLjg5MjcgNzguOTgzNCA3OS4yNjQ1WiIgZmlsbD0iIzVFNTk1MyIvPgo8cGF0aCBkPSJNOTYuOTggMTU0LjI5SDI2LjAxQzI1LjE4NzEgMTU0LjI5IDI0LjUyIDE1NC45NTUgMjQuNTIgMTU1Ljc3NUMyNC41MiAxNTYuNTk1IDI1LjE4NzEgMTU3LjI2IDI2LjAxIDE1Ny4yNkg5Ni45OEM5Ny44MDI5IDE1Ny4yNiA5OC40NyAxNTYuNTk1IDk4LjQ3IDE1NS43NzVDOTguNDcgMTU0Ljk1NSA5Ny44MDI5IDE1NC4yOSA5Ni45OCAxNTQuMjlaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOTYuOTggMTYzLjI5SDI2LjAxQzI1LjE4NzEgMTYzLjI5IDI0LjUyIDE2My45NTUgMjQuNTIgMTY0Ljc3NUMyNC41MiAxNjUuNTk1IDI1LjE4NzEgMTY2LjI2IDI2LjAxIDE2Ni4yNkg5Ni45OEM5Ny44MDI5IDE2Ni4yNiA5OC40NyAxNjUuNTk1IDk4LjQ3IDE2NC43NzVDOTguNDcgMTYzLjk1NSA5Ny44MDI5IDE2My4yOSA5Ni45OCAxNjMuMjlaIiBmaWxsPSJ3aGl0ZSIvPgoKPC9zdmc+CiAgICA8c3ZnIHg9IjI5MCIgeT0iMTEwIiB3aWR0aD0iMTI1IiBoZWlnaHQ9Ijc1IiB2aWV3Qm94PSIwIDAgMTQ1IDg1IiBvdmVyZmxvdz0idmlzaWJsZSI+CjxnIGNsaXAtcGF0aD0idXJsKCNwZXRfZm9vZF9ib3dsX2NsaXAwXzQ5NF80NzU5KSI+CjxwYXRoIGQ9Ik0xMjAuMTkgMzQuMjdIMjEuODZDMTkuOTcgMjMuNTggMjkuMTMgMTMuMjYgNDEuMjggMTMuNDZDNDUuNTEgMTMuNTMgNDkuMDYgMTQuOTIgNTEuNzIgMTcuMTJDNTYuNTUgNy4wNDAwMSA2Ny4xNyAwLjE4MDAxIDc4LjIyIDEuMDA4NjdlLTA1QzkxLjQgLTAuMjE5OTkgMTAyLjQzIDkuMTUwMDEgMTAzLjQ2IDIyLjEzQzEwMy40OSAyMi40NyAxMDMuNTEgMjIuODEgMTAzLjUyIDIzLjE1QzEwNC4xNyAyMy4wNiAxMDQuODMgMjMuMDEgMTA1LjUxIDIzLjAxQzExMS4zNiAyMy4wMSAxMTcuNTUgMjYuNjkgMTE5LjYzIDMyLjIzQzExOS44OCAzMi45MSAxMjAuMDcgMzMuNTkgMTIwLjE5IDM0LjI3WiIgZmlsbD0iI0EzNzI0RCIvPgo8cGF0aCBkPSJNMTM4LjY4IDg0LjM2SDUuNjcwMDJDMS44MzAwMiA4NC4zNiAtMC44ODk5NzUgODAuNjMgMC4yNzAwMjUgNzYuOThMMTIuNjUgMzguMjFDMTMuNCAzNS44NyAxNS41OCAzNC4yNyAxOC4wNCAzNC4yN0gxMjYuM0MxMjguNzcgMzQuMjcgMTMwLjk1IDM1Ljg3IDEzMS43IDM4LjIxTDE0NC4wNyA3Ni45OEMxNDUuMjQgODAuNjMgMTQyLjUxIDg0LjM2IDEzOC42OCA4NC4zNloiIGZpbGw9IiMwMDY0QzgiLz4KPHBhdGggZD0iTTk5LjQ5IDY3LjM2Qzk5LjQ5IDcwLjg4IDk2LjYzIDczLjczIDkzLjEyIDczLjczQzg5LjYxIDczLjczIDg2Ljc1IDcwLjg4IDg2Ljc1IDY3LjM2Qzg2Ljc1IDY3LjA3IDg2Ljc3IDY2Ljc4IDg2LjgxIDY2LjUxSDU3LjU0QzU3LjU4IDY2Ljc4IDU3LjYgNjcuMDcgNTcuNiA2Ny4zNkM1Ny42IDcwLjg4IDU0Ljc0IDczLjczIDUxLjIzIDczLjczQzQ3LjcyIDczLjczIDQ0Ljg1IDcwLjg4IDQ0Ljg1IDY3LjM2QzQ0Ljg1IDY0Ljk0IDQ2LjIxIDYyLjgzIDQ4LjIgNjEuNzZDNDYuMjEgNjAuNjggNDQuODUgNTguNTcgNDQuODUgNTYuMTVDNDQuODUgNTIuNjMgNDcuNzEgNDkuNzggNTEuMjMgNDkuNzhDNTQuNzUgNDkuNzggNTcuNiA1Mi42MyA1Ny42IDU2LjE1QzU3LjYgNTYuNDQgNTcuNTggNTYuNzMgNTcuNTQgNTdIODYuODFDODYuNzcgNTYuNzMgODYuNzUgNTYuNDQgODYuNzUgNTYuMTVDODYuNzUgNTIuNjMgODkuNiA0OS43OCA5My4xMiA0OS43OEM5Ni42NCA0OS43OCA5OS40OSA1Mi42MyA5OS40OSA1Ni4xNUM5OS40OSA1OC41NyA5OC4xMyA2MC42OCA5Ni4xNCA2MS43NkM5OC4xMyA2Mi44MyA5OS40OSA2NC45NCA5OS40OSA2Ny4zNloiIGZpbGw9IndoaXRlIi8+CjwvZz4KPGRlZnM+CjxjbGlwUGF0aCBpZD0icGV0X2Zvb2RfYm93bF9jbGlwMF80OTRfNDc1OSI+CjxyZWN0IHdpZHRoPSIxNDQuMzQiIGhlaWdodD0iODQuMzYiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KCjwvc3ZnPgogICAgPHN2ZyB4PSIyNzAiIHk9IjE0MCIgd2lkdGg9IjM2IiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgNDQgNDkiIG92ZXJmbG93PSJ2aXNpYmxlIj4KPHBhdGggZD0iTTEuMDMwMDIgMTMuNThMNS4yNDAwMiAyMi4wMUM1Ljg5MDAyIDIzLjMgNy40MjAwMSAyMy44OCA4Ljc2MDAxIDIzLjM0TDE1LjU1IDIwLjU4QzE3LjA3IDE5Ljk2IDE3LjcyIDE4LjE3IDE2Ljk2IDE2LjcyTDEyLjMzIDcuOTFDMTEuNjMgNi41OCAxMCA2LjA0OTk5IDguNjUwMDEgNi43MDk5OUwyLjI3MDAyIDkuODQ5OTlDMC44OTAwMjMgMTAuNTMgMC4zMzAwMjMgMTIuMiAxLjAyMDAyIDEzLjU4SDEuMDMwMDJaIiBmaWxsPSIjQzE4RTRGIi8+CjxwYXRoIGQ9Ik0xMi4xMyA0MS45MUwxNy41MyAzNC4xMUMxOC40NiAzMi43NyAyMC4zNCAzMi41MiAyMS41OSAzMy41NkwyNC44NiAzNi4zQzI1LjQgMzYuNzUgMjUuNzUgMzcuMzkgMjUuODMgMzguMDlMMjYuNzYgNDUuNjVDMjcgNDcuNTkgMjUuMjEgNDkuMTYgMjMuMzEgNDguNjdMMTMuNzEgNDYuMTdDMTEuODUgNDUuNjkgMTEuMDMgNDMuNDkgMTIuMTMgNDEuOTFaIiBmaWxsPSIjQzE4RTRGIi8+CjxwYXRoIGQ9Ik0yOC42NCA5LjY5QzI5Ljc4IDcuNTIgMzEuMzkgNC4zNiAzMi41NiAyLjA1QzMzLjM0IDAuNTAwMDAzIDM1LjMzIDAuMDQ5OTk4NSAzNi43MSAxLjFMNDIuNzEgNS42NUM0My41OCA2LjMxIDQzLjk4IDcuNDMgNDMuNzMgOC41TDQyIDE1LjgyQzQxLjU5IDE3LjU3IDM5LjY0IDE4LjQ3IDM4LjA0IDE3LjY1TDI5Ljg0IDEzLjQ1QzI4LjQ3IDEyLjc1IDI3LjkzIDExLjA2IDI4LjY1IDkuN0wyOC42NCA5LjY5WiIgZmlsbD0iI0MxOEU0RiIvPgoKPC9zdmc+CiAgICA8c3ZnIHg9IjEzNSIgeT0iMTc1IiB3aWR0aD0iNDgiIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCA1NSAyNCIgb3ZlcmZsb3c9InZpc2libGUiPgo8ZyBjbGlwLXBhdGg9InVybCgjYm9uZV9jbGlwMF80OTRfNDc2MSkiPgo8cGF0aCBkPSJNNTQuNjQgMTcuNThDNTQuNjQgMjEuMSA1MS43OCAyMy45NSA0OC4yNyAyMy45NUM0NC43NiAyMy45NSA0MS45IDIxLjEgNDEuOSAxNy41OEM0MS45IDE3LjI5IDQxLjkyIDE3IDQxLjk2IDE2LjczSDEyLjY5QzEyLjczIDE3IDEyLjc1IDE3LjI5IDEyLjc1IDE3LjU4QzEyLjc1IDIxLjEgOS44OSAyMy45NSA2LjM4IDIzLjk1QzIuODcgMjMuOTUgMCAyMS4xIDAgMTcuNThDMCAxNS4xNiAxLjM2IDEzLjA1IDMuMzUgMTEuOThDMS4zNiAxMC45IDAgOC43OSAwIDYuMzdDMCAyLjg1IDIuODYgMCA2LjM4IDBDOS45IDAgMTIuNzUgMi44NSAxMi43NSA2LjM3QzEyLjc1IDYuNjYgMTIuNzMgNi45NSAxMi42OSA3LjIySDQxLjk2QzQxLjkyIDYuOTUgNDEuOSA2LjY2IDQxLjkgNi4zN0M0MS45IDIuODUgNDQuNzUgMCA0OC4yNyAwQzUxLjc5IDAgNTQuNjQgMi44NSA1NC42NCA2LjM3QzU0LjY0IDguNzkgNTMuMjggMTAuOSA1MS4yOSAxMS45OEM1My4yOCAxMy4wNSA1NC42NCAxNS4xNiA1NC42NCAxNy41OFoiIGZpbGw9IndoaXRlIi8+CjwvZz4KPGRlZnM+CjxjbGlwUGF0aCBpZD0iYm9uZV9jbGlwMF80OTRfNDc2MSI+CjxyZWN0IHdpZHRoPSI1NC42NCIgaGVpZ2h0PSIyMy45NSIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgoKPC9zdmc+CiAgICA8c3ZnIHg9IjQyNSIgeT0iNzUiIHdpZHRoPSIxMjUiIGhlaWdodD0iMTI1IiB2aWV3Qm94PSIwIDAgMTIzIDEzNCIgb3ZlcmZsb3c9InZpc2libGUiPgo8ZyBjbGlwLXBhdGg9InVybCgjY2F0X2NsaXAwXzQ5NF80NzUxKSI+CjxwYXRoIGQ9Ik02MS4yOCAxMzMuNjdDOTUuMTI0IDEzMy42NyAxMjIuNTYgMTA2LjIzNCAxMjIuNTYgNzIuMzlDMTIyLjU2IDM4LjU0NiA5NS4xMjQgMTEuMTEgNjEuMjggMTEuMTFDMjcuNDM2IDExLjExIDAgMzguNTQ2IDAgNzIuMzlDMCAxMDYuMjM0IDI3LjQzNiAxMzMuNjcgNjEuMjggMTMzLjY3WiIgZmlsbD0iI0FBQUFBQSIvPgo8cGF0aCBkPSJNNDIuNDQgMTQuMDdMMTIuNjggMC40NjAwMjFDOS4xNiAtMS4xNDk5OCA1LjI1IDEuNzkwMDIgNS44MiA1LjYyMDAyTDEwLjYzIDM3LjlDMTguMjIgMjYuNzggMjkuMzcgMTguMyA0Mi40NCAxNC4wOFYxNC4wN1oiIGZpbGw9IiNBQUFBQUEiLz4KPHBhdGggZD0iTTExMS45NCAzNy45MUMxMTEuOTQgMzcuOTEgMTExLjkxIDM3Ljg3IDExMS45IDM3Ljg1TDExNi43IDUuNjEwMDFDMTE3LjI3IDEuNzgwMDEgMTEzLjM2IC0xLjE1OTk5IDEwOS44NCAwLjQ1MDAxMUw4MC4wOSAxNC4wNkM5My4xOCAxOC4yOCAxMDQuMzQgMjYuNzcgMTExLjk0IDM3LjlWMzcuOTFaIiBmaWxsPSIjQUFBQUFBIi8+CjxwYXRoIGQ9Ik02Ni4yMiA1Ni4yOUM2Mi42NSA3NC45IDY4LjU2IDc5Ljk4IDgxLjMxIDc5Ljk4Qzk0LjA2IDc5Ljk4IDk5Ljk3IDc0LjkgOTYuNCA1Ni4yOUM5My45OCA0My42NSA4Ny41IDM2LjA0IDgxLjMxIDM2LjA0Qzc1LjEyIDM2LjA0IDY4LjY0IDQzLjY1IDY2LjIyIDU2LjI5WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTU2LjM5IDU2LjI5QzU5Ljk2IDc0LjkgNTQuMDUgNzkuOTggNDEuMyA3OS45OEMyOC41NSA3OS45OCAyMi42NCA3NC45IDI2LjIxIDU2LjI5QzI4LjYzIDQzLjY1IDM1LjExIDM2LjA0IDQxLjMgMzYuMDRDNDcuNDkgMzYuMDQgNTMuOTcgNDMuNjUgNTYuMzkgNTYuMjlaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNODEuMyA0MS43N0M4MC44IDQxLjc3IDgwLjMyIDQxLjg0IDc5Ljg1IDQxLjk0QzgwLjczIDQyLjU5IDgxLjMgNDMuNjIgODEuMyA0NC44QzgxLjMgNDYuNzcgNzkuNjkgNDguMzcgNzcuNzEgNDguMzdDNzYuMjEgNDguMzcgNzQuOTMgNDcuNDUgNzQuMzkgNDYuMTRDNzMuMjMgNDguMDYgNzIuNTMgNTAuNDcgNzIuNTMgNTMuMDlDNzIuNTMgNTkuMzQgNzYuNDUgNjQuNDEgODEuMjkgNjQuNDFDODYuMTMgNjQuNDEgOTAuMDUgNTkuMzQgOTAuMDUgNTMuMDlDOTAuMDUgNDYuODQgODYuMTMgNDEuNzcgODEuMjkgNDEuNzdIODEuM1oiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik00OC4yOCA0Ni4yOEM0Ny43MSA0Ny41MSA0Ni40NyA0OC4zNyA0NS4wMyA0OC4zN0M0My4wNSA0OC4zNyA0MS40NCA0Ni43NyA0MS40NCA0NC44QzQxLjQ0IDQzLjY0IDQyIDQyLjYyIDQyLjg2IDQxLjk3QzQyLjM1IDQxLjg1IDQxLjgzIDQxLjc4IDQxLjMgNDEuNzhDMzYuNDYgNDEuNzggMzIuNTQgNDYuODUgMzIuNTQgNTMuMUMzMi41NCA1OS4zNSAzNi40NiA2NC40MiA0MS4zIDY0LjQyQzQ2LjE0IDY0LjQyIDUwLjA2IDU5LjM1IDUwLjA2IDUzLjFDNTAuMDYgNTAuNTQgNDkuMzkgNDguMTggNDguMjggNDYuMjhaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNMTA1Ljc5IDMwLjNMMTA4Ljg5IDkuNDk5OTdDMTA4Ljk0IDkuMTQ5OTcgMTA4LjU5IDguODc5OTcgMTA4LjI2IDkuMDI5OTdMODkuMSAxNy44Qzk1LjM2IDIxIDEwMSAyNS4yNCAxMDUuNzkgMzAuM1oiIGZpbGw9IiNGRkU2REMiLz4KPHBhdGggZD0iTTMzLjQ1IDE3LjgyTDE0LjI0IDkuMDI5OTdDMTMuOTIgOC44Nzk5NyAxMy41NiA5LjE0OTk3IDEzLjYxIDkuNDk5OTdMMTYuNzIgMzAuMzhDMjEuNTEgMjUuMjkgMjcuMTcgMjEuMDMgMzMuNDUgMTcuODJaIiBmaWxsPSIjRkZFNkRDIi8+CjxwYXRoIGQ9Ik01MC42NSAyNy4xNUM0OS42OSAyNy4xNSA0OC45MiAyNi4zNyA0OC45MiAyNS40MlYxMi45MkM0OC45MiAxMS45NiA0OS43IDExLjE5IDUwLjY1IDExLjE5QzUxLjYgMTEuMTkgNTIuMzggMTEuOTcgNTIuMzggMTIuOTJWMjUuNDJDNTIuMzggMjYuMzggNTEuNiAyNy4xNSA1MC42NSAyNy4xNVoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik03MS45MTAxIDI3LjE1QzcwLjk1MDEgMjcuMTUgNzAuMTgwMSAyNi4zNyA3MC4xODAxIDI1LjQyVjEyLjkyQzcwLjE4MDEgMTEuOTYgNzAuOTYwMSAxMS4xOSA3MS45MTAxIDExLjE5QzcyLjg2MDEgMTEuMTkgNzMuNjQwMSAxMS45NyA3My42NDAxIDEyLjkyVjI1LjQyQzczLjY0MDEgMjYuMzggNzIuODYwMSAyNy4xNSA3MS45MTAxIDI3LjE1WiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTYxLjI4IDMzLjQ0QzYwLjMyIDMzLjQ0IDU5LjU1IDMyLjY2IDU5LjU1IDMxLjcxVjEyQzU5LjU1IDExLjA0IDYwLjMzIDEwLjI3IDYxLjI4IDEwLjI3QzYyLjIzIDEwLjI3IDYzLjAxIDExLjA1IDYzLjAxIDEyVjMxLjcxQzYzLjAxIDMyLjY3IDYyLjIzIDMzLjQ0IDYxLjI4IDMzLjQ0WiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTYxLjMxIDgzLjQ4QzY3LjQ0MDMgODMuNDggNzIuNDEgNzguNTEwNCA3Mi40MSA3Mi4zOEM3Mi40MSA2Ni4yNDk3IDY3LjQ0MDMgNjEuMjggNjEuMzEgNjEuMjhDNTUuMTc5NiA2MS4yOCA1MC4yMSA2Ni4yNDk3IDUwLjIxIDcyLjM4QzUwLjIxIDc4LjUxMDQgNTUuMTc5NiA4My40OCA2MS4zMSA4My40OFoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik01Mi4wMSA5NS42NUM0Ni40MSA5NS42NSA0MC43OSA5Mi4zNiAzOS42MSA4OC4xQzM5LjM1IDg3LjE3IDM5LjkgODYuMiA0MC44MyA4NS45NUM0MS43NiA4NS42OSA0Mi42NSA4Ni4yNiA0Mi45OCA4Ny4xN0M0NC4xNCA5MC4zNyA0OS4yMSA5Mi43MyA1My40IDkyLjA2QzU2LjIxIDkxLjYxIDU5LjU4IDg5Ljg5IDU5LjU1IDgzLjY1QzU5LjU1IDgyLjY4IDYwLjMzIDgxLjg5IDYxLjMgODEuODlDNjIuMjYgODEuODkgNjMuMDUgODIuNjcgNjMuMDUgODMuNjNDNjMuMTcgOTEuMDMgNTguNjEgOTUuNzIgNTIuMDEgOTUuNjVaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNNzAuNiA5NS42NUM3Ni4yIDk1LjY1IDgxLjgyMDEgOTIuMzYgODMuMDAwMSA4OC4xQzgzLjI2MDEgODcuMTcgODIuNzEwMSA4Ni4yIDgxLjc4MDEgODUuOTVDODAuODUwMSA4NS42OSA3OS45NiA4Ni4yNiA3OS42MyA4Ny4xN0M3OC40NyA5MC4zNyA3My40MDAxIDkyLjczIDY5LjIxMDEgOTIuMDZDNjYuNDAwMSA5MS42MSA2My4wMzAxIDg5Ljg5IDYzLjA2MDEgODMuNjVDNjMuMDYwMSA4Mi42OCA2Mi4yODAxIDgxLjg5IDYxLjMxMDEgODEuODlDNjAuMzUwMSA4MS44OSA1OS41NjAxIDgyLjY3IDU5LjU2MDEgODMuNjNDNTkuNDQwMSA5MS4wMyA2NC4wMDAxIDk1LjcyIDcwLjYgOTUuNjVaIiBmaWxsPSJibGFjayIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNhdF9jbGlwMF80OTRfNDc1MSI+CjxyZWN0IHdpZHRoPSIxMjIuNTYiIGhlaWdodD0iMTMzLjY3IiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cgo8L3N2Zz4KICA8L2c+Cjwvc3ZnPg==" alt="Pet food kibble bag and bowl illustration" width="440" height="360">
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: Everyone can contribute -->
+    <section>
+        <div class="section-header">
+            <span class="opff-badge-pill green">🌟 Quick Micro-Contributions</span>
+            <h2>Everyone can contribute</h2>
+            <p>
+                Whether you have 2 minutes to scan your cat's favorite pouch or want to classify puppy nutritional requirements, your help counts!
+            </p>
+        </div>
+
+        <div class="off-card-grid-4">
+            <!-- Card 1: Add pet food -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-add-products-petfood" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Barcode scanner scanning and uploading pet food kibble and pate labels">
+                    <style>
+                        .pf-kibble-float {
+                            animation: pfKibbleBob 4.2s ease-in-out infinite;
+                            transform-origin: 128px 225px;
+                        }
+                        .pf-pate-float {
+                            animation: pfPateBob 4.2s ease-in-out infinite 0.35s;
+                            transform-origin: 255px 285px;
+                        }
+                        .pf-scanner-hand {
+                            animation: pfPhoneScanMove 4.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+                            transform-origin: 520px 360px;
+                        }
+                        .pf-laser-line {
+                            animation: pfLaserSweep 2.1s ease-in-out infinite;
+                        }
+                        .pf-scan-badge {
+                            animation: pfBadgePop 4.2s ease-out infinite;
+                            transform-origin: 355px 245px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes pfKibbleBob {
+                            0%, 100% { transform: translateY(0px) rotate(-4deg); }
+                            50% { transform: translateY(-9px) rotate(-1deg); }
+                        }
+                        @keyframes pfPateBob {
+                            0%, 100% { transform: translateY(0px) rotate(6deg); }
+                            50% { transform: translateY(-10px) rotate(9deg); }
+                        }
+                        @keyframes pfPhoneScanMove {
+                            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+                            45%, 60% { transform: translate(-18px, -10px) rotate(-3deg); }
+                        }
+                        @keyframes pfLaserSweep {
+                            0%, 100% { transform: translateY(-38px); opacity: 0.35; }
+                            50% { transform: translateY(42px); opacity: 1; }
+                        }
+                        @keyframes pfBadgePop {
+                            0%, 38%, 90%, 100% { transform: scale(0); opacity: 0; }
+                            48%, 78% { transform: scale(1); opacity: 1; }
+                        }
+                    </style>
+
+                    <!-- 1. ATTACHED PET-FOOD-KIBBLE-BAG.SVG -->
+                    <g class="pf-kibble-float">
+                        <!-- Top Brown Seal Strip (#d68b28) -->
+                        <rect x="66" y="78" width="124" height="22" rx="5" fill="#d68b28"></rect>
+                        <!-- Main Golden-Orange Bag Body (#f5b041) -->
+                        <path fill="#f5b041" d="
+                            M 66,100
+                            L 190,100
+                            L 216,148
+                            L 216,342
+                            A 14,14 0 0,1 202,356
+                            L 54,356
+                            A 14,14 0 0,1 40,342
+                            L 40,148
+                            Z"></path>
+                        <!-- White Center Circle -->
+                        <circle cx="128" cy="224" r="68" fill="#ffffff"></circle>
+                        <!-- Dark Brown Paw Print (#595048) -->
+                        <path fill="#595048" d="
+                            M 102,246
+                            C 96,246 92,238 96,230
+                            C 100,224 108,224 112,216
+                            C 116,206 140,206 144,216
+                            C 148,224 156,224 160,230
+                            C 164,238 160,246 154,246
+                            C 142,252 114,252 102,246 Z"></path>
+                        <ellipse cx="90" cy="210" rx="9.5" ry="13" transform="rotate(-28 90 210)" fill="#595048"></ellipse>
+                        <ellipse cx="114" cy="192" rx="9.5" ry="14" transform="rotate(-10 114 192)" fill="#595048"></ellipse>
+                        <ellipse cx="142" cy="192" rx="9.5" ry="14" transform="rotate(10 142 192)" fill="#595048"></ellipse>
+                        <ellipse cx="166" cy="210" rx="9.5" ry="13" transform="rotate(28 166 210)" fill="#595048"></ellipse>
+                        <!-- Bottom 2 White Lines -->
+                        <line x1="76" y1="318" x2="180" y2="318" stroke="#ffffff" stroke-width="6" stroke-linecap="round"></line>
+                        <line x1="76" y1="332" x2="180" y2="332" stroke="#ffffff" stroke-width="6" stroke-linecap="round"></line>
+                    </g>
+
+                    <!-- 2. ATTACHED PET-FOOD-PATE.SVG (Blue Fish Can) -->
+                    <g class="pf-pate-float">
+                        <!-- Blue Tin Body (#009dff) -->
+                        <rect x="176" y="232" width="154" height="106" fill="#009dff"></rect>
+                        <!-- Top & Bottom Grey Metallic Rims (#999999) -->
+                        <rect x="168" y="220" width="170" height="14" rx="7" fill="#999999"></rect>
+                        <rect x="168" y="336" width="170" height="14" rx="7" fill="#999999"></rect>
+                        <!-- White Fish Silhouette Facing Right -->
+                        <path fill="#ffffff" d="
+                            M 206,264
+                            C 206,259 211,257 216,259
+                            L 232,268
+                            C 256,252 296,250 306,272
+                            C 312,282 312,292 306,302
+                            C 296,324 256,322 232,306
+                            L 216,315
+                            C 211,317 206,315 206,310
+                            Z"></path>
+                        <!-- Blue Fish Eye (#009dff) -->
+                        <circle cx="288" cy="286" r="7" fill="#009dff"></circle>
+                    </g>
+
+                    <!-- 3. HAND WITH SMARTPHONE SCANNING THE PET FOOD PRODUCTS -->
+                    <g class="pf-scanner-hand">
+                        <g fill="#955830">
+                            <rect x="292" y="142" width="45" height="22" rx="11" transform="rotate(35 314 153)"></rect>
+                            <rect x="275" y="164" width="58" height="22" rx="11" transform="rotate(35 304 175)"></rect>
+                            <rect x="260" y="186" width="66" height="22" rx="11" transform="rotate(35 293 197)"></rect>
+                        </g>
+                        <path fill="#955830" d="M 380,210 L 432,216 C 470,252 508,270 555,280 L 555,375 C 488,365 436,336 385,292 Z"></path>
+                        <g transform="rotate(5 355 200)">
+                            <rect x="294" y="88" width="122" height="214" rx="14" fill="#606362"></rect>
+                            <rect x="300" y="95" width="110" height="200" rx="11" fill="#e1f3fe"></rect>
+                            <rect x="314" y="122" width="82" height="90" rx="8" fill="#ffffff"></rect>
+                            <g fill="#222222">
+                                <rect x="325" y="140" width="4" height="44"></rect>
+                                <rect x="333" y="140" width="8" height="44"></rect>
+                                <rect x="345" y="140" width="3" height="44"></rect>
+                                <rect x="352" y="140" width="6" height="44"></rect>
+                                <rect x="362" y="140" width="10" height="44"></rect>
+                                <rect x="376" y="140" width="3" height="44"></rect>
+                                <rect x="383" y="140" width="5" height="44"></rect>
+                            </g>
+                            <rect class="pf-laser-line" x="304" y="162" width="102" height="3.5" rx="1.5" fill="#dc3522"></rect>
+                            <g class="pf-scan-badge">
+                                <rect x="320" y="232" width="70" height="26" rx="13" fill="#009a49"></rect>
+                                <path d="M 346,245 L 352,251 L 365,239" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                            <path fill="#606362" d="M 332,93 L 378,93 L 375,102 L 335,102 Z"></path>
+                        </g>
+                        <path fill="#955830" d="M 404,268 L 410,162 A 12,12 0 0,1 434,162 L 440,220 L 430,274 Z"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="opff-badge-pill orange">📱 Mobile &amp; Web</span>
+                <h3>Add pet food</h3>
+                <p>
+                    Scan barcodes of dry kibbles, canned wet food, or pet treats using the free universal Open Food Facts app (which supports food, beauty, and pet food), and photograph the guaranteed analysis table.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/open-pet-food-facts-mobile-app" class="off-btn off-btn-primary off-btn-block">
+                        Get Universal App
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 2: Complete nutrition -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-data-quality-petfood" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Magnifying glass inspecting pet food guaranteed analysis and nutritional data quality">
+                    <style>
+                        .dq-pf-lens {
+                            animation: dqPfSweep 4.5s ease-in-out infinite;
+                            transform-origin: 310px 210px;
+                        }
+                        .dq-pf-badge {
+                            animation: dqPfPop 4.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 432px 115px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes dqPfSweep {
+                            0%, 100% { transform: translate(-45px, -25px) rotate(-6deg); }
+                            50% { transform: translate(35px, 20px) rotate(6deg); }
+                        }
+                        @keyframes dqPfPop {
+                            0%, 30%, 90%, 100% { transform: scale(0.85); }
+                            50%, 75% { transform: scale(1.08); }
+                        }
+                    </style>
+
+                    <!-- Left: Attached Checklist.svg Data Sheet -->
+                    <g transform="translate(55, 58) rotate(-4)">
+                        <rect x="0" y="14" width="185" height="250" rx="22" fill="#00bdf2"></rect>
+                        <rect x="16" y="34" width="153" height="214" rx="14" fill="#ffffff"></rect>
+                        <rect x="60" y="0" width="65" height="42" rx="10" fill="#aeaeae"></rect>
+                        <circle cx="46" cy="78" r="10" fill="none" stroke="#0077c8" stroke-width="4"></circle>
+                        <line x1="72" y1="78" x2="146" y2="78" stroke="#181818" stroke-width="5" stroke-linecap="round"></line>
+                        <circle cx="46" cy="116" r="10" fill="none" stroke="#0077c8" stroke-width="4"></circle>
+                        <line x1="72" y1="116" x2="146" y2="116" stroke="#181818" stroke-width="5" stroke-linecap="round"></line>
+                        <circle cx="46" cy="154" r="10" fill="none" stroke="#0077c8" stroke-width="4"></circle>
+                        <line x1="72" y1="154" x2="146" y2="154" stroke="#009a49" stroke-width="5" stroke-linecap="round"></line>
+                        <circle cx="46" cy="192" r="10" fill="none" stroke="#0077c8" stroke-width="4"></circle>
+                        <line x1="72" y1="192" x2="146" y2="192" stroke="#181818" stroke-width="5" stroke-linecap="round"></line>
+                    </g>
+
+                    <!-- Center-Right: Attached pet-food-kibble-bag.svg + pet-food-pate.svg -->
+                    <g transform="translate(222, 96) rotate(4)">
+                        <!-- Kibble Bag -->
+                        <rect x="20" y="0" width="106" height="18" rx="4" fill="#d68b28"></rect>
+                        <path fill="#f5b041" d="
+                            M 20,18 L 126,18 L 148,58 L 148,216 A 12,12 0 0,1 136,228
+                            L 10,228 A 12,12 0 0,1 -2,216 L -2,58 Z"></path>
+                        <circle cx="73" cy="118" r="56" fill="#ffffff"></circle>
+                        <!-- Paw Print -->
+                        <path fill="#595048" d="
+                            M 52,136 C 47,136 44,130 47,123 C 50,118 57,118 60,111
+                            C 63,103 83,103 86,111 C 89,118 96,118 99,123
+                            C 102,130 99,136 94,136 C 84,141 62,141 52,136 Z"></path>
+                        <ellipse cx="42" cy="106" rx="8" ry="11" transform="rotate(-28 42 106)" fill="#595048"></ellipse>
+                        <ellipse cx="62" cy="92" rx="8" ry="11.5" transform="rotate(-10 62 92)" fill="#595048"></ellipse>
+                        <ellipse cx="84" cy="92" rx="8" ry="11.5" transform="rotate(10 84 92)" fill="#595048"></ellipse>
+                        <ellipse cx="104" cy="106" rx="8" ry="11" transform="rotate(28 104 106)" fill="#595048"></ellipse>
+                        <line x1="30" y1="195" x2="116" y2="195" stroke="#ffffff" stroke-width="5" stroke-linecap="round"></line>
+                        <line x1="30" y1="207" x2="116" y2="207" stroke="#ffffff" stroke-width="5" stroke-linecap="round"></line>
+
+                        <!-- Mini Pate Tin Can Overlapping Bottom-Right -->
+                        <g transform="translate(88, 158) rotate(-8)">
+                            <rect x="6" y="8" width="96" height="66" fill="#009dff"></rect>
+                            <rect x="0" y="0" width="108" height="9" rx="4.5" fill="#999999"></rect>
+                            <rect x="0" y="72" width="108" height="9" rx="4.5" fill="#999999"></rect>
+                            <path fill="#ffffff" d="M 24,28 C 24,25 27,24 30,25 L 40,31 C 55,21 80,20 86,33 C 90,40 90,46 86,53 C 80,66 55,65 40,55 L 30,61 C 27,62 24,61 24,58 Z"></path>
+                            <circle cx="75" cy="42" r="4.5" fill="#009dff"></circle>
+                        </g>
+                    </g>
+
+                    <!-- Attached Green check.svg Quality Seal -->
+                    <g class="dq-pf-badge">
+                        <circle cx="430" cy="118" r="44" fill="#000000" opacity="0.1"></circle>
+                        <circle cx="432" cy="115" r="42" fill="#0b7a3e"></circle>
+                        <path d="M 412,116 L 426,130 L 454,102" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+
+                    <!-- Animated Magnifying Glass Inspecting Pet Food -->
+                    <g class="dq-pf-lens">
+                        <rect x="336" y="255" width="24" height="95" rx="12" transform="rotate(-38 348 302)" fill="#181818"></rect>
+                        <circle cx="290" cy="215" r="64" fill="#ffffff" fill-opacity="0.35" stroke="#181818" stroke-width="16"></circle>
+                        <path d="M 252,182 A 44,44 0 0,1 295,168" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="opff-badge-pill amber">🥩 Guaranteed Analysis</span>
+                <h3>Extract nutrients</h3>
+                <p>
+                    Verify optical character recognition (OCR) of crude protein, crude fat, calcium-to-phosphorus ratios, and essential taurine values.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/cgi/search.pl" class="off-btn off-btn-secondary off-btn-block">
+                        Browse Pet Food
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 3: Tell the world -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-community-building" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Community celebration and collaboration">
+                    <style>
+                        .highfive-left {
+                            animation: clapLeft 3.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 210px 330px;
+                        }
+                        .highfive-right {
+                            animation: clapRight 3.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 350px 330px;
+                        }
+                        .clap-rays {
+                            animation: raysBurst 3.4s ease-out infinite;
+                            transform-origin: 280px 88px;
+                        }
+                        .badge-orbit-1 { animation: orbitBob 3.4s ease-in-out infinite; }
+                        .badge-orbit-2 { animation: orbitBob 3.4s ease-in-out infinite 0.5s; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes clapLeft {
+                            0%, 15%, 90%, 100% { transform: translate(-34px, 12px) rotate(-14deg); }
+                            40%, 68% { transform: translate(0px, 0px) rotate(0deg); }
+                        }
+                        @keyframes clapRight {
+                            0%, 15%, 90%, 100% { transform: translate(34px, 12px) rotate(14deg); }
+                            40%, 68% { transform: translate(0px, 0px) rotate(0deg); }
+                        }
+                        @keyframes raysBurst {
+                            0%, 34%, 78%, 100% { transform: scale(0.4); opacity: 0; }
+                            44%, 62% { transform: scale(1.12); opacity: 1; }
+                        }
+                        @keyframes orbitBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-9px); }
+                        }
+                    </style>
+
+                    <!-- Soft Circular Community Backdrop -->
+                    <circle cx="280" cy="225" r="145" fill="#e1f3fe" opacity="0.7"></circle>
+
+                    <!-- Floating Community Avatars / Badges -->
+                    <g class="badge-orbit-1">
+                        <circle cx="102" cy="145" r="32" fill="#009a49"></circle>
+                        <path d="M 90,146 L 98,154 L 115,137" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <circle cx="458" cy="285" r="28" fill="#ff6b35"></circle>
+                        <path fill="#ffffff" d="M 458,298 C 458,298 442,286 442,276 A 8,8 0 0,1 458,272 A 8,8 0 0,1 474,276 C 474,286 458,298 458,298 Z"></path>
+                    </g>
+                    <g class="badge-orbit-2">
+                        <circle cx="452" cy="135" r="30" fill="#f8c100"></circle>
+                        <text x="452" y="144" text-anchor="middle" fill="#181818" font-size="24" font-weight="800">★</text>
+                        <circle cx="106" cy="295" r="26" fill="#00bdf2"></circle>
+                        <circle cx="106" cy="288" r="7" fill="#ffffff"></circle>
+                        <path fill="#ffffff" d="M 92,308 C 92,298 120,298 120,308 Z"></path>
+                    </g>
+
+                    <!-- ATTACHED HIGH-FIVE.SVG RECONSTRUCTION -->
+                    <!-- Top 3 Impact Rays inside White Sticker Halo -->
+                    <g class="clap-rays">
+                        <line x1="236" y1="92" x2="218" y2="68" stroke="#ffffff" stroke-width="22" stroke-linecap="round"></line>
+                        <line x1="280" y1="82" x2="280" y2="52" stroke="#ffffff" stroke-width="22" stroke-linecap="round"></line>
+                        <line x1="324" y1="92" x2="342" y2="68" stroke="#ffffff" stroke-width="22" stroke-linecap="round"></line>
+
+                        <line x1="236" y1="92" x2="218" y2="68" stroke="#181818" stroke-width="8" stroke-linecap="round"></line>
+                        <line x1="280" y1="82" x2="280" y2="52" stroke="#181818" stroke-width="8" stroke-linecap="round"></line>
+                        <line x1="324" y1="92" x2="342" y2="68" stroke="#181818" stroke-width="8" stroke-linecap="round"></line>
+                    </g>
+
+                    <!-- Right Brown Hand (#955830) — 4 Fingers + Right Thumb -->
+                    <g class="highfive-right">
+                        <g transform="rotate(16 322 248)">
+                            <!-- White Sticker Border -->
+                            <path fill="#ffffff" stroke="#ffffff" stroke-width="18" stroke-linejoin="round" d="
+                                M 262,142 A 13,13 0 0,1 288,142 L 288,218 L 293,218
+                                L 293,134 A 13,13 0 0,1 319,134 L 319,218 L 324,218
+                                L 324,138 A 13,13 0 0,1 350,138 L 350,218 L 355,218
+                                L 355,148 A 13,13 0 0,1 381,148 L 381,252
+                                L 408,228 A 13,13 0 0,1 426,247 L 384,302
+                                C 362,334 316,348 278,334
+                                C 254,325 256,285 262,252 Z"></path>
+                            <!-- Brown Hand Fill -->
+                            <path fill="#955830" d="
+                                M 262,142 A 13,13 0 0,1 288,142 L 288,218 L 293,218
+                                L 293,134 A 13,13 0 0,1 319,134 L 319,218 L 324,218
+                                L 324,138 A 13,13 0 0,1 350,138 L 350,218 L 355,218
+                                L 355,148 A 13,13 0 0,1 381,148 L 381,252
+                                L 408,228 A 13,13 0 0,1 426,247 L 384,302
+                                C 362,334 316,348 278,334
+                                C 254,325 256,285 262,252 Z"></path>
+                        </g>
+                    </g>
+
+                    <!-- Left Peach Hand (#ffc68a) — 4 Fingers + Left Thumb (Overlaps in Front) -->
+                    <g class="highfive-left">
+                        <g transform="rotate(-14 238 248)">
+                            <!-- White Sticker Border -->
+                            <path fill="#ffffff" stroke="#ffffff" stroke-width="18" stroke-linejoin="round" d="
+                                M 298,142 A 13,13 0 0,0 272,142 L 272,218 L 267,218
+                                L 267,134 A 13,13 0 0,0 241,134 L 241,218 L 236,218
+                                L 236,138 A 13,13 0 0,0 210,138 L 210,218 L 205,218
+                                L 205,148 A 13,13 0 0,0 179,148 L 179,252
+                                L 152,228 A 13,13 0 0,0 134,247 L 176,302
+                                C 198,334 244,348 282,334
+                                C 306,325 304,285 298,252 Z"></path>
+                            <!-- Peach Hand Fill -->
+                            <path fill="#ffc68a" d="
+                                M 298,142 A 13,13 0 0,0 272,142 L 272,218 L 267,218
+                                L 267,134 A 13,13 0 0,0 241,134 L 241,218 L 236,218
+                                L 236,138 A 13,13 0 0,0 210,138 L 210,218 L 205,218
+                                L 205,148 A 13,13 0 0,0 179,148 L 179,252
+                                L 152,228 A 13,13 0 0,0 134,247 L 176,302
+                                C 198,334 244,348 282,334
+                                C 306,325 304,285 298,252 Z"></path>
+                        </g>
+                    </g>
+                </svg>
+                </div>
+                <span class="opff-badge-pill purple">📢 Spread the Word</span>
+                <h3>Tell pet owners</h3>
+                <p>
+                    Introduce Open Pet Food Facts at local animal shelters, dog parks, cat rescues, and veterinary student associations.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/follow-open-food-facts" class="off-btn off-btn-secondary off-btn-block">
+                        Share on Social Media
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 4: Make it local -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-make-local" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Multilingual world globe representing global communities">
+                    <style>
+                        .globe-spin {
+                            animation: globePulse 5s ease-in-out infinite;
+                            transform-origin: 280px 215px;
+                        }
+                        .lang-1 { animation: bubbleFloat1 4s ease-in-out infinite; }
+                        .lang-2 { animation: bubbleFloat2 4s ease-in-out infinite 0.6s; }
+                        .lang-3 { animation: bubbleFloat1 4s ease-in-out infinite 1.2s; }
+                        .lang-4 { animation: bubbleFloat2 4s ease-in-out infinite 1.8s; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes globePulse {
+                            0%, 100% { transform: scale(1) rotate(-2deg); }
+                            50% { transform: scale(1.03) rotate(2deg); }
+                        }
+                        @keyframes bubbleFloat1 {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-10px); }
+                        }
+                        @keyframes bubbleFloat2 {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(9px); }
+                        }
+                    </style>
+
+                    <!-- Flat Cyan Earth Globe (#00bdf2) & Green Continents (#009a49) -->
+                    <g class="globe-spin">
+                        <circle cx="280" cy="215" r="118" fill="#00bdf2"></circle>
+                        <!-- Flat Geometric Continents -->
+                        <path fill="#009a49" d="
+                            M 215,135 C 245,128 270,145 262,175 C 254,200 220,210 202,190 C 185,172 195,142 215,135 Z"></path>
+                        <path fill="#009a49" d="
+                            M 295,165 C 335,155 368,185 358,232 C 348,274 308,295 282,272 C 262,254 268,175 295,165 Z"></path>
+                        <path fill="#7fbc2b" d="
+                            M 215,245 C 235,242 252,265 242,295 C 232,315 205,308 202,282 C 198,260 202,248 215,245 Z"></path>
+                    </g>
+
+                    <!-- Language Bubble 1: Orange (#ff6b35) -->
+                    <g class="lang-1">
+                        <rect x="65" y="78" width="142" height="58" rx="16" fill="#ff6b35"></rect>
+                        <polygon points="165,136 188,136 182,154" fill="#ff6b35"></polygon>
+                        <text x="136" y="114" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="800">BIO • ORG</text>
+                    </g>
+
+                    <!-- Language Bubble 2: Golden Yellow (#f8c100) -->
+                    <g class="lang-2">
+                        <rect x="355" y="72" width="145" height="58" rx="16" fill="#f8c100"></rect>
+                        <polygon points="375,130 398,130 370,148" fill="#f8c100"></polygon>
+                        <text x="427" y="108" text-anchor="middle" fill="#181818" font-size="22" font-weight="800">文 → A</text>
+                    </g>
+
+                    <!-- Language Bubble 3: Crimson (#dc3522) -->
+                    <g class="lang-3">
+                        <rect x="60" y="274" width="148" height="58" rx="16" fill="#dc3522"></rect>
+                        <polygon points="172,274 192,274 186,256" fill="#dc3522"></polygon>
+                        <text x="134" y="310" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="800">FR • ES • DE</text>
+                    </g>
+
+                    <!-- Language Bubble 4: Dark Green (#1c8e47) -->
+                    <g class="lang-4">
+                        <rect x="352" y="280" width="148" height="58" rx="16" fill="#1c8e47"></rect>
+                        <polygon points="372,280 394,280 368,262" fill="#1c8e47"></polygon>
+                        <text x="426" y="316" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="800">العربية • 日本</text>
+                    </g>
+                </svg>
+                </div>
+                <span class="opff-badge-pill green">🌍 Local Communities</span>
+                <h3>Make it local</h3>
+                <p>
+                    Help translate pet terms into your language, index regional boutique pet food brands, and verify local animal welfare certifications.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://translate.openfoodfacts.org" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Help Translate
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Section 2: Expert Help Needed -->
+    <section>
+        <div class="expert-banner">
+            <div class="expert-banner-art">
+                <svg id="svg-expert-help" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Veterinary experts and developers working together on open data">
+                    <style>
+                        .code-line-1 { animation: typeWidth1 3.6s steps(12) infinite; }
+                        .code-line-2 { animation: typeWidth2 3.6s steps(12) infinite; }
+                        .robot-bob {
+                            animation: robotFloat 3.6s ease-in-out infinite;
+                            transform-origin: 425px 125px;
+                        }
+                        .hand-left-type {
+                            animation: leftType 0.9s ease-in-out infinite;
+                            transform-origin: 185px 380px;
+                        }
+                        .hand-right-type {
+                            animation: rightType 0.9s ease-in-out infinite 0.45s;
+                            transform-origin: 375px 380px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes typeWidth1 {
+                            0%, 10% { width: 20px; }
+                            50%, 90% { width: 145px; }
+                            100% { width: 20px; }
+                        }
+                        @keyframes typeWidth2 {
+                            0%, 25% { width: 10px; }
+                            65%, 90% { width: 115px; }
+                            100% { width: 10px; }
+                        }
+                        @keyframes robotFloat {
+                            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+                            50% { transform: translateY(-10px) rotate(4deg); }
+                        }
+                        @keyframes leftType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                        @keyframes rightType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                    </style>
+
+                    <!-- Central Laptop / Code & Design Window -->
+                    <rect x="110" y="76" width="310" height="205" rx="18" fill="#181818"></rect>
+                    <rect x="124" y="92" width="282" height="173" rx="10" fill="#26292e"></rect>
+
+                    <!-- Top Window Dots -->
+                    <circle cx="142" cy="108" r="5.5" fill="#dc3522"></circle>
+                    <circle cx="160" cy="108" r="5.5" fill="#f8c100"></circle>
+                    <circle cx="178" cy="108" r="5.5" fill="#009a49"></circle>
+
+                    <!-- Code Bracket & Animated Code Bars -->
+                    <text x="142" y="152" fill="#00bdf2" font-family="monospace" font-weight="800" font-size="26">&lt;/&gt;</text>
+                    <rect class="code-line-1" x="198" y="134" width="145" height="12" rx="6" fill="#7fbc2b"></rect>
+                    <rect class="code-line-2" x="198" y="156" width="115" height="12" rx="6" fill="#f8c100"></rect>
+                    <rect x="142" y="182" width="170" height="12" rx="6" fill="#ff6b35"></rect>
+                    <rect x="142" y="204" width="128" height="12" rx="6" fill="#00bdf2"></rect>
+                    <rect x="142" y="226" width="90" height="12" rx="6" fill="#d9dada"></rect>
+
+                    <!-- Laptop Base -->
+                    <path fill="#aeaeae" d="M 82,281 L 448,281 L 432,304 L 98,304 Z"></path>
+
+                    <!-- Floating Robotoff AI Badge (Top Right) -->
+                    <g class="robot-bob">
+                        <!-- Antenna -->
+                        <rect x="421" y="54" width="8" height="22" rx="4" fill="#606362"></rect>
+                        <circle cx="425" cy="50" r="9" fill="#ff6b35"></circle>
+                        <!-- Robot Head -->
+                        <rect x="375" y="72" width="100" height="78" rx="22" fill="#00bdf2"></rect>
+                        <rect x="390" y="90" width="70" height="32" rx="10" fill="#181818"></rect>
+                        <!-- Glowing Eyes -->
+                        <circle cx="408" cy="106" r="7" fill="#f8c100"></circle>
+                        <circle cx="442" cy="106" r="7" fill="#f8c100"></circle>
+                        <!-- Smile Bar -->
+                        <rect x="408" y="132" width="34" height="6" rx="3" fill="#ffffff"></rect>
+                    </g>
+
+                    <!-- Left Typing Hand (Peach Tone #ffc68a, Seamless Finger Slits) -->
+                    <g class="hand-left-type">
+                        <path fill="#ffc68a" d="
+                            M 118,415
+                            L 138,342
+                            L 138,292 A 7.5,7.5 0 0,1 153,292 L 153,330 L 156,330
+                            L 156,286 A 7.5,7.5 0 0,1 171,286 L 171,330 L 174,330
+                            L 174,286 A 7.5,7.5 0 0,1 189,286 L 189,330 L 192,330
+                            L 192,292 A 7.5,7.5 0 0,1 207,292 L 207,340
+                            L 222,324 C 229,317 238,325 231,334
+                            L 207,365 L 195,415 Z"></path>
+                    </g>
+
+                    <!-- Right Typing Hand (Brown Tone #955830, Seamless Finger Slits) -->
+                    <g class="hand-right-type">
+                        <path fill="#955830" d="
+                            M 342,415
+                            L 330,365
+                            L 306,334 C 299,325 308,317 315,324
+                            L 330,340
+                            L 330,292 A 7.5,7.5 0 0,1 345,292 L 345,330 L 348,330
+                            L 348,286 A 7.5,7.5 0 0,1 363,286 L 363,330 L 366,330
+                            L 366,286 A 7.5,7.5 0 0,1 381,286 L 381,330 L 384,330
+                            L 384,292 A 7.5,7.5 0 0,1 399,292 L 399,342
+                            L 419,415 Z"></path>
+                    </g>
+                </svg>
+            </div>
+            <div class="expert-banner-text">
+                <span class="opff-badge-pill orange">🛠️ Specialized Skills</span>
+                <h2>Expert help needed</h2>
+                <p>
+                    We welcome veterinarians, veterinary technicians, animal nutritionists, software developers, and data scientists to help build next-generation pet feeding models.
+                </p>
+                <a href="https://connect.openfoodfacts.org/join-the-contributor-skill-pool-open-food-facts" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer">
+                    Join the Contributor Skill Pool &rarr;
+                </a>
+            </div>
+        </div>
+
+        <div class="off-card-grid-3">
+            <!-- Project management -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-project-management" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Project roadmap and milestone checklist">
+                    <style>
+                        .board-float {
+                            animation: boardTilt 4.6s ease-in-out infinite;
+                            transform-origin: 215px 210px;
+                        }
+                        .clock-float {
+                            animation: clockBob 4.6s ease-in-out infinite;
+                            transform-origin: 418px 155px;
+                        }
+                        .clock-minute-hand {
+                            animation: clockTick 4.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                            transform-origin: 418px 155px;
+                        }
+                        .chk-pop-1 { animation: rowCheck 4.6s ease-out infinite 0.2s; transform-origin: 148px 132px; }
+                        .chk-pop-2 { animation: rowCheck 4.6s ease-out infinite 0.8s; transform-origin: 152px 176px; }
+                        .chk-pop-3 { animation: rowCheck 4.6s ease-out infinite 1.4s; transform-origin: 156px 220px; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes boardTilt {
+                            0%, 100% { transform: rotate(-5deg) translateY(0px); }
+                            50% { transform: rotate(-2deg) translateY(-8px); }
+                        }
+                        @keyframes clockBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(8px); }
+                        }
+                        @keyframes clockTick {
+                            0%, 15% { transform: rotate(0deg); }
+                            45% { transform: rotate(120deg); }
+                            80%, 100% { transform: rotate(360deg); }
+                        }
+                        @keyframes rowCheck {
+                            0%, 20%, 90%, 100% { transform: scale(0); opacity: 0; }
+                            35%, 78% { transform: scale(1); opacity: 1; }
+                        }
+                    </style>
+
+                    <!-- 1. ATTACHED CHECKLIST.SVG (Cyan Clipboard #00bdf2 + Grey Clip #aeaeae) -->
+                    <g class="board-float">
+                        <!-- Cyan Clipboard Body -->
+                        <rect x="95" y="56" width="232" height="310" rx="28" fill="#00bdf2"></rect>
+                        <!-- White Paper Sheet -->
+                        <rect x="115" y="82" width="192" height="264" rx="18" fill="#ffffff"></rect>
+                        <!-- Top Grey Clip (#aeaeae) -->
+                        <rect x="172" y="38" width="78" height="54" rx="12" fill="#aeaeae"></rect>
+
+                        <!-- 5 Checklist Rows (Blue Circles #0077c8 + Black Lines) -->
+                        <!-- Row 1 -->
+                        <circle cx="152" cy="132" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="132" x2="278" y2="132" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+                        <!-- Row 2 -->
+                        <circle cx="152" cy="176" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="176" x2="278" y2="176" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+                        <!-- Row 3 -->
+                        <circle cx="152" cy="220" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="220" x2="278" y2="220" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+                        <!-- Row 4 -->
+                        <circle cx="152" cy="264" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="264" x2="278" y2="264" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+                        <!-- Row 5 -->
+                        <circle cx="152" cy="308" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="308" x2="278" y2="308" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+
+                        <!-- Animated Green Check.svg Badges Popping onto Rows 1-3 -->
+                        <g class="chk-pop-1">
+                            <circle cx="152" cy="132" r="15" fill="#0b7a3e"></circle>
+                            <path d="M 145,132 L 150,137 L 160,127" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                        <g class="chk-pop-2">
+                            <circle cx="152" cy="176" r="15" fill="#0b7a3e"></circle>
+                            <path d="M 145,176 L 150,181 L 160,171" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                        <g class="chk-pop-3">
+                            <circle cx="152" cy="220" r="15" fill="#0b7a3e"></circle>
+                            <path d="M 145,220 L 150,225 L 160,215" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                    </g>
+
+                    <!-- 2. ATTACHED HISTORY.SVG CLOCK (Light Blue Ring #7ce0ff + Grey Hands #7a7a7a) -->
+                    <g class="clock-float">
+                        <circle cx="418" cy="155" r="86" fill="#ffffff"></circle>
+                        <circle cx="418" cy="155" r="76" fill="none" stroke="#7ce0ff" stroke-width="22"></circle>
+                        <!-- Hour Hand pointing to 4 o'clock -->
+                        <line x1="418" y1="155" x2="452" y2="188" stroke="#7a7a7a" stroke-width="14" stroke-linecap="round"></line>
+                        <!-- Animated Minute Hand -->
+                        <g class="clock-minute-hand">
+                            <line x1="418" y1="155" x2="418" y2="105" stroke="#7a7a7a" stroke-width="14" stroke-linecap="round"></line>
+                        </g>
+                    </g>
+
+                    <!-- Milestone Roadmap Pill -->
+                    <g transform="translate(345, 272)">
+                        <rect x="0" y="0" width="160" height="68" rx="16" fill="#ff6b35"></rect>
+                        <text x="80" y="30" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">SPRINT MILESTONE</text>
+                        <rect x="22" y="42" width="116" height="10" rx="5" fill="#ffffff" opacity="0.35"></rect>
+                        <rect x="22" y="42" width="88" height="10" rx="5" fill="#f8c100"></rect>
+                    </g>
+                </svg>
+                </div>
+                <span class="opff-badge-pill blue">Strategy &amp; Roadmap</span>
+                <h3>Project management</h3>
+                <p>
+                    Help structure species taxonomies (canine, feline, equine, avian), curate nutritional formulas, and coordinate volunteer campaigns.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Projects_homepage" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        View Projects Wiki
+                    </a>
+                </div>
+            </article>
+
+            <!-- Design & UX -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-skill-design" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Design wireframe and pen tool">
+                    <style>
+                        .design-stylus-hand {
+                            animation: stylusDraw 4.4s ease-in-out infinite;
+                            transform-origin: 480px 320px;
+                        }
+                        .swatch-card {
+                            animation: swatchFloat 4.4s ease-in-out infinite;
+                        }
+                        .bezier-handle {
+                            animation: handlePulse 2.2s ease-in-out infinite;
+                            transform-origin: 270px 160px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes stylusDraw {
+                            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+                            35% { transform: translate(-48px, -24px) rotate(-5deg); }
+                            70% { transform: translate(-18px, 16px) rotate(3deg); }
+                        }
+                        @keyframes swatchFloat {
+                            0%, 100% { transform: translateY(0px) rotate(-4deg); }
+                            50% { transform: translateY(-10px) rotate(-1deg); }
+                        }
+                        @keyframes handlePulse {
+                            0%, 100% { transform: scale(1); }
+                            50% { transform: scale(1.22); }
+                        }
+                    </style>
+
+                    <!-- Artboard Canvas Frame -->
+                    <rect x="135" y="54" width="270" height="310" rx="22" fill="#ffffff"></rect>
+                    <rect x="147" y="66" width="246" height="286" rx="16" fill="#e1f3fe"></rect>
+
+                    <!-- App Header Bar & Wireframe Blocks inside Artboard -->
+                    <rect x="165" y="84" width="210" height="34" rx="10" fill="#00bdf2"></rect>
+                    <circle cx="184" cy="101" r="8" fill="#ffffff"></circle>
+                    <rect x="202" y="96" width="90" height="10" rx="5" fill="#ffffff"></rect>
+
+                    <!-- Bezier Vector Curve & Anchor Nodes -->
+                    <path d="M 180,225 C 215,135 325,135 360,225" fill="none" stroke="#ff6b35" stroke-width="5" stroke-dasharray="8 6" stroke-linecap="round"></path>
+                    <line x1="215" y1="160" x2="325" y2="160" stroke="#009a49" stroke-width="3"></line>
+                    <circle cx="215" cy="160" r="6" fill="#009a49"></circle>
+                    <circle cx="325" cy="160" r="6" fill="#009a49"></circle>
+                    <rect class="bezier-handle" x="261" y="151" width="18" height="18" rx="4" fill="#ffffff" stroke="#009a49" stroke-width="4"></rect>
+
+                    <!-- UI Component Mockup Cards -->
+                    <rect x="165" y="250" width="98" height="78" rx="12" fill="#ffffff"></rect>
+                    <circle cx="214" cy="278" r="14" fill="#7fbc2b"></circle>
+                    <rect x="182" y="302" width="64" height="10" rx="5" fill="#d9dada"></rect>
+
+                    <rect x="277" y="250" width="98" height="78" rx="12" fill="#ffffff"></rect>
+                    <circle cx="326" cy="278" r="14" fill="#f8c100"></circle>
+                    <rect x="294" y="302" width="64" height="10" rx="5" fill="#d9dada"></rect>
+
+                    <!-- Floating Color Swatch Palette (Left) -->
+                    <g class="swatch-card">
+                        <rect x="48" y="110" width="116" height="168" rx="18" fill="#181818"></rect>
+                        <rect x="62" y="124" width="88" height="30" rx="8" fill="#ff6b35"></rect>
+                        <rect x="62" y="162" width="88" height="30" rx="8" fill="#009a49"></rect>
+                        <rect x="62" y="200" width="88" height="30" rx="8" fill="#00bdf2"></rect>
+                        <rect x="62" y="238" width="88" height="26" rx="8" fill="#f8c100"></rect>
+                    </g>
+
+                    <!-- Right Hand Holding Design Stylus (4 Fingers + Thumb) -->
+                    <g class="design-stylus-hand">
+                        <!-- Stylus Pen -->
+                        <g transform="rotate(-35 355 215)">
+                            <rect x="285" y="205" width="145" height="18" rx="9" fill="#606362"></rect>
+                            <polygon points="285,205 262,214 285,223" fill="#ff6b35"></polygon>
+                            <circle cx="264" cy="214" r="3.5" fill="#181818"></circle>
+                        </g>
+
+                        <!-- Peach Hand (#ffc68a) with 4 distinct fingers + thumb -->
+                        <path fill="#ffc68a" d="
+                            M 548,295
+                            C 492,282 448,262 412,232
+                            L 382,208 C 374,202 365,212 373,220
+                            L 395,240
+                            L 336,192 A 8,8 0 0,0 326,204 L 368,238 L 366,241
+                            L 322,206 A 8,8 0 0,0 312,218 L 360,256 L 358,259
+                            L 320,228 A 8,8 0 0,0 310,240 L 356,277 L 354,280
+                            L 324,256 A 8,8 0 0,0 314,268 L 382,322
+                            C 432,358 488,376 548,384 Z"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="opff-badge-pill purple">UI / UX Design</span>
+                <h3>Design &amp; UX</h3>
+                <p>
+                    Craft clear, accessible ingredient comparison views and portion calculators tailored specifically to pet health needs.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts/openfoodfacts-design" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Join Design Team
+                    </a>
+                </div>
+            </article>
+
+            <!-- Development & AI -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-expert-help" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Code editor and machine learning diagrams">
+                    <style>
+                        .code-line-1 { animation: typeWidth1 3.6s steps(12) infinite; }
+                        .code-line-2 { animation: typeWidth2 3.6s steps(12) infinite; }
+                        .robot-bob {
+                            animation: robotFloat 3.6s ease-in-out infinite;
+                            transform-origin: 425px 125px;
+                        }
+                        .hand-left-type {
+                            animation: leftType 0.9s ease-in-out infinite;
+                            transform-origin: 185px 380px;
+                        }
+                        .hand-right-type {
+                            animation: rightType 0.9s ease-in-out infinite 0.45s;
+                            transform-origin: 375px 380px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes typeWidth1 {
+                            0%, 10% { width: 20px; }
+                            50%, 90% { width: 145px; }
+                            100% { width: 20px; }
+                        }
+                        @keyframes typeWidth2 {
+                            0%, 25% { width: 10px; }
+                            65%, 90% { width: 115px; }
+                            100% { width: 10px; }
+                        }
+                        @keyframes robotFloat {
+                            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+                            50% { transform: translateY(-10px) rotate(4deg); }
+                        }
+                        @keyframes leftType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                        @keyframes rightType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                    </style>
+
+                    <!-- Central Laptop / Code & Design Window -->
+                    <rect x="110" y="76" width="310" height="205" rx="18" fill="#181818"></rect>
+                    <rect x="124" y="92" width="282" height="173" rx="10" fill="#26292e"></rect>
+
+                    <!-- Top Window Dots -->
+                    <circle cx="142" cy="108" r="5.5" fill="#dc3522"></circle>
+                    <circle cx="160" cy="108" r="5.5" fill="#f8c100"></circle>
+                    <circle cx="178" cy="108" r="5.5" fill="#009a49"></circle>
+
+                    <!-- Code Bracket & Animated Code Bars -->
+                    <text x="142" y="152" fill="#00bdf2" font-family="monospace" font-weight="800" font-size="26">&lt;/&gt;</text>
+                    <rect class="code-line-1" x="198" y="134" width="145" height="12" rx="6" fill="#7fbc2b"></rect>
+                    <rect class="code-line-2" x="198" y="156" width="115" height="12" rx="6" fill="#f8c100"></rect>
+                    <rect x="142" y="182" width="170" height="12" rx="6" fill="#ff6b35"></rect>
+                    <rect x="142" y="204" width="128" height="12" rx="6" fill="#00bdf2"></rect>
+                    <rect x="142" y="226" width="90" height="12" rx="6" fill="#d9dada"></rect>
+
+                    <!-- Laptop Base -->
+                    <path fill="#aeaeae" d="M 82,281 L 448,281 L 432,304 L 98,304 Z"></path>
+
+                    <!-- Floating Robotoff AI Badge (Top Right) -->
+                    <g class="robot-bob">
+                        <!-- Antenna -->
+                        <rect x="421" y="54" width="8" height="22" rx="4" fill="#606362"></rect>
+                        <circle cx="425" cy="50" r="9" fill="#ff6b35"></circle>
+                        <!-- Robot Head -->
+                        <rect x="375" y="72" width="100" height="78" rx="22" fill="#00bdf2"></rect>
+                        <rect x="390" y="90" width="70" height="32" rx="10" fill="#181818"></rect>
+                        <!-- Glowing Eyes -->
+                        <circle cx="408" cy="106" r="7" fill="#f8c100"></circle>
+                        <circle cx="442" cy="106" r="7" fill="#f8c100"></circle>
+                        <!-- Smile Bar -->
+                        <rect x="408" y="132" width="34" height="6" rx="3" fill="#ffffff"></rect>
+                    </g>
+
+                    <!-- Left Typing Hand (Peach Tone #ffc68a, Seamless Finger Slits) -->
+                    <g class="hand-left-type">
+                        <path fill="#ffc68a" d="
+                            M 118,415
+                            L 138,342
+                            L 138,292 A 7.5,7.5 0 0,1 153,292 L 153,330 L 156,330
+                            L 156,286 A 7.5,7.5 0 0,1 171,286 L 171,330 L 174,330
+                            L 174,286 A 7.5,7.5 0 0,1 189,286 L 189,330 L 192,330
+                            L 192,292 A 7.5,7.5 0 0,1 207,292 L 207,340
+                            L 222,324 C 229,317 238,325 231,334
+                            L 207,365 L 195,415 Z"></path>
+                    </g>
+
+                    <!-- Right Typing Hand (Brown Tone #955830, Seamless Finger Slits) -->
+                    <g class="hand-right-type">
+                        <path fill="#955830" d="
+                            M 342,415
+                            L 330,365
+                            L 306,334 C 299,325 308,317 315,324
+                            L 330,340
+                            L 330,292 A 7.5,7.5 0 0,1 345,292 L 345,330 L 348,330
+                            L 348,286 A 7.5,7.5 0 0,1 363,286 L 363,330 L 366,330
+                            L 366,286 A 7.5,7.5 0 0,1 381,286 L 381,330 L 384,330
+                            L 384,292 A 7.5,7.5 0 0,1 399,292 L 399,342
+                            L 419,415 Z"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="opff-badge-pill green">Code &amp; AI</span>
+                <h3>Development &amp; AI</h3>
+                <p>
+                    Contribute to our backend, mobile app, and machine learning models for reading complex pet food nutritional breakdown charts.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Explore GitHub Repos
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="bottom-projects-cta">
+        <h2>Ready to build a better future for pets?</h2>
+        <p>
+            Connect with volunteers and animal nutrition advocates across our open Slack workspace.
+        </p>
+        <a href="https://slack.openfoodfacts.org" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer" style="font-size: 1.05rem; padding: 0.85rem 1.85rem;">
+            Join Our Slack Workspace &rarr;
+        </a>
+    </div>
+
+</div>
+
+<script>
+    function onMount(fn) {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+        } else {
+            fn();
+        }
+    }
+
+    onMount(() => {
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            if (typeof parent !== 'undefined' && parent !== window) {
+                parent.postMessage({ frameHeight: height }, '*');
+            }
+        }
+        sendHeight();
+        window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
+                    }
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
+
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
+        });
+    });
+</script>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Beauty Facts — Contribute Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1f2937;
+        }
+        /* Global animation play-state rule: ALL SVGs PAUSED by default, RUN ONLY on hover */
+        svg, svg * {
+            animation-play-state: paused !important;
+        }
+        .off-feature-card:hover svg, .off-feature-card:hover svg *,
+        .expert-banner:hover svg, .expert-banner:hover svg *,
+        .contribute-hero:hover svg, .contribute-hero:hover svg *,
+        .discover-hero:hover svg, .discover-hero:hover svg *,
+        .contact-hero:hover svg, .contact-hero:hover svg *,
+        .contact-card:hover svg, .contact-card:hover svg *,
+        .hero-media:hover svg, .hero-media:hover svg *,
+        .opff-hero:hover svg, .opff-hero:hover svg *,
+        .obf-hero:hover svg, .obf-hero:hover svg *,
+        .opf-hero:hover svg, .opf-hero:hover svg *,
+        svg:hover, svg:hover * {
+            animation-play-state: running !important;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            svg, svg * {
+                animation: none !important;
+            }
+        }
+        /* Strictly constrain card art and prevent any SVG/image overflow */
+        .off-card-art {
+            height: 160px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+            position: relative !important;
+            margin-bottom: 1.25rem !important;
+        }
+        .off-card-art img,
+        .off-card-art svg {
+            max-width: 100% !important;
+            max-height: 140px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+            display: block !important;
+            margin: 0 auto !important;
+            transition: transform 0.3s ease !important;
+        }
+        .off-feature-card:hover .off-card-art img,
+        .off-feature-card:hover .off-card-art svg {
+            transform: scale(1.05) !important;
+        }
+        .expert-banner-art img,
+        .expert-banner-art svg {
+            max-width: 280px !important;
+            max-height: 200px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        .hero-media img,
+        .hero-media svg {
+            max-width: 440px !important;
+            max-height: 340px !important;
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        /* Simulated Site Header */
+        .site-header-preview {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.85rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .site-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+        .site-header-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .preview-badge {
+            background: #ea580c;
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .site-header-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .nav-switch-link {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #64748b;
+            text-decoration: none;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+        .nav-switch-link:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .nav-switch-link.active {
+            background: #e2e8f0;
+            color: #0f172a;
+            font-weight: 700;
+        }
+        .main-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header-preview">
+        <div class="site-header-left">
+            <div class="site-header-title">
+                <span>🌐 Open Beauty Facts — Contribute Preview</span>
+                <span class="preview-badge">Revamped</span>
+            </div>
+        </div>
+        <div class="site-header-right">
+            <a href="preview-discover.html" class="nav-switch-link ">OFF Discover</a>
+            <a href="preview-contribute.html" class="nav-switch-link ">OFF Contribute</a>
+            <a href="preview-contact.html" class="nav-switch-link ">Contact</a>
+            <a href="preview-obf-discover.html" class="nav-switch-link ">OBF Discover</a>
+            <a href="preview-obf-contribute.html" class="nav-switch-link active">OBF Contribute</a>
+            <a href="preview-opff-discover.html" class="nav-switch-link ">OPFF Discover</a>
+            <a href="preview-opff-contribute.html" class="nav-switch-link ">OPFF Contribute</a>
+            <a href="preview-opf-discover.html" class="nav-switch-link ">OPF Discover</a>
+            <a href="preview-opf-contribute.html" class="nav-switch-link ">OPF Contribute</a>
+        </div>
+    </header>
+
+    <main class="main-container">
+<!-- no side column -->
+<style>
+/* ==========================================================================
+   Open Beauty Facts — Modern Contribute Page
+   ========================================================================== */
+
+#obf-contribute-page {
+    --obf-primary: #d81b60;
+    --obf-primary-hover: #ad1457;
+    --obf-secondary: #00838f;
+    --obf-secondary-hover: #006064;
+    --obf-cyan: #00bcd4;
+    --obf-dark: #2c101c;
+    --obf-cream: #fdf8fa;
+    --obf-warm-bg: #fff5f8;
+    --obf-border: #f5dce6;
+    --obf-card-border: #edd5e0;
+    --obf-text-muted: #6e5863;
+    --obf-green: #209552;
+    --obf-blue: #2563eb;
+    --obf-radius-card: 22px;
+    --obf-radius-pill: 9999px;
+    --obf-shadow-sm: 0 2px 10px rgba(44, 16, 28, 0.04);
+    --obf-shadow-md: 0 10px 24px rgba(44, 16, 28, 0.07);
+    --obf-shadow-hover: 0 16px 36px rgba(216, 27, 96, 0.14);
+
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--obf-dark);
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+}
+
+#obf-contribute-page * {
+    box-sizing: border-box;
+}
+
+/* Badge Pills */
+.obf-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--obf-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+}
+.obf-badge-pill.pink { background: #fce4ec; color: #ad1457; }
+.obf-badge-pill.cyan { background: #e0f7fa; color: #00838f; }
+.obf-badge-pill.purple { background: #f3e5f5; color: #7b1fa2; }
+.obf-badge-pill.green { background: #ddf6e6; color: #156937; }
+.obf-badge-pill.blue { background: #e0f2fe; color: #0369a1; }
+
+/* Hero Banner */
+.obf-hero {
+    background: linear-gradient(145deg, #ffffff 0%, var(--obf-warm-bg) 100%);
+    border: 1px solid var(--obf-border);
+    border-radius: 28px;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 3.5rem;
+    box-shadow: var(--obf-shadow-md);
+}
+
+.hero-content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--obf-dark);
+    line-height: 1.15;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+}
+
+.hero-lead {
+    font-size: 1.15rem;
+    color: var(--obf-text-muted);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+.hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-media img {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    filter: drop-shadow(0 14px 32px rgba(44, 16, 28, 0.12));
+    border-radius: 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-media img:hover {
+    transform: translateY(-4px) scale(1.015);
+}
+
+/* Call to Action Buttons */
+.off-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--obf-radius-pill);
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    line-height: 1.2;
+    border: none;
+}
+.off-btn-primary {
+    background: var(--obf-primary);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(216, 27, 96, 0.3);
+}
+.off-btn-primary:hover {
+    background: var(--obf-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(216, 27, 96, 0.4);
+    color: #ffffff !important;
+}
+.off-btn-secondary {
+    background: #ffffff;
+    color: var(--obf-dark) !important;
+    border: 1px solid var(--obf-border);
+    box-shadow: var(--obf-shadow-sm);
+}
+.off-btn-secondary:hover {
+    background: var(--obf-cream);
+    border-color: var(--obf-primary);
+    transform: translateY(-2px);
+    color: var(--obf-primary) !important;
+}
+.off-btn-cyan {
+    background: var(--obf-secondary);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 131, 143, 0.3);
+}
+.off-btn-cyan:hover {
+    background: var(--obf-secondary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 131, 143, 0.4);
+    color: #ffffff !important;
+}
+.off-btn-block {
+    width: 100%;
+}
+
+/* Section Header */
+.section-header {
+    text-align: left;
+    margin-bottom: 2.25rem;
+}
+.section-header h2 {
+    font-size: clamp(1.8rem, 3vw, 2.35rem);
+    font-weight: 800;
+    color: var(--obf-dark);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.015em;
+}
+.section-header p {
+    font-size: 1.08rem;
+    color: var(--obf-text-muted);
+    margin: 0;
+    max-width: 760px;
+}
+
+/* Grids */
+.off-card-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+.off-card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+
+/* Feature Cards */
+.off-feature-card {
+    background: #ffffff;
+    border: 1px solid var(--obf-card-border);
+    border-radius: var(--obf-radius-card);
+    padding: 1.85rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--obf-shadow-sm);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+.off-feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--obf-shadow-hover);
+    border-color: var(--obf-primary);
+}
+
+.off-card-art {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+.off-card-art img,
+.off-card-art svg {
+    max-height: 140px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.off-feature-card:hover .off-card-art img,
+.off-feature-card:hover .off-card-art svg {
+    transform: scale(1.05);
+}
+
+/* Animations: on hover only */
+#obf-contribute-page svg,
+#obf-contribute-page svg * {
+    animation-play-state: paused !important;
+}
+
+#obf-contribute-page .obf-hero:hover svg,
+#obf-contribute-page .obf-hero:hover svg *,
+#obf-contribute-page .off-feature-card:hover svg,
+#obf-contribute-page .off-feature-card:hover svg *,
+#obf-contribute-page .expert-banner:hover svg,
+#obf-contribute-page .expert-banner:hover svg *,
+#obf-contribute-page .hero-media:hover svg,
+#obf-contribute-page .hero-media:hover svg *,
+#obf-contribute-page svg:hover,
+#obf-contribute-page svg:hover * {
+    animation-play-state: running !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #obf-contribute-page svg,
+    #obf-contribute-page svg * {
+        animation: none !important;
+    }
+}
+
+.off-feature-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--obf-dark);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+}
+.off-feature-card p {
+    font-size: 0.95rem;
+    color: var(--obf-text-muted);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.off-feature-card .card-footer-action {
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
+/* Divider */
+#obf-contribute-page hr.off-divider {
+    border: none;
+    border-top: 1px solid var(--obf-border);
+    margin: 3.5rem 0;
+}
+
+/* Expert Banner */
+.expert-banner {
+    background: linear-gradient(135deg, var(--obf-warm-bg) 0%, #ffffff 100%);
+    border: 1px solid var(--obf-border);
+    border-radius: 24px;
+    padding: clamp(1.8rem, 3.5vw, 2.5rem);
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--obf-shadow-sm);
+}
+.expert-banner-art {
+    display: flex;
+    justify-content: center;
+}
+.expert-banner-art img {
+    max-width: 280px;
+    height: auto;
+}
+.expert-banner-text h2 {
+    font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+    font-weight: 800;
+    color: var(--obf-dark);
+    margin: 0 0 0.75rem 0;
+}
+.expert-banner-text p {
+    color: var(--obf-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 1.25rem 0;
+}
+
+/* Bottom CTA */
+.bottom-projects-cta {
+    background: linear-gradient(135deg, var(--obf-dark) 0%, #15050c 100%);
+    border-radius: 24px;
+    padding: clamp(2.2rem, 4vw, 3.2rem);
+    text-align: center;
+    color: #ffffff;
+    margin-top: 3.5rem;
+    box-shadow: var(--obf-shadow-md);
+}
+.bottom-projects-cta h2 {
+    color: #ffffff;
+    font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+    font-weight: 800;
+    margin: 0 0 0.85rem 0;
+}
+.bottom-projects-cta p {
+    color: #fce4ec;
+    font-size: 1.1rem;
+    max-width: 680px;
+    margin: 0 auto 1.75rem auto;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .hero-content-grid,
+    .expert-banner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .section-header {
+        text-align: center;
+    }
+}
+</style>
+
+<div id="obf-contribute-page">
+
+    <!-- Hero Banner -->
+    <header class="obf-hero">
+        <div class="hero-content-grid">
+            <div class="hero-text">
+                <span class="obf-badge-pill pink">✨ 100% Volunteer Driven • Cosmetics Transparency</span>
+                <h1>Contribute to Open Beauty Facts</h1>
+                <p class="hero-lead">
+                    All you need is a scan-do attitude! Scan your cosmetics, shampoos, and skincare products using the universal Open Food Facts app to give everyone honest ingredient transparency.
+                </p>
+                <div class="hero-actions">
+                    <a href="/open-beauty-facts-mobile-app?utm_source=obf&amp;utm_medium=web&amp;utm_campaign=contribute_hero" class="off-btn off-btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        Install Free Universal App
+                    </a>
+                    <a href="https://wiki.openfoodfacts.org/Contributor" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        Join our Community &rarr;
+                    </a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEwIiBoZWlnaHQ9IjI2MiIgdmlld0JveD0iMCAwIDExMCAyNjIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF82ODBfMTIyMSkiPgo8cGF0aCBkPSJNMjAuNDgxOSAyNTkuMzk5TDEzLjk4MDMgMjU1LjQ3NEMxMy40OTQ2IDI1NS4xODMgMTMuMTk2MiAyNTQuNjU4IDEzLjE5NjIgMjU0LjA5MlYyNDEuOTFIMjQuMDY5MkwyNC40MDg2IDI0Ni40MjRMMzIuMjI2OSAyNTMuOTM1QzMzLjMwOTUgMjU0Ljk3OSAzMy45MjM5IDI1Ni40MTMgMzMuOTIzOSAyNTcuOTEyQzMzLjkyMzkgMjYwLjE2OSAzMi4wODY0IDI2MiAyOS44MjE3IDI2MkMyNi41MjcgMjYyIDIzLjI5NjcgMjYxLjEwMiAyMC40NzYxIDI1OS4zOTlIMjAuNDgxOVoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik01OC44MTI1IDI0NS43OTRMNTIuMzEwOSAyNDEuODY5QzUxLjgyNTIgMjQxLjU3NyA1MS41MjY3IDI0MS4wNTMgNTEuNTI2NyAyNDAuNDg3VjIyOC4zMDVINjIuMzk5N0w2Mi43MzkyIDIzMi44MThMNzAuNTU3NCAyNDAuMzI5QzcxLjY0IDI0MS4zNzMgNzIuMjU0NSAyNDIuODA4IDcyLjI1NDUgMjQ0LjMwN0M3Mi4yNTQ1IDI0Ni41NjQgNzAuNDE3IDI0OC4zOTUgNjguMTUyMyAyNDguMzk1QzY0Ljg1NzYgMjQ4LjM5NSA2MS42MjczIDI0Ny40OTcgNTguODA2NiAyNDUuNzk0SDU4LjgxMjVaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNMzAuMDQ5OSAyNDQuNzY3SDkuMDM1NEM3LjcxMjg1IDI0NC44MjYgNi42MzYwOCAyNDMuNzM1IDYuNzE4MDEgMjQyLjQxN0M5LjA3MDUxIDIwMy43MTggMTAuMDA2OCAxNjUuNTAzIDkuNjczMjcgMTI3LjcySDU1LjUwNjFMNTQuMTM2NyAxMzguNDAzQzQ4LjkzNDMgMTQ2LjkyMyAzOS42NjQ4IDE1MC41MzMgMzguOTA5OCAxNjAuNDc2QzM3LjQ2NDQgMTc5LjU2MyAzNC43ODQyIDIxNi40ODQgMzIuMTYyNSAyNDIuNzczQzMyLjA1MTMgMjQzLjg2MyAzMS4xNTYgMjQ0LjcwOSAzMC4wNTU4IDI0NC43NjJMMzAuMDQ5OSAyNDQuNzY3WiIgZmlsbD0iIzVBNzk5MyIvPgo8cGF0aCBkPSJNNjUuMjU1NiAyMzIuODE4SDQ2LjQ3NjVDNDUuMTgzMyAyMzIuOTEyIDQ0LjEwNjUgMjMxLjgyMSA0NC4xODg0IDIzMC41MDNDNDYuMzU5NSAxOTMuOTk3IDQzLjM3NSAxNTguMjYgMzguOTA5OSAxMjMuMzc1TDY0LjM4OTUgMTI0LjgyMUM2OC43MjU4IDE2MC45NiA3MC45MTQ1IDE5Ny4yNTEgNjcuMjM5NCAyMzAuODg4QzY3LjEyODIgMjMxLjkzMiA2Ni4yOTE0IDIzMi43NDIgNjUuMjY3MyAyMzIuODE4SDY1LjI1NTZaIiBmaWxsPSIjNUE3OTkzIi8+CjxwYXRoIGQ9Ik02MS4xOTQzIDU3LjQwNzFMNjEuMTY1MSA1Ny40MzYzQzU5LjExMSA1OS43MDQ4IDU4Ljc3NzUgNjIuMjY0OSA1OS4xODcxIDY1Ljc1ODFDNTguODUzNSA2Ni44NjAzIDU4LjUwMjQgNjcuOTMzMyA1OC4xNjMgNjguOTgzQzU3LjM2NzEgNzEuMzc5OCA1Ni41ODMgNzMuNjQyNSA1NS45Njg1IDc1Ljc1MzZIOC4wODE2QzUuNDU5OSA2NS4wNDA4IC0wLjkzMDQ3OCA1OC41ODUxIDMuMTE5MSA1MC45NDU2QzYuMjA4OTYgNDUuMTA4MSAxNC40NTQ0IDQzLjMyOTQgMTEuNjc0NyAzNy45OTM0QzYuMTAzNjIgMjcuMzE1NiAxMi42OTMgMjEuNDA4MSAyMy4xMDk1IDcuMjA3OThMNTUuMzMwNiAyMS4xODA3TDYxLjAwMTIgMTQuMTI0NEM2Ny4yOTIxIDIxLjE2MzIgNjIuNjY5IDM1LjU5MDggNjAuNzg0NyA0MS41OTc0QzU5LjM3NDQgNDYuMDk5NSA2Ni42NDg0IDUxLjM1MzggNjEuMTk0MyA1Ny40MDcxWiIgZmlsbD0iIzNEMjUxNSIvPgo8cGF0aCBkPSJNODUuMDA2MSA5Ni45MjI2TDg0LjMyMTQgMTA4LjM3Qzc3LjU3NDEgMTA2Ljg0OCA3MS40NDcgMTA1LjExNiA2Ni4xMDQyIDEwMy4yMjFMNjUuMDc0MiA5MC41NjZDNzIuMTU1MSA5My44Nzg0IDgxLjk0NTUgOTYuNDMyNyA4NS4wMDYxIDk2LjkyMjZaIiBmaWxsPSIjOUI3MDUzIi8+CjxwYXRoIGQ9Ik02Ni4wNDU2IDgyLjEyNzZINTEuNTAzNFY1NC45MzQ0QzQ2LjYzNDUgNDcuNTgwNyA2My42MTEyIDU2Ljg5MzkgNjUuNjcxMSA2OS4wMDA1QzY3LjczMSA4MS4xMDcgNjYuMDUxNSA4Mi4xMjc2IDY2LjA1MTUgODIuMTI3Nkg2Ni4wNDU2WiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTY5LjAzNTkgMTM5LjI4NEM2OS4wMzU5IDE0MS4yMjYgNjcuNjYwNyAxNDIuOCA2NS45NjM2IDE0Mi44TDkuNjM4MTYgMTQ0LjA4OUM3Ljk0MTA4IDE0NC4wODkgNi41NjU4NiAxNDIuNTIgNi41NjU4NiAxNDAuNTc5QzYuMzQ5MzQgMTE4LjU0NiA0LjgzMzY3IDg0Ljk5MDkgNi41NjU4NiA4MC4zMTk4QzAuNjk2MzExIDYzLjg2MjcgMTQuNTcxNCA0OC40NDM4IDM0LjcxOTggNDguMTQ2NEMzNS4zNTc3IDQ4LjEwNTUgMzUuOTk1NiA0OC4wODIyIDM2LjYyMTcgNDguMDgyMkM0OS4yNzk2IDQ4LjA4MjIgNTkuMzI3NSA1Ni4zNTE1IDYyLjk5NjcgNjguNTIyM0M2My4xMDIgNjguODYwNSA2My4xOTU2IDY5LjE5ODcgNjMuMjg5MyA2OS41NDI4QzY0LjMxOTIgNzMuMzkxNyA2NC43MjMgNzcuNjAyMiA2NC4zODM2IDgyLjA0NTlMNjUuMDc0MSA5MC41NjZMNjYuMTA0MSAxMDMuMjIxTDY5LjAzNTkgMTM5LjI4NFoiIGZpbGw9IiMxNzE3MTciLz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAxXzY4MF8xMjIxKSI+CjxwYXRoIGQ9Ik01MS40MTY2IDc5LjQ0MDNDNTEuMjQ0OCA3OS40NDAzIDUxLjA5NTEgNzkuNDcxMiA1MC45Njg0IDc5LjUzM0M1MC44NDEzIDc5LjU5NDkgNTAuNzQ0MSA3OS42ODQ0IDUwLjY3NTkgNzkuODAxN0M1MC42MDc4IDc5LjkxODkgNTAuNTczNyA4MC4wNjIxIDUwLjU3MzcgODAuMjMxN1Y4MC4zMDAzSDUwLjE4MDhWODAuNzczMUg1MC41NzM3VjgyLjQ5ODFINTEuMTA5OFY4MC43NzMxSDUxLjYwNVY4MC4zMDAzSDUxLjEwOThWODAuMjMxN0M1MS4xMDk4IDgwLjExODUgNTEuMTQyNSA4MC4wMzU4IDUxLjIwNzkgNzkuOTgzQzUxLjI3MzMgNzkuOTMwMyA1MS4zNjY0IDc5LjkwNDQgNTEuNDg2MiA3OS45MDQ0QzUxLjUwNSA3OS45MDQ0IDUxLjUyNjIgNzkuOTA1MyA1MS41NDk3IDc5LjkwNjJDNTEuNTcyNyA3OS45MDc2IDUxLjU5ODEgNzkuOTEwOCA1MS42MjUzIDc5LjkxNjJWNzkuNDU5OEM1MS41OTgxIDc5LjQ1NDQgNTEuNTY0NSA3OS40NDk4IDUxLjUyNDggNzkuNDQ1OEM1MS40ODUyIDc5LjQ0MTcgNTEuNDQ5MyA3OS40Mzk4IDUxLjQxNjYgNzkuNDM5OFY3OS40NDAzWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTUzLjE5MjcgODAuMzUxMkM1My4wNTM2IDgwLjI4NTMgNTIuODkyNCA4MC4yNTIxIDUyLjcwOTUgODAuMjUyMUM1Mi41NTk0IDgwLjI1MjEgNTIuNDIwMyA4MC4yNzYyIDUyLjI5MjIgODAuMzI0OUM1Mi4xNjM3IDgwLjM3MzUgNTIuMDUyNyA4MC40Mzk5IDUxLjk1ODcgODAuNTI0OUM1MS44NjQ4IDgwLjYwOTkgNTEuNzk1NyA4MC43MDk5IDUxLjc1MTkgODAuODI1OEw1Mi4xOSA4MS4wMzU4QzUyLjIzMSA4MC45MzkgNTIuMjk1OSA4MC44NTk0IDUyLjM4NDMgODAuNzk3NkM1Mi40NzI4IDgwLjczNTggNTIuNTc0NiA4MC43MDQ5IDUyLjY4OTMgODAuNzA0OUM1Mi44MTIyIDgwLjcwNDkgNTIuOTEwNCA4MC43MzY3IDUyLjk4NDEgODAuNzk5OUM1My4wNTc4IDgwLjg2MzEgNTMuMDk0NiA4MC45NDIxIDUzLjA5NDYgODEuMDM2MlY4MS4xMDc2TDUyLjQzNTUgODEuMjE0QzUyLjI2MDkgODEuMjQwOCA1Mi4xMTYzIDgxLjI4NjcgNTIuMDAxNiA4MS4zNTEyQzUxLjg4NjkgODEuNDE1OCA1MS44MDE3IDgxLjQ5NjIgNTEuNzQ1OSA4MS41OTE3QzUxLjY4OTcgODEuNjg3MiA1MS42NjIxIDgxLjc5NTggNTEuNjYyMSA4MS45MTY3QzUxLjY2MjEgODIuMDM3NiA1MS42OTM0IDgyLjE1NDQgNTEuNzU2MSA4Mi4yNDk5QzUxLjgxODcgODIuMzQ1NCA1MS45MDgxIDgyLjQxOSA1Mi4wMjQxIDgyLjQ2OTlDNTIuMTQwMiA4Mi41MjA4IDUyLjI3NjEgODIuNTQ2NyA1Mi40MzEzIDgyLjU0NjdDNTIuNTU0MyA4Mi41NDY3IDUyLjY2NTMgODIuNTMwNCA1Mi43NjQ4IDgyLjQ5ODFDNTIuODY0MyA4Mi40NjU4IDUyLjk1NDYgODIuNDE3MiA1My4wMzUyIDgyLjM1MjZDNTMuMDY3OSA4Mi4zMjYzIDUzLjA5ODMgODIuMjk3MiA1My4xMjczIDgyLjI2NjNWODIuNDk4MUg1My42MzQ5VjgxLjAzNThDNTMuNjM0OSA4MC44ODIxIDUzLjU5NjIgODAuNzQ2MiA1My41MTg0IDgwLjYyNzZDNTMuNDQwNSA4MC41MDkgNTMuMzMyMyA4MC40MTY3IDUzLjE5MzIgODAuMzUwOEw1My4xOTI3IDgwLjM1MTJaTTUzLjAyNSA4MS44NzYzQzUyLjk3ODUgODEuOTU5OSA1Mi45MTI3IDgyLjAyNDkgNTIuODI2NSA4Mi4wNzIyQzUyLjc0MDQgODIuMTE5NCA1Mi42NDE4IDgyLjE0MzEgNTIuNTI5OSA4Mi4xNDMxQzUyLjQ0MjQgODIuMTQzMSA1Mi4zNjk2IDgyLjEyMDggNTIuMzExMSA4Mi4wNzYzQzUyLjI1MjYgODIuMDMxNyA1Mi4yMjMxIDgxLjk3MTcgNTIuMjIzMSA4MS44OTY3QzUyLjIyMzEgODEuODIxNyA1Mi4yNDg5IDgxLjc1NTggNTIuMzAxIDgxLjcwOUM1Mi4zNTI2IDgxLjY2MTcgNTIuNDMxOCA4MS42MjkgNTIuNTM4MiA4MS42MDk5TDUzLjA5NTEgODEuNTEyMlY4MS42MDU4QzUzLjA5NTEgODEuNzAyNiA1My4wNzIgODEuNzkzMSA1My4wMjU1IDgxLjg3NjNINTMuMDI1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTU0Ljc3MTcgODAuODIzNUM1NC44NjI5IDgwLjc2ODUgNTQuOTY3NSA4MC43NDA4IDU1LjA4NDkgODAuNzQwOEM1NS4yMTAyIDgwLjc0MDggNTUuMzIxNyA4MC43NzQgNTUuNDE4NCA4MC44Mzk5QzU1LjUxNTEgODAuOTA1OCA1NS41ODQyIDgwLjk5NTMgNTUuNjI1MiA4MS4xMDg1TDU2LjA5NTkgODAuOTAyNkM1Ni4wNTIyIDgwLjc3MzUgNTUuOTgwOCA4MC42NjAzIDU1Ljg4MDggODAuNTYzMUM1NS43ODEzIDgwLjQ2NjIgNTUuNjYzIDgwLjM4OTkgNTUuNTI2NiA4MC4zMzQ5QzU1LjM5MDMgODAuMjc5OSA1NS4yNDI5IDgwLjI1MjEgNTUuMDg0NCA4MC4yNTIxQzU0Ljg2MDYgODAuMjUyMSA1NC42NjA3IDgwLjMwMjEgNTQuNDg0NyA4MC40MDE3QzU0LjMwODggODAuNTAxMiA1NC4xNzAxIDgwLjYzNzYgNTQuMDY5MyA4MC44MDk5QzUzLjk2ODQgODAuOTgyMSA1My45MTc3IDgxLjE3NzYgNTMuOTE3NyA4MS4zOTU4QzUzLjkxNzcgODEuNjE0IDUzLjk2ODkgODEuODA5OSA1NC4wNzExIDgxLjk4MzVDNTQuMTczNCA4Mi4xNTcyIDU0LjMxMiA4Mi4yOTQ0IDU0LjQ4NjYgODIuMzk1NEM1NC42NjExIDgyLjQ5NjMgNTQuODYwNiA4Mi41NDY3IDU1LjA4NCA4Mi41NDY3QzU1LjI0NDcgODIuNTQ2NyA1NS4zOTM1IDgyLjUxOSA1NS41MzAzIDgyLjQ2NEM1NS42NjY3IDgyLjQwOSA1NS43ODQxIDgyLjMzMjIgNTUuODgyMiA4Mi4yMzM1QzU1Ljk4MDMgODIuMTM1MyA1Ni4wNTEzIDgyLjAyNCA1Ni4wOTUgODEuOTAwM0w1NS42MjQzIDgxLjY5MDNDNTUuNTgwNSA4MS44MDM1IDU1LjUxMTkgODEuODkzNSA1NS40MTc1IDgxLjk2MDhDNTUuMzIzNSA4Mi4wMjgxIDU1LjIxMiA4Mi4wNjE3IDU1LjA4NCA4Mi4wNjE3QzU0Ljk2NjUgODIuMDYxNyA1NC44NjI0IDgyLjAzMzUgNTQuNzcwOCA4MS45NzY3QzU0LjY3OTEgODEuOTIwMyA1NC42MDc3IDgxLjg0MjIgNTQuNTU1NyA4MS43NDI2QzU0LjUwMzYgODEuNjQzMSA1NC40Nzc4IDgxLjUyODUgNTQuNDc3OCA4MS4zOTk0QzU0LjQ3NzggODEuMjcwMyA1NC41MDM2IDgxLjE1OSA1NC41NTU3IDgxLjA1ODFDNTQuNjA3MyA4MC45NTcxIDU0LjY3OTEgODAuODc5IDU0Ljc3MDggODAuODI0TDU0Ljc3MTcgODAuODIzNVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik01Ny41MTE5IDgyLjA1NzZDNTcuNDI0MyA4Mi4wNTc2IDU3LjM1MyA4Mi4wNDQgNTcuMjk2OCA4Mi4wMTcyQzU3LjI0MDYgODEuOTkwNCA1Ny4yIDgxLjk1MTMgNTcuMTczOCA4MS44OTk5QzU3LjE0OCA4MS44NDkgNTcuMTM1MSA4MS43ODY3IDU3LjEzNTEgODEuNzE0VjgwLjc3MjZINTcuNjQ2OFY4MC4yOTk5SDU3LjEzNTFWNzkuNzk5SDU2LjU5NDhWNzkuOTY4NUM1Ni41OTQ4IDgwLjA3NjIgNTYuNTY1MyA4MC4xNTg1IDU2LjUwNjggODAuMjE0OUM1Ni40NDgzIDgwLjI3MTIgNTYuMzY0IDgwLjI5OTkgNTYuMjU0OSA4MC4yOTk5SDU2LjIxMzlWODAuNzcyNkg1Ni41OTQzVjgxLjc0MjJDNTYuNTk0MyA4MS45ODk5IDU2LjY2MzkgODIuMTgxNyA1Ni44MDMgODIuMzE3NkM1Ni45NDIxIDgyLjQ1MzUgNTcuMTM3NCA4Mi41MjE3IDU3LjM4ODQgODIuNTIxN0M1Ny40Mjk0IDgyLjUyMTcgNTcuNDc0NiA4Mi41MTkgNTcuNTIzNCA4Mi41MTM1QzU3LjU3MjcgODIuNTA4MSA1Ny42MTYgODIuNTAyNiA1Ny42NTQyIDgyLjQ5NzJWODIuMDQ0OUM1Ny42Mjk4IDgyLjA0NzYgNTcuNjA0NCA4Mi4wNTA0IDU3LjU3ODYgODIuMDUzMUM1Ny41NTI5IDgyLjA1NTggNTcuNTMwMyA4Mi4wNTcyIDU3LjUxMDkgODIuMDU3Mkw1Ny41MTE5IDgyLjA1NzZaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNTkuMDE2NyA4MS4yMzc2TDU4LjY2MDcgODEuMTMyNkM1OC42MDg2IDgxLjExNjIgNTguNTYzIDgxLjA5OSA1OC41MjM0IDgxLjA3OTlDNTguNDgzOCA4MS4wNjEyIDU4LjQ1MyA4MS4wMzY3IDU4LjQzMTMgODEuMDA3MUM1OC40MDk3IDgwLjk3NzYgNTguMzk4NiA4MC45NDQgNTguMzk4NiA4MC45MDYyQzU4LjM5ODYgODAuODM5IDU4LjQyNDQgODAuNzg1OCA1OC40NzY0IDgwLjc0NjdDNTguNTI4IDgwLjcwNzYgNTguNTk5NCA4MC42ODggNTguNjg5MiA4MC42ODhDNTguODAxMiA4MC42ODggNTguOTAyIDgwLjcxNzEgNTguOTkyMyA4MC43NzQ5QzU5LjA4MjEgODAuODMyNiA1OS4xNDY2IDgwLjkxMTcgNTkuMTg0OSA4MS4wMTEyTDU5LjU5NDMgODAuODIxMkM1OS41MjYyIDgwLjY0MDggNTkuNDExNSA4MC41MDA4IDU5LjI1MDMgODAuNDAxMkM1OS4wODkxIDgwLjMwMTcgNTguOTAzOSA4MC4yNTE3IDU4LjY5MzQgODAuMjUxN0M1OC41MzIyIDgwLjI1MTcgNTguMzg5OSA4MC4yNzk5IDU4LjI2NTUgODAuMzM2N0M1OC4xNDExIDgwLjM5MyA1OC4wNDQ0IDgwLjQ3MjEgNTcuOTc0OCA4MC41NzNDNTcuOTA1MyA4MC42NzQgNTcuODcwMyA4MC43OTE3IDU3Ljg3MDMgODAuOTI2N0M1Ny44NzAzIDgxLjA3NzYgNTcuOTE4NiA4MS4yMDkgNTguMDE1NCA4MS4zMjAzQzU4LjExMjEgODEuNDMyMiA1OC4yNTM1IDgxLjUxMzUgNTguNDM5MSA4MS41NjQ5TDU4LjgwMzUgODEuNjY1OEM1OC44NTI4IDgxLjY3OTQgNTguODk2MSA4MS42OTYyIDU4LjkzNDMgODEuNzE2MkM1OC45NzI1IDgxLjczNjIgNTkuMDAzNCA4MS43NjA4IDU5LjAyNjQgODEuNzg5QzU5LjA0OTQgODEuODE3MiA1OS4wNjE0IDgxLjg1MzEgNTkuMDYxNCA4MS44OTU4QzU5LjA2MTQgODEuOTY1OCA1OS4wMzI5IDgyLjAyMjYgNTguOTc1MyA4Mi4wNjUzQzU4LjkxODIgODIuMTA4NSA1OC44NDE3IDgyLjEyOTkgNTguNzQ1OSA4Mi4xMjk5QzU4LjYyMDIgODIuMTI5OSA1OC41MDY0IDgyLjA5NDkgNTguNDA0MSA4Mi4wMjQ5QzU4LjMwMTkgODEuOTU0OSA1OC4yMjIyIDgxLjg1ODEgNTguMTY0NiA4MS43MzRMNTcuNzU5MyA4MS45MjRDNTcuODI3NCA4Mi4xMTUzIDU3Ljk0OTUgODIuMjY2NyA1OC4xMjU1IDgyLjM3ODVDNTguMzAxNCA4Mi40OTA0IDU4LjUwODIgODIuNTQ2MyA1OC43NDU0IDgyLjU0NjNDNTguOTE0NSA4Mi41NDYzIDU5LjA2MTkgODIuNTE4MSA1OS4xODc2IDgyLjQ2MTNDNTkuMzEyOSA4Mi40MDQ5IDU5LjQxMTUgODIuMzI1OCA1OS40ODI0IDgyLjIyNDlDNTkuNTUzMyA4Mi4xMjQgNTkuNTg4OCA4Mi4wMDc2IDU5LjU4ODggODEuODc1M0M1OS41ODg4IDgxLjcxOSA1OS41MzkxIDgxLjU4NzIgNTkuNDM5NiA4MS40Nzk0QzU5LjM0MDEgODEuMzcxNyA1OS4xOTg3IDgxLjI5MDggNTkuMDE1OCA4MS4yMzcxTDU5LjAxNjcgODEuMjM3NloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik01MS45MTkxIDcxLjgzMkM1MS43NDE4IDcxLjczMjUgNTEuNTQyNCA3MS42ODI1IDUxLjMyMTcgNzEuNjgyNUM1MS4xMDExIDcxLjY4MjUgNTAuOTA1MyA3MS43MzI1IDUwLjcyOCA3MS44MzJDNTAuNTUwNyA3MS45MzE2IDUwLjQwODggNzIuMDY3OSA1MC4zMDI0IDcyLjI0MDJDNTAuMTk2IDcyLjQxMjUgNTAuMTQyNiA3Mi42MDkzIDUwLjE0MjYgNzIuODI5OEM1MC4xNDI2IDczLjA1MDIgNTAuMTk2IDczLjI0NyA1MC4zMDI0IDczLjQxOTNDNTAuNDA4OCA3My41OTE2IDUwLjU1MTYgNzMuNzI3NSA1MC43MzAzIDczLjgyNzVDNTAuOTA5IDczLjkyNyA1MS4xMDYyIDczLjk3NyA1MS4zMjE3IDczLjk3N0M1MS41MzczIDczLjk3NyA1MS43Mzc3IDczLjkyNyA1MS45MTU1IDczLjgyNzVDNTIuMDkyOCA3My43MjggNTIuMjM0NyA3My41OTIgNTIuMzQxMSA3My40MTkzQzUyLjQ0NzUgNzMuMjQ3IDUyLjUwMDkgNzMuMDUwMiA1Mi41MDA5IDcyLjgyOThDNTIuNTAwOSA3Mi42MDkzIDUyLjQ0ODQgNzIuNDA4OCA1Mi4zNDM0IDcyLjIzNzlDNTIuMjM4MyA3Mi4wNjcgNTIuMDk2OSA3MS45MzE2IDUxLjkxOTYgNzEuODMySDUxLjkxOTFaTTUxLjg1OTcgNzMuMTcxMUM1MS44MDYzIDczLjI3MiA1MS43MzQgNzMuMzUwNyA1MS42NDI4IDczLjQwNzVDNTEuNTUxMSA3My40NjM5IDUxLjQ0NDMgNzMuNDkyNSA1MS4zMjEzIDczLjQ5MjVDNTEuMTk4MyA3My40OTI1IDUxLjA5NDcgNzMuNDY0MyA1MS4wMDIxIDczLjQwNzVDNTAuOTA5IDczLjM1MTEgNTAuODM2MyA3My4yNzIgNTAuNzgzMyA3My4xNzExQzUwLjcyOTkgNzMuMDcwMiA1MC43MDM2IDcyLjk1NjYgNTAuNzAzNiA3Mi44Mjk4QzUwLjcwMzYgNzIuNzAyOSA1MC43MzAzIDcyLjU5MDIgNTAuNzgzMyA3Mi40OTAyQzUwLjgzNjcgNzIuMzkwNyA1MC45MDk1IDcyLjMxMjUgNTEuMDAyMSA3Mi4yNTYxQzUxLjA5NDcgNzIuMTk5NyA1MS4yMDExIDcyLjE3MTEgNTEuMzIxMyA3Mi4xNzExQzUxLjQ0MTUgNzIuMTcxMSA1MS41NTExIDcyLjE5OTMgNTEuNjQyOCA3Mi4yNTYxQzUxLjczNCA3Mi4zMTI1IDUxLjgwNjMgNzIuMzkwNyA1MS44NTk3IDcyLjQ5MDJDNTEuOTEzMiA3Mi41ODk4IDUxLjkzOTQgNzIuNzAyOSA1MS45Mzk0IDcyLjgyOThDNTEuOTM5NCA3Mi45NTY2IDUxLjkxMjcgNzMuMDcwMiA1MS44NTk3IDczLjE3MTFaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNTQuNTgyNCA3MS44MzYxQzU0LjQxMzMgNzEuNzMzOCA1NC4yMjM1IDcxLjY4MjUgNTQuMDEzNSA3MS42ODI1QzUzLjg0MTcgNzEuNjgyNSA1My42OTAyIDcxLjcxNTYgNTMuNTU5MyA3MS43ODE2QzUzLjQ1NDMgNzEuODM0MyA1My4zNjczIDcxLjkwNDMgNTMuMjk3MyA3MS45OTExVjcxLjczMTFINTIuNzg5N1Y3NC43MzY2SDUzLjMzVjczLjcxNzVDNTMuMzk1OCA3My43ODY2IDUzLjQ3NDEgNzMuODQyIDUzLjU2NTMgNzMuODg0M0M1My43MDAzIDczLjk0NjEgNTMuODQ4NiA3My45NzcgNTQuMDA5NCA3My45NzdDNTQuMjI0OSA3My45NzcgNTQuNDE3NSA3My45MjY2IDU0LjU4NjUgNzMuODI1N0M1NC43NTU2IDczLjcyNDggNTQuODg5NiA3My41ODY2IDU0Ljk4NzcgNzMuNDExNkM1NS4wODU4IDczLjIzNjYgNTUuMTM1MSA3My4wNDI1IDU1LjEzNTEgNzIuODI5OEM1NS4xMzUxIDcyLjYxNyA1NS4wODUzIDcyLjQyMDIgNTQuOTg1OSA3Mi4yNDc5QzU0Ljg4NjQgNzIuMDc1NyA1NC43NTE5IDcxLjkzODQgNTQuNTgyOCA3MS44MzYxSDU0LjU4MjRaTTU0LjQ5NjIgNzMuMTczNEM1NC40NDE0IDczLjI3MjkgNTQuMzY3MyA3My4zNTExIDU0LjI3MzMgNzMuNDA3NUM1NC4xNzkzIDczLjQ2MzkgNTQuMDcwNiA3My40OTI1IDUzLjk0NzYgNzMuNDkyNUM1My44MjQ3IDczLjQ5MjUgNTMuNzI0NyA3My40NjQzIDUzLjYzMDMgNzMuNDA3NUM1My41MzYzIDczLjM1MTEgNTMuNDYyNiA3My4yNzI5IDUzLjQwOTIgNzMuMTczNEM1My4zNTU4IDczLjA3MzkgNTMuMzI5NSA3Mi45NTkzIDUzLjMyOTUgNzIuODMwMkM1My4zMjk1IDcyLjcwMTEgNTMuMzU2MiA3Mi41OTA3IDUzLjQwOTIgNzIuNDkwN0M1My40NjI2IDcyLjM5MTEgNTMuNTM1OSA3Mi4zMTI5IDUzLjYzMDMgNzIuMjU2NkM1My43MjQyIDcyLjIwMDIgNTMuODMwMiA3Mi4xNzE2IDUzLjk0NzYgNzIuMTcxNkM1NC4wNjUxIDcyLjE3MTYgNTQuMTc4OSA3Mi4xOTk3IDU0LjI3MzMgNzIuMjU2NkM1NC4zNjc3IDcyLjMxMzQgNTQuNDQxOSA3Mi4zOTExIDU0LjQ5NjIgNzIuNDkwN0M1NC41NTA2IDcyLjU5MDIgNTQuNTc4MiA3Mi43MDM0IDU0LjU3ODIgNzIuODMwMkM1NC41NzgyIDcyLjk1NyA1NC41NTEgNzMuMDczOSA1NC40OTYyIDczLjE3MzRaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNTcuMjM1IDcyLjAwMTZDNTcuMTQyNCA3MS45MDIgNTcuMDI5NiA3MS44MjM4IDU2Ljg5NzQgNzEuNzY3NUM1Ni43NjUyIDcxLjcxMTEgNTYuNjExNCA3MS42ODI1IDU2LjQzNjggNzEuNjgyNUM1Ni4yMjY3IDcxLjY4MjUgNTYuMDM4NCA3MS43MzI1IDU1Ljg3MjEgNzEuODMyQzU1LjcwNTggNzEuOTMxNiA1NS41NzMxIDcyLjA2NyA1NS40NzUgNzIuMjM3OUM1NS4zNzY5IDcyLjQwODggNTUuMzI3NiA3Mi42MDQ4IDU1LjMyNzYgNzIuODI1N0M1NS4zMjc2IDczLjA0NjYgNTUuMzc1NSA3My4yMzI1IDU1LjQ3MDkgNzMuNDA3NUM1NS41NjYyIDczLjU4MjUgNTUuNzAwNyA3My43MjExIDU1Ljg3MzkgNzMuODIzNEM1Ni4wNDcxIDczLjkyNTcgNTYuMjQ4NCA3My45NzcgNTYuNDc3OCA3My45NzdDNTYuNjI3OSA3My45NzcgNTYuNzY3IDczLjk1NDMgNTYuODk1MSA3My45MDg0QzU3LjAyMzEgNzMuODYyNSA1Ny4xMzM3IDczLjc5OTMgNTcuMjI2NyA3My43MTg0QzU3LjMxOTMgNzMuNjM3NSA1Ny4zODc5IDczLjU0NDggNTcuNDMxMiA3My40Mzk4TDU2Ljk5NzMgNzMuMjI5OEM1Ni45NDgxIDczLjMxNjEgNTYuODgwOCA3My4zODQ4IDU2Ljc5NDcgNzMuNDM1N0M1Ni43MDg1IDczLjQ4NyA1Ni42MDQ0IDczLjUxMjUgNTYuNDgxNSA3My41MTI1QzU2LjM1ODUgNzMuNTEyNSA1Ni4yNTAyIDczLjQ4NDMgNTYuMTU1OCA3My40Mjc1QzU2LjA2MTggNzMuMzcxMSA1NS45OTA1IDczLjI5MDcgNTUuOTQzIDczLjE4N0M1NS45MTQ1IDczLjEyNDggNTUuODk2NSA3My4wNTY2IDU1Ljg4ODcgNzIuOTgyOUg1Ny40OTJDNTcuNTAzMSA3Mi45NTA3IDU3LjUxMDUgNzIuOTE0OCA1Ny41MTQ2IDcyLjg3NjFDNTcuNTE4NyA3Mi44MzcgNTcuNTIwNiA3Mi43OTc1IDU3LjUyMDYgNzIuNzU3QzU3LjUyMDYgNzIuNjA4OCA1Ny40OTYyIDcyLjQ3MTEgNTcuNDQ2OSA3Mi4zNDI5QzU3LjM5NzYgNzIuMjE1MiA1Ny4zMjY3IDcyLjEwMTEgNTcuMjM0MSA3Mi4wMDE2SDU3LjIzNVpNNTUuOTAwMiA3Mi41NzUyQzU1LjkwOTQgNzIuNTI4OCA1NS45MjIzIDcyLjQ4NTcgNTUuOTM5MyA3Mi40NDYxQzU1Ljk4NDUgNzIuMzQxMSA1Ni4wNTAzIDcyLjI2MDIgNTYuMTM3OCA3Mi4yMDM4QzU2LjIyNTQgNzIuMTQ3NSA1Ni4zMjQ5IDcyLjExODggNTYuNDM2OCA3Mi4xMTg4QzU2LjU0ODcgNzIuMTE4OCA1Ni42NTQyIDcyLjE0NyA1Ni43Mzc2IDcyLjIwMzhDNTYuODIwOSA3Mi4yNjAyIDU2Ljg4MDggNzIuMzM3IDU2LjkxNzcgNzIuNDM0M0M1Ni45MzQ3IDcyLjQ3ODQgNTYuOTQ0NCA3Mi41MjU3IDU2Ljk0NzYgNzIuNTc1N0g1NS45MDAyVjcyLjU3NTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNTkuMzkxNiA3MS43ODc1QzU5LjI2NDUgNzEuNzE3NSA1OS4xMTk0IDcxLjY4MjUgNTguOTU1OSA3MS42ODI1QzU4Ljc5MjQgNzEuNjgyNSA1OC42NTkzIDcxLjcxNyA1OC41NDA0IDcxLjc4NTZDNTguNDQ4OCA3MS44Mzg4IDU4LjM3NzQgNzEuOTEwNiA1OC4zMjUzIDcyLjAwMTZWNzEuNzMxMUg1Ny44MTc3VjczLjkyODlINTguMzU4VjcyLjY0MDJDNTguMzU4IDcyLjU0MzQgNTguMzc2OSA3Mi40NTk4IDU4LjQxNTIgNzIuMzg5N0M1OC40NTM0IDcyLjMxOTcgNTguNTA2NCA3Mi4yNjYxIDU4LjU3NSA3Mi4yMjg0QzU4LjY0MzIgNzIuMTkwNyA1OC43MjEgNzIuMTcyIDU4LjgwODUgNzIuMTcyQzU4Ljg5NiA3Mi4xNzIgNTguOTczNCA3Mi4xOTExIDU5LjA0MiA3Mi4yMjg0QzU5LjExMDIgNzIuMjY2MSA1OS4xNjM2IDcyLjMxOTcgNTkuMjAxOSA3Mi4zODk3QzU5LjI0MDEgNzIuNDU5OCA1OS4yNTkgNzIuNTQzNCA1OS4yNTkgNzIuNjQwMlY3My45Mjg5SDU5Ljc5NTFWNzIuNTE1MkM1OS43OTUxIDcyLjM1MTEgNTkuNzU5NyA3Mi4yMDYxIDU5LjY4ODcgNzIuMDgxMUM1OS42MTc4IDcxLjk1NjEgNTkuNTE4OCA3MS44NTg0IDU5LjM5MjEgNzEuNzg4NEw1OS4zOTE2IDcxLjc4NzVaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNDkuODA2MyA3Ny41MTM5QzQ5LjczNzcgNzcuNDU5NCA0OS42NTAyIDc3LjQzNjIgNDkuNTQzOCA3Ny40NDUzTDQ4LjkzOTUgNzcuNDk3Nkw0OC45OTc1IDc4LjE1MDdMNDkuNjAxOCA3OC4wOTg1QzQ5LjcwODIgNzguMDg5NCA0OS43OTAyIDc4LjA1MjEgNDkuODQ4MiA3Ny45ODYyQzQ5LjkwNjMgNzcuOTIwMyA0OS45MzExIDc3LjgzOTQgNDkuOTIyNCA3Ny43NDM1QzQ5LjkxMzYgNzcuNjQ1MyA0OS44NzQ5IDc3LjU2ODkgNDkuODA2MyA3Ny41MTM5WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTQ5LjY2OTEgNzYuOTA5OEM0OS43MTM4IDc2Ljg1OTggNDkuNzMyNyA3Ni43OTcxIDQ5LjcyNTggNzYuNzIxMkM0OS43MTg5IDc2LjY0NTMgNDkuNjg5NCA3Ni41ODY2IDQ5LjYzNjkgNzYuNTQ0OEM0OS41ODM5IDc2LjUwMzQgNDkuNTE3MSA3Ni40ODYyIDQ5LjQzNTYgNzYuNDkzTDQ4Ljg1NTIgNzYuNTQzTDQ4Ljg5OTkgNzcuMDQ1M0w0OS40ODAzIDc2Ljk5NTNDNDkuNTYxOCA3Ni45ODggNDkuNjI0OSA3Ni45NTk4IDQ5LjY2OTYgNzYuOTA5OEg0OS42NjkxWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTUzLjU3MTQgNzcuMjQyNUw1NC4yMDYxIDc3LjE4OEw1My44MDQ1IDc2LjI1MjVMNTMuNTcxNCA3Ny4yNDI1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTYyLjQ3NjggNzcuNTQyNUw2Mi4yMzgyIDc0Ljg0OThDNjIuMjA1NSA3NC40Nzk4IDYxLjg3NDggNzQuMjA2MSA2MS40OTk4IDc0LjIzODRMNDguMTM0MyA3NS4zOTI1QzQ3Ljc1OTQgNzUuNDI0OCA0Ny40ODIxIDc1Ljc1MTEgNDcuNTE0OCA3Ni4xMjEyTDQ3Ljc1MzQgNzguODEzOUM0Ny43ODYxIDc5LjE4MzkgNDguMTE2OCA3OS40NTc2IDQ4LjQ5MTggNzkuNDI1M0w2MS44NTcyIDc4LjI3MTJDNjIuMjMyMiA3OC4yMzg5IDYyLjUwOTUgNzcuOTEyNSA2Mi40NzY4IDc3LjU0MjVaTTUwLjI1MTggNzguMjkyMUM1MC4wOTg0IDc4LjQ0MjYgNDkuODc1IDc4LjUzMDMgNDkuNTgxMSA3OC41NTU3TDQ4LjUxMiA3OC42NDhMNDguMjkxIDc2LjE1M0w0OS4zNiA3Ni4wNjA3QzQ5LjUzNDEgNzYuMDQ1NyA0OS42ODYxIDc2LjA2MTYgNDkuODE1NiA3Ni4xMDg5QzQ5Ljk0NSA3Ni4xNTYyIDUwLjA0NzcgNzYuMjMxMiA1MC4xMjI4IDc2LjMzMzlDNTAuMTk3OSA3Ni40MzY2IDUwLjI0MjUgNzYuNTY0OCA1MC4yNTU5IDc2LjcxODlDNTAuMjY1NiA3Ni44Mjg0IDUwLjI0NDQgNzYuOTM1MyA1MC4xOTE5IDc3LjAzOThDNTAuMTcyMSA3Ny4wNzk0IDUwLjE0NDkgNzcuMTE2MiA1MC4xMTM2IDc3LjE1MTZDNTAuMTUwOSA3Ny4xNzIxIDUwLjE4NTQgNzcuMTkzOSA1MC4yMTQ1IDc3LjIxOEM1MC4yOTMyIDc3LjI4MzQgNTAuMzQ5OSA3Ny4zNTY2IDUwLjM4NDQgNzcuNDM4QzUwLjQxOSA3Ny41MTk0IDUwLjQ0MDIgNzcuNjA1NyA1MC40NDg0IDc3LjY5NzVDNTAuNDcwMSA3Ny45NDM1IDUwLjQwNDcgNzguMTQxMiA1MC4yNTEzIDc4LjI5MTZMNTAuMjUxOCA3OC4yOTIxWk01MC44NzEzIDc4LjQ0NDRMNTAuNjUwMiA3NS45NDkzTDUyLjM1MDMgNzUuODAyNUw1Mi4zOTA0IDc2LjI1NDhMNTEuMjE2MyA3Ni4zNTYyTDUxLjI2NjUgNzYuOTIyMUw1Mi4zNzI5IDc2LjgyNjZMNTIuNDEyOSA3Ny4yNzg5TDUxLjMwNjYgNzcuMzc0NEw1MS4zNTcyIDc3Ljk0NzFMNTIuNTMxMyA3Ny44NDU3TDUyLjU3MTQgNzguMjk4TDUwLjg3MDggNzguNDQ0OEw1MC44NzEzIDc4LjQ0NDRaTTU0LjYwNjggNzguMTIxNkw1NC4zOTIyIDc3LjYyNzFMNTMuNDY1NCA3Ny43MDcxTDUzLjM0MTEgNzguMjMwN0w1Mi43NzA4IDc4LjI3OThMNTMuNDA1MSA3NS43MTA3TDU0LjEwNDMgNzUuNjUwMkw1NS4xODA3IDc4LjA3MTZMNTQuNjA3MyA3OC4xMjEyTDU0LjYwNjggNzguMTIxNlpNNTcuMjM0MSA3Ny40NjhDNTcuMTU3MiA3Ny42MTk4IDU3LjA0NDggNzcuNzQzOSA1Ni44OTYgNzcuODM5OEM1Ni43NDczIDc3LjkzNTcgNTYuNTczMiA3Ny45OTI1IDU2LjM3NDIgNzguMDA5OEM1Ni4xNzUyIDc4LjAyNzEgNTUuOTkzNyA3OC4wMDEyIDU1LjgzMDIgNzcuOTMyMUM1NS42NjY3IDc3Ljg2MyA1NS41MzQgNzcuNzYwMyA1NS40MzE4IDc3LjYyMzlDNTUuMzI5NSA3Ny40ODc1IDU1LjI3MDYgNzcuMzI4IDU1LjI1NCA3Ny4xNDQ4TDU1LjExMzkgNzUuNTYzOUw1NS42NCA3NS41MTg0TDU1Ljc3NzIgNzcuMDY1N0M1NS43ODYgNzcuMTYzOSA1NS44MTU5IDc3LjI1MDcgNTUuODY3IDc3LjMyNjJDNTUuOTE4MiA3Ny40MDE2IDU1Ljk4NDUgNzcuNDU4NCA1Ni4wNjUxIDc3LjQ5NjJDNTYuMTQ2MiA3Ny41MzQ0IDU2LjIzNTEgNzcuNTQ4OSA1Ni4zMzIzIDc3LjU0MDdDNTYuNDMxNyA3Ny41MzIxIDU2LjUxNzQgNzcuNTAyMSA1Ni41ODkzIDc3LjQ1MTJDNTYuNjYxMSA3Ny4zOTk4IDU2LjcxNTUgNzcuMzMzIDU2Ljc1MjggNzcuMjQ5OEM1Ni43OTAxIDc3LjE2NjYgNTYuODAzOSA3Ny4wNzYyIDU2Ljc5NTIgNzYuOTc4TDU2LjY1NzkgNzUuNDMwN0w1Ny4xODM5IDc1LjM4NTJMNTcuMzIzOSA3Ni45NjYyQzU3LjM0MDEgNzcuMTQ5NCA1Ny4zMTAxIDc3LjMxNjYgNTcuMjMzMiA3Ny40Njg0TDU3LjIzNDEgNzcuNDY4Wk01OC44MTcyIDc3Ljc1ODVMNTguMjkxMiA3Ny44MDM5TDU4LjExMDIgNzUuNzYwN0w1Ny40Njg2IDc1LjgxNjFMNTcuNDI4NSA3NS4zNjM5TDU5LjIyNzIgNzUuMjA4NEw1OS4yNjczIDc1LjY2MDdMNTguNjM2MiA3NS43MTUyTDU4LjgxNzIgNzcuNzU4NVpNNjEuMDMwOSA3Ny41Njc1TDYwLjUwNDkgNzcuNjEzTDYwLjQwODIgNzYuNTI0M0w1OS40NDE4IDc1LjE5MDJMNjAuMDQyNSA3NS4xMzg0TDYwLjYyMzMgNzUuOTY3NUw2MS4wNDY2IDc1LjA1MTZMNjEuNjQ3MiA3NC45OTk4TDYwLjkzMzMgNzYuNDc1N0w2MS4wMyA3Ny41Njc1SDYxLjAzMDlaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNDkuODA2MyA3Ny41MTM5QzQ5LjczNzcgNzcuNDU5NCA0OS42NTAyIDc3LjQzNjIgNDkuNTQzOCA3Ny40NDUzTDQ4LjkzOTUgNzcuNDk3Nkw0OC45OTc1IDc4LjE1MDdMNDkuNjAxOCA3OC4wOTg1QzQ5LjcwODIgNzguMDg5NCA0OS43OTAyIDc4LjA1MjEgNDkuODQ4MiA3Ny45ODYyQzQ5LjkwNjMgNzcuOTIwMyA0OS45MzExIDc3LjgzOTQgNDkuOTIyNCA3Ny43NDM1QzQ5LjkxMzYgNzcuNjQ1MyA0OS44NzQ5IDc3LjU2ODkgNDkuODA2MyA3Ny41MTM5WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTQ5LjY2OTEgNzYuOTA5OEM0OS43MTM4IDc2Ljg1OTggNDkuNzMyNyA3Ni43OTcxIDQ5LjcyNTggNzYuNzIxMkM0OS43MTg5IDc2LjY0NTMgNDkuNjg5NCA3Ni41ODY2IDQ5LjYzNjkgNzYuNTQ0OEM0OS41ODM5IDc2LjUwMzQgNDkuNTE3MSA3Ni40ODYyIDQ5LjQzNTYgNzYuNDkzTDQ4Ljg1NTIgNzYuNTQzTDQ4Ljg5OTkgNzcuMDQ1M0w0OS40ODAzIDc2Ljk5NTNDNDkuNTYxOCA3Ni45ODggNDkuNjI0OSA3Ni45NTk4IDQ5LjY2OTYgNzYuOTA5OEg0OS42NjkxWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTUzLjU3MTQgNzcuMjQyNUw1NC4yMDYxIDc3LjE4OEw1My44MDQ1IDc2LjI1MjVMNTMuNTcxNCA3Ny4yNDI1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTYyLjQ3NjggNzcuNTQyNUw2Mi4yMzgyIDc0Ljg0OThDNjIuMjA1NSA3NC40Nzk4IDYxLjg3NDggNzQuMjA2MSA2MS40OTk4IDc0LjIzODRMNDguMTM0MyA3NS4zOTI1QzQ3Ljc1OTQgNzUuNDI0OCA0Ny40ODIxIDc1Ljc1MTEgNDcuNTE0OCA3Ni4xMjEyTDQ3Ljc1MzQgNzguODEzOUM0Ny43ODYxIDc5LjE4MzkgNDguMTE2OCA3OS40NTc2IDQ4LjQ5MTggNzkuNDI1M0w2MS44NTcyIDc4LjI3MTJDNjIuMjMyMiA3OC4yMzg5IDYyLjUwOTUgNzcuOTEyNSA2Mi40NzY4IDc3LjU0MjVaTTUwLjI1MTggNzguMjkyMUM1MC4wOTg0IDc4LjQ0MjYgNDkuODc1IDc4LjUzMDMgNDkuNTgxMSA3OC41NTU3TDQ4LjUxMiA3OC42NDhMNDguMjkxIDc2LjE1M0w0OS4zNiA3Ni4wNjA3QzQ5LjUzNDEgNzYuMDQ1NyA0OS42ODYxIDc2LjA2MTYgNDkuODE1NiA3Ni4xMDg5QzQ5Ljk0NSA3Ni4xNTYyIDUwLjA0NzcgNzYuMjMxMiA1MC4xMjI4IDc2LjMzMzlDNTAuMTk3OSA3Ni40MzY2IDUwLjI0MjUgNzYuNTY0OCA1MC4yNTU5IDc2LjcxODlDNTAuMjY1NiA3Ni44Mjg0IDUwLjI0NDQgNzYuOTM1MyA1MC4xOTE5IDc3LjAzOThDNTAuMTcyMSA3Ny4wNzk0IDUwLjE0NDkgNzcuMTE2MiA1MC4xMTM2IDc3LjE1MTZDNTAuMTUwOSA3Ny4xNzIxIDUwLjE4NTQgNzcuMTkzOSA1MC4yMTQ1IDc3LjIxOEM1MC4yOTMyIDc3LjI4MzQgNTAuMzQ5OSA3Ny4zNTY2IDUwLjM4NDQgNzcuNDM4QzUwLjQxOSA3Ny41MTk0IDUwLjQ0MDIgNzcuNjA1NyA1MC40NDg0IDc3LjY5NzVDNTAuNDcwMSA3Ny45NDM1IDUwLjQwNDcgNzguMTQxMiA1MC4yNTEzIDc4LjI5MTZMNTAuMjUxOCA3OC4yOTIxWk01MC44NzEzIDc4LjQ0NDRMNTAuNjUwMiA3NS45NDkzTDUyLjM1MDMgNzUuODAyNUw1Mi4zOTA0IDc2LjI1NDhMNTEuMjE2MyA3Ni4zNTYyTDUxLjI2NjUgNzYuOTIyMUw1Mi4zNzI5IDc2LjgyNjZMNTIuNDEyOSA3Ny4yNzg5TDUxLjMwNjYgNzcuMzc0NEw1MS4zNTcyIDc3Ljk0NzFMNTIuNTMxMyA3Ny44NDU3TDUyLjU3MTQgNzguMjk4TDUwLjg3MDggNzguNDQ0OEw1MC44NzEzIDc4LjQ0NDRaTTU0LjYwNjggNzguMTIxNkw1NC4zOTIyIDc3LjYyNzFMNTMuNDY1NCA3Ny43MDcxTDUzLjM0MTEgNzguMjMwN0w1Mi43NzA4IDc4LjI3OThMNTMuNDA1MSA3NS43MTA3TDU0LjEwNDMgNzUuNjUwMkw1NS4xODA3IDc4LjA3MTZMNTQuNjA3MyA3OC4xMjEyTDU0LjYwNjggNzguMTIxNlpNNTcuMjM0MSA3Ny40NjhDNTcuMTU3MiA3Ny42MTk4IDU3LjA0NDggNzcuNzQzOSA1Ni44OTYgNzcuODM5OEM1Ni43NDczIDc3LjkzNTcgNTYuNTczMiA3Ny45OTI1IDU2LjM3NDIgNzguMDA5OEM1Ni4xNzUyIDc4LjAyNzEgNTUuOTkzNyA3OC4wMDEyIDU1LjgzMDIgNzcuOTMyMUM1NS42NjY3IDc3Ljg2MyA1NS41MzQgNzcuNzYwMyA1NS40MzE4IDc3LjYyMzlDNTUuMzI5NSA3Ny40ODc1IDU1LjI3MDYgNzcuMzI4IDU1LjI1NCA3Ny4xNDQ4TDU1LjExMzkgNzUuNTYzOUw1NS42NCA3NS41MTg0TDU1Ljc3NzIgNzcuMDY1N0M1NS43ODYgNzcuMTYzOSA1NS44MTU5IDc3LjI1MDcgNTUuODY3IDc3LjMyNjJDNTUuOTE4MiA3Ny40MDE2IDU1Ljk4NDUgNzcuNDU4NCA1Ni4wNjUxIDc3LjQ5NjJDNTYuMTQ2MiA3Ny41MzQ0IDU2LjIzNTEgNzcuNTQ4OSA1Ni4zMzIzIDc3LjU0MDdDNTYuNDMxNyA3Ny41MzIxIDU2LjUxNzQgNzcuNTAyMSA1Ni41ODkzIDc3LjQ1MTJDNTYuNjYxMSA3Ny4zOTk4IDU2LjcxNTUgNzcuMzMzIDU2Ljc1MjggNzcuMjQ5OEM1Ni43OTAxIDc3LjE2NjYgNTYuODAzOSA3Ny4wNzYyIDU2Ljc5NTIgNzYuOTc4TDU2LjY1NzkgNzUuNDMwN0w1Ny4xODM5IDc1LjM4NTJMNTcuMzIzOSA3Ni45NjYyQzU3LjM0MDEgNzcuMTQ5NCA1Ny4zMTAxIDc3LjMxNjYgNTcuMjMzMiA3Ny40Njg0TDU3LjIzNDEgNzcuNDY4Wk01OC44MTcyIDc3Ljc1ODVMNTguMjkxMiA3Ny44MDM5TDU4LjExMDIgNzUuNzYwN0w1Ny40Njg2IDc1LjgxNjFMNTcuNDI4NSA3NS4zNjM5TDU5LjIyNzIgNzUuMjA4NEw1OS4yNjczIDc1LjY2MDdMNTguNjM2MiA3NS43MTUyTDU4LjgxNzIgNzcuNzU4NVpNNjEuMDMwOSA3Ny41Njc1TDYwLjUwNDkgNzcuNjEzTDYwLjQwODIgNzYuNTI0M0w1OS40NDE4IDc1LjE5MDJMNjAuMDQyNSA3NS4xMzg0TDYwLjYyMzMgNzUuOTY3NUw2MS4wNDY2IDc1LjA1MTZMNjEuNjQ3MiA3NC45OTk4TDYwLjkzMzMgNzYuNDc1N0w2MS4wMyA3Ny41Njc1SDYxLjAzMDlaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNTQuOTk2MSA2NS43NTQyQzU1LjIzOTcgNjUuNzU0MiA1NS40NzQyIDY1Ljc5MjggNTUuNjkzOSA2NS44NjMzVjY1LjMyNTVDNTUuNjkzOSA2NS4yNzkyIDU1LjY1NTcgNjUuMjQxNCA1NS42MDg3IDY1LjI0MTRINTUuMzc1MVY2NC42NzQ2SDU1Ljc0MzZDNTUuODA1OCA2NC42NzQ2IDU1Ljg1NiA2NC42MjUxIDU1Ljg1NiA2NC41NjM3QzU1Ljg1NiA2NC41MDIzIDU1LjgwNTggNjQuNDUyOCA1NS43NDM2IDY0LjQ1MjhINTQuNzAyN0M1NC42NTU3IDY0LjQ1MjggNTQuNjE3NCA2NC40OTA1IDU0LjYxNzQgNjQuNTM2OVY2NS4yNDFINTQuMzgzOUM1NC4zMzY5IDY1LjI0MSA1NC4yOTg3IDY1LjI3ODcgNTQuMjk4NyA2NS4zMjUxVjY1Ljg2MjhDNTQuNTE4NCA2NS43OTI0IDU0Ljc1MjkgNjUuNzUzNyA1NC45OTY1IDY1Ljc1MzdMNTQuOTk2MSA2NS43NTQyWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTUzLjkwMDIgNjkuOTI4M0w1My40OTkgNzAuODczOEw1NC4wMjczIDcxLjA5MjVMNTQuNDMyMiA3MC4xMzg4QzU0LjYxMjggNzAuMTg0NyA1NC44MDE2IDcwLjIwOTMgNTQuOTk2NSA3MC4yMDkzQzU2LjI0MjQgNzAuMjA5MyA1Ny4yNTU4IDY5LjIwOTIgNTcuMjU1OCA2Ny45Nzk3SDU2LjY4MzJDNTYuNjgzMiA2OC44OTc0IDU1LjkyNjQgNjkuNjQ0MiA1NC45OTY1IDY5LjY0NDJDNTQuMDY2NSA2OS42NDQyIDUzLjMwOTcgNjguODk3NCA1My4zMDk3IDY3Ljk3OTdINTIuNzM3MkM1Mi43MzcyIDY4LjgxNyA1My4yMDc1IDY5LjU0NzQgNTMuOTAwNyA2OS45MjgzSDUzLjkwMDJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNTIuNzQwOCA2Ny45Nzk3QzUyLjc0MDggNjYuNzUwNiA1My43NTA1IDY1Ljc1NDIgNTQuOTk2IDY1Ljc1NDJDNTYuMjQxNSA2NS43NTQyIDU3LjI1MTEgNjYuNzUwNiA1Ny4yNTExIDY3Ljk3OTdINTIuNzQwOFoiIGZpbGw9IndoaXRlIi8+CjwvZz4KPHBhdGggZD0iTTI0LjUxMzkgNjQuMDkwMkMyNC44MTI0IDY0LjA5MDIgMjUuMDg3NCA2NC4yNTM1IDI1LjIzMzcgNjQuNTEwMUMyNS42MzE2IDY1LjIwOTkgMjYuMjg3MSA2Ni43Nzg2IDI3LjIwNTggNzAuMTc4NUMyOC44NjE5IDc2LjMwMTggMjkuMDM3NSA4Ny4wNzI5IDI5LjA3ODUgOTAuMjIyQzI5LjA5MDIgOTEuNDU4MyAyOC4yNjUgOTIuNTU0NyAyNy4wNzEyIDkyLjg5MjlMNS44MjI2MyA5OC42OTU0Vjk3LjE3MzRMMjYuNjczMyA5MS40OTMzQzI3LjIzNTEgOTEuMzM1OCAyNy42MjEzIDkwLjgyMjYgMjcuNjE1NSA5MC4yMzk1QzI3LjU3NDUgODYuOTk3MSAyNy4zMjI5IDc2LjUwNTkgMjUuNzg5NiA3MC41NDAxQzI1LjM0NDkgNjguODEzOSAyNC42MTkyIDY3LjAwNjEgMjMuNzc2NiA2NS4yNjI0QzIzLjUxMzIgNjQuNzIgMjMuOTExMiA2NC4wOTAyIDI0LjUxMzkgNjQuMDkwMloiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik0yOC4wODM3IDk5Ljc1MUMzNC40OCAxMDIuNjMyIDU3LjU0ODUgODIuODkxNiA1Ni4yMDg0IDgzLjgwNzFMNjQuOTA0NSA5MC45OTE4QzUwLjUxNDQgMTA4LjY1NiAyNi4wOTk5IDExOC4wMzMgMTkuNjYyNyAxMTQuMTk2QzEzLjM2MDEgMTEwLjQ0IDkuMzgwNzQgOTUuNzczNyA5LjM4MDc0IDk1Ljc3MzdMMjIuNDAxNCA4Ny42NTAyQzIyLjcxMTYgODYuNDA4MSAyNS4yMzM4IDk5LjA1MTIgMjguMDgzNyA5OS43NDUxVjk5Ljc1MVoiIGZpbGw9IiNCMjg1NUYiLz4KPHBhdGggZD0iTTM1LjkzMTIgNTYuMTQxNkMzMS44Mjg5IDU2LjE0MTYgMjguNDkzMyA1Mi41MjYgMjguNDkzMyA0OC4wNzY0VjM3LjAzMTJINDMuMzY5MVY0OC4wNzY0QzQzLjc2NyA1My41ODczIDQwLjMzNzcgNTYuOTUyMiAzNS45MzEyIDU2LjE0MTZaIiBmaWxsPSIjOUI3MDUzIi8+CjxwYXRoIGQ9Ik02MS4yNzA0IDI2Ljg3MjRDNjIuMDI1MyA0MS44MTkgNTMuOTk2NCA1MS40NDcxIDQxLjY2NjIgNDguOTI3OEMzMy40NzM0IDQ3LjI0ODMgMjYuNzYxMiAzOS42NDk2IDI2LjE1ODQgMjYuNDk5MkMyNS42MDg0IDE0LjU1MDEgMzEuMjc4OSA2LjIxNjU4IDQxLjY2NjIgNS42MDQyNUM1MS41OTcxIDUuMDE1MjUgNjAuNjUwMSAxNC42NzI1IDYxLjI3MDQgMjYuODc4MlYyNi44NzI0WiIgZmlsbD0iI0IyODU1RiIvPgo8cGF0aCBkPSJNMjQuMjA5NiAzNS4yNjQyQzI3LjE4MzEgMzUuMjY0MiAyOS41OTM1IDMyLjQzOTIgMjkuNTkzNSAyOC45NTQzQzI5LjU5MzUgMjUuNDY5NSAyNy4xODMxIDIyLjY0NDQgMjQuMjA5NiAyMi42NDQ0QzIxLjIzNjIgMjIuNjQ0NCAxOC44MjU4IDI1LjQ2OTUgMTguODI1OCAyOC45NTQzQzE4LjgyNTggMzIuNDM5MiAyMS4yMzYyIDM1LjI2NDIgMjQuMjA5NiAzNS4yNjQyWiIgZmlsbD0iI0IyODU1RiIvPgo8cGF0aCBkPSJNNDcuMDQwNCAzMi42Njg2QzQ3LjE5MjQgMzEuNzMzOSA0Ni43NDkzIDMwLjg4NDYgNDYuMDUwNyAzMC43NzE3QzQ1LjM1MiAzMC42NTg4IDQ0LjY2MjMgMzEuMzI1IDQ0LjUxMDIgMzIuMjU5N0M0NC4zNTgyIDMzLjE5NDQgNDQuODAxMyAzNC4wNDM3IDQ1LjQ5OTkgMzQuMTU2NkM0Ni4xOTg2IDM0LjI2OTUgNDYuODg4MyAzMy42MDMyIDQ3LjA0MDQgMzIuNjY4NloiIGZpbGw9IiMyMzEwMDQiLz4KPHBhdGggZD0iTTU3LjM5NzkgMzQuNzQ4NEM1Ny42Mzc5IDMzLjk0NTkgNTcuMzg1NCAzMy4xNjI2IDU2LjgzNDEgMzIuOTk4OUM1Ni4yODI3IDMyLjgzNTIgNTUuNjQxMyAzMy4zNTMxIDU1LjQwMTMgMzQuMTU1N0M1NS4xNjE0IDM0Ljk1ODIgNTUuNDEzOSAzNS43NDE1IDU1Ljk2NTIgMzUuOTA1MkM1Ni41MTY2IDM2LjA2ODkgNTcuMTU4IDM1LjU1MSA1Ny4zOTc5IDM0Ljc0ODRaIiBmaWxsPSIjMjMxMDA0Ii8+CjxwYXRoIGQ9Ik00My4xOTk1IDI2Ljc3MzNDNDUuNTA1MSAyNi4wNDQzIDQ3LjkxNjIgMjYuMTQ5MyA1MC4zODU3IDI2Ljc5NjZDNTAuNzYwMiAyNi44OTU3IDUxLjAyMzYgMjcuMjE2NSA1MS4wMjM2IDI3LjU4MzlWMjcuNjUzOEM1MS4wMjM2IDI4LjIwNzkgNTAuNDQ0MiAyOC42Mjc3IDQ5LjkgMjguNDIzNkM0OC4xMzg1IDI3Ljc4MjEgNDYuMDIwMSAyNy42NDIyIDQzLjc0MzcgMjguMzEyOEM0My4xODE5IDI4LjQ3NjEgNDIuNjA4NCAyOC4xMDI5IDQyLjYwODQgMjcuNTQzQzQyLjYwODQgMjcuMTkzMSA0Mi44NDgzIDI2Ljg3ODIgNDMuMTk5NSAyNi43Njc0VjI2Ljc3MzNaIiBmaWxsPSIjM0QyNTE1Ii8+CjxwYXRoIGQ9Ik02MC4xODE5IDI5Ljc5OTlDNTkuMDk5MyAyOC43MzI3IDU3LjcwNjUgMjguMjU0NSA1Ni4xMTQ3IDI4LjE2MTJDNTUuODc0OCAyOC4xNDk1IDU1LjYxNzMgMjguMzUzNyA1NS40OTQ0IDI4LjY1MTFMNTUuNDcxIDI4LjcwOTRDNTUuMjg5NiAyOS4xNTg0IDU1LjQ4MjcgMjkuNTc4MyA1NS44NTE0IDI5LjU5QzU3LjIwOTEgMjkuNjQyNSA1OC40MTQ2IDMwLjAwOTkgNTkuMzY4NCAzMC45MTk2QzU5LjY0MzUgMzEuMTc2MiA2MC4wNzY1IDMxLjAxMjkgNjAuMjYzOCAzMC41NjM5QzYwLjM4MDggMzAuMjc4MSA2MC4zNTc0IDI5Ljk2MzIgNjAuMTg3NyAyOS43OTk5SDYwLjE4MTlaIiBmaWxsPSIjM0QyNTE1Ii8+CjxwYXRoIGQ9Ik01OC44MjgzIDgwLjQxOTdDNTguMjUyMiA4MS4wNTEzIDU4LjI5OCA4Mi4wMjc4IDU4LjkzMDUgODIuNjAwOEM1OS41NjMxIDgzLjE3MzggNjAuNTQyOSA4My4xMjYzIDYxLjExOSA4Mi40OTQ3TDY2LjYxNCA3Ni40NzA1QzY3LjE5IDc1LjgzODkgNjcuMTQ0MiA3NC44NjI0IDY2LjUxMTcgNzQuMjg5NEM2NS44NzkxIDczLjcxNjQgNjQuODk5MyA3My43NjM5IDY0LjMyMzIgNzQuMzk1NUw1OC44MjgzIDgwLjQxOTdaIiBmaWxsPSIjOUI3MDUzIi8+CjxwYXRoIGQ9Ik03MC43MDk2IDg4Ljc2OTlMNjAuMDQxNCA4OC45MjczQzU5LjE0MDIgODguOTM5IDU4LjczNjQgODguMjk3NSA1OS4xMzQ0IDg3LjQ5ODZMNzAuOTMyIDYzLjg0NTNDNzEuMzI5OSA2My4wNTIyIDcyLjM3MTYgNjIuNDA0OCA3My4yNjExIDYyLjQwNDhMODMuNzg4OCA2Mi4zNjk4Qzg0LjY3MjUgNjIuMzY5OCA4NS4wNjQ2IDYzLjAwNTUgODQuNjc4MyA2My43OTI4TDczLjAzODcgODcuMzA2MUM3Mi42NDA4IDg4LjEwNTEgNzEuNTk5MSA4OC43NjQgNzAuNzA5NiA4OC43NzU3Vjg4Ljc2OTlaIiBmaWxsPSIjNUI1QjVBIi8+CjxwYXRoIGQ9Ik03Mi41MDA0IDg2LjM3ODlMNjMuODc0NiA4Ni4wODE1QzYzLjA0MzYgODYuMDQ2NSA2Mi41MjI4IDg1LjE3MTcgNjIuODg1NiA4NC40MzExTDcyLjMyNDggNjUuMDI5MUM3Mi41MTggNjQuNjMyNSA3Mi45MjE4IDY0LjM4MTggNzMuMzY2NSA2NC4zODE4SDgzLjQzMTlDODQuMjkyMiA2NC4zODE4IDg0LjAxMTMgNjUuMjg1NyA4My42MTkyIDY2LjA1NTVMNzMuNTc3MiA4NS43NTQ5QzczLjM3MjQgODYuMTU3MyA3Mi45NDUyIDg2LjQwMjIgNzIuNDk0NiA4Ni4zODQ3TDcyLjUwMDQgODYuMzc4OVoiIGZpbGw9IiM3QTdBN0EiLz4KPHBhdGggb3BhY2l0eT0iMC4zMyIgZD0iTTc2LjY2NjkgNzkuMTEyNkM3Ni43OTU3IDc5LjEzNTkgNzYuOTEyNyA3OS4xODI2IDc3LjAyOTggNzkuMjQwOUw3NS4xMjIgODMuMDk1N0w3NC44MDYgODMuNzMxM0w3My4wMzg3IDg3LjMwMDNDNzMuMDAzNiA4Ny4zNzAzIDcyLjk2ODUgODcuNDM0NCA3Mi45MjE3IDg3LjQ5ODZDNzIuOTIxNyA4Ny41MDQ0IDcyLjkxNTggODcuNTA0NCA3Mi45MTU4IDg3LjUxMDJDNzIuODU3MyA4Ny41OTE5IDcyLjc5ODggODcuNjczNSA3Mi43Mjg1IDg3Ljc1NTJDNzIuNjU4MyA4Ny44MzY4IDcyLjU4MjIgODcuOTE4NSA3Mi41MDAzIDg3Ljk4ODRDNzIuNDM1OSA4OC4wNTI2IDcyLjM2NTcgODguMTA1MSA3Mi4yOTU1IDg4LjE2MzRDNzIuMjg5NiA4OC4xNjM0IDcyLjI4MzggODguMTY5MiA3Mi4yNzc5IDg4LjE3NUM3Mi4yMzcgODguMjA0MiA3Mi4xOTYgODguMjMzNCA3Mi4xNTUgODguMjYyNUw3MC44MTQ5IDg4Ljc1ODJDNzAuNzc5OCA4OC43NjQgNzAuNzQ0NyA4OC43Njk5IDcwLjcwOTYgODguNzY5OUw2OS4yMjkgODguNzkzMkg2OC44NjYyTDY4Ljg2MDQgODguNzk5TDY4LjAxMTggODguODEwN0w2MC4wNDE0IDg4LjkyNzNDNTkuMTQwMiA4OC45MzkgNTguNzM2NCA4OC4zMDMzIDU5LjEzNDQgODcuNDk4Nkw2My41NzAyIDc4LjYxMTFMNjYuNTA3OSA3OC4wNjI5TDc1LjI4IDc1LjQ1MDNDNzUuNDAyOSA3NS40MTUzIDc1LjUzMTYgNzUuMzk3OCA3NS42NjA0IDc1LjM5NzhDNzYuNDQ0NiA3NS4zOTc4IDc3LjExMTcgNzYuMDc0MyA3Ny4yNjk3IDc3LjA0ODJDNzcuNDEwMSA3Ny44NzA1IDc3LjE1ODUgNzguNjU3NyA3Ni42NjY5IDc5LjExMjZaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBvcGFjaXR5PSIwLjMzIiBkPSJNNzAuODE0OSA4OC43NTgyTDcyLjE1NSA4OC4yNjI1QzcxLjcxMDMgODguNTY1OCA3MS4xODk1IDg4Ljc2NCA3MC43MDk2IDg4Ljc2OTlDNzAuNzQ0NyA4OC43Njk5IDcwLjc3OTggODguNzY0IDcwLjgxNDkgODguNzU4MloiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik01NS40MzAxIDg5LjI2NTZDNTQuNjA0OSA4NC44MTAyIDU3LjE4NTcgODAuMzgzOSA2MC45MTkyIDc5LjY4OTlMNjcuNjI1NiA3OC40NDJMNjguOTcxNiA5Mi4xMTczTDYyLjM1ODggOTMuOTI1MUM1OS4wNyA5NS4xNzMxIDU2LjIxNDIgOTMuNDc2IDU1LjQzMDEgODkuMjY1NloiIGZpbGw9IiNCMjg1NUYiLz4KPHBhdGggZD0iTTY2LjYxOTEgNzguNjM0NEw3NS40NDk4IDc2LjAxMDFDNzYuMDExNiA3NS44NDEgNzYuNTYxNyA3Ni4zNTQyIDc2LjY5NjMgNzcuMTQxNUM3Ni44MjUgNzcuOTIyOSA3Ni40OTczIDc4LjY5ODUgNzUuOTQ3MiA3OC44ODUyTDY3LjM1NjUgODEuODEyN0w2Ni42MTkxIDc4LjYzNDRaIiBmaWxsPSIjQjI4NTVGIi8+CjxwYXRoIGQ9Ik02Ny42MTM5IDgyLjQ1NDJMNzYuMTkyOSA3OS43MDc0Qzc2LjczNzEgNzkuNTMyNSA3Ny4yNTggODAuMDEwNyA3Ny4zNjMzIDgwLjc2ODhDNzcuNDY4NiA4MS41MjExIDc3LjEyMzQgODIuMjczNCA3Ni41OTA5IDgyLjQ2NThMNjguMjI4MyA4NS40OTI1TDY3LjYwOCA4Mi40NTQySDY3LjYxMzlaIiBmaWxsPSIjQjI4NTVGIi8+CjxwYXRoIGQ9Ik02OC4zMTYyIDg2LjAxNzNMNzYuNzYwNiA4My4xNTRDNzcuMjk5IDgyLjk3MzIgNzcuNzk2NCA4My40MjIyIDc3Ljg3ODMgODQuMTUxMkM3Ny45NjAzIDg0Ljg3NDMgNzcuNjAzMyA4NS42MTQ5IDc3LjA3NjYgODUuODEzMkw2OC42MTQ2IDg4Ljk0NDhMNjguMzE2MiA4Ni4wMTE1Vjg2LjAxNzNaIiBmaWxsPSIjQjI4NTVGIi8+CjxwYXRoIGQ9Ik02OC4wODIgODkuNjU2M0w3Ni40Njc5IDg2Ljk3MzdDNzcuMDA2MyA4Ni44MDQ2IDc3LjQ2MjggODcuMjQyIDc3LjQ5NzkgODcuOTQ3NkM3Ny41MzMgODguNjQ3NCA3Ny4xNDA5IDg5LjM1ODkgNzYuNjE0MiA4OS41NDU1TDY4Ljk2NTcgOTIuMTIzMUw2OC4wODIgODkuNjYyMVY4OS42NTYzWiIgZmlsbD0iI0IyODU1RiIvPgo8cGF0aCBkPSJNNTMuMzkzNiA0MS45NTMxQzUxLjAwMDIgNDMuMzg3NyA0OC41Nzc0IDQyLjk5MTIgNDYuOTIxMyA0MS42OTA3QzQ2LjgwNDMgNDEuNjAzMiA0Ni43NDU4IDQxLjQ2OTEgNDYuNzUxNiA0MS4zNDA4QzQ2Ljc2OTIgNDAuOTQ0MiA0Ny4zNDI3IDQwLjc2MzUgNDcuNzA1NSA0MS4wMzE3QzQ5LjI1NjMgNDIuMTgwNiA1MC45MTI0IDQyLjIzODkgNTIuNjg1NSA0MS4xNzE3QzUzLjA2NTkgNDAuOTQ0MiA1My42MTAyIDQxLjE3MTcgNTMuNTkyNiA0MS41NjI0VjQxLjYwOTFDNTMuNTg2OCA0MS43Mzc0IDUzLjUxNjUgNDEuODcxNSA1My4zODc4IDQxLjk0NzNMNTMuMzkzNiA0MS45NTMxWiIgZmlsbD0iIzIzMTAwNCIvPgo8cGF0aCBkPSJNMi4wNDIyNCA5OC4yMDU1QzEuMTgxOTkgOTguNDUwNSAtMC4wNDEwNzU4IDk3LjM4OTEgMC4wMjMyOTYxIDk2LjQ5NjlDMC4wMjMyOTYxIDk2LjQ5NjkgLTAuNDE1NjA0IDkwLjc5MzUgMi4yNjQ2MSA3NS40NTYxQzQuOTQ0ODMgNjAuMTE4OCA5LjYyNjQyIDU5LjI1NTcgMTcuMzc0NSA1NC45ODExQzE3LjM3NDUgNTQuOTgxMSAxOS4wMTg5IDU3LjA5MjIgMjAuODkxNSA2MC4wOTU1QzIxLjY1MjMgNjEuMzA4NSAyMi40NDgyIDYyLjY3MzEgMjMuMTg1NSA2NC4wOTZDMjQuMjc0IDY2LjE4OTYgMjUuMjQ1NCA2OC40MjkgMjUuNzg5NiA3MC41NDU5QzI3LjMyMjkgNzYuNTExNyAyNy41NzQ1IDg3LjAwMjkgMjcuNjE1NSA5MC4yNDUzQzI3LjYyMTMgOTAuODI4NSAyNy4yMzUxIDkxLjM0MTYgMjYuNjczMyA5MS40OTkxTDIuMDQyMjQgOTguMjA1NVoiIGZpbGw9IiMxNzE3MTciLz4KPHBhdGggZD0iTTUxLjIxMDggMi45Mjc1MUM2My42Mjg4IDkuOTI1NTMgNjYuMTU2OCAyOS44NzU3IDYxLjMxNzIgMjcuMTE3M0M1OC4zNDQ0IDIwLjI4ODQgNTUuNDcxMSAxNS4yODQ4IDQ5LjI1NjMgMTEuNzFMNDEuMjQ0OSAyLjU4MzQ0QzQxLjI0NDkgMi41ODM0NCA0MS44NDc2IC0yLjM1MDE2IDUxLjIxMDggMi45Mjc1MVoiIGZpbGw9IiMzRDI1MTUiLz4KPHBhdGggZD0iTTI0Ljg0NzUgMjUuNDg0NUMyMS4wMjAzIDI0LjYwMzkgMTguNDI3OSAyMi4zOTk1IDE4LjQyNzkgMjIuMzk5NUMxNy42NDk1IDkuMDY4MjcgMjcuNzg1MiAwLjQ2MDcwOSAzNS42ODU0IDAuMDExNjY5OUM0My4zNDU3IC0wLjQyNTcwNiA1MC40MjY2IDkuNjE2NDUgNDkuMDk4MiAxMS4yOTAxQzQ5LjA4MDYgMjEuNDcyMyAyOC42ODA2IDI2LjM1OTIgMjQuODUzNCAyNS40ODQ1SDI0Ljg0NzVaIiBmaWxsPSIjM0QyNTE1Ii8+CjxwYXRoIGQ9Ik0zNy4wNjY1IDI1Ljg5MjdDMjIuOTkyNCAzMC4zNzcyIDE4Ljc2MTUgMjYuNTYzMyAxOC43MjA1IDMzLjQxNTZDMTguNjg1NCAzOC4zMDI1IDE0LjI0OTYgMzAuNTk4OSAxNS4zOTY2IDI2LjAzODVDMTcuMDY0NCAxOS40MTk1IDMyLjMwMyAtMS44NzE5NiA0My44OTU4IDMuNzkwNjFDNDguMjYxNCA1LjkyNSA1MC41NjEyIDcuOTY2MDkgNTIuMDQxOCAxMC4zMTA0QzUzLjA4MzQgMTEuOTYwOCA1NC45MDM0IDIwLjIwMSAzNy4wNjA3IDI1Ljg4NjlMMzcuMDY2NSAyNS44OTI3WiIgZmlsbD0iIzNEMjUxNSIvPgo8cGF0aCBkPSJNOTEuOTE5OCA5Mi4yODQ0QzkyLjM4NjEgOTEuNTY4NSA5Mi4xODI5IDkwLjYxMjIgOTEuNDY1OSA5MC4xNDgzQzkwLjc0ODkgODkuNjg0NSA4OS43ODk2IDg5Ljg4ODggODkuMzIzMiA5MC42MDQ3TDg1LjUwNTkgOTYuNDY0NkM4NS4wMzk2IDk3LjE4MDUgODUuMjQyOCA5OC4xMzY5IDg1Ljk1OTggOTguNjAwN0M4Ni42NzY5IDk5LjA2NDYgODcuNjM2MiA5OC44NjAyIDg4LjEwMjUgOTguMTQ0M0w5MS45MTk4IDkyLjI4NDRaIiBmaWxsPSIjOUI3MDUzIi8+CjxwYXRoIGQ9Ik04OS44MjgxIDk1LjUxMTNMODUuMDAwMiA5Ni45MTY4TDg0LjMxNTYgMTA4LjM2NEw4NS43MzE3IDExMC4wOTFMOTAuNTQ3OSAxMTMuNzEyQzk1LjE4MjcgMTEwLjQ0NiA5OC42NTI5IDEwNi44MzYgMTAxLjI4NiAxMDIuOTgyTDk4LjU4MjcgMTAwLjIyM0w4OS44MzQgOTUuNTE3Mkw4OS44MjgxIDk1LjUxMTNaIiBmaWxsPSIjOUI3MDUzIi8+CjxtYXNrIGlkPSJtYXNrMF82ODBfMTIyMSIgc3R5bGU9Im1hc2stdHlwZTpsdW1pbmFuY2UiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjgwIiB5PSI4MyIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIj4KPHBhdGggZD0iTTEwOS43NTQgOTYuNTAyN0w5NC4wNDc0IDExMS42NDJDOTMuNjU1MyAxMTIuMDE1IDkzLjA3NiAxMTIuMTE0IDkyLjU4NDQgMTExLjg4N0w4Ni4xNTg5IDEwOC45MDdDODUuODI1MyAxMDguNzU1IDg1LjU1MDMgMTA4LjUwNCA4NS4zNjg5IDEwOC4xODRMODAuNDgyNSA5OS42OTI2QzgwLjMyNDUgOTkuNDEyNyA4MC4zNzEzIDk5LjA1NyA4MC42MDU0IDk4LjgzNTRMODYuMDk0NSA5My41NTE5TDk2LjYwNDcgODMuNDI4MUM5Ni45NTU4IDgzLjA4OTggOTcuNDc2NyA4My4wMTQgOTcuOTA5NyA4My4yMzU2TDEwNC4wMDcgODYuMzY3M0MxMDQuMzE4IDg2LjUzMDUgMTA0LjU4MSA4Ni43Njk2IDEwNC43NjIgODcuMDcyOUwxMDkuODc3IDk1LjQ5MzhDMTEwLjA3NiA5NS44MTQ2IDExMC4wMTcgOTYuMjM0NSAxMDkuNzQ4IDk2LjQ5NjlMMTA5Ljc1NCA5Ni41MDI3WiIgZmlsbD0id2hpdGUiLz4KPC9tYXNrPgo8ZyBtYXNrPSJ1cmwoI21hc2swXzY4MF8xMjIxKSI+CjxwYXRoIGQ9Ik0xMDIuNjIxIDkyLjMyMTRMOTQuNTUwNiAxMDAuMDk1Qzk0LjM1MTcgOTkuNTUyNyA5NC4xMDU5IDk5LjAyMiA5My44MDE2IDk4LjUwM0M5Mi4wNTc3IDk1LjQ5MzggODkuMDczMiA5My43MDM1IDg2LjEwMDMgOTMuNTUxOUw5Ny4xOTU3IDgyLjg2ODNMMTAyLjYyNiA5Mi4zMjE0SDEwMi42MjFaIiBmaWxsPSIjRjAzMjE0Ii8+CjxwYXRoIGQ9Ik0xMTAuMjE2IDk2LjA1MzdMOTMuNDAzNyAxMTIuMjY2TDg1LjY0OTggMTA4LjY2OEwxMDIuNjIxIDkyLjMyMTRMMTEwLjIxNiA5Ni4wNTM3WiIgZmlsbD0iI0YwMzIxNCIvPgo8cGF0aCBkPSJNMTEwLjIxNiA5Ni4wNTM3TDEwMi42MjEgOTIuMzIxNEw5Ny4xODk5IDgyLjg2ODNMMTA0LjQ4NyA4Ni42MThMMTEwLjIxNiA5Ni4wNTM3WiIgZmlsbD0iI0YwMzIxNCIvPgo8cGF0aCBkPSJNOTQuNTUwNyAxMDAuMDk1TDg1LjY1NTYgMTA4LjY2OEw4MC40ODgzIDk5LjY5MjZDODAuMzMwMyA5OS40MTI3IDgwLjM3NzEgOTkuMDU3IDgwLjYxMTIgOTguODM1NEw4Ni4xMDA0IDkzLjU1MTlDODkuMDc5MSA5My43MDM1IDkyLjA1NzcgOTUuNDkzOCA5My44MDE2IDk4LjUwM0M5NC4xMDU5IDk5LjAyNzggOTQuMzUxNyA5OS41NTI3IDk0LjU1MDcgMTAwLjA5NVoiIGZpbGw9IiNGMDMyMTQiLz4KPC9nPgo8cGF0aCBkPSJNMTA2LjU0NyA5OC42MDIxQzEwNi40NzcgOTguNjU0NiAxMDYuMzgzIDk4LjY2MDQgMTA2LjMwMSA5OC42MTk2TDEwMC44NTkgOTUuODk2MkMxMDAuNzM2IDk1LjgzNzkgMTAwLjY4OSA5NS42ODYzIDEwMC43NDggOTUuNTU4QzEwMC43NjYgOTUuNTE3MiAxMDAuNzk1IDk1LjQ4MjIgMTAwLjgzIDk1LjQ1ODhDMTAwLjkgOTUuNDA2MyAxMDAuOTk0IDk1LjQwMDUgMTAxLjA3NiA5NS40NDEzTDEwNi41MTggOTguMTY0N0MxMDYuNjQxIDk4LjIyMzEgMTA2LjY4OCA5OC4zNzQ3IDEwNi42MjkgOTguNTAzQzEwNi42MTIgOTguNTQzOCAxMDYuNTgyIDk4LjU3MyAxMDYuNTQ3IDk4LjYwMjFaIiBmaWxsPSIjM0EzQTNBIi8+CjxwYXRoIGQ9Ik0xMDUuNTgyIDk5LjgyNjhDMTA1LjUxMSA5OS44NzkyIDEwNS40MTggOTkuODg1MSAxMDUuMzM2IDk5Ljg0NDNMOTkuODkzNiA5Ny4xMjA5Qzk5Ljc3MDcgOTcuMDYyNSA5OS43MjM5IDk2LjkxMDkgOTkuNzgyNCA5Ni43ODI2Qzk5Ljc5OTkgOTYuNzQxOCA5OS44MjkyIDk2LjcwNjggOTkuODY0MyA5Ni42ODM1Qzk5LjkzNDUgOTYuNjMxIDEwMC4wMjggOTYuNjI1MiAxMDAuMTEgOTYuNjY2TDEwNS41NTIgOTkuMzg5NEMxMDUuNjc1IDk5LjQ0NzcgMTA1LjcyMiA5OS41OTkzIDEwNS42NjQgOTkuNzI3NkMxMDUuNjQ2IDk5Ljc2ODQgMTA1LjYxNyA5OS43OTc2IDEwNS41ODIgOTkuODI2OFoiIGZpbGw9IiMzQTNBM0EiLz4KPHBhdGggZD0iTTk4LjY0MTMgMTA2Ljc0M0M5OC41NzExIDEwNi43OTYgOTguNDc3NCAxMDYuODAxIDk4LjM5NTUgMTA2Ljc2MUw5Mi45NTMxIDEwNC4wMzdDOTIuODMwMiAxMDMuOTc5IDkyLjc4MzQgMTAzLjgyNyA5Mi44NDE5IDEwMy42OTlDOTIuODU5NSAxMDMuNjU4IDkyLjg4ODggMTAzLjYyMyA5Mi45MjM5IDEwMy42QzkyLjk5NDEgMTAzLjU0NyA5My4wODc3IDEwMy41NDIgOTMuMTY5NyAxMDMuNTgyTDk4LjYxMiAxMDYuMzA2Qzk4LjczNDkgMTA2LjM2NCA5OC43ODE3IDEwNi41MTYgOTguNzIzMiAxMDYuNjQ0Qzk4LjcwNTYgMTA2LjY4NSA5OC42NzY0IDEwNi43MTQgOTguNjQxMyAxMDYuNzQzWiIgZmlsbD0iIzNBM0EzQSIvPgo8cGF0aCBkPSJNOTcuNjIzIDEwNy43NThDOTcuNTUyNyAxMDcuODEgOTcuNDU5MSAxMDcuODE2IDk3LjM3NzIgMTA3Ljc3NUw5MS45MzQ4IDEwNS4wNTJDOTEuODExOSAxMDQuOTk0IDkxLjc2NTEgMTA0Ljg0MiA5MS44MjM2IDEwNC43MTRDOTEuODQxMiAxMDQuNjczIDkxLjg3MDQgMTA0LjYzOCA5MS45MDU2IDEwNC42MTVDOTEuOTc1OCAxMDQuNTYyIDkyLjA2OTQgMTA0LjU1NiA5Mi4xNTEzIDEwNC41OTdMOTcuNTkzNyAxMDcuMzJDOTcuNzE2NiAxMDcuMzc5IDk3Ljc2MzQgMTA3LjUzIDk3LjcwNDkgMTA3LjY1OUM5Ny42ODczIDEwNy43IDk3LjY1ODEgMTA3LjcyOSA5Ny42MjMgMTA3Ljc1OFoiIGZpbGw9IiMzQTNBM0EiLz4KPHBhdGggZD0iTTk2LjQyMzMgMTA4Ljk0OEM5Ni4zNTMgMTA5IDk2LjI1OTQgMTA5LjAwNiA5Ni4xNzc1IDEwOC45NjVMOTAuNzM1MSAxMDYuMjQyQzkwLjYxMjIgMTA2LjE4MyA5MC41NjU0IDEwNi4wMzIgOTAuNjIzOSAxMDUuOTAzQzkwLjY0MTUgMTA1Ljg2MyA5MC42NzA3IDEwNS44MjggOTAuNzA1OSAxMDUuODA0QzkwLjc3NjEgMTA1Ljc1MiA5MC44Njk3IDEwNS43NDYgOTAuOTUxNiAxMDUuNzg3TDk2LjM5NCAxMDguNTFDOTYuNTE2OSAxMDguNTY4IDk2LjU2MzcgMTA4LjcyIDk2LjUwNTIgMTA4Ljg0OEM5Ni40ODc2IDEwOC44ODkgOTYuNDU4NCAxMDguOTE4IDk2LjQyMzMgMTA4Ljk0OFoiIGZpbGw9IiMzQTNBM0EiLz4KPHBhdGggb3BhY2l0eT0iMC4zMyIgZD0iTTk5LjM2NjggOTkuOTY2N0M5OS4wMDQgOTkuNzA0MyA5OC41NzA5IDk5LjU2NDMgOTguMTIwMyA5OS41NjQzQzk3LjQzNTYgOTkuNTY0MyA5Ni43ODYxIDk5Ljg5NjcgOTYuMzg4MSAxMDAuNDUxQzk1LjcwMzUgMTAxLjQwMSA5NS45MiAxMDIuNzM3IDk2Ljg3MzkgMTAzLjQxOUwxMDAuMTM5IDEwNS43NjNMMTAzLjI1MyAxMDIuNzZMOTkuMzYxIDk5Ljk3MjVMOTkuMzY2OCA5OS45NjY3WiIgZmlsbD0iYmxhY2siLz4KPHBhdGggb3BhY2l0eT0iMC4zMyIgZD0iTTk2LjI0MTkgMTA5LjUzMUw5My45MDExIDExMS43ODhMOTMuNDY4IDExMi4yMDJMOTMuNDAzNiAxMTIuMjY2TDg1LjY1NTYgMTA4LjY3M0w4NS4zMjc5IDEwOC4xMDhDODUuMzI3OSAxMDguMTA4IDg1LjMzOTYgMTA4LjA5IDg1LjM0NTQgMTA4LjA4NEM4NS43NDM0IDEwNy41MyA4Ni4zOTI5IDEwNy4xOTggODcuMDc3NiAxMDcuMTk4Qzg3LjExMjcgMTA3LjE5OCA4Ny4xNDIgMTA3LjIwNCA4Ny4xNzcxIDEwNy4yMDRDODcuNTg2OCAxMDcuMjI3IDg3Ljk4NDcgMTA3LjM1NSA4OC4zMTgzIDEwNy42TDg4LjQyMzYgMTA3LjY3NkM4OC40NzYzIDEwNy4zNzMgODguNTkzMyAxMDcuMDc2IDg4Ljc4NjQgMTA2LjgwN0M4OS4xOTAyIDEwNi4yNTMgODkuODMzOSAxMDUuOTIxIDkwLjUxODYgMTA1LjkyMUM5MC45NjkyIDEwNS45MjEgOTEuNDAyMyAxMDYuMDYxIDkxLjc2NTEgMTA2LjMyM0w5Ni4yNDE5IDEwOS41MzFaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBvcGFjaXR5PSIwLjMzIiBkPSJNOTYuNzMzNSAxMDMuMTkyQzk2LjM0MTQgMTAyLjgzNiA5NS44MzIzIDEwMi42MzggOTUuMjk5OCAxMDIuNjM4Qzk0LjcwMjggMTAyLjYzOCA5NC4xMjM1IDEwMi44ODggOTMuNzE5NyAxMDMuMzMyQzkzLjMzMzUgMTAzLjc1MSA5My4xNDA0IDEwNC4yOTQgOTMuMTYzOCAxMDQuODY1QzkzLjE5MyAxMDUuNDMxIDkzLjQzODggMTA1Ljk1NiA5My44NjAyIDEwNi4zMzVMOTYuNzkyIDEwOC45OTRMOTkuODY0MyAxMDYuMDMyTDk2LjcyNzYgMTAzLjE5Mkg5Ni43MzM1WiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTk5LjAyNTYgMTAwLjQzNUM5OC4zMzAzIDk5LjkzNjQgOTcuMzYyIDEwMC4wOTMgOTYuODYyOSAxMDAuNzg1Qzk2LjM2MzggMTAxLjQ3NiA5Ni41MjI5IDEwMi40NDEgOTcuMjE4MyAxMDIuOTM5TDEwMi4yNCAxMDYuNTM4QzEwMi45MzYgMTA3LjAzNiAxMDMuOTA0IDEwNi44OCAxMDQuNDAzIDEwNi4xODhDMTA0LjkwMiAxMDUuNDk2IDEwNC43NDMgMTA0LjUzMiAxMDQuMDQ4IDEwNC4wMzNMOTkuMDI1NiAxMDAuNDM1WiIgZmlsbD0iI0IyODU1RiIvPgo8cGF0aCBkPSJNOTMuMzU2OSAxMTMuODI5QzkyLjg1OTUgMTE0LjUyMyA5MS44OTM5IDExNC42OCA5MS4xOTc1IDExNC4xNzlMODYuMTcwNiAxMTAuNTc1Qzg1LjQ4MDEgMTEwLjA3OSA4NS4zMjIxIDEwOS4xMTcgODUuODE5NSAxMDguNDIzQzg2LjEyMzggMTA4LjAwMyA4Ni41OTIgMTA3Ljc4MSA4Ny4wNzc3IDEwNy43ODFDODcuMzg3OSAxMDcuNzgxIDg3LjcwMzkgMTA3Ljg4IDg3Ljk3ODkgMTA4LjA3M0w4OC40MTc4IDEwOC4zODhMOTMuMDA1OCAxMTEuNjc3QzkzLjIwNDcgMTExLjgxNyA5My4zNjI4IDExMS45OTcgOTMuNDY4MSAxMTIuMjAyQzkzLjczNzMgMTEyLjcwMyA5My43MTM5IDExMy4zMzMgOTMuMzU2OSAxMTMuODI5WiIgZmlsbD0iI0IyODU1RiIvPgo8cGF0aCBkPSJNOTYuMzM1OSAxMDMuNjE4Qzk1LjcwMjEgMTAzLjA0MyA5NC43MjIyIDEwMy4wODkgOTQuMTQ3MiAxMDMuNzE5QzkzLjU3MjIgMTA0LjM1IDkzLjYxOTkgMTA1LjMyNiA5NC4yNTM2IDEwNS45TDk4LjgzMDggMTEwLjA0NkM5OS40NjQ2IDExMC42MjEgMTAwLjQ0NSAxMTAuNTc1IDEwMS4wMiAxMDkuOTQ1QzEwMS41OTUgMTA5LjMxNCAxMDEuNTQ3IDEwOC4zMzggMTAwLjkxMyAxMDcuNzY0TDk2LjMzNTkgMTAzLjYxOFoiIGZpbGw9IiNCMjg1NUYiLz4KPHBhdGggZD0iTTkxLjQyMzggMTA2Ljc5QzkwLjcyODUgMTA2LjI5MiA4OS43NjAyIDEwNi40NDkgODkuMjYxMSAxMDcuMTRDODguNzYyIDEwNy44MzIgODguOTIxMSAxMDguNzk2IDg5LjYxNjUgMTA5LjI5NUw5NC42Mzg0IDExMi44OTRDOTUuMzMzOCAxMTMuMzkyIDk2LjMwMiAxMTMuMjM1IDk2LjgwMTEgMTEyLjU0M0M5Ny4zMDAyIDExMS44NTIgOTcuMTQxMSAxMTAuODg3IDk2LjQ0NTcgMTEwLjM4OUw5MS40MjM4IDEwNi43OVoiIGZpbGw9IiNCMjg1NUYiLz4KPHBhdGggZD0iTTk5LjAyNzQgOTIuODUyMUM5OC45Mjc5IDkyLjg1MjEgOTguODM0MyA5Mi43OTk2IDk4Ljc4MTYgOTIuNzEyMUw5NS4yNTg3IDg2LjYzNTVDOTUuMTgyNyA4Ni41MDE0IDk1LjIyOTUgODYuMzI2NCA5NS4zNjQxIDg2LjI1MDZDOTUuNDA1IDg2LjIyNzMgOTUuNDU3NyA4Ni4yMTU2IDk1LjUwNDUgODYuMjE1NkM5NS42MDQgODYuMjE1NiA5NS42OTc2IDg2LjI2ODEgOTUuNzUwMyA4Ni4zNTU2TDk5LjI3MzIgOTIuNDMyMkM5OS4zNDkzIDkyLjU2NjMgOTkuMzAyNSA5Mi43NDEzIDk5LjE2NzkgOTIuODIyOUM5OS4xMjY5IDkyLjg0NjIgOTkuMDc0MiA5Mi44NTc5IDk5LjAyNzQgOTIuODU3OVY5Mi44NTIxWiIgZmlsbD0iIzYwNjA2MCIvPgo8cGF0aCBkPSJNOTcuNDgyNSA5NC4zOTE2Qzk3LjM4MyA5NC4zOTE2IDk3LjI4OTQgOTQuMzM5MiA5Ny4yMzY3IDk0LjI1MTdMOTMuNzEzOCA4OC4xNzUxQzkzLjYzNzcgODguMDQwOSA5My42ODQ1IDg3Ljg2NiA5My44MTkxIDg3Ljc5MDJDOTMuODYwMSA4Ny43NjY4IDkzLjkxMjggODcuNzU1MiA5My45NTk2IDg3Ljc1NTJDOTQuMDU5MSA4Ny43NTUyIDk0LjE1MjcgODcuODA3NyA5NC4yMDU0IDg3Ljg5NTJMOTcuNzI4MyA5My45NzE4Qzk3LjgwNDQgOTQuMTA1OSA5Ny43NTc1IDk0LjI4MDggOTcuNjIyOSA5NC4zNjI1Qzk3LjU4MiA5NC4zODU4IDk3LjUyOTMgOTQuMzk3NSA5Ny40ODI1IDk0LjM5NzVWOTQuMzkxNloiIGZpbGw9IiM2MDYwNjAiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF82ODBfMTIyMSI+CjxyZWN0IHdpZHRoPSIxMTAiIGhlaWdodD0iMjYyIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXAxXzY4MF8xMjIxIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI3IiBmaWxsPSJ3aGl0ZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDMgNjApIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==" alt="Person scanning a cosmetic product with smartphone" width="440" height="360">
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: Everyone can contribute -->
+    <section>
+        <div class="section-header">
+            <span class="obf-badge-pill cyan">🌟 Quick Micro-Contributions</span>
+            <h2>Everyone can contribute</h2>
+            <p>
+                Take two minutes while getting ready in the morning to scan a cosmetic barcode, or help extract INCI ingredient lists online!
+            </p>
+        </div>
+
+        <div class="off-card-grid-4">
+            <!-- Card 1: Add cosmetics -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-add-products-cosmetics" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Barcode scanner scanning cosmetics and beauty product labels">
+                    <style>
+                        .cos-lipstick-float {
+                            animation: cosLipBob 4.2s ease-in-out infinite;
+                            transform-origin: 105px 240px;
+                        }
+                        .cos-sunscreen-float {
+                            animation: cosSunBob 4.2s ease-in-out infinite 0.3s;
+                            transform-origin: 235px 215px;
+                        }
+                        .cos-sun-spin {
+                            animation: sunStarPulse 4.2s ease-in-out infinite;
+                            transform-origin: 235px 235px;
+                        }
+                        .cos-scanner-hand {
+                            animation: cosPhoneScanMove 4.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+                            transform-origin: 520px 360px;
+                        }
+                        .cos-laser-line {
+                            animation: cosLaserSweep 2.1s ease-in-out infinite;
+                        }
+                        .cos-scan-badge {
+                            animation: cosBadgePop 4.2s ease-out infinite;
+                            transform-origin: 355px 245px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes cosLipBob {
+                            0%, 100% { transform: translateY(0px) rotate(-14deg); }
+                            50% { transform: translateY(-9px) rotate(-10deg); }
+                        }
+                        @keyframes cosSunBob {
+                            0%, 100% { transform: translateY(0px) rotate(6deg); }
+                            50% { transform: translateY(-10px) rotate(9deg); }
+                        }
+                        @keyframes sunStarPulse {
+                            0%, 100% { transform: scale(1) rotate(0deg); }
+                            50% { transform: scale(1.08) rotate(12deg); }
+                        }
+                        @keyframes cosPhoneScanMove {
+                            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+                            45%, 60% { transform: translate(-18px, -10px) rotate(-3deg); }
+                        }
+                        @keyframes cosLaserSweep {
+                            0%, 100% { transform: translateY(-38px); opacity: 0.35; }
+                            50% { transform: translateY(42px); opacity: 1; }
+                        }
+                        @keyframes cosBadgePop {
+                            0%, 38%, 90%, 100% { transform: scale(0); opacity: 0; }
+                            48%, 78% { transform: scale(1); opacity: 1; }
+                        }
+                    </style>
+
+                    <!-- 1. LIPSTICK (From Open Beauty Facts / hero-openprices.svg) -->
+                    <g class="cos-lipstick-float">
+                        <!-- Red Slanted Bullet Tip (#f53618) -->
+                        <path fill="#f53618" d="M 82,126 L 122,144 L 122,198 L 82,198 Z"></path>
+                        <!-- Gold Collar (#ffc412) -->
+                        <rect x="74" y="194" width="56" height="54" rx="3" fill="#ffc412"></rect>
+                        <!-- Dark Grey Case (#606362) -->
+                        <rect x="64" y="244" width="76" height="118" rx="8" fill="#606362"></rect>
+                    </g>
+
+                    <!-- 2. ATTACHED SUNSCREEN.SVG (Orange Bottle + Yellow Cap + 8-Pointed Sun) -->
+                    <g class="cos-sunscreen-float">
+                        <!-- Yellow Cap (#ffc40c) -->
+                        <rect x="195" y="54" width="80" height="48" rx="8" fill="#ffc40c"></rect>
+                        <!-- Curved Orange Bottle Body (#ff6d3b) -->
+                        <path fill="#ff6d3b" d="
+                            M 195,98
+                            C 215,92 255,92 275,98
+                            C 284,101 288,108 290,118
+                            C 298,162 320,218 320,275
+                            C 320,334 304,358 275,362
+                            C 250,366 220,366 195,362
+                            C 166,358 150,334 150,275
+                            C 150,218 172,162 180,118
+                            C 182,108 186,101 195,98 Z"></path>
+                        <!-- 8-Pointed Yellow Sunburst Star (#ffc40c) -->
+                        <g class="cos-sun-spin">
+                            <path fill="#ffc40c" stroke="#ffc40c" stroke-width="6" stroke-linejoin="round" d="
+                                M 235,186
+                                L 247,204 L 269,200 L 265,222 L 284,235
+                                L 265,248 L 269,270 L 247,266 L 235,284
+                                L 223,266 L 201,270 L 205,248 L 186,235
+                                L 205,222 L 201,200 L 223,204 Z"></path>
+                        </g>
+                    </g>
+
+                    <!-- 3. HAND WITH SMARTPHONE SCANNING COSMETICS -->
+                    <g class="cos-scanner-hand">
+                        <g fill="#955830">
+                            <rect x="292" y="142" width="45" height="22" rx="11" transform="rotate(35 314 153)"></rect>
+                            <rect x="275" y="164" width="58" height="22" rx="11" transform="rotate(35 304 175)"></rect>
+                            <rect x="260" y="186" width="66" height="22" rx="11" transform="rotate(35 293 197)"></rect>
+                        </g>
+                        <path fill="#955830" d="M 380,210 L 432,216 C 470,252 508,270 555,280 L 555,375 C 488,365 436,336 385,292 Z"></path>
+                        <g transform="rotate(5 355 200)">
+                            <rect x="294" y="88" width="122" height="214" rx="14" fill="#606362"></rect>
+                            <rect x="300" y="95" width="110" height="200" rx="11" fill="#e1f3fe"></rect>
+                            <rect x="314" y="122" width="82" height="90" rx="8" fill="#ffffff"></rect>
+                            <g fill="#222222">
+                                <rect x="325" y="140" width="4" height="44"></rect>
+                                <rect x="333" y="140" width="8" height="44"></rect>
+                                <rect x="345" y="140" width="3" height="44"></rect>
+                                <rect x="352" y="140" width="6" height="44"></rect>
+                                <rect x="362" y="140" width="10" height="44"></rect>
+                                <rect x="376" y="140" width="3" height="44"></rect>
+                                <rect x="383" y="140" width="5" height="44"></rect>
+                            </g>
+                            <rect class="cos-laser-line" x="304" y="162" width="102" height="3.5" rx="1.5" fill="#dc3522"></rect>
+                            <g class="cos-scan-badge">
+                                <rect x="320" y="232" width="70" height="26" rx="13" fill="#009a49"></rect>
+                                <path d="M 346,245 L 352,251 L 365,239" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                            <path fill="#606362" d="M 332,93 L 378,93 L 375,102 L 335,102 Z"></path>
+                        </g>
+                        <path fill="#955830" d="M 404,268 L 410,162 A 12,12 0 0,1 434,162 L 440,220 L 430,274 Z"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="obf-badge-pill pink">📱 Mobile &amp; Web</span>
+                <h3>Add cosmetics</h3>
+                <p>
+                    Use the free universal Open Food Facts mobile app (supporting food, cosmetics, and pet food) to easily scan barcodes of shampoos, creams, and soaps from your bathroom, and upload clear label photos.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/open-beauty-facts-mobile-app" class="off-btn off-btn-primary off-btn-block">
+                        Get Universal App
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 2: Complete INCI lists -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-data-quality-cosmetics" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Magnifying glass inspecting cosmetic ingredients and INCI lists">
+                    <style>
+                        .dq-cos-lens {
+                            animation: dqCosSweep 4.5s ease-in-out infinite;
+                            transform-origin: 310px 210px;
+                        }
+                        .dq-cos-badge {
+                            animation: dqCosPop 4.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 432px 115px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes dqCosSweep {
+                            0%, 100% { transform: translate(-45px, -25px) rotate(-6deg); }
+                            50% { transform: translate(35px, 20px) rotate(6deg); }
+                        }
+                        @keyframes dqCosPop {
+                            0%, 30%, 90%, 100% { transform: scale(0.85); }
+                            50%, 75% { transform: scale(1.08); }
+                        }
+                    </style>
+
+                    <!-- Left: Attached Checklist.svg Data Sheet -->
+                    <g transform="translate(55, 58) rotate(-4)">
+                        <rect x="0" y="14" width="185" height="250" rx="22" fill="#00bdf2"></rect>
+                        <rect x="16" y="34" width="153" height="214" rx="14" fill="#ffffff"></rect>
+                        <rect x="60" y="0" width="65" height="42" rx="10" fill="#aeaeae"></rect>
+                        <circle cx="46" cy="78" r="10" fill="none" stroke="#0077c8" stroke-width="4"></circle>
+                        <line x1="72" y1="78" x2="146" y2="78" stroke="#181818" stroke-width="5" stroke-linecap="round"></line>
+                        <circle cx="46" cy="116" r="10" fill="none" stroke="#0077c8" stroke-width="4"></circle>
+                        <line x1="72" y1="116" x2="146" y2="116" stroke="#181818" stroke-width="5" stroke-linecap="round"></line>
+                        <circle cx="46" cy="154" r="10" fill="none" stroke="#0077c8" stroke-width="4"></circle>
+                        <line x1="72" y1="154" x2="146" y2="154" stroke="#009a49" stroke-width="5" stroke-linecap="round"></line>
+                        <circle cx="46" cy="192" r="10" fill="none" stroke="#0077c8" stroke-width="4"></circle>
+                        <line x1="72" y1="192" x2="146" y2="192" stroke="#181818" stroke-width="5" stroke-linecap="round"></line>
+                    </g>
+
+                    <!-- Center-Right: Attached sunscreen.svg -->
+                    <g transform="translate(230, 62) rotate(5)">
+                        <rect x="44" y="0" width="72" height="44" rx="8" fill="#ffc40c"></rect>
+                        <path fill="#ff6d3b" d="
+                            M 44,40
+                            C 62,35 98,35 116,40
+                            C 124,43 128,49 130,58
+                            C 138,98 156,148 156,200
+                            C 156,252 142,274 116,278
+                            C 94,282 66,282 44,278
+                            C 18,274 4,252 4,200
+                            C 4,148 22,98 30,58
+                            C 32,49 36,43 44,40 Z"></path>
+                        <!-- 8-Pointed Yellow Sunburst Star -->
+                        <path fill="#ffc40c" stroke="#ffc40c" stroke-width="5" stroke-linejoin="round" d="
+                            M 80,120
+                            L 91,136 L 111,132 L 107,152 L 124,164
+                            L 107,176 L 111,196 L 91,192 L 80,208
+                            L 69,192 L 49,196 L 53,176 L 36,164
+                            L 53,152 L 49,132 L 69,136 Z"></path>
+                    </g>
+
+                    <!-- Attached Green check.svg Quality Seal -->
+                    <g class="dq-cos-badge">
+                        <circle cx="430" cy="118" r="44" fill="#000000" opacity="0.1"></circle>
+                        <circle cx="432" cy="115" r="42" fill="#0b7a3e"></circle>
+                        <path d="M 412,116 L 426,130 L 454,102" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+
+                    <!-- Animated Magnifying Glass Inspecting Sunscreen -->
+                    <g class="dq-cos-lens">
+                        <rect x="336" y="255" width="24" height="95" rx="12" transform="rotate(-38 348 302)" fill="#181818"></rect>
+                        <circle cx="290" cy="215" r="64" fill="#ffffff" fill-opacity="0.35" stroke="#181818" stroke-width="16"></circle>
+                        <path d="M 252,182 A 44,44 0 0,1 295,168" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="obf-badge-pill cyan">🔬 INCI &amp; OCR</span>
+                <h3>Extract ingredients</h3>
+                <p>
+                    Verify optical character recognition (OCR) on ingredient lists, flag cosmetic allergens, and categorize makeup or sunscreen products.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/cgi/search.pl" class="off-btn off-btn-secondary off-btn-block">
+                        Explore Products
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 3: Tell the world -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-community-building" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Community celebration and collaboration">
+                    <style>
+                        .highfive-left {
+                            animation: clapLeft 3.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 210px 330px;
+                        }
+                        .highfive-right {
+                            animation: clapRight 3.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 350px 330px;
+                        }
+                        .clap-rays {
+                            animation: raysBurst 3.4s ease-out infinite;
+                            transform-origin: 280px 88px;
+                        }
+                        .badge-orbit-1 { animation: orbitBob 3.4s ease-in-out infinite; }
+                        .badge-orbit-2 { animation: orbitBob 3.4s ease-in-out infinite 0.5s; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes clapLeft {
+                            0%, 15%, 90%, 100% { transform: translate(-34px, 12px) rotate(-14deg); }
+                            40%, 68% { transform: translate(0px, 0px) rotate(0deg); }
+                        }
+                        @keyframes clapRight {
+                            0%, 15%, 90%, 100% { transform: translate(34px, 12px) rotate(14deg); }
+                            40%, 68% { transform: translate(0px, 0px) rotate(0deg); }
+                        }
+                        @keyframes raysBurst {
+                            0%, 34%, 78%, 100% { transform: scale(0.4); opacity: 0; }
+                            44%, 62% { transform: scale(1.12); opacity: 1; }
+                        }
+                        @keyframes orbitBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-9px); }
+                        }
+                    </style>
+
+                    <!-- Soft Circular Community Backdrop -->
+                    <circle cx="280" cy="225" r="145" fill="#e1f3fe" opacity="0.7"></circle>
+
+                    <!-- Floating Community Avatars / Badges -->
+                    <g class="badge-orbit-1">
+                        <circle cx="102" cy="145" r="32" fill="#009a49"></circle>
+                        <path d="M 90,146 L 98,154 L 115,137" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <circle cx="458" cy="285" r="28" fill="#ff6b35"></circle>
+                        <path fill="#ffffff" d="M 458,298 C 458,298 442,286 442,276 A 8,8 0 0,1 458,272 A 8,8 0 0,1 474,276 C 474,286 458,298 458,298 Z"></path>
+                    </g>
+                    <g class="badge-orbit-2">
+                        <circle cx="452" cy="135" r="30" fill="#f8c100"></circle>
+                        <text x="452" y="144" text-anchor="middle" fill="#181818" font-size="24" font-weight="800">★</text>
+                        <circle cx="106" cy="295" r="26" fill="#00bdf2"></circle>
+                        <circle cx="106" cy="288" r="7" fill="#ffffff"></circle>
+                        <path fill="#ffffff" d="M 92,308 C 92,298 120,298 120,308 Z"></path>
+                    </g>
+
+                    <!-- ATTACHED HIGH-FIVE.SVG RECONSTRUCTION -->
+                    <!-- Top 3 Impact Rays inside White Sticker Halo -->
+                    <g class="clap-rays">
+                        <line x1="236" y1="92" x2="218" y2="68" stroke="#ffffff" stroke-width="22" stroke-linecap="round"></line>
+                        <line x1="280" y1="82" x2="280" y2="52" stroke="#ffffff" stroke-width="22" stroke-linecap="round"></line>
+                        <line x1="324" y1="92" x2="342" y2="68" stroke="#ffffff" stroke-width="22" stroke-linecap="round"></line>
+
+                        <line x1="236" y1="92" x2="218" y2="68" stroke="#181818" stroke-width="8" stroke-linecap="round"></line>
+                        <line x1="280" y1="82" x2="280" y2="52" stroke="#181818" stroke-width="8" stroke-linecap="round"></line>
+                        <line x1="324" y1="92" x2="342" y2="68" stroke="#181818" stroke-width="8" stroke-linecap="round"></line>
+                    </g>
+
+                    <!-- Right Brown Hand (#955830) — 4 Fingers + Right Thumb -->
+                    <g class="highfive-right">
+                        <g transform="rotate(16 322 248)">
+                            <!-- White Sticker Border -->
+                            <path fill="#ffffff" stroke="#ffffff" stroke-width="18" stroke-linejoin="round" d="
+                                M 262,142 A 13,13 0 0,1 288,142 L 288,218 L 293,218
+                                L 293,134 A 13,13 0 0,1 319,134 L 319,218 L 324,218
+                                L 324,138 A 13,13 0 0,1 350,138 L 350,218 L 355,218
+                                L 355,148 A 13,13 0 0,1 381,148 L 381,252
+                                L 408,228 A 13,13 0 0,1 426,247 L 384,302
+                                C 362,334 316,348 278,334
+                                C 254,325 256,285 262,252 Z"></path>
+                            <!-- Brown Hand Fill -->
+                            <path fill="#955830" d="
+                                M 262,142 A 13,13 0 0,1 288,142 L 288,218 L 293,218
+                                L 293,134 A 13,13 0 0,1 319,134 L 319,218 L 324,218
+                                L 324,138 A 13,13 0 0,1 350,138 L 350,218 L 355,218
+                                L 355,148 A 13,13 0 0,1 381,148 L 381,252
+                                L 408,228 A 13,13 0 0,1 426,247 L 384,302
+                                C 362,334 316,348 278,334
+                                C 254,325 256,285 262,252 Z"></path>
+                        </g>
+                    </g>
+
+                    <!-- Left Peach Hand (#ffc68a) — 4 Fingers + Left Thumb (Overlaps in Front) -->
+                    <g class="highfive-left">
+                        <g transform="rotate(-14 238 248)">
+                            <!-- White Sticker Border -->
+                            <path fill="#ffffff" stroke="#ffffff" stroke-width="18" stroke-linejoin="round" d="
+                                M 298,142 A 13,13 0 0,0 272,142 L 272,218 L 267,218
+                                L 267,134 A 13,13 0 0,0 241,134 L 241,218 L 236,218
+                                L 236,138 A 13,13 0 0,0 210,138 L 210,218 L 205,218
+                                L 205,148 A 13,13 0 0,0 179,148 L 179,252
+                                L 152,228 A 13,13 0 0,0 134,247 L 176,302
+                                C 198,334 244,348 282,334
+                                C 306,325 304,285 298,252 Z"></path>
+                            <!-- Peach Hand Fill -->
+                            <path fill="#ffc68a" d="
+                                M 298,142 A 13,13 0 0,0 272,142 L 272,218 L 267,218
+                                L 267,134 A 13,13 0 0,0 241,134 L 241,218 L 236,218
+                                L 236,138 A 13,13 0 0,0 210,138 L 210,218 L 205,218
+                                L 205,148 A 13,13 0 0,0 179,148 L 179,252
+                                L 152,228 A 13,13 0 0,0 134,247 L 176,302
+                                C 198,334 244,348 282,334
+                                C 306,325 304,285 298,252 Z"></path>
+                        </g>
+                    </g>
+                </svg>
+                </div>
+                <span class="obf-badge-pill purple">📢 Spread the Word</span>
+                <h3>Tell the world</h3>
+                <p>
+                    Share Open Beauty Facts with friends, family, and beauty enthusiasts. Write articles, share reviews, or organize a local scan party.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/follow-open-food-facts" class="off-btn off-btn-secondary off-btn-block">
+                        Share on Social Media
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 4: Make it local -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-make-local" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Multilingual world globe representing global communities">
+                    <style>
+                        .globe-spin {
+                            animation: globePulse 5s ease-in-out infinite;
+                            transform-origin: 280px 215px;
+                        }
+                        .lang-1 { animation: bubbleFloat1 4s ease-in-out infinite; }
+                        .lang-2 { animation: bubbleFloat2 4s ease-in-out infinite 0.6s; }
+                        .lang-3 { animation: bubbleFloat1 4s ease-in-out infinite 1.2s; }
+                        .lang-4 { animation: bubbleFloat2 4s ease-in-out infinite 1.8s; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes globePulse {
+                            0%, 100% { transform: scale(1) rotate(-2deg); }
+                            50% { transform: scale(1.03) rotate(2deg); }
+                        }
+                        @keyframes bubbleFloat1 {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-10px); }
+                        }
+                        @keyframes bubbleFloat2 {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(9px); }
+                        }
+                    </style>
+
+                    <!-- Flat Cyan Earth Globe (#00bdf2) & Green Continents (#009a49) -->
+                    <g class="globe-spin">
+                        <circle cx="280" cy="215" r="118" fill="#00bdf2"></circle>
+                        <!-- Flat Geometric Continents -->
+                        <path fill="#009a49" d="
+                            M 215,135 C 245,128 270,145 262,175 C 254,200 220,210 202,190 C 185,172 195,142 215,135 Z"></path>
+                        <path fill="#009a49" d="
+                            M 295,165 C 335,155 368,185 358,232 C 348,274 308,295 282,272 C 262,254 268,175 295,165 Z"></path>
+                        <path fill="#7fbc2b" d="
+                            M 215,245 C 235,242 252,265 242,295 C 232,315 205,308 202,282 C 198,260 202,248 215,245 Z"></path>
+                    </g>
+
+                    <!-- Language Bubble 1: Orange (#ff6b35) -->
+                    <g class="lang-1">
+                        <rect x="65" y="78" width="142" height="58" rx="16" fill="#ff6b35"></rect>
+                        <polygon points="165,136 188,136 182,154" fill="#ff6b35"></polygon>
+                        <text x="136" y="114" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="800">BIO • ORG</text>
+                    </g>
+
+                    <!-- Language Bubble 2: Golden Yellow (#f8c100) -->
+                    <g class="lang-2">
+                        <rect x="355" y="72" width="145" height="58" rx="16" fill="#f8c100"></rect>
+                        <polygon points="375,130 398,130 370,148" fill="#f8c100"></polygon>
+                        <text x="427" y="108" text-anchor="middle" fill="#181818" font-size="22" font-weight="800">文 → A</text>
+                    </g>
+
+                    <!-- Language Bubble 3: Crimson (#dc3522) -->
+                    <g class="lang-3">
+                        <rect x="60" y="274" width="148" height="58" rx="16" fill="#dc3522"></rect>
+                        <polygon points="172,274 192,274 186,256" fill="#dc3522"></polygon>
+                        <text x="134" y="310" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="800">FR • ES • DE</text>
+                    </g>
+
+                    <!-- Language Bubble 4: Dark Green (#1c8e47) -->
+                    <g class="lang-4">
+                        <rect x="352" y="280" width="148" height="58" rx="16" fill="#1c8e47"></rect>
+                        <polygon points="372,280 394,280 368,262" fill="#1c8e47"></polygon>
+                        <text x="426" y="316" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="800">العربية • 日本</text>
+                    </g>
+                </svg>
+                </div>
+                <span class="obf-badge-pill green">🌍 Local Communities</span>
+                <h3>Make it local</h3>
+                <p>
+                    Help translate the platform into your language, catalog regional cosmetic brands, and verify local eco-certifications and organic labels.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://translate.openfoodfacts.org" class="off-btn off-btn-cyan off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Help Translate
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Section 2: Expert Help Needed -->
+    <section>
+        <div class="expert-banner">
+            <div class="expert-banner-art">
+                <svg id="svg-expert-help" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Scientists and developers working together on open data">
+                    <style>
+                        .code-line-1 { animation: typeWidth1 3.6s steps(12) infinite; }
+                        .code-line-2 { animation: typeWidth2 3.6s steps(12) infinite; }
+                        .robot-bob {
+                            animation: robotFloat 3.6s ease-in-out infinite;
+                            transform-origin: 425px 125px;
+                        }
+                        .hand-left-type {
+                            animation: leftType 0.9s ease-in-out infinite;
+                            transform-origin: 185px 380px;
+                        }
+                        .hand-right-type {
+                            animation: rightType 0.9s ease-in-out infinite 0.45s;
+                            transform-origin: 375px 380px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes typeWidth1 {
+                            0%, 10% { width: 20px; }
+                            50%, 90% { width: 145px; }
+                            100% { width: 20px; }
+                        }
+                        @keyframes typeWidth2 {
+                            0%, 25% { width: 10px; }
+                            65%, 90% { width: 115px; }
+                            100% { width: 10px; }
+                        }
+                        @keyframes robotFloat {
+                            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+                            50% { transform: translateY(-10px) rotate(4deg); }
+                        }
+                        @keyframes leftType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                        @keyframes rightType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                    </style>
+
+                    <!-- Central Laptop / Code & Design Window -->
+                    <rect x="110" y="76" width="310" height="205" rx="18" fill="#181818"></rect>
+                    <rect x="124" y="92" width="282" height="173" rx="10" fill="#26292e"></rect>
+
+                    <!-- Top Window Dots -->
+                    <circle cx="142" cy="108" r="5.5" fill="#dc3522"></circle>
+                    <circle cx="160" cy="108" r="5.5" fill="#f8c100"></circle>
+                    <circle cx="178" cy="108" r="5.5" fill="#009a49"></circle>
+
+                    <!-- Code Bracket & Animated Code Bars -->
+                    <text x="142" y="152" fill="#00bdf2" font-family="monospace" font-weight="800" font-size="26">&lt;/&gt;</text>
+                    <rect class="code-line-1" x="198" y="134" width="145" height="12" rx="6" fill="#7fbc2b"></rect>
+                    <rect class="code-line-2" x="198" y="156" width="115" height="12" rx="6" fill="#f8c100"></rect>
+                    <rect x="142" y="182" width="170" height="12" rx="6" fill="#ff6b35"></rect>
+                    <rect x="142" y="204" width="128" height="12" rx="6" fill="#00bdf2"></rect>
+                    <rect x="142" y="226" width="90" height="12" rx="6" fill="#d9dada"></rect>
+
+                    <!-- Laptop Base -->
+                    <path fill="#aeaeae" d="M 82,281 L 448,281 L 432,304 L 98,304 Z"></path>
+
+                    <!-- Floating Robotoff AI Badge (Top Right) -->
+                    <g class="robot-bob">
+                        <!-- Antenna -->
+                        <rect x="421" y="54" width="8" height="22" rx="4" fill="#606362"></rect>
+                        <circle cx="425" cy="50" r="9" fill="#ff6b35"></circle>
+                        <!-- Robot Head -->
+                        <rect x="375" y="72" width="100" height="78" rx="22" fill="#00bdf2"></rect>
+                        <rect x="390" y="90" width="70" height="32" rx="10" fill="#181818"></rect>
+                        <!-- Glowing Eyes -->
+                        <circle cx="408" cy="106" r="7" fill="#f8c100"></circle>
+                        <circle cx="442" cy="106" r="7" fill="#f8c100"></circle>
+                        <!-- Smile Bar -->
+                        <rect x="408" y="132" width="34" height="6" rx="3" fill="#ffffff"></rect>
+                    </g>
+
+                    <!-- Left Typing Hand (Peach Tone #ffc68a, Seamless Finger Slits) -->
+                    <g class="hand-left-type">
+                        <path fill="#ffc68a" d="
+                            M 118,415
+                            L 138,342
+                            L 138,292 A 7.5,7.5 0 0,1 153,292 L 153,330 L 156,330
+                            L 156,286 A 7.5,7.5 0 0,1 171,286 L 171,330 L 174,330
+                            L 174,286 A 7.5,7.5 0 0,1 189,286 L 189,330 L 192,330
+                            L 192,292 A 7.5,7.5 0 0,1 207,292 L 207,340
+                            L 222,324 C 229,317 238,325 231,334
+                            L 207,365 L 195,415 Z"></path>
+                    </g>
+
+                    <!-- Right Typing Hand (Brown Tone #955830, Seamless Finger Slits) -->
+                    <g class="hand-right-type">
+                        <path fill="#955830" d="
+                            M 342,415
+                            L 330,365
+                            L 306,334 C 299,325 308,317 315,324
+                            L 330,340
+                            L 330,292 A 7.5,7.5 0 0,1 345,292 L 345,330 L 348,330
+                            L 348,286 A 7.5,7.5 0 0,1 363,286 L 363,330 L 366,330
+                            L 366,286 A 7.5,7.5 0 0,1 381,286 L 381,330 L 384,330
+                            L 384,292 A 7.5,7.5 0 0,1 399,292 L 399,342
+                            L 419,415 Z"></path>
+                    </g>
+                </svg>
+            </div>
+            <div class="expert-banner-text">
+                <span class="obf-badge-pill pink">🛠️ Specialized Talents</span>
+                <h2>Expert help needed</h2>
+                <p>
+                    Scaling Open Beauty Facts requires expertise across toxicology, chemistry, mobile engineering, design, and scientific taxonomies. Lend your skills to an open common good!
+                </p>
+                <a href="https://connect.openfoodfacts.org/join-the-contributor-skill-pool-open-food-facts" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer">
+                    Join the Contributor Skill Pool &rarr;
+                </a>
+            </div>
+        </div>
+
+        <div class="off-card-grid-3">
+            <!-- Project management -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-project-management" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Project roadmap and milestone checklist">
+                    <style>
+                        .board-float {
+                            animation: boardTilt 4.6s ease-in-out infinite;
+                            transform-origin: 215px 210px;
+                        }
+                        .clock-float {
+                            animation: clockBob 4.6s ease-in-out infinite;
+                            transform-origin: 418px 155px;
+                        }
+                        .clock-minute-hand {
+                            animation: clockTick 4.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                            transform-origin: 418px 155px;
+                        }
+                        .chk-pop-1 { animation: rowCheck 4.6s ease-out infinite 0.2s; transform-origin: 148px 132px; }
+                        .chk-pop-2 { animation: rowCheck 4.6s ease-out infinite 0.8s; transform-origin: 152px 176px; }
+                        .chk-pop-3 { animation: rowCheck 4.6s ease-out infinite 1.4s; transform-origin: 156px 220px; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes boardTilt {
+                            0%, 100% { transform: rotate(-5deg) translateY(0px); }
+                            50% { transform: rotate(-2deg) translateY(-8px); }
+                        }
+                        @keyframes clockBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(8px); }
+                        }
+                        @keyframes clockTick {
+                            0%, 15% { transform: rotate(0deg); }
+                            45% { transform: rotate(120deg); }
+                            80%, 100% { transform: rotate(360deg); }
+                        }
+                        @keyframes rowCheck {
+                            0%, 20%, 90%, 100% { transform: scale(0); opacity: 0; }
+                            35%, 78% { transform: scale(1); opacity: 1; }
+                        }
+                    </style>
+
+                    <!-- 1. ATTACHED CHECKLIST.SVG (Cyan Clipboard #00bdf2 + Grey Clip #aeaeae) -->
+                    <g class="board-float">
+                        <!-- Cyan Clipboard Body -->
+                        <rect x="95" y="56" width="232" height="310" rx="28" fill="#00bdf2"></rect>
+                        <!-- White Paper Sheet -->
+                        <rect x="115" y="82" width="192" height="264" rx="18" fill="#ffffff"></rect>
+                        <!-- Top Grey Clip (#aeaeae) -->
+                        <rect x="172" y="38" width="78" height="54" rx="12" fill="#aeaeae"></rect>
+
+                        <!-- 5 Checklist Rows (Blue Circles #0077c8 + Black Lines) -->
+                        <!-- Row 1 -->
+                        <circle cx="152" cy="132" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="132" x2="278" y2="132" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+                        <!-- Row 2 -->
+                        <circle cx="152" cy="176" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="176" x2="278" y2="176" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+                        <!-- Row 3 -->
+                        <circle cx="152" cy="220" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="220" x2="278" y2="220" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+                        <!-- Row 4 -->
+                        <circle cx="152" cy="264" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="264" x2="278" y2="264" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+                        <!-- Row 5 -->
+                        <circle cx="152" cy="308" r="13" fill="none" stroke="#0077c8" stroke-width="4.5"></circle>
+                        <line x1="184" y1="308" x2="278" y2="308" stroke="#181818" stroke-width="5.5" stroke-linecap="round"></line>
+
+                        <!-- Animated Green Check.svg Badges Popping onto Rows 1-3 -->
+                        <g class="chk-pop-1">
+                            <circle cx="152" cy="132" r="15" fill="#0b7a3e"></circle>
+                            <path d="M 145,132 L 150,137 L 160,127" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                        <g class="chk-pop-2">
+                            <circle cx="152" cy="176" r="15" fill="#0b7a3e"></circle>
+                            <path d="M 145,176 L 150,181 L 160,171" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                        <g class="chk-pop-3">
+                            <circle cx="152" cy="220" r="15" fill="#0b7a3e"></circle>
+                            <path d="M 145,220 L 150,225 L 160,215" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                    </g>
+
+                    <!-- 2. ATTACHED HISTORY.SVG CLOCK (Light Blue Ring #7ce0ff + Grey Hands #7a7a7a) -->
+                    <g class="clock-float">
+                        <circle cx="418" cy="155" r="86" fill="#ffffff"></circle>
+                        <circle cx="418" cy="155" r="76" fill="none" stroke="#7ce0ff" stroke-width="22"></circle>
+                        <!-- Hour Hand pointing to 4 o'clock -->
+                        <line x1="418" y1="155" x2="452" y2="188" stroke="#7a7a7a" stroke-width="14" stroke-linecap="round"></line>
+                        <!-- Animated Minute Hand -->
+                        <g class="clock-minute-hand">
+                            <line x1="418" y1="155" x2="418" y2="105" stroke="#7a7a7a" stroke-width="14" stroke-linecap="round"></line>
+                        </g>
+                    </g>
+
+                    <!-- Milestone Roadmap Pill -->
+                    <g transform="translate(345, 272)">
+                        <rect x="0" y="0" width="160" height="68" rx="16" fill="#ff6b35"></rect>
+                        <text x="80" y="30" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">SPRINT MILESTONE</text>
+                        <rect x="22" y="42" width="116" height="10" rx="5" fill="#ffffff" opacity="0.35"></rect>
+                        <rect x="22" y="42" width="88" height="10" rx="5" fill="#f8c100"></rect>
+                    </g>
+                </svg>
+                </div>
+                <span class="obf-badge-pill blue">Strategy &amp; Coordination</span>
+                <h3>Project management</h3>
+                <p>
+                    Coordinate volunteer working groups, curate cosmetic data taxonomies, and prioritize community feature roadmaps.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Projects_homepage" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        View Projects Wiki
+                    </a>
+                </div>
+            </article>
+
+            <!-- Design & UX -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-skill-design" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Design wireframe and pen tool">
+                    <style>
+                        .design-stylus-hand {
+                            animation: stylusDraw 4.4s ease-in-out infinite;
+                            transform-origin: 480px 320px;
+                        }
+                        .swatch-card {
+                            animation: swatchFloat 4.4s ease-in-out infinite;
+                        }
+                        .bezier-handle {
+                            animation: handlePulse 2.2s ease-in-out infinite;
+                            transform-origin: 270px 160px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes stylusDraw {
+                            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+                            35% { transform: translate(-48px, -24px) rotate(-5deg); }
+                            70% { transform: translate(-18px, 16px) rotate(3deg); }
+                        }
+                        @keyframes swatchFloat {
+                            0%, 100% { transform: translateY(0px) rotate(-4deg); }
+                            50% { transform: translateY(-10px) rotate(-1deg); }
+                        }
+                        @keyframes handlePulse {
+                            0%, 100% { transform: scale(1); }
+                            50% { transform: scale(1.22); }
+                        }
+                    </style>
+
+                    <!-- Artboard Canvas Frame -->
+                    <rect x="135" y="54" width="270" height="310" rx="22" fill="#ffffff"></rect>
+                    <rect x="147" y="66" width="246" height="286" rx="16" fill="#e1f3fe"></rect>
+
+                    <!-- App Header Bar & Wireframe Blocks inside Artboard -->
+                    <rect x="165" y="84" width="210" height="34" rx="10" fill="#00bdf2"></rect>
+                    <circle cx="184" cy="101" r="8" fill="#ffffff"></circle>
+                    <rect x="202" y="96" width="90" height="10" rx="5" fill="#ffffff"></rect>
+
+                    <!-- Bezier Vector Curve & Anchor Nodes -->
+                    <path d="M 180,225 C 215,135 325,135 360,225" fill="none" stroke="#ff6b35" stroke-width="5" stroke-dasharray="8 6" stroke-linecap="round"></path>
+                    <line x1="215" y1="160" x2="325" y2="160" stroke="#009a49" stroke-width="3"></line>
+                    <circle cx="215" cy="160" r="6" fill="#009a49"></circle>
+                    <circle cx="325" cy="160" r="6" fill="#009a49"></circle>
+                    <rect class="bezier-handle" x="261" y="151" width="18" height="18" rx="4" fill="#ffffff" stroke="#009a49" stroke-width="4"></rect>
+
+                    <!-- UI Component Mockup Cards -->
+                    <rect x="165" y="250" width="98" height="78" rx="12" fill="#ffffff"></rect>
+                    <circle cx="214" cy="278" r="14" fill="#7fbc2b"></circle>
+                    <rect x="182" y="302" width="64" height="10" rx="5" fill="#d9dada"></rect>
+
+                    <rect x="277" y="250" width="98" height="78" rx="12" fill="#ffffff"></rect>
+                    <circle cx="326" cy="278" r="14" fill="#f8c100"></circle>
+                    <rect x="294" y="302" width="64" height="10" rx="5" fill="#d9dada"></rect>
+
+                    <!-- Floating Color Swatch Palette (Left) -->
+                    <g class="swatch-card">
+                        <rect x="48" y="110" width="116" height="168" rx="18" fill="#181818"></rect>
+                        <rect x="62" y="124" width="88" height="30" rx="8" fill="#ff6b35"></rect>
+                        <rect x="62" y="162" width="88" height="30" rx="8" fill="#009a49"></rect>
+                        <rect x="62" y="200" width="88" height="30" rx="8" fill="#00bdf2"></rect>
+                        <rect x="62" y="238" width="88" height="26" rx="8" fill="#f8c100"></rect>
+                    </g>
+
+                    <!-- Right Hand Holding Design Stylus (4 Fingers + Thumb) -->
+                    <g class="design-stylus-hand">
+                        <!-- Stylus Pen -->
+                        <g transform="rotate(-35 355 215)">
+                            <rect x="285" y="205" width="145" height="18" rx="9" fill="#606362"></rect>
+                            <polygon points="285,205 262,214 285,223" fill="#ff6b35"></polygon>
+                            <circle cx="264" cy="214" r="3.5" fill="#181818"></circle>
+                        </g>
+
+                        <!-- Peach Hand (#ffc68a) with 4 distinct fingers + thumb -->
+                        <path fill="#ffc68a" d="
+                            M 548,295
+                            C 492,282 448,262 412,232
+                            L 382,208 C 374,202 365,212 373,220
+                            L 395,240
+                            L 336,192 A 8,8 0 0,0 326,204 L 368,238 L 366,241
+                            L 322,206 A 8,8 0 0,0 312,218 L 360,256 L 358,259
+                            L 320,228 A 8,8 0 0,0 310,240 L 356,277 L 354,280
+                            L 324,256 A 8,8 0 0,0 314,268 L 382,322
+                            C 432,358 488,376 548,384 Z"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="obf-badge-pill purple">UI / UX Design</span>
+                <h3>Design &amp; UX</h3>
+                <p>
+                    Design delightful, accessible interfaces for cosmetics scanning, ingredient risk displays, and brand comparisons.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts/openfoodfacts-design" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Join Design Team
+                    </a>
+                </div>
+            </article>
+
+            <!-- Development & AI -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-expert-help" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Code editor and machine learning diagrams">
+                    <style>
+                        .code-line-1 { animation: typeWidth1 3.6s steps(12) infinite; }
+                        .code-line-2 { animation: typeWidth2 3.6s steps(12) infinite; }
+                        .robot-bob {
+                            animation: robotFloat 3.6s ease-in-out infinite;
+                            transform-origin: 425px 125px;
+                        }
+                        .hand-left-type {
+                            animation: leftType 0.9s ease-in-out infinite;
+                            transform-origin: 185px 380px;
+                        }
+                        .hand-right-type {
+                            animation: rightType 0.9s ease-in-out infinite 0.45s;
+                            transform-origin: 375px 380px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes typeWidth1 {
+                            0%, 10% { width: 20px; }
+                            50%, 90% { width: 145px; }
+                            100% { width: 20px; }
+                        }
+                        @keyframes typeWidth2 {
+                            0%, 25% { width: 10px; }
+                            65%, 90% { width: 115px; }
+                            100% { width: 10px; }
+                        }
+                        @keyframes robotFloat {
+                            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+                            50% { transform: translateY(-10px) rotate(4deg); }
+                        }
+                        @keyframes leftType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                        @keyframes rightType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                    </style>
+
+                    <!-- Central Laptop / Code & Design Window -->
+                    <rect x="110" y="76" width="310" height="205" rx="18" fill="#181818"></rect>
+                    <rect x="124" y="92" width="282" height="173" rx="10" fill="#26292e"></rect>
+
+                    <!-- Top Window Dots -->
+                    <circle cx="142" cy="108" r="5.5" fill="#dc3522"></circle>
+                    <circle cx="160" cy="108" r="5.5" fill="#f8c100"></circle>
+                    <circle cx="178" cy="108" r="5.5" fill="#009a49"></circle>
+
+                    <!-- Code Bracket & Animated Code Bars -->
+                    <text x="142" y="152" fill="#00bdf2" font-family="monospace" font-weight="800" font-size="26">&lt;/&gt;</text>
+                    <rect class="code-line-1" x="198" y="134" width="145" height="12" rx="6" fill="#7fbc2b"></rect>
+                    <rect class="code-line-2" x="198" y="156" width="115" height="12" rx="6" fill="#f8c100"></rect>
+                    <rect x="142" y="182" width="170" height="12" rx="6" fill="#ff6b35"></rect>
+                    <rect x="142" y="204" width="128" height="12" rx="6" fill="#00bdf2"></rect>
+                    <rect x="142" y="226" width="90" height="12" rx="6" fill="#d9dada"></rect>
+
+                    <!-- Laptop Base -->
+                    <path fill="#aeaeae" d="M 82,281 L 448,281 L 432,304 L 98,304 Z"></path>
+
+                    <!-- Floating Robotoff AI Badge (Top Right) -->
+                    <g class="robot-bob">
+                        <!-- Antenna -->
+                        <rect x="421" y="54" width="8" height="22" rx="4" fill="#606362"></rect>
+                        <circle cx="425" cy="50" r="9" fill="#ff6b35"></circle>
+                        <!-- Robot Head -->
+                        <rect x="375" y="72" width="100" height="78" rx="22" fill="#00bdf2"></rect>
+                        <rect x="390" y="90" width="70" height="32" rx="10" fill="#181818"></rect>
+                        <!-- Glowing Eyes -->
+                        <circle cx="408" cy="106" r="7" fill="#f8c100"></circle>
+                        <circle cx="442" cy="106" r="7" fill="#f8c100"></circle>
+                        <!-- Smile Bar -->
+                        <rect x="408" y="132" width="34" height="6" rx="3" fill="#ffffff"></rect>
+                    </g>
+
+                    <!-- Left Typing Hand (Peach Tone #ffc68a, Seamless Finger Slits) -->
+                    <g class="hand-left-type">
+                        <path fill="#ffc68a" d="
+                            M 118,415
+                            L 138,342
+                            L 138,292 A 7.5,7.5 0 0,1 153,292 L 153,330 L 156,330
+                            L 156,286 A 7.5,7.5 0 0,1 171,286 L 171,330 L 174,330
+                            L 174,286 A 7.5,7.5 0 0,1 189,286 L 189,330 L 192,330
+                            L 192,292 A 7.5,7.5 0 0,1 207,292 L 207,340
+                            L 222,324 C 229,317 238,325 231,334
+                            L 207,365 L 195,415 Z"></path>
+                    </g>
+
+                    <!-- Right Typing Hand (Brown Tone #955830, Seamless Finger Slits) -->
+                    <g class="hand-right-type">
+                        <path fill="#955830" d="
+                            M 342,415
+                            L 330,365
+                            L 306,334 C 299,325 308,317 315,324
+                            L 330,340
+                            L 330,292 A 7.5,7.5 0 0,1 345,292 L 345,330 L 348,330
+                            L 348,286 A 7.5,7.5 0 0,1 363,286 L 363,330 L 366,330
+                            L 366,286 A 7.5,7.5 0 0,1 381,286 L 381,330 L 384,330
+                            L 384,292 A 7.5,7.5 0 0,1 399,292 L 399,342
+                            L 419,415 Z"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="obf-badge-pill cyan">Code &amp; AI</span>
+                <h3>Development &amp; AI</h3>
+                <p>
+                    Build on our Perl &amp; MongoDB backend, Flutter mobile app, JSON API, and computer vision models for complex ingredient packaging.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts" class="off-btn off-btn-cyan off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Explore GitHub Repos
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="bottom-projects-cta">
+        <h2>Ready to join the beauty transparency movement?</h2>
+        <p>
+            Connect with our volunteers and help build an independent database for everyone's health and safety.
+        </p>
+        <a href="https://slack.openfoodfacts.org" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer" style="font-size: 1.05rem; padding: 0.85rem 1.85rem;">
+            Join Our Slack Workspace &rarr;
+        </a>
+    </div>
+
+</div>
+
+<script>
+    function onMount(fn) {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+        } else {
+            fn();
+        }
+    }
+
+    onMount(() => {
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            if (typeof parent !== 'undefined' && parent !== window) {
+                parent.postMessage({ frameHeight: height }, '*');
+            }
+        }
+        sendHeight();
+        window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
+                    }
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
+
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
+        });
+    });
+</script>
+
+    </main>
+
+</body>
+</html>
