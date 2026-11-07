@@ -954,39 +954,39 @@ function getInitials(name) {
 
 function renderProducerCard(item) {
   const logoHtml = item.logo_url
-    ? `<img src="${item.logo_url}" alt="${item.name}" class="producer-logo-img" loading="lazy" onerror="if(!this.dataset.triedCdn && !this.src.includes('cdn.jsdelivr.net')) { this.dataset.triedCdn='1'; const fn = this.src.split('/').pop(); this.src = 'https://cdn.jsdelivr.net/gh/openfoodfacts/brand-images@main/xx/brands/' + fn; } else { this.onerror=null; this.parentElement.innerHTML='<div class=\'producer-monogram\'>${getInitials(item.name)}</div>'; }" />`
-    : `<div class="producer-monogram">${getInitials(item.name)}</div>`;
+   ? `<img src="${item.logo_url}" alt="${item.name}" class="producer-logo-img" loading="lazy" onerror="if(!this.dataset.triedCdn && !this.src.includes('cdn.jsdelivr.net')) { this.dataset.triedCdn='1'; const fn = this.src.split('/').pop(); this.src = 'https://cdn.jsdelivr.net/gh/openfoodfacts/brand-images@main/xx/brands/' + fn; } else { this.onerror=null; this.parentElement.innerHTML='<div class=\'producer-monogram\'>${getInitials(item.name)}</div>'; }" />`
+   : `<div class="producer-monogram">${getInitials(item.name)}</div>`;
 
   const ownerText = item.owner && item.owner !== item.name
-    ? `<div class="producer-owner">${IS_FR ? "Groupe : " : "Owner: "}${item.owner}</div>`
-    : `<div class="producer-owner">${IS_FR ? "Producteur indépendant" : "Independent Producer"}</div>`;
+   ? `<div class="producer-owner">${IS_FR ? "Groupe : " : "Owner: "}${item.owner}</div>`
+   : `<div class="producer-owner">${IS_FR ? "Producteur indépendant" : "Independent Producer"}</div>`;
 
   const pCount = item.products_count || 0;
   const countBadge = pCount > 0
-    ? `<span class="badge-tag badge-products">🤝 ${pCount.toLocaleString()} ${IS_FR ? "produits" : "products"}</span>`
-    : "";
+   ? `<span class="badge-tag badge-products">🤝 ${pCount.toLocaleString()} ${IS_FR ? "produits" : "products"}</span>`
+   : "";
 
   const catBadge = item.category
-    ? `<span class="badge-tag badge-category">${item.category}</span>`
-    : "";
+   ? `<span class="badge-tag badge-category">${item.category}</span>`
+   : "";
 
   const countryBadge = item.country_label
-    ? `<span class="badge-tag badge-country">${item.country_label}</span>`
-    : "";
+   ? `<span class="badge-tag badge-country">${item.country_label}</span>`
+   : "";
 
   const offUrl = item.off_url || `https://world.openfoodfacts.org/facets/data-sources/${item.producer_id || 'producer-' + item.id}`;
   const webLink = item.website
-    ? `<a href="${item.website}" target="_blank" rel="noopener noreferrer" class="card-btn card-btn-web" title="${item.name} website">🌐 ${IS_FR ? "Site" : "Web"}</a>`
-    : "";
+   ? `<a href="${item.website}" target="_blank" rel="noopener noreferrer" class="card-btn card-btn-web" title="${item.name} website">🌐 ${IS_FR ? "Site" : "Web"}</a>`
+   : "";
 
   const updateBadge = item.last_update
-    ? `<span class="badge-tag badge-update" title="${IS_FR ? 'Dernière mise à jour' : 'Last update'}">🕒 ${item.last_update}</span>`
-    : "";
+   ? `<span class="badge-tag badge-update" title="${IS_FR ? 'Dernière mise à jour' : 'Last update'}">🕒 ${item.last_update}</span>`
+   : "";
 
   const sharedCount = (item.data_shared && item.data_shared.length) ? item.data_shared.length : 0;
   const sharedBadge = sharedCount > 0
-    ? `<span class="badge-tag badge-shared" title="${IS_FR ? 'Types de données partagées' : 'Shared data types'}">📦 ${sharedCount} ${IS_FR ? 'données' : 'shared'}</span>`
-    : "";
+   ? `<span class="badge-tag badge-shared" title="${IS_FR ? 'Types de données partagées' : 'Shared data types'}">📦 ${sharedCount} ${IS_FR ? 'données' : 'shared'}</span>`
+   : "";
 
   const dbLabels = {
     "open-food-facts": { icon: "🍏", label: "Open Food Facts", short: "Food" },
@@ -1047,8 +1047,8 @@ function renderProducersGrid() {
   const total = filteredList.length;
   const shown = Math.min(visibleCount, total);
   counterEl.textContent = IS_FR
-    ? `${shown} sur ${total} marque(s)`
-    : `Showing ${shown} of ${total} brands`;
+   ? `${shown} sur ${total} marque(s)`
+   : `Showing ${shown} of ${total} brands`;
 
   // Update Load more buttons
   const loadMoreBtn = document.getElementById("loadMoreProducersBtn");
@@ -1182,8 +1182,8 @@ function openProducerModal(id) {
   const ghEditUrl = `https://github.com/openfoodfacts/openfoodfacts-web/edit/main/data/producers/${item.id}.yaml`;
 
   const modalLogoHtml = item.logo_url
-    ? `<img src="${item.logo_url}" class="producer-logo-img" alt="${item.name}" onerror="if(!this.dataset.triedCdn && !this.src.includes('cdn.jsdelivr.net')) { this.dataset.triedCdn='1'; const fn = this.src.split('/').pop(); this.src = 'https://cdn.jsdelivr.net/gh/openfoodfacts/brand-images@main/xx/brands/' + fn; } else { this.onerror=null; this.parentElement.innerHTML='<div class=\'producer-monogram\'>${getInitials(item.name)}</div>'; }" />`
-    : `<div class="producer-monogram">${getInitials(item.name)}</div>`;
+   ? `<img src="${item.logo_url}" class="producer-logo-img" alt="${item.name}" onerror="if(!this.dataset.triedCdn && !this.src.includes('cdn.jsdelivr.net')) { this.dataset.triedCdn='1'; const fn = this.src.split('/').pop(); this.src = 'https://cdn.jsdelivr.net/gh/openfoodfacts/brand-images@main/xx/brands/' + fn; } else { this.onerror=null; this.parentElement.innerHTML='<div class=\'producer-monogram\'>${getInitials(item.name)}</div>'; }" />`
+   : `<div class="producer-monogram">${getInitials(item.name)}</div>`;
 
   content.innerHTML = `
     <div style="display:flex;align-items:center;gap:1.25rem;margin-bottom:1.5rem;">

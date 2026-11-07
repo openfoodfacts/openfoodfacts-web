@@ -1,0 +1,1061 @@
+<style>
+/* ==========================================================================
+   Open Food Facts - Ingredient & Diet Detector Landing Page
+   ========================================================================== */
+
+:root {
+  --id-green-900: #064E3B;
+  --id-green-800: #065F46;
+  --id-green-700: #047857;
+  --id-green-600: #059669;
+  --id-green-500: #10B981;
+  --id-green-100: #D1FAE5;
+  --id-green-50: #ECFDF5;
+  --id-amber-700: #B45309;
+  --id-amber-600: #D97706;
+  --id-amber-100: #FEF3C7;
+  --id-amber-50: #FFFBEB;
+  --id-orange-600: #EA580C;
+  --id-orange-50: #FFF7ED;
+  --id-red-600: #DC2626;
+  --id-red-50: #FEF2F2;
+  --id-blue-700: #1D4ED8;
+  --id-blue-50: #EFF6FF;
+  --id-surface: #FFFFFF;
+  --id-bg: #FAF8F5;
+  --id-card-border: #E8DDD2;
+  --id-border: #E2E8F0;
+  --id-text-primary: #1E293B;
+  --id-text-secondary: #475569;
+  --id-text-muted: #64748B;
+  --id-shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --id-shadow-md: 0 4px 14px rgba(0,0,0,0.06);
+  --id-shadow-lg: 0 10px 28px rgba(0,0,0,0.08);
+  --id-radius-lg: 20px;
+  --id-radius-md: 14px;
+  --id-radius-sm: 8px;
+  --id-radius-pill: 9999px;
+}
+
+.id-page-wrapper {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+  color: var(--id-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+}
+
+/* Hero Section */
+.id-hero {
+  background: linear-gradient(135deg, #F0FDF4 0%, #FAF8F5 100%);
+  border: 1px solid var(--id-card-border);
+  border-radius: var(--id-radius-lg);
+  padding: 3rem 2.25rem;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--id-shadow-sm);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.id-hero-content {
+  flex: 1 1 500px;
+  min-width: 300px;
+}
+
+.id-hero-visual {
+  flex: 0 1 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.id-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--id-green-100);
+  color: var(--id-green-800);
+  border: 1px solid #A7F3D0;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--id-radius-pill);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.id-hero-title {
+  font-size: 2.35rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--id-green-900);
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.id-hero-title .highlight {
+  color: var(--id-green-600);
+}
+
+.id-hero-desc {
+  font-size: 1.12rem;
+  color: var(--id-text-secondary);
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+}
+
+.id-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.id-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--id-surface);
+  border: 1px solid var(--id-border);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--id-radius-pill);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--id-text-primary);
+  box-shadow: var(--id-shadow-sm);
+}
+
+.id-hero-preview-img {
+  max-width: 100%;
+  max-height: 480px;
+  width: auto;
+  border-radius: 28px;
+  filter: drop-shadow(0 14px 28px rgba(15, 23, 42, 0.14));
+  transition: transform 0.25s ease;
+}
+
+.id-hero-preview-img:hover {
+  transform: translateY(-4px);
+}
+
+/* Section Headings */
+.id-section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 3rem auto 2rem;
+}
+
+.id-section-tag {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--id-green-700);
+  margin-bottom: 0.45rem;
+}
+
+.id-section-title {
+  font-size: 1.95rem;
+  font-weight: 800;
+  color: var(--id-green-900);
+  letter-spacing: -0.015em;
+  margin: 0 0 0.75rem;
+  line-height: 1.25;
+}
+
+.id-section-subtitle {
+  font-size: 1.05rem;
+  color: var(--id-text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Trio Diet Cards */
+.id-diet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.id-diet-card {
+  background: var(--id-surface);
+  border: 1px solid var(--id-border);
+  border-radius: var(--id-radius-md);
+  padding: 1.75rem;
+  box-shadow: var(--id-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.id-diet-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--id-shadow-md);
+  border-color: var(--id-green-600);
+}
+
+.id-diet-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.id-diet-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.id-diet-icon.vegan {
+  background: var(--id-green-100);
+}
+
+.id-diet-icon.vegetarian {
+  background: #FEF3C7;
+}
+
+.id-diet-icon.palm {
+  background: #FFEDD5;
+}
+
+.id-diet-card-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--id-text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.id-diet-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--id-radius-pill);
+  display: inline-block;
+  margin-top: 0.2rem;
+}
+
+.id-diet-badge.vegan {
+  background: var(--id-green-100);
+  color: var(--id-green-800);
+}
+
+.id-diet-badge.vegetarian {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.id-diet-badge.palm {
+  background: #FFEDD5;
+  color: #9A3412;
+}
+
+.id-diet-card-desc {
+  font-size: 0.95rem;
+  color: var(--id-text-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.15rem;
+}
+
+.id-diet-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  font-size: 0.88rem;
+  color: var(--id-text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.id-diet-highlights li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.id-diet-highlights li .check {
+  color: var(--id-green-600);
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.id-diet-example-box {
+  margin-top: auto;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: var(--id-radius-sm);
+  padding: 0.85rem;
+  font-size: 0.84rem;
+}
+
+.id-diet-example-title {
+  font-weight: 700;
+  color: var(--id-text-muted);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+}
+
+/* Deep Dive: How the Ingredient Analyzer Works */
+.id-tech-section {
+  background: var(--id-surface);
+  border: 1px solid var(--id-border);
+  border-radius: var(--id-radius-lg);
+  padding: 2.5rem 2rem;
+  margin: 2.5rem 0;
+  box-shadow: var(--id-shadow-sm);
+}
+
+.id-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.id-tech-step {
+  border-left: 3px solid var(--id-green-600);
+  padding-left: 1.1rem;
+}
+
+.id-tech-step-num {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--id-green-700);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+
+.id-tech-step-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--id-text-primary);
+  margin: 0 0 0.45rem;
+}
+
+.id-tech-step-desc {
+  font-size: 0.9rem;
+  color: var(--id-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Visual Parsing Example Box */
+.id-parser-interactive {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: var(--id-radius-md);
+  padding: 1.5rem;
+  margin: 2rem 0 0;
+}
+
+.id-parser-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--id-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.id-raw-ingredients {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: var(--id-radius-sm);
+  padding: 0.85rem 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.88rem;
+  color: #334155;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.id-parsed-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.id-token {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--id-radius-sm);
+  font-weight: 600;
+}
+
+.id-token.vegan-ok {
+  background: #DCFCE7;
+  color: #166534;
+  border: 1px solid #86EFAC;
+}
+
+.id-token.warning-palm {
+  background: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #FCD34D;
+}
+
+.id-token.danger-animal {
+  background: #FEE2E2;
+  color: #991B1B;
+  border: 1px solid #FCA5A5;
+}
+
+.id-token.neutral {
+  background: #F1F5F9;
+  color: #475569;
+  border: 1px solid #CBD5E1;
+}
+
+/* Expanding Diets Section */
+.id-diets-hub {
+  background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%);
+  border: 1px solid #BFDBFE;
+  border-radius: var(--id-radius-lg);
+  padding: 2.5rem 2.25rem;
+  margin: 3rem 0;
+  box-shadow: var(--id-shadow-sm);
+}
+
+.id-diets-hub-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.id-diets-hub-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--id-blue-700);
+  margin: 0;
+}
+
+.id-diets-hub-desc {
+  font-size: 1rem;
+  color: var(--id-text-secondary);
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+}
+
+.id-diets-pill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.id-diet-pill-card {
+  background: #FFFFFF;
+  border: 1px solid #DBEAFE;
+  border-radius: var(--id-radius-sm);
+  padding: 1rem;
+  box-shadow: var(--id-shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.id-diet-pill-card:hover {
+  transform: translateY(-2px);
+  border-color: #93C5FD;
+  box-shadow: var(--id-shadow-md);
+}
+
+.id-diet-pill-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--id-text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.id-diet-pill-text {
+  font-size: 0.84rem;
+  color: var(--id-text-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.id-wiki-links-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #DBEAFE;
+}
+
+.id-wiki-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--id-surface);
+  border: 1px solid #93C5FD;
+  color: var(--id-blue-700);
+  padding: 0.45rem 1rem;
+  border-radius: var(--id-radius-pill);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.id-wiki-btn:hover {
+  background: #DBEAFE;
+  color: #1E40AF;
+  text-decoration: none;
+}
+
+/* Community & Associations Section */
+.id-community-box {
+  background: linear-gradient(135deg, #FAF5FF 0%, #FFFFFF 100%);
+  border: 1px solid #E9D5FF;
+  border-radius: var(--id-radius-lg);
+  padding: 2.5rem 2.25rem;
+  margin: 3rem 0;
+  box-shadow: var(--id-shadow-sm);
+}
+
+.id-community-header {
+  max-width: 800px;
+  margin-bottom: 1.75rem;
+}
+
+.id-community-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #6B21A8;
+  margin: 0 0 0.65rem;
+}
+
+.id-community-desc {
+  font-size: 1.02rem;
+  color: var(--id-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.id-community-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.id-action-card {
+  background: #FFFFFF;
+  border: 1px solid #F3E8FF;
+  border-radius: var(--id-radius-md);
+  padding: 1.25rem;
+  box-shadow: var(--id-shadow-sm);
+}
+
+.id-action-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.id-action-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #581C87;
+  margin: 0 0 0.4rem;
+}
+
+.id-action-desc {
+  font-size: 0.88rem;
+  color: var(--id-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.id-community-cta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  background: #FFFFFF;
+  border: 1px solid #E9D5FF;
+  border-radius: var(--id-radius-md);
+  padding: 1.25rem 1.5rem;
+}
+
+.id-community-cta-text {
+  flex: 1 1 320px;
+  font-size: 0.95rem;
+  color: var(--id-text-primary);
+}
+
+.id-community-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.id-btn-slack {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #4A154B;
+  color: #FFFFFF !important;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--id-radius-pill);
+  text-decoration: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.id-btn-slack:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.id-btn-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--id-surface);
+  color: #6B21A8 !important;
+  border: 1.5px solid #C084FC;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--id-radius-pill);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.id-btn-email:hover {
+  background: #FAF5FF;
+  text-decoration: none;
+}
+
+/* FAQ Accordion Section */
+.id-faq-section {
+  margin: 3.5rem 0 2rem;
+}
+
+.id-faq-item {
+  background: var(--id-surface);
+  border: 1px solid var(--id-border);
+  border-radius: var(--id-radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0.85rem;
+  box-shadow: var(--id-shadow-sm);
+}
+
+.id-faq-question {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--id-green-900);
+  margin: 0 0 0.5rem;
+}
+
+.id-faq-answer {
+  font-size: 0.95rem;
+  color: var(--id-text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .id-hero {
+    padding: 2rem 1.25rem;
+    gap: 1.75rem;
+  }
+  .id-hero-title {
+    font-size: 1.85rem;
+  }
+  .id-hero-visual {
+    order: -1;
+    width: 100%;
+  }
+  .id-hero-preview-img {
+    max-height: 380px;
+  }
+  .id-tech-section,
+  .id-diets-hub,
+  .id-community-box {
+    padding: 1.75rem 1.25rem;
+  }
+}
+</style>
+
+<div class="id-page-wrapper">
+
+  <!-- HERO SECTION -->
+  <section class="id-hero">
+    <div class="id-hero-content">
+      <div class="id-badge-pill">
+        <span>🔬</span> Intelligence sur les ingrédients d'Open Food Facts
+      </div>
+      <h1 class="id-hero-title">
+        Sachez ce qu'il y a dedans : détection <span class="highlight">Végétalienne, Végétarienne &amp; Huile de Palme</span>
+      </h1>
+      <p class="id-hero-desc">
+        Suivez-vous un régime végétal ? Vous évitez les dérivés animaux ou réduisez votre consommation d'huile de palme ? Open Food Facts déchiffre les petits caractères des listes d'ingrédients en quelques secondes, démasquant les additifs cachés et vous permettant de faire vos courses en toute confiance.
+      </p>
+
+      <div class="id-hero-tags">
+        <span class="id-hero-tag">🌿 Vérification 100% Végétalienne</span>
+        <span class="id-hero-tag">🥚 Analyse Végétarienne</span>
+        <span class="id-hero-tag">🦧 Alertes Huile de Palme &amp; Déforestation</span>
+        <span class="id-hero-tag">🌍 Analyse multilingue dans plus de 150 langues</span>
+      </div>
+    </div>
+
+    <div class="id-hero-visual">
+      <img
+        src="/images/fr/texts/ingredients-detector/diet-ingredient-scanner-app.svg"
+        alt="Application Open Food Facts affichant les préférences alimentaires et l'analyse des ingrédients"
+        class="id-hero-preview-img"
+        loading="lazy"
+      >
+    </div>
+  </section>
+
+
+  <!-- CORE THREE DETECTIONS SECTION -->
+  <section>
+    <div class="id-section-header">
+      <div class="id-section-tag">Une clarté instantanée au supermarché</div>
+      <h2 class="id-section-title">Trois détections essentielles intégrées à chaque produit</h2>
+      <p class="id-section-subtitle">
+        Que vous soyez végétalien confirmé, en transition vers une alimentation végétale ou que vous fassiez des choix écologiques conscients, notre analyse automatisée inspecte chaque ingrédient pour protéger vos valeurs.
+      </p>
+    </div>
+
+    <div class="id-diet-grid">
+      <!-- VEGAN CARD -->
+      <div class="id-diet-card">
+        <div class="id-diet-card-header">
+          <div class="id-diet-icon vegan">🌿</div>
+          <div>
+            <h3 class="id-diet-card-title">Détection Végétalienne</h3>
+            <span class="id-diet-badge vegan">Strictement végétal</span>
+          </div>
+        </div>
+        <p class="id-diet-card-desc">
+          Au-delà de la viande, de la volaille et des produits laitiers évidents, notre analyseur signale les substances d'origine animale cachées qui se dissimulent souvent sous des noms scientifiques techniques ou des codes E.
+        </p>
+        <ul class="id-diet-highlights">
+          <li><span class="check">✓</span> <span>Repère la gélatine cachée (E441), la cochenille / carmin (E120) et la gomme-laque (E904).</span></li>
+          <li><span class="check">✓</span> <span>Signale la vitamine D3 d'origine animale (lanoline), le lactosérum, la caséine et les ingrédients traités au charbon d'os.</span></li>
+          <li><span class="check">✓</span> <span>Explique pourquoi un produit n'est pas végétalien en citant chaque ingrédient incriminé.</span></li>
+        </ul>
+        <div class="id-diet-example-box">
+          <div class="id-diet-example-title">Exemple signalé</div>
+          <strong>"Lait écrémé en poudre"</strong>, <strong>"Protéine de lactosérum"</strong> ou <strong>"E120"</strong> déclenchent instantanément un statut non végétalien avec des explications claires.
+        </div>
+      </div>
+
+      <!-- VEGETARIAN CARD -->
+      <div class="id-diet-card">
+        <div class="id-diet-card-header">
+          <div class="id-diet-icon vegetarian">🥚</div>
+          <div>
+            <h3 class="id-diet-card-title">Détection Végétarienne</h3>
+            <span class="id-diet-badge vegetarian">Sans viande ni abattage</span>
+          </div>
+        </div>
+        <p class="id-diet-card-desc">
+          Les végétariens consomment des aliments végétaux ainsi que des produits laitiers, des œufs et du miel, mais doivent rester vigilants face aux sous-produits d'abattoir sournoisement ajoutés aux produits du quotidien.
+        </p>
+        <ul class="id-diet-highlights">
+          <li><span class="check">✓</span> <span>Identifie la présure animale dans les fromages et la distingue de la présure microbienne ou végétale.</span></li>
+          <li><span class="check">✓</span> <span>Détecte la gélatine dans les yaourts, les puddings, les desserts et les confiseries.</span></li>
+          <li><span class="check">✓</span> <span>Sépare les agents clarifiants dérivés du poisson et les graisses animales des matières grasses végétales.</span></li>
+        </ul>
+        <div class="id-diet-example-box">
+          <div class="id-diet-example-title">Exemple signalé</div>
+          <strong>« Présure traditionnelle »</strong> dans le parmesan ou <strong>« gélatine de porc »</strong> dans les oursons en gélatine alertent immédiatement les consommateurs végétariens.
+        </div>
+      </div>
+
+      <!-- PALM OIL CARD -->
+      <div class="id-diet-card">
+        <div class="id-diet-card-header">
+          <div class="id-diet-icon palm">🦧</div>
+          <div>
+            <h3 class="id-diet-card-title">Détection de l'huile de palme</h3>
+            <span class="id-diet-badge palm">Forêt tropicale &amp; Climat</span>
+          </div>
+        </div>
+        <p class="id-diet-card-desc">
+          Initié par Open Food Facts en 2012, notre détecteur d'huile de palme démasque l'huile de palme et ses nombreux dérivés cryptiques responsables de la déforestation tropicale.
+        </p>
+        <ul class="id-diet-highlights">
+          <li><span class="check">✓</span> <span>Détecte l'huile de palme non raffinée, l'huile de palme fractionnée et l'huile de palmiste.</span></li>
+          <li><span class="check">✓</span> <span>Identifie les dérivés complexes comme le palmitate, la stéarine et les « graisses végétales » génériques.</span></li>
+          <li><span class="check">✓</span> <span>Aide à protéger les orangs-outans menacés et la biodiversité des forêts tropicales.</span></li>
+        </ul>
+        <div class="id-diet-example-box">
+          <div class="id-diet-example-title">Exemple signalé</div>
+          <strong>« Graisse de palme hydrogénée »</strong> ou <strong>« Acide palmitique »</strong> alertent les consommateurs en quête de choix sans déforestation.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- HOW IT WORKS: OUR UNIQUE INGREDIENT PARSING ABILITY -->
+  <section class="id-tech-section">
+    <div class="id-section-header" style="margin-top: 0;">
+      <div class="id-section-tag">Sous le capot</div>
+      <h2 class="id-section-title">Notre capacité unique à analyser les ingrédients</h2>
+      <p class="id-section-subtitle">
+        Les listes d'ingrédients sur les emballages sont notoirement désordonnées : parenthèses imbriquées, texte multilingue, pourcentages, noms commerciaux ambigus et fautes de frappe. Voici comment Open Food Facts transforme des étiquettes chaotiques en données alimentaires fiables.
+      </p>
+    </div>
+
+    <div class="id-tech-grid">
+      <div class="id-tech-step">
+        <span class="id-tech-step-num">Étape 1</span>
+        <h3 class="id-tech-step-title">Tokenisation multilingue</h3>
+        <p class="id-tech-step-desc">
+          Notre analyseur grammatical comprend les virgules, les points-virgules, les parenthèses imbriquées et les pourcentages dans plus de 150 langues, séparant proprement les ingrédients composés de leurs sous-composants.
+        </p>
+      </div>
+
+      <div class="id-tech-step">
+        <span class="id-tech-step-num">Étape 2</span>
+        <h3 class="id-tech-step-title">Correspondance taxonomique</h3>
+        <p class="id-tech-step-desc">
+          Chaque terme reconnu est comparé à la <a href="https://wiki.openfoodfacts.org/Category:Ingredients">taxonomie des ingrédients</a> ouverte, reliant les synonymes, les traductions et les numéros E dans un graphe mondial standardisé.
+        </p>
+      </div>
+
+      <div class="id-tech-step">
+        <span class="id-tech-step-num">Étape 3</span>
+        <h3 class="id-tech-step-title">Évaluation des règles diététiques</h3>
+        <p class="id-tech-step-desc">
+          Chaque entrée d'ingrédient comporte des indicateurs de statut explicites (<code>vegan : oui/non/peut-être</code>, <code>végétarien : oui/non/peut-être</code>, <code>huile de palme : oui/non/peut-être</code>), sélectionnés par des scientifiques en alimentation et des chercheurs de la communauté.
+        </p>
+      </div>
+
+      <div class="id-tech-step">
+        <span class="id-tech-step-num">Étape 4</span>
+        <h3 class="id-tech-step-title">Agrégation prudente</h3>
+        <p class="id-tech-step-desc">
+          Si un seul ingrédient ou sous-ingrédient contrevient à un régime alimentaire, le produit entier est signalé. Si un additif ambigu (par ex. E471) peut être d'origine végétale ou animale, le statut est prudemment rapporté comme « Inconnu ».
+        </p>
+      </div>
+    </div>
+
+    <!-- Interactive Visual Representation -->
+    <div class="id-parser-interactive">
+      <div class="id-parser-label">Exemple d'analyse et de classification en temps réel</div>
+      <div class="id-raw-ingredients">
+        <strong>Étiquette brute :</strong> Sucre, huile de palme, noisettes (13 %), lait écrémé en poudre (8,7 %), cacao maigre (7,4 %), émulsifiant : lécithines (soja), vanilline.
+      </div>
+      <div class="id-parser-label">Décomposition des jetons Open Food Facts :</div>
+      <div class="id-parsed-tokens">
+        <span class="id-token vegan-ok">✓ Sucre (vegan)</span>
+        <span class="id-token warning-palm">⚠️ Huile de palme (huile de palme : oui)</span>
+        <span class="id-token vegan-ok">✓ Noisettes (vegan)</span>
+        <span class="id-token danger-animal">❌ Lait écrémé en poudre (vegan : non, laitier)</span>
+        <span class="id-token vegan-ok">✓ Cacao maigre (vegan)</span>
+        <span class="id-token vegan-ok">✓ Lécithine de soja (vegan)</span>
+        <span class="id-token vegan-ok">✓ Vanilline (vegan)</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- DEDICATED APP PROMO INCLUDE -->
+  [[ingredients/mobile-app-promo-ingredients.html]]
+
+
+  <!-- EXPANDING TO MORE DIETS: THE OPEN DIETS HUB -->
+  <section class="id-diets-hub">
+    <div class="id-diets-hub-header">
+      <div>
+        <span class="id-section-tag" style="color: var(--id-blue-700);">Transparence nutritionnelle universelle</span>
+        <h2 class="id-diets-hub-title">Aller au-delà du vegan, du végétarien et de l'huile de palme</h2>
+      </div>
+      <a href="https://wiki.openfoodfacts.org/Diets" class="id-wiki-btn">
+        <span>📖 Explorer le Wiki des régimes alimentaires</span>
+      </a>
+    </div>
+
+    <p class="id-diets-hub-desc">
+      Les besoins diététiques sont aussi divers que l'humanité. Grâce à l'ontologie flexible et aux taxonomies ouvertes d'Open Food Facts, notre communauté pose activement les bases pour prendre en charge des dizaines de régimes alimentaires liés à la santé, à la culture, à la religion et aux choix personnels.
+    </p>
+
+    <div class="id-diets-pill-grid">
+      <div class="id-diet-pill-card">
+        <div class="id-diet-pill-title"><span>🌾</span> Sans gluten et maladie cœliaque</div>
+        <p class="id-diet-pill-text">Identification du blé, de l'orge, du seigle, de l'épeautre, du triticale, des avertissements sur la contamination croisée et des certifications sans gluten AOECS.</p>
+      </div>
+
+      <div class="id-diet-pill-card">
+        <div class="id-diet-pill-title"><span>🥛</span> Sans lactose et sans produits laitiers</div>
+        <p class="id-diet-pill-text">Détection des extraits secs de lait, de la caséine, du lactosérum, de la matière grasse laitière et des dérivés du lactose pour les consommateurs intolérants et allergiques.</p>
+      </div>
+
+      <div class="id-diet-pill-card">
+        <div class="id-diet-pill-title"><span>☪️</span> Régime Halal</div>
+        <p class="id-diet-pill-text">Détection des traces de porc, des enzymes animales, de la gélatine non halal et des agents aromatisants à base d'alcool.</p>
+      </div>
+
+      <div class="id-diet-pill-card">
+        <div class="id-diet-pill-title"><span>✡️</span> Régime Casher</div>
+        <p class="id-diet-pill-text">Aide à la classification Viande, Laitier et Pareve, ainsi qu'aux logos de certification Casher reconnus.</p>
+      </div>
+
+      <div class="id-diet-pill-card">
+        <div class="id-diet-pill-title"><span>🍎</span> Faible en FODMAP</div>
+        <p class="id-diet-pill-text">Signalement des oligosaccharides, disaccharides, monosaccharides et polyols fermentescibles pour le soulagement du syndrome de l'intestin irritable.</p>
+      </div>
+
+      <div class="id-diet-pill-card">
+        <div class="id-diet-pill-title"><span>🐟</span> Pescétarien</div>
+        <p class="id-diet-pill-text">Filtrage de la viande et de la volaille tout en validant le poisson, les fruits de mer, les algues et les nutriments dérivés d'animaux aquatiques.</p>
+      </div>
+
+      <div class="id-diet-pill-card">
+        <div class="id-diet-pill-title"><span>🥜</span> 14 allergènes majeurs</div>
+        <p class="id-diet-pill-text">Alertes en temps réel pour les arachides, les fruits à coque, le sésame, la moutarde, le céleri, les mollusques, le lupin et les sulfites.</p>
+      </div>
+
+      <div class="id-diet-pill-card">
+        <div class="id-diet-pill-title"><span>🐾</span> Régimes pour animaux</div>
+        <p class="id-diet-pill-text">Extension de l'analyse des ingrédients aux chats et aux chiens sur <a href="https://world.openpetfoodfacts.org/">Open Pet Food Facts</a>.</p>
+      </div>
+    </div>
+
+    <div class="id-wiki-links-bar">
+      <span style="font-weight: 700; font-size: 0.9rem; color: var(--id-blue-700);">Documentation approfondie du Wiki :</span>
+      <a href="https://wiki.openfoodfacts.org/Diets" class="id-wiki-btn">Wiki : Projet Régimes</a>
+      <a href="https://wiki.openfoodfacts.org/Category:Diets" class="id-wiki-btn">Wiki Catégorie : Régimes</a>
+      <a href="https://wiki.openfoodfacts.org/Category:Ingredients" class="id-wiki-btn">Wiki Catégorie : Taxonomie des ingrédients</a>
+    </div>
+  </section>
+
+
+  <!-- COMMUNITY INITIATIVES & LOCAL ASSOCIATIONS OUTREACH -->
+  <section class="id-community-box">
+    <div class="id-community-header">
+      <span class="id-section-tag" style="color: #6B21A8;">Renforcer l'action citoyenne</span>
+      <h2 class="id-community-title">Initiatives communautaires : développons le soutien pour plus de régimes</h2>
+      <p class="id-community-desc">
+        Open Food Facts est un bien commun collaboratif construit par des citoyens pour des citoyens. Nous travaillons activement avec des associations véganes, des sociétés végétariennes, des groupes de personnes cœliaques et des ONG de santé dans le monde entier pour rendre la transparence alimentaire universelle.
+      </p>
+    </div>
+
+    <div class="id-community-actions-grid">
+      <div class="id-action-card">
+        <div class="id-action-icon">🤝</div>
+        <h3 class="id-action-title">Partenariats avec des associations locales</h3>
+        <p class="id-action-desc">
+          Faites-vous partie d'une association végane ou végétarienne locale ? Aidez-nous à faire passer le message à vos membres, à organiser des journées de scan communautaires et à recommander notre application gratuite et sans publicité.
+        </p>
+      </div>
+
+      <div class="id-action-card">
+        <div class="id-action-icon">📚</div>
+        <h3 class="id-action-title">Audit de la taxonomie et du vocabulaire</h3>
+        <p class="id-action-desc">
+          Contribuez en ajoutant des synonymes d'ingrédients locaux, des termes dialectaux régionaux et des définitions scientifiques pour garantir qu'aucun dérivé caché n'échappe à la détection dans votre langue.
+        </p>
+      </div>
+
+      <div class="id-action-card">
+        <div class="id-action-icon">📸</div>
+        <h3 class="id-action-title">Collecte participative de données en supermarché</h3>
+        <p class="id-action-desc">
+          Scannez de nouveaux produits végétaux, prenez des photos nettes des listes d'ingrédients et vérifiez les résultats de l'OCR pour construire la base de données végane ouverte la plus complète au monde.
+        </p>
+      </div>
+
+      <div class="id-action-card">
+        <div class="id-action-icon">💻</div>
+        <h3 class="id-action-title">Développez sur notre API ouverte</h3>
+        <p class="id-action-desc">
+          Les développeurs et les chercheurs peuvent utiliser notre API REST JSON gratuite pour alimenter des guides d'achat spécialisés, des projets de recherche et des extensions web.
+        </p>
+      </div>
+    </div>
+
+    <div class="id-community-cta-bar">
+      <div class="id-community-cta-text">
+        <strong>Vous souhaitez collaborer ou suggérer un nouveau filtre alimentaire ?</strong>
+        <p style="margin: 0.25rem 0 0; font-size: 0.88rem; color: var(--id-text-secondary);">
+          Rejoignez notre chat ouvert pour entrer directement en contact avec les bénévoles, les taxonomistes alimentaires et les développeurs derrière l'analyseur d'ingrédients.
+        </p>
+      </div>
+      <div class="id-community-cta-buttons">
+        <a href="https://slack.openfoodfacts.org" class="id-btn-slack">
+          <span>💬</span> Rejoindre le Slack d'OFF (#diets &amp; #ingredients)
+        </a>
+        <a href="mailto:contact@openfoodfacts.org?subject=Diet%20and%20Ingredient%20Partnership" class="id-btn-email">
+          <span>✉️</span> Nous contacter par e-mail
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FREQUENTLY ASKED QUESTIONS -->
+  <section class="id-faq-section">
+    <div class="id-section-header">
+      <div class="id-section-tag">Bon à savoir</div>
+      <h2 class="id-section-title">Foire Aux Questions (FAQ)</h2>
+    </div>
+
+    <div class="id-faq-item">
+      <h3 class="id-faq-question">Le détecteur peut-il identifier les auxiliaires technologiques comme la colle de poisson ou le noir animal ?</h3>
+      <p class="id-faq-answer">
+        Comme les fabricants de produits alimentaires ne sont généralement pas légalement tenus d'indiquer les auxiliaires technologiques sur l'emballage (tels que la colle de poisson utilisée pour clarifier certaines bières ou certains vins), Open Food Facts ne peut les détecter que lorsque le produit porte une certification officielle (par exemple V-Label, Vegan Society) ou lorsque le fabricant les divulgue volontairement. Nous documentons activement les pratiques de collage connues pour le vin et la bière dans notre wiki communautaire.
+      </p>
+    </div>
+
+    <div class="id-faq-item">
+      <h3 class="id-faq-question">Pourquoi un produit affiche-t-il « Statut végétalien inconnu » ?</h3>
+      <p class="id-faq-answer">
+        Certains additifs — tels que les mono- et diglycérides d'acides gras (E471) ou l'acide lactique — peuvent être synthétisés à partir d'huiles végétales ou de graisses animales. Lorsque le fabricant ne précise pas l'origine sur l'étiquette et qu'aucune certification végétalienne tierce n'est présente, Open Food Facts indique prudemment le statut comme « inconnu » afin que les consommateurs puissent prendre une décision éclairée et prudente.
+      </p>
+    </div>
+
+    <div class="id-faq-item">
+      <h3 class="id-faq-question">Qu'en est-il des avertissements sur les allergènes « Peut contenir des traces de lait ou d'œufs » ?</h3>
+      <p class="id-faq-answer">
+        Les mentions « Peut contenir » indiquent un risque de contamination croisée involontaire dans l'usine de fabrication, et non un ingrédient intentionnel de la recette. Open Food Facts fait la distinction entre les ingrédients réels de la recette et les alertes de contamination croisée, en affichant les avertissements sur les allergènes séparément afin que chacun puisse choisir en fonction de sa tolérance personnelle au risque.
+      </p>
+    </div>
+
+    <div class="id-faq-item">
+      <h3 class="id-faq-question">Comment puis-je corriger une erreur d'ingrédient ou ajouter un produit non répertorié ?</h3>
+      <p class="id-faq-answer">
+        Open Food Facts est un projet participatif, tout comme Wikipédia. Si vous repérez une erreur, ouvrez simplement la page du produit ou utilisez l'application mobile pour modifier le texte des ingrédients, télécharger une nouvelle photo de l'emballage ou signaler un problème. Votre correction profitera immédiatement à des millions de consommateurs dans le monde !
+      </p>
+    </div>
+  </section>
+
+</div>
