@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.11.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.10.0...v1.11.0) (2026-11-07)
+
+
+### Features
+
+* configure Copilot coding agent instructions ([#1029](https://github.com/openfoodfacts/openfoodfacts-web/issues/1029)) ([2f2f159](https://github.com/openfoodfacts/openfoodfacts-web/commit/2f2f159651c4a290f184fb5ac1f51e297b6aac00)), closes [#785](https://github.com/openfoodfacts/openfoodfacts-web/issues/785)
+* link the Open Prices known reuses from the reuses page ([#1009](https://github.com/openfoodfacts/openfoodfacts-web/issues/1009)) ([7d666e8](https://github.com/openfoodfacts/openfoodfacts-web/commit/7d666e8c9a0c17f6b37070187659438172f0668a)), closes [#1006](https://github.com/openfoodfacts/openfoodfacts-web/issues/1006)
+
+
+### Bug Fixes
+
+* [Reuse] Add FoodBalance ([#1038](https://github.com/openfoodfacts/openfoodfacts-web/issues/1038)) ([46540ad](https://github.com/openfoodfacts/openfoodfacts-web/commit/46540ad506a45e301abcbd8aa1fa1433d12bec00))
+* [Reuse] Add Semaforo Etichette ([#1036](https://github.com/openfoodfacts/openfoodfacts-web/issues/1036)) ([5a93f0a](https://github.com/openfoodfacts/openfoodfacts-web/commit/5a93f0a4261e5510291eea9b2da416661f6c9a5a)), closes [#1035](https://github.com/openfoodfacts/openfoodfacts-web/issues/1035)
+* add mention of Green-Score to help-complete-products ([#172](https://github.com/openfoodfacts/openfoodfacts-web/issues/172)) ([#1010](https://github.com/openfoodfacts/openfoodfacts-web/issues/1010)) ([93e39b0](https://github.com/openfoodfacts/openfoodfacts-web/commit/93e39b062512d6bc8f581eb9c71ca84fd1f044be))
+* Change PR title prefix from '[FAQ]' to 'chore(FAQ)' ([995bab6](https://github.com/openfoodfacts/openfoodfacts-web/commit/995bab6a5b6da5357a230baedf7a13e03bad6cfa))
+* Change PR title prefix from '[Producer]' to 'chore(Producer)' ([f4b876f](https://github.com/openfoodfacts/openfoodfacts-web/commit/f4b876f4a862fe23fe382bc9f4545b8d30b9d3e4))
+* Change PR title prefix from '[Query]' to 'chore(Query)' ([0bdb6bb](https://github.com/openfoodfacts/openfoodfacts-web/commit/0bdb6bbd3e638f557b66cf5f74b9ea823f9ab6ec))
+* Change PR title prefix from '[Reuse]' to 'fix: [Reuse]' ([95b84c7](https://github.com/openfoodfacts/openfoodfacts-web/commit/95b84c721954aacd79e04e1b3f91c15b2f9eedba))
+* Change PR title prefix from 'feat' to 'chore' ([cf30d16](https://github.com/openfoodfacts/openfoodfacts-web/commit/cf30d162ba3bcbf00d67e6874dd2b3c6a83ec10c))
+* Change PR title prefix from 'fix' to 'chore' ([83d60be](https://github.com/openfoodfacts/openfoodfacts-web/commit/83d60be45ae4bce12a9f6154364e0fd1c0b12fbb))
+* Change PR title prefix from 'Scan Party' to 'chore(Scan Party)' ([1a91372](https://github.com/openfoodfacts/openfoodfacts-web/commit/1a9137286db94390539856c6675b60c81b4979c2))
+* Change PR title prefix from feat to chore ([2446c66](https://github.com/openfoodfacts/openfoodfacts-web/commit/2446c663a9be2a92c43eed8f3b23564e0271bfe3))
+* fixes for duplicate emojis ([55b19f1](https://github.com/openfoodfacts/openfoodfacts-web/commit/55b19f11a2385ebd01bca98434228318c39fe88a))
+* legal fixes reported to us via email ([#1030](https://github.com/openfoodfacts/openfoodfacts-web/issues/1030)) ([36e2d23](https://github.com/openfoodfacts/openfoodfacts-web/commit/36e2d23e5499fe47559237d21c94275795cdcf01))
+* more duplicate emojis ([49e250d](https://github.com/openfoodfacts/openfoodfacts-web/commit/49e250ddd6ca20a7c7d67b44fa8ee51281e865ca))
+* title format in publication PR workflow ([a844c85](https://github.com/openfoodfacts/openfoodfacts-web/commit/a844c85827b5cc393d0c145b5885f7a892bb23d8))
+* Update commit title format in workflow YAML ([57d41a6](https://github.com/openfoodfacts/openfoodfacts-web/commit/57d41a650b4a6f0c05d15b2d9a2b7046f188d753))
+
 ## [1.10.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.9.0...v1.10.0) (2026-10-20)
 
 
