@@ -19,6 +19,17 @@ import glob
 import json
 import os
 import re
+import sys
+
+# Ensure vendor path for yaml
+try:
+    from i18n_utils import ensure_vendor_path, get_localized_field, SUPPORTED_LANGUAGES
+    ensure_vendor_path()
+except ImportError:
+    sys.path.insert(0, os.path.dirname(__file__))
+    from i18n_utils import ensure_vendor_path, get_localized_field, SUPPORTED_LANGUAGES
+    ensure_vendor_path()
+
 import yaml
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -34,11 +45,13 @@ def load_press_items():
                 data = yaml.safe_load(f)
                 if isinstance(data, dict):
                     items.append(data)
-        items.sort(key=lambda x: (str(x.get("date", "2000-01-01")), str(x.get("title", ""))), reverse=True)
+        items.sort(key=lambda x: (str(x.get("date", "2000-01-01")), get_localized_field(x, "title", "en").lower()), reverse=True)
         return items
     elif os.path.exists(MERGED_JSON):
         with open(MERGED_JSON, "r", encoding="utf-8") as f:
-            return json.load(f)
+            items = json.load(f)
+            items.sort(key=lambda x: (str(x.get("date", "2000-01-01")), get_localized_field(x, "title", "en").lower()), reverse=True)
+            return items
     return []
 
 merged = load_press_items()
@@ -50,9 +63,15 @@ def build_html(lang="fr", items=None):
         items = merged
 
     # Clean items: ensure internal editorial notes are never leaked to client JSON
+    # and pre-resolve localized fields for this target language
     clean_items = []
     for it in items:
         clean = dict(it)
+        clean.pop("editorial_note", None)
+        clean["title"] = get_localized_field(it, "title", lang)
+        if "verbatim" in it:
+            clean["verbatim"] = get_localized_field(it, "verbatim", lang)
+        clean_items.append(clean)
         clean.pop("editorial_note", None)
         clean_items.append(clean)
 
@@ -1090,21 +1109,19 @@ def main(items=None):
     if items is not None:
         merged = items
 
-    # Write French version
-    fr_html = build_html("fr", items=merged)
-    with open("lang/fr/texts/revue-de-presse-fr.html", "w", encoding="utf-8") as f:
-        f.write(fr_html.strip() + "\n")
-    print("Wrote lang/fr/texts/revue-de-presse-fr.html")
+    for lang in SUPPORTED_LANGUAGES:
+        lang_html = build_html(lang, items=merged)
+        out_path = f"lang/{lang}/texts/press-review.html"
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        with open(out_path, "w", encoding="utf-8") as f:
+            f.write(lang_html.strip() + "\n")
+        print(f"Wrote {out_path}")
 
-    # Write English version (both as revue-de-presse-fr.html for direct access and press-review.html)
-    en_html = build_html("en", items=merged)
-    with open("lang/en/texts/revue-de-presse-fr.html", "w", encoding="utf-8") as f:
-        f.write(en_html.strip() + "\n")
-    print("Wrote lang/en/texts/revue-de-presse-fr.html")
-
-    with open("lang/en/texts/press-review.html", "w", encoding="utf-8") as f:
-        f.write(en_html.strip() + "\n")
-    print("Wrote lang/en/texts/press-review.html")
+        # Also write revue-de-presse-fr.html for backward compatibility
+        legacy_path = f"lang/{lang}/texts/revue-de-presse-fr.html"
+        with open(legacy_path, "w", encoding="utf-8") as f:
+            f.write(lang_html.strip() + "\n")
+        print(f"Wrote {legacy_path}")
 
 if __name__ == "__main__":
     main()
