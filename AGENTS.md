@@ -20,8 +20,9 @@ Please refer to the comprehensive instructions in:
   - `Eco-Score`
   - `Green-Score`
   - `NOVA`
-- **HTML fragments:** Files in `lang/<lang>/texts/` are page fragments embedded by `product-opener`. Do NOT wrap them in `<html>` or `<body>` tags. Preserve `[[texts/...]]` template includes.
-- **Translation QA:** See [`lang/AGENTS.md`](lang/AGENTS.md) for full localization and internationalization QA directives.
+- **HTML fragments:** Files in `lang/<lang>/texts/` are page fragments embedded by `product-opener`. Do NOT wrap them in `<html>` or `<body>` tags. Preserve `[[texts/...]]` template includes (wrap standalone includes in `<div translate="no" class="notranslate">[[...]]</div>` and Material Icons in `<span class="material-icons" translate="no">...</span>` in `lang/en/texts/` so Crowdin never translates them).
+- **No leaked MT/API error strings or sister-project contamination:** Never allow leaked OpenAI/MT error strings (e.g. `Incorrect Api key provided: sk-dCEE0***************************************OfZI. You can find your Api key at https://platform. openai. com/account/api-keys.</p>`) or OBF/OPFF sister-project strings (`Open Beauty Facts` / cosmetics text in `discover.html`, `contribute.html`, `index.html`, `open-food-hunt.html`).
+- **Translation QA & Autofix:** See [`lang/AGENTS.md`](lang/AGENTS.md) for full localization and internationalization QA directives. Run `python3 scripts/fix_translation_issues.py` to autofix translation PRs and `python3 scripts/prepare_clean_crowdin_translations.py` before re-uploading cleaned translations to Crowdin.
 
 ### 2. Validation & Testing
 Always test your changes before concluding work:
