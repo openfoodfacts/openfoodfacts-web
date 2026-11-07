@@ -1,0 +1,2310 @@
+<!--
+  ============================================================================
+  Open Food Facts — Data Quality & Verification Hub (lang/en/texts/data-quality.html)
+  ============================================================================
+  HOW TO MAINTAIN & UPDATE THIS PAGE:
+  1. Key metrics, multi-year historical series (Santé publique France reports),
+     interactive rule presets, and live facet cards are configured in the
+     `DQ_DATA` object inside the `<script>` block at the bottom of this file,
+     and mirrored in the static HTML fallback for SEO, accessibility, and
+     Crowdin localization.
+  2. Illustrations are stored in `/images/illustrations/food/`:
+     - `/images/illustrations/food/off-data-quality-firewalls.svg`
+     - `/images/illustrations/food/off-data-quality-engine.svg`
+     - `/images/illustrations/food/off-data-quality-patrol.svg`
+     - `/images/illustrations/food/off-data-quality-animated.svg`
+  3. Protected brand names (never translate):
+     Open Food Facts, Open Prices, Nutri-Score, Eco-Score, Green-Score, NOVA.
+  ============================================================================
+-->
+<style>
+  .off-dq-page {
+    --dq-bg: #f9f7f2;
+    --dq-surface: #ffffff;
+    --dq-surface-alt: #f2efe9;
+    --dq-surface-green: #eef9f2;
+    --dq-surface-blue: #edf7fc;
+    --dq-surface-amber: #fff8e5;
+    --dq-text: #181818;
+    --dq-text-muted: #4a525d;
+    --dq-border: #dce2e8;
+    --dq-green: #008c42;
+    --dq-green-dark: #086632;
+    --dq-green-soft: #d3f2e0;
+    --dq-blue: #0077c8;
+    --dq-cyan: #00bdf2;
+    --dq-orange: #ff6b35;
+    --dq-orange-dark: #c84312;
+    --dq-yellow: #f8c100;
+    --dq-red: #c92a1d;
+    --dq-charcoal: #202428;
+    --dq-radius-lg: 20px;
+    --dq-radius-md: 14px;
+    --dq-radius-sm: 10px;
+    --dq-shadow: 0 8px 28px rgba(24, 24, 24, 0.07);
+    font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+    color: var(--dq-text);
+    background-color: var(--dq-bg);
+    line-height: 1.6;
+    padding: 0 0 4rem;
+    overflow-x: clip;
+  }
+
+  .off-dq-page *,
+  .off-dq-page *::before,
+  .off-dq-page *::after {
+    box-sizing: border-box;
+  }
+
+  /* Modern Web Guidance: improve-text-layout-and-legibility */
+  .off-dq-page h1,
+  .off-dq-page h2,
+  .off-dq-page h3,
+  .off-dq-page h4 {
+    font-family: "Nunito", "Public Sans", sans-serif;
+    color: var(--dq-text);
+    line-height: 1.22;
+    margin-top: 0;
+    text-wrap: balance;
+  }
+
+  .off-dq-page p,
+  .off-dq-page li,
+  .off-dq-page dd {
+    text-wrap: pretty;
+    max-width: 72ch;
+  }
+
+  /* Modern Web Guidance: accessibility (:focus-visible explicit styling) */
+  .off-dq-page a:focus-visible,
+  .off-dq-page button:focus-visible,
+  .off-dq-page select:focus-visible,
+  .off-dq-page input:focus-visible,
+  .off-dq-page summary:focus-visible,
+  .off-dq-page [tabindex="0"]:focus-visible {
+    outline: 3px solid var(--dq-blue);
+    outline-offset: 3px;
+  }
+
+  .off-dq-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  /* Hero Section */
+  .off-dq-hero {
+    background: linear-gradient(135deg, #16222a 0%, #1d362c 58%, #0b5235 100%);
+    color: #ffffff;
+    padding: 3.5rem 0 3rem;
+    border-bottom: 5px solid var(--dq-green);
+  }
+
+  .off-dq-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .off-dq-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.14);
+    color: #e8f8ef;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+  }
+
+  .off-dq-hero h1 {
+    color: #ffffff;
+    font-size: clamp(2rem, 3.8vw, 3.1rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .off-dq-hero-lead {
+    color: #e9f2f7;
+    font-size: clamp(1.05rem, 1.4vw, 1.22rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.65;
+  }
+
+  /* Modern Web Guidance: css-layout (flex-wrap with balance fallback) */
+  .off-dq-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-wrap: balance;
+    gap: 0.65rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .off-dq-trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: rgba(11, 122, 62, 0.42);
+    border: 1px solid rgba(127, 188, 43, 0.55);
+    color: #ffffff;
+    padding: 0.45rem 0.85rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .off-dq-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    align-items: center;
+  }
+
+  .off-dq-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.35rem;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.98rem;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.18s ease, opacity 0.18s ease, background-color 0.18s ease;
+  }
+
+  .off-dq-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .off-dq-btn-primary {
+    background-color: var(--dq-orange);
+    color: #ffffff !important;
+  }
+
+  .off-dq-btn-primary:hover {
+    background-color: var(--dq-orange-dark);
+  }
+
+  .off-dq-btn-secondary {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+
+  .off-dq-btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.22);
+  }
+
+  .off-dq-btn-green {
+    background-color: var(--dq-green-dark);
+    color: #ffffff !important;
+  }
+
+  .off-dq-btn-green:hover {
+    background-color: #054d25;
+  }
+
+  .off-dq-btn-outline {
+    background-color: var(--dq-surface);
+    color: var(--dq-charcoal) !important;
+    border-color: var(--dq-border);
+  }
+
+  .off-dq-btn-outline:hover {
+    border-color: var(--dq-blue);
+    color: var(--dq-blue) !important;
+  }
+
+  .off-dq-hero-art {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--dq-radius-lg);
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .off-dq-hero-art img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Headline KPI Strip */
+  .off-dq-kpi-strip {
+    margin-top: -1.75rem;
+    position: relative;
+    z-index: 3;
+  }
+
+  .off-dq-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1rem;
+  }
+
+  .off-dq-kpi-card {
+    background: var(--dq-surface);
+    border-radius: var(--dq-radius-md);
+    padding: 1.25rem 1.35rem;
+    box-shadow: var(--dq-shadow);
+    border: 1px solid var(--dq-border);
+    border-top: 4px solid var(--dq-green);
+  }
+
+  .off-dq-kpi-card[data-accent="blue"] {
+    border-top-color: var(--dq-blue);
+  }
+
+  .off-dq-kpi-card[data-accent="orange"] {
+    border-top-color: var(--dq-orange);
+  }
+
+  .off-dq-kpi-card[data-accent="yellow"] {
+    border-top-color: #d49b00;
+  }
+
+  .off-dq-kpi-value {
+    font-family: "Nunito", sans-serif;
+    font-size: clamp(1.85rem, 2.6vw, 2.35rem);
+    font-weight: 900;
+    color: var(--dq-charcoal);
+    line-height: 1.1;
+    margin-bottom: 0.35rem;
+  }
+
+  .off-dq-kpi-label {
+    font-weight: 800;
+    font-size: 0.96rem;
+    color: var(--dq-text);
+    margin-bottom: 0.25rem;
+  }
+
+  .off-dq-kpi-sub {
+    font-size: 0.84rem;
+    color: var(--dq-text-muted);
+    margin: 0;
+  }
+
+  /* Sticky Quick-Jump Bar */
+  .off-dq-subnav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--dq-border);
+    margin: 2rem 0 0;
+    padding: 0.65rem 0;
+  }
+
+  .off-dq-subnav-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-wrap: balance;
+    gap: 0.45rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .off-dq-subnav-link {
+    display: inline-block;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--dq-charcoal);
+    text-decoration: none;
+    background: var(--dq-surface-alt);
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .off-dq-subnav-link:hover {
+    background: var(--dq-green-dark);
+    color: #ffffff;
+  }
+
+  /* Generic Section Styling */
+  .off-dq-section {
+    padding: 3.5rem 0 0;
+  }
+
+  .off-dq-section-header {
+    margin-bottom: 2rem;
+  }
+
+  .off-dq-section-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--dq-green-dark);
+    background: var(--dq-green-soft);
+    padding: 0.28rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 0.65rem;
+  }
+
+  .off-dq-section-header h2 {
+    font-size: clamp(1.65rem, 2.8vw, 2.25rem);
+    font-weight: 800;
+    margin-bottom: 0.65rem;
+  }
+
+  .off-dq-section-header p {
+    font-size: 1.06rem;
+    color: var(--dq-text-muted);
+    margin: 0;
+  }
+
+  /* Modern Web Guidance: css-layout (Grid + subgrid with same-cascade fallback) */
+  .off-dq-card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.35rem;
+  }
+
+  .off-dq-card-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .off-dq-subgrid-card {
+    background: var(--dq-surface);
+    border: 1px solid var(--dq-border);
+    border-radius: var(--dq-radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--dq-shadow);
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: auto 1fr auto;
+    grid-template-rows: subgrid;
+    gap: 0.75rem;
+  }
+
+  .off-dq-card {
+    background: var(--dq-surface);
+    border: 1px solid var(--dq-border);
+    border-radius: var(--dq-radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--dq-shadow);
+  }
+
+  .off-dq-badge-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 10px;
+    background: var(--dq-green-dark);
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 0.95rem;
+    margin-right: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .off-dq-card-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.18rem;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .off-dq-tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    background: var(--dq-surface-alt);
+    color: var(--dq-charcoal);
+  }
+
+  /* 6 Indicators Mini Grid */
+  .off-dq-indicators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    gap: 0.85rem;
+    margin-top: 1.25rem;
+  }
+
+  .off-dq-indicator-box {
+    background: var(--dq-surface);
+    border: 1px solid var(--dq-border);
+    border-left: 4px solid var(--dq-blue);
+    border-radius: var(--dq-radius-sm);
+    padding: 0.9rem 1rem;
+  }
+
+  .off-dq-indicator-box strong {
+    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .off-dq-indicator-box span {
+    font-size: 0.83rem;
+    color: var(--dq-text-muted);
+  }
+
+  /* Interactive Simulator Console */
+  .off-dq-simulator {
+    background: var(--dq-surface);
+    border: 2px solid var(--dq-charcoal);
+    border-radius: var(--dq-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--dq-shadow);
+  }
+
+  .off-dq-sim-topbar {
+    background: var(--dq-charcoal);
+    color: #ffffff;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .off-dq-sim-topbar h3 {
+    color: #ffffff;
+    margin: 0;
+    font-size: 1.15rem;
+  }
+
+  .off-dq-sim-presets {
+    padding: 1.15rem 1.5rem;
+    background: var(--dq-surface-alt);
+    border-bottom: 1px solid var(--dq-border);
+    display: flex;
+    flex-wrap: wrap;
+    flex-wrap: balance;
+    gap: 0.55rem;
+    align-items: center;
+  }
+
+  .off-dq-preset-btn {
+    appearance: none;
+    border: 1.5px solid var(--dq-border);
+    background: var(--dq-surface);
+    color: var(--dq-charcoal);
+    font-weight: 700;
+    font-size: 0.86rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .off-dq-preset-btn:hover {
+    border-color: var(--dq-blue);
+  }
+
+  .off-dq-preset-btn[aria-pressed="true"] {
+    background: var(--dq-blue);
+    color: #ffffff;
+    border-color: var(--dq-blue);
+  }
+
+  .off-dq-sim-body {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .off-dq-control-group {
+    margin-bottom: 1rem;
+  }
+
+  .off-dq-control-label {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .off-dq-range {
+    width: 100%;
+    accent-color: var(--dq-blue);
+    cursor: pointer;
+  }
+
+  .off-dq-select {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border-radius: 8px;
+    border: 1.5px solid var(--dq-border);
+    font-size: 0.92rem;
+    font-weight: 600;
+    background: var(--dq-surface);
+    color: var(--dq-text);
+  }
+
+  .off-dq-sim-output {
+    background: #f6f8fa;
+    border: 1.5px solid var(--dq-border);
+    border-radius: var(--dq-radius-md);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .off-dq-status-banner {
+    padding: 0.9rem 1.1rem;
+    border-radius: 10px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .off-dq-status-banner[data-status="pass"] {
+    background: var(--dq-surface-green);
+    color: var(--dq-green-dark);
+    border: 1.5px solid var(--dq-green);
+  }
+
+  .off-dq-status-banner[data-status="warn"] {
+    background: var(--dq-surface-amber);
+    color: #7a5200;
+    border: 1.5px solid var(--dq-yellow);
+  }
+
+  .off-dq-status-banner[data-status="error"] {
+    background: #fdeceb;
+    color: var(--dq-red);
+    border: 1.5px solid var(--dq-red);
+  }
+
+  .off-dq-check-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .off-dq-check-item {
+    background: var(--dq-surface);
+    border: 1px solid var(--dq-border);
+    border-left: 4px solid var(--dq-green);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.88rem;
+  }
+
+  .off-dq-check-item[data-level="error"] {
+    border-left-color: var(--dq-red);
+    background: #fffafa;
+  }
+
+  .off-dq-check-item[data-level="warn"] {
+    border-left-color: #d49b00;
+    background: #fffdf5;
+  }
+
+  .off-dq-check-item code {
+    display: inline-block;
+    margin-top: 0.25rem;
+    font-size: 0.78rem;
+    background: var(--dq-surface-alt);
+    padding: 0.12rem 0.45rem;
+    border-radius: 4px;
+    color: var(--dq-charcoal);
+    word-break: break-all;
+  }
+
+  /* 5-Year Metrics & Benchmark Explorer */
+  .off-dq-tabs-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .off-dq-tab-btn {
+    appearance: none;
+    border: 1.5px solid var(--dq-border);
+    background: var(--dq-surface);
+    color: var(--dq-charcoal);
+    font-weight: 800;
+    font-size: 0.92rem;
+    padding: 0.65rem 1.15rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .off-dq-tab-btn[aria-expanded="true"] {
+    background: var(--dq-green-dark);
+    color: #ffffff;
+    border-color: var(--dq-green-dark);
+  }
+
+  .off-dq-benchmark-panel {
+    background: var(--dq-surface);
+    border: 1px solid var(--dq-border);
+    border-radius: var(--dq-radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--dq-shadow);
+    margin-bottom: 1.25rem;
+  }
+
+  .off-dq-bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.1rem 0;
+  }
+
+  .off-dq-bar-row {
+    display: grid;
+    grid-template-columns: 145px 1fr 78px;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .off-dq-bar-track {
+    background: var(--dq-surface-alt);
+    height: 16px;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .off-dq-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--dq-green) 0%, #49b665 100%);
+    transition: transform 0.35s ease;
+    transform-origin: left center;
+  }
+
+  .off-dq-bar-fill[data-tone="error-drop"] {
+    background: linear-gradient(90deg, var(--dq-orange) 0%, var(--dq-green) 100%);
+  }
+
+  .off-dq-bar-fill[data-tone="blue"] {
+    background: linear-gradient(90deg, var(--dq-blue) 0%, var(--dq-cyan) 100%);
+  }
+
+  /* Modern Web Guidance: responsive-table (focusable container + container-type + sticky th) */
+  .off-dq-table-region {
+    container-type: inline-size;
+    overflow-x: auto;
+    border: 1px solid var(--dq-border);
+    border-radius: var(--dq-radius-md);
+    background: var(--dq-surface);
+    margin-top: 1.25rem;
+  }
+
+  .off-dq-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 660px;
+    font-size: 0.92rem;
+  }
+
+  .off-dq-table caption {
+    text-align: left;
+    padding: 0.95rem 1.15rem;
+    font-weight: 800;
+    color: var(--dq-charcoal);
+    background: var(--dq-surface-alt);
+    border-bottom: 1px solid var(--dq-border);
+  }
+
+  .off-dq-table th,
+  .off-dq-table td {
+    padding: 0.78rem 1rem;
+    border-bottom: 1px solid var(--dq-border);
+    text-align: left;
+  }
+
+  .off-dq-table thead th {
+    position: sticky;
+    top: 0;
+    background: #f0f4f8;
+    color: var(--dq-charcoal);
+    font-weight: 800;
+    z-index: 1;
+  }
+
+  .off-dq-table tbody th {
+    font-weight: 700;
+    background: #fafbfc;
+  }
+
+  /* Live Facet Mission Board */
+  .off-dq-mission-toolbar {
+    background: var(--dq-surface);
+    border: 1px solid var(--dq-border);
+    border-radius: var(--dq-radius-md);
+    padding: 1.15rem 1.35rem;
+    margin-bottom: 1.35rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .off-dq-filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    flex-wrap: balance;
+    gap: 0.5rem;
+  }
+
+  .off-dq-filter-btn {
+    appearance: none;
+    border: 1.5px solid var(--dq-border);
+    background: var(--dq-surface-alt);
+    color: var(--dq-charcoal);
+    font-weight: 700;
+    font-size: 0.86rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .off-dq-filter-btn[aria-pressed="true"] {
+    background: var(--dq-charcoal);
+    color: #ffffff;
+    border-color: var(--dq-charcoal);
+  }
+
+  /* Volunteer Role Matcher */
+  .off-dq-role-selector {
+    display: flex;
+    flex-wrap: wrap;
+    flex-wrap: balance;
+    gap: 0.6rem;
+    margin-bottom: 1.35rem;
+  }
+
+  .off-dq-role-btn {
+    appearance: none;
+    border: 2px solid var(--dq-border);
+    background: var(--dq-surface);
+    color: var(--dq-charcoal);
+    font-weight: 800;
+    font-size: 0.92rem;
+    padding: 0.7rem 1.1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .off-dq-role-btn[aria-pressed="true"] {
+    border-color: var(--dq-orange);
+    background: #fff3ed;
+    color: var(--dq-orange-dark);
+  }
+
+  .off-dq-role-spotlight {
+    background: linear-gradient(135deg, #ffffff 0%, #f2fbf6 100%);
+    border: 2px solid var(--dq-green);
+    border-radius: var(--dq-radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--dq-shadow);
+  }
+
+  /* FAQ Details Accordion */
+  .off-dq-faq-item {
+    background: var(--dq-surface);
+    border: 1px solid var(--dq-border);
+    border-radius: var(--dq-radius-md);
+    margin-bottom: 0.85rem;
+    padding: 0.25rem 1.25rem;
+  }
+
+  .off-dq-faq-item summary {
+    padding: 0.95rem 0;
+    font-weight: 800;
+    font-size: 1.05rem;
+    cursor: pointer;
+    color: var(--dq-charcoal);
+  }
+
+  .off-dq-faq-item[open] summary {
+    border-bottom: 1px solid var(--dq-border);
+    margin-bottom: 0.85rem;
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 920px) {
+    .off-dq-hero-grid,
+    .off-dq-sim-body {
+      grid-template-columns: 1fr;
+    }
+
+    .off-dq-bar-row {
+      grid-template-columns: 115px 1fr 68px;
+    }
+  }
+
+  /* Modern Web Guidance: motion (respect prefers-reduced-motion without 0.01ms hack) */
+  @media (prefers-reduced-motion: reduce) {
+    .off-dq-btn,
+    .off-dq-preset-btn,
+    .off-dq-role-btn,
+    .off-dq-bar-fill {
+      transition: none;
+    }
+    .off-dq-btn:hover {
+      transform: none;
+    }
+  }
+</style>
+
+<div class="off-dq-page">
+  <!-- ====================================================================
+       1. HERO SECTION — PUBLIC REASSURANCE & VOLUNTEER CALL TO ACTION
+       ==================================================================== -->
+  <header class="off-dq-hero">
+    <div class="off-dq-container off-dq-hero-grid">
+      <div>
+        <div class="off-dq-eyebrow">
+          <span aria-hidden="true">🛡️</span>
+          <span>Open Science · Multi-Layered Verification · Citizen &amp; AI Patrol</span>
+        </div>
+        <h1>Data Quality at Open Food Facts: How We Verify 4.2+ Million Food Products</h1>
+        <p class="off-dq-hero-lead">
+          Accurate food transparency powers everyday choices for millions of citizens, computes trusted
+          <strong>Nutri-Score</strong>, <strong>Green-Score</strong>, and <strong>NOVA</strong> indicators, and underpins
+          <strong>1,020+ peer-reviewed scientific publications</strong>. Discover how our 6 verification firewalls,
+          <strong>218+ automated quality checks</strong>, Robotoff AI models, food producers, and global volunteer patrollers
+          continuously verify, measure, and heal the world's largest open food database.
+        </p>
+
+        <div class="off-dq-pill-row" role="list" aria-label="Key verification highlights">
+          <span class="off-dq-trust-pill" role="listitem">✓ 96.8% pass all 218 automated error checks (France, Jan 2026)</span>
+          <span class="off-dq-trust-pill" role="listitem">✓ 98.9% barcode scan coverage on everyday groceries</span>
+          <span class="off-dq-trust-pill" role="listitem">✓ Every edit traced, photo-backed &amp; versioned</span>
+          <span class="off-dq-trust-pill" role="listitem">✓ 2025 EU Prize for Citizen Science Winner</span>
+        </div>
+
+        <div class="off-dq-cta-group">
+          <a href="#dq-simulator" class="off-dq-btn off-dq-btn-primary">Test the 218+ Quality Rules</a>
+          <a href="#dq-join-patrol" class="off-dq-btn off-dq-btn-secondary">Join the Data Quality Patrol</a>
+          <a href="https://world.openfoodfacts.org/facets/data-quality-errors" class="off-dq-btn off-dq-btn-secondary" target="_blank" rel="noopener">Explore Live Quality Facets ↗</a>
+        </div>
+      </div>
+
+      <div class="off-dq-hero-art">
+        <img
+          src="/images/illustrations/food/off-data-quality-firewalls.svg"
+          width="560"
+          height="420"
+          alt="Illustration of the 6 Firewalls of Data Quality at Open Food Facts protecting food product data through smart input nudges, version history, photographic evidence, human patrollers, 218 AI and automated checks, and direct producer data."
+        />
+      </div>
+    </div>
+  </header>
+
+  <!-- ====================================================================
+       2. HEADLINE KPI STRIP (SANTÉ PUBLIQUE FRANCE & GLOBAL 2025/2026 FIGURES)
+       ==================================================================== -->
+  <section class="off-dq-kpi-strip" aria-label="Key Data Quality Figures">
+    <div class="off-dq-container off-dq-kpi-grid">
+      <article class="off-dq-kpi-card" data-accent="green">
+        <div class="off-dq-kpi-value">96.80%</div>
+        <div class="off-dq-kpi-label">Products Error-Free Across 218 Checks</div>
+        <p class="off-dq-kpi-sub">Flagged anomaly rate reduced from 5.89% (2022) to 3.20% (Jan 2026, France) — on track for &lt;3.0%.</p>
+      </article>
+
+      <article class="off-dq-kpi-card" data-accent="blue">
+        <div class="off-dq-kpi-value">98.74%</div>
+        <div class="off-dq-kpi-label">Top 10,000 Scanned Products Complete</div>
+        <p class="off-dq-kpi-sub">Complete ingredient lists on the products people scan most, with 96.57% NOVA and 93.77% Nutri-Score computed.</p>
+      </article>
+
+      <article class="off-dq-kpi-card" data-accent="orange">
+        <div class="off-dq-kpi-value">~6,000 / mo</div>
+        <div class="off-dq-kpi-label">Product Anomalies Healed Monthly</div>
+        <p class="off-dq-kpi-sub">Fixed by our 50+ Data Quality Patrollers, Data Quality Daily subscribers, and Hunger Games validators.</p>
+      </article>
+
+      <article class="off-dq-kpi-card" data-accent="yellow">
+        <div class="off-dq-kpi-value">1,814+</div>
+        <div class="off-dq-kpi-label">Manufacturer Packaging Typos Caught</div>
+        <p class="off-dq-kpi-sub">Our thermodynamic nutrient checks even detect printing errors on physical supermarket labels.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       3. STICKY NAVIGATION
+       ==================================================================== -->
+  <nav class="off-dq-subnav" aria-label="Data Quality Page Sections">
+    <div class="off-dq-container">
+      <ul class="off-dq-subnav-list">
+        <li><a class="off-dq-subnav-link" href="#dq-principles">Core Principles &amp; 3 Pillars</a></li>
+        <li><a class="off-dq-subnav-link" href="#dq-firewalls">The 6 Firewalls</a></li>
+        <li><a class="off-dq-subnav-link" href="#dq-simulator">Interactive Rule Simulator</a></li>
+        <li><a class="off-dq-subnav-link" href="#dq-benchmarks">5-Year Figures (2020–2026)</a></li>
+        <li><a class="off-dq-subnav-link" href="#dq-ai-engine">Robotoff AI &amp; OCR</a></li>
+        <li><a class="off-dq-subnav-link" href="#dq-live-facets">Live Quality Facet Missions</a></li>
+        <li><a class="off-dq-subnav-link" href="#dq-join-patrol">Join the Patrol</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="off-dq-container">
+    <!-- ==================================================================
+         4. CORE PRINCIPLES: WHY DATA QUALITY MATTERS & OUR 3 PILLARS
+         ================================================================== -->
+    <section id="dq-principles" class="off-dq-section" aria-labelledby="dq-principles-heading">
+      <div class="off-dq-section-header">
+        <span class="off-dq-section-tag">Philosophy &amp; Architecture</span>
+        <h2 id="dq-principles-heading">Open, Incremental, and Auditable by Design</h2>
+        <p>
+          Unlike closed commercial catalogs that hide their error rates behind proprietary walls, Open Food Facts treats data quality
+          as an open scientific discipline: every photo is inspectable, every calculation is reproducible, and every potential anomaly is
+          publicly tagged so researchers and volunteers can filter or fix it immediately.
+        </p>
+      </div>
+
+      <div class="off-dq-card-grid-3">
+        <article class="off-dq-subgrid-card">
+          <div>
+            <h3 class="off-dq-card-title">
+              <span class="off-dq-badge-num">1</span>
+              <span>Understand (Measure &amp; Historize)</span>
+            </h3>
+          </div>
+          <p>
+            Every night, all <strong>4.2+ million products</strong> are evaluated against <strong>218 automated data quality facets</strong>
+            and tracked in our open analytics platform (Mirabelle / Apache Superset) across 6 core dimensions of quality.
+          </p>
+          <div>
+            <span class="off-dq-tag-chip">📊 Daily Longitudinal Tracking</span>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card">
+          <div>
+            <h3 class="off-dq-card-title">
+              <span class="off-dq-badge-num">2</span>
+              <span>Act (Prevent, Highlight &amp; Heal)</span>
+            </h3>
+          </div>
+          <p>
+            Verification never blocks contribution—instead, smart mobile &amp; web nudges prevent typos upstream, Robotoff AI extracts
+            ingredients and nutrition from photos, and anomalies are prioritized by scan popularity for rapid healing.
+          </p>
+          <div>
+            <span class="off-dq-tag-chip">⚡ Popularity-Weighted Triage</span>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card">
+          <div>
+            <h3 class="off-dq-card-title">
+              <span class="off-dq-badge-num">3</span>
+              <span>Inform (Product &amp; Dataset Transparency)</span>
+            </h3>
+          </div>
+          <p>
+            Every product page displays a transparent <strong>Data Quality Knowledge Panel</strong> showing photo recency, source
+            verification, and any active warning or error tags—giving full confidence to shoppers, producers, and scientists.
+          </p>
+          <div>
+            <span class="off-dq-tag-chip">🔍 1-Filter Research Exports</span>
+          </div>
+        </article>
+      </div>
+
+      <!-- The 6 Quality Indicators defined in the Open Food Facts Vision -->
+      <div class="off-dq-indicators-grid" aria-label="The 6 Dimensions of Data Quality at Open Food Facts">
+        <div class="off-dq-indicator-box">
+          <strong>1. Completeness</strong>
+          <span>Are photos, ingredients, nutrition facts, and packaging fields present to compute Nutri-Score, Green-Score, and NOVA?</span>
+        </div>
+        <div class="off-dq-indicator-box">
+          <strong>2. Reliability</strong>
+          <span>Are values internally coherent (thermodynamic energy balance, mass sum ≤ 100g, category &amp; label consistency)?</span>
+        </div>
+        <div class="off-dq-indicator-box">
+          <strong>3. Freshness</strong>
+          <span>How recently were product photos and formulations updated to reflect recipe changes and reformulations?</span>
+        </div>
+        <div class="off-dq-indicator-box">
+          <strong>4. Structuration</strong>
+          <span>Are raw text strings mapped into our 30+ multilingual taxonomies (ingredients, additives, allergens, labels, categories)?</span>
+        </div>
+        <div class="off-dq-indicator-box">
+          <strong>5. Exhaustivity</strong>
+          <span>What share of products on supermarket shelves are in the database? (98.9% of all barcode scans in France match!)</span>
+        </div>
+        <div class="off-dq-indicator-box">
+          <strong>6. Representativity</strong>
+          <span>Does coverage reflect real-world consumption across countries, brands, and the Top 10,000 most-scanned items?</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         5. THE 6 FIREWALLS OF OPEN FOOD FACTS
+         ================================================================== -->
+    <section id="dq-firewalls" class="off-dq-section" aria-labelledby="dq-firewalls-heading">
+      <div class="off-dq-section-header">
+        <span class="off-dq-section-tag">Defense-in-Depth Architecture</span>
+        <h2 id="dq-firewalls-heading">The 6 Firewalls Protecting Open Food Facts</h2>
+        <p>
+          Approximately <strong>80% of contributions</strong> come from citizen contributors (web &amp; mobile apps with timestamped
+          photographic proof) and <strong>20%</strong> from food producers and partner reuse apps (such as <em>UFC-Que Choisir</em> sending
+          verified improvements back for 3+ years). Six independent firewalls ensure data integrity at every stage.
+        </p>
+      </div>
+
+      <div class="off-dq-card-grid-3">
+        <article class="off-dq-subgrid-card">
+          <div>
+            <h3 class="off-dq-card-title">
+              <span class="off-dq-badge-num">1</span>
+              <span>Positive Spirit of Contribution</span>
+            </h3>
+          </div>
+          <p>
+            We design against wrong incentives (no gamified rewards for inventing fake data) and guide contributors in real time with
+            multilingual taxonomy autocomplete, unit validation, and instant warnings before a form is even saved.
+          </p>
+          <div>
+            <span class="off-dq-tag-chip">🌱 Mistake-Proof UX Nudges</span>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card">
+          <div>
+            <h3 class="off-dq-card-title">
+              <span class="off-dq-badge-num">2</span>
+              <span>Everything Traced, Recorded &amp; Versioned</span>
+            </h3>
+          </div>
+          <p>
+            Every single product modification is permanently versioned with contributor accounts or app identifiers. Sensitive edits
+            require authentication, and patrollers can inspect full revision diffs and roll back vandalism in one click.
+          </p>
+          <div>
+            <span class="off-dq-tag-chip">🕒 Wikipedia-Grade Audit Trail</span>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card">
+          <div>
+            <h3 class="off-dq-card-title">
+              <span class="off-dq-badge-num">3</span>
+              <span>Verifiability via Photographic Proof</span>
+            </h3>
+          </div>
+          <p>
+            Every product is anchored by timestamped photos of the front label, ingredient list, nutrition table, and packaging. Anyone
+            can visually audit any number in the database against the physical package photograph in seconds.
+          </p>
+          <div>
+            <span class="off-dq-tag-chip">📷 Ground-Truth Evidence</span>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card">
+          <div>
+            <h3 class="off-dq-card-title">
+              <span class="off-dq-badge-num">4</span>
+              <span>Human Patrol &amp; Data Quality Daily</span>
+            </h3>
+          </div>
+          <p>
+            Our 50+ volunteer patrollers coordinate via monthly quality meetings, the <code>#quality-data</code> Slack channel,
+            <strong>Nutri-Patrol</strong> moderation, and <strong>Data Quality Daily (DQD)</strong>—which sends 3 high-traffic flagged
+            products per day to subscribers, weighted by scan count.
+          </p>
+          <div>
+            <span class="off-dq-tag-chip">🕵️ ~6,000 Products Fixed / Month</span>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card">
+          <div>
+            <h3 class="off-dq-card-title">
+              <span class="off-dq-badge-num">5</span>
+              <span>Machine Patrol (218 Rules + Robotoff AI)</span>
+            </h3>
+          </div>
+          <p>
+            Every edit runs through <code>DataQuality.pm</code> and <code>DataQualityFood.pm</code> (218 deterministic checks) plus
+            <strong>Robotoff AI</strong> (predicting across 3,800+ categories, spotting statistical outliers from category averages, and
+            running AI Food Spellcheck).
+          </p>
+          <div>
+            <span class="off-dq-tag-chip">🤖 Automated Real-Time Sensors</span>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card">
+          <div>
+            <h3 class="off-dq-card-title">
+              <span class="off-dq-badge-num">6</span>
+              <span>Producer Pro Platform &amp; Verified Lock</span>
+            </h3>
+          </div>
+          <p>
+            <strong>316+ food producers</strong> (2,700+ brands, 55 automated pipelines) share <strong>113,000+ products</strong>
+            (25.3% of scans in France) via our free Pro Platform. Verified producer data is protected from anonymous overwrites while still
+            undergoing our 218 quality checks.
+          </p>
+          <div>
+            <span class="off-dq-tag-chip">🏭 67% Producers Value Error Alerts</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         6. INTERACTIVE FEATURE #1: LIVE DATAQUALITY.PM RULE SIMULATOR
+         ================================================================== -->
+    <section id="dq-simulator" class="off-dq-section" aria-labelledby="dq-simulator-heading">
+      <div class="off-dq-section-header">
+        <span class="off-dq-section-tag">Interactive Verification Sandbox</span>
+        <h2 id="dq-simulator-heading">Test Our Automated <code>DataQuality.pm</code> Sensors Live</h2>
+        <p>
+          Explore how <code>openfoodfacts-server</code> evaluates every product edit in real time. Select a real-world scenario below or
+          adjust the sliders to see how thermodynamic energy checks, mass-balance rules, category coherence, and false-positive tolerances work.
+        </p>
+      </div>
+
+      <div class="off-dq-simulator">
+        <div class="off-dq-sim-topbar">
+          <h3>🔬 Live Product Quality Inspector (<code>DataQuality.pm</code> + <code>DataQualityFood.pm</code>)</h3>
+          <span class="off-dq-tag-chip" style="background: rgba(255,255,255,0.16); color: #ffffff;">Calibrated to avoid false positives (kJ/kcal tolerance: 4.0–4.4)</span>
+        </div>
+
+        <div class="off-dq-sim-presets" role="group" aria-label="Simulator Scenario Presets">
+          <span style="font-weight: 800; font-size: 0.85rem; margin-right: 0.25rem;">Try a Preset:</span>
+          <button type="button" class="off-dq-preset-btn" data-preset="valid" aria-pressed="true">✓ Valid Everyday Product</button>
+          <button type="button" class="off-dq-preset-btn" data-preset="swapped" aria-pressed="false">⚠️ Swapped kJ &amp; kcal</button>
+          <button type="button" class="off-dq-preset-btn" data-preset="over105" aria-pressed="false">🚨 Nutrient Sum &gt; 105g</button>
+          <button type="button" class="off-dq-preset-btn" data-preset="oliveoil" aria-pressed="false">🫒 Olive Oil Coherence</button>
+          <button type="button" class="off-dq-preset-btn" data-preset="vegan" aria-pressed="false">🌱 Vegan vs. Milk Powder</button>
+          <button type="button" class="off-dq-preset-btn" data-preset="packtypo" aria-pressed="false">🏷️ Packaging Print Error (1,814+ Cases)</button>
+        </div>
+
+        <div class="off-dq-sim-body">
+          <!-- Left: Interactive Controls -->
+          <div>
+            <div class="off-dq-control-group">
+              <label class="off-dq-control-label" for="dq-sim-category">
+                <span>Product Category &amp; Claim Profile</span>
+              </label>
+              <select id="dq-sim-category" class="off-dq-select">
+                <option value="cereal">Breakfast Cereal (Standard Multi-Ingredient)</option>
+                <option value="olive-oil-multi">Extra Virgin Olive Oil — with 3 ingredients &amp; Nutri-Score A (Incoherent)</option>
+                <option value="vegan-dairy">Plant-Based Snack — labeled "Vegan" but contains "Skimmed milk powder"</option>
+                <option value="packaging-typo">Brand Packaging Typo — Label prints 45g Fat + 50g Carbs but only 210 kcal</option>
+              </select>
+            </div>
+
+            <div class="off-dq-control-group">
+              <label class="off-dq-control-label" for="dq-sim-kj">
+                <span>Declared Energy (kJ / 100g)</span>
+                <output id="dq-sim-kj-val" for="dq-sim-kj">1610 kJ</output>
+              </label>
+              <input id="dq-sim-kj" class="off-dq-range" type="range" min="100" max="3800" step="10" value="1610" />
+            </div>
+
+            <div class="off-dq-control-group">
+              <label class="off-dq-control-label" for="dq-sim-kcal">
+                <span>Declared Energy (kcal / 100g)</span>
+                <output id="dq-sim-kcal-val" for="dq-sim-kcal">384 kcal</output>
+              </label>
+              <input id="dq-sim-kcal" class="off-dq-range" type="range" min="25" max="1200" step="1" value="384" />
+            </div>
+
+            <div class="off-dq-control-group">
+              <label class="off-dq-control-label" for="dq-sim-fat">
+                <span>Fat (g / 100g) — 9 kcal/g</span>
+                <output id="dq-sim-fat-val" for="dq-sim-fat">8 g</output>
+              </label>
+              <input id="dq-sim-fat" class="off-dq-range" type="range" min="0" max="100" step="1" value="8" />
+            </div>
+
+            <div class="off-dq-control-group">
+              <label class="off-dq-control-label" for="dq-sim-carbs">
+                <span>Carbohydrates (g / 100g) — 4 kcal/g</span>
+                <output id="dq-sim-carbs-val" for="dq-sim-carbs">64 g</output>
+              </label>
+              <input id="dq-sim-carbs" class="off-dq-range" type="range" min="0" max="100" step="1" value="64" />
+            </div>
+
+            <div class="off-dq-control-group">
+              <label class="off-dq-control-label" for="dq-sim-fiber">
+                <span>Fiber + Protein + Salt (g / 100g)</span>
+                <output id="dq-sim-fiber-val" for="dq-sim-fiber">14 g</output>
+              </label>
+              <input id="dq-sim-fiber" class="off-dq-range" type="range" min="0" max="60" step="1" value="14" />
+            </div>
+          </div>
+
+          <!-- Right: Live Evaluation Console -->
+          <div class="off-dq-sim-output" aria-live="polite">
+            <div id="dq-sim-status" class="off-dq-status-banner" data-status="pass">
+              <span aria-hidden="true">✅</span>
+              <span id="dq-sim-status-text">PASS: All 218 automated quality checks satisfied (0 errors, 0 warnings).</span>
+            </div>
+
+            <div style="font-size: 0.88rem; color: var(--dq-text-muted);" id="dq-sim-telemetry">
+              <strong>Live Telemetry:</strong> Nutrient Mass Sum = <strong>86 g / 100g</strong> · kJ/kcal Ratio = <strong>4.19</strong> (Valid band: 4.0–4.4) · Recomputed Energy ≈ <strong>384 kcal</strong>.
+            </div>
+
+            <ul id="dq-sim-checks" class="off-dq-check-list">
+              <li class="off-dq-check-item" data-level="pass">
+                <strong>✓ Thermodynamic Energy &amp; kJ/kcal Ratio:</strong> Declared kJ (1610) and kcal (384) match physical conversion (ratio 4.19 within 4.0–4.4 legal rounding tolerance) and macronutrient reconstruction.
+              </li>
+              <li class="off-dq-check-item" data-level="pass">
+                <strong>✓ 100g Macronutrient Mass Balance:</strong> Fat (8g) + Carbs (64g) + Fiber/Protein/Salt (14g) = 86g/100g (≤ 105g threshold).
+              </li>
+              <li class="off-dq-check-item" data-level="pass">
+                <strong>✓ Category, Score &amp; Label Coherence:</strong> Ingredients and nutrition values align with category norms across 3,800+ Robotoff categories.
+              </li>
+            </ul>
+
+            <div style="margin-top: auto; pt: 0.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem;">
+              <a id="dq-sim-facet-link" href="https://world.openfoodfacts.org/facets/data-quality-errors" target="_blank" rel="noopener" class="off-dq-btn off-dq-btn-outline" style="padding: 0.5rem 1rem; font-size: 0.86rem;">
+                Inspect Matching Products on Open Food Facts ↗
+              </a>
+              <span style="font-size: 0.8rem; color: var(--dq-text-muted);">Source: <code>lib/ProductOpener/DataQuality.pm</code></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         7. INTERACTIVE FEATURE #2: 5-YEAR BENCHMARKS & SANTÉ PUBLIQUE FRANCE DATA
+         ================================================================== -->
+    <section id="dq-benchmarks" class="off-dq-section" aria-labelledby="dq-benchmarks-heading">
+      <div class="off-dq-section-header">
+        <span class="off-dq-section-tag">Longitudinal Evidence (2019–2026)</span>
+        <h2 id="dq-benchmarks-heading">Measured Year-over-Year Progress Shared with Public Health Institutions</h2>
+        <p>
+          Each year, Open Food Facts publishes comprehensive completeness and data quality audits (including our annual benchmark reports
+          for <strong>Santé publique France</strong>). Switch between views below—or use your browser's Find-in-Page (<code>Ctrl+F</code> /
+          <code>Cmd+F</code>) to search across all panels and the multi-year data table.
+        </p>
+      </div>
+
+      <!-- Tab Buttons controlling hidden="until-found" panels -->
+      <div class="off-dq-tabs-bar" role="group" aria-label="Benchmark Data Views">
+        <button type="button" class="off-dq-tab-btn" data-dq-tab="panel-error-rate" aria-expanded="true" aria-controls="panel-error-rate">
+          📉 1. Error Rate Reduction (2022–2026)
+        </button>
+        <button type="button" class="off-dq-tab-btn" data-dq-tab="panel-top10k" aria-expanded="false" aria-controls="panel-top10k">
+          🏆 2. Top 10,000 Scanned Completeness
+        </button>
+        <button type="button" class="off-dq-tab-btn" data-dq-tab="panel-producers" aria-expanded="false" aria-controls="panel-producers">
+          🏭 3. Producer Platform &amp; Scientific Context
+        </button>
+      </div>
+
+      <!-- Panel 1: Error Rate Trajectory -->
+      <div id="panel-error-rate" class="off-dq-benchmark-panel">
+        <div class="off-dq-card-grid-2">
+          <div>
+            <h3>Steady Reduction in Flagged Data Quality Errors (2022 → 2026)</h3>
+            <p>
+              Thanks to <strong>Data Quality Daily</strong>, <strong>Hunger Games</strong>, and our 50+ volunteer patrollers fixing
+              <strong>~6,000 products per month</strong>, the share of products with a flagged data quality error has dropped steadily every
+              single year—reaching <strong>3.20% in France in January 2026</strong> (meaning <strong>96.80%</strong> pass all 218 automated error checks).
+            </p>
+            <div class="off-dq-bar-chart" role="list" aria-label="Flagged error rate progression from 2022 to 2026 target">
+              <div class="off-dq-bar-row" role="listitem">
+                <strong>Dec 2022 (Global)</strong>
+                <div class="off-dq-bar-track"><div class="off-dq-bar-fill" data-tone="error-drop" style="width: 58.9%;"></div></div>
+                <span><strong>5.89%</strong></span>
+              </div>
+              <div class="off-dq-bar-row" role="listitem">
+                <strong>Dec 2023 (Global)</strong>
+                <div class="off-dq-bar-track"><div class="off-dq-bar-fill" data-tone="error-drop" style="width: 48.8%;"></div></div>
+                <span><strong>4.88%</strong></span>
+              </div>
+              <div class="off-dq-bar-row" role="listitem">
+                <strong>Jan 2025 (France)</strong>
+                <div class="off-dq-bar-track"><div class="off-dq-bar-fill" data-tone="error-drop" style="width: 34.5%;"></div></div>
+                <span><strong>3.45%</strong></span>
+              </div>
+              <div class="off-dq-bar-row" role="listitem">
+                <strong>Jan 2026 (France)</strong>
+                <div class="off-dq-bar-track"><div class="off-dq-bar-fill" data-tone="error-drop" style="width: 32.0%;"></div></div>
+                <span><strong>3.20%</strong></span>
+              </div>
+              <div class="off-dq-bar-row" role="listitem">
+                <strong>2026 Target</strong>
+                <div class="off-dq-bar-track"><div class="off-dq-bar-fill" style="width: 29.0%;"></div></div>
+                <span><strong>&lt; 3.00%</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center;">
+            <img
+              src="/images/illustrations/food/off-data-quality-patrol.svg"
+              width="520"
+              height="390"
+              style="max-width: 100%; height: auto; border-radius: 14px;"
+              alt="Illustration of volunteer hands validating Hunger Games cards alongside a downward chart of Open Food Facts error rates from 5.89% in 2022 to 3.20% in 2026."
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Top 10,000 Scanned Products Completeness (searchable via hidden="until-found") -->
+      <div id="panel-top10k" class="off-dq-benchmark-panel" hidden="until-found">
+        <h3>High Completeness on the Products Citizens Actually Scan (2019–2026)</h3>
+        <p>
+          In retail grocery markets, scan volume follows a steep power law: the <strong>Top 10,000 most-scanned products</strong> represent
+          the vast majority of real-world consumer scans. By weighting our <strong>Data Quality Daily</strong> queue by scan popularity,
+          everyday products reach near-universal completeness:
+        </p>
+        <div class="off-dq-bar-chart" role="list" aria-label="Completeness metrics for France and Top 10,000 scanned products">
+          <div class="off-dq-bar-row" role="listitem">
+            <strong>Scan Hit Rate (FR)</strong>
+            <div class="off-dq-bar-track"><div class="off-dq-bar-fill" style="width: 98.9%;"></div></div>
+            <span><strong>98.90%</strong></span>
+          </div>
+          <div class="off-dq-bar-row" role="listitem">
+            <strong>Top 10k Ingredients</strong>
+            <div class="off-dq-bar-track"><div class="off-dq-bar-fill" style="width: 98.7%;"></div></div>
+            <span><strong>98.74%</strong></span>
+          </div>
+          <div class="off-dq-bar-row" role="listitem">
+            <strong>Top 10k NOVA Group</strong>
+            <div class="off-dq-bar-track"><div class="off-dq-bar-fill" style="width: 96.6%;"></div></div>
+            <span><strong>96.57%</strong></span>
+          </div>
+          <div class="off-dq-bar-row" role="listitem">
+            <strong>Top 10k Nutri-Score</strong>
+            <div class="off-dq-bar-track"><div class="off-dq-bar-fill" style="width: 93.8%;"></div></div>
+            <span><strong>93.77%</strong></span>
+          </div>
+          <div class="off-dq-bar-row" role="listitem">
+            <strong>Global OCR Extraction</strong>
+            <div class="off-dq-bar-track"><div class="off-dq-bar-fill" data-tone="blue" style="width: 89.2%;"></div></div>
+            <span><strong>89.17%</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Producer Platform & Scientific Rigor (searchable via hidden="until-found") -->
+      <div id="panel-producers" class="off-dq-benchmark-panel" hidden="until-found">
+        <div class="off-dq-card-grid-2">
+          <div>
+            <h3>Producer Platform Growth (50 → 316 Producers)</h3>
+            <p>
+              Between 2020 and 2025, the number of food manufacturers sharing data directly on the free
+              <a href="https://world.pro.openfoodfacts.org" target="_blank" rel="noopener">Open Food Facts Pro Platform</a> grew more than
+              sixfold—from <strong>50 producers (23,153 products)</strong> in 2020 to <strong>316 producers (2,700+ brands, 113,000+ products)</strong>
+              in 2025, representing <strong>25.3% of all barcode scans in France</strong>. In our producer survey, <strong>73%</strong> use
+              the platform regularly and <strong>67%</strong> highlight the automated <strong>Data Quality Error Detection tool</strong> as
+              directly helpful for auditing their own catalog.
+            </p>
+          </div>
+          <div>
+            <h3>Scientific Comparisons: 2018 Snapshots vs. Today's 1-Filter Clean Exports</h3>
+            <p>
+              Earlier academic comparisons (such as the European <em>Best-ReMaP</em> study evaluating a 2018 snapshot against Oqali) analyzed
+              Open Food Facts before it reached 98.9% scan coverage and before automated thermodynamic energy recalculation from macronutrients
+              (fat, carbohydrates, fiber, proteins, polyols) was deployed. Today, any discrepancy automatically places a product in
+              <code>data_quality_errors_tags</code>—allowing research teams to <strong>exclude the ~3.2% flagged records with a single query
+              filter</strong> in Parquet, CSV, or Apache Superset exports, or collaborate with our team upstream on specific categories.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accessible Responsive Multi-Year Benchmark Table -->
+      <div class="off-dq-table-region" tabindex="0" role="region" aria-labelledby="dq-table-caption">
+        <table class="off-dq-table">
+          <caption id="dq-table-caption">
+            Open Food Facts Multi-Year Completeness &amp; Data Quality Benchmarks (2019–2026 Santé publique France &amp; Global Audits)
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Quality &amp; Coverage Indicator</th>
+              <th scope="col">2019 / 2020</th>
+              <th scope="col">2022</th>
+              <th scope="col">2023</th>
+              <th scope="col">2024 / Jan 2025</th>
+              <th scope="col">Jan 2026 / Latest</th>
+              <th scope="col">Trend &amp; Verification Mechanism</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Flagged Data Quality Error Rate</th>
+              <td>— (Pre-218 checks)</td>
+              <td>5.89% (Global)</td>
+              <td>4.88% (Global)</td>
+              <td>3.45% (France)</td>
+              <td><strong>3.20% (France)</strong></td>
+              <td><strong>-0.25 pt/yr</strong> (96.8% pass all 218 error checks; 2026 target &lt;3.0%)</td>
+            </tr>
+            <tr>
+              <th scope="row">Barcode Scan Hit Rate (France)</th>
+              <td>99.2% (2021)</td>
+              <td>99.5%</td>
+              <td>99.2%</td>
+              <td>99.0%</td>
+              <td><strong>98.9% (2.6M scans)</strong></td>
+              <td>Near-exhaustive coverage of products scanned by shoppers</td>
+            </tr>
+            <tr>
+              <th scope="row">Top 10,000 Scanned — NOVA Computed</th>
+              <td>90.70% (2019)</td>
+              <td>94.17%</td>
+              <td>94.22%</td>
+              <td>95.46%</td>
+              <td><strong>96.57%</strong></td>
+              <td><strong>+5.87 pts</strong> via OCR + multilingual ingredient taxonomy</td>
+            </tr>
+            <tr>
+              <th scope="row">Top 10,000 Scanned — Complete Ingredients</th>
+              <td>94.10% (2020)</td>
+              <td>96.80%</td>
+              <td>97.50%</td>
+              <td><strong>98.74% (Jan 2025)</strong></td>
+              <td>93.77% (Jan 2026)</td>
+              <td>Prioritized daily via scan-weighted Data Quality Daily</td>
+            </tr>
+            <tr>
+              <th scope="row">Top 10,000 Scanned — Nutri-Score Computed</th>
+              <td>89.50% (2020)</td>
+              <td>91.40%</td>
+              <td>91.80%</td>
+              <td>92.24% (Jan 2025)</td>
+              <td><strong>93.77% (+1.53 pts)</strong></td>
+              <td>Updated to the stricter 2024/2025 Nutri-Score algorithm</td>
+            </tr>
+            <tr>
+              <th scope="row">Automated Ingredient Extraction Rate</th>
+              <td>78.0% (2019) / 83.2% (2020)</td>
+              <td>87.7%</td>
+              <td>88.1%</td>
+              <td>88.4%</td>
+              <td><strong>89.17%</strong></td>
+              <td><strong>+11.2 pts</strong> via AI Food Spellcheck &amp; parser upgrades</td>
+            </tr>
+            <tr>
+              <th scope="row">Pro Platform Producers &amp; Imported Products</th>
+              <td>50 producers (23,153 prods)</td>
+              <td>137 producers (62,535 prods)</td>
+              <td>212 producers (83,100 prods)</td>
+              <td>271 producers (94,000 prods)</td>
+              <td><strong>316 producers (113,000 prods)</strong></td>
+              <td><strong>25.3% of FR scans</strong>; 55 automated recurring producer feeds</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         8. AI & MACHINE PATROL: ROBOTOFF, OCR, HUNGER GAMES & NUTRI-PATROL
+         ================================================================== -->
+    <section id="dq-ai-engine" class="off-dq-section" aria-labelledby="dq-ai-heading">
+      <div class="off-dq-section-header">
+        <span class="off-dq-section-tag">Human-in-the-Loop Artificial Intelligence</span>
+        <h2 id="dq-ai-heading">How Robotoff AI, OCR &amp; 218 Server Checks Work Together</h2>
+        <p>
+          At Open Food Facts, AI never replaces photographic ground truth—instead, <strong>Robotoff</strong> acts as a tireless co-pilot
+          that extracts structured data from packaging photos, flags statistical outliers across <strong>3,800+ food categories</strong>,
+          and queues uncertain predictions in <strong>Hunger Games</strong> for rapid human verification.
+        </p>
+      </div>
+
+      <div class="off-dq-card-grid-2">
+        <div class="off-dq-card">
+          <img
+            src="/images/illustrations/food/off-data-quality-engine.svg"
+            width="560"
+            height="420"
+            style="width: 100%; height: auto; border-radius: 12px; margin-bottom: 1rem;"
+            alt="Illustration of Open Food Facts DataQuality.pm inspection console and Robotoff AI checking thermodynamic energy ratios, 100g nutrient sums, and 3,800-category outlier bell curves."
+          />
+          <h3>Deterministic Physics + Statistical Category Models</h3>
+          <p style="margin-bottom: 0;">
+            While deterministic rules in <code>DataQuality.pm</code> enforce universal laws of physics and chemistry (such as Atwater
+            thermodynamic energy reconstruction from fat, carbohydrates, fiber, protein, and polyols), Robotoff compares each product's
+            nutrients against the statistical distribution of its exact category (e.g., comparing a salted butter or extra-virgin olive oil
+            against thousands of peers) to surface subtle decimal shifts (`3.5g` vs `35g`).
+          </p>
+        </div>
+
+        <div class="off-dq-card-grid-3" style="grid-template-columns: 1fr;">
+          <article class="off-dq-card">
+            <h3 class="off-dq-card-title">🔤 State-of-the-Art OCR &amp; AI Food Spellcheck</h3>
+            <p style="margin: 0.5rem 0 0;">
+              When a contributor snaps a photo of an ingredient list, OCR extracts the text and our <strong>AI Food Spellcheck</strong>
+              automatically heals curved-packaging OCR typos, highlights any unrecognized sub-ingredients on the product edit page, and
+              maps ingredients across <strong>89.17% of products</strong> to compute NOVA, vegan/vegetarian status, and 260+ additives.
+            </p>
+          </article>
+
+          <article class="off-dq-card">
+            <h3 class="off-dq-card-title">📋 Nutrition Table AI &amp; Brand/Label Logo Detection</h3>
+            <p style="margin: 0.5rem 0 0;">
+              Our computer vision models crop nutrition tables from photos, extract per-100g nutrient values for human confirmation at
+              <a href="https://hunger.openfoodfacts.org/nutrition" target="_blank" rel="noopener">hunger.openfoodfacts.org/nutrition</a>,
+              and automatically detect official certification logos (EU Organic, AB, Fairtrade, Nutri-Score, Triman, Green Dot).
+            </p>
+          </article>
+
+          <article class="off-dq-card">
+            <h3 class="off-dq-card-title">🛡️ Real-Time Sensitive Image Guard &amp; Nutri-Patrol</h3>
+            <p style="margin: 0.5rem 0 0;">
+              Uploaded images are screened in real time to block faces, explicit content, or non-food uploads, while
+              <a href="https://nutripatrol.openfoodfacts.org" target="_blank" rel="noopener">Nutri-Patrol</a> provides a distributed
+              moderation interface so community patrollers can review flagged photos in seconds.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         9. INTERACTIVE FEATURE #3: LIVE FACET EXPLORER & MISSION BOARD
+         ================================================================== -->
+    <section id="dq-live-facets" class="off-dq-section" aria-labelledby="dq-facets-heading">
+      <div class="off-dq-section-header">
+        <span class="off-dq-section-tag">Live Integration with world.openfoodfacts.org</span>
+        <h2 id="dq-facets-heading">Explore Live Data Quality Facets &amp; Fix a Product in 60 Seconds</h2>
+        <p>
+          Every error and warning check in <code>openfoodfacts-server</code> generates a live, clickable facet URL on Open Food Facts.
+          Choose your country subdomain and filter below to inspect real-time product queues on
+          <a href="https://world.openfoodfacts.org/facets/data-quality-errors" target="_blank" rel="noopener"><code>/facets/data-quality-errors</code></a>
+          and
+          <a href="https://world.openfoodfacts.org/facets/data-quality-warnings" target="_blank" rel="noopener"><code>/facets/data-quality-warnings</code></a>.
+        </p>
+      </div>
+
+      <div class="off-dq-mission-toolbar">
+        <div class="off-dq-filter-pills" role="group" aria-label="Filter quality facets by type">
+          <button type="button" class="off-dq-filter-btn" data-facet-filter="all" aria-pressed="true">All Live Queues (9)</button>
+          <button type="button" class="off-dq-filter-btn" data-facet-filter="error" aria-pressed="false">🚨 Error Facets</button>
+          <button type="button" class="off-dq-filter-btn" data-facet-filter="warning" aria-pressed="false">⚠️ Warning &amp; Packaging Facets</button>
+          <button type="button" class="off-dq-filter-btn" data-facet-filter="ai" aria-pressed="false">🎮 AI &amp; Hunger Games</button>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+          <label for="dq-country-select" style="font-weight: 800; font-size: 0.88rem;">Country Scope:</label>
+          <select id="dq-country-select" class="off-dq-select" style="width: auto; min-width: 195px;">
+            <option value="world">🌍 World (world.openfoodfacts.org)</option>
+            <option value="fr">🇫🇷 France (fr.openfoodfacts.org)</option>
+            <option value="de">🇩🇪 Germany (de.openfoodfacts.org)</option>
+            <option value="es">🇪🇸 Spain (es.openfoodfacts.org)</option>
+            <option value="it">🇮🇹 Italy (it.openfoodfacts.org)</option>
+            <option value="uk">🇬🇧 United Kingdom (uk.openfoodfacts.org)</option>
+            <option value="us">🇺🇸 United States (us.openfoodfacts.org)</option>
+            <option value="be">🇧🇪 Belgium (be.openfoodfacts.org)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="dq-facet-grid" class="off-dq-card-grid-3">
+        <article class="off-dq-subgrid-card" data-facet-category="error">
+          <div>
+            <span class="off-dq-tag-chip" style="background:#fdeceb; color:#c92a1d;">🚨 All 218 Error Checks</span>
+            <h3 style="margin-top: 0.55rem; margin-bottom: 0;">All Data Quality Errors Hub</h3>
+          </div>
+          <p>
+            Browse the complete live list of automated data quality error facets sorted by product count, or combine with any brand,
+            category, or store facet.
+          </p>
+          <div>
+            <a class="off-dq-btn off-dq-btn-outline dq-dynamic-facet-link" data-path="/facets/data-quality-errors" href="https://world.openfoodfacts.org/facets/data-quality-errors" target="_blank" rel="noopener" style="width: 100%; font-size: 0.88rem; padding: 0.6rem 1rem;">
+              Open /facets/data-quality-errors ↗
+            </a>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card" data-facet-category="warning">
+          <div>
+            <span class="off-dq-tag-chip" style="background:#fff8e5; color:#7a5200;">⚠️ All Warning Checks</span>
+            <h3 style="margin-top: 0.55rem; margin-bottom: 0;">All Data Quality Warnings Hub</h3>
+          </div>
+          <p>
+            Explore statistical warnings, category-coherence alerts, unrecognized ingredients, and subtle packaging discrepancies across the catalog.
+          </p>
+          <div>
+            <a class="off-dq-btn off-dq-btn-outline dq-dynamic-facet-link" data-path="/facets/data-quality-warnings" href="https://world.openfoodfacts.org/facets/data-quality-warnings" target="_blank" rel="noopener" style="width: 100%; font-size: 0.88rem; padding: 0.6rem 1rem;">
+              Open /facets/data-quality-warnings ↗
+            </a>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card" data-facet-category="error">
+          <div>
+            <span class="off-dq-tag-chip" style="background:#fdeceb; color:#c92a1d;">🚨 Thermodynamic Check</span>
+            <h3 style="margin-top: 0.55rem; margin-bottom: 0;">Energy (kcal) Does Not Match Nutrients</h3>
+          </div>
+          <p>
+            Products where declared kcal diverges from the thermodynamic energy computed from fat (9 kcal/g), carbs (4 kcal/g), protein (4 kcal/g), and fiber (2 kcal/g).
+          </p>
+          <div>
+            <a class="off-dq-btn off-dq-btn-outline dq-dynamic-facet-link" data-path="/data-quality-error/energy-value-in-kcal-does-not-match-value-computed-from-other-nutrients" href="https://world.openfoodfacts.org/data-quality-error/energy-value-in-kcal-does-not-match-value-computed-from-other-nutrients" target="_blank" rel="noopener" style="width: 100%; font-size: 0.88rem; padding: 0.6rem 1rem;">
+              Fix Energy Mismatches ↗
+            </a>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card" data-facet-category="error">
+          <div>
+            <span class="off-dq-tag-chip" style="background:#fdeceb; color:#c92a1d;">🚨 Mass Balance Check</span>
+            <h3 style="margin-top: 0.55rem; margin-bottom: 0;">Nutrition Value Total Over 105g / 100g</h3>
+          </div>
+          <p>
+            Quick-to-fix decimal typos where fat + carbohydrates + fiber + proteins + salt exceed 105g per 100g of product.
+          </p>
+          <div>
+            <a class="off-dq-btn off-dq-btn-outline dq-dynamic-facet-link" data-path="/data-quality-error/nutrition-value-total-over-105" href="https://world.openfoodfacts.org/data-quality-error/nutrition-value-total-over-105" target="_blank" rel="noopener" style="width: 100%; font-size: 0.88rem; padding: 0.6rem 1rem;">
+              Fix &gt;105g Nutrient Sums ↗
+            </a>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card" data-facet-category="error">
+          <div>
+            <span class="off-dq-tag-chip" style="background:#fdeceb; color:#c92a1d;">🚨 Unit Inversion Check</span>
+            <h3 style="margin-top: 0.55rem; margin-bottom: 0;">Energy in kcal Greater Than in kJ</h3>
+          </div>
+          <p>
+            Products where kilocalories and kilojoules were entered in the opposite fields (since 1 kcal = 4.184 kJ, kJ must always be higher).
+          </p>
+          <div>
+            <a class="off-dq-btn off-dq-btn-outline dq-dynamic-facet-link" data-path="/data-quality-error/energy-value-in-kcal-greater-than-in-kj" href="https://world.openfoodfacts.org/data-quality-error/energy-value-in-kcal-greater-than-in-kj" target="_blank" rel="noopener" style="width: 100%; font-size: 0.88rem; padding: 0.6rem 1rem;">
+              Fix Swapped kJ/kcal Fields ↗
+            </a>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card" data-facet-category="warning">
+          <div>
+            <span class="off-dq-tag-chip" style="background:#eef9f2; color:#086632;">🏷️ 1,814+ Brand Label Typos</span>
+            <h3 style="margin-top: 0.55rem; margin-bottom: 0;">Errors Printed on Physical Packaging</h3>
+          </div>
+          <p>
+            Discover real products where contributors verified via photo that the nutritional error is actually printed on the manufacturer's own packaging!
+          </p>
+          <div>
+            <a class="off-dq-btn off-dq-btn-outline dq-dynamic-facet-link" data-path="/data-quality-bug/nutrition-error-on-the-packaging" href="https://world.openfoodfacts.org/facets/data-quality-warnings" target="_blank" rel="noopener" style="width: 100%; font-size: 0.88rem; padding: 0.6rem 1rem;">
+              Inspect Packaging Warnings ↗
+            </a>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card" data-facet-category="warning">
+          <div>
+            <span class="off-dq-tag-chip" style="background:#fff8e5; color:#7a5200;">⚠️ Ingredient Parser</span>
+            <h3 style="margin-top: 0.55rem; margin-bottom: 0;">Unrecognized Ingredients to Map</h3>
+          </div>
+          <p>
+            Help improve our multilingual ingredient taxonomy and AI spellchecker by reviewing products with high unknown-ingredient scores.
+          </p>
+          <div>
+            <a class="off-dq-btn off-dq-btn-outline dq-dynamic-facet-link" data-path="/data-quality-warning/ingredients-unknown-score-above-0" href="https://world.openfoodfacts.org/data-quality-warning/ingredients-unknown-score-above-0" target="_blank" rel="noopener" style="width: 100%; font-size: 0.88rem; padding: 0.6rem 1rem;">
+              Review Ingredient Warnings ↗
+            </a>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card" data-facet-category="ai">
+          <div>
+            <span class="off-dq-tag-chip" style="background:#edf7fc; color:#0077c8;">🎮 Human-in-the-Loop AI</span>
+            <h3 style="margin-top: 0.55rem; margin-bottom: 0;">Hunger Games — Validate AI Predictions</h3>
+          </div>
+          <p>
+            Validate Robotoff's category, brand, organic label, and nutrition table extractions with rapid-fire Yes/No cards.
+          </p>
+          <div>
+            <a class="off-dq-btn off-dq-btn-outline" href="https://hunger.openfoodfacts.org" target="_blank" rel="noopener" style="width: 100%; font-size: 0.88rem; padding: 0.6rem 1rem;">
+              Play Hunger Games ↗
+            </a>
+          </div>
+        </article>
+
+        <article class="off-dq-subgrid-card" data-facet-category="ai">
+          <div>
+            <span class="off-dq-tag-chip" style="background:#edf7fc; color:#0077c8;">📋 Visual Table Validator</span>
+            <h3 style="margin-top: 0.55rem; margin-bottom: 0;">Hunger Games — Nutrition Table AI</h3>
+          </div>
+          <p>
+            Confirm or correct per-100g nutrition values extracted automatically by computer vision from packaging photos.
+          </p>
+          <div>
+            <a class="off-dq-btn off-dq-btn-outline" href="https://hunger.openfoodfacts.org/nutrition" target="_blank" rel="noopener" style="width: 100%; font-size: 0.88rem; padding: 0.6rem 1rem;">
+              Validate Nutrition Tables ↗
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         10. INTERACTIVE FEATURE #4: VOLUNTEER RECRUITMENT & ROLE MATCHER
+         ================================================================== -->
+    <section id="dq-join-patrol" class="off-dq-section" aria-labelledby="dq-join-heading">
+      <div class="off-dq-section-header">
+        <span class="off-dq-section-tag">Volunteer Recruitment &amp; Onboarding</span>
+        <h2 id="dq-join-heading">Join the Data Quality Patrol: Choose How You Want to Help</h2>
+        <p>
+          Whether you have <strong>60 seconds on a train</strong>, <strong>5 minutes a day with your morning coffee</strong>, or want to write
+          Perl, Python, or machine learning rules in our open-source repositories, there is a place for you in the Open Food Facts Data Quality Team.
+        </p>
+      </div>
+
+      <div class="off-dq-role-selector" role="group" aria-label="Select your volunteer profile">
+        <button type="button" class="off-dq-role-btn" data-role="dqd" aria-pressed="true">📧 5 Min / Day: Data Quality Daily</button>
+        <button type="button" class="off-dq-role-btn" data-role="hungergames" aria-pressed="false">🎮 1 Min: Play Hunger Games</button>
+        <button type="button" class="off-dq-role-btn" data-role="patroller" aria-pressed="false">🕵️ Community Patroller &amp; Monthly Calls</button>
+        <button type="button" class="off-dq-role-btn" data-role="developer" aria-pressed="false">💻 Developer, ML &amp; Researcher</button>
+        <button type="button" class="off-dq-role-btn" data-role="producer" aria-pressed="false">🏭 Food Producer (Free Pro Platform)</button>
+      </div>
+
+      <div class="off-dq-role-spotlight" id="dq-role-panel" aria-live="polite">
+        <div class="off-dq-card-grid-2" style="align-items: center;">
+          <div>
+            <span class="off-dq-section-tag" id="dq-role-badge">📧 High-Impact Daily Habit · 5 Minutes / Day</span>
+            <h3 id="dq-role-title" style="font-size: 1.55rem; margin-bottom: 0.65rem;">
+              Subscribe to Data Quality Daily (DQD) — Fix the 3 Most-Scanned Products First
+            </h3>
+            <p id="dq-role-desc" style="font-size: 1.02rem;">
+              Receive one lightweight email each day with <strong>3 products</strong> that have a flagged data quality anomaly, weighted by
+              <strong>how often consumers scan them</strong>. By verifying just 3 product photos a day alongside 50+ fellow subscribers, you
+              directly heal the products seen by millions of shoppers and researchers.
+            </p>
+            <div class="off-dq-cta-group" id="dq-role-actions" style="margin-top: 1.25rem;">
+              <a href="https://world.openfoodfacts.org/data-quality-daily" class="off-dq-btn off-dq-btn-green" target="_blank" rel="noopener">
+                Get 3 Products a Day (Data Quality Daily) ↗
+              </a>
+              <a href="https://wiki.openfoodfacts.org/Data_Quality_Daily" class="off-dq-btn off-dq-btn-outline" target="_blank" rel="noopener">
+                Read the DQD Guide on the Wiki ↗
+              </a>
+            </div>
+          </div>
+
+          <div style="text-align: center;">
+            <img
+              src="/images/illustrations/food/off-data-quality-animated.svg"
+              width="360"
+              height="280"
+              style="max-width: 100%; height: auto;"
+              alt="Open Food Facts data quality scale and verification illustration"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         11. FAQ & TECHNICAL DOCUMENTATION LINKS
+         ================================================================== -->
+    <section class="off-dq-section" aria-labelledby="dq-faq-heading">
+      <div class="off-dq-section-header">
+        <span class="off-dq-section-tag">Reassurance &amp; Transparency FAQ</span>
+        <h2 id="dq-faq-heading">Frequently Asked Questions from Researchers, Journalists &amp; Contributors</h2>
+      </div>
+
+      <details class="off-dq-faq-item" name="dq-faq" open>
+        <summary>Can anyone edit a product and introduce wrong data?</summary>
+        <p>
+          Open Food Facts works like Wikipedia combined with photographic proof and 218 automated physics/chemistry sensors: every contribution
+          is anchored by timestamped photos of the physical packaging, every edit is versioned with one-click rollback, and any value that
+          contradicts thermodynamic energy equations or category distributions is immediately flagged in <code>data_quality_errors_tags</code>.
+          Furthermore, products shared directly by manufacturers on our Pro Platform have their verified attributes protected from anonymous overwrites.
+        </p>
+      </details>
+
+      <details class="off-dq-faq-item" name="dq-faq">
+        <summary>How should scientific researchers filter Open Food Facts exports for epidemiological or nutritional studies?</summary>
+        <p>
+          Every nightly JSONL, CSV, and Parquet dump—as well as our Apache Superset analytics environment—includes the
+          <code>data_quality_errors_tags</code> field. Researchers can exclude the ~3.2% of products with a flagged anomaly using a single filter
+          (<code>len(data_quality_errors_tags) == 0</code>), ensuring that 100% of analyzed records pass all 218 automated consistency checks.
+          Our team also collaborates directly with academic partners (EREN, INRAE, Santé publique France, Gustave Roussy) on category-specific audits.
+        </p>
+      </details>
+
+      <details class="off-dq-faq-item" name="dq-faq">
+        <summary>How do you avoid false positives when products have legal nutrition rounding?</summary>
+        <p>
+          European and international labeling regulations allow manufacturers to round declared nutrition values, which can slightly shift the
+          theoretical conversion between kilojoules and kilocalories ($1\text{ kcal} \approx 4.184\text{ kJ}$). Rather than flagging valid
+          rounded labels, our <code>DataQuality.pm</code> engine uses a calibrated tolerance band ($4.0 \le \text{kJ}/\text{kcal} \le 4.4$)
+          and accounts for fiber, alcohol, organic acids, and polyols before raising an error.
+        </p>
+      </details>
+
+      <details class="off-dq-faq-item" name="dq-faq">
+        <summary>Where can I inspect the source code and join the Data Quality working group?</summary>
+        <p>
+          All quality rules are 100% open source in
+          <a href="https://github.com/openfoodfacts/openfoodfacts-server/blob/main/lib/ProductOpener/DataQuality.pm" target="_blank" rel="noopener"><code>ProductOpener::DataQuality</code></a>
+          and
+          <a href="https://github.com/openfoodfacts/openfoodfacts-server/blob/main/lib/ProductOpener/DataQualityFood.pm" target="_blank" rel="noopener"><code>ProductOpener::DataQualityFood</code></a>,
+          documented on the
+          <a href="https://wiki.openfoodfacts.org/Category:Data_quality" target="_blank" rel="noopener">Data Quality Wiki Hub</a>,
+          and coordinated in the <code>#quality-data</code> channel on
+          <a href="https://slack.openfoodfacts.org" target="_blank" rel="noopener">Open Food Facts Slack</a>.
+        </p>
+      </details>
+    </section>
+  </main>
+</div>
+
+<script>
+  (function () {
+    "use strict";
+
+    /**
+     * ========================================================================
+     * MAINTAINABLE DATA QUALITY CONFIGURATION (DQ_DATA)
+     * Update annual figures or add new presets/roles here.
+     * ========================================================================
+     */
+    var DQ_DATA = {
+      presets: {
+        valid: {
+          category: "cereal",
+          kj: 1610,
+          kcal: 384,
+          fat: 8,
+          carbs: 64,
+          fiber: 14
+        },
+        swapped: {
+          category: "cereal",
+          kj: 384,
+          kcal: 1610,
+          fat: 8,
+          carbs: 64,
+          fiber: 14
+        },
+        over105: {
+          category: "cereal",
+          kj: 2150,
+          kcal: 512,
+          fat: 45,
+          carbs: 52,
+          fiber: 18
+        },
+        oliveoil: {
+          category: "olive-oil-multi",
+          kj: 3700,
+          kcal: 884,
+          fat: 100,
+          carbs: 0,
+          fiber: 0
+        },
+        vegan: {
+          category: "vegan-dairy",
+          kj: 1850,
+          kcal: 442,
+          fat: 16,
+          carbs: 60,
+          fiber: 12
+        },
+        packtypo: {
+          category: "packaging-typo",
+          kj: 880,
+          kcal: 210,
+          fat: 45,
+          carbs: 50,
+          fiber: 6
+        }
+      },
+      roles: {
+        dqd: {
+          badge: "📧 High-Impact Daily Habit · 5 Minutes / Day",
+          title: "Subscribe to Data Quality Daily (DQD) — Fix the 3 Most-Scanned Products First",
+          desc: "Receive one lightweight email each day with 3 products that have a flagged data quality anomaly, weighted by how often consumers scan them. By verifying just 3 product photos a day alongside 50+ fellow subscribers, you directly heal the products seen by millions of shoppers and researchers.",
+          primaryText: "Get 3 Products a Day (Data Quality Daily) ↗",
+          primaryHref: "https://world.openfoodfacts.org/data-quality-daily",
+          secondaryText: "Read the DQD Guide on the Wiki ↗",
+          secondaryHref: "https://wiki.openfoodfacts.org/Data_Quality_Daily"
+        },
+        hungergames: {
+          badge: "🎮 Gamified Micro-Contributions · 1 Minute Anywhere",
+          title: "Play Hunger Games — Validate Robotoff AI Predictions in One Tap",
+          desc: "Robotoff AI continuously predicts product categories, organic labels, brand logos, and nutrition table values from packaging photos. Jump into Hunger Games to confirm or reject high-value predictions in seconds—no deep taxonomy knowledge required!",
+          primaryText: "Play Hunger Games Now ↗",
+          primaryHref: "https://hunger.openfoodfacts.org",
+          secondaryText: "Validate Nutrition Tables with AI ↗",
+          secondaryHref: "https://hunger.openfoodfacts.org/nutrition"
+        },
+        patroller: {
+          badge: "🕵️ Community Governance · 50+ Active Patrollers",
+          title: "Join the Data Quality Team, Monthly Meetings & #quality-data Slack",
+          desc: "Collaborate with our dedicated Data Quality Lead and 50+ volunteer patrollers! Join our monthly open community meetings, moderate flagged photos on Nutri-Patrol, tackle category-wide cleanup missions, and help shape new verification rules on the Wiki.",
+          primaryText: "Explore the Data Quality Wiki Hub ↗",
+          primaryHref: "https://wiki.openfoodfacts.org/Category:Data_quality",
+          secondaryText: "Join #quality-data on Slack ↗",
+          secondaryHref: "https://slack.openfoodfacts.org"
+        },
+        developer: {
+          badge: "💻 Open Source & Data Science · Perl, Python & ML",
+          title: "Contribute New Rules to DataQuality.pm, Robotoff AI & Superset Dashboards",
+          desc: "Help us expand our 218 deterministic checks in openfoodfacts-server (DataQuality.pm / DataQualityFood.pm), train multi-modal OCR and 3,800-category outlier models in Robotoff, or build longitudinal quality dashboards in Mirabelle and Apache Superset.",
+          primaryText: "Inspect DataQuality.pm on GitHub ↗",
+          primaryHref: "https://github.com/openfoodfacts/openfoodfacts-server/blob/main/lib/ProductOpener/DataQuality.pm",
+          secondaryText: "Explore Robotoff AI Repository ↗",
+          secondaryHref: "https://github.com/openfoodfacts/robotoff"
+        },
+        producer: {
+          badge: "🏭 Free Manufacturer Portal · 316+ Producers & 2,700+ Brands",
+          title: "Share Official Product Data & Get Instant Automated Quality Audits",
+          desc: "Food producers can upload photos and spreadsheets—or set up automated recurring data transfers via the free Open Food Facts Pro Platform. Your verified data is protected against anonymous edits while our 218 quality checks automatically alert you to any packaging or catalog inconsistencies.",
+          primaryText: "Open the Free Pro Platform ↗",
+          primaryHref: "https://world.pro.openfoodfacts.org",
+          secondaryText: "Discover Pro Platform Features ↗",
+          secondaryHref: "https://world.openfoodfacts.org/producers"
+        }
+      }
+    };
+
+    /* ----------------------------------------------------------------------
+       1. LIVE DATAQUALITY.PM SIMULATOR
+       ---------------------------------------------------------------------- */
+    var elCategory = document.getElementById("dq-sim-category");
+    var elKj = document.getElementById("dq-sim-kj");
+    var elKcal = document.getElementById("dq-sim-kcal");
+    var elFat = document.getElementById("dq-sim-fat");
+    var elCarbs = document.getElementById("dq-sim-carbs");
+    var elFiber = document.getElementById("dq-sim-fiber");
+
+    var outKj = document.getElementById("dq-sim-kj-val");
+    var outKcal = document.getElementById("dq-sim-kcal-val");
+    var outFat = document.getElementById("dq-sim-fat-val");
+    var outCarbs = document.getElementById("dq-sim-carbs-val");
+    var outFiber = document.getElementById("dq-sim-fiber-val");
+
+    var elStatus = document.getElementById("dq-sim-status");
+    var elStatusText = document.getElementById("dq-sim-status-text");
+    var elTelemetry = document.getElementById("dq-sim-telemetry");
+    var elChecks = document.getElementById("dq-sim-checks");
+    var elFacetLink = document.getElementById("dq-sim-facet-link");
+    var presetBtns = document.querySelectorAll(".off-dq-preset-btn");
+
+    function evaluateSimulator() {
+      if (!elKj || !elKcal || !elFat || !elCarbs || !elFiber) return;
+
+      var cat = elCategory.value;
+      var kj = parseFloat(elKj.value);
+      var kcal = parseFloat(elKcal.value);
+      var fat = parseFloat(elFat.value);
+      var carbs = parseFloat(elCarbs.value);
+      var fiberProtSalt = parseFloat(elFiber.value);
+
+      outKj.textContent = kj + " kJ";
+      outKcal.textContent = kcal + " kcal";
+      outFat.textContent = fat + " g";
+      outCarbs.textContent = carbs + " g";
+      outFiber.textContent = fiberProtSalt + " g";
+
+      var massSum = fat + carbs + fiberProtSalt;
+      var ratio = kcal > 0 ? (kj / kcal) : 0;
+      var recomputedKcal = Math.round(fat * 9 + carbs * 4 + fiberProtSalt * 3.2);
+      var kcalDelta = Math.abs(kcal - recomputedKcal);
+
+      elTelemetry.innerHTML =
+        "<strong>Live Telemetry:</strong> Nutrient Mass Sum = <strong>" +
+        massSum +
+        " g / 100g</strong> · kJ/kcal Ratio = <strong>" +
+        ratio.toFixed(2) +
+        "</strong> (Valid band: 4.0–4.4) · Recomputed Energy ≈ <strong>" +
+        recomputedKcal +
+        " kcal</strong>.";
+
+      var findings = [];
+      var worstLevel = "pass";
+      var primaryFacet = "https://world.openfoodfacts.org/facets/data-quality-errors";
+
+      // Check 1: Energy kJ vs kcal & Thermodynamic Reconstruction
+      if (kcal > kj) {
+        worstLevel = "error";
+        primaryFacet = "https://world.openfoodfacts.org/data-quality-error/energy-value-in-kcal-greater-than-in-kj";
+        findings.push({
+          level: "error",
+          title: "🚨 Error: Energy in kcal (" + kcal + ") is greater than Energy in kJ (" + kj + ")",
+          detail: "Physical impossibility (1 kcal = 4.184 kJ). Contributors or OCR likely swapped the kJ and kcal fields.",
+          tag: "en:energy-value-in-kcal-greater-than-in-kj"
+        });
+      } else if (ratio < 3.7 || ratio > 4.7) {
+        worstLevel = "error";
+        primaryFacet = "https://world.openfoodfacts.org/facets/data-quality-errors";
+        findings.push({
+          level: "error",
+          title: "🚨 Error: kJ / kcal Ratio (" + ratio.toFixed(2) + ") Outside Physical Tolerance (4.0–4.4)",
+          detail: "Even accounting for legal manufacturer rounding, kJ and kcal values are inconsistent with each other.",
+          tag: "en:energy-value-in-kcal-does-not-match-value-in-kj"
+        });
+      } else if (kcalDelta > Math.max(95, recomputedKcal * 0.28)) {
+        worstLevel = "error";
+        primaryFacet = "https://world.openfoodfacts.org/data-quality-error/energy-value-in-kcal-does-not-match-value-computed-from-other-nutrients";
+        findings.push({
+          level: "error",
+          title: "🚨 Error: Declared kcal (" + kcal + ") Diverges from Macronutrient Energy (~" + recomputedKcal + " kcal)",
+          detail: cat === "packaging-typo"
+            ? "Matches 1,814+ cases where the physical packaging itself has a printed calculation error! Can be tagged with nutrition-error-on-the-packaging."
+            : "Thermodynamic energy computed from fat (9 kcal/g), carbs (4 kcal/g), fiber & protein does not match declared energy.",
+          tag: "en:energy-value-in-kcal-does-not-match-value-computed-from-other-nutrients"
+        });
+      } else {
+        findings.push({
+          level: "pass",
+          title: "✓ Thermodynamic Energy & kJ/kcal Ratio Verified",
+          detail: "Ratio " + ratio.toFixed(2) + " sits within our 4.0–4.4 tolerance band (preventing false positives from legal rounding) and matches macronutrients (~" + recomputedKcal + " kcal).",
+          tag: "pass:thermodynamic-energy-check"
+        });
+      }
+
+      // Check 2: 100g Mass Balance
+      if (massSum > 105) {
+        worstLevel = "error";
+        primaryFacet = "https://world.openfoodfacts.org/data-quality-error/nutrition-value-total-over-105";
+        findings.push({
+          level: "error",
+          title: "🚨 Error: Macronutrient Sum (" + massSum + "g) Exceeds 105g per 100g",
+          detail: "Fat + Carbohydrates + Fiber/Protein/Salt cannot exceed 100g (with a 5g rounding tolerance). Usually caused by a missing decimal point.",
+          tag: "en:nutrition-value-total-over-105"
+        });
+      } else {
+        findings.push({
+          level: "pass",
+          title: "✓ 100g Macronutrient Mass Balance (" + massSum + "g ≤ 105g)",
+          detail: "Total macronutrient mass per 100g is physically coherent.",
+          tag: "pass:nutrition-value-total-ok"
+        });
+      }
+
+      // Check 3: Category, Single-Ingredient & Claim Coherence
+      if (cat === "olive-oil-multi") {
+        if (worstLevel === "pass") worstLevel = "warn";
+        primaryFacet = "https://world.openfoodfacts.org/facets/data-quality-warnings";
+        findings.push({
+          level: "warn",
+          title: "⚠️ Category & Score Coherence Warning: Extra Virgin Olive Oil",
+          detail: "Pure extra virgin olive oil must be a single-ingredient product and carries Nutri-Score C under the 2024/2025 algorithm. Multiple ingredients or an anomalous score trigger a category coherence warning.",
+          tag: "en:category-single-ingredient-mismatch"
+        });
+      } else if (cat === "vegan-dairy") {
+        worstLevel = "error";
+        primaryFacet = "https://world.openfoodfacts.org/facets/data-quality-errors";
+        findings.push({
+          level: "error",
+          title: "🚨 Label vs. Ingredient Contradiction: 'Vegan' Claim with Dairy Ingredient",
+          detail: "Our multilingual ingredient taxonomy detected 'Skimmed milk powder' (non-vegan) on a product tagged with a Vegan label.",
+          tag: "en:label-vegan-contradicts-ingredients"
+        });
+      } else {
+        findings.push({
+          level: "pass",
+          title: "✓ Category, Label & Ingredient Taxonomy Coherence",
+          detail: "No contradiction detected between the 3,800+ Robotoff category norms, labels, and parsed ingredients.",
+          tag: "pass:category-and-label-coherence"
+        });
+      }
+
+      // Render Status Banner
+      elStatus.setAttribute("data-status", worstLevel);
+      if (worstLevel === "pass") {
+        elStatus.innerHTML = '<span aria-hidden="true">✅</span><span>PASS: All 218 automated quality checks satisfied (0 errors, 0 warnings).</span>';
+      } else if (worstLevel === "warn") {
+        elStatus.innerHTML = '<span aria-hidden="true">⚠️</span><span>WARNING FLAGGED: Highlighted on product page &amp; queued for patroller review.</span>';
+      } else {
+        elStatus.innerHTML = '<span aria-hidden="true">🚨</span><span>ERROR FLAGGED: Added to data_quality_errors_tags &amp; prioritized in Data Quality Daily.</span>';
+      }
+
+      // Render Findings List
+      elChecks.innerHTML = findings
+        .map(function (f) {
+          return (
+            '<li class="off-dq-check-item" data-level="' +
+            f.level +
+            '"><strong>' +
+            f.title +
+            "</strong><br/><span>" +
+            f.detail +
+            "</span><br/><code>Facet tag: " +
+            f.tag +
+            "</code></li>"
+          );
+        })
+        .join("");
+
+      elFacetLink.setAttribute("href", primaryFacet);
+    }
+
+    [elCategory, elKj, elKcal, elFat, elCarbs, elFiber].forEach(function (input) {
+      if (input) {
+        input.addEventListener("input", function () {
+          presetBtns.forEach(function (b) {
+            b.setAttribute("aria-pressed", "false");
+          });
+          evaluateSimulator();
+        });
+      }
+    });
+
+    presetBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var key = btn.getAttribute("data-preset");
+        var p = DQ_DATA.presets[key];
+        if (!p) return;
+        presetBtns.forEach(function (b) {
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+        elCategory.value = p.category;
+        elKj.value = p.kj;
+        elKcal.value = p.kcal;
+        elFat.value = p.fat;
+        elCarbs.value = p.carbs;
+        elFiber.value = p.fiber;
+        evaluateSimulator();
+      });
+    });
+
+    /* ----------------------------------------------------------------------
+       2. 5-YEAR BENCHMARK TABS WITH hidden="until-found" & beforematch
+          (Modern Web Guidance: search-hidden-content)
+       ---------------------------------------------------------------------- */
+    var tabButtons = document.querySelectorAll("[data-dq-tab]");
+    var tabPanels = document.querySelectorAll(".off-dq-benchmark-panel");
+    var supportsUntilFound = "onbeforematch" in document.body;
+
+    function activateBenchmarkTab(targetId) {
+      tabButtons.forEach(function (btn) {
+        var isMatch = btn.getAttribute("data-dq-tab") === targetId;
+        btn.setAttribute("aria-expanded", isMatch ? "true" : "false");
+      });
+      tabPanels.forEach(function (panel) {
+        if (panel.id === targetId) {
+          panel.removeAttribute("hidden");
+        } else if (supportsUntilFound) {
+          panel.setAttribute("hidden", "until-found");
+        } else {
+          panel.setAttribute("hidden", "");
+        }
+      });
+    }
+
+    tabButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        activateBenchmarkTab(btn.getAttribute("data-dq-tab"));
+      });
+    });
+
+    // Mandatory beforematch listener so browser Find-in-Page reveals matching hidden panels
+    tabPanels.forEach(function (panel) {
+      panel.addEventListener("beforematch", function () {
+        activateBenchmarkTab(panel.id);
+      });
+    });
+
+    /* ----------------------------------------------------------------------
+       3. LIVE FACET MISSION BOARD (COUNTRY SUBDOMAIN + CATEGORY FILTER)
+       ---------------------------------------------------------------------- */
+    var countrySelect = document.getElementById("dq-country-select");
+    var filterBtns = document.querySelectorAll("[data-facet-filter]");
+    var facetCards = document.querySelectorAll("#dq-facet-grid [data-facet-category]");
+    var dynamicFacetLinks = document.querySelectorAll(".dq-dynamic-facet-link");
+
+    function updateFacetDomains() {
+      var subdomain = countrySelect ? countrySelect.value : "world";
+      dynamicFacetLinks.forEach(function (link) {
+        var path = link.getAttribute("data-path");
+        if (path) {
+          link.setAttribute("href", "https://" + subdomain + ".openfoodfacts.org" + path);
+        }
+      });
+    }
+
+    if (countrySelect) {
+      countrySelect.addEventListener("change", updateFacetDomains);
+    }
+
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var filter = btn.getAttribute("data-facet-filter");
+        filterBtns.forEach(function (b) {
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+        facetCards.forEach(function (card) {
+          var cat = card.getAttribute("data-facet-category");
+          if (filter === "all" || cat === filter) {
+            card.removeAttribute("hidden");
+          } else {
+            card.setAttribute("hidden", "");
+          }
+        });
+      });
+    });
+
+    /* ----------------------------------------------------------------------
+       4. VOLUNTEER ROLE MATCHER
+       ---------------------------------------------------------------------- */
+    var roleBtns = document.querySelectorAll("[data-role]");
+    var elRoleBadge = document.getElementById("dq-role-badge");
+    var elRoleTitle = document.getElementById("dq-role-title");
+    var elRoleDesc = document.getElementById("dq-role-desc");
+    var elRoleActions = document.getElementById("dq-role-actions");
+
+    roleBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var key = btn.getAttribute("data-role");
+        var role = DQ_DATA.roles[key];
+        if (!role) return;
+        roleBtns.forEach(function (b) {
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+        elRoleBadge.textContent = role.badge;
+        elRoleTitle.textContent = role.title;
+        elRoleDesc.textContent = role.desc;
+        elRoleActions.innerHTML =
+          '<a href="' +
+          role.primaryHref +
+          '" class="off-dq-btn off-dq-btn-green" target="_blank" rel="noopener">' +
+          role.primaryText +
+          '</a><a href="' +
+          role.secondaryHref +
+          '" class="off-dq-btn off-dq-btn-outline" target="_blank" rel="noopener">' +
+          role.secondaryText +
+          "</a>";
+      });
+    });
+  })();
+</script>

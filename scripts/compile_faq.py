@@ -16,6 +16,17 @@ import os
 import re
 import sys
 import unicodedata
+import sys
+
+# Ensure vendor path for yaml
+try:
+    from i18n_utils import ensure_vendor_path
+    ensure_vendor_path()
+except ImportError:
+    sys.path.insert(0, os.path.dirname(__file__))
+    from i18n_utils import ensure_vendor_path
+    ensure_vendor_path()
+
 import yaml
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))

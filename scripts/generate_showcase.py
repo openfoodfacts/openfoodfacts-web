@@ -10,7 +10,19 @@ Generates:
 
 import json
 import os
+import sys
 import urllib.parse
+
+SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+if SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, SCRIPTS_DIR)
+
+from i18n_utils import (
+    ensure_vendor_path,
+    get_localized_field,
+    SUPPORTED_LANGUAGES,
+)
+ensure_vendor_path()
 
 DATA_FILE = "data/reuses.json"
 YAML_DIR = "data/reuses"
@@ -24,7 +36,7 @@ if os.path.isdir(YAML_DIR) and os.listdir(YAML_DIR):
             data = yaml.safe_load(f)
             if isinstance(data, dict):
                 ALL_REUSES.append(data)
-    ALL_REUSES.sort(key=lambda x: (not x.get("featured", False), (x.get("name") or "").lower()))
+    ALL_REUSES.sort(key=lambda x: (not x.get("featured", False), get_localized_field(x, "name", "en").lower()))
 elif os.path.exists(DATA_FILE):
     with open(DATA_FILE, "r", encoding="utf-8") as f:
         ALL_REUSES = json.load(f)
@@ -178,15 +190,46 @@ def generate_html(lang="en"):
     t_card_edit = "Modifier" if is_fr else "Edit"
     t_card_edit_title = "Proposer une modification pour cette app" if is_fr else "Propose an edit for this app"
 
+    t_contrib_donation = "Soutient l'association (Dons)" if is_fr else "Supports OFF NGO (Donations)"
+    t_contrib_data = "Données contribuées" if is_fr else "Contributes Data Back"
+    t_contrib_photos = "Photos contribuées" if is_fr else "Contributes Photos"
+    t_contrib_odbl = "Licence ODbL" if is_fr else "ODbL Compliant"
+
     # Localized Store Badges
-    play_badge_svg = f"/images/misc/playstore/img/{'fr' if is_fr else 'en'}_get.svg"
-    appstore_badge_svg = f"/images/misc/appstore/black/{'appstore_FR' if is_fr else 'appstore_US'}.svg"
+    play_badge_code = "en"
+    appstore_badge_code = "US"
+    try:
+        from fix_translation_issues import get_playstore_badge, get_appstore_badge
+        pb = get_playstore_badge(lang)
+        if pb:
+            play_badge_code = pb
+        ab = get_appstore_badge(lang)
+        if ab:
+            appstore_badge_code = ab.upper()
+    except Exception:
+        if is_fr:
+            play_badge_code = "fr"
+            appstore_badge_code = "FR"
+
+    play_badge_svg = f"/images/misc/playstore/img/{play_badge_code}_get.svg"
+    appstore_badge_svg = f"/images/misc/appstore/black/appstore_{appstore_badge_code}.svg"
 
     # GitHub Issue Template Link & Edit URL
     gh_edit_url = "https://github.com/openfoodfacts/openfoodfacts-web/tree/main/data/reuses"
     gh_magic_url = "https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-reuse.yml"
 
-    json_data = json.dumps(ALL_REUSES, ensure_ascii=False)
+    localized_items = []
+    for r in ALL_REUSES:
+        rc = dict(r)
+        rc["name"] = get_localized_field(r, "name", lang=lang)
+        rc["tagline"] = get_localized_field(r, "tagline", lang=lang)
+        rc["description"] = get_localized_field(r, "description", lang=lang)
+        if "supporter_badge" in r:
+            rc["supporter_badge"] = get_localized_field(r, "supporter_badge", lang=lang)
+        if "donation_note" in r:
+            rc["donation_note"] = get_localized_field(r, "donation_note", lang=lang)
+        localized_items.append(rc)
+    json_data = json.dumps(localized_items, ensure_ascii=False)
 
     return f"""<style>
 .showcase-header {{
@@ -1258,10 +1301,10 @@ def generate_html(lang="en"):
 
     <div class="multi-filter-col">
       <h4>{t_cat_contribs}</h4>
-      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="donation" onchange="applyFilters()"> 💝 {'Soutient l\'association (Dons)' if is_fr else 'Supports OFF NGO (Donations)'}</label>
-      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="data" onchange="applyFilters()"> 🤝 {'Données contribuées' if is_fr else 'Contributes Data Back'}</label>
-      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="photos" onchange="applyFilters()"> 📸 {'Photos contribuées' if is_fr else 'Contributes Photos'}</label>
-      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="odbl" onchange="applyFilters()"> ⚖️ {'Licence ODbL' if is_fr else 'ODbL Compliant'}</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="donation" onchange="applyFilters()"> 💝 {t_contrib_donation}</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="data" onchange="applyFilters()"> 🤝 {t_contrib_data}</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="photos" onchange="applyFilters()"> 📸 {t_contrib_photos}</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="odbl" onchange="applyFilters()"> ⚖️ {t_contrib_odbl}</label>
       <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="foss" onchange="applyFilters()"> 💖 Open Source</label>
     </div>
 
@@ -2074,24 +2117,23 @@ window.addEventListener("hashchange", checkHash);
 """
 
 def main():
-    en_html = generate_html("en")
-    fr_html = generate_html("fr")
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    for target_lang in SUPPORTED_LANGUAGES:
+        target_html = generate_html(target_lang)
+        lang_dir = os.path.join(repo_root, "lang", target_lang, "texts")
+        os.makedirs(lang_dir, exist_ok=True)
 
-    with open("lang/en/texts/reuse.html", "w", encoding="utf-8") as f:
-        f.write(en_html)
-    print("Wrote lang/en/texts/reuse.html")
+        for name in ["reuse.html", "reuses.html"]:
+            p = os.path.join(lang_dir, name)
+            with open(p, "w", encoding="utf-8") as f:
+                f.write(target_html)
+            print(f"Wrote {p}")
 
-    with open("lang/en/texts/reuses.html", "w", encoding="utf-8") as f:
-        f.write(en_html)
-    print("Wrote lang/en/texts/reuses.html")
-
-    with open("lang/fr/texts/reuses.html", "w", encoding="utf-8") as f:
-        f.write(fr_html)
-    print("Wrote lang/fr/texts/reuses.html")
-
-    with open("lang/fr/texts/reutilisations.html", "w", encoding="utf-8") as f:
-        f.write(fr_html)
-    print("Wrote lang/fr/texts/reutilisations.html")
+        if target_lang == "fr":
+            fr_alias = os.path.join(lang_dir, "reutilisations.html")
+            with open(fr_alias, "w", encoding="utf-8") as f:
+                f.write(target_html)
+            print(f"Wrote {fr_alias}")
 
 if __name__ == "__main__":
     main()

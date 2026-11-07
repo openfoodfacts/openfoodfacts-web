@@ -11,6 +11,16 @@ import json
 import os
 import sys
 import urllib.parse
+
+# Ensure vendor path for yaml
+try:
+    from i18n_utils import ensure_vendor_path, get_localized_field, validate_localized_field, SUPPORTED_LANGUAGES
+    ensure_vendor_path()
+except ImportError:
+    sys.path.insert(0, os.path.dirname(__file__))
+    from i18n_utils import ensure_vendor_path, get_localized_field, validate_localized_field, SUPPORTED_LANGUAGES
+    ensure_vendor_path()
+
 import yaml
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -30,10 +40,13 @@ def validate_publication(p, filepath):
     elif str(p_id) != stem:
         errors.append(f"{filename}: id '{p_id}' does not match filename stem '{stem}'")
 
-    # Required: title
-    title = p.get("title")
-    if not title or not str(title).strip():
-        errors.append(f"{filename}: missing or empty required field 'title'")
+    # Required: title (supports string, dict, or title_{lang})
+    errs = validate_localized_field(p, "title", filename, required=True)
+    errors.extend(errs)
+
+    # Optional: excerpt (supports string, dict, or excerpt_{lang})
+    errs = validate_localized_field(p, "excerpt", filename, required=False)
+    errors.extend(errs)
 
     # Authors
     authors = p.get("authors")
@@ -88,15 +101,15 @@ def load_all_publications(directory=PUBLICATIONS_DIR, validate=False):
             all_errors.append(f"{os.path.basename(path)}: parsing error: {e}")
 
     # Sort by year descending by default
-    pubs.sort(key=lambda p: (-(p.get("year") or 0), -(p.get("num_citations") or 0), p.get("title", "")))
+    pubs.sort(key=lambda p: (-(p.get("year") or 0), -(p.get("num_citations") or 0), get_localized_field(p, "title", "en").lower()))
     if validate:
         return pubs, all_errors, all_warnings
     return pubs
 
-def generate_bibtex(p):
+def generate_bibtex(p, lang="en"):
     pid = p.get("id", "article")
     authors = " and ".join(p.get("authors") or ["Open Food Facts"])
-    title = p.get("title", "")
+    title = get_localized_field(p, "title", lang)
     journal = p.get("journal", "")
     year = p.get("year", "")
     volume = p.get("volume", "")
@@ -121,7 +134,7 @@ def generate_bibtex(p):
     lines.append("}")
     return "\n".join(lines)
 
-def generate_apa(p):
+def generate_apa(p, lang="en"):
     authors = p.get("authors") or []
     if len(authors) > 3:
         author_str = f"{authors[0]} et al."
@@ -131,7 +144,7 @@ def generate_apa(p):
         author_str = "Open Food Facts"
 
     year_str = f"({p.get('year', '')})" if p.get('year') else ""
-    title_str = p.get('title', '').rstrip('.') + "."
+    title_str = get_localized_field(p, "title", lang).rstrip('.') + "."
     journal_str = f"_{p.get('journal')}_" if p.get('journal') else ""
     vol_str = f", {p.get('volume')}" if p.get('volume') else ""
     pages_str = f", {p.get('pages')}" if p.get('pages') else ""
@@ -184,8 +197,11 @@ def generate_html(pubs, lang="en"):
     pubs_client = []
     for p in pubs:
         item = dict(p)
-        item["bibtex"] = generate_bibtex(p)
-        item["apa"] = generate_apa(p)
+        item["title"] = get_localized_field(p, "title", lang)
+        if "excerpt" in p:
+            item["excerpt"] = get_localized_field(p, "excerpt", lang)
+        item["bibtex"] = generate_bibtex(p, lang=lang)
+        item["apa"] = generate_apa(p, lang=lang)
         pubs_client.append(item)
 
     json_data = json.dumps(pubs_client, ensure_ascii=False)
@@ -1644,20 +1660,16 @@ def compile_publications(check_only=False, verbose=True):
     if verbose:
         print(f"Wrote aggregate JSON: {OUTPUT_JSON}")
 
-    # Generate HTML for en and fr
-    en_html = generate_html(pubs, "en")
-    fr_html = generate_html(pubs, "fr")
-
+    # Generate HTML for all supported languages
     try:
-        with open("lang/en/texts/scientific-publications.html", "w", encoding="utf-8") as f:
-            f.write(en_html)
-        if verbose:
-            print("Wrote lang/en/texts/scientific-publications.html")
-
-        with open("lang/fr/texts/scientific-publications.html", "w", encoding="utf-8") as f:
-            f.write(fr_html)
-        if verbose:
-            print("Wrote lang/fr/texts/scientific-publications.html")
+        for lang in SUPPORTED_LANGUAGES:
+            out_html = generate_html(pubs, lang)
+            out_path = os.path.join("lang", lang, "texts", "scientific-publications.html")
+            os.makedirs(os.path.dirname(out_path), exist_ok=True)
+            with open(out_path, "w", encoding="utf-8") as f:
+                f.write(out_html)
+            if verbose:
+                print(f"Wrote {out_path}")
     except Exception as e:
         if verbose:
             print(f"[WARN] HTML export warning: {e}", file=sys.stderr)

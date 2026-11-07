@@ -10,6 +10,16 @@ import json
 import os
 import re
 import sys
+
+# Ensure vendor path for yaml
+try:
+    from i18n_utils import ensure_vendor_path, get_localized_field, validate_localized_field, SUPPORTED_LANGUAGES
+    ensure_vendor_path()
+except ImportError:
+    sys.path.insert(0, os.path.dirname(__file__))
+    from i18n_utils import ensure_vendor_path, get_localized_field, validate_localized_field, SUPPORTED_LANGUAGES
+    ensure_vendor_path()
+
 import yaml
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -45,10 +55,13 @@ def validate_press_item(item, filepath):
     if not source or not str(source).strip():
         errors.append(f"{filename}: missing or empty required field 'source'")
 
-    # Required: title
-    title = item.get("title")
-    if not title or not str(title).strip():
-        errors.append(f"{filename}: missing or empty required field 'title'")
+    # Required: title (supports string, dict, or title_{lang})
+    errs = validate_localized_field(item, "title", filename, required=True)
+    errors.extend(errs)
+
+    # Optional: verbatim (supports string, dict, or verbatim_{lang})
+    errs = validate_localized_field(item, "verbatim", filename, required=False)
+    errors.extend(errs)
 
     # Required: type
     m_type = item.get("type")
@@ -64,9 +77,19 @@ def validate_press_item(item, filepath):
 
     # Check for OFF acronym in public fields
     for field in ("title", "source", "verbatim", "topic"):
-        val = str(item.get(field) or "")
-        if re.search(r"\bOFF\b", val):
-            errors.append(f"{filename}: field '{field}' contains acronym 'OFF'. Please spell out 'Open Food Facts'.")
+        val = item.get(field)
+        if isinstance(val, dict):
+            for sub_val in val.values():
+                if re.search(r"\bOFF\b", str(sub_val or "")):
+                    errors.append(f"{filename}: field '{field}' contains acronym 'OFF'. Please spell out 'Open Food Facts'.")
+        else:
+            val_str = str(val or "")
+            if re.search(r"\bOFF\b", val_str):
+                errors.append(f"{filename}: field '{field}' contains acronym 'OFF'. Please spell out 'Open Food Facts'.")
+        for suff in ("_en", "_fr", "_es", "_de", "_it"):
+            s_val = str(item.get(f"{field}{suff}") or "")
+            if re.search(r"\bOFF\b", s_val):
+                errors.append(f"{filename}: field '{field}{suff}' contains acronym 'OFF'. Please spell out 'Open Food Facts'.")
 
     # Check for leaked editorial comments in verbatim
     v = str(item.get("verbatim") or "")
@@ -120,7 +143,7 @@ def load_press_items(directory=PRESS_DIR, validate=True):
         items.append(data)
 
     # Sort: newest first
-    items.sort(key=lambda x: (str(x.get("date", "2000-01-01")), str(x.get("title", ""))), reverse=True)
+    items.sort(key=lambda x: (str(x.get("date", "2000-01-01")), get_localized_field(x, "title", "en").lower()), reverse=True)
 
     return items, all_errors, all_warnings
 
@@ -175,8 +198,11 @@ def compile_press_review(check_only=False, verbose=True):
     import generate_country_presskits
     generate_country_presskits.generate_all()
 
-    import generate_press_hub
-    generate_press_hub.main()
+    try:
+        import generate_press_hub
+        generate_press_hub.main()
+    except ImportError:
+        pass
 
     return True
 
