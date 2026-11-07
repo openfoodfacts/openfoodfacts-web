@@ -48,13 +48,17 @@ Never translate or alter these registered brand names and scoring systems in any
   - Use semantic tags (`<h1>`, `<section>`, `<p>`, `<ul>`, `<table>`).
 - Only root `.html` files (e.g., `operation-sodas.html`) are standalone HTML documents.
 
-### 4. Template Includes Syntax
+### 4. Template Includes Syntax & Non-Translatable Elements
 - The Perl-based `product-opener` server uses `[[texts/path/to/include.html]]` syntax to embed shared components.
 - Preserve existing `[[...]]` includes and do not alter their bracket syntax or paths.
+- In `lang/en/texts/*.html`, wrap standalone `[[...]]` includes in `<div translate="no" class="notranslate">[[...]]</div>` and add `translate="no"` to `<span class="material-icons" translate="no">...</span>` so Crowdin and MT engines never translate template paths or Material Icon ligatures.
 
-### 5. Translation Syntax & Placeholders
+### 5. Translation Syntax, Placeholders & Contamination Prevention
 - Keep placeholders (`%s`, `%d`, `{count}`, `%(name)s`, `<br>`) identical to the source string.
 - Respect regional typography (e.g., French non-breaking spaces before `:` `;` `?` `!`).
+- **Reject leaked MT/LLM API error strings:** Never allow strings like `Incorrect Api key provided: sk-dCEE0***************************************OfZI. You can find your Api key at https://platform. openai. com/account/api-keys.</p>` or `As an AI language model` in `lang/`.
+- **Prevent sister-project contamination:** OFF pages (`discover.html`, `contribute.html`, `index.html`, `open-food-hunt.html`) must never contain `Open Beauty Facts`, `Open Pet Food Facts`, `Open Products Facts`, or cosmetics/shampoo/perfume TM leaks.
+- **Crowdin Autofix & Clean Re-upload:** Run `python3 scripts/fix_translation_issues.py` to autofix translation regressions, and use `python3 scripts/prepare_clean_crowdin_translations.py --strip-untranslated-for-upload` before uploading translations to Crowdin so untranslated English segments and contaminated strings are never re-imported.
 
 ---
 

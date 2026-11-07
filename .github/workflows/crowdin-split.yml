@@ -2,6 +2,13 @@ name: Translation sync with Crowdin for openfoodfacts-web HTML files
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      reupload_clean_translations:
+        description: 'Sanitize & re-upload cleaned translations to Crowdin (excluding untranslated/contaminated blocks)'
+        required: false
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -14,6 +21,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: '3.x'
 
       - name: Sync knowledge panels
         uses: crowdin/github-action@5b9790df740c85af5412a3a3a91b24988d5d324f # v3.5.1
@@ -29,11 +41,37 @@ jobs:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
-      - name: Sync static pages
+      - name: Prepare clean translations for Crowdin upload (manual re-upload only)
+        if: github.event_name == 'workflow_dispatch' && inputs.reupload_clean_translations == true
+        run: |
+          python3 scripts/prepare_clean_crowdin_translations.py --strip-untranslated-for-upload
+
+      - name: Upload cleaned translations to Crowdin (manual re-upload only)
+        if: github.event_name == 'workflow_dispatch' && inputs.reupload_clean_translations == true
         uses: crowdin/github-action@5b9790df740c85af5412a3a3a91b24988d5d324f # v3.5.1
         with:
           upload_sources: true
           upload_translations: true
+          auto_approve_imported: true
+          download_translations: false
+          create_pull_request: false
+          config: 'crowdin-html.yml'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+      - name: Restore working tree after clean translation upload
+        if: github.event_name == 'workflow_dispatch' && inputs.reupload_clean_translations == true
+        run: |
+          git checkout -- lang/
+          git clean -fd lang/
+
+      - name: Sync static pages
+        uses: crowdin/github-action@5b9790df740c85af5412a3a3a91b24988d5d324f # v3.5.1
+        with:
+          upload_sources: true
+          upload_translations: false
           download_translations: true
           config: 'crowdin-html.yml'
           pull_request_title: 'feat: Static pages translations'

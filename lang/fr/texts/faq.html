@@ -1,7 +1,7 @@
 <style>
 /* ==========================================================================
    Open Food Facts FAQ - Responsive Single Page Styles
-   ========================================================================== */ :root {
+   ========================================================================== */&nbsp;:root {
   --off-green-900: #064e3b;
   --off-green-800: #065f46;
   --off-green-700: #047857;
@@ -597,7 +597,7 @@ mark.faq-highlight {
 }
 .faq-footer-btn-primary {
   background: var(--off-green-700);
-  color: #ffffff !important;
+  color: #ffffff&nbsp;!important;
 }
 .faq-footer-btn-primary:hover {
   background: var(--off-green-800);
@@ -606,7 +606,7 @@ mark.faq-highlight {
 .faq-footer-btn-secondary {
   background: var(--off-surface);
   border: 1px solid var(--off-card-border);
-  color: var(--off-text-primary) !important;
+  color: var(--off-text-primary)&nbsp;!important;
 }
 .faq-footer-btn-secondary:hover {
   background: #f1f5f9;
@@ -5505,7 +5505,7 @@ mark.faq-highlight {
       const textContent = card.innerText.toLowerCase();
 
       const matchesCat = (activeCategory === "all" || cat === activeCategory);
-      const matchesQuery = ! query || searchData.includes(query) || textContent.includes(query);
+      const matchesQuery =&nbsp;!query || searchData.includes(query) || textContent.includes(query);
 
       if (matchesCat && matchesQuery) {
         card.style.display = "";
@@ -5521,7 +5521,7 @@ mark.faq-highlight {
 
     // Update Counter
     if (counter) {
-      if (query || activeCategory !==  "all") {
+      if (query || activeCategory&nbsp;!== "all") {
         counter.textContent = visibleCount + " / 87 questions";
       } else {
         counter.textContent = "87 questions";
@@ -5533,7 +5533,7 @@ mark.faq-highlight {
       if (visibleCount === 0) {
         emptyState.style.display = "block";
         if (emptyQuery) {
-          emptyQuery.textContent = query ?  '“' + query + '”' :  '';
+          emptyQuery.textContent = query&nbsp;? '“' + query + '”'&nbsp;: '';
         }
       } else {
         emptyState.style.display = "none";
@@ -5542,7 +5542,7 @@ mark.faq-highlight {
 
     // Toggle Clear Search button
     if (searchClear) {
-      searchClear.style.display = query ?  "flex" :  "none";
+      searchClear.style.display = query&nbsp;? "flex"&nbsp;: "none";
     }
   }
 
@@ -5565,7 +5565,7 @@ mark.faq-highlight {
 
     // Keyboard shortcut: '/' focuses search input
     document.addEventListener("keydown", (e) => {
-      if (e.key === "/" && document.activeElement !==  searchInput && document.activeElement.tagName !==  "INPUT" && document.activeElement.tagName !==  "TEXTAREA") {
+      if (e.key === "/" && document.activeElement&nbsp;!== searchInput && document.activeElement.tagName&nbsp;!== "INPUT" && document.activeElement.tagName&nbsp;!== "TEXTAREA") {
         e.preventDefault();
         searchInput.focus();
         searchInput.select();
@@ -5606,7 +5606,7 @@ mark.faq-highlight {
   if (btnExpandAll) {
     btnExpandAll.addEventListener("click", () => {
       cards.forEach(card => {
-        if (card.style.display !==  "none") {
+        if (card.style.display&nbsp;!== "none") {
           card.querySelector("details").open = true;
         }
       });
@@ -5664,8 +5664,8 @@ mark.faq-highlight {
         b.disabled = true;
       });
       if (statusEl) {
-        statusEl.textContent = (storedVote === "up") ?  tThanksUp :  tThanksDown;
-        statusEl.className = "faq-feedback-status visible" + (storedVote === "down" ?  " negative" :  "");
+        statusEl.textContent = (storedVote === "up")&nbsp;? tThanksUp&nbsp;: tThanksDown;
+        statusEl.className = "faq-feedback-status visible" + (storedVote === "down"&nbsp;? " negative"&nbsp;: "");
       }
     }
 
@@ -5676,7 +5676,7 @@ mark.faq-highlight {
 
         const vote = btn.getAttribute("data-vote"); // "up" or "down"
         const isUp = (vote === "up");
-        const action = isUp ?  "thumbs_up" :  "thumbs_down";
+        const action = isUp&nbsp;? "thumbs_up"&nbsp;: "thumbs_down";
 
         // ====================================================================
         // Matomo Event Tracking:
@@ -5701,8 +5701,8 @@ mark.faq-highlight {
         btn.classList.add("active");
 
         if (statusEl) {
-          statusEl.textContent = isUp ?  tThanksUp :  tThanksDown;
-          statusEl.className = "faq-feedback-status visible" + (isUp ?  "" :  " negative");
+          statusEl.textContent = isUp&nbsp;? tThanksUp&nbsp;: tThanksDown;
+          statusEl.className = "faq-feedback-status visible" + (isUp&nbsp;? ""&nbsp;: " negative");
         }
       });
     });
@@ -5710,13 +5710,13 @@ mark.faq-highlight {
 
   // Deep Linking from URL Hash (#slug)
   function handleHashTarget() {
-    const hash = window.location.hash ?  window.location.hash.substring(1) :  "";
+    const hash = window.location.hash&nbsp;? window.location.hash.substring(1)&nbsp;: "";
     if (!hash) return;
     const targetCard = document.getElementById(hash);
     if (targetCard) {
       const cat = targetCard.getAttribute("data-category");
       // If a category was filtered out, switch to all or that category
-      if (activeCategory !==  "all" && activeCategory !==  cat) {
+      if (activeCategory&nbsp;!== "all" && activeCategory&nbsp;!== cat) {
         activeCategory = "all";
         pills.forEach(p => p.classList.remove("active"));
         const allPill = document.querySelector('.faq-pill[data-cat="all"]');
@@ -5734,7 +5734,7 @@ mark.faq-highlight {
 
   window.addEventListener("hashchange", handleHashTarget);
   document.addEventListener("DOMContentLoaded", handleHashTarget);
-  if (document.readyState !==  "loading") {
+  if (document.readyState&nbsp;!== "loading") {
     handleHashTarget();
   }
 })();

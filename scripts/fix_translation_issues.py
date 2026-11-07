@@ -128,13 +128,26 @@ BRAND_PROTECTION_RULES = [
     # Occitan translations of Open Food Facts
     (r'\blos faches de l\'alimentacion dobèrta\b', 'Open Food Facts'),
     (r'\bfaches alimentaris dobèrts\b', 'Open Food Facts'),
-    # Green-Score translations (Directive 1: Reject "Pontuação Verde", "Puntuación Verde")
+    # Green-Score translations (Directive 1: Reject "Pontuação Verde", "Puntuación Verde", "Score Vert", "Grüner Score")
     (r'\bLa [Pp]untuación [Vv]erde\b', 'El Green-Score'),
     (r'\bla [Pp]untuación [Vv]erde\b', 'el Green-Score'),
     (r'\b[Pp]untuación [Vv]erde\b', 'Green-Score'),
     (r'\bA [Pp]ontuação [Vv]erde\b', 'O Green-Score'),
     (r'\ba [Pp]ontuação [Vv]erde\b', 'o Green-Score'),
     (r'\b[Pp]ontuação [Vv]erde\b', 'Green-Score'),
+    (r'\b[Ss]core [Vv]ert\b', 'Green-Score'),
+    (r'\bGrüner Score\b', 'Green-Score'),
+    (r'\bFatos Alimentares Abertos\b', 'Open Food Facts'),
+    (r'\bEco-Sscore\b', 'Eco-Score'),
+    (r'\bNutri-Sscore\b', 'Nutri-Score'),
+    (r'أوبن فوود فاكتس', 'Open Food Facts'),
+    (r'حقائق الطعام المفتوحة', 'Open Food Facts'),
+    (r'حقائق الغذاء المفتوح', 'Open Food Facts'),
+    (r'النوتري-النتيجة', 'Nutri-Score'),
+    (r'Open Beauty Hunt', 'Open Food Hunt'),
+    (r'Open Beauty 探索者', 'Open Food 探索者'),
+    (r'Open Beauty 大使', 'Open Food 大使'),
+    (r'contact@openbeautyfacts\.\s*org', 'contact@openfoodfacts.org'),
 ]
 
 
@@ -779,38 +792,543 @@ def is_css_pattern(text):
     return False
 
 
+def fix_api_error_leaks(content):
+    """
+    Strip leaked machine-translation / LLM API key errors or refusal strings.
+    E.g., 'Incorrect Api key provided: sk-dCEE0***************************************OfZI. You can find your Api key at https://platform. openai. com/account/api-keys.'
+    """
+    fixes = 0
+    # Remove full paragraphs containing only an API key error
+    content, n1 = re.subn(
+        r'<p[^>]*>\s*Incorrect A(?:PI|pi) key provided:\s*sk-[A-Za-z0-9*]+\.\s*You can find your A(?:PI|pi) key at https?://platform\.\s*openai\.\s*com/account/api-keys\.?\s*</p>\s*',
+        '',
+        content
+    )
+    fixes += n1
+    # Remove inline leaked API key error strings
+    content, n2 = re.subn(
+        r'\s*Incorrect A(?:PI|pi) key provided:\s*sk-[A-Za-z0-9*]+\.\s*You can find your A(?:PI|pi) key at https?://platform\.\s*openai\.\s*com/account/api-keys\.?',
+        '',
+        content
+    )
+    fixes += n2
+    return content, fixes
+
+
+LOCALIZED_PRESS_FILENAMES = {
+    'premsa.html': 'press.html',
+    'presse.html': 'press.html',
+    'prentsa.html': 'press.html',
+    'prensa.html': 'press.html',
+    'prasa.html': 'press.html',
+}
+
+LOCALIZED_CONTRIBUTE_FILENAMES = {
+    'contribuír.html': 'contribute.html',
+}
+
+
+def _get_rel_and_en_path(filepath, base_dir):
+    norm = filepath.replace('\\', '/')
+    m = re.search(r'/lang/(?:(?:obf|opff|opf)/)?([^/]+)/texts/(.+)$', norm)
+    if not m:
+        m = re.match(r'^lang/(?:(?:obf|opff|opf)/)?([^/]+)/texts/(.+)$', norm)
+    if not m:
+        return None, None
+    rel = m.group(2)
+    mapped_rel = LOCALIZED_PRESS_FILENAMES.get(rel, LOCALIZED_CONTRIBUTE_FILENAMES.get(rel, rel))
+    en_path = os.path.join(base_dir, 'en', 'texts', mapped_rel)
+    return mapped_rel, en_path
+
+
+def _is_valid_include(inc, lang_code, base_dir):
+    clean = inc.strip()
+    if clean.startswith('query:'):
+        return True
+    if clean.startswith('texts/'):
+        clean = clean[6:]
+    if clean in ('products_stats_<cc>.html', 'missions_list.html', 'iphone-de.html', 'android-de.html'):
+        return True
+    if clean.startswith('cop26/blocks/'):
+        return True
+    if os.path.isfile(os.path.join(base_dir, 'en', 'texts', clean)):
+        return True
+    if lang_code and os.path.isfile(os.path.join(base_dir, lang_code, 'texts', clean)):
+        return True
+    return False
+
+
+_EN_INCS_CACHE = {}
+_EN_ICONS_CACHE = {}
+
+
+def _get_en_incs(en_path):
+    if not en_path:
+        return []
+    if en_path not in _EN_INCS_CACHE:
+        if os.path.isfile(en_path):
+            try:
+                with open(en_path, 'r', encoding='utf-8', errors='ignore') as f:
+                    _EN_INCS_CACHE[en_path] = re.findall(r'\[\[(.*?)\]\]', f.read())
+            except Exception:
+                _EN_INCS_CACHE[en_path] = []
+        else:
+            _EN_INCS_CACHE[en_path] = []
+    return _EN_INCS_CACHE[en_path]
+
+
+def _get_en_icons(en_path):
+    if not en_path:
+        return []
+    if en_path not in _EN_ICONS_CACHE:
+        if os.path.isfile(en_path):
+            try:
+                with open(en_path, 'r', encoding='utf-8', errors='ignore') as f:
+                    _EN_ICONS_CACHE[en_path] = [
+                        m.group(1).strip()
+                        for m in re.finditer(r'<span class=[\'"]material-icons[^\'"]*[\'"][^>]*>([^<]*)</span>', f.read())
+                    ]
+            except Exception:
+                _EN_ICONS_CACHE[en_path] = []
+        else:
+            _EN_ICONS_CACHE[en_path] = []
+    return _EN_ICONS_CACHE[en_path]
+
+
+def fix_template_includes(content, lang_code, filepath, base_dir):
+    """
+    Validate and repair broken/translated [[...]] template includes in translated HTML files
+    against the corresponding English source file in lang/en/texts/.
+    """
+    if lang_code == 'en' or '[[' not in content:
+        return content, 0
+
+    rel, en_path = _get_rel_and_en_path(filepath, base_dir)
+    if not rel:
+        return content, 0
+
+    matches = list(re.finditer(r'\[\[(.*?)\]\]', content))
+    if not matches:
+        return content, 0
+
+    en_incs = _get_en_incs(en_path)
+
+    fixes = 0
+    # Special check for nova.html where ro duplicated group-3-ingredients instead of group-4-ingredients
+    if rel == 'nova.html' and len(matches) == len(en_incs):
+        curr_incs = [m.group(1) for m in matches]
+        if curr_incs != en_incs:
+            new_content = content
+            for m_obj, en_inc in zip(reversed(matches), reversed(en_incs)):
+                if m_obj.group(1) != en_inc:
+                    s, e = m_obj.span()
+                    new_content = new_content[:s] + f'[[{en_inc}]]' + new_content[e:]
+                    fixes += 1
+            return new_content, fixes
+
+    new_content = content
+    for idx in range(len(matches) - 1, -1, -1):
+        m_obj = matches[idx]
+        inc = m_obj.group(1)
+        if _is_valid_include(inc, lang_code, base_dir):
+            continue
+
+        replacement = None
+        if len(matches) == len(en_incs):
+            replacement = en_incs[idx]
+        elif rel == 'press.html':
+            if idx == 0 or 'rss' in inc.lower() or idx < len(matches) - 1:
+                replacement = 'texts/presskit-rss.html'
+            else:
+                replacement = 'texts/sendinblue.html'
+        elif rel == 'nova.html':
+            # Match group number 1..4
+            num_m = re.search(r'[1-4]', inc)
+            if num_m:
+                g_num = num_m.group(0)
+                if idx >= 4:
+                    replacement = f'processing/group-{g_num}-ingredients.html'
+                else:
+                    replacement = f'processing/group-{g_num}-description.html'
+        elif rel == 'development.html':
+            if 'general' in inc or idx == 0:
+                replacement = 'texts/dev-general.html'
+            elif 'server' in inc or idx >= len(matches) - 2:
+                replacement = 'texts/dev-server.html'
+        else:
+            # Try matching by basename suffix in en_incs
+            inc_nospace = inc.replace(' ', '')
+            for cand in en_incs:
+                cand_base = cand.split('/')[-1]
+                if inc_nospace.endswith(cand_base) or cand_base in inc_nospace:
+                    replacement = cand
+                    break
+            if not replacement and len(en_incs) == 1:
+                replacement = en_incs[0]
+
+        if replacement and replacement != inc:
+            s, e = m_obj.span()
+            new_content = new_content[:s] + f'[[{replacement}]]' + new_content[e:]
+            fixes += 1
+
+    return new_content, fixes
+
+
+VALID_MATERIAL_ICONS = {
+    'add_circle', 'add_task', 'arrow_back', 'arrow_forward', 'assignment',
+    'auto_stories', 'biotech', 'check', 'check_circle', 'close',
+    'cloud_download', 'code', 'content_copy', 'dataset', 'delete',
+    'description', 'download', 'eco', 'edit', 'edit_note', 'email', 'event',
+    'expand_less', 'expand_more', 'explore', 'extension', 'favorite',
+    'filter_list', 'folder', 'folder_open', 'format_quote', 'forum', 'globe',
+    'group', 'GROUPS', 'groups', 'handshake', 'help', 'help_outline',
+    'history', 'home', 'hub', 'image', 'info', 'insights', 'inventory_2',
+    'language', 'launch', 'leaderboard', 'lightbulb', 'link', 'Linked_camera',
+    'list', 'local_offer', 'lock', 'login', 'map', 'menu', 'menu_book',
+    'military_tech', 'more_vert', 'newspaper', 'notifications', 'open_in_new',
+    'palette', 'people', 'person', 'photo_camera', 'picture_as_pdf', 'place',
+    'play_arrow', 'play_circle', 'podcasts', 'public', 'publish', 'qr_code',
+    'qr_code_scanner', 'query_stats', 'quiz', 'receipt_long', 'Refresh',
+    'refresh', 'restaurant', 'rocket_launch', 'rss_feed', 'rule', 'savings',
+    'scale', 'scanner', 'schema', 'school', 'science', 'search', 'security',
+    'sell', 'send', 'settings', 'share', 'shield', 'shopping_bag',
+    'shopping_cart', 'smart_toy', 'smartphone', 'sort', 'source',
+    'Auto_awesome', 'auto_awesome', 'star', 'store', 'storage', 'support',
+    'sync', 'table_chart', 'tag', 'terminal', 'thumb_up', 'timeline',
+    'tips_and_updates', 'translate', 'trending_up', 'tune', 'update', 'upload',
+    'verified', 'videocam', 'video_library', 'view_in_ar', 'view_list',
+    'visibility', 'volunteer_activism', 'warning', 'web', 'widgets', 'work',
+    'workspace_premium',
+}
+
+
+def fix_material_icons(content, lang_code, filepath, base_dir):
+    """
+    Restore translated or corrupted Material Icons ligatures (<span class="material-icons">...</span>)
+    using the corresponding English source file.
+    """
+    if 'material-icons' not in content:
+        return content, 0
+
+    fixes = 0
+    # Fix merged ligature + text in lang/obf/hr/texts/index.html: <span class="material-icons">auto_storiesSaznajte
+    content, n_merged = re.subn(
+        r'(<span class=[\'"]material-icons[^\'"]*[\'"][^>]*>)\s*(auto_stories|add_task)([^\s<][^<]*)(</span>)',
+        r'\1\2\4\3',
+        content
+    )
+    fixes += n_merged
+
+    rel, en_path = _get_rel_and_en_path(filepath, base_dir)
+    en_icons = _get_en_icons(en_path)
+
+    span_re = re.compile(r'(<span class=[\'"]material-icons[^\'"]*[\'"][^>]*>)([^<]*)(</span>)')
+    matches = list(span_re.finditer(content))
+    if not matches:
+        return content, fixes
+
+    new_content = content
+    for idx in range(len(matches) - 1, -1, -1):
+        m_obj = matches[idx]
+        lig = m_obj.group(2).strip()
+        if not lig or re.match(r'^[a-z0-9_]+$', lig) and lig in VALID_MATERIAL_ICONS:
+            continue
+
+        # Determine replacement
+        replacement = None
+        if len(matches) == len(en_icons):
+            replacement = en_icons[idx]
+        elif lig.lower() in VALID_MATERIAL_ICONS:
+            replacement = lig.lower()
+        elif rel == 'index.html':
+            replacement = 'auto_stories' if idx == 0 else 'add_task'
+        elif rel == 'press.html':
+            replacement = 'download'
+        elif lig == 'datasæt':
+            replacement = 'dataset'
+        elif lig == 'videokamera':
+            replacement = 'videocam'
+
+        if replacement and replacement != m_obj.group(2):
+            s, e = m_obj.span()
+            new_content = new_content[:s] + f'{m_obj.group(1)}{replacement}{m_obj.group(3)}' + new_content[e:]
+            fixes += 1
+
+    return new_content, fixes
+
+
+def fix_sister_project_contamination(content, lang_code, filepath, base_dir):
+    """
+    Fix sister-project contamination (Open Beauty Facts / Open Pet Food Facts / cosmetics text)
+    leaking into Open Food Facts pages from shared Crowdin Translation Memory.
+    """
+    norm = filepath.replace('\\', '/')
+    if re.search(r'/lang/(?:obf|opff|opf)/', norm) or re.match(r'^lang/(?:obf|opff|opf)/', norm):
+        return content, 0
+
+    rel, en_path = _get_rel_and_en_path(filepath, base_dir)
+    if not rel:
+        return content, 0
+
+    fixes = 0
+    # 1. Fix translated Google Scholar query URLs in scientific-publications.html
+    if rel == 'scientific-publications.html':
+        def fix_scholar_links(m):
+            nonlocal fixes
+            full = m.group(0)
+            # Check if q= has non-ASCII or corrupted query
+            fixed = re.sub(r'хттпс://сцхолар\.гоогле\.цом/сцхолар\?хл=ен&ас_сдт=0%2C5&q=%22[^"&]+%22&бтнГ=',
+                           'https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22openbeautyfacts%22&btnG=', full)
+            if fixed != full:
+                fixes += 1
+                return fixed
+            if 'OpenBeautyFacts' in full and 'q=%22openbeautyfacts%22' not in full:
+                fixed = re.sub(r'as_sdt=0%2C[^&]+&q=%22[^"&]+%22', 'as_sdt=0%2C5&q=%22openbeautyfacts%22', full)
+                if fixed != full:
+                    fixes += 1
+                    return fixed
+            return full
+
+        content = re.sub(r'<li><a href="[^"]*scholar[^"]*"[^>]*>.*?</a></li>', fix_scholar_links, content)
+
+        # Also fix line 41 (4-term OR query in Google Scholar) if translated
+        def fix_scholar_or_query(m):
+            nonlocal fixes
+            old_q = m.group(1)
+            target_q = '%22open+food+facts%22+OR+%22openfoodfacts%22+OR+%22open+beauty+facts%22+OR+%22openbeautyfacts%22'
+            if old_q != target_q and ('openfoodfacts' in old_q or 'open' in old_q):
+                fixes += 1
+                return f'https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q={target_q}&btnG='
+            return m.group(0)
+
+        content = re.sub(
+            r'https://scholar\.google\.com/scholar\?hl=en&as_sdt=0%2C5&q=(%22[^"&]+)&btnG=',
+            lambda m: fix_scholar_or_query(m) if m.group(1).count('%22') >= 6 else m.group(0),
+            content
+        )
+        # Fix line 39 if "open+beauty+facts" was translated in mg
+        content, n_mg = re.subn(
+            r'q=%22open\+hatsaran-tarehy\+zava-misy%22',
+            'q=%22open+beauty+facts%22',
+            content
+        )
+        fixes += n_mg
+        return content, fixes
+
+    # 2. In data.html: fix specific Slack and mobile app code contaminations
+    if rel == 'data.html':
+        content, n1 = re.subn(r'Open Beauty Facts Slack', 'Open Food Facts Slack', content)
+        content, n2 = re.subn(
+            r'Код мобильного приложения Open Pet Food Facts',
+            'Код мобильного приложения Open Food Facts',
+            content
+        )
+        fixes += n1 + n2
+        return content, fixes
+
+    # 3. For pages whose English source does NOT mention sister projects (contribute.html, discover.html, open-food-hunt.html, index.html)
+    if rel in ('contribute.html', 'discover.html', 'open-food-hunt.html', 'index.html'):
+        content, n1 = re.subn(r'Open Beauty Facts|Open Pet Food Facts|Open Products Facts', 'Open Food Facts', content)
+        content, n2 = re.subn(r'openbeautyfacts\.org|openpetfoodfacts\.org|openproductsfacts\.org', 'openfoodfacts.org', content)
+        content, n3 = re.subn(r'#openbeautyfacts', '#general', content)
+        fixes += n1 + n2 + n3
+
+    # 4. Specific cosmetics/beauty TM contamination in discover.html (pl, pt_BR, ru, fi)
+    if rel == 'discover.html':
+        discover_replacements = [
+            # Polish
+            ('Open your cosmetics and know what you use on your body', 'Otwórz swoje jedzenie i dowiedz się, co jesz'),
+            ('A cosmetics products database', 'Baza danych produktów spożywczych'),
+            ('Data about cosmetics is of public interest and has to be open.', 'Dane o żywności leżą w interesie publicznym i muszą być otwarte.'),
+            ('Make better cosmetics choices', 'Dokonuj lepszych wyborów żywieniowych'),
+            ('Cosmetics knowledge is power to pamper yourself better!', 'Wiedza o jedzeniu daje siłę do lepszego odżywiania!'),
+            ('Do you know which shampoos have the less chemicals?', 'Czy wiesz, które płatki śniadaniowe mają najmniej tłuszczu i cukru?'),
+            ('Origins of ingredients of Perfumes', 'Pochodzenie składników produktów Fair Trade'),
+            ('Curious about cosmetics?', 'Ciekawi Cię jedzenie?'),
+            ('Cosmetics, for innovation and science', 'Żywność dla innowacji i nauki'),
+            ('How many cosmetics commercials have you seen in your life?', 'Ile reklam jedzenia widziałeś w swoim życiu?'),
+            # Portuguese (pt_BR)
+            ('O banco de dados de produtos cosméticos', 'O banco de dados de produtos alimentícios'),
+            ('Os dados sobre cosmeticos são de interesse público', 'Os dados sobre alimentos são de interesse público'),
+            ('Faça melhores escolhas de cosméticos', 'Faça melhores escolhas alimentares'),
+            ('Você sabe quais champôs têm menos produtos químicos?', 'Você sabe quais cereais matinais têm menos gordura e açúcar?'),
+            ('Origens de ingredientes de perfumes', 'Origens dos ingredientes de produtos de comércio justo'),
+            ('Cosméticos, para inovação e ciência', 'Alimentos, para inovação e ciência'),
+            ('Quantos comerciais de cosméticos viu na sua vida?', 'Quantos comerciais de alimentos viu na sua vida?'),
+            # Russian (ru)
+            ('База данных косметических продуктов', 'База данных продуктов питания'),
+            ('Происхождение ингредиентов парфюмерии', 'Происхождение ингредиентов продуктов справедливой торговли'),
+            ('Сколько рекламных роликов косметики вы видели в своей жизни?', 'Сколько рекламных роликов еды вы видели в своей жизни?'),
+            # Finnish (fi)
+            ('Tee parempia kosmetiikkavalintoja', 'Tee parempia ruokavalintoja'),
+            ('Kosmetiikkaa, innovaatiolle ja tieteelle', 'Ruokaa innovaatiolle ja tieteelle'),
+        ]
+        for old_str, new_str in discover_replacements:
+            if old_str in content:
+                content = content.replace(old_str, new_str)
+                fixes += 1
+
+    return content, fixes
+
+
+def _dedup_block_inner_html(inner):
+    """
+    Deduplicate consecutive repeated sentences or clauses inside an HTML text block (<p>, <li>, <dd>, <h1-6>)
+    in strictly linear O(N) time without regex backreferences.
+    Supports inline HTML tags (<a ...>...</a>, <strong>, <b>, <em>) and multi-line paragraphs,
+    as well as CJK/Arabic/Latin sentence punctuation and ABAB sentence loops.
+    """
+    if len(inner) < 20 or len(inner) > 4000 or '<div' in inner or '<table' in inner or '<ul' in inner or '<ol' in inner or '<script' in inner or '<style' in inner:
+        return inner, 0
+
+    fixes = 0
+    cur = inner
+
+    # 1. Exact half-string duplication in O(N) using word/line splitting (no regex backreference)
+    stripped = cur.strip()
+    words = stripped.split()
+    if len(words) >= 6 and len(words) % 2 == 0:
+        half = len(words) // 2
+        if words[:half] == words[half:]:
+            # Find the midpoint in stripped where the second half starts
+            first_half_str = " ".join(words[:half])
+            if len(first_half_str) >= 15 and not is_css_pattern(first_half_str):
+                # Slice stripped up to the second occurrence of words[0] near the middle
+                mid_pos = len(stripped) // 2
+                # Find whitespace around mid_pos
+                ws_match = re.search(r'\s+', stripped[max(0, mid_pos - 10):mid_pos + 10])
+                if ws_match:
+                    cut = max(0, mid_pos - 10) + ws_match.start()
+                    if stripped[:cut].split() == words[:half]:
+                        lead = cur[:len(cur) - len(cur.lstrip())]
+                        trail = cur[len(cur.rstrip()):]
+                        return lead + stripped[:cut] + trail, 1
+
+    # 2. Split into sentences keeping delimiters (. ! ? 。 ！ ？ ؟) in O(N)
+    parts = re.split(r'([.!?。！？؟]+(?:\s+|&nbsp;)*)', cur)
+    sentences = []
+    idx_p = 0
+    while idx_p < len(parts):
+        seg = parts[idx_p]
+        if idx_p + 1 < len(parts):
+            seg += parts[idx_p + 1]
+            idx_p += 2
+        else:
+            idx_p += 1
+        if seg:
+            sentences.append(seg)
+
+    if len(sentences) >= 2:
+        def norm_sent(s):
+            return re.sub(r'(?:\s+|&nbsp;)+', ' ', s).strip()
+
+        norms = [norm_sent(s) for s in sentences]
+        changed = True
+        while changed:
+            changed = False
+            # Check consecutive identical sentences (AA -> A)
+            i = 0
+            new_sents = []
+            new_norms = []
+            while i < len(sentences):
+                norm_i = norms[i]
+                if i + 1 < len(sentences) and len(norm_i) >= 12 and norm_i == norms[i + 1]:
+                    new_sents.append(sentences[i])
+                    new_norms.append(norm_i)
+                    i += 2
+                    fixes += 1
+                    changed = True
+                    while i < len(sentences) and norms[i] == norm_i:
+                        i += 1
+                elif (
+                    i + 1 < len(sentences)
+                    and len(norm_i) >= 20
+                    and norm_i.replace('/label/', '/facets/labels/') == norms[i + 1].replace('/label/', '/facets/labels/')
+                ):
+                    pick_idx = i + 1 if '/facets/labels/' in sentences[i + 1] else i
+                    new_sents.append(sentences[pick_idx])
+                    new_norms.append(norms[pick_idx])
+                    i += 2
+                    fixes += 1
+                    changed = True
+                else:
+                    new_sents.append(sentences[i])
+                    new_norms.append(norm_i)
+                    i += 1
+            sentences, norms = new_sents, new_norms
+
+            # Check ABAB sentence loops (Sentence 1 + Sentence 2 + Sentence 1 + Sentence 2)
+            i = 0
+            new_sents = []
+            new_norms = []
+            while i < len(sentences):
+                if (
+                    i + 3 < len(sentences)
+                    and len(norms[i]) + len(norms[i + 1]) >= 20
+                    and norms[i] == norms[i + 2]
+                    and norms[i + 1] == norms[i + 3]
+                ):
+                    new_sents.extend([sentences[i], sentences[i + 1]])
+                    new_norms.extend([norms[i], norms[i + 1]])
+                    i += 4
+                    fixes += 1
+                    changed = True
+                elif (
+                    i + 2 < len(sentences)
+                    and len(norms[i]) >= 25
+                    and norms[i] == norms[i + 2]
+                ):
+                    new_sents.extend([sentences[i], sentences[i + 1]])
+                    new_norms.extend([norms[i], norms[i + 1]])
+                    i += 3
+                    fixes += 1
+                    changed = True
+                else:
+                    new_sents.append(sentences[i])
+                    new_norms.append(norms[i])
+                    i += 1
+            sentences, norms = new_sents, new_norms
+
+        if fixes > 0:
+            cur = "".join(sentences)
+
+    return cur, fixes
+
+
 def fix_dynamic_repetitions(content, filepath):
     """
-    Dynamically detect and fix text repetitions.
+    Dynamically detect and fix text repetitions outside of <style>, <script>, <svg>, and HTML comments
+    in strictly linear O(N) time.
     """
     fixes = 0
     skip_files = ['landing-off.html', 'presse.html', 'revue-de-presse-fr.html']
     for skip_file in skip_files:
         if skip_file in filepath:
             return content, 0
-    
-    min_len = 20
-    max_iterations = 50
-    for _ in range(max_iterations):
-        match = re.search(r'([^\n<>]{' + str(min_len) + r',}?)\s+\1', content, re.MULTILINE)
-        if not match:
-            break
-        
-        matched_text = match.group(1).strip()
-        if is_css_pattern(matched_text):
-            break
-        if re.match(r'^[\s\n\r\t<>\/]+$', matched_text):
-            break
-        if re.match(r'^[a-z0-9_-]+$', matched_text, re.IGNORECASE):
-            break
-        if re.match(r'^["\'\(\)\[\]{}]+$', matched_text):
-            break
-        
-        full_match = match.group(0)
-        content = content.replace(full_match, matched_text, 1)
-        fixes += 1
-    
-    return content, fixes
+
+    protected_re = re.compile(
+        r'(<style[^>]*>.*?</style>|<script[^>]*>.*?</script>|<svg[^>]*>.*?</svg>|<!--.*?-->)',
+        flags=re.DOTALL | re.IGNORECASE
+    )
+    chunks = protected_re.split(content)
+
+    block_re = re.compile(r'(<(p|li|dd|dt|h[1-6]|blockquote)\b[^>]*>)(.*?)(</\2>)', flags=re.DOTALL | re.IGNORECASE)
+
+    for idx in range(0, len(chunks), 2):
+        chunk = chunks[idx]
+
+        def replace_block(m):
+            nonlocal fixes
+            open_tag, tag_name, inner, close_tag = m.group(1), m.group(2), m.group(3), m.group(4)
+            new_inner, f_cnt = _dedup_block_inner_html(inner)
+            if f_cnt > 0:
+                fixes += f_cnt
+                return open_tag + new_inner + close_tag
+            return m.group(0)
+
+        chunks[idx] = block_re.sub(replace_block, chunk)
+
+    return "".join(chunks), fixes
 
 
 def fix_repeated_substring_loops(content):
@@ -819,7 +1337,7 @@ def fix_repeated_substring_loops(content):
     e.g. '&nbsp;:-)&nbsp;:-)' -> '&nbsp;:-)'
     or ' :-) :-) :-) ...' -> ' :-)'
     """
-    pattern = re.compile(r'((?:&nbsp;|\s)*:[-~]?[)D(PpoO])(?:\s*|&nbsp;)*(?:\1)+')
+    pattern = re.compile(r'((?:&nbsp;|\s)*:[-~]?[)D(PpoO])(?:\s+|&nbsp;)*(?:\1)+')
     new_content, count = pattern.subn(
         lambda m: ('&nbsp;' if '&nbsp;' in m.group(1) else ' ') + m.group(1).strip().replace('&nbsp;', ''),
         content
@@ -849,7 +1367,29 @@ def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fi
     original = content
     total_fixes = 0
     fix_details = []
+    root_lang_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'lang')
     
+    content, fixes = fix_api_error_leaks(content)
+    if fixes > 0:
+        fix_details.append(f"{fixes} leaked API error strings")
+    total_fixes += fixes
+
+    if not is_en:
+        content, fixes = fix_template_includes(content, lang_code, filepath, root_lang_dir)
+        if fixes > 0:
+            fix_details.append(f"{fixes} template includes")
+        total_fixes += fixes
+
+        content, fixes = fix_material_icons(content, lang_code, filepath, root_lang_dir)
+        if fixes > 0:
+            fix_details.append(f"{fixes} material icons")
+        total_fixes += fixes
+
+        content, fixes = fix_sister_project_contamination(content, lang_code, filepath, root_lang_dir)
+        if fixes > 0:
+            fix_details.append(f"{fixes} sister project contaminations")
+        total_fixes += fixes
+
     if fix_facets:
         content, fixes = fix_facet_links(content)
         if fixes > 0:
