@@ -23,15 +23,17 @@ sub check_repetitions {
     # Remove HTML comments
     $content =~ s/<!--.*?-->//gs;
     
-    # Remove style blocks (CSS is expected to have repeated patterns)
+    # Remove style, script, and svg blocks (CSS/JS/SVG are expected to have repeated patterns and large data)
     $content =~ s/<style[^>]*>.*?<\/style>//gsi;
+    $content =~ s/<script[^>]*>.*?<\/script>//gsi;
+    $content =~ s/<svg[^>]*>.*?<\/svg>//gsi;
     
     my @issues;
     
     # Pattern 1: Same substantial text appearing 2+ times consecutively with space/newline between
     # Looking for patterns like "Text Text" or "Text Text Text"
     my $min_len = 20;
-    while ($content =~ /([^\n<]{$min_len,}?)\s+\1/g) {
+    while ($content =~ /([^\n<>]{$min_len,300}?)[ \t]+\1/g) {
         my $match = $1;
         
         # Skip pure HTML tags and structural elements

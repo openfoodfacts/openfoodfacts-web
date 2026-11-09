@@ -15,10 +15,14 @@ concurrency:
 
 jobs:
   process-publication-issue:
-    # Run only if the issue has the 'science' label
+    # Run only if the issue has the 'science' or 'scientific-publications' label, or matches the publication template title
     if: >
-      (github.event.action == 'labeled' && github.event.label.name == 'scientific-publications') ||
-      (github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'scientific-publications'))
+      (github.event.action == 'labeled' && (github.event.label.name == 'science' || github.event.label.name == 'scientific-publications')) ||
+      (github.event.action == 'opened' && (
+        contains(github.event.issue.labels.*.name, 'science') ||
+        contains(github.event.issue.labels.*.name, 'scientific-publications') ||
+        startsWith(github.event.issue.title, '[Publication]')
+      ))
     runs-on: ubuntu-latest
 
     steps:
@@ -60,7 +64,7 @@ jobs:
           commit-message: "feat(science): add publication from issue #${{ github.event.issue.number }}"
           branch: "publication/issue-${{ github.event.issue.number }}"
           delete-branch: true
-          title: "[Publication] Add ${{ steps.add_pub.outputs.pub_title }}"
+          title: "chore(Publication): Add ${{ steps.add_pub.outputs.pub_title }}"
           body: |
             ### 🔬 Scientific Publication Proposal
 

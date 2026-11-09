@@ -1,6 +1,10 @@
 name: Fix Translation Issues
 
 on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'lang/**'
   workflow_dispatch:
     inputs:
       fix_utm:
@@ -41,6 +45,11 @@ on:
 
 jobs:
   fix-translations:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' &&
+       github.event.pull_request.head.repo.full_name == github.repository &&
+       (startsWith(github.head_ref, 'l10n_') || contains(github.event.pull_request.title, 'Crowdin') || contains(github.event.pull_request.title, 'translations')))
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -50,10 +59,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
           fetch-depth: 0
       
       - name: Set up Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
         with:
           python-version: '3.x'
       
@@ -63,28 +73,25 @@ jobs:
           # Build command arguments
           ARGS="--base-dir lang -v"
           
-          if [ "${{ inputs.fix_utm }}" != "true" ]; then
-            ARGS="$ARGS --no-utm"
-          fi
-          
-          if [ "${{ inputs.fix_urls }}" != "true" ]; then
-            ARGS="$ARGS --no-urls"
-          fi
-
-          if [ "${{ inputs.fix_badges }}" != "true" ]; then
-            ARGS="$ARGS --no-badges"
-          fi
-
-          if [ "${{ inputs.fix_brands }}" != "true" ]; then
-            ARGS="$ARGS --no-brands"
-          fi
-
-          if [ "${{ inputs.fix_typography }}" != "true" ]; then
-            ARGS="$ARGS --no-typography"
-          fi
-
-          if [ "${{ inputs.fix_repetitions }}" != "true" ]; then
-            ARGS="$ARGS --no-repetitions"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "${{ inputs.fix_utm }}" != "true" ]; then
+              ARGS="$ARGS --no-utm"
+            fi
+            if [ "${{ inputs.fix_urls }}" != "true" ]; then
+              ARGS="$ARGS --no-urls"
+            fi
+            if [ "${{ inputs.fix_badges }}" != "true" ]; then
+              ARGS="$ARGS --no-badges"
+            fi
+            if [ "${{ inputs.fix_brands }}" != "true" ]; then
+              ARGS="$ARGS --no-brands"
+            fi
+            if [ "${{ inputs.fix_typography }}" != "true" ]; then
+              ARGS="$ARGS --no-typography"
+            fi
+            if [ "${{ inputs.fix_repetitions }}" != "true" ]; then
+              ARGS="$ARGS --no-repetitions"
+            fi
           fi
           
           echo "Running: python scripts/fix_translation_issues.py $ARGS"
@@ -100,7 +107,7 @@ jobs:
           fi
       
       - name: Create Pull Request
-        if: steps.fix.outputs.changes == 'true' && inputs.create_pr == true
+        if: steps.fix.outputs.changes == 'true' && github.event_name == 'workflow_dispatch' && inputs.create_pr == true
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -115,6 +122,8 @@ jobs:
             - Fixed UTM campaign parameters to use correct language codes
             - Fixed Apple App Store and Google Play URLs to use proper language codes
             - Reverted accidental brand name translations per No-Translate list
+            - Repaired broken `[[...]]` template includes and Material Icons ligatures
+            - Removed sister-project contaminations and leaked MT/API error strings
             - Fixed text repetition issues from Crowdin translations
             
             ### How to review
@@ -131,13 +140,13 @@ jobs:
             translations
       
       - name: Commit directly
-        if: steps.fix.outputs.changes == 'true' && inputs.create_pr == false
+        if: steps.fix.outputs.changes == 'true' && (github.event_name == 'pull_request' || inputs.create_pr == false)
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add -A
           git commit -m "fix: Auto-fix translation issues (UTM params, App Store URLs, brand names)"
-          git push
+          git push origin HEAD:${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
       
       - name: Summary
         run: |

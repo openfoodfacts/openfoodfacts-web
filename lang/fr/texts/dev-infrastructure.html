@@ -1,0 +1,398 @@
+<!-- no side column -->
+<title>Infrastructure, systèmes &amp; défense contre les bots - Open Food Facts</title>
+
+<style>
+.dev-infra-section {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1f2937;
+    margin: 1.5rem auto 3rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.dev-infra-section *,
+.dev-infra-section *::before,
+.dev-infra-section *::after {
+    box-sizing: border-box;
+}
+
+.dev-infra-section .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.dev-infra-section .section-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+}
+
+.dev-infra-section .section-header p.lead {
+    font-size: 1.1rem;
+    color: #4b5563;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.dev-challenge-banner {
+    background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+    border: 2px solid #fecdd3;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 16px rgba(225, 29, 72, 0.06);
+}
+
+.dev-challenge-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.dev-challenge-banner h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #9f1239;
+    margin: 0 0 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dev-challenge-banner p {
+    font-size: 0.98rem;
+    color: #881337;
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+}
+
+.dev-challenge-perks {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem 0;
+}
+
+.dev-challenge-perks li {
+    font-size: 0.9rem;
+    color: #9f1239;
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+    line-height: 1.45;
+}
+
+.dev-challenge-perks li::before {
+    content: "🛡️";
+    position: absolute;
+    left: 0;
+    font-size: 0.85rem;
+}
+
+.dev-infra-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.dev-infra-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.dev-infra-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    border-color: #0284c7;
+}
+
+.dev-infra-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.dev-infra-card-icon {
+    font-size: 2rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #f0f9ff;
+    color: #0284c7;
+    flex-shrink: 0;
+}
+
+.dev-infra-card-title h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.25rem 0;
+    line-height: 1.3;
+}
+
+.dev-infra-card-body {
+    flex: 1;
+    margin-bottom: 1.5rem;
+}
+
+.dev-infra-card-body p {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.55;
+    margin: 0 0 0.75rem 0;
+}
+
+.dev-infra-card-features {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0 0;
+}
+
+.dev-infra-card-features li {
+    font-size: 0.88rem;
+    color: #4b5563;
+    padding-left: 1.25rem;
+    position: relative;
+    margin-bottom: 0.45rem;
+    line-height: 1.4;
+}
+
+.dev-infra-card-features li::before {
+    content: "•";
+    position: absolute;
+    left: 0.25rem;
+    color: #0284c7;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.dev-infra-sync-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 14px;
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+}
+
+.dev-infra-sync-box h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #166534;
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dev-infra-sync-box p {
+    font-size: 0.95rem;
+    color: #15803d;
+    line-height: 1.55;
+    margin: 0 0 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .dev-challenge-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<div class="dev-infra-section" id="dev-infrastructure">
+    <div class="section-header">
+        <h2>Infrastructure, systèmes &amp; défense contre les bots</h2>
+        <p class="lead">
+            Open Food Facts traite des centaines de millions de requêtes mensuelles en tant que bien commun mondial de données ouvertes. Notre équipe d'infrastructure, composée de bénévoles et de personnel, gère la haute disponibilité, les clusters multi-centres de données et la bataille critique en première ligne contre les scrapers malveillants et les bots d'exploration IA agressifs.
+        </p>
+    </div>
+
+    <!-- The Scraper & AI Bot Challenge Banner -->
+    <div class="dev-challenge-banner">
+        <div class="dev-challenge-grid">
+            <div>
+                <h3>🤖 Dompter les scrapers &amp; les crawlers IA agressifs</h3>
+                <p>
+                    Open Food Facts est 100 % ouvert&nbsp;: l'intégralité de notre base de données est téléchargeable gratuitement via des dumps quotidiens sur <a href="/data" style="color: #be123c; font-weight: 700; text-decoration: underline;">/data</a>. Pourtant, les scrapers commerciaux et les bots d'exploration IA bombardent fréquemment les pages web en direct, les facettes de recherche lourdes et les serveurs d'images avec des centaines de milliers de requêtes non limitées.
+                </p>
+                <ul class="dev-challenge-perks">
+                    <li><strong>Atténuation des pics de trafic&nbsp;:</strong> Empêcher les scrapers non coordonnés de contourner les caches et d'épuiser les travailleurs de la base de données.</li>
+                    <li><strong>Protection de l'accès public&nbsp;:</strong> Garantir que les utilisateurs d'applications mobiles dans les rayons des supermarchés et les contributeurs actifs bénéficient de temps de réponse inférieurs à la seconde sans erreurs de passerelle 504.</li>
+                    <li><strong>Éduquer les réutilisateurs&nbsp;:</strong> Orienter les consommateurs de données vers nos exportations en masse gratuites (JSON, CSV, Parquet) plutôt que vers le moissonnage de pages HTML.</li>
+                </ul>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+                    <a href="https://github.com/openfoodfacts/openfoodfacts-infrastructure" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
+                        openfoodfacts-infrastructure sur GitHub
+                    </a>
+                    <a href="https://openfoodfacts.slack.com/messages/C07B88X4X/" class="btn-dev-action btn-slack-action" target="_blank" rel="noopener noreferrer">
+                        #infrastructure sur Slack
+                    </a>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <div style="background: #ffffff; border-radius: 12px; padding: 1.5rem; border: 1px solid #fecdd3; box-shadow: 0 4px 12px rgba(225, 29, 72, 0.08);">
+                    <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">🛑 🧱 ⚡</div>
+                    <div style="font-weight: 700; color: #111827; margin-bottom: 0.25rem;">Défense multi-niveaux</div>
+                    <p style="font-size: 0.85rem; color: #6b7280; margin: 0;">Limitation de débit Nginx • Fail2ban &amp; nftables • Mise en cache en périphérie • Surveillance Upptime</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Infrastructure Engineering Stack -->
+    <div class="dev-infra-stack-grid">
+        <!-- Nginx & Rate Limiting -->
+        <div class="dev-infra-card">
+            <div class="dev-infra-card-header">
+                <div class="dev-infra-card-icon">⚡</div>
+                <div class="dev-infra-card-title">
+                    <h3>Proxy inverse Nginx &amp; limitation de débit</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag">Nginx</span>
+                        <span class="dev-tech-tag">Limitation de débit</span>
+                        <span class="dev-tech-tag">Micro-mise en cache</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-infra-card-body">
+                <p>
+                    Tout le trafic externe transite par des proxys inverses Nginx spécialisés, conçus pour résister aux pics de charge massifs et isoler les points de terminaison critiques.
+                </p>
+                <ul class="dev-infra-card-features">
+                    <li>Limitation de débit dynamique par IP et par point de terminaison pour réguler les pics de requêtes non mis en mémoire tampon</li>
+                    <li>Limitation de débit et mise en cache des images sur des nœuds statiques dédiés</li>
+                    <li>Mise en forme du trafic par pays et micro-mise en cache pour les requêtes fréquentes du catalogue</li>
+                    <li>Configurations de proxy inverse Nginx gérées de manière collaborative dans Git</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="https://openfoodfacts.github.io/openfoodfacts-infrastructure/explanation/nginx-reverse-proxy/" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+                    Documentation de l'architecture Nginx
+                </a>
+            </div>
+        </div>
+
+        <!-- Fail2ban & Firewall Bot Banning -->
+        <div class="dev-infra-card">
+            <div class="dev-infra-card-header">
+                <div class="dev-infra-card-icon" style="background: #fef2f2; color: #dc2626;">🛡️</div>
+                <div class="dev-infra-card-title">
+                    <h3>Fail2ban &amp; Jails de pare-feu</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag">fail2ban</span>
+                        <span class="dev-tech-tag">nftables</span>
+                        <span class="dev-tech-tag">iptables</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-infra-card-body">
+                <p>
+                    Atténuation automatisée et persistante des bots pour bloquer les scanners malveillants et les scrapers non conformes au niveau de la couche réseau du noyau.
+                </p>
+                <ul class="dev-infra-card-features">
+                    <li>Filtres <code>nginx-botsearch</code> automatisés pour piéger les sondes de vulnérabilité et d'exploitation aveugles</li>
+                    <li>Jails persistantes personnalisées <code>nginx-manual-ban</code> utilisant un stockage SQLite survivant aux redémarrages</li>
+                    <li>Scripts d'agrégation de trafic en temps réel (<code>concatenate_by_ip.pl</code>) pour une réponse rapide aux incidents</li>
+                    <li>Bannissement de plages CIDR pour les sous-réseaux de bots cloud malveillants</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="https://openfoodfacts.github.io/openfoodfacts-infrastructure/how-to/how-to-mitigate-crawlers-on-prod/" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+                    Guide d'atténuation des crawlers
+                </a>
+            </div>
+        </div>
+
+        <!-- Proxmox & ZFS Virtualization -->
+        <div class="dev-infra-card">
+            <div class="dev-infra-card-header">
+                <div class="dev-infra-card-icon" style="background: #f5f3ff; color: #7c3aed;">🖥️</div>
+                <div class="dev-infra-card-title">
+                    <h3>Cluster Proxmox VE &amp; ZFS</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag">Proxmox VE</span>
+                        <span class="dev-tech-tag">ZFS</span>
+                        <span class="dev-tech-tag">LXC &amp; KVM</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-infra-card-body">
+                <p>
+                    Open Food Facts fonctionne sur des serveurs physiques bare-metal orchestrés avec Proxmox VE, hébergeant des machines virtuelles et des conteneurs LXC légers.
+                </p>
+                <ul class="dev-infra-card-features">
+                    <li>Réplication ZFS automatisée entre les centres de données (OVH, Free, Moji) pour la résilience en cas de sinistre</li>
+                    <li>Environnements Docker et Docker Compose pour les microservices conteneurisés</li>
+                    <li>Configuration serveur gérée de manière déclarative via des dépôts Git</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="https://openfoodfacts.github.io/openfoodfacts-infrastructure/explanation/proxmox/" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+                    Documentation Proxmox
+                </a>
+            </div>
+        </div>
+
+        <!-- Observability & Monitoring -->
+        <div class="dev-infra-card">
+            <div class="dev-infra-card-header">
+                <div class="dev-infra-card-icon" style="background: #ecfdf5; color: #059669;">📈</div>
+                <div class="dev-infra-card-title">
+                    <h3>Observabilité &amp; Upptime</h3>
+                    <div class="dev-tech-tags">
+                        <span class="dev-tech-tag">Prometheus</span>
+                        <span class="dev-tech-tag">Grafana</span>
+                        <span class="dev-tech-tag">Upptime</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-infra-card-body">
+                <p>
+                    La surveillance complète (full-stack) offre à nos ingénieurs opérationnels une visibilité en temps réel sur la latence, le débit, les taux d'erreur et les anomalies système.
+                </p>
+                <ul class="dev-infra-card-features">
+                    <li>Page de statut publique et transparente propulsée par Upptime sur status.openfoodfacts.org</li>
+                    <li>Exportateurs de métriques Prometheus pour les métriques système, de base de données et de cache</li>
+                    <li>Tableaux de bord Grafana pour la surveillance du trafic en temps réel et les post-mortems d'incidents</li>
+                </ul>
+            </div>
+            <div class="dev-card-actions">
+                <a href="https://status.openfoodfacts.org/" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+                    Page de statut en direct
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Monthly Meeting Box -->
+    <div class="dev-infra-sync-box">
+        <h3>📅 Rejoignez notre réunion mensuelle sur l'infrastructure</h3>
+        <p>
+            L'équipe infrastructure se réunit en ligne chaque mois, le <strong>deuxième jeudi du mois à 18h00 CET / heure de Paris</strong>. Les administrateurs système, DevOps, SRE, ingénieurs réseau et passionnés de sécurité de tous niveaux sont chaleureusement invités à nous rejoindre, partager des idées et aider à maintenir une infrastructure internet ouverte.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+            <a href="https://meet.google.com/ybq-dwuk-pvi" class="btn-dev-action btn-primary-action" target="_blank" rel="noopener noreferrer">
+                📹 Google Meet&nbsp;: meet.google.com/ybq-dwuk-pvi
+            </a>
+            <a href="https://openfoodfacts.github.io/openfoodfacts-infrastructure/" class="btn-dev-action btn-github-action" target="_blank" rel="noopener noreferrer">
+                Docs Infra &amp; Post-mortems
+            </a>
+            <a href="https://openfoodfacts.slack.com/messages/C07B88X4X/" class="btn-dev-action btn-slack-action" target="_blank" rel="noopener noreferrer">
+                #infrastructure sur Slack
+            </a>
+        </div>
+    </div>
+</div>

@@ -200,6 +200,33 @@ This study used 15,000 products from Open Food Facts to evaluate the distributio
         finally:
             shutil.rmtree(temp_dir)
 
+    def test_validate_localized_publication(self):
+        # Multilingual dict
+        doc_dict = {
+            "id": "2026-test-localized-pub",
+            "title": {
+                "en": "English Research Title",
+                "fr": "Titre de recherche en français"
+            },
+            "authors": ["Test Author"],
+            "year": 2026,
+            "themes": ["nutrition"]
+        }
+        errs, warns = validate_publication(doc_dict, "2026-test-localized-pub.yaml")
+        self.assertEqual(errs, [])
+
+        # Suffixed fields
+        doc_suffix = {
+            "id": "2026-test-suffix-pub",
+            "title_en": "English Title",
+            "title_fr": "Titre Français",
+            "authors": ["Test Author"],
+            "year": 2026,
+            "themes": ["nutrition"]
+        }
+        errs, warns = validate_publication(doc_suffix, "2026-test-suffix-pub.yaml")
+        self.assertEqual(errs, [])
+
     def test_dry_run_and_output_json_cli(self):
         temp_out = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
         temp_out.close()
