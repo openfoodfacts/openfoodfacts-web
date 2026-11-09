@@ -72,13 +72,41 @@ def build_html(lang="fr", items=None):
         if "verbatim" in it:
             clean["verbatim"] = get_localized_field(it, "verbatim", lang)
         clean_items.append(clean)
-        clean.pop("editorial_note", None)
-        clean_items.append(clean)
 
     # Translations
-    t_title = "📰 Revue de presse Open Food Facts" if is_fr else "📰 Open Food Facts in the Press"
-    t_subtitle = "Toutes les mentions dans les médias, radios, télés et publications de 2012 à aujourd'hui." if is_fr else "All press, radio, TV, and media coverage of Open Food Facts from 2012 to today."
-    t_submit_btn = "➕ Signaler une mention" if is_fr else "➕ Submit a Press Mention"
+    t_title = {
+        "fr": "📰 Revue de presse Open Food Facts",
+        "en": "📰 Open Food Facts in the Press",
+        "es": "📰 Open Food Facts en la prensa",
+        "de": "📰 Open Food Facts in der Presse",
+        "it": "📰 Open Food Facts nella stampa",
+        "nl": "📰 Open Food Facts in de pers",
+        "pt": "📰 Open Food Facts na imprensa",
+        "pl": "📰 Open Food Facts w prasie",
+        "ca": "📰 Open Food Facts a la premsa",
+        "ru": "📰 Open Food Facts в прессе",
+    }.get(lang, "📰 Open Food Facts in the Press")
+
+    t_subtitle = {
+        "fr": "Toutes les mentions dans les médias, radios, télés et publications de 2012 à aujourd'hui.",
+        "en": "All press, radio, TV, and media coverage of Open Food Facts from 2012 to today.",
+        "es": "Todas las menciones en medios, radio, televisión y publicaciones de 2012 a hoy.",
+        "de": "Alle Erwähnungen in Presse, Radio, TV und Veröffentlichungen von 2012 bis heute.",
+        "it": "Tutte le citazioni su stampa, radio, TV e pubblicazioni dal 2012 ad oggi.",
+        "nl": "Alle vermeldingen in pers, radio, tv en publicaties van 2012 tot heden.",
+        "pt": "Todas as menções nos media, rádio, televisão e publicações desde 2012 até hoje.",
+        "pl": "Wszystkie wzmianki w prasie, radiu, telewizji i publikacjach od 2012 roku do dziś.",
+        "ca": "Totes les mencions als mitjans, ràdio, televisió i publicacions des del 2012 fins avui.",
+        "ru": "Все упоминания в прессе, на радио, ТВ и в публикациях с 2012 года по настоящее время.",
+    }.get(lang, "All press, radio, TV, and media coverage of Open Food Facts from 2012 to today.")
+
+    t_submit_btn = {
+        "fr": "➕ Signaler une mention", "en": "➕ Submit a Press Mention", "es": "➕ Enviar una mención",
+        "de": "➕ Erwähnung melden", "it": "➕ Segnala una citazione", "nl": "➕ Vermelding melden",
+        "pt": "➕ Sinalizar uma menção", "pl": "➕ Zgłoś wzmiankę prasową", "ca": "➕ Informar d'una menció",
+        "ru": "➕ Сообщить об упоминании"
+    }.get(lang, "➕ Submit a Press Mention")
+
     t_btn_mail = "✉️ Envoyer par email" if is_fr else "✉️ Send by Email"
     t_assets_btn = "📁 Bibliothèque de logos & assets" if is_fr else "📁 Media Assets Library"
     t_presskit_btn = "← Espace presse" if is_fr else "← Press Page"

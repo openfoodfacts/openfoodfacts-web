@@ -53,12 +53,33 @@ def generate_html(lang="en"):
     is_fr = (lang == "fr")
 
     # Translations
-    t_title = "🚀 Vitrine de l'écosystème & des réutilisations" if is_fr else "🚀 Open Food Facts Ecosystem & Reuses Showcase"
-    t_subtitle = (
-        "Découvrez des centaines d'applications, projets de recherche, plateformes citoyennes et outils propulsés par les données ouvertes d'Open Food Facts."
-        if is_fr else
-        "Discover hundreds of mobile apps, research projects, civic platforms, and tools powered by Open Food Facts open data."
-    )
+    t_title_dict = {
+        "fr": "🚀 Vitrine de l'écosystème & des réutilisations",
+        "en": "🚀 Open Food Facts Ecosystem & Reuses Showcase",
+        "es": "🚀 Ecosistema de Open Food Facts y escaparate de reutilizaciones",
+        "de": "🚀 Open Food Facts Ökosystem & Reuses Showcase",
+        "it": "🚀 Vetrina dell'ecosistema e dei riutilizzi di Open Food Facts",
+        "nl": "🚀 Open Food Facts ecosysteem & hergebruik-etalage",
+        "pt": "🚀 Ecossistema e montra de reutilizações do Open Food Facts",
+        "pl": "🚀 Ekosystem i katalog zastosowań Open Food Facts",
+        "ca": "🚀 Ecosistema i aparador de reutilitzacions d'Open Food Facts",
+        "ru": "🚀 Экосистема и витрина приложений Open Food Facts",
+    }
+    t_title = t_title_dict.get(lang, t_title_dict["en"])
+
+    t_subtitle_dict = {
+        "fr": "Découvrez des centaines d'applications, projets de recherche, plateformes citoyennes et outils propulsés par les données ouvertes d'Open Food Facts.",
+        "en": "Discover hundreds of mobile apps, research projects, civic platforms, and tools powered by Open Food Facts open data.",
+        "es": "Descubra cientos de aplicaciones móviles, proyectos de investigación, plataformas cívicas y herramientas impulsadas por los datos abiertos de Open Food Facts.",
+        "de": "Entdecken Sie Hunderte von mobilen Apps, Forschungsprojekten, Bürgerplattformen und Tools, die auf offenen Daten von Open Food Facts basieren.",
+        "it": "Scopri centinaia di app mobili, progetti di ricerca, piattaforme civiche e strumenti alimentati dai dati aperti di Open Food Facts.",
+        "nl": "Ontdek honderden mobiele apps, onderzoeksprojecten, burgerplatforms en tools die worden aangedreven door open data van Open Food Facts.",
+        "pt": "Descubra centenas de aplicações móveis, projetos de investigação, plataformas cívicas e ferramentas impulsionadas pelos dados abertos do Open Food Facts.",
+        "pl": "Odkrywaj setki aplikacji mobilnych, projektów badawczych, platform obywatelskich i narzędzi opartych na otwartych danych Open Food Facts.",
+        "ca": "Descobriu centenars d'aplicacions mòbils, projectes de recerca, plataformes ciutadanes i eines impulsades per les dades obertes d'Open Food Facts.",
+        "ru": "Откройте для себя сотни мобильных приложений, научных проектов, гражданских платформ и инструментов на основе открытых данных Open Food Facts.",
+    }
+    t_subtitle = t_subtitle_dict.get(lang, t_subtitle_dict["en"])
     
     # Impact Hero Stats
     t_stat_installs_num = "60M+"
@@ -81,9 +102,29 @@ def generate_html(lang="en"):
     t_stat_open_label = "Données ouvertes" if is_fr else "Open Data & Commons"
     t_stat_open_sub = "Licence ODbL & API libre" if is_fr else "ODbL & free open API"
 
-    t_submit_gh_btn = "🚀 Déclarer une réutilisation" if is_fr else "🚀 Submit a Reuse"
-    t_edit_gh_btn = "✏️ Proposer une modif (PR)" if is_fr else "✏️ Propose an Edit (PR)"
-    t_donate_btn = "💝 Soutenir par un don" if is_fr else "💝 Donate to the NGO"
+    t_submit_gh_btn_dict = {
+        "fr": "🚀 Déclarer une réutilisation", "en": "🚀 Submit a Reuse", "es": "🚀 Enviar una reutilización",
+        "de": "🚀 Reuse einreichen", "it": "🚀 Segnala un riutilizzo", "nl": "🚀 Hergebruik aanmelden",
+        "pt": "🚀 Submeter uma reutilização", "pl": "🚀 Zgłoś projekt", "ca": "🚀 Declarar una reutilització",
+        "ru": "🚀 Добавить проект"
+    }
+    t_submit_gh_btn = t_submit_gh_btn_dict.get(lang, t_submit_gh_btn_dict["en"])
+
+    t_edit_gh_btn_dict = {
+        "fr": "✏️ Proposer une modif (PR)", "en": "✏️ Propose an Edit (PR)", "es": "✏️ Proponer edición (PR)",
+        "de": "✏️ Änderung vorschlagen (PR)", "it": "✏️ Proponi una modifica (PR)", "nl": "✏️ Wijziging voorstellen (PR)",
+        "pt": "✏️ Propor uma alteração (PR)", "pl": "✏️ Zaproponuj zmianę (PR)", "ca": "✏️ Proposar una modificació (PR)",
+        "ru": "✏️ Предложить правку (PR)"
+    }
+    t_edit_gh_btn = t_edit_gh_btn_dict.get(lang, t_edit_gh_btn_dict["en"])
+
+    t_donate_btn_dict = {
+        "fr": "💝 Soutenir par un don", "en": "💝 Donate to the NGO", "es": "💝 Donar a la asociación",
+        "de": "💝 An die NGO spenden", "it": "💝 Dona all'associazione", "nl": "💝 Doneer aan de vzw",
+        "pt": "💝 Apoiar com um donativo", "pl": "💝 Wesprzyj darowizną", "ca": "💝 Fer un donatiu",
+        "ru": "💝 Поддержать ассоциацию"
+    }
+    t_donate_btn = t_donate_btn_dict.get(lang, t_donate_btn_dict["en"])
     t_submit_form_btn = "📝 Formulaire Google" if is_fr else "📝 Google Form"
     t_submit_drawer_btn = "ℹ️ Options de soumission" if is_fr else "ℹ️ Submit Options"
     t_sdk_btn = "📦 SDKs & API Développeurs" if is_fr else "📦 Developer SDKs & API"
