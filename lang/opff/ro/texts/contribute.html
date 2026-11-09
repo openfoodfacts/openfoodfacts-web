@@ -1,150 +1,628 @@
 <!-- no side column -->
+<style>
+/* ==========================================================================
+   Open Pet Food Facts — Modern Contribute Page
+   ========================================================================== */
 
-<div class="row">
+#opff-contribute-page {
+    --opff-primary: #ea580c;
+    --opff-primary-hover: #c2410c;
+    --opff-secondary: #15803d;
+    --opff-secondary-hover: #166534;
+    --opff-amber: #d97706;
+    --opff-dark: #2c1608;
+    --opff-cream: #fdfaf6;
+    --opff-warm-bg: #fff7ed;
+    --opff-border: #fed7aa;
+    --opff-card-border: #fbd0a7;
+    --opff-text-muted: #78533b;
+    --opff-blue: #2563eb;
+    --opff-radius-card: 22px;
+    --opff-radius-pill: 9999px;
+    --opff-shadow-sm: 0 2px 10px rgba(44, 22, 8, 0.04);
+    --opff-shadow-md: 0 10px 24px rgba(44, 22, 8, 0.07);
+    --opff-shadow-hover: 0 16px 36px rgba(234, 88, 12, 0.14);
 
-    <div class="small-12 medium-8 columns">
-        <h1>Contribuiți la Open Pet Food Facts</h1>
-        <h2 class="subheader">Tot ce ai nevoie este o atitudine de scanare! :-)</h2>
-        <!-- note to translators: you can replace "All you need is a scan-do attitude!" by a sentence that works better
-        for your language. Something that says that it's easy to contribute and that all that is needed is good will and a positive / can-do attitude -->
-        <blockquote>Putem face industria hranei pentru animale de companie mai deschisă și transparentă? Da, scanăm!
-        <!-- note to translators: please translate "Can we make the pet food industry more open and transparent" but keep "Yes we scan!" in English -->
-        </blockquote>
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--opff-dark);
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+}
+
+#opff-contribute-page * {
+    box-sizing: border-box;
+}
+
+/* Badge Pills */
+.opff-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--opff-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+    border: none;
+}
+.opff-badge-pill.orange { background: #ffedd5; color: #9a3412; }
+.opff-badge-pill.green { background: #dcfce7; color: #166534; }
+.opff-badge-pill.amber { background: #fef3c7; color: #92400e; }
+.opff-badge-pill.blue { background: #e0f2fe; color: #0369a1; }
+.opff-badge-pill.purple { background: #f3e8ff; color: #6b21a8; }
+
+/* Hero Banner */
+.opff-hero {
+    background: linear-gradient(145deg, #ffffff 0%, var(--opff-warm-bg) 100%);
+    border: 1px solid var(--opff-border);
+    border-radius: 28px;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 3.5rem;
+    box-shadow: var(--opff-shadow-md);
+}
+
+.hero-content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--opff-dark);
+    line-height: 1.15;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+}
+
+.hero-lead {
+    font-size: 1.15rem;
+    color: var(--opff-text-muted);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+.hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-media img {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    filter: drop-shadow(0 14px 32px rgba(44, 22, 8, 0.12));
+    border-radius: 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-media img:hover {
+    transform: translateY(-4px) scale(1.015);
+}
+
+/* Call to Action Buttons */
+.off-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--opff-radius-pill);
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    line-height: 1.2;
+    border: none;
+}
+.off-btn-primary {
+    background: var(--opff-primary);
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-primary:hover {
+    background: var(--opff-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+.off-btn-secondary {
+    background: #ffffff;
+    color: var(--opff-dark) !important;
+    border: 1px solid var(--opff-border);
+    box-shadow: var(--opff-shadow-sm);
+}
+.off-btn-secondary:hover {
+    background: var(--opff-cream);
+    border-color: var(--opff-primary);
+    transform: translateY(-2px);
+    color: var(--opff-primary) !important;
+}
+.off-btn-green {
+    background: var(--opff-secondary);
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-green:hover {
+    background: var(--opff-secondary-hover);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+.off-btn-block {
+    width: 100%;
+}
+
+/* Section Header */
+.section-header {
+    text-align: left;
+    margin-bottom: 2.25rem;
+}
+.section-header h2 {
+    font-size: clamp(1.8rem, 3vw, 2.35rem);
+    font-weight: 800;
+    color: var(--opff-dark);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.015em;
+}
+.section-header p {
+    font-size: 1.08rem;
+    color: var(--opff-text-muted);
+    margin: 0;
+    max-width: 760px;
+}
+
+/* Grids */
+.off-card-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+.off-card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+
+/* Feature Cards */
+.off-feature-card {
+    background: #ffffff;
+    border: 1px solid var(--opff-card-border);
+    border-radius: var(--opff-radius-card);
+    padding: 1.85rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--opff-shadow-sm);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+.off-feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--opff-shadow-hover);
+    border-color: var(--opff-primary);
+}
+
+.off-card-art {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+.off-card-art img,
+.off-card-art svg {
+    max-height: 140px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.off-feature-card:hover .off-card-art img,
+.off-feature-card:hover .off-card-art svg {
+    transform: scale(1.05);
+}
+
+/* Animations: on hover only */
+#opff-contribute-page svg,
+#opff-contribute-page svg * {
+    animation-play-state: paused !important;
+}
+
+#opff-contribute-page .opff-hero:hover svg,
+#opff-contribute-page .opff-hero:hover svg *,
+#opff-contribute-page .off-feature-card:hover svg,
+#opff-contribute-page .off-feature-card:hover svg *,
+#opff-contribute-page .expert-banner:hover svg,
+#opff-contribute-page .expert-banner:hover svg *,
+#opff-contribute-page .hero-media:hover svg,
+#opff-contribute-page .hero-media:hover svg *,
+#opff-contribute-page svg:hover,
+#opff-contribute-page svg:hover * {
+    animation-play-state: running !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #opff-contribute-page svg,
+    #opff-contribute-page svg * {
+        animation: none !important;
+    }
+}
+
+.off-feature-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--opff-dark);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+}
+.off-feature-card p {
+    font-size: 0.95rem;
+    color: var(--opff-text-muted);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.off-feature-card .card-footer-action {
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
+/* Divider */
+#opff-contribute-page hr.off-divider {
+    border: none;
+    border-top: 1px solid var(--opff-border);
+    margin: 3.5rem 0;
+}
+
+/* Expert Banner */
+.expert-banner {
+    background: linear-gradient(135deg, var(--opff-warm-bg) 0%, #ffffff 100%);
+    border: 1px solid var(--opff-border);
+    border-radius: 24px;
+    padding: clamp(1.8rem, 3.5vw, 2.5rem);
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--opff-shadow-sm);
+}
+.expert-banner-art {
+    display: flex;
+    justify-content: center;
+}
+.expert-banner-art img {
+    max-width: 280px;
+    height: auto;
+}
+.expert-banner-text h2 {
+    font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+    font-weight: 800;
+    color: var(--opff-dark);
+    margin: 0 0 0.75rem 0;
+}
+.expert-banner-text p {
+    color: var(--opff-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 1.25rem 0;
+}
+
+/* Bottom CTA */
+.bottom-projects-cta {
+    background: linear-gradient(135deg, var(--opff-dark) 0%, #150a04 100%);
+    border-radius: 24px;
+    padding: clamp(2.2rem, 4vw, 3.2rem);
+    text-align: center;
+    color: #ffffff;
+    margin-top: 3.5rem;
+    box-shadow: var(--opff-shadow-md);
+}
+.bottom-projects-cta h2 {
+    color: #ffffff;
+    font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+    font-weight: 800;
+    margin: 0 0 0.85rem 0;
+}
+.bottom-projects-cta p {
+    color: #fed7aa;
+    font-size: 1.1rem;
+    max-width: 680px;
+    margin: 0 auto 1.75rem auto;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .hero-content-grid,
+    .expert-banner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .section-header {
+        text-align: center;
+    }
+}
+</style>
+
+<div id="opff-contribute-page">
+
+    <!-- Hero Banner -->
+    <header class="opff-hero">
+        <div class="hero-content-grid">
+            <div class="hero-text">
+                <span class="opff-badge-pill orange">✨ 100% Volunteer Driven • Pet Nutrition</span>
+                <h1>Contribuiți la Open Pet Food Facts</h1>
+                <p class="hero-lead">
+                    Help build an independent, open database of dog food, cat food, and pet treats using the universal Open Food Facts app. Together, we can ensure every pet parent knows exactly what fuels their animal companions.
+                </p>
+                <div class="hero-actions">
+                    <a href="/open-pet-food-facts-mobile-app?utm_source=opff&amp;utm_medium=web&amp;utm_campaign=contribute_hero" class="off-btn off-btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        Install Free Universal App
+                    </a>
+                    <a href="https://wiki.openfoodfacts.org/Contributor" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        Join our Community &rarr;
+                    </a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img src="/images/illustrations/pet-food/pet-food-hero.svg" alt="Pet food kibble bag and bowl illustration" width="440" height="360">
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: Everyone can contribute -->
+    <section>
+        <div class="section-header">
+            <span class="opff-badge-pill green">🌟 Quick Micro-Contributions</span>
+            <h2>Everyone can contribute</h2>
+            <p>
+                Whether you have 2 minutes to scan your cat's favorite pouch or want to classify puppy nutritional requirements, your help counts!
+            </p>
+        </div>
+
+        <div class="off-card-grid-4">
+            <!-- Card 1: Add pet food -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/pet-food/off-add-products-petfood-animated.svg" alt="Barcode scanner scanning and uploading pet food kibble and pate labels" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opff-badge-pill orange">📱 Mobile &amp; Web</span>
+                <h3>Add pet food</h3>
+                <p>
+                    Scan barcodes of dry kibbles, canned wet food, or pet treats using the free universal Open Food Facts app (which supports food, beauty, and pet food), and photograph the guaranteed analysis table.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/open-pet-food-facts-mobile-app" class="off-btn off-btn-primary off-btn-block">
+                        Get Universal App
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 2: Complete nutrition -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/pet-food/off-data-quality-petfood-animated.svg" alt="Magnifying glass inspecting pet food guaranteed analysis and nutritional data quality" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opff-badge-pill amber">🥩 Guaranteed Analysis</span>
+                <h3>Extract nutrients</h3>
+                <p>
+                    Verify optical character recognition (OCR) of crude protein, crude fat, calcium-to-phosphorus ratios, and essential taurine values.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/cgi/search.pl" class="off-btn off-btn-secondary off-btn-block">
+                        Browse Pet Food
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 3: Tell the world -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-community-building-animated.svg" alt="Community celebration and collaboration" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opff-badge-pill purple">📢 Spread the Word</span>
+                <h3>Tell pet owners</h3>
+                <p>
+                    Introduce Open Pet Food Facts at local animal shelters, dog parks, cat rescues, and veterinary student associations.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/follow-open-food-facts" class="off-btn off-btn-secondary off-btn-block">
+                        Share on Social Media
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 4: Make it local -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-make-it-local-animated.svg" alt="Multilingual world globe representing global communities" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opff-badge-pill green">🌍 Local Communities</span>
+                <h3>Fă-l local</h3>
+                <p>
+                    Help translate pet terms into your language, index regional boutique pet food brands, and verify local animal welfare certifications.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://translate.openfoodfacts.org" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Help Translate
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Section 2: Expert Help Needed -->
+    <section>
+        <div class="expert-banner">
+            <div class="expert-banner-art">
+                <img src="/images/illustrations/shared/off-expert-help-needed-animated.svg" alt="Veterinary experts and developers working together on open data" width="560" height="420" loading="lazy">
+            </div>
+            <div class="expert-banner-text">
+                <span class="opff-badge-pill orange">🛠️ Specialized Skills</span>
+                <h2>Este nevoie de ajutor de specialitate</h2>
+                <p>
+                    We welcome veterinarians, veterinary technicians, animal nutritionists, software developers, and data scientists to help build next-generation pet feeding models.
+                </p>
+                <a href="https://connect.openfoodfacts.org/join-the-contributor-skill-pool-open-food-facts" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer">
+                    Join the Contributor Skill Pool &rarr;
+                </a>
+            </div>
+        </div>
+
+        <div class="off-card-grid-3">
+            <!-- Project management -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-project-management-animated.svg" alt="Project roadmap and milestone checklist" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opff-badge-pill blue">Strategy &amp; Roadmap</span>
+                <h3>Manager de proiect</h3>
+                <p>
+                    Help structure species taxonomies (canine, feline, equine, avian), curate nutritional formulas, and coordinate volunteer campaigns.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Projects_homepage" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        View Projects Wiki
+                    </a>
+                </div>
+            </article>
+
+            <!-- Design & UX -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-design-ux-animated.svg" alt="Design wireframe and pen tool" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opff-badge-pill purple">UI / UX Design</span>
+                <h3>Design &amp; UX</h3>
+                <p>
+                    Craft clear, accessible ingredient comparison views and portion calculators tailored specifically to pet health needs.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts/openfoodfacts-design" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Join Design Team
+                    </a>
+                </div>
+            </article>
+
+            <!-- Development & AI -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-developers-ai-animated.svg" alt="Code editor and machine learning diagrams" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opff-badge-pill green">Code &amp; AI</span>
+                <h3>Development &amp; AI</h3>
+                <p>
+                    Contribute to our backend, mobile app, and machine learning models for reading complex pet food nutritional breakdown charts.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Explore GitHub Repos
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="bottom-projects-cta">
+        <h2>Ready to build a better future for pets?</h2>
+        <p>
+            Connect with volunteers and animal nutrition advocates across our open Slack workspace.
+        </p>
+        <a href="https://slack.openfoodfacts.org" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer" style="font-size: 1.05rem; padding: 0.85rem 1.85rem;">
+            Join Our Slack Workspace &rarr;
+        </a>
     </div>
-    
-    <div class="text-center small-12 medium-4 columns">
-        <img src="https://static.openpetfoodfacts.org/images/svg/crowdsourcing-icon.svg" width="100%" style="max-width:356px" alt="Da, scanăm!" />
-    </div>  
 
 </div>
 
-<hr>
+<script>
+    function onMount(fn) {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+        } else {
+            fn();
+        }
+    }
 
-<div class="row text-center">
-    <div class="large-12 columns">
-        <h2>Toată lumea poate contribui</h2>
-        <h4 class="subheader">Alătură-te bazei noastre de date colaborative, gratuite și deschise cu produse alimentare pentru animale de companie din întreaga lume!</h4>
-        <p>Open Pet Food Facts este un proiect non-profit realizat în întregime de voluntari, avem nevoie de tine.</p>
+    onMount(() => {
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            if (typeof parent !== 'undefined' && parent !== window) {
+                parent.postMessage({ frameHeight: height }, '*');
+            }
+        }
+        sendHeight();
+        window.addEventListener("resize", sendHeight);
 
-    </div>
-</div>
-<div class="row text-center">
-    <div class="medium-4 columns">
-        <h3>Adăugați produse</h3>
-        <p>Folosește aplicația Open Food Facts pentru <a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=en&utm_source=opff&utm_campaign=contribute-promo&utm_medium=website">Android</a> sau <a href="https://apps.apple.com/app/open-food-facts/id588797948?utm_source=opff&utm_campaign=contribute-promo&utm_medium=website">iPhone</a> pentru a scana cu ușurință codul de bare al produselor alimentare pentru animale de companie de acasă sau din magazinele locale de animale de companie și pentru a încărca imagini cu etichetele acestora.</p>
-        <p>Aplicațiile mobile au fost unite, astfel încât acum puteți scana hrană pentru animale de companie, hrană pentru oameni, cosmetice și alte produse din aceeași aplicație Open Food Facts!</p>
-        <p>Fără smartphone? Nicio problemă: puteți utiliza și camera pentru a adăuga produse direct pe site-ul web.</p>
-        <p><a href="/open-animal-food-facts-mobile-app?utm_source=opff&utm_medium=web&utm_campaign=contribute-promo" class="button round" style="margin-bottom: 0">Instalați aplicația pentru a contribui la transparența în ceea ce privește hrana pentru animale de companie</a></p>
-    </div>
-    
-    <div class="medium-4 columns">
-        <h3>Spune lumii</h3>
-        <p>Îți place Open Pet Food Information? (Informații despre hrana animalelor de companie) Spune și altora despre asta!</p>
-        <p>Poți prezenta proiectul familiei și prietenilor tăi, să le arăți cum să instaleze aplicația și să contribui,
-        să scrii o postare pe blog, să distribui Open Pet Food Facts pe rețelele de socializare...</p>
-        <p>Și prezentați-l live! Am prezentat Open Pet Food Facts unor publicuri foarte diferite, în contexte foarte diferite, și
-primim întotdeauna un răspuns foarte entuziast atunci când arătăm ce se poate face atunci când datele pentru produsele alimentare pentru animale de companie sunt deschise. Avem loturi
-din <a href="/presentations">materiale de prezentare</a> (diapozitive etc.) pe care le puteți adapta sau prezenta așa cum sunt.</p>
-    
-    </div>
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
+                    }
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
 
-    <div class="medium-4 columns">
-        <h3>Fă-l local</h3>
-        <p>Puteți ajuta la <a href="https://translate.openfoodfacts.org">traducerea</a> a site-ului și a aplicației mobile în limba dvs.
-și la traducerea prezentărilor, anunțurilor etc.</p>
-        <p>Putem lucra împreună pentru a susține și adăuga logo-uri pentru mărci și etichete locale de hrană pentru animale de companie.</p>
-        <p>Începeți sau alăturați-vă unei comunități locale de contribuitori: adăugați produse locale de hrană pentru animale de companie, recrutați prieteni, prezentați proiectul în cadrul întâlnirilor și
-        conferințelor locale etc.</p>
-    </div>
-</div>
-
-<hr>
-
-<div class="row text-center">
-    <div class="large-12 columns">
-        <h2>Este nevoie de ajutor de specialitate</h2>
-        <p>Dezvoltarea unor informații despre hrana animalelor de companie necesită, de asemenea, cunoștințe și expertiză specializate în multe domenii diferite:</p>
-    </div>
-</div>
-
-<ul class="text-center small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-    <li>
-        <h3>Manager de proiect</h3>
-        <p>Avem o mulțime de idei și probabil că aveți și mai multe, dar este o provocare să le prioritizați,
-să construiți o foaie de parcurs și să gestionați proiecte atunci când fiecare participant este un voluntar cu timp disponibil adesea limitat.</p>
-    </li>
-    
-    <li>
-        <h3>Design</h3>
-        <p>Avem nevoie de ajutor pentru a construi o experiență mai bună pentru utilizatori pe site-ul web și aplicația mobilă Open Pet Food Facts, pentru a îmbunătăți
-designul acestora, pentru a crea materiale de prezentare cu impact etc.</p>
-    </li>
-
-    <li>
-        <h3>Dezvoltare</h3>
-        <p>Avem mult de lucru în dezvoltare: la backend-ul Open Pet Food Facts (Perl și MongoDB), API-ul (JSON), site-ul web
-        (HTML5, JS, Foundation) și aplicația mobilă. Codul nostru este pe <a href="https://github.com/openfoodfacts">GitHub</a>.</p>
-    </li>
-    
-    <li>
-        <h3>Clădirea comunității</h3>
-        <p>Trebuie să construim comunități locale în toate țările și, în același timp, să le unim la nivel mondial.</p>
-        <p>Este foarte dificil să implementeze o comunitate locală într-o țară fără a trăi acolo, astfel încât ajutorul tău
-        pentru a găsi primii participanți foarte motivați este esențială. Ești unul dintre ei?</p>
-    </li>
-
-    <li>
-        <h3>Comunicare</h3>
-        <p>Nu suntem siguri ce să scriem aici, ne-ați putea ajuta?</p>
-        <p>Mai serios, există o mulțime de lucruri interesante pe care utilizatorii, contribuitorii și reutilizatorii le fac cu Open Pet Food Facts,
-        ar fi minunat să aducă mai mulți oameni la cunoștință. În special, avem nevoie de ajutor pentru relaţiile publice
-		<unk> și <a href="/press">media</a>.</p>
-        
-    </li>   
-    
-    <li>
-        <h3>Proiecte speciale</h3>
-        <p>Există o mulțime de aplicații interesante și originale ale datelor deschise despre hrana pentru animale de companie la care am putea lucra cu
-        medici veterinari, nutriționiști pentru animale de companie, producători de hrană pentru animale de companie, cercetători, universități, școli, ONG-uri pentru bunăstarea animalelor etc. Poate ai deja idei?
-        Dacă o faceți, vă rugăm să ne ajutați să le împingem înainte.</p>
-    </li>   
-</ul>
-
-<hr>
-
-<div class="row text-center">
-    <div class="large-12 columns">
-        <h2>Hai să vorbim!</h2>
-        <h4 class="subheader">O mulțime de idei, energie și entuziasm sunt împărtășite în comunitatea noastră de colaboratori, alăturați-vă nouă!</h4>
-        <p>Iată câteva locuri în care puteți întâlni alți colaboratori, puteți vorbi cu ei și lucra cu ei:</p>
-    </div>
-</div>
-
-<ul class="text-center small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-    <li>
-        <h3>Slack</h3>
-        <p>Slack este cel mai bun mod de a interacționa și colabora cu alți contributori, dezvoltatori și reutilizatori. Este un forum de discuții
-        pe care îl puteți accesa din browser sau din telefon. A schimbat complet modul în care lucrăm împreună. Te rugăm să încerci, apasă pe butonul
-        de mai jos pentru a fi invitat pe Slack-ul nostru.</p>
-        <script async defer src="https://slack.openfoodfacts.org/slackin.js"></script>
-    </li>
-    
-    <li>
-        <h3>Forum</h3>
-        <p>Puteți discuta cu comunitatea pe forumul nostru <a href="https://forum.openfoodfacts.org/"></a>. Este un loc minunat pentru a pune întrebări, a împărtăși idei despre nutriția animalelor de companie și a colabora la proiecte.</p>
-    </li>
-
-    <li>
-        <h3>Wiki</h3>
-        <p>De asemenea, avem un <a href="https://wiki.openfoodfacts.org/">wiki</a> pe care îl folosim pentru a documenta în colaborare Open Pet Food Facts și subproiectele sale. De asemenea, folosim wiki
-        pentru a gestiona traducerile <a href="https://wiki.openfoodfacts.org/Translations"></a> și pentru a lucra la taxonomiile <a href="https://wiki.openfoodfacts.org/Global_taxonomies">/ ierarhiile</a> de categorii, etichete etc.</p>
-    </li>   
-</ul>
-
-<hr>
-
-<div class="row text-center">
-    <div class="large-12 columns">
-        <p>Există mult mai multe modalități de a contribui la Open Pet Food Facts, vă rugăm <a href="https://slack.openfoodfacts.org">să vă alăturați nouă pe Slack</a> (pe canalul #openpetfoodfacts) și haideți să începem discuția!</p>
-    </div>
-</div>
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
+        });
+    });
+</script>
