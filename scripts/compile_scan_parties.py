@@ -13,6 +13,20 @@ import json
 import os
 import re
 import sys
+
+# Ensure scripts directory and vendor are on path
+SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+if SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, SCRIPTS_DIR)
+
+from i18n_utils import (
+    ensure_vendor_path,
+    get_localized_field,
+    validate_localized_field,
+    SUPPORTED_LANGUAGES,
+)
+ensure_vendor_path()
+
 import yaml
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -38,10 +52,8 @@ def validate_scan_party(item, filepath):
     elif not re.match(r"^[a-zA-Z0-9_-]+$", str(r_id)):
         errors.append(f"{filename}: id '{r_id}' contains invalid characters (must be alphanumeric, hyphens, or underscores)")
 
-    # Required: title
-    title = item.get("title")
-    if not title or not str(title).strip():
-        errors.append(f"{filename}: missing or empty required field 'title'")
+    # Required: title (supports string or localized dict)
+    errors.extend(validate_localized_field(item, "title", filename, required=True))
 
     # Required: type
     evt_type = item.get("type")
@@ -53,20 +65,14 @@ def validate_scan_party(item, filepath):
     if not date_str or not str(date_str).strip():
         errors.append(f"{filename}: missing required field 'date'")
 
-    # Required: location
-    location = item.get("location")
-    if not location or not str(location).strip():
-        errors.append(f"{filename}: missing required field 'location'")
+    # Required: location (supports string or localized dict)
+    errors.extend(validate_localized_field(item, "location", filename, required=True))
 
-    # Required: venue
-    venue = item.get("venue")
-    if not venue or not str(venue).strip():
-        errors.append(f"{filename}: missing required field 'venue'")
+    # Required: venue (supports string or localized dict)
+    errors.extend(validate_localized_field(item, "venue", filename, required=True))
 
-    # Required: description
-    description = item.get("description")
-    if not description or not str(description).strip():
-        errors.append(f"{filename}: missing required field 'description'")
+    # Required: description (supports string or localized dict)
+    errors.extend(validate_localized_field(item, "description", filename, required=True))
 
     # Optional tags check
     tags = item.get("tags")
@@ -406,7 +412,15 @@ def generate_html(events, lang="en"):
         {"id": 6, "text": "Après l'atelier : téléversement des photos sur pro.openfoodfacts.org et célébration !" if is_fr else "Post-event: bulk upload photos to pro.openfoodfacts.org and celebrate!"}
     ]
 
-    events_json = json.dumps(events, ensure_ascii=False)
+    localized_events = []
+    for e in events:
+        ec = dict(e)
+        ec["title"] = get_localized_field(e, "title", lang=lang)
+        ec["description"] = get_localized_field(e, "description", lang=lang)
+        ec["location"] = get_localized_field(e, "location", lang=lang)
+        ec["venue"] = get_localized_field(e, "venue", lang=lang)
+        localized_events.append(ec)
+    events_json = json.dumps(localized_events, ensure_ascii=False)
     hero_photos_json = json.dumps(hero_photos, ensure_ascii=False)
     sample_products_json = json.dumps(sample_products, ensure_ascii=False)
     checklist_json = json.dumps(checklist_items, ensure_ascii=False)
@@ -2347,29 +2361,21 @@ def compile_scan_parties(check_only=False, verbose=True):
         print(f"Wrote compiled {COMPILED_JSON} ({len(items)} items)")
 
     # 2. Generate localized HTML pages
-    en_html = generate_html(items, lang="en")
-    fr_html = generate_html(items, lang="fr")
-
-    en_path = os.path.join(REPO_ROOT, "lang", "en", "texts", "scan-parties.html")
-    fr_path = os.path.join(REPO_ROOT, "lang", "fr", "texts", "scan-parties.html")
-
-    try:
-        with open(en_path, "w", encoding="utf-8") as f:
-            f.write(en_html)
-        if verbose:
-            print(f"Wrote {en_path}")
-    except (PermissionError, OSError) as e:
-        if verbose:
-            print(f"  [WARN] Could not write {en_path}: {e}")
-
-    try:
-        with open(fr_path, "w", encoding="utf-8") as f:
-            f.write(fr_html)
-        if verbose:
-            print(f"Wrote {fr_path}")
-    except (PermissionError, OSError) as e:
-        if verbose:
-            print(f"  [WARN] Could not write {fr_path}: {e}")
+    en_html = ""
+    for target_lang in SUPPORTED_LANGUAGES:
+        lang_html = generate_html(items, lang=target_lang)
+        if target_lang == "en":
+            en_html = lang_html
+        lang_path = os.path.join(REPO_ROOT, "lang", target_lang, "texts", "scan-parties.html")
+        os.makedirs(os.path.dirname(lang_path), exist_ok=True)
+        try:
+            with open(lang_path, "w", encoding="utf-8") as f:
+                f.write(lang_html)
+            if verbose:
+                print(f"Wrote {lang_path}")
+        except (PermissionError, OSError) as e:
+            if verbose:
+                print(f"  [WARN] Could not write {lang_path}: {e}")
 
     # 3. Generate standalone root page
     root_path = os.path.join(REPO_ROOT, "scan-parties.html")

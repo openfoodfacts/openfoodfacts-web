@@ -10,7 +10,19 @@ Generates:
 
 import json
 import os
+import sys
 import urllib.parse
+
+SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+if SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, SCRIPTS_DIR)
+
+from i18n_utils import (
+    ensure_vendor_path,
+    get_localized_field,
+    SUPPORTED_LANGUAGES,
+)
+ensure_vendor_path()
 
 DATA_FILE = "data/reuses.json"
 YAML_DIR = "data/reuses"
@@ -24,7 +36,7 @@ if os.path.isdir(YAML_DIR) and os.listdir(YAML_DIR):
             data = yaml.safe_load(f)
             if isinstance(data, dict):
                 ALL_REUSES.append(data)
-    ALL_REUSES.sort(key=lambda x: (not x.get("featured", False), (x.get("name") or "").lower()))
+    ALL_REUSES.sort(key=lambda x: (not x.get("featured", False), get_localized_field(x, "name", "en").lower()))
 elif os.path.exists(DATA_FILE):
     with open(DATA_FILE, "r", encoding="utf-8") as f:
         ALL_REUSES = json.load(f)
@@ -41,12 +53,33 @@ def generate_html(lang="en"):
     is_fr = (lang == "fr")
 
     # Translations
-    t_title = "🚀 Vitrine de l'écosystème & des réutilisations" if is_fr else "🚀 Open Food Facts Ecosystem & Reuses Showcase"
-    t_subtitle = (
-        "Découvrez des centaines d'applications, projets de recherche, plateformes citoyennes et outils propulsés par les données ouvertes d'Open Food Facts."
-        if is_fr else
-        "Discover hundreds of mobile apps, research projects, civic platforms, and tools powered by Open Food Facts open data."
-    )
+    t_title_dict = {
+        "fr": "🚀 Vitrine de l'écosystème & des réutilisations",
+        "en": "🚀 Open Food Facts Ecosystem & Reuses Showcase",
+        "es": "🚀 Ecosistema de Open Food Facts y escaparate de reutilizaciones",
+        "de": "🚀 Open Food Facts Ökosystem & Reuses Showcase",
+        "it": "🚀 Vetrina dell'ecosistema e dei riutilizzi di Open Food Facts",
+        "nl": "🚀 Open Food Facts ecosysteem & hergebruik-etalage",
+        "pt": "🚀 Ecossistema e montra de reutilizações do Open Food Facts",
+        "pl": "🚀 Ekosystem i katalog zastosowań Open Food Facts",
+        "ca": "🚀 Ecosistema i aparador de reutilitzacions d'Open Food Facts",
+        "ru": "🚀 Экосистема и витрина приложений Open Food Facts",
+    }
+    t_title = t_title_dict.get(lang, t_title_dict["en"])
+
+    t_subtitle_dict = {
+        "fr": "Découvrez des centaines d'applications, projets de recherche, plateformes citoyennes et outils propulsés par les données ouvertes d'Open Food Facts.",
+        "en": "Discover hundreds of mobile apps, research projects, civic platforms, and tools powered by Open Food Facts open data.",
+        "es": "Descubra cientos de aplicaciones móviles, proyectos de investigación, plataformas cívicas y herramientas impulsadas por los datos abiertos de Open Food Facts.",
+        "de": "Entdecken Sie Hunderte von mobilen Apps, Forschungsprojekten, Bürgerplattformen und Tools, die auf offenen Daten von Open Food Facts basieren.",
+        "it": "Scopri centinaia di app mobili, progetti di ricerca, piattaforme civiche e strumenti alimentati dai dati aperti di Open Food Facts.",
+        "nl": "Ontdek honderden mobiele apps, onderzoeksprojecten, burgerplatforms en tools die worden aangedreven door open data van Open Food Facts.",
+        "pt": "Descubra centenas de aplicações móveis, projetos de investigação, plataformas cívicas e ferramentas impulsionadas pelos dados abertos do Open Food Facts.",
+        "pl": "Odkrywaj setki aplikacji mobilnych, projektów badawczych, platform obywatelskich i narzędzi opartych na otwartych danych Open Food Facts.",
+        "ca": "Descobriu centenars d'aplicacions mòbils, projectes de recerca, plataformes ciutadanes i eines impulsades per les dades obertes d'Open Food Facts.",
+        "ru": "Откройте для себя сотни мобильных приложений, научных проектов, гражданских платформ и инструментов на основе открытых данных Open Food Facts.",
+    }
+    t_subtitle = t_subtitle_dict.get(lang, t_subtitle_dict["en"])
     
     # Impact Hero Stats
     t_stat_installs_num = "60M+"
@@ -69,9 +102,29 @@ def generate_html(lang="en"):
     t_stat_open_label = "Données ouvertes" if is_fr else "Open Data & Commons"
     t_stat_open_sub = "Licence ODbL & API libre" if is_fr else "ODbL & free open API"
 
-    t_submit_gh_btn = "🚀 Déclarer une réutilisation" if is_fr else "🚀 Submit a Reuse"
-    t_edit_gh_btn = "✏️ Proposer une modif (PR)" if is_fr else "✏️ Propose an Edit (PR)"
-    t_donate_btn = "💝 Soutenir par un don" if is_fr else "💝 Donate to the NGO"
+    t_submit_gh_btn_dict = {
+        "fr": "🚀 Déclarer une réutilisation", "en": "🚀 Submit a Reuse", "es": "🚀 Enviar una reutilización",
+        "de": "🚀 Reuse einreichen", "it": "🚀 Segnala un riutilizzo", "nl": "🚀 Hergebruik aanmelden",
+        "pt": "🚀 Submeter uma reutilização", "pl": "🚀 Zgłoś projekt", "ca": "🚀 Declarar una reutilització",
+        "ru": "🚀 Добавить проект"
+    }
+    t_submit_gh_btn = t_submit_gh_btn_dict.get(lang, t_submit_gh_btn_dict["en"])
+
+    t_edit_gh_btn_dict = {
+        "fr": "✏️ Proposer une modif (PR)", "en": "✏️ Propose an Edit (PR)", "es": "✏️ Proponer edición (PR)",
+        "de": "✏️ Änderung vorschlagen (PR)", "it": "✏️ Proponi una modifica (PR)", "nl": "✏️ Wijziging voorstellen (PR)",
+        "pt": "✏️ Propor uma alteração (PR)", "pl": "✏️ Zaproponuj zmianę (PR)", "ca": "✏️ Proposar una modificació (PR)",
+        "ru": "✏️ Предложить правку (PR)"
+    }
+    t_edit_gh_btn = t_edit_gh_btn_dict.get(lang, t_edit_gh_btn_dict["en"])
+
+    t_donate_btn_dict = {
+        "fr": "💝 Soutenir par un don", "en": "💝 Donate to the NGO", "es": "💝 Donar a la asociación",
+        "de": "💝 An die NGO spenden", "it": "💝 Dona all'associazione", "nl": "💝 Doneer aan de vzw",
+        "pt": "💝 Apoiar com um donativo", "pl": "💝 Wesprzyj darowizną", "ca": "💝 Fer un donatiu",
+        "ru": "💝 Поддержать ассоциацию"
+    }
+    t_donate_btn = t_donate_btn_dict.get(lang, t_donate_btn_dict["en"])
     t_submit_form_btn = "📝 Formulaire Google" if is_fr else "📝 Google Form"
     t_submit_drawer_btn = "ℹ️ Options de soumission" if is_fr else "ℹ️ Submit Options"
     t_sdk_btn = "📦 SDKs & API Développeurs" if is_fr else "📦 Developer SDKs & API"
@@ -178,15 +231,46 @@ def generate_html(lang="en"):
     t_card_edit = "Modifier" if is_fr else "Edit"
     t_card_edit_title = "Proposer une modification pour cette app" if is_fr else "Propose an edit for this app"
 
+    t_contrib_donation = "Soutient l'association (Dons)" if is_fr else "Supports OFF NGO (Donations)"
+    t_contrib_data = "Données contribuées" if is_fr else "Contributes Data Back"
+    t_contrib_photos = "Photos contribuées" if is_fr else "Contributes Photos"
+    t_contrib_odbl = "Licence ODbL" if is_fr else "ODbL Compliant"
+
     # Localized Store Badges
-    play_badge_svg = f"/images/misc/playstore/img/{'fr' if is_fr else 'en'}_get.svg"
-    appstore_badge_svg = f"/images/misc/appstore/black/{'appstore_FR' if is_fr else 'appstore_US'}.svg"
+    play_badge_code = "en"
+    appstore_badge_code = "US"
+    try:
+        from fix_translation_issues import get_playstore_badge, get_appstore_badge
+        pb = get_playstore_badge(lang)
+        if pb:
+            play_badge_code = pb
+        ab = get_appstore_badge(lang)
+        if ab:
+            appstore_badge_code = ab.upper()
+    except Exception:
+        if is_fr:
+            play_badge_code = "fr"
+            appstore_badge_code = "FR"
+
+    play_badge_svg = f"/images/misc/playstore/img/{play_badge_code}_get.svg"
+    appstore_badge_svg = f"/images/misc/appstore/black/appstore_{appstore_badge_code}.svg"
 
     # GitHub Issue Template Link & Edit URL
     gh_edit_url = "https://github.com/openfoodfacts/openfoodfacts-web/tree/main/data/reuses"
     gh_magic_url = "https://github.com/openfoodfacts/openfoodfacts-web/issues/new?template=new-reuse.yml"
 
-    json_data = json.dumps(ALL_REUSES, ensure_ascii=False)
+    localized_items = []
+    for r in ALL_REUSES:
+        rc = dict(r)
+        rc["name"] = get_localized_field(r, "name", lang=lang)
+        rc["tagline"] = get_localized_field(r, "tagline", lang=lang)
+        rc["description"] = get_localized_field(r, "description", lang=lang)
+        if "supporter_badge" in r:
+            rc["supporter_badge"] = get_localized_field(r, "supporter_badge", lang=lang)
+        if "donation_note" in r:
+            rc["donation_note"] = get_localized_field(r, "donation_note", lang=lang)
+        localized_items.append(rc)
+    json_data = json.dumps(localized_items, ensure_ascii=False)
 
     return f"""<style>
 .showcase-header {{
@@ -1258,10 +1342,10 @@ def generate_html(lang="en"):
 
     <div class="multi-filter-col">
       <h4>{t_cat_contribs}</h4>
-      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="donation" onchange="applyFilters()"> 💝 {'Soutient l\'association (Dons)' if is_fr else 'Supports OFF NGO (Donations)'}</label>
-      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="data" onchange="applyFilters()"> 🤝 {'Données contribuées' if is_fr else 'Contributes Data Back'}</label>
-      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="photos" onchange="applyFilters()"> 📸 {'Photos contribuées' if is_fr else 'Contributes Photos'}</label>
-      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="odbl" onchange="applyFilters()"> ⚖️ {'Licence ODbL' if is_fr else 'ODbL Compliant'}</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="donation" onchange="applyFilters()"> 💝 {t_contrib_donation}</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="data" onchange="applyFilters()"> 🤝 {t_contrib_data}</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="photos" onchange="applyFilters()"> 📸 {t_contrib_photos}</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="odbl" onchange="applyFilters()"> ⚖️ {t_contrib_odbl}</label>
       <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="foss" onchange="applyFilters()"> 💖 Open Source</label>
     </div>
 
@@ -2074,24 +2158,23 @@ window.addEventListener("hashchange", checkHash);
 """
 
 def main():
-    en_html = generate_html("en")
-    fr_html = generate_html("fr")
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    for target_lang in SUPPORTED_LANGUAGES:
+        target_html = generate_html(target_lang)
+        lang_dir = os.path.join(repo_root, "lang", target_lang, "texts")
+        os.makedirs(lang_dir, exist_ok=True)
 
-    with open("lang/en/texts/reuse.html", "w", encoding="utf-8") as f:
-        f.write(en_html)
-    print("Wrote lang/en/texts/reuse.html")
+        for name in ["reuse.html", "reuses.html"]:
+            p = os.path.join(lang_dir, name)
+            with open(p, "w", encoding="utf-8") as f:
+                f.write(target_html)
+            print(f"Wrote {p}")
 
-    with open("lang/en/texts/reuses.html", "w", encoding="utf-8") as f:
-        f.write(en_html)
-    print("Wrote lang/en/texts/reuses.html")
-
-    with open("lang/fr/texts/reuses.html", "w", encoding="utf-8") as f:
-        f.write(fr_html)
-    print("Wrote lang/fr/texts/reuses.html")
-
-    with open("lang/fr/texts/reutilisations.html", "w", encoding="utf-8") as f:
-        f.write(fr_html)
-    print("Wrote lang/fr/texts/reutilisations.html")
+        if target_lang == "fr":
+            fr_alias = os.path.join(lang_dir, "reutilisations.html")
+            with open(fr_alias, "w", encoding="utf-8") as f:
+                f.write(target_html)
+            print(f"Wrote {fr_alias}")
 
 if __name__ == "__main__":
     main()

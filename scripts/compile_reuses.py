@@ -10,6 +10,20 @@ import json
 import os
 import re
 import sys
+
+# Ensure scripts directory and vendor are on path
+SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+if SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, SCRIPTS_DIR)
+
+from i18n_utils import (
+    ensure_vendor_path,
+    get_localized_field,
+    validate_localized_field,
+    SUPPORTED_LANGUAGES,
+)
+ensure_vendor_path()
+
 import yaml
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -43,10 +57,12 @@ def validate_reuse(item, filepath):
     elif not re.match(r"^[a-zA-Z0-9_-]+$", str(r_id)):
         errors.append(f"{filename}: id '{r_id}' contains invalid characters (must be alphanumeric, hyphens, or underscores)")
 
-    # Required: name
-    name = item.get("name")
-    if not name or not str(name).strip():
-        errors.append(f"{filename}: missing or empty required field 'name'")
+    # Required: name (string or localized dict)
+    errors.extend(validate_localized_field(item, "name", filename, required=True))
+
+    # Optional localized fields: tagline, description
+    for loc_field in ["tagline", "description"]:
+        errors.extend(validate_localized_field(item, loc_field, filename, required=False))
 
     # Required: theme
     theme = item.get("theme")
@@ -118,7 +134,7 @@ def load_reuses(directory=REUSES_DIR, validate=True):
         items.append(data)
 
     # Sort: featured first, then case-insensitive by name
-    items.sort(key=lambda x: (not x.get("featured", False), (x.get("name") or "").lower()))
+    items.sort(key=lambda x: (not x.get("featured", False), get_localized_field(x, "name", "en").lower()))
 
     return items, all_errors, all_warnings
 
