@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Prices — Discover Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1f2937;
+        }
+        /* Global animation play-state rule: ALL SVGs PAUSED by default, RUN ONLY on hover */
+        svg, svg * {
+            animation-play-state: paused !important;
+        }
+        .off-feature-card:hover svg, .off-feature-card:hover svg *,
+        .expert-banner:hover svg, .expert-banner:hover svg *,
+        .contribute-hero:hover svg, .contribute-hero:hover svg *,
+        .discover-hero:hover svg, .discover-hero:hover svg *,
+        .contact-hero:hover svg, .contact-hero:hover svg *,
+        .contact-card:hover svg, .contact-card:hover svg *,
+        .hero-media:hover svg, .hero-media:hover svg *,
+        .opff-hero:hover svg, .opff-hero:hover svg *,
+        .obf-hero:hover svg, .obf-hero:hover svg *,
+        .opf-hero:hover svg, .opf-hero:hover svg *,
+        .op-hero:hover svg, .op-hero:hover svg *,
+        svg:hover, svg:hover * {
+            animation-play-state: running !important;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            svg, svg * {
+                animation: none !important;
+            }
+        }
+        /* Strictly constrain card art and prevent any SVG/image overflow */
+        .off-card-art {
+            height: 160px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+            position: relative !important;
+            margin-bottom: 1.25rem !important;
+        }
+        .off-card-art img,
+        .off-card-art svg {
+            max-width: 100% !important;
+            max-height: 140px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+            display: block !important;
+            margin: 0 auto !important;
+            transition: transform 0.3s ease !important;
+        }
+        .off-feature-card:hover .off-card-art img,
+        .off-feature-card:hover .off-card-art svg {
+            transform: scale(1.05) !important;
+        }
+        .expert-banner-art img,
+        .expert-banner-art svg {
+            max-width: 280px !important;
+            max-height: 200px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        .hero-media img,
+        .hero-media svg {
+            max-width: 440px !important;
+            max-height: 340px !important;
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        /* Simulated Site Header */
+        .site-header-preview {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.85rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .site-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+        .site-header-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .preview-badge {
+            background: #ea580c;
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .site-header-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .nav-switch-link {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #64748b;
+            text-decoration: none;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+        .nav-switch-link:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .nav-switch-link.active {
+            background: #e2e8f0;
+            color: #0f172a;
+            font-weight: 700;
+        }
+        .main-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header-preview">
+        <div class="site-header-left">
+            <div class="site-header-title">
+                <span>🌐 Open Prices — Discover Preview</span>
+                <span class="preview-badge">Revamped</span>
+            </div>
+        </div>
+        <div class="site-header-right">
+            <a href="preview-discover.html" class="nav-switch-link ">OFF Discover</a>
+            <a href="preview-contribute.html" class="nav-switch-link ">OFF Contribute</a>
+            <a href="preview-contact.html" class="nav-switch-link ">Contact</a>
+            <a href="preview-obf-discover.html" class="nav-switch-link ">OBF Discover</a>
+            <a href="preview-obf-contribute.html" class="nav-switch-link ">OBF Contribute</a>
+            <a href="preview-opff-discover.html" class="nav-switch-link ">OPFF Discover</a>
+            <a href="preview-opff-contribute.html" class="nav-switch-link ">OPFF Contribute</a>
+            <a href="preview-opf-discover.html" class="nav-switch-link ">OPF Discover</a>
+            <a href="preview-opf-contribute.html" class="nav-switch-link ">OPF Contribute</a>
+            <a href="preview-prices-discover.html" class="nav-switch-link active">Prices Discover</a>
+            <a href="preview-prices-contribute.html" class="nav-switch-link ">Prices Contribute</a>
+        </div>
+    </header>
+
+    <main class="main-container">
+<!-- no side column -->
+<style>
+/* ==========================================================================
+   Open Prices — Modern Discover Page
+   ========================================================================== */
+
+#prices-discover-page {
+    --op-primary: #059669;
+    --op-primary-hover: #047857;
+    --op-secondary: #d97706;
+    --op-secondary-hover: #b45309;
+    --op-accent-gold: #f59e0b;
+    --op-dark: #0f172a;
+    --op-cream: #f8fafc;
+    --op-warm-bg: #f0fdf4;
+    --op-border: #a7f3d0;
+    --op-card-border: #cbd5e1;
+    --op-text-muted: #475569;
+    --op-blue: #0284c7;
+    --op-purple: #7c3aed;
+    --op-radius-card: 22px;
+    --op-radius-pill: 9999px;
+    --op-shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.04);
+    --op-shadow-md: 0 10px 24px rgba(5, 150, 105, 0.08);
+    --op-shadow-hover: 0 16px 36px rgba(5, 150, 105, 0.16);
+
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--op-dark);
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+}
+
+#prices-discover-page * {
+    box-sizing: border-box;
+}
+
+/* Badge Pills */
+.op-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--op-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+    border: none;
+}
+.op-badge-pill.green { background: #dcfce7; color: #166534; }
+.op-badge-pill.amber { background: #fef3c7; color: #92400e; }
+.op-badge-pill.blue { background: #e0f2fe; color: #0369a1; }
+.op-badge-pill.purple { background: #f3e8ff; color: #6b21a8; }
+.op-badge-pill.emerald { background: #ecfdf5; color: #047857; }
+
+/* Hero Banner */
+.op-hero {
+    background: linear-gradient(145deg, #ffffff 0%, var(--op-warm-bg) 100%);
+    border: 1px solid var(--op-border);
+    border-radius: 28px;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 3.5rem;
+    box-shadow: var(--op-shadow-md);
+}
+
+.hero-content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.hero-brand-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.hero-logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--op-dark);
+    line-height: 1.15;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+}
+
+.hero-lead {
+    font-size: 1.15rem;
+    color: var(--op-text-muted);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+.hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-media img,
+.hero-media svg {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    filter: drop-shadow(0 14px 32px rgba(5, 150, 105, 0.12));
+    border-radius: 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-media img:hover,
+.hero-media svg:hover {
+    transform: translateY(-4px) scale(1.015);
+}
+
+/* Call to Action Buttons */
+.off-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--op-radius-pill);
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    line-height: 1.2;
+    border: none;
+}
+.off-btn-primary {
+    background: var(--op-primary);
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-primary:hover {
+    background: var(--op-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+.off-btn-secondary {
+    background: #ffffff;
+    color: var(--op-dark) !important;
+    border: 1px solid var(--op-border);
+    box-shadow: none;
+}
+.off-btn-secondary:hover {
+    background: var(--op-warm-bg);
+    border-color: var(--op-primary);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: var(--op-primary) !important;
+}
+.off-btn-green {
+    background: #16a34a;
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-green:hover {
+    background: #15803d;
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+.off-btn-block {
+    width: 100%;
+}
+
+/* Section Header */
+.section-header {
+    text-align: left;
+    margin-bottom: 2.25rem;
+}
+.section-header h2 {
+    font-size: clamp(1.8rem, 3vw, 2.35rem);
+    font-weight: 800;
+    color: var(--op-dark);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.015em;
+}
+.section-header p {
+    font-size: 1.08rem;
+    color: var(--op-text-muted);
+    margin: 0;
+    max-width: 760px;
+}
+
+/* Grids */
+.off-card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+.off-card-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+
+/* Feature Cards */
+.off-feature-card {
+    background: #ffffff;
+    border: 1px solid var(--op-card-border);
+    border-radius: var(--op-radius-card);
+    padding: 1.85rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--op-shadow-sm);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+.off-feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--op-shadow-hover);
+    border-color: var(--op-primary);
+}
+
+.off-card-art {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+.off-card-art img,
+.off-card-art svg {
+    max-height: 140px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.off-feature-card:hover .off-card-art img,
+.off-feature-card:hover .off-card-art svg {
+    transform: scale(1.05);
+}
+
+/* Animations: on hover only */
+#prices-discover-page svg,
+#prices-discover-page svg * {
+    animation-play-state: paused !important;
+}
+
+#prices-discover-page .op-hero:hover svg,
+#prices-discover-page .op-hero:hover svg *,
+#prices-discover-page .off-feature-card:hover svg,
+#prices-discover-page .off-feature-card:hover svg *,
+#prices-discover-page .hero-media:hover svg,
+#prices-discover-page .hero-media:hover svg *,
+#prices-discover-page svg:hover,
+#prices-discover-page svg:hover * {
+    animation-play-state: running !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #prices-discover-page svg,
+    #prices-discover-page svg * {
+        animation: none !important;
+    }
+}
+
+.off-feature-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--op-dark);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+}
+
+.off-feature-card p {
+    font-size: 0.95rem;
+    color: var(--op-text-muted);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.55;
+    flex-grow: 1;
+}
+
+.card-footer-action {
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
+/* Rounded Corner Utility for Screenshots / Dataviz */
+.off-img-rounded {
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+/* Reuse Cards Accent Bar */
+
+
+
+
+/* Divider */
+#prices-discover-page hr.off-divider {
+    border: none;
+    border-top: 1px solid var(--op-border);
+    margin: 3.5rem 0;
+}
+
+/* Bottom CTA */
+.bottom-projects-cta {
+    background: linear-gradient(135deg, var(--op-dark) 0%, #064e3b 100%);
+    border-radius: 24px;
+    padding: clamp(2rem, 4vw, 3.25rem);
+    text-align: center;
+    color: #ffffff;
+    margin-top: 3.5rem;
+    box-shadow: 0 20px 40px rgba(6, 78, 59, 0.25);
+}
+.bottom-projects-cta h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    margin: 0 0 0.85rem 0;
+    color: #ffffff;
+}
+.bottom-projects-cta p {
+    font-size: 1.1rem;
+    color: #a7f3d0;
+    max-width: 680px;
+    margin: 0 auto 1.75rem auto;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .hero-content-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-brand-header {
+        justify-content: center;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<div id="prices-discover-page">
+
+    <!-- Hero Banner -->
+    <header class="op-hero">
+        <div class="hero-content-grid">
+            <div class="hero-text">
+                <div class="hero-brand-header">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjMzIiBoZWlnaHQ9IjEzOCIgdmlld0JveD0iMCAwIDYzMyAxMzgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0yNS4xNCAxMTEuODRMMTYuNDcgMTMyLjU0TDI3Ljg4IDEzNy4zMkwzNi42MiAxMTYuNDRDNDAuNTIgMTE3LjQ0IDQ0LjYgMTE3Ljk4IDQ4LjgxIDExNy45OEM3NS43MiAxMTcuOTggOTcuNjIgOTYuMDggOTcuNjIgNjkuMTdIODUuMjVDODUuMjUgODkuMjYgNjguOTEgMTA1LjYxIDQ4LjgxIDEwNS42MUMyOC43MSAxMDUuNjEgMTIuMzcgODkuMjcgMTIuMzcgNjkuMTdIMEMwIDg3LjUgMTAuMTYgMTAzLjQ5IDI1LjEzIDExMS44M0wyNS4xNCAxMTEuODRaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNMzAuMzEgMEg2Ny4zQzY5LjE2IDAgNzAuMzggMS45MyA2OS41OSAzLjYxTDYxLjUxIDIwLjc2QzYxLjA5IDIxLjY1IDYwLjIgMjIuMjEgNTkuMjIgMjIuMjFIMzguMzhDMzcuNCAyMi4yMSAzNi41MSAyMS42NCAzNi4wOSAyMC43NkwyOC4wMSAzLjYxQzI3LjIyIDEuOTMgMjguNDQgMCAzMC4zIDBMMzAuMzEgMFoiIGZpbGw9IiNGRkM4OEMiLz4KPHBhdGggZD0iTTM4Ljk4IDguNzM5OTlMNDMuOTEgMjIuMjIiIHN0cm9rZT0iI0RBQTE2RCIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNNTguOTc5OSA4LjA0MDA0TDU0LjAzOTkgMjEuNTIiIHN0cm9rZT0iI0RBQTE2RCIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNNjYuMzM5OSAyNi4wNjk5QzY2LjMzOTkgMjUuNjU5OSAzMS4yNjk5IDI1LjY1OTkgMzEuMjY5OSAyNi4wNjk5VjIwLjcxOTlDMzEuMjY5OSAxNC40Mjk5IDY2LjMzOTkgMTQuNDI5OSA2Ni4zMzk5IDIwLjcxOTlWMjYuMDY5OVoiIGZpbGw9IiM3ODQ2MDAiLz4KPHBhdGggZD0iTTAgNjkuMThDMCA0Mi4yMiAyMS44NSAyMC4zNyA0OC44MSAyMC4zN0M3NS43NyAyMC4zNyA5Ny42MiA0Mi4yMiA5Ny42MiA2OS4xOEgwWiIgZmlsbD0iI0ZGQzg4QyIvPgo8cGF0aCBkPSJNODUuMjQgNjkuMTdDODUuMjQgODkuMjkgNjguOTMgMTA1LjYxIDQ4LjggMTA1LjYxQzI4LjY3IDEwNS42MSAxMi4zNiA4OS4zIDEyLjM2IDY5LjE3SDg1LjIzSDg1LjI0WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTU5LjkyIDYwLjYyQzYwLjIgNjEuNzMgNTkuNjMgNjIuODcgNTguNTggNjMuMzFDNTYuOSA2NCA1NC43Mzk5IDY0LjUxIDUyLjMxOTkgNjQuNTFDNDcuMzk5OSA2NC41MSA0My4xMDk5IDYyLjU0IDQwLjM5OTkgNTkuMDdDMzguODk5OSA1Ny4zMyAzNy44Nzk5IDU1LjEgMzcuNDI5OSA1Mi41N0gzNS42ODk5QzM0Ljg2OTkgNTIuNTcgMzQuMiA1MS45IDM0LjIgNTEuMDhDMzQuMiA1MC4yNiAzNC44Njk5IDQ5LjU5IDM1LjY4OTkgNDkuNTlIMzcuMDA5OUMzNy4wMDk5IDQ5LjU5IDM3LjAyOTkgNDkuNTcgMzcuMDM5OSA0OS41NkMzNi45Njk5IDQ4Ljc0IDM3LjAzOTkgNDcuOSAzNy4wOTk5IDQ3LjFIMzUuNjg5OUMzNC44Njk5IDQ3LjEgMzQuMiA0Ni40MyAzNC4yIDQ1LjYxQzM0LjIgNDQuNzkgMzQuODY5OSA0NC4xMiAzNS42ODk5IDQ0LjEySDM3LjU5OTlDMzguMjE5OSA0MS4zOSAzOS41Mjk5IDM4Ljk3IDQxLjM2OTkgMzcuMDlDNDQuMTI5OSAzNC4yMSA0Ny45Mjk5IDMyLjQ2IDUyLjQ1OTkgMzIuNDZDNTQuNTQ5OSAzMi40NiA1Ni40Mzk5IDMyLjc5IDU3Ljk4OTkgMzMuMjZDNTkuMTg5OSAzMy42MiA1OS44Nzk5IDM0Ljg3IDU5LjUzOTkgMzYuMDhMNTkuNTE5OSAzNi4xNEM1OS4xNzk5IDM3LjM1IDU3LjkxOTkgMzguMDggNTYuNzA5OSAzNy43M0M1NS41NTk5IDM3LjQgNTQuMjMgMzcuMTcgNTIuODMgMzcuMTdDNTAuMTMgMzcuMTcgNDcuNzU5OSAzOC4xMyA0Ni4wMzk5IDM5Ljk5QzQ0Ljk3OTkgNDEuMDMgNDQuMjcgNDIuNTQgNDMuODYgNDQuMTFINTYuNDdDNTcuMjkgNDQuMTEgNTcuOTU5OSA0NC43OCA1Ny45NTk5IDQ1LjZDNTcuOTU5OSA0Ni40MiA1Ny4yOSA0Ny4wOSA1Ni40NyA0Ny4wOUg0My4xN0M0My4xIDQ3LjYzIDQzLjA4IDQ4LjIxIDQzLjA4IDQ4Ljc4VjQ5LjU5SDU2LjQ3QzU3LjI5IDQ5LjU5IDU3Ljk1OTkgNTAuMjYgNTcuOTU5OSA1MS4wOEM1Ny45NTk5IDUxLjkgNTcuMjkgNTIuNTcgNTYuNDcgNTIuNTdINDMuNzA5OUM0NC4wNzk5IDU0LjM4IDQ0Ljg0OTkgNTUuODUgNDUuODk5OSA1Ni45QzQ3LjY5OTkgNTguNzMgNTAuMjIgNTkuNjIgNTMuMDMgNTkuNjJDNTQuNDkgNTkuNjIgNTUuODggNTkuMzUgNTcuMDMgNTguOTlDNTguMjggNTguNjEgNTkuNTg5OSA1OS4zNSA1OS45MDk5IDYwLjYxTDU5LjkyIDYwLjYyWiIgZmlsbD0iIzc4NDYwMCIvPgo8cGF0aCBkPSJNMTU2LjU3IDQ4LjI5QzE1Mi43MiA0Ni4xIDE0OC4zOSA0NSAxNDMuNiA0NUMxMzguODEgNDUgMTM0LjU2IDQ2LjEgMTMwLjcxIDQ4LjI5QzEyNi44NiA1MC40OCAxMjMuNzggNTMuNDggMTIxLjQ3IDU3LjI3QzExOS4xNiA2MS4wNiAxMTggNjUuMzkgMTE4IDcwLjI0QzExOCA3NS4wOSAxMTkuMTYgNzkuNDIgMTIxLjQ3IDgzLjIxQzEyMy43OCA4NyAxMjYuODggODkuOTkgMTMwLjc2IDkyLjE5QzEzNC42NCA5NC4zOCAxMzguOTIgOTUuNDggMTQzLjYgOTUuNDhDMTQ4LjI4IDk1LjQ4IDE1Mi42MyA5NC4zOCAxNTYuNDkgOTIuMTlDMTYwLjM0IDkwIDE2My40MiA4Ny4wMSAxNjUuNzMgODMuMjFDMTY4LjA0IDc5LjQyIDE2OS4yIDc1LjA5IDE2OS4yIDcwLjI0QzE2OS4yIDY1LjM5IDE2OC4wNiA2MC45OCAxNjUuNzggNTcuMjJDMTYzLjUgNTMuNDYgMTYwLjQzIDUwLjQ4IDE1Ni41OCA0OC4yOUgxNTYuNTdaTTE1NS4yOCA3Ny43NUMxNTQuMTIgNzkuOTcgMTUyLjU1IDgxLjcgMTUwLjU3IDgyLjk1QzE0OC41OCA4NC4xOSAxNDYuMjYgODQuODIgMTQzLjU5IDg0LjgyQzE0MC45MiA4NC44MiAxMzguNjcgODQuMiAxMzYuNjYgODIuOTVDMTM0LjY0IDgxLjcxIDEzMy4wNiA3OS45NyAxMzEuOTEgNzcuNzVDMTMwLjc1IDc1LjUzIDEzMC4xOCA3My4wMyAxMzAuMTggNzAuMjRDMTMwLjE4IDY3LjQ1IDEzMC43NiA2NC45NyAxMzEuOTEgNjIuNzdDMTMzLjA3IDYwLjU4IDEzNC42NSA1OC44NiAxMzYuNjYgNTcuNjJDMTM4LjY3IDU2LjM4IDE0MC45OCA1NS43NSAxNDMuNTkgNTUuNzVDMTQ2LjIgNTUuNzUgMTQ4LjU4IDU2LjM3IDE1MC41NyA1Ny42MkMxNTIuNTUgNTguODYgMTU0LjEyIDYwLjU4IDE1NS4yOCA2Mi43N0MxNTYuNDQgNjQuOTYgMTU3LjAxIDY3LjQ1IDE1Ny4wMSA3MC4yNEMxNTcuMDEgNzMuMDMgMTU2LjQzIDc1LjUzIDE1NS4yOCA3Ny43NVoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik0yMTMuMzkgNDguMzhDMjA5LjcyIDQ2LjEzIDIwNS42IDQ1IDIwMS4wNCA0NUMxOTcuMzEgNDUgMTk0LjAyIDQ1LjczIDE5MS4xOCA0Ny4xOEMxODguOSA0OC4zNCAxODcuMDEgNDkuODggMTg1LjQ5IDUxLjc5VjQ2LjA3SDE3NC40N1YxMTIuMTlIMTg2LjJWODkuNzdDMTg3LjYzIDkxLjI5IDE4OS4zMyA5Mi41MSAxOTEuMzEgOTMuNDRDMTk0LjI0IDk0LjggMTk3LjQ2IDk1LjQ4IDIwMC45NSA5NS40OEMyMDUuNjMgOTUuNDggMjA5LjgxIDk0LjM3IDIxMy40OCA5Mi4xNUMyMTcuMTUgODkuOTMgMjIwLjA2IDg2Ljg5IDIyMi4xOSA4My4wNEMyMjQuMzIgNzkuMTkgMjI1LjM5IDc0LjkyIDIyNS4zOSA3MC4yNEMyMjUuMzkgNjUuNTYgMjI0LjMxIDYxLjIzIDIyMi4xNSA1Ny40NEMyMTkuOTkgNTMuNjUgMjE3LjA3IDUwLjYzIDIxMy40IDQ4LjM4SDIxMy4zOVpNMjExLjUyIDc3LjhDMjEwLjMzIDc5Ljk5IDIwOC43MiA4MS43MSAyMDYuNjggODIuOTVDMjA0LjY0IDg0LjE5IDIwMi4yOCA4NC44MiAxOTkuNjEgODQuODJDMTk2Ljk0IDg0LjgyIDE5NC43NyA4NC4yIDE5Mi43MiA4Mi45NUMxOTAuNjggODEuNzEgMTg5LjA4IDc5Ljk5IDE4Ny45MiA3Ny44QzE4Ni43NiA3NS42MSAxODYuMTkgNzMuMDkgMTg2LjE5IDcwLjI1QzE4Ni4xOSA2Ny40MSAxODYuNzcgNjQuOTggMTg3LjkyIDYyLjc4QzE4OS4wOCA2MC41OSAxOTAuNjcgNTguODcgMTkyLjcyIDU3LjYzQzE5NC43NiA1Ni4zOSAxOTcuMDYgNTUuNzYgMTk5LjYxIDU1Ljc2QzIwMi4xNiA1NS43NiAyMDQuNjMgNTYuMzggMjA2LjY4IDU3LjYzQzIwOC43MiA1OC44NyAyMTAuMzQgNjAuNTkgMjExLjUyIDYyLjc4QzIxMi43IDY0Ljk3IDIxMy4zIDY3LjQ2IDIxMy4zIDcwLjI1QzIxMy4zIDczLjA0IDIxMi43MSA3NS42MSAyMTEuNTIgNzcuOFoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik0yNjYuOTggNTIuMDJDMjY0Ljk3IDQ5LjgzIDI2Mi41MiA0OC4xMSAyNTkuNjUgNDYuODdDMjU2Ljc4IDQ1LjYzIDI1My40NCA0NSAyNDkuNjUgNDVDMjQ1LjA5IDQ1IDI0MSA0Ni4xIDIzNy4zOSA0OC4yOUMyMzMuNzggNTAuNDggMjMwLjkgNTMuNDYgMjI4Ljc3IDU3LjIyQzIyNi42NCA2MC45OCAyMjUuNTcgNjUuMjkgMjI1LjU3IDcwLjE1QzIyNS41NyA3NS4wMSAyMjYuNjEgNzkuMSAyMjguNjggODIuOTVDMjMwLjc1IDg2LjggMjMzLjY3IDg5Ljg1IDIzNy40MyA5Mi4xQzI0MS4xOSA5NC4zNSAyNDUuNTYgOTUuNDggMjUwLjU0IDk1LjQ4QzI1My44IDk1LjQ4IDI1Ni44MiA5NC45OCAyNTkuNiA5My45N0MyNjIuMzggOTIuOTYgMjY0Ljc4IDkxLjU3IDI2Ni44IDg5Ljc5QzI2OC44MSA4OC4wMSAyNzAuMyA4NS45NyAyNzEuMjQgODMuNjZMMjYxLjgyIDc5LjA0QzI2MC43NSA4MC45NCAyNTkuMjkgODIuNDUgMjU3LjQyIDgzLjU3QzI1NS41NSA4NC43IDI1My4yOSA4NS4yNiAyNTAuNjIgODUuMjZDMjQ3Ljk1IDg1LjI2IDI0NS42IDg0LjY0IDI0My41NSA4My4zOUMyNDEuNTEgODIuMTUgMjM5Ljk2IDgwLjM4IDIzOC45MyA3OC4xQzIzOC4zMSA3Ni43MyAyMzcuOTIgNzUuMjMgMjM3Ljc1IDczLjYxSDI3Mi41NkMyNzIuOCA3Mi45IDI3Mi45NiA3Mi4xMSAyNzMuMDUgNzEuMjZDMjczLjE0IDcwLjQgMjczLjE4IDY5LjUzIDI3My4xOCA2OC42NEMyNzMuMTggNjUuMzggMjcyLjY1IDYyLjM1IDI3MS41OCA1OS41M0MyNzAuNTEgNTYuNzIgMjY4Ljk3IDU0LjIxIDI2Ni45NiA1Mi4wMkgyNjYuOThaTTIzOCA2NC42NEMyMzguMiA2My42MiAyMzguNDggNjIuNjcgMjM4Ljg1IDYxLjhDMjM5LjgzIDU5LjQ5IDI0MS4yNiA1Ny43MSAyNDMuMTYgNTYuNDdDMjQ1LjA2IDU1LjIzIDI0Ny4yMiA1NC42IDI0OS42NSA1NC42QzI1Mi4wOCA1NC42IDI1NC4zNyA1NS4yMiAyNTYuMTggNTYuNDdDMjU3Ljk5IDU3LjcxIDI1OS4yOSA1OS40IDI2MC4wOSA2MS41NEMyNjAuNDYgNjIuNTEgMjYwLjY3IDYzLjU1IDI2MC43NCA2NC42NUgyMzhWNjQuNjRaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNMzExLjggNDcuMzFDMzA5LjA0IDQ1Ljc3IDMwNS44OSA0NSAzMDIuMzQgNDVDMjk4Ljc5IDQ1IDI5NS45IDQ1Ljc2IDI5My4zMiA0Ny4yN0MyOTEuMzMgNDguNDQgMjg5Ljc4IDUwLjAyIDI4OC42NSA1Mi4wMlY0Ni4wN0gyNzcuNjNWOTQuNDJIMjg5LjM2VjY2LjA3QzI4OS4zNiA2My45NCAyODkuNzcgNjIuMSAyOTAuNiA2MC41NkMyOTEuNDMgNTkuMDIgMjkyLjU4IDU3Ljg0IDI5NC4wNyA1Ny4wMUMyOTUuNTUgNTYuMTggMjk3LjI0IDU1Ljc3IDI5OS4xNCA1NS43N0MzMDEuMDQgNTUuNzcgMzAyLjcyIDU2LjE5IDMwNC4yMSA1Ny4wMUMzMDUuNjkgNTcuODQgMzA2Ljg1IDU5LjAyIDMwNy42OCA2MC41NkMzMDguNTEgNjIuMSAzMDguOTIgNjMuOTQgMzA4LjkyIDY2LjA3Vjk0LjQySDMyMC41NlY2My4zMkMzMjAuNTYgNTkuNzEgMzE5Ljc5IDU2LjUyIDMxOC4yNSA1My43N0MzMTYuNzEgNTEuMDIgMzE0LjU2IDQ4Ljg3IDMxMS44MSA0Ny4zM1Y0Ny4zMUgzMTEuOFoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik02MDkuMDYgOS4yNzI3NkwzNDQuODg5IDMyLjM4NDdDMzM2LjA5NyAzMy4xNTM5IDMyOS41OTQgNDAuOTA0NyAzMzAuMzYzIDQ5LjY5NjdMMzM1LjMzNiAxMDYuNTRDMzM2LjEwNSAxMTUuMzMxIDM0My44NTYgMTIxLjgzNSAzNTIuNjQ4IDEyMS4wNjZMNjE2LjgxOSA5Ny45NTRDNjI1LjYxMSA5Ny4xODQ4IDYzMi4xMTQgODkuNDM0IDYzMS4zNDUgODAuNjQyMUw2MjYuMzcyIDIzLjc5OTJDNjI1LjYwMyAxNS4wMDczIDYxNy44NTIgOC41MDM1NiA2MDkuMDYgOS4yNzI3NloiIGZpbGw9IiMwMEEwNUEiLz4KPHBhdGggZD0iTTM1Mi4zMyAxMDQuNzEzTDM0Ny40NCA0OC43OTI5TDM2OC45IDQ2LjkxMjlDMzcyLjc1IDQ2LjU3MjkgMzc2LjIzIDQ2Ljk1MjkgMzc5LjMyIDQ4LjA0MjlDMzgyLjQxIDQ5LjEzMjkgMzg0LjkzIDUwLjkzMjkgMzg2Ljg2IDUzLjQzMjlDMzg4Ljc5IDU1LjkzMjkgMzg5LjkzIDU5LjE0MjkgMzkwLjI3IDYzLjA0MjlDMzkwLjYgNjYuODQyOSAzOTAuMDIgNzAuMTQyOSAzODguNTMgNzIuOTUyOUMzODcuMDQgNzUuNzUyOSAzODQuODYgNzcuOTcyOSAzODIgNzkuNjEyOUMzNzkuMTQgODEuMjUyOSAzNzUuODEgODIuMjMyOSAzNzIuMDEgODIuNTYyOUwzNjIuMTggODMuNDIyOUwzNjMuOTUgMTAzLjY4M0wzNTIuMzIgMTA0LjcwM0wzNTIuMzMgMTA0LjcxM1pNMzYxLjMxIDczLjI5MjlMMzcxLjIyIDcyLjQyMjlDMzcyLjg3IDcyLjI4MjkgMzc0LjI3IDcxLjgzMjkgMzc1LjQxIDcxLjA3MjlDMzc2LjU1IDcwLjMyMjkgMzc3LjQxIDY5LjMzMjkgMzc3Ljk5IDY4LjEyMjlDMzc4LjU3IDY2LjkxMjkgMzc4Ljc5IDY1LjU1MjkgMzc4LjY2IDY0LjA1MjlDMzc4LjUyIDYyLjUwMjkgMzc4LjA3IDYxLjE4MjkgMzc3LjI5IDYwLjA5MjlDMzc2LjUxIDU5LjAwMjkgMzc1LjUgNTguMTgyOSAzNzQuMjQgNTcuNjMyOUMzNzIuOTggNTcuMDkyOSAzNzEuNTMgNTYuODgyOSAzNjkuODggNTcuMDMyOUwzNTkuOTcgNTcuOTAyOUwzNjEuMzIgNzMuMjkyOUgzNjEuMzFaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNDE5LjE2IDc4LjQ0MjlMNDEwLjkgNzkuMTYyOUw0MTIuNjcgOTkuNDIyOUw0MDEuMDQgMTAwLjQ0M0wzOTYuMTUgNDQuNTIyOUw0MTcuNTQgNDIuNjUyOUM0MjEuMzkgNDIuMzEyOSA0MjQuODcgNDIuNjkyOSA0MjcuOTYgNDMuNzgyOUM0MzEuMDUgNDQuODcyOSA0MzMuNTcgNDYuNjcyOSA0MzUuNSA0OS4xNzI5QzQzNy40MyA1MS42NzI5IDQzOC41NyA1NC44ODI5IDQzOC45MSA1OC43ODI5QzQzOS4yNCA2Mi41ODI5IDQzOC42NSA2NS45MDI5IDQzNy4xMyA2OC43MzI5QzQzNS42MSA3MS41NjI5IDQzMy40NCA3My43ODI5IDQzMC42IDc1LjM5MjlMNDQ1LjMxIDk2LjU2MjlMNDMyLjI1IDk3LjcwMjlMNDE5LjE0IDc4LjQzMjlMNDE5LjE2IDc4LjQ0MjlaTTQxMC4wMiA2OS4wMzI5TDQxOS44NSA2OC4xNzI5QzQyMS41IDY4LjAzMjkgNDIyLjkgNjcuNTgyOSA0MjQuMDQgNjYuODIyOUM0MjUuMTggNjYuMDcyOSA0MjYuMDQgNjUuMDgyOSA0MjYuNjIgNjMuODcyOUM0MjcuMiA2Mi42NjI5IDQyNy40MiA2MS4zMDI5IDQyNy4yOSA1OS44MDI5QzQyNy4xNSA1OC4yNTI5IDQyNi43IDU2LjkzMjkgNDI1LjkyIDU1Ljg0MjlDNDI1LjE0IDU0Ljc1MjkgNDI0LjEzIDUzLjkzMjkgNDIyLjg3IDUzLjM4MjlDNDIxLjYxIDUyLjg0MjkgNDIwLjE2IDUyLjYzMjkgNDE4LjUxIDUyLjc4MjlMNDA4LjY4IDUzLjY0MjlMNDEwLjAzIDY5LjAzMjlINDEwLjAyWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTQ1MS4xIDk2LjA3MjlMNDQ2LjIxIDQwLjE2MjlMNDU3Ljg0IDM5LjE0MjlMNDYyLjczIDk1LjA2M0w0NTEuMSA5Ni4wODI5Vjk2LjA3MjlaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNDk5LjI5IDkyLjc2MjlDNDk1LjI5IDkzLjExMjkgNDkxLjUxIDkyLjcxMjkgNDg3Ljk1IDkxLjU2MjlDNDg0LjM5IDkwLjQxMjkgNDgxLjIzIDg4LjY0MjkgNDc4LjQ1IDg2LjI3MjlDNDc1LjY3IDgzLjkwMjkgNDczLjQxIDgxLjAxMjkgNDcxLjY4IDc3LjYzMjlDNDY5Ljk1IDc0LjI1MjkgNDY4LjkgNzAuNDkyOSA0NjguNTQgNjYuMzQyOUM0NjguMTggNjIuMTkyOSA0NjguNTQgNTguMjkyOSA0NjkuNjMgNTQuNjMyOUM0NzAuNzIgNTAuOTgyOSA0NzIuNDMgNDcuNzYyOSA0NzQuNzYgNDQuOTUyOUM0NzcuMDkgNDIuMTUyOSA0NzkuOSAzOS44OTI5IDQ4My4yIDM4LjE2MjlDNDg2LjUgMzYuNDMyOSA0OTAuMTggMzUuMzkyOSA0OTQuMjMgMzUuMDQyOUM0OTguMjggMzQuNjgyOSA1MDEuOTggMzUuMDQyOSA1MDUuMzMgMzYuMTEyOUM1MDguNjggMzcuMTgyOSA1MTEuNTcgMzguNzQyOSA1MTQuMDIgNDAuNzkyOUM1MTYuNDcgNDIuODQyOSA1MTguMjkgNDUuMjEyOSA1MTkuNDggNDcuODgyOUw1MDkuNjMgNTMuNzMyOUM1MDguNDQgNTEuMTEyOSA1MDYuNTggNDkuMDIyOSA1MDQuMDUgNDcuNDUyOUM1MDEuNTIgNDUuODgyOSA0OTguNTUgNDUuMjUyOSA0OTUuMTUgNDUuNTUyOUM0OTEuODUgNDUuODQyOSA0ODkuMDEgNDYuODcyOSA0ODYuNjUgNDguNjQyOUM0ODQuMjggNTAuNDEyOSA0ODIuNTMgNTIuNzIyOSA0ODEuMzkgNTUuNTcyOUM0ODAuMjUgNTguNDIyOSA0NzkuODQgNjEuNjcyOSA0ODAuMTYgNjUuMzIyOUM0ODAuNDggNjguOTcyOSA0ODEuNDUgNzIuMTEyOSA0ODMuMDYgNzQuNzUyOUM0ODQuNjggNzcuMzgyOSA0ODYuOCA3OS4zNjI5IDQ4OS40NCA4MC42OTI5QzQ5Mi4wOCA4Mi4wMjI5IDQ5NS4wNSA4Mi41NDI5IDQ5OC4zNSA4Mi4yNjI5QzUwMS43NSA4MS45NjI5IDUwNC41NiA4MC44MjI5IDUwNi43OSA3OC44NDI5QzUwOS4wMSA3Ni44NjI5IDUxMC40OCA3NC40NzI5IDUxMS4xOSA3MS42OTI5TDUyMS45MSA3NS43NDI5QzUyMS4yIDc4LjU3MjkgNTE5LjgyIDgxLjIyMjkgNTE3Ljc2IDgzLjY2MjlDNTE1LjcxIDg2LjExMjkgNTEzLjEyIDg4LjE1MjkgNTEwLjAxIDg5Ljc4MjlDNTA2LjkgOTEuNDEyOSA1MDMuMzIgOTIuNDEyOSA0OTkuMjcgOTIuNzYyOUg0OTkuMjlaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNTMwLjU4IDg5LjExMjlMNTI1LjY5IDMzLjE5MjlMNTYzLjI5IDI5LjkwM0w1NjQuMTggNDAuMDMyOUw1MzguMjEgNDIuMzAyOUw1MzkuMzIgNTQuOTgzTDU2My43OSA1Mi44NDNMNTY0LjY4IDYyLjk3M0w1NDAuMjEgNjUuMTEyOUw1NDEuMzMgNzcuOTQzTDU2Ny4zIDc1LjY3MjlMNTY4LjE5IDg1LjgwMjlMNTMwLjU5IDg5LjA5M0w1MzAuNTggODkuMTEyOVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik01OTUuMjEgODQuMzcyOUM1OTEuNzEgODQuNjgyOSA1ODguMzYgODQuMzMyOSA1ODUuMTcgODMuMzIyOUM1ODEuOTggODIuMzEyOSA1NzkuMTcgODAuNzMyOSA1NzYuNzQgNzguNTcyOUM1NzQuMzEgNzYuNDEyOSA1NzIuNCA3My43ODI5IDU3MS4wMiA3MC42ODI5TDU4MC4xOCA2NS41NzI5QzU4MS44NSA2OC41MDI5IDU4NCA3MC43MzI5IDU4Ni42MyA3Mi4yNzI5QzU4OS4yNiA3My44MTI5IDU5Mi4wOCA3NC40NDI5IDU5NS4wOCA3NC4xODI5QzU5Ni42OCA3NC4wNDI5IDU5OC4wNCA3My42NzI5IDU5OS4xNCA3My4wNzI5QzYwMC4yNSA3Mi40NzI5IDYwMS4wOSA3MS43MDI5IDYwMS42NiA3MC43NzI5QzYwMi4yMyA2OS44NDI5IDYwMi40NyA2OC43NzI5IDYwMi4zNiA2Ny41NzI5QzYwMi4yNSA2Ni4yNzI5IDYwMS43NSA2NS4xOTI5IDYwMC44NyA2NC4zNDI5QzU5OS45OSA2My40ODI5IDU5OC42NyA2Mi44NjI5IDU5Ni45MiA2Mi40NTI5TDU4NS42NSA1OS44MTI5QzU4MS4wNyA1OC43NTI5IDU3Ny41NCA1Ni45ODI5IDU3NS4wNSA1NC41MDI5QzU3Mi41NiA1Mi4wMjI5IDU3MS4xNiA0OC45MDI5IDU3MC44MyA0NS4xNTI5QzU3MC41NCA0MS44NTI5IDU3MS4xIDM4Ljg3MjkgNTcyLjUxIDM2LjIzMjlDNTczLjkyIDMzLjU5MjkgNTc2LjAyIDMxLjQ0MjkgNTc4LjgzIDI5Ljc4MjlDNTgxLjYzIDI4LjEyMjkgNTg0Ljk0IDI3LjEzMjkgNTg4Ljc0IDI2Ljc5MjlDNTkyLjA5IDI2LjUwMjkgNTk1LjI1IDI2LjgwMjkgNTk4LjIgMjcuNzAyOUM2MDEuMTUgMjguNjAyOSA2MDMuNzYgMzAuMDEyOSA2MDYuMDIgMzEuOTMyOUM2MDguMjggMzMuODUyOSA2MTAuMDYgMzYuMjQyOSA2MTEuMzcgMzkuMTAyOUw2MDIuMjkgNDQuMjAyOUM2MDEuMDEgNDEuNjkyOSA1OTkuMjYgMzkuNzkyOSA1OTcuMDMgMzguNTAyOUM1OTQuOCAzNy4yMTI5IDU5Mi4zMyAzNi42ODI5IDU4OS42MyAzNi45MjI5QzU4OC4wOCAzNy4wNjI5IDU4Ni43MiAzNy40MzI5IDU4NS41NyAzOC4wMzI5QzU4NC40MSAzOC42NDI5IDU4My41NSAzOS40MzI5IDU4Mi45OCA0MC40MTI5QzU4Mi40MSA0MS4zOTI5IDU4Mi4xOCA0Mi40ODI5IDU4Mi4yOCA0My42OTI5QzU4Mi4zOSA0NC45OTI5IDU4Mi45MiA0Ni4wOTI5IDU4My44NSA0Ni45OTI5QzU4NC43OSA0Ny44OTI5IDU4Ni4xMyA0OC41NDI5IDU4Ny44OCA0OC45NDI5TDU5OC45MiA1MS40NTI5QzYwMy41NSA1Mi41MTI5IDYwNy4wOSA1NC4yNDI5IDYwOS41NSA1Ni42NTI5QzYxMiA1OS4wNjI5IDYxMy40IDYyLjE0MjkgNjEzLjcyIDY1Ljg5MjlDNjE0LjAxIDY5LjE0MjkgNjEzLjQxIDcyLjExMjkgNjExLjkzIDc0Ljc4MjlDNjEwLjQ1IDc3LjQ2MjkgNjA4LjI4IDc5LjY0MjkgNjA1LjQzIDgxLjMyMjlDNjAyLjU4IDgzLjAxMjkgNTk5LjE3IDg0LjAyMjkgNTk1LjIyIDg0LjM3MjlINTk1LjIxWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==" alt="Open Prices Logo" class="hero-logo-img">
+                </div>
+                <span class="op-badge-pill green">🏷️ Global Price Transparency</span>
+                <h1>Make grocery prices transparent, fight greedflation</h1>
+                <p class="hero-lead">
+                    Open Prices is a free, crowdsourced database of retail prices powered by citizens and Open Food Facts. Track inflation, compare store prices, and uncover shrinkflation with open data.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://prices.openfoodfacts.org" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer">
+                        Explore Price Data &rarr;
+                    </a>
+                    <a href="https://prices.openfoodfacts.org/contribute" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        Add Prices
+                    </a>
+                    <a href="https://prices.openfoodfacts.org/api/docs" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        REST API &amp; Datasets
+                    </a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTkxIiBoZWlnaHQ9IjYwNiIgdmlld0JveD0iMCAwIDU5MSA2MDYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHk9IjI0IiB3aWR0aD0iNTkxIiBoZWlnaHQ9IjU4MiIgcng9IjkxIiBmaWxsPSIjRDdFREYzIiBmaWxsLW9wYWNpdHk9IjAuOTciLz4KPHBhdGggZD0iTTQ1Ny44NDQgMjA1LjQ2QzQ2My44MzggMTk3Ljc2MSA0ODAuNzAxIDIwNi4yNSA0NzMuOTQ3IDE4OC45NDlDNDY3LjE5NCAxNzEuNjQ3IDQ5MC41ODkgMTY5Ljg5NSA0OTcuNzk1IDE3My4yMDVDNDk5LjkyOCAxNzQuMTg2IDUwMi4wMjEgMTc1LjcxIDUwNC4wMDMgMTc3LjYyQzUwNC4yMzEgMTc1LjcyNSA1MDQuMzQ5IDE3My43OTIgNTA0LjM0OSAxNzEuODM1QzUwNC4zNDkgMTY4Ljk1NSA1MDQuMDk1IDE2Ni4xMzcgNTAzLjYwOSAxNjMuMzk3QzQ4OS4wODIgMTU4Ljg5MyA0ODYuMzI2IDE0Ny4xODMgNDc4Ljc3IDE1MS45MDdDNDcxLjA0NCAxNTYuNzM3IDQ2MC40ODkgMTQ2Ljg0MSA0NjEuMzg4IDEzOS43ODhDNDYyLjA3IDEzNC40MzYgNDY1LjM0NSAxMjcuNDQ2IDQ2My43MzUgMTI0LjIyMUM0NjEuMjA4IDEyMy44MTMgNDU4LjYxNCAxMjMuNiA0NTUuOTcyIDEyMy42QzQ0OS42OTUgMTIzLjYgNDQzLjY5NyAxMjQuNzk0IDQzOC4xOTMgMTI2Ljk2MUM0NDEuMzYxIDEzNi43MjUgNDQzLjk0NCAxNDEuNzgzIDQzNi4wMzQgMTQ3LjczQzQyNi4zIDE1NS4wNDcgNDE4LjU3NCAxNTAuMTUxIDQxOC41NzQgMTYxLjI2M0M0MTguNTc0IDE3Mi4zNzUgNDI1LjkxMyAxNzYuOTk5IDQxOC41NzQgMTgzLjkzMUM0MTYuNDk2IDE4NS44OTYgNDEzLjUxNiAxODcuMDg2IDQxMC4yNyAxODcuNjg5QzQxMS43OTUgMTkyLjA1MyA0MTMuOTI1IDE5Ni4xMzQgNDE2LjU3IDE5OS44MjlDNDI3LjE4MSAxOTEuNjQ5IDQzOS41NzggMjAzLjc2NyA0NDIuOTU2IDIwOS44NDZDNDQ0LjQyMyAyMTIuNDg3IDQ0NC4xMzUgMjE1LjQ0NCA0NDMuMTE1IDIxOC4zNDNDNDQ3LjIwOCAyMTkuNDYzIDQ1MS41MTggMjIwLjA2NSA0NTUuOTY5IDIyMC4wNjVDNDU2Ljk2MyAyMjAuMDY1IDQ1Ny45NDcgMjIwLjAzMiA0NTguOTI3IDIxOS45NzRDNDU2LjA4MyAyMTQuMSA0NTUuMjI1IDIwOC44MTggNDU3LjgzNyAyMDUuNDU3TDQ1Ny44NDQgMjA1LjQ2Wk00NDcuODA1IDE5OC40NjNDNDQyLjE5NCAxOTkuNjY3IDQ0MC45NzggMTg0LjEzMyA0MzcuNTU1IDE3Ny4xNzlDNDM0LjEzMyAxNzAuMjI2IDQyOS40MTMgMTY1LjEzNCA0MzMuNDQ3IDE2MC44NTVDNDM3LjQ4MiAxNTYuNTc2IDQ0MS41NzUgMTYwLjg1NSA0NDguNDY0IDE1NS40MTVDNDU1LjgyOSAxNDkuNTk2IDQ2Mi4zNSAxNTUuNjE3IDQ2My41NjkgMTYxLjE2QzQ2NC43ODkgMTY2LjcwMyA0NjAuMTMyIDE3Mi43MTYgNDU5LjExOSAxNzUuNjczQzQ1OC40NDYgMTc3LjY0MiA0NTguMzMxIDE4MC44NjcgNDU4Ljc3NiAxODUuMzQ5QzQ1OS40NDMgMTkyLjA2NyA0NTMuNDE2IDE5Ny4yNjUgNDQ3LjgwNSAxOTguNDdWMTk4LjQ2M1oiIGZpbGw9IiM3OEU2RkYiLz4KPHBhdGggZD0iTTQ2MS4zOTYgMTM5Ljc4OEM0NjAuNDk3IDE0Ni44NDEgNDcxLjA1MiAxNTYuNzMzIDQ3OC43NzggMTUxLjkwNkM0ODYuMzM0IDE0Ny4xODIgNDg5LjA4NiAxNTguODkzIDUwMy42MTcgMTYzLjM5NkM1MDAuMDU4IDE0My4yODkgNDg0LjAwNiAxMjcuNDgyIDQ2My43NDMgMTI0LjIyQzQ2NS4zNTYgMTI3LjQ0NSA0NjIuMDc4IDEzNC40MzYgNDYxLjM5NiAxMzkuNzg4WiIgZmlsbD0iIzAwOTY2NCIvPgo8cGF0aCBkPSJNNDU4Ljc4MSAxODUuMzQyQzQ1OC4zMzcgMTgwLjg2MyA0NTguNDUxIDE3Ny42MzggNDU5LjEyNCAxNzUuNjY2QzQ2MC4xMzQgMTcyLjcxMyA0NjQuNzk0IDE2Ni42OTYgNDYzLjU3NSAxNjEuMTUzQzQ2Mi4zNTUgMTU1LjYxIDQ1NS44MzQgMTQ5LjU4OSA0NDguNDY5IDE1NS40MDhDNDQxLjU4NCAxNjAuODQ4IDQzNy40ODcgMTU2LjU2OSA0MzMuNDUzIDE2MC44NDhDNDI5LjQxOSAxNjUuMTI4IDQzNC4xMzggMTcwLjIxOSA0MzcuNTYxIDE3Ny4xNzJDNDQwLjk4MyAxODQuMTI2IDQ0Mi4xOTkgMTk5LjY2MSA0NDcuODEgMTk4LjQ1NkM0NTMuNDIxIDE5Ny4yNTEgNDU5LjQ0OCAxOTIuMDUzIDQ1OC43ODEgMTg1LjMzNVYxODUuMzQyWiIgZmlsbD0iIzAwOTY2NCIvPgo8cGF0aCBkPSJNNDQyLjk2MyAyMDkuODQ2QzQzOS41ODUgMjAzLjc2NyA0MjcuMTg3IDE5MS42NDkgNDE2LjU3NyAxOTkuODI5QzQyMi45NDcgMjA4LjcyNiA0MzIuMjcyIDIxNS4zNzEgNDQzLjEyMiAyMTguMzQzQzQ0NC4xNDIgMjE1LjQ0NSA0NDQuNDI5IDIxMi40ODQgNDQyLjk2MyAyMDkuODQ2WiIgZmlsbD0iIzAwOTY2NCIvPgo8cGF0aCBkPSJNNDE4LjU4MyAxNjEuMjY2QzQxOC41ODMgMTUwLjE1MSA0MjYuMzA4IDE1NS4wNTEgNDM2LjA0MiAxNDcuNzM0QzQ0My45NTIgMTQxLjc4NiA0NDEuMzY5IDEzNi43MjggNDM4LjIwMSAxMjYuOTY1QzQyMC4yNzcgMTM0LjAyOCA0MDcuNiAxNTEuNDU4IDQwNy42IDE3MS44MzhDNDA3LjYgMTc3LjM5MiA0MDguNTQ3IDE4Mi43MjkgNDEwLjI3OCAxODcuNjk2QzQxMy41MjQgMTg3LjA5MyA0MTYuNTA1IDE4NS45MDMgNDE4LjU4MyAxODMuOTM4QzQyNS45MjEgMTc3LjAwNiA0MTguNTgzIDE3Mi4zODUgNDE4LjU4MyAxNjEuMjdWMTYxLjI2NloiIGZpbGw9IiMwMDk2NjQiLz4KPHBhdGggZD0iTTQ3My45NTIgMTg4Ljk0OUM0ODAuNzAxIDIwNi4yNDcgNDYzLjgzOSAxOTcuNzYxIDQ1Ny44NDggMjA1LjQ2MUM0NTUuMjMzIDIwOC44MTggNDU2LjA5NSAyMTQuMTA0IDQ1OC45MzkgMjE5Ljk3OEM0ODIuMzQ1IDIxOC41NzEgNTAxLjI1OSAyMDAuNTcyIDUwNC4wMTEgMTc3LjYyMUM1MDIuMDI1IDE3NS43MTQgNDk5LjkzMyAxNzQuMTg2IDQ5Ny44MDMgMTczLjIwNUM0OTAuNTk3IDE2OS44OTYgNDY3LjIwNiAxNzEuNjUxIDQ3My45NTYgMTg4Ljk0OUg0NzMuOTUyWiIgZmlsbD0iIzAwOTY2NCIvPgo8cGF0aCBkPSJNMTY4LjExOSAxNDUuMjg1QzE2Mi40NTEgMTQxLjk5OSAxNTUuODIxIDE0MS4wOTkgMTQ5LjQ0OSAxNDIuNzYxQzE0My4wNzcgMTQ0LjQyNCAxMzcuNzMyIDE0OC40NDYgMTM0LjM5MSAxNTQuMDgzTDEzMi41ODQgMTU3LjEzMkwxMjkuNTE4IDE1NS4zNTVDMTIzLjg0OSAxNTIuMDY4IDExNy4yMTIgMTUxLjE3IDExMC44NDggMTUyLjgzQzEwNC40ODQgMTU0LjQ5MSA5OS4xMzAzIDE1OC41MTYgOTUuNzg5NiAxNjQuMTUyQzkyLjQ0ODkgMTY5Ljc4OSA5MS41MTMyIDE3Ni4zNzYgOTMuMTU3NiAxODIuNjhDOTQuODAxOSAxODguOTgzIDk4LjgzNTcgMTk0LjI3NCAxMDQuNTA0IDE5Ny41NjFMMTQ4LjY3MSAyMjMuMTcxQzE0OS4wNDUgMjIzLjM4NyAxNDkuNDY3IDIyMy40MyAxNDkuODU5IDIyMy4zMjdDMTUwLjI1MiAyMjMuMjI1IDE1MC42IDIyMi45ODIgMTUwLjgxOSAyMjIuNjExTDE3Ni44NSAxNzguNjg5QzE4MC4xOSAxNzMuMDUzIDE4MS4xMjYgMTY2LjQ2NiAxNzkuNDgyIDE2MC4xNjJDMTc3LjgzNyAxNTMuODU4IDE3My44MDMgMTQ4LjU2OCAxNjguMTM1IDE0NS4yODFMMTY4LjExOSAxNDUuMjg1WiIgZmlsbD0iI0ZGNkU3OCIvPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcDBfNTEwXzQ3MjQpIj4KPHBhdGggZD0iTTI3MS44OCAyMTcuODRMMjYzLjIxIDIzOC41NEwyNzQuNjIgMjQzLjMyTDI4My4zNiAyMjIuNDRDMjg3LjI2IDIyMy40NCAyOTEuMzQgMjIzLjk4IDI5NS41NSAyMjMuOThDMzIyLjQ2IDIyMy45OCAzNDQuMzYgMjAyLjA4IDM0NC4zNiAxNzUuMTdIMzMxLjk5QzMzMS45OSAxOTUuMjYgMzE1LjY1IDIxMS42MSAyOTUuNTUgMjExLjYxQzI3NS40NSAyMTEuNjEgMjU5LjExIDE5NS4yNyAyNTkuMTEgMTc1LjE3SDI0Ni43NEMyNDYuNzQgMTkzLjUgMjU2LjkgMjA5LjQ5IDI3MS44NyAyMTcuODNMMjcxLjg4IDIxNy44NFoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik0yNzcuMDUgMTA2SDMxNC4wNEMzMTUuOSAxMDYgMzE3LjEyIDEwNy45MyAzMTYuMzMgMTA5LjYxTDMwOC4yNSAxMjYuNzZDMzA3LjgzIDEyNy42NSAzMDYuOTQgMTI4LjIxIDMwNS45NiAxMjguMjFIMjg1LjEyQzI4NC4xNCAxMjguMjEgMjgzLjI1IDEyNy42NCAyODIuODMgMTI2Ljc2TDI3NC43NSAxMDkuNjFDMjczLjk2IDEwNy45MyAyNzUuMTggMTA2IDI3Ny4wNCAxMDZIMjc3LjA1WiIgZmlsbD0iI0ZGQzg4QyIvPgo8cGF0aCBkPSJNMjg1LjcyIDExNC43NEwyOTAuNjUgMTI4LjIyIiBzdHJva2U9IiNEQUExNkQiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTMwNS43MiAxMTQuMDRMMzAwLjc4IDEyNy41MiIgc3Ryb2tlPSIjREFBMTZEIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik0zMTMuMDggMTMyLjA3QzMxMy4wOCAxMzEuNjYgMjc4LjAxIDEzMS42NiAyNzguMDEgMTMyLjA3VjEyNi43MkMyNzguMDEgMTIwLjQzIDMxMy4wOCAxMjAuNDMgMzEzLjA4IDEyNi43MlYxMzIuMDdaIiBmaWxsPSIjNzg0NjAwIi8+CjxwYXRoIGQ9Ik0yNDYuNzQgMTc1LjE4QzI0Ni43NCAxNDguMjIgMjY4LjU5IDEyNi4zNyAyOTUuNTUgMTI2LjM3QzMyMi41MSAxMjYuMzcgMzQ0LjM2IDE0OC4yMiAzNDQuMzYgMTc1LjE4SDI0Ni43NFoiIGZpbGw9IiNGRkM4OEMiLz4KPHBhdGggZD0iTTMzMS45OCAxNzUuMTdDMzMxLjk4IDE5NS4yOSAzMTUuNjcgMjExLjYxIDI5NS41NCAyMTEuNjFDMjc1LjQxIDIxMS42MSAyNTkuMSAxOTUuMyAyNTkuMSAxNzUuMTdIMzMxLjk3SDMzMS45OFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0zMDYuNjYgMTY2LjYyQzMwNi45NCAxNjcuNzMgMzA2LjM3IDE2OC44NyAzMDUuMzIgMTY5LjMxQzMwMy42NCAxNzAgMzAxLjQ4IDE3MC41MSAyOTkuMDYgMTcwLjUxQzI5NC4xNCAxNzAuNTEgMjg5Ljg1IDE2OC41NCAyODcuMTQgMTY1LjA3QzI4NS42NCAxNjMuMzMgMjg0LjYyIDE2MS4xIDI4NC4xNyAxNTguNTdIMjgyLjQzQzI4MS42MSAxNTguNTcgMjgwLjk0IDE1Ny45IDI4MC45NCAxNTcuMDhDMjgwLjk0IDE1Ni4yNiAyODEuNjEgMTU1LjU5IDI4Mi40MyAxNTUuNTlIMjgzLjc1QzI4My43NSAxNTUuNTkgMjgzLjc3IDE1NS41NyAyODMuNzggMTU1LjU2QzI4My43MSAxNTQuNzQgMjgzLjc4IDE1My45IDI4My44NCAxNTMuMUgyODIuNDNDMjgxLjYxIDE1My4xIDI4MC45NCAxNTIuNDMgMjgwLjk0IDE1MS42MUMyODAuOTQgMTUwLjc5IDI4MS42MSAxNTAuMTIgMjgyLjQzIDE1MC4xMkgyODQuMzRDMjg0Ljk2IDE0Ny4zOSAyODYuMjcgMTQ0Ljk3IDI4OC4xMSAxNDMuMDlDMjkwLjg3IDE0MC4yMSAyOTQuNjcgMTM4LjQ2IDI5OS4yIDEzOC40NkMzMDEuMjkgMTM4LjQ2IDMwMy4xOCAxMzguNzkgMzA0LjczIDEzOS4yNkMzMDUuOTMgMTM5LjYyIDMwNi42MiAxNDAuODcgMzA2LjI4IDE0Mi4wOEwzMDYuMjYgMTQyLjE0QzMwNS45MiAxNDMuMzUgMzA0LjY2IDE0NC4wOCAzMDMuNDUgMTQzLjczQzMwMi4zIDE0My40IDMwMC45NyAxNDMuMTcgMjk5LjU3IDE0My4xN0MyOTYuODcgMTQzLjE3IDI5NC41IDE0NC4xMyAyOTIuNzggMTQ1Ljk5QzI5MS43MiAxNDcuMDMgMjkxLjAxIDE0OC41NCAyOTAuNiAxNTAuMTFIMzAzLjIxQzMwNC4wMyAxNTAuMTEgMzA0LjcgMTUwLjc4IDMwNC43IDE1MS42QzMwNC43IDE1Mi40MiAzMDQuMDMgMTUzLjA5IDMwMy4yMSAxNTMuMDlIMjg5LjkxQzI4OS44NCAxNTMuNjMgMjg5LjgyIDE1NC4yMSAyODkuODIgMTU0Ljc4VjE1NS41OUgzMDMuMjFDMzA0LjAzIDE1NS41OSAzMDQuNyAxNTYuMjYgMzA0LjcgMTU3LjA4QzMwNC43IDE1Ny45IDMwNC4wMyAxNTguNTcgMzAzLjIxIDE1OC41N0gyOTAuNDVDMjkwLjgyIDE2MC4zOCAyOTEuNTkgMTYxLjg1IDI5Mi42NCAxNjIuOUMyOTQuNDQgMTY0LjczIDI5Ni45NiAxNjUuNjIgMjk5Ljc3IDE2NS42MkMzMDEuMjMgMTY1LjYyIDMwMi42MiAxNjUuMzUgMzAzLjc3IDE2NC45OUMzMDUuMDIgMTY0LjYxIDMwNi4zMyAxNjUuMzUgMzA2LjY1IDE2Ni42MUwzMDYuNjYgMTY2LjYyWiIgZmlsbD0iIzc4NDYwMCIvPgo8cGF0aCBkPSJNMjI4LjYgMjU5LjQxQzIyNC43NSAyNTcuMjIgMjIwLjQyIDI1Ni4xMiAyMTUuNjMgMjU2LjEyQzIxMC44NCAyNTYuMTIgMjA2LjU5IDI1Ny4yMiAyMDIuNzQgMjU5LjQxQzE5OC44OSAyNjEuNiAxOTUuODEgMjY0LjYgMTkzLjUgMjY4LjM5QzE5MS4xOSAyNzIuMTggMTkwLjAzIDI3Ni41MSAxOTAuMDMgMjgxLjM2QzE5MC4wMyAyODYuMjEgMTkxLjE5IDI5MC41NCAxOTMuNSAyOTQuMzNDMTk1LjgxIDI5OC4xMiAxOTguOTEgMzAxLjExIDIwMi43OSAzMDMuMzFDMjA2LjY3IDMwNS41IDIxMC45NSAzMDYuNiAyMTUuNjMgMzA2LjZDMjIwLjMxIDMwNi42IDIyNC42NiAzMDUuNSAyMjguNTIgMzAzLjMxQzIzMi4zNyAzMDEuMTIgMjM1LjQ1IDI5OC4xMyAyMzcuNzYgMjk0LjMzQzI0MC4wNyAyOTAuNTQgMjQxLjIzIDI4Ni4yMSAyNDEuMjMgMjgxLjM2QzI0MS4yMyAyNzYuNTEgMjQwLjA5IDI3Mi4xIDIzNy44MSAyNjguMzRDMjM1LjUzIDI2NC41OCAyMzIuNDYgMjYxLjYgMjI4LjYxIDI1OS40MUgyMjguNlpNMjI3LjMxIDI4OC44N0MyMjYuMTUgMjkxLjA5IDIyNC41OCAyOTIuODIgMjIyLjYgMjk0LjA3QzIyMC42MSAyOTUuMzEgMjE4LjI5IDI5NS45NCAyMTUuNjIgMjk1Ljk0QzIxMi45NSAyOTUuOTQgMjEwLjcgMjk1LjMyIDIwOC42OSAyOTQuMDdDMjA2LjY3IDI5Mi44MyAyMDUuMDkgMjkxLjA5IDIwMy45NCAyODguODdDMjAyLjc4IDI4Ni42NSAyMDIuMjEgMjg0LjE1IDIwMi4yMSAyODEuMzZDMjAyLjIxIDI3OC41NyAyMDIuNzkgMjc2LjA5IDIwMy45NCAyNzMuODlDMjA1LjEgMjcxLjcgMjA2LjY4IDI2OS45OCAyMDguNjkgMjY4Ljc0QzIxMC43IDI2Ny41IDIxMy4wMSAyNjYuODcgMjE1LjYyIDI2Ni44N0MyMTguMjMgMjY2Ljg3IDIyMC42MSAyNjcuNDkgMjIyLjYgMjY4Ljc0QzIyNC41OCAyNjkuOTggMjI2LjE1IDI3MS43IDIyNy4zMSAyNzMuODlDMjI4LjQ3IDI3Ni4wOCAyMjkuMDQgMjc4LjU3IDIyOS4wNCAyODEuMzZDMjI5LjA0IDI4NC4xNSAyMjguNDYgMjg2LjY1IDIyNy4zMSAyODguODdaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNMjg2LjQyIDI1OS41QzI4Mi43NSAyNTcuMjUgMjc4LjYzIDI1Ni4xMiAyNzQuMDcgMjU2LjEyQzI3MC4zNCAyNTYuMTIgMjY3LjA1IDI1Ni44NSAyNjQuMjEgMjU4LjNDMjYxLjkzIDI1OS40NiAyNjAuMDQgMjYxIDI1OC41MiAyNjIuOTFWMjU3LjE5SDI0Ny41VjMyMy4zMUgyNTkuMjNWMzAwLjg5QzI2MC42NiAzMDIuNDEgMjYyLjM2IDMwMy42MyAyNjQuMzQgMzA0LjU2QzI2Ny4yNyAzMDUuOTIgMjcwLjQ5IDMwNi42IDI3My45OCAzMDYuNkMyNzguNjYgMzA2LjYgMjgyLjg0IDMwNS40OSAyODYuNTEgMzAzLjI3QzI5MC4xOCAzMDEuMDUgMjkzLjA5IDI5OC4wMSAyOTUuMjIgMjk0LjE2QzI5Ny4zNSAyOTAuMzEgMjk4LjQyIDI4Ni4wNCAyOTguNDIgMjgxLjM2QzI5OC40MiAyNzYuNjggMjk3LjM0IDI3Mi4zNSAyOTUuMTggMjY4LjU2QzI5My4wMiAyNjQuNzcgMjkwLjEgMjYxLjc1IDI4Ni40MyAyNTkuNUgyODYuNDJaTTI4NC41NSAyODguOTJDMjgzLjM2IDI5MS4xMSAyODEuNzUgMjkyLjgzIDI3OS43MSAyOTQuMDdDMjc3LjY3IDI5NS4zMSAyNzUuMzEgMjk1Ljk0IDI3Mi42NCAyOTUuOTRDMjY5Ljk3IDI5NS45NCAyNjcuOCAyOTUuMzIgMjY1Ljc1IDI5NC4wN0MyNjMuNzEgMjkyLjgzIDI2Mi4xMSAyOTEuMTEgMjYwLjk1IDI4OC45MkMyNTkuNzkgMjg2LjczIDI1OS4yMiAyODQuMjEgMjU5LjIyIDI4MS4zN0MyNTkuMjIgMjc4LjUzIDI1OS44IDI3Ni4xIDI2MC45NSAyNzMuOUMyNjIuMTEgMjcxLjcxIDI2My43IDI2OS45OSAyNjUuNzUgMjY4Ljc1QzI2Ny43OSAyNjcuNTEgMjcwLjA5IDI2Ni44OCAyNzIuNjQgMjY2Ljg4QzI3NS4xOSAyNjYuODggMjc3LjY2IDI2Ny41IDI3OS43MSAyNjguNzVDMjgxLjc1IDI2OS45OSAyODMuMzcgMjcxLjcxIDI4NC41NSAyNzMuOUMyODUuNzMgMjc2LjA5IDI4Ni4zMyAyNzguNTggMjg2LjMzIDI4MS4zN0MyODYuMzMgMjg0LjE2IDI4NS43NCAyODYuNzMgMjg0LjU1IDI4OC45MloiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik0zNDQuMDEgMjYzLjE0QzM0MiAyNjAuOTUgMzM5LjU1IDI1OS4yMyAzMzYuNjggMjU3Ljk5QzMzMy44MSAyNTYuNzUgMzMwLjQ3IDI1Ni4xMiAzMjYuNjggMjU2LjEyQzMyMi4xMiAyNTYuMTIgMzE4LjAzIDI1Ny4yMiAzMTQuNDIgMjU5LjQxQzMxMC44MSAyNjEuNiAzMDcuOTMgMjY0LjU4IDMwNS44IDI2OC4zNEMzMDMuNjcgMjcyLjEgMzAyLjYgMjc2LjQxIDMwMi42IDI4MS4yN0MzMDIuNiAyODYuMTMgMzAzLjY0IDI5MC4yMiAzMDUuNzEgMjk0LjA3QzMwNy43OCAyOTcuOTIgMzEwLjcgMzAwLjk3IDMxNC40NiAzMDMuMjJDMzE4LjIyIDMwNS40NyAzMjIuNTkgMzA2LjYgMzI3LjU3IDMwNi42QzMzMC44MyAzMDYuNiAzMzMuODUgMzA2LjEgMzM2LjYzIDMwNS4wOUMzMzkuNDEgMzA0LjA4IDM0MS44MSAzMDIuNjkgMzQzLjgzIDMwMC45MUMzNDUuODQgMjk5LjEzIDM0Ny4zMyAyOTcuMDkgMzQ4LjI3IDI5NC43OEwzMzguODUgMjkwLjE2QzMzNy43OCAyOTIuMDYgMzM2LjMyIDI5My41NyAzMzQuNDUgMjk0LjY5QzMzMi41OCAyOTUuODIgMzMwLjMyIDI5Ni4zOCAzMjcuNjUgMjk2LjM4QzMyNC45OCAyOTYuMzggMzIyLjYzIDI5NS43NiAzMjAuNTggMjk0LjUxQzMxOC41NCAyOTMuMjcgMzE2Ljk5IDI5MS41IDMxNS45NiAyODkuMjJDMzE1LjM0IDI4Ny44NSAzMTQuOTUgMjg2LjM1IDMxNC43OCAyODQuNzNIMzQ5LjU5QzM0OS44MyAyODQuMDIgMzQ5Ljk5IDI4My4yMyAzNTAuMDggMjgyLjM4QzM1MC4xNyAyODEuNTIgMzUwLjIxIDI4MC42NSAzNTAuMjEgMjc5Ljc2QzM1MC4yMSAyNzYuNSAzNDkuNjggMjczLjQ3IDM0OC42MSAyNzAuNjVDMzQ3LjU0IDI2Ny44NCAzNDYgMjY1LjMzIDM0My45OSAyNjMuMTRIMzQ0LjAxWk0zMTUuMDMgMjc1Ljc2QzMxNS4yMyAyNzQuNzQgMzE1LjUxIDI3My43OSAzMTUuODggMjcyLjkyQzMxNi44NiAyNzAuNjEgMzE4LjI5IDI2OC44MyAzMjAuMTkgMjY3LjU5QzMyMi4wOSAyNjYuMzUgMzI0LjI1IDI2NS43MiAzMjYuNjggMjY1LjcyQzMyOS4xMSAyNjUuNzIgMzMxLjQgMjY2LjM0IDMzMy4yMSAyNjcuNTlDMzM1LjAyIDI2OC44MyAzMzYuMzIgMjcwLjUyIDMzNy4xMiAyNzIuNjZDMzM3LjQ5IDI3My42MyAzMzcuNyAyNzQuNjcgMzM3Ljc3IDI3NS43N0gzMTUuMDNWMjc1Ljc2WiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTM5MC44MyAyNTguNDNDMzg4LjA3IDI1Ni44OSAzODQuOTIgMjU2LjEyIDM4MS4zNyAyNTYuMTJDMzc3LjgyIDI1Ni4xMiAzNzQuOTMgMjU2Ljg4IDM3Mi4zNSAyNTguMzlDMzcwLjM2IDI1OS41NiAzNjguODEgMjYxLjE0IDM2Ny42OCAyNjMuMTRWMjU3LjE5SDM1Ni42NlYzMDUuNTRIMzY4LjM5VjI3Ny4xOUMzNjguMzkgMjc1LjA2IDM2OC44IDI3My4yMiAzNjkuNjMgMjcxLjY4QzM3MC40NiAyNzAuMTQgMzcxLjYxIDI2OC45NiAzNzMuMSAyNjguMTNDMzc0LjU4IDI2Ny4zIDM3Ni4yNyAyNjYuODkgMzc4LjE3IDI2Ni44OUMzODAuMDcgMjY2Ljg5IDM4MS43NSAyNjcuMzEgMzgzLjI0IDI2OC4xM0MzODQuNzIgMjY4Ljk2IDM4NS44OCAyNzAuMTQgMzg2LjcxIDI3MS42OEMzODcuNTQgMjczLjIyIDM4Ny45NSAyNzUuMDYgMzg3Ljk1IDI3Ny4xOVYzMDUuNTRIMzk5LjU5VjI3NC40NEMzOTkuNTkgMjcwLjgzIDM5OC44MiAyNjcuNjQgMzk3LjI4IDI2NC44OUMzOTUuNzQgMjYyLjE0IDM5My41OSAyNTkuOTkgMzkwLjg0IDI1OC40NVYyNTguNDNIMzkwLjgzWiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTQyMy43NiAzMTMuNUwxNTkuNTg5IDMzNi42MTJDMTUwLjc5NyAzMzcuMzgxIDE0NC4yOTQgMzQ1LjEzMiAxNDUuMDYzIDM1My45MjRMMTUwLjAzNiA0MTAuNzY3QzE1MC44MDUgNDE5LjU1OCAxNTguNTU2IDQyNi4wNjIgMTY3LjM0OCA0MjUuMjkzTDQzMS41MTkgNDAyLjE4MUM0NDAuMzExIDQwMS40MTIgNDQ2LjgxNCAzOTMuNjYxIDQ0Ni4wNDUgMzg0Ljg2OUw0NDEuMDcyIDMyOC4wMjZDNDQwLjMwMyAzMTkuMjM0IDQzMi41NTIgMzEyLjczMSA0MjMuNzYgMzEzLjVaIiBmaWxsPSIjMDBBMDVBIi8+CjxwYXRoIGQ9Ik0xNjcuMDMgNDA4Ljk0TDE2Mi4xNCAzNTMuMDJMMTgzLjYgMzUxLjE0QzE4Ny40NSAzNTAuOCAxOTAuOTMgMzUxLjE4IDE5NC4wMiAzNTIuMjdDMTk3LjExIDM1My4zNiAxOTkuNjMgMzU1LjE2IDIwMS41NiAzNTcuNjZDMjAzLjQ5IDM2MC4xNiAyMDQuNjMgMzYzLjM3IDIwNC45NyAzNjcuMjdDMjA1LjMgMzcxLjA3IDIwNC43MiAzNzQuMzcgMjAzLjIzIDM3Ny4xOEMyMDEuNzQgMzc5Ljk4IDE5OS41NiAzODIuMiAxOTYuNyAzODMuODRDMTkzLjg0IDM4NS40OCAxOTAuNTEgMzg2LjQ2IDE4Ni43MSAzODYuNzlMMTc2Ljg4IDM4Ny42NUwxNzguNjUgNDA3LjkxTDE2Ny4wMiA0MDguOTNMMTY3LjAzIDQwOC45NFpNMTc2LjAxIDM3Ny41MkwxODUuOTIgMzc2LjY1QzE4Ny41NyAzNzYuNTEgMTg4Ljk3IDM3Ni4wNiAxOTAuMTEgMzc1LjNDMTkxLjI1IDM3NC41NSAxOTIuMTEgMzczLjU2IDE5Mi42OSAzNzIuMzVDMTkzLjI3IDM3MS4xNCAxOTMuNDkgMzY5Ljc4IDE5My4zNiAzNjguMjhDMTkzLjIyIDM2Ni43MyAxOTIuNzcgMzY1LjQxIDE5MS45OSAzNjQuMzJDMTkxLjIxIDM2My4yMyAxOTAuMiAzNjIuNDEgMTg4Ljk0IDM2MS44NkMxODcuNjggMzYxLjMyIDE4Ni4yMyAzNjEuMTEgMTg0LjU4IDM2MS4yNkwxNzQuNjcgMzYyLjEzTDE3Ni4wMiAzNzcuNTJIMTc2LjAxWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTIzMy44NiAzODIuNjdMMjI1LjYgMzgzLjM5TDIyNy4zNyA0MDMuNjVMMjE1Ljc0IDQwNC42N0wyMTAuODUgMzQ4Ljc1TDIzMi4yNCAzNDYuODhDMjM2LjA5IDM0Ni41NCAyMzkuNTcgMzQ2LjkyIDI0Mi42NiAzNDguMDFDMjQ1Ljc1IDM0OS4xIDI0OC4yNyAzNTAuOSAyNTAuMiAzNTMuNEMyNTIuMTMgMzU1LjkgMjUzLjI3IDM1OS4xMSAyNTMuNjEgMzYzLjAxQzI1My45NCAzNjYuODEgMjUzLjM1IDM3MC4xMyAyNTEuODMgMzcyLjk2QzI1MC4zMSAzNzUuNzkgMjQ4LjE0IDM3OC4wMSAyNDUuMyAzNzkuNjJMMjYwLjAxIDQwMC43OUwyNDYuOTUgNDAxLjkzTDIzMy44NCAzODIuNjZMMjMzLjg2IDM4Mi42N1pNMjI0LjcyIDM3My4yNkwyMzQuNTUgMzcyLjRDMjM2LjIgMzcyLjI2IDIzNy42IDM3MS44MSAyMzguNzQgMzcxLjA1QzIzOS44OCAzNzAuMyAyNDAuNzQgMzY5LjMxIDI0MS4zMiAzNjguMUMyNDEuOSAzNjYuODkgMjQyLjEyIDM2NS41MyAyNDEuOTkgMzY0LjAzQzI0MS44NSAzNjIuNDggMjQxLjQgMzYxLjE2IDI0MC42MiAzNjAuMDdDMjM5Ljg0IDM1OC45OCAyMzguODMgMzU4LjE2IDIzNy41NyAzNTcuNjFDMjM2LjMxIDM1Ny4wNyAyMzQuODYgMzU2Ljg2IDIzMy4yMSAzNTcuMDFMMjIzLjM4IDM1Ny44N0wyMjQuNzMgMzczLjI2SDIyNC43MloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yNjUuOCA0MDAuM0wyNjAuOTEgMzQ0LjM5TDI3Mi41NCAzNDMuMzdMMjc3LjQzIDM5OS4yOUwyNjUuOCA0MDAuMzFWNDAwLjNaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMzEzLjk5IDM5Ni45OUMzMDkuOTkgMzk3LjM0IDMwNi4yMSAzOTYuOTQgMzAyLjY1IDM5NS43OUMyOTkuMDkgMzk0LjY0IDI5NS45MyAzOTIuODcgMjkzLjE1IDM5MC41QzI5MC4zNyAzODguMTMgMjg4LjExIDM4NS4yNCAyODYuMzggMzgxLjg2QzI4NC42NSAzNzguNDggMjgzLjYgMzc0LjcyIDI4My4yNCAzNzAuNTdDMjgyLjg4IDM2Ni40MiAyODMuMjQgMzYyLjUyIDI4NC4zMyAzNTguODZDMjg1LjQyIDM1NS4yMSAyODcuMTMgMzUxLjk5IDI4OS40NiAzNDkuMThDMjkxLjc5IDM0Ni4zOCAyOTQuNiAzNDQuMTIgMjk3LjkgMzQyLjM5QzMwMS4yIDM0MC42NiAzMDQuODggMzM5LjYyIDMwOC45MyAzMzkuMjdDMzEyLjk4IDMzOC45MSAzMTYuNjggMzM5LjI3IDMyMC4wMyAzNDAuMzRDMzIzLjM4IDM0MS40MSAzMjYuMjcgMzQyLjk3IDMyOC43MiAzNDUuMDJDMzMxLjE3IDM0Ny4wNyAzMzIuOTkgMzQ5LjQ0IDMzNC4xOCAzNTIuMTFMMzI0LjMzIDM1Ny45NkMzMjMuMTQgMzU1LjM0IDMyMS4yOCAzNTMuMjUgMzE4Ljc1IDM1MS42OEMzMTYuMjIgMzUwLjExIDMxMy4yNSAzNDkuNDggMzA5Ljg1IDM0OS43OEMzMDYuNTUgMzUwLjA3IDMwMy43MSAzNTEuMSAzMDEuMzUgMzUyLjg3QzI5OC45OCAzNTQuNjQgMjk3LjIzIDM1Ni45NSAyOTYuMDkgMzU5LjhDMjk0Ljk1IDM2Mi42NSAyOTQuNTQgMzY1LjkgMjk0Ljg2IDM2OS41NUMyOTUuMTggMzczLjIgMjk2LjE1IDM3Ni4zNCAyOTcuNzYgMzc4Ljk4QzI5OS4zOCAzODEuNjEgMzAxLjUgMzgzLjU5IDMwNC4xNCAzODQuOTJDMzA2Ljc4IDM4Ni4yNSAzMDkuNzUgMzg2Ljc3IDMxMy4wNSAzODYuNDlDMzE2LjQ1IDM4Ni4xOSAzMTkuMjYgMzg1LjA1IDMyMS40OSAzODMuMDdDMzIzLjcxIDM4MS4wOSAzMjUuMTggMzc4LjcgMzI1Ljg5IDM3NS45MkwzMzYuNjEgMzc5Ljk3QzMzNS45IDM4Mi44IDMzNC41MiAzODUuNDUgMzMyLjQ2IDM4Ny44OUMzMzAuNDEgMzkwLjM0IDMyNy44MiAzOTIuMzggMzI0LjcxIDM5NC4wMUMzMjEuNiAzOTUuNjQgMzE4LjAyIDM5Ni42NCAzMTMuOTcgMzk2Ljk5SDMxMy45OVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0zNDUuMjggMzkzLjM0TDM0MC4zOSAzMzcuNDJMMzc3Ljk5IDMzNC4xM0wzNzguODggMzQ0LjI2TDM1Mi45MSAzNDYuNTNMMzU0LjAyIDM1OS4yMUwzNzguNDkgMzU3LjA3TDM3OS4zOCAzNjcuMkwzNTQuOTEgMzY5LjM0TDM1Ni4wMyAzODIuMTdMMzgyIDM3OS45TDM4Mi44OSAzOTAuMDNMMzQ1LjI5IDM5My4zMkwzNDUuMjggMzkzLjM0WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTQwOS45MSAzODguNkM0MDYuNDEgMzg4LjkxIDQwMy4wNiAzODguNTYgMzk5Ljg3IDM4Ny41NUMzOTYuNjggMzg2LjU0IDM5My44NyAzODQuOTYgMzkxLjQ0IDM4Mi44QzM4OS4wMSAzODAuNjQgMzg3LjEgMzc4LjAxIDM4NS43MiAzNzQuOTFMMzk0Ljg4IDM2OS44QzM5Ni41NSAzNzIuNzMgMzk4LjcgMzc0Ljk2IDQwMS4zMyAzNzYuNUM0MDMuOTYgMzc4LjA0IDQwNi43OCAzNzguNjcgNDA5Ljc4IDM3OC40MUM0MTEuMzggMzc4LjI3IDQxMi43NCAzNzcuOSA0MTMuODQgMzc3LjNDNDE0Ljk1IDM3Ni43IDQxNS43OSAzNzUuOTMgNDE2LjM2IDM3NUM0MTYuOTMgMzc0LjA3IDQxNy4xNyAzNzMgNDE3LjA2IDM3MS44QzQxNi45NSAzNzAuNSA0MTYuNDUgMzY5LjQyIDQxNS41NyAzNjguNTdDNDE0LjY5IDM2Ny43MSA0MTMuMzcgMzY3LjA5IDQxMS42MiAzNjYuNjhMNDAwLjM1IDM2NC4wNEMzOTUuNzcgMzYyLjk4IDM5Mi4yNCAzNjEuMjEgMzg5Ljc1IDM1OC43M0MzODcuMjYgMzU2LjI1IDM4NS44NiAzNTMuMTMgMzg1LjUzIDM0OS4zOEMzODUuMjQgMzQ2LjA4IDM4NS44IDM0My4xIDM4Ny4yMSAzNDAuNDZDMzg4LjYyIDMzNy44MiAzOTAuNzIgMzM1LjY3IDM5My41MyAzMzQuMDFDMzk2LjMzIDMzMi4zNSAzOTkuNjQgMzMxLjM2IDQwMy40NCAzMzEuMDJDNDA2Ljc5IDMzMC43MyA0MDkuOTUgMzMxLjAzIDQxMi45IDMzMS45M0M0MTUuODUgMzMyLjgzIDQxOC40NiAzMzQuMjQgNDIwLjcyIDMzNi4xNkM0MjIuOTggMzM4LjA4IDQyNC43NiAzNDAuNDcgNDI2LjA3IDM0My4zM0w0MTYuOTkgMzQ4LjQzQzQxNS43MSAzNDUuOTIgNDEzLjk2IDM0NC4wMiA0MTEuNzMgMzQyLjczQzQwOS41IDM0MS40NCA0MDcuMDMgMzQwLjkxIDQwNC4zMyAzNDEuMTVDNDAyLjc4IDM0MS4yOSA0MDEuNDIgMzQxLjY2IDQwMC4yNyAzNDIuMjZDMzk5LjExIDM0Mi44NyAzOTguMjUgMzQzLjY2IDM5Ny42OCAzNDQuNjRDMzk3LjExIDM0NS42MiAzOTYuODggMzQ2LjcxIDM5Ni45OCAzNDcuOTJDMzk3LjA5IDM0OS4yMiAzOTcuNjIgMzUwLjMyIDM5OC41NSAzNTEuMjJDMzk5LjQ5IDM1Mi4xMiA0MDAuODMgMzUyLjc3IDQwMi41OCAzNTMuMTdMNDEzLjYyIDM1NS42OEM0MTguMjUgMzU2Ljc0IDQyMS43OSAzNTguNDcgNDI0LjI1IDM2MC44OEM0MjYuNyAzNjMuMjkgNDI4LjEgMzY2LjM3IDQyOC40MiAzNzAuMTJDNDI4LjcxIDM3My4zNyA0MjguMTEgMzc2LjM0IDQyNi42MyAzNzkuMDFDNDI1LjE1IDM4MS42OSA0MjIuOTggMzgzLjg3IDQyMC4xMyAzODUuNTVDNDE3LjI4IDM4Ny4yNCA0MTMuODcgMzg4LjI1IDQwOS45MiAzODguNkg0MDkuOTFaIiBmaWxsPSJ3aGl0ZSIvPgo8L2c+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMV81MTBfNDcyNCkiPgo8cGF0aCBkPSJNNTAzLjY1MSA1MTUuNTQ5QzQ4NC4xNTMgNTM1LjA0NiA0NTMuMzAyIDUzNS44MTIgNDM0Ljc0NSA1MTcuMjU5QzQxNi4xODggNDk4LjcwNiA0MTYuOTU0IDQ2Ny44NTEgNDM2LjQ1MSA0NDguMzUzQzQ1NS45NTMgNDI4Ljg1MSA1MDguMTQgNDA2Ljc1IDUyNi42OTcgNDI1LjMwM0M1NDUuMjU0IDQ0My44NTYgNTIzLjE0OSA0OTYuMDQ3IDUwMy42NTEgNTE1LjU0OVoiIGZpbGw9IiNGRkY1NkUiLz4KPHBhdGggZD0iTTUwNi4wMjkgNDE4LjMxNlY0MjYuMjg5QzUxMi45MTQgNDI2LjI4OSA1MTcuOTczIDQyNy44NTYgNTIxLjA2MiA0MzAuOTQ1QzUyNi45NyA0MzYuODUzIDUyNy4yNjEgNDUwLjU3OCA1MjEuODQ4IDQ2Ny42NjhDNTE2LjczNyA0ODMuNzk3IDUwNy4xNTggNTAwLjc3MiA0OTguMDE3IDUwOS45MTdDNDkzLjg0MyA1MTQuMDkgNDg5LjAxNSA1MTcuMzI0IDQ4My42NTcgNTE5LjUyOEM0NzguNTA3IDUyMS42NDkgNDczLjExMyA1MjIuNzIxIDQ2Ny42MzIgNTIyLjcyMUM0NTcuMjE5IDUyMi43MjEgNDQ3LjU0IDUxOC43NzkgNDQwLjM4NCA1MTEuNjIzQzQyNC45NjkgNDk2LjIwMyA0MjUuNzM0IDQ3MC4zNTEgNDQyLjA5NSA0NTMuOTk1QzQ0OC41NDkgNDQ3LjU0MSA0NTkuNDA4IDQ0MC41MjggNDcxLjE0NCA0MzUuMjM4QzQ4My45NCA0MjkuNDcgNDk2LjMzIDQyNi4yOTMgNTA2LjAyNSA0MjYuMjkzVjQxOC4zMTZNNTA2LjAyNSA0MTguMzE2QzQ4Mi43MTcgNDE4LjMxNiA0NTAuNzczIDQzNC4wMzkgNDM2LjQ1OCA0NDguMzU0QzQxNi45NiA0NjcuODUyIDQxNi4xOTUgNDk4LjcwMyA0MzQuNzQ4IDUxNy4yNkM0NDMuNzI1IDUyNi4yMzcgNDU1LjU3NyA1MzAuNjkgNDY3LjYzMiA1MzAuNjlDNDgwLjQ5NiA1MzAuNjkgNDkzLjU4OCA1MjUuNjE1IDUwMy42NTMgNTE1LjU1QzUyMy4xNTEgNDk2LjA1MiA1NDUuMjU2IDQ0My44NjEgNTI2LjY5OSA0MjUuMzA0QzUyMS43NjggNDIwLjM3MyA1MTQuNDY1IDQxOC4zMTIgNTA2LjAyNSA0MTguMzE2WiIgZmlsbD0iI0EwQ0Q1QSIvPgo8cGF0aCBkPSJNNDg1LjI5IDQ5OS4xNTRDNDk1LjU4MiA0ODguODYyIDQ5Ni42NjIgNDczLjI1NiA0ODcuNzAzIDQ2NC4yOTZDNDc4Ljc0MyA0NTUuMzM3IDQ2My4xMzcgNDU2LjQxNyA0NTIuODQ1IDQ2Ni43MDlDNDQyLjU1MyA0NzcuMDAxIDQ0MS40NzIgNDkyLjYwOCA0NTAuNDMyIDUwMS41NjdDNDU5LjM5MSA1MTAuNTI2IDQ3NC45OTggNTA5LjQ0NiA0ODUuMjkgNDk5LjE1NFoiIGZpbGw9IiM3ODQ2MTQiLz4KPHBhdGggZD0iTTQ2MC41MyA0NzAuNzkzQzQ2MC4wMjcgNDcwLjc5MyA0NTkuNTMzIDQ3MC41NTcgNDU5LjIyMiA0NzAuMTE1QzQ1OC43MTYgNDY5LjM5MyA0NTguODkxIDQ2OC40MDEgNDU5LjYxMyA0NjcuODk0QzQ2Mi43NSA0NjUuNjk0IDQ2Ni4zMyA0NjQuMzgyIDQ2OS45NjYgNDY0LjA5NUM0NzAuODQzIDQ2NC4wMjQgNDcxLjYxMiA0NjQuNjgxIDQ3MS42OCA0NjUuNTU4QzQ3MS43NDggNDY2LjQzNSA0NzEuMDk0IDQ2Ny4yMDUgNDcwLjIxNyA0NjcuMjczQzQ2Ny4xNDcgNDY3LjUxNiA0NjQuMTEzIDQ2OC42MzIgNDYxLjQ0MyA0NzAuNTA2QzQ2MS4xNjQgNDcwLjcwMSA0NjAuODQ1IDQ3MC43OTcgNDYwLjUzIDQ3MC43OTdWNDcwLjc5M1oiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik00ODEuMDk2IDQ3MC41NDFDNDgwLjc0MSA0NzAuNTQxIDQ4MC4zODIgNDcwLjQyMiA0ODAuMDgzIDQ3MC4xNzlDNDc5LjM0NiA0NjkuNTczIDQ3OC41MzYgNDY5LjA1MSA0NzcuNjc1IDQ2OC42MjRDNDc2Ljg4NiA0NjguMjMzIDQ3Ni41NjMgNDY3LjI3NyA0NzYuOTU0IDQ2Ni40ODdDNDc3LjM0NSA0NjUuNjk4IDQ3OC4zMDEgNDY1LjM3NSA0NzkuMDkxIDQ2NS43NjZDNDgwLjE3MSA0NjYuMyA0ODEuMTgzIDQ2Ni45NTQgNDgyLjEwOCA0NjcuNzE1QzQ4Mi43OSA0NjguMjczIDQ4Mi44ODYgNDY5LjI3OCA0ODIuMzI4IDQ2OS45NTlDNDgyLjAxMyA0NzAuMzQyIDQ4MS41NTQgNDcwLjU0MSA0ODEuMDk2IDQ3MC41NDFaIiBmaWxsPSJ3aGl0ZSIvPgo8L2c+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMl81MTBfNDcyNCkiPgo8cGF0aCBkPSJNNDU2Ljg4OSAyNjguOTYyTDQyNS4xOTggMjY1LjMxNUM0MjMuNDc5IDI2NS4xMTcgNDIxLjkxNyAyNjYuMzU3IDQyMS43MTkgMjY4LjA3NkM0MjEuNTIyIDI2OS43OTQgNDIyLjc2MSAyNzEuMzU2IDQyNC40OCAyNzEuNTU0TDQ1Ni4xNzEgMjc1LjJMNDU2Ljg5IDI2OC45NTJMNDU2Ljg4OSAyNjguOTYyWiIgZmlsbD0iI0I1QjVCNSIvPgo8cGF0aCBkPSJNNDcxLjE4NCAyNjQuNjU3TDQ1My41OSAyNjIuNjMzQzQ1Mi4wMjEgMjYyLjQ1MiA0NTAuNjAzIDI2My41NzggNDUwLjQyMiAyNjUuMTQ3TDQ0OS4wMDcgMjc3LjQ0NkM0NDguODI2IDI3OS4wMTYgNDQ5Ljk1MiAyODAuNDM0IDQ1MS41MjEgMjgwLjYxNEw0NjkuMTE1IDI4Mi42MzlMNDcxLjE4NCAyNjQuNjU3WiIgZmlsbD0iI0I1QjVCNSIvPgo8cGF0aCBkPSJNNDg4Ljg5NCAyNTkuMDI1TDQ3MS4xNTEgMjU2Ljk4M0M0NjguODU2IDI1Ni43MTkgNDY2Ljc3NCAyNTguMzcyIDQ2Ni41MSAyNjAuNjY3TDQ2My42NTggMjg1LjQ1M0M0NjMuMzk0IDI4Ny43NDggNDY1LjA0NyAyODkuODMxIDQ2Ny4zNDEgMjkwLjA5NUw0ODUuMDg0IDI5Mi4xMzZMNDg4Ljg5NCAyNTkuMDI1WiIgZmlsbD0iIzY0NjQ2NCIvPgo8cGF0aCBkPSJNNDg5LjI2IDM2OC42MTVMNTM3LjY0MiAzNzQuNjk1TDUzOS41MTQgMzU4LjQyMkw1MzcuNDUgMzU1LjM2NkM1MzUuODk0IDM1My4wNTMgNTM1LjIwOSAzNTAuMjU3IDUzNS41MyAzNDcuNDc1TDU0MS4wMTUgMjk5LjhMNDkxLjI0MyAyOTQuMDczTDUwMy4wNSAzMzcuMjk2QzUwNC4zMTcgMzQxLjk0MSA1MDIuMjYxIDM0Ni44NjggNDk4LjA1NCAzNDkuMjIzTDQ5MS40OCAzNTIuOTA2TDQ4OS4yNDkgMzY4LjYyNEw0ODkuMjYgMzY4LjYxNVoiIGZpbGw9IiNGRkM1MUMiLz4KPHBhdGggZD0iTTQ4OS44NzQgMjUwLjUxMUw1NDguMTU5IDI1Ny4yMTdDNTU0Ljc0MyAyNTcuOTc1IDU1OS40NjYgMjYzLjkyNiA1NTguNzA5IDI3MC41MUw1NTUuNjgyIDI5Ni44MTdDNTU0LjkyNSAzMDMuNDAxIDU0OC45NzMgMzA4LjEyNCA1NDIuMzg5IDMwNy4zNjZMNDg0LjEwNCAzMDAuNjZDNDc3LjUyIDI5OS45MDMgNDcyLjc5NiAyOTMuOTUxIDQ3My41NTQgMjg3LjM2N0w0NzYuNTgxIDI2MS4wNjFDNDc3LjMzOCAyNTQuNDc3IDQ4My4yOSAyNDkuNzUzIDQ4OS44NzQgMjUwLjUxMVoiIGZpbGw9IiNGRkM1MUMiLz4KPHBhdGggZD0iTTQ4OS45MDkgMzE1LjM4TDQ5Ny4wODIgMzE2LjIwNUw0OTYuNjMyIDMwMi4wOTJMNDgzLjgyNyAzMDAuNjE4TDQ4Ny42MTQgMzEzLjQ1NUM0ODcuOTI3IDMxNC40OTggNDg4LjgyNiAzMTUuMjU2IDQ4OS44OTkgMzE1LjM3OUw0ODkuOTA5IDMxNS4zOFoiIGZpbGw9IiM2NDY0NjQiLz4KPHBhdGggZD0iTTUzOS4xODggMzU4LjM3NUw0NzcuOTYyIDM1MS4zM0M0NzUuODM2IDM1MS4wODYgNDczLjkxOCAzNTIuNjE2IDQ3My42NzUgMzU0LjczMkw0NzEuNTcgMzczLjAyMkM0NzEuMzI2IDM3NS4xNDggNDcyLjg1NiAzNzcuMDY1IDQ3NC45NzIgMzc3LjMwOUw1MzYuNjU2IDM4NC40MDZDNTM4Ljc4MiAzODQuNjUgNTQwLjY5OSAzODMuMTIgNTQwLjk0MyAzODEuMDA0TDU0Mi45OTQgMzYzLjE3MUM1NDMuMjY3IDM2MC43OTcgNTQxLjU2MiAzNTguNjQ4IDUzOS4xODggMzU4LjM3NVoiIGZpbGw9IiM2NDY0NjQiLz4KPHBhdGggZD0iTTUyMy43NSAyNjYuMTM2TDU0Ny45NiAyNjguOTIxQzU0OS4zMjEgMjY5LjA3OCA1NTAuMjk3IDI3MC4zMDUgNTUwLjE0MSAyNzEuNjYzQzU0OS45ODUgMjczLjAyMSA1NDguNzU1IDI3My45OTUgNTQ3LjM5NCAyNzMuODM5TDUyMy4xODQgMjcxLjA1M0M1MjEuODIzIDI3MC44OTcgNTIwLjg0NyAyNjkuNjY5IDUyMS4wMDMgMjY4LjMxMUM1MjEuMTU5IDI2Ni45NTMgNTIyLjM4OSAyNjUuOTc5IDUyMy43NSAyNjYuMTM2WiIgZmlsbD0iIzY0NjQ2NCIvPgo8cGF0aCBkPSJNNTIyLjM3MSAyNzguMTE3TDU0Ni41ODIgMjgwLjkwMkM1NDcuOTQyIDI4MS4wNTkgNTQ4LjkxOSAyODIuMjg2IDU0OC43NjIgMjgzLjY0NEM1NDguNjA2IDI4NS4wMDIgNTQ3LjM3NiAyODUuOTc2IDU0Ni4wMTYgMjg1LjgyTDUyMS44MDUgMjgzLjAzNEM1MjAuNDQ1IDI4Mi44NzggNTE5LjQ2OCAyODEuNjUgNTE5LjYyNSAyODAuMjkyQzUxOS43ODEgMjc4LjkzNCA1MjEuMDExIDI3Ny45NiA1MjIuMzcxIDI3OC4xMTdaIiBmaWxsPSIjNjQ2NDY0Ii8+CjwvZz4KPHBhdGggZD0iTTEyOC4xMTggMjYyLjI3NkwxMzIuMTU4IDM1Mi4wMTRDMTMyLjI2MyAzNTQuMzM4IDEzMC40NzEgMzU2LjMwMSAxMjguMTUgMzU2LjQwNUw0Ni42MzYyIDM2MC4wNzVDNDQuMzIyIDM2MC4xNzkgNDIuMzU0IDM1OC4zODYgNDIuMjQ5NCAzNTYuMDYxTDM4LjIwOTUgMjY2LjMyNEMzOC4wOTM0IDI2My43NDMgMzguNjU4MSAyNjEuMTc3IDM5Ljg1NzIgMjU4Ljg4OUw1MC41ODM3IDIzOC4zMTVMMTEzLjI3OCAyMzUuNDkzTDEyNS44MDkgMjU1LjAxOUMxMjcuMjAyIDI1Ny4xOSAxMjguMDAyIDI1OS42OTYgMTI4LjExOCAyNjIuMjc2WiIgZmlsbD0iI0Y5QkI1QSIvPgo8cGF0aCBkPSJNNTIuMjIwNiAyMjguNjkxTDExMC43OSAyMjYuMDU0QzExMS45MjkgMjI2LjAwMyAxMTIuODk4IDIyNi44OSAxMTIuOTQ5IDIyOC4wM0wxMTMuMjg1IDIzNS41TDUwLjU4NCAyMzguMzIzTDUwLjI0NzcgMjMwLjg1M0M1MC4xOTY0IDIyOS43MTIgNTEuMDgxNyAyMjguNzQyIDUyLjIyMDYgMjI4LjY5MVoiIGZpbGw9IiNENjkyMzgiLz4KPHBhdGggZD0iTTg2LjIzMDIgMzMyLjQwOUMxMDUuMzUzIDMzMS41NDggMTIwLjE1NiAzMTUuMzI4IDExOS4yOTQgMjk2LjE4MkMxMTguNDMyIDI3Ny4wMzUgMTAyLjIzMSAyNjIuMjExIDgzLjEwODcgMjYzLjA3MkM2My45ODYgMjYzLjkzMyA0OS4xODI3IDI4MC4xNTIgNTAuMDQ0NyAyOTkuMjk5QzUwLjkwNjcgMzE4LjQ0NiA2Ny4xMDc1IDMzMy4yNyA4Ni4yMzAyIDMzMi40MDlaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOTUuNDEwNCAzMTQuNjk2Qzg4LjgzOTMgMzE3LjQwOSA4Mi4xNTk2IDMxNy43MDkgNzUuMzc4NyAzMTUuNTk4QzcyLjczNzcgMzE0Ljc3OSA3MC45MDI3IDMxMi4zNjQgNzAuNzc4MyAzMDkuNjAxQzcwLjYxNDQgMzA1Ljk2MSA3My40MjM4IDMwMi44ODMgNzcuMDU5MiAzMDIuNzE5Qzc2LjU1OTEgMjkxLjYwOSA5Mi4wNTgyIDI5MC40NDIgOTIuNTc5NCAzMDIuMDIxQzk2LjIxNDkgMzAxLjg1NyA5OS4yODk1IDMwNC42NyA5OS40NTM0IDMwOC4zMUM5OS41Nzc3IDMxMS4wNzMgOTcuOTY3MSAzMTMuNjQzIDk1LjQxMDQgMzE0LjY5NloiIGZpbGw9IiM1RTU5NTMiLz4KPHBhdGggZD0iTTY5Ljg0MjcgMjk5LjgzM0M3MS44MjU3IDI5OC4wNTkgNzEuNTMyIDI5NC40OSA2OS4xODY3IDI5MS44NjNDNjYuODQxNCAyODkuMjM1IDYzLjMzMjcgMjg4LjU0NCA2MS4zNDk3IDI5MC4zMThDNTkuMzY2NyAyOTIuMDkzIDU5LjY2MDQgMjk1LjY2MSA2Mi4wMDU3IDI5OC4yODhDNjQuMzUxIDMwMC45MTYgNjcuODU5OCAzMDEuNjA3IDY5Ljg0MjcgMjk5LjgzM1oiIGZpbGw9IiM1RTU5NTMiLz4KPHBhdGggZD0iTTc4LjAwNTIgMjkwLjM4NEM4MC41MjU1IDI4OS41MzQgODEuNjU3MSAyODYuMTM3IDgwLjUzMjggMjgyLjc5OEM3OS40MDg1IDI3OS40NTkgNzYuNDU0IDI3Ny40NDIgNzMuOTMzNyAyNzguMjkyQzcxLjQxMzUgMjc5LjE0MiA3MC4yODE4IDI4Mi41MzkgNzEuNDA2MSAyODUuODc4QzcyLjUzMDQgMjg5LjIxNyA3NS40ODQ5IDI5MS4yMzUgNzguMDA1MiAyOTAuMzg0WiIgZmlsbD0iIzVFNTk1MyIvPgo8cGF0aCBkPSJNMTA3LjI4NyAyOTYuMjM3QzEwOS4zODcgMjkzLjQwOSAxMDkuMzU5IDI4OS44MjkgMTA3LjIyNSAyODguMjRDMTA1LjA5IDI4Ni42NTEgMTAxLjY1OCAyODcuNjU1IDk5LjU1ODIgMjkwLjQ4MkM5Ny40NTg0IDI5My4zMSA5Ny40ODY2IDI5Ni44OSA5OS42MjEgMjk4LjQ3OUMxMDEuNzU1IDMwMC4wNjggMTA1LjE4OCAyOTkuMDY0IDEwNy4yODcgMjk2LjIzN1oiIGZpbGw9IiM1RTU5NTMiLz4KPHBhdGggZD0iTTk2LjgxNDYgMjg0LjczOEM5Ny42MzQzIDI4MS4zMTIgOTYuMjAyIDI3OC4wMzEgOTMuNjE1NiAyNzcuNDFDOTEuMDI5MSAyNzYuNzkgODguMjY3OCAyNzkuMDY1IDg3LjQ0ODEgMjgyLjQ5MUM4Ni42Mjg0IDI4NS45MTggODguMDYwNiAyODkuMTk5IDkwLjY0NzEgMjg5LjgxOUM5My4yMzM2IDI5MC40NCA5NS45OTQ5IDI4OC4xNjUgOTYuODE0NiAyODQuNzM4WiIgZmlsbD0iIzVFNTk1MyIvPgo8cGF0aCBkPSJNMTEyLjQyMSAzMzguOTg2TDYwLjYxMTkgMzQxLjMxOEM2MC4wMTEyIDM0MS4zNDYgNTkuNTQ2MSAzNDEuODUzIDU5LjU3MzEgMzQyLjQ1M0M1OS42MDAxIDM0My4wNTIgNjAuMTA4OSAzNDMuNTE2IDYwLjcwOTcgMzQzLjQ4OUwxMTIuNTE5IDM0MS4xNTdDMTEzLjEyIDM0MS4xMyAxMTMuNTg1IDM0MC42MjIgMTEzLjU1OCAzNDAuMDIzQzExMy41MzEgMzM5LjQyMyAxMTMuMDIyIDMzOC45NTkgMTEyLjQyMSAzMzguOTg2WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTExMi43MTcgMzQ1LjU2NUw2MC45MDgxIDM0Ny44OTdDNjAuMzA3MyAzNDcuOTI0IDU5Ljg0MjIgMzQ4LjQzMiA1OS44NjkyIDM0OS4wMzFDNTkuODk2MiAzNDkuNjMxIDYwLjQwNTEgMzUwLjA5NSA2MS4wMDU4IDM1MC4wNjhMMTEyLjgxNSAzNDcuNzM1QzExMy40MTYgMzQ3LjcwOCAxMTMuODgxIDM0Ny4yMDEgMTEzLjg1NCAzNDYuNjAxQzExMy44MjcgMzQ2LjAwMiAxMTMuMzE4IDM0NS41MzggMTEyLjcxNyAzNDUuNTY1WiIgZmlsbD0id2hpdGUiLz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAzXzUxMF80NzI0KSI+CjxwYXRoIGQ9Ik0xMjcuMTI3IDQ0NC40MDFMOTMuODYxMSA0NTguNjAxQzkxLjg3MjQgNDU5LjQ1IDkwLjk0MjUgNDYxLjczNiA5MS43ODQxIDQ2My43MDhMMTE4Ljc5MyA1MjYuOTgyQzExOS42MzQgNTI4Ljk1NCAxMjEuOTI5IDUyOS44NjQgMTIzLjkxNyA1MjkuMDE1TDE1Ny4xODMgNTE0LjgxNkMxNTkuMTcyIDUxMy45NjcgMTYwLjEwMiA1MTEuNjgxIDE1OS4yNiA1MDkuNzA5TDEzMi4yNTIgNDQ2LjQzNEMxMzEuNDEgNDQ0LjQ2MyAxMjkuMTE2IDQ0My41NTIgMTI3LjEyNyA0NDQuNDAxWiIgZmlsbD0iIzY0NjQ2NCIvPgo8cGF0aCBkPSJNMTE0LjkwMyA0MjAuNjU4TDEyNS4zNiA0NDUuMTU2TDk1LjYyODUgNDU3Ljg0Nkw4NS4xNzE3IDQzMy4zNDlDODQuNTc3NSA0MzEuOTU3IDg1LjIzNDkgNDMwLjM0IDg2LjYzODkgNDI5Ljc0MUwxMTEuMjgzIDQxOS4yMjJDMTEyLjY4NyA0MTguNjIzIDExNC4zMDkgNDE5LjI2NiAxMTQuOTAzIDQyMC42NThaIiBmaWxsPSIjRkZDMDA2Ii8+CjxwYXRoIGQ9Ik05OC45OTU4IDM5NC44MjhMMTA5LjY5NyA0MTkuODk5TDg4LjIyNDYgNDI5LjA2NEw3My45Mzc0IDM5NS41OTNDNzIuODMzIDM5My4wMDYgNzQuOTczNyAzOTAuMTc1IDc3Ljc4ODggMzkwLjUwM0w5Ni4wNDY4IDM5Mi42MzFDOTcuMzYyNSAzOTIuNzg2IDk4LjQ4MiAzOTMuNjI0IDk4Ljk5NTggMzk0LjgyOFoiIGZpbGw9IiNGMDMyMTQiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF81MTBfNDcyNCI+CjxyZWN0IHdpZHRoPSIzMDEuMSIgaGVpZ2h0PSIzMTkuMzciIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNDUgMTA2KSIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXAxXzUxMF80NzI0Ij4KPHJlY3Qgd2lkdGg9IjExMyIgaGVpZ2h0PSIxMTMiIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MjEgNDE4KSIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXAyXzUxMF80NzI0Ij4KPHJlY3Qgd2lkdGg9IjEzNi4zOCIgaGVpZ2h0PSIxMjcuNjgiIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09Im1hdHJpeCgtMC45OTM0NDYgLTAuMTE0MzA0IC0wLjExNDMwNCAwLjk5MzQ0NiA1NjAuMDgxIDI1OC41ODkpIi8+CjwvY2xpcFBhdGg+CjxjbGlwUGF0aCBpZD0iY2xpcDNfNTEwXzQ3MjQiPgo8cmVjdCB3aWR0aD0iNDQiIGhlaWdodD0iMTQ2IiBmaWxsPSJ3aGl0ZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjMgMzk2LjI3Mykgcm90YXRlKC0yMy4xMTUxKSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=" alt="Open Prices illustration representing supermarket receipts, price tags, and food price transparency" width="591" height="606">
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: Core Pillars -->
+    <section>
+        <div class="section-header">
+            <span class="op-badge-pill emerald">🪙 Our Core Pillars</span>
+            <h2>Fair prices built on open collaboration</h2>
+            <p>
+                Every price entry in Open Prices is backed by visual proof, anchored to OpenStreetMap store locations, and published under open licenses.
+            </p>
+        </div>
+
+        <div class="off-card-grid-3">
+            <!-- Pillar 1: A public price database -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-op-product-stats" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Animated product price statistics card with price count and min-avg-max spectrum gauge">
+                    <style>
+                        .stat-card-float {
+                            animation: statCardBob 4.5s ease-in-out infinite;
+                        }
+                        .avg-marker-slide {
+                            animation: avgMarkerOscillate 4.5s ease-in-out infinite;
+                            transform-origin: 334px 218px;
+                        }
+                        .count-pill-pop {
+                            animation: countPop 4.5s ease-in-out infinite;
+                            transform-origin: 416px 104px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes statCardBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-6px); }
+                        }
+                        @keyframes avgMarkerOscillate {
+                            0%, 100% { transform: translateX(0px); }
+                            50% { transform: translateX(8px); }
+                        }
+                        @keyframes countPop {
+                            0%, 100% { transform: scale(1); }
+                            50% { transform: scale(1.06); }
+                        }
+                    </style>
+
+                    <!-- Main Product Card Container -->
+                    <g class="stat-card-float">
+                        <rect x="44" y="48" width="472" height="324" rx="28" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"></rect>
+
+                        <!-- Left Panel: Product Preview (Attached Green Bottle) -->
+                        <rect x="68" y="72" width="136" height="276" rx="20" fill="#dcf0f7"></rect>
+                        <g transform="translate(96, 96)">
+                            <rect x="26" y="0" width="28" height="14" rx="4" fill="#aeaeae"></rect>
+                            <path fill="#009a49" d="M 30,14 L 50,14 L 50,48 C 70,56 80,76 80,104 L 80,208 A 12,12 0 0,1 68,220 L 12,220 A 12,12 0 0,1 0,208 L 0,104 C 0,76 10,56 30,48 Z"></path>
+                            <rect x="14" y="96" width="52" height="74" rx="6" fill="#ffffff"></rect>
+                            <line x1="22" y1="114" x2="58" y2="114" stroke="#999999" stroke-width="3.5" stroke-linecap="round"></line>
+                            <line x1="22" y1="126" x2="58" y2="126" stroke="#999999" stroke-width="3.5" stroke-linecap="round"></line>
+                            <line x1="22" y1="138" x2="58" y2="138" stroke="#999999" stroke-width="3.5" stroke-linecap="round"></line>
+                        </g>
+
+                        <!-- Right Top: Product Title Bars + Number of Registered Prices Badge -->
+                        <rect x="228" y="80" width="110" height="16" rx="8" fill="#181818"></rect>
+                        <rect x="228" y="106" width="76" height="12" rx="6" fill="#94a3b8"></rect>
+
+                        <!-- Number of Prices Badge ("42 PRICES") -->
+                        <g class="count-pill-pop">
+                            <rect x="352" y="76" width="140" height="48" rx="14" fill="#00bdf2"></rect>
+                            <circle cx="378" cy="100" r="14" fill="#ffc412"></circle>
+                            <text x="378" y="105" text-anchor="middle" fill="#6c3c00" font-size="14" font-weight="800">€</text>
+                            <text x="440" y="98" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="800">42</text>
+                            <text x="440" y="114" text-anchor="middle" fill="#e1f3fe" font-size="10" font-weight="800" letter-spacing="0.8">PRICES</text>
+                        </g>
+
+                        <!-- ========================================================= -->
+                        <!-- MIN — AVERAGE — MAX SPECTRUM GAUGE                        -->
+                        <!-- ========================================================= -->
+                        <rect x="228" y="150" width="264" height="86" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"></rect>
+                        <!-- 3-Segment Spectrum Track (Green -> Yellow -> Red) -->
+                        <rect x="248" y="200" width="74" height="12" rx="6" fill="#009a49"></rect>
+                        <rect x="323" y="200" width="74" height="12" rx="2" fill="#ffc412"></rect>
+                        <rect x="398" y="200" width="74" height="12" rx="6" fill="#dc3522"></rect>
+
+                        <!-- Min & Max Endpoint Dots -->
+                        <circle cx="256" cy="206" r="8" fill="#009a49" stroke="#ffffff" stroke-width="3"></circle>
+                        <circle cx="464" cy="206" r="8" fill="#dc3522" stroke="#ffffff" stroke-width="3"></circle>
+
+                        <!-- Animated Average Price Pointer Callout -->
+                        <g class="avg-marker-slide">
+                            <rect x="314" y="158" width="92" height="30" rx="8" fill="#ffc412"></rect>
+                            <polygon points="354,188 366,188 360,196" fill="#ffc412"></polygon>
+                            <text x="360" y="178" text-anchor="middle" fill="#181818" font-size="13" font-weight="800">AVG 1.95 €</text>
+                            <circle cx="360" cy="206" r="10" fill="#181818" stroke="#ffffff" stroke-width="3"></circle>
+                        </g>
+
+                        <!-- ========================================================= -->
+                        <!-- BOTTOM 3 STAT PILLS: MIN / AVG / MAX                      -->
+                        <!-- ========================================================= -->
+                        <!-- MIN Pill (Green) -->
+                        <rect x="228" y="254" width="82" height="88" rx="16" fill="#e8f8ef" stroke="#009a49" stroke-width="2.5"></rect>
+                        <text x="269" y="280" text-anchor="middle" fill="#009a49" font-size="12" font-weight="800">MIN</text>
+                        <text x="269" y="314" text-anchor="middle" fill="#009a49" font-size="19" font-weight="800">1.60€</text>
+
+                        <!-- AVG Pill (Yellow) -->
+                        <rect x="319" y="254" width="82" height="88" rx="16" fill="#fffbeb" stroke="#ffc412" stroke-width="2.5"></rect>
+                        <text x="360" y="280" text-anchor="middle" fill="#b45309" font-size="12" font-weight="800">AVG</text>
+                        <text x="360" y="314" text-anchor="middle" fill="#181818" font-size="19" font-weight="800">1.95€</text>
+
+                        <!-- MAX Pill (Red) -->
+                        <rect x="410" y="254" width="82" height="88" rx="16" fill="#fee2e2" stroke="#dc3522" stroke-width="2.5"></rect>
+                        <text x="451" y="280" text-anchor="middle" fill="#dc3522" font-size="12" font-weight="800">MAX</text>
+                        <text x="451" y="314" text-anchor="middle" fill="#dc3522" font-size="19" font-weight="800">2.45€</text>
+                    </g>
+                </svg>
+                </div>
+                <span class="op-badge-pill green">Open Database</span>
+                <h3>A public price database</h3>
+                <p>
+                    Open Prices gathers barcode-level price points from supermarkets, discount stores, and corner shops globally, seamlessly linked to Open Food Facts product records.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org" class="off-btn off-btn-primary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Search Product Prices
+                    </a>
+                </div>
+            </article>
+
+            <!-- Pillar 2: Made by everyone -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="puzzleSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" class="" role="img" aria-label="Collaborative community puzzle pieces fitting together">
+                <style>
+                    /* Smooth 4-second looping assembly animation */
+                    .anim-left-hand {
+                        animation: snapLeft 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        transform-origin: center;
+                    }
+                    
+                    .anim-bottom-hand {
+                        animation: snapBottom 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        transform-origin: center;
+                    }
+
+                    .puzzle-cluster {
+                        animation: clusterPulse 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        transform-origin: 330px 210px;
+                    }
+
+                    .snap-glow {
+                        animation: glowFlash 4.2s ease-out infinite;
+                        pointer-events: none;
+                    }
+
+                    /* Paused state toggle */
+                    svg.paused .anim-left-hand,
+                    svg.paused .anim-bottom-hand,
+                    svg.paused .puzzle-cluster,
+                    svg.paused .snap-glow {
+                        animation-play-state: paused !important;
+                    }
+
+                    @keyframes snapLeft {
+                        0%, 12% {
+                            transform: translate(0px, 0px) rotate(3deg);
+                        }
+                        42%, 74% {
+                            /* Moves right by 78px and levels out to lock cleanly into the grey piece socket */
+                            transform: translate(78px, 0px) rotate(0deg);
+                        }
+                        90%, 100% {
+                            transform: translate(0px, 0px) rotate(3deg);
+                        }
+                    }
+
+                    @keyframes snapBottom {
+                        0%, 16% {
+                            transform: translate(0px, 0px) rotate(5deg);
+                        }
+                        46%, 74% {
+                            /* Moves up by 74px and levels out to lock cleanly into the light-blue piece socket */
+                            transform: translate(0px, -74px) rotate(0deg);
+                        }
+                        90%, 100% {
+                            transform: translate(0px, 0px) rotate(5deg);
+                        }
+                    }
+
+                    @keyframes clusterPulse {
+                        0%, 43% {
+                            transform: scale(1);
+                        }
+                        48% {
+                            transform: scale(1.018);
+                        }
+                        55%, 100% {
+                            transform: scale(1);
+                        }
+                    }
+
+                    @keyframes glowFlash {
+                        0%, 42% {
+                            opacity: 0;
+                        }
+                        47% {
+                            opacity: 0.75;
+                        }
+                        62%, 100% {
+                            opacity: 0;
+                        }
+                    }
+                </style>
+
+                <defs>
+                    <!-- Reusable 100x100 Base Square with Rounded Corners -->
+                    <!-- Top-Left Yellow Piece: Top(In), Right(Out), Bottom(In), Left(Out) -->
+                    <path id="piece-tl-yellow" d="
+                        M 200,90 
+                        L 233,90 C 230,114 270,114 267,90 L 284,90 
+                        A 16,16 0 0,1 300,106 
+                        L 300,123 C 324,120 324,160 300,157 L 300,174 
+                        A 16,16 0 0,1 284,190 
+                        L 267,190 C 270,166 230,166 233,190 L 216,190 
+                        A 16,16 0 0,1 200,174 
+                        L 200,157 C 176,160 176,120 200,123 L 200,106 
+                        A 16,16 0 0,1 216,90 Z"></path>
+
+                    <!-- Top-Middle Green Piece: Top(Out), Right(In), Bottom(Out), Left(In) -->
+                    <path id="piece-tm-green" d="
+                        M 316,90 
+                        L 333,90 C 330,66 370,66 367,90 L 384,90 
+                        A 16,16 0 0,1 400,106 
+                        L 400,123 C 376,120 376,160 400,157 L 400,174 
+                        A 16,16 0 0,1 384,190 
+                        L 367,190 C 370,214 330,214 333,190 L 316,190 
+                        A 16,16 0 0,1 300,174 
+                        L 300,157 C 324,160 324,120 300,123 L 300,106 
+                        A 16,16 0 0,1 316,90 Z"></path>
+
+                    <!-- Top-Right Grey Piece: Top(In), Right(Out), Bottom(In), Left(Out) -->
+                    <path id="piece-tr-grey" d="
+                        M 416,90 
+                        L 433,90 C 430,114 470,114 467,90 L 484,90 
+                        A 16,16 0 0,1 500,106 
+                        L 500,123 C 524,120 524,160 500,157 L 500,174 
+                        A 16,16 0 0,1 484,190 
+                        L 467,190 C 470,166 430,166 433,190 L 416,190 
+                        A 16,16 0 0,1 400,174 
+                        L 400,157 C 376,160 376,120 400,123 L 400,106 
+                        A 16,16 0 0,1 416,90 Z"></path>
+
+                    <!-- Bottom-Left Grey Piece: Top(Out), Right(In), Bottom(Out), Left(In) -->
+                    <path id="piece-bl-grey" d="
+                        M 216,190 
+                        L 233,190 C 230,166 270,166 267,190 L 284,190 
+                        A 16,16 0 0,1 300,206 
+                        L 300,223 C 276,220 276,260 300,257 L 300,274 
+                        A 16,16 0 0,1 284,290 
+                        L 267,290 C 270,314 230,314 233,290 L 216,290 
+                        A 16,16 0 0,1 200,274 
+                        L 200,257 C 224,260 224,220 200,223 L 200,206 
+                        A 16,16 0 0,1 216,190 Z"></path>
+
+                    <!-- Bottom-Middle Light Blue Piece: Top(In), Right(Out), Bottom(In), Left(Out) -->
+                    <path id="piece-bm-blue" d="
+                        M 316,190 
+                        L 333,190 C 330,214 370,214 367,190 L 384,190 
+                        A 16,16 0 0,1 400,206 
+                        L 400,223 C 424,220 424,260 400,257 L 400,274 
+                        A 16,16 0 0,1 384,290 
+                        L 367,290 C 370,266 330,266 333,290 L 316,290 
+                        A 16,16 0 0,1 300,274 
+                        L 300,257 C 276,260 276,220 300,223 L 300,206 
+                        A 16,16 0 0,1 316,190 Z"></path>
+
+                    <!-- Bottom-Right Salmon Piece: Top(Out), Right(In), Bottom(Out), Left(In) -->
+                    <path id="piece-br-salmon" d="
+                        M 416,190 
+                        L 433,190 C 430,166 470,166 467,190 L 484,190 
+                        A 16,16 0 0,1 500,206 
+                        L 500,223 C 476,220 476,260 500,257 L 500,274 
+                        A 16,16 0 0,1 484,290 
+                        L 467,290 C 470,314 430,314 433,290 L 416,290 
+                        A 16,16 0 0,1 400,274 
+                        L 400,257 C 424,260 424,220 400,223 L 400,206 
+                        A 16,16 0 0,1 416,190 Z"></path>
+                </defs>
+
+                <!-- ========================================== -->
+                <!-- MAIN CENTRAL 6-PIECE PUZZLE CLUSTER        -->
+                <!-- ========================================== -->
+                <g class="puzzle-cluster">
+                    <!-- Bottom-Left Grey -->
+                    <use href="#piece-bl-grey" fill="#d3d5d7"></use>
+                    <!-- Top-Left Yellow -->
+                    <use href="#piece-tl-yellow" fill="#f3be00"></use>
+                    <!-- Bottom-Middle Light Blue -->
+                    <use href="#piece-bm-blue" fill="#bce3fa"></use>
+                    <!-- Bottom-Right Salmon -->
+                    <use href="#piece-br-salmon" fill="#ff8f7d"></use>
+                    <!-- Top-Right Grey -->
+                    <use href="#piece-tr-grey" fill="#d3d5d7"></use>
+                    <!-- Top-Middle Green (Rendered on top so its tabs overlap cleanly) -->
+                    <use href="#piece-tm-green" fill="#28c96f"></use>
+
+                    <!-- Subtle Connection Highlight Lines when pieces lock in -->
+                    <circle cx="200" cy="240" r="26" fill="none" stroke="#ff8f7d" stroke-width="3" opacity="0" class="snap-glow"></circle>
+                    <circle cx="350" cy="290" r="26" fill="none" stroke="#f3be00" stroke-width="3" opacity="0" class="snap-glow"></circle>
+                </g>
+
+                <!-- ========================================== -->
+                <!-- LEFT ANIMATED HAND & SALMON PUZZLE PIECE   -->
+                <!-- ========================================== -->
+                <g class="anim-left-hand" style="transform-origin: 72px 240px;">
+                    <!-- Held Salmon Piece (Starts at X: 22..122, Y: 190..290; moves +78px right to lock into X: 100..200) -->
+                    <path fill="#ff8f7d" d="
+                        M 38,190 
+                        L 55,190 C 52,214 92,214 89,190 L 106,190 
+                        A 16,16 0 0,1 122,206 
+                        L 122,223 C 146,220 146,260 122,257 L 122,274 
+                        A 16,16 0 0,1 106,290 
+                        L 89,290 C 92,266 52,266 55,290 L 38,290 
+                        A 16,16 0 0,1 22,274 
+                        L 22,257 C -2,260 -2,220 22,223 L 22,206 
+                        A 16,16 0 0,1 38,190 Z"></path>
+
+                    <!-- Light Skin Tone Arm, Continuous Palm, Thumb & 4 Parallel Fingers with Thin Slits -->
+                    <path fill="#ffcb94" d="
+                        M 58,0
+                        C 16,72 18,145 21,260
+                        A 9.5,9.5 0 0,0 40,260
+                        L 40,204
+                        L 43,204
+                        L 43,262
+                        A 9.5,9.5 0 0,0 62,262
+                        L 62,204
+                        L 65,204
+                        L 65,260
+                        A 9.5,9.5 0 0,0 84,260
+                        L 84,204
+                        L 87,204
+                        L 87,258
+                        A 9.5,9.5 0 0,0 106,258
+                        L 106,170
+                        L 121,183
+                        C 127,188 134,182 129,174
+                        L 101,142
+                        C 103,95 118,45 156,0
+                        Z"></path>
+                </g>
+
+                <!-- ========================================== -->
+                <!-- BOTTOM ANIMATED HAND & YELLOW PUZZLE PIECE -->
+                <!-- ========================================== -->
+                <g class="anim-bottom-hand" style="transform-origin: 350px 414px;">
+                    <!-- Held Yellow Piece (Starts at X: 300..400, Y: 364..464; moves -74px up to lock into Y: 290..390) -->
+                    <path fill="#f3be00" d="
+                        M 316,364 
+                        L 333,364 C 330,340 370,340 367,364 L 384,364 
+                        A 16,16 0 0,1 400,380 
+                        L 400,397 C 376,394 376,434 400,431 L 400,448 
+                        A 16,16 0 0,1 384,464 
+                        L 367,464 C 370,488 330,488 333,464 L 316,464 
+                        A 16,16 0 0,1 300,448 
+                        L 300,431 C 324,434 324,394 300,397 L 300,380 
+                        A 16,16 0 0,1 316,364 Z"></path>
+
+                    <!-- Brown Skin Tone Arm, Continuous Palm, Thumb & 4 Parallel Fingers with Thin Slits -->
+                    <path fill="#935d37" d="
+                        M 600,334
+                        C 538,392 478,412 426,412
+                        L 396,372
+                        C 390,364 378,371 383,381
+                        L 399,405
+                        L 314,405
+                        A 8.5,8.5 0 0,0 314,422
+                        L 368,422
+                        L 368,425.5
+                        L 311,425.5
+                        A 8.5,8.5 0 0,0 311,442.5
+                        L 368,442.5
+                        L 368,446
+                        L 311,446
+                        A 8.5,8.5 0 0,0 311,463
+                        L 368,463
+                        L 368,466.5
+                        L 314,466.5
+                        A 8.5,8.5 0 0,0 314,483.5
+                        L 415,483.5
+                        C 482,483.5 545,462 600,424
+                        Z"></path>
+                </g>
+            </svg>
+                </div>
+                <span class="op-badge-pill amber">Citizen Community</span>
+                <h3>Made by everyone</h3>
+                <p>
+                    Every receipt uploaded, shelf price tag photographed, and GDPR supermarket export submitted helps consumers make informed purchasing decisions.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/community" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Join our Community
+                    </a>
+                </div>
+            </article>
+
+            <!-- Pillar 3: For everyone - Open data -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-opendata-crowd-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" class="" role="img" aria-label="Citizen community contributing open price data">
+                    <style>
+                        .crowd-sil {
+                            animation: silBob 4.4s ease-in-out infinite;
+                        }
+                        .char-left-bob {
+                            animation: charBob 4.4s ease-in-out infinite 0.2s;
+                        }
+                        .wave-left-arm {
+                            animation: waveHello 2.8s ease-in-out infinite;
+                            /* Circular shoulder socket hidden inside the red sleeve */
+                            transform-origin: 44px 194px;
+                        }
+                        .char-center-bob {
+                            animation: charBob 4.4s ease-in-out infinite 0.6s;
+                        }
+                        .char-right-bob {
+                            animation: charBob 4.4s ease-in-out infinite 1.0s;
+                        }
+                        .od-heart {
+                            animation: odHeartPulse 2.2s ease-in-out infinite;
+                            transform-origin: 248px 236px;
+                        }
+                        .tablet-lift {
+                            animation: tabletBob 4.4s ease-in-out infinite;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes silBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-5px); }
+                        }
+                        @keyframes charBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-4px); }
+                        }
+                        @keyframes waveHello {
+                            0%, 100% { transform: rotate(0deg); }
+                            50% { transform: rotate(7deg); }
+                        }
+                        @keyframes odHeartPulse {
+                            0%, 100% { transform: scale(1); }
+                            50% { transform: scale(1.13); }
+                        }
+                        @keyframes tabletBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-4px); }
+                        }
+                    </style>
+
+                    <!-- ========================================================= -->
+                    <!-- BACKGROUND SILHOUETTE CROWD (#9d9d9c)                     -->
+                    <!-- ========================================================= -->
+                    <g class="crowd-sil" fill="#9d9d9c">
+                        <circle cx="164" cy="116" r="42"></circle>
+                        <path d="M 112,215 C 112,174 135,156 164,156 C 193,156 216,174 216,215 L 216,355 L 112,355 Z"></path>
+                        <circle cx="316" cy="116" r="42"></circle>
+                        <path d="M 264,215 C 264,174 287,156 316,156 C 345,156 368,174 368,215 L 368,355 L 264,355 Z"></path>
+                    </g>
+
+                    <!-- ========================================================= -->
+                    <!-- LEFT CHARACTER: RED SHIRT + WAVING ARM (Open Beauty Ref)  -->
+                    <!-- ========================================================= -->
+                    <g class="char-left-bob">
+                        <!-- 1. Waving Left Arm (Pivots inside the red left sleeve at 44,194) -->
+                        <g class="wave-left-arm">
+                            <path fill="#935833" d="
+                                M 44,208
+                                C 18,200 6,166 8,118
+                                L 7,96 A 3.2,3.2 0 0,1 13.5,96 L 13.5,114 L 15.5,114
+                                L 15.5,93 A 3.2,3.2 0 0,1 22,93 L 22,114 L 24,114
+                                L 24,93 A 3.2,3.2 0 0,1 30.5,93 L 30.5,114 L 32.5,114
+                                L 32.5,96 A 3.2,3.2 0 0,1 39,96 L 39,122
+                                L 46,112 C 49,108 54,112 51,117
+                                L 38,134
+                                C 35,160 40,176 54,180
+                                A 14,14 0 0,1 44,208 Z"></path>
+                        </g>
+
+                        <!-- 2. Relaxed Right Arm Emerging From Under the Right Sleeve -->
+                        <path fill="#935833" d="
+                            M 134,206
+                            L 156,206
+                            L 164,296
+                            A 3.2,3.2 0 0,1 157.5,296 L 157.5,278 L 155.5,278
+                            L 155.5,297 A 3.2,3.2 0 0,1 149,297 L 149,278 L 147,278
+                            L 147,297 A 3.2,3.2 0 0,1 140.5,297 L 140.5,278 L 138.5,278
+                            L 138.5,295 A 3.2,3.2 0 0,1 132,295 L 132,270
+                            L 124,278 C 121,281 117,277 120,273
+                            L 132,258 Z"></path>
+
+                        <!-- 3. Single Unified Red T-Shirt (Torso + Both Sleeves + Smooth Shoulders) -->
+                        <path fill="#ff0000" d="
+                            M 26,166
+                            C 46,162 68,162 92,162
+                            C 122,162 140,168 152,186
+                            L 166,226
+                            L 140,234
+                            L 142,355
+                            L 42,355
+                            L 42,208
+                            L 20,202 Z"></path>
+
+                        <!-- Neck (#7a4829) with Rounded Collar Bottom -->
+                        <path fill="#7a4829" d="
+                            M 79,136
+                            L 105,136
+                            L 105,166
+                            A 13,14 0 0,1 79,166 Z"></path>
+
+                        <!-- 4. Head + Afro Puff Hair + Green Headband -->
+                        <circle cx="92" cy="86" r="52" fill="#23120b"></circle>
+                        <path fill="#00682c" d="M 52,104 A 40,38 0 0,1 132,104 Z"></path>
+                        <circle cx="50" cy="115" r="10" fill="#935833"></circle>
+                        <circle cx="134" cy="115" r="10" fill="#935833"></circle>
+                        <ellipse cx="92" cy="112" rx="40" ry="43" fill="#935833"></ellipse>
+                        <path d="M 68,96 C 74,93 82,93 86,95" fill="none" stroke="#23120b" stroke-width="3.5" stroke-linecap="round"></path>
+                        <path d="M 98,95 C 102,93 110,93 116,96" fill="none" stroke="#23120b" stroke-width="3.5" stroke-linecap="round"></path>
+                        <circle cx="77" cy="108" r="4.2" fill="#0d0d0d"></circle>
+                        <circle cx="107" cy="108" r="4.2" fill="#0d0d0d"></circle>
+                        <path fill="#ffffff" d="M 79,124 L 105,124 A 13,12 0 0,1 79,124 Z"></path>
+                    </g>
+
+                    <!-- ========================================================= -->
+                    <!-- CENTER CHARACTER: CYAN "I ❤️ Open Data" SHIRT WITH ARMS    -->
+                    <!-- ========================================================= -->
+                    <g class="char-center-bob">
+                        <!-- 1. Back Long Orange Hair Layer (#ff6600) -->
+                        <path fill="#ff6600" d="
+                            M 240,54
+                            C 198,54 186,84 182,126
+                            C 178,162 170,192 174,208
+                            L 306,208
+                            C 310,192 302,162 298,126
+                            C 294,84 282,54 240,54 Z"></path>
+
+                        <!-- 2. Left & Right Bare Arms Emerging From Under the Cyan Sleeves -->
+                        <path fill="#ffd8b4" d="
+                            M 164,212
+                            L 188,212
+                            L 188,262
+                            L 200,278 C 203,282 199,286 196,283 L 188,275
+                            L 188,301 A 3.2,3.2 0 0,1 181.5,301 L 181.5,282 L 179.5,282
+                            L 179.5,303 A 3.2,3.2 0 0,1 173,303 L 173,282 L 171,282
+                            L 171,303 A 3.2,3.2 0 0,1 164.5,303 L 164.5,282 L 162.5,282
+                            L 162.5,302 A 3.2,3.2 0 0,1 156,302 Z"></path>
+
+                        <path fill="#ffd8b4" d="
+                            M 316,212
+                            L 292,212
+                            L 292,262
+                            L 280,278 C 277,282 281,286 284,283 L 292,275
+                            L 292,301 A 3.2,3.2 0 0,0 298.5,301 L 298.5,282 L 300.5,282
+                            L 300.5,303 A 3.2,3.2 0 0,0 307,303 L 307,282 L 309,282
+                            L 309,303 A 3.2,3.2 0 0,0 315.5,303 L 315.5,282 L 317.5,282
+                            L 317.5,302 A 3.2,3.2 0 0,0 324,302 Z"></path>
+
+                        <!-- 3. Single Unified Cyan T-Shirt (Torso + Both Sleeves + Smooth Shoulders) -->
+                        <path fill="#00bdf2" d="
+                            M 156,226
+                            L 168,186
+                            C 178,168 198,162 240,162
+                            C 282,162 302,168 312,186
+                            L 324,226
+                            L 298,234
+                            L 300,355
+                            L 180,355
+                            L 182,234 Z"></path>
+
+                        <!-- Neck (#c89d7c) with Rounded Collar Bottom -->
+                        <path fill="#c89d7c" d="
+                            M 226,136
+                            L 254,136
+                            L 254,166
+                            A 14,15 0 0,1 226,166 Z"></path>
+
+                        <!-- "I ❤️ Open Data" Graphic on Shirt -->
+                        <rect x="206" y="216" width="5" height="38" rx="2" fill="#ffffff"></rect>
+                        <path class="od-heart" fill="#ff0000" d="
+                            M 248,262
+                            C 248,262 222,244 222,226
+                            C 222,216 230,210 238,210
+                            C 243,210 246,214 248,218
+                            C 250,214 253,210 258,210
+                            C 266,210 274,216 274,226
+                            C 274,244 248,262 248,262 Z"></path>
+                        <text x="240" y="302" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="40" font-weight="500">Open</text>
+                        <text x="240" y="344" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="40" font-weight="500">Data</text>
+
+                        <!-- 4. Face & Unified Orange Hair Bangs -->
+                        <circle cx="195" cy="115" r="10" fill="#ffd8b4"></circle>
+                        <circle cx="285" cy="115" r="10" fill="#ffd8b4"></circle>
+                        <ellipse cx="240" cy="112" rx="43" ry="45" fill="#ffd8b4"></ellipse>
+                        <path fill="#ff6600" d="
+                            M 192,108
+                            C 190,66 212,54 240,54
+                            C 268,54 290,66 288,108
+                            C 270,108 252,96 240,78
+                            C 228,96 210,108 192,108 Z"></path>
+
+                        <!-- Eyebrows, Eyes & Smile -->
+                        <path d="M 215,96 C 221,93 228,93 233,95" fill="none" stroke="#b94700" stroke-width="3.5" stroke-linecap="round"></path>
+                        <path d="M 247,95 C 252,93 259,93 265,96" fill="none" stroke="#b94700" stroke-width="3.5" stroke-linecap="round"></path>
+                        <circle cx="224" cy="108" r="4.5" fill="#0d0d0d"></circle>
+                        <circle cx="256" cy="108" r="4.5" fill="#0d0d0d"></circle>
+                        <path d="M 231,126 C 236,132 244,132 249,126" fill="none" stroke="#0d0d0d" stroke-width="4.2" stroke-linecap="round"></path>
+                    </g>
+
+                    <!-- ========================================================= -->
+                    <!-- RIGHT CHARACTER: GREEN SHIRT + ARMS HOLDING TABLET        -->
+                    <!-- ========================================================= -->
+                    <g class="char-right-bob">
+                        <!-- 1. Left & Right Forearms Emerging From Under the Green Sleeves -->
+                        <path fill="#dab396" d="M 326,214 C 314,252 320,295 344,328 L 362,316 C 344,288 340,252 348,218 Z"></path>
+                        <path fill="#dab396" d="M 458,214 C 470,252 464,295 440,328 L 422,316 C 440,288 444,252 436,218 Z"></path>
+
+                        <!-- 2. Single Unified Bright Green T-Shirt (Torso + Both Sleeves + Smooth Shoulders) -->
+                        <path fill="#00cc00" d="
+                            M 314,224
+                            L 326,186
+                            C 336,168 356,162 392,162
+                            C 428,162 448,168 458,186
+                            L 470,224
+                            L 444,232
+                            L 448,355
+                            L 336,355
+                            L 340,232 Z"></path>
+
+                        <!-- Neck (#c89d7c) with Rounded Collar Bottom -->
+                        <path fill="#c89d7c" d="
+                            M 378,136
+                            L 406,136
+                            L 406,166
+                            A 14,15 0 0,1 378,166 Z"></path>
+
+                        <!-- 3. Face & Unified Dark-Brown Hair Cap (#261204) -->
+                        <circle cx="348" cy="115" r="10" fill="#dab396"></circle>
+                        <circle cx="436" cy="115" r="10" fill="#dab396"></circle>
+                        <ellipse cx="392" cy="112" rx="43" ry="45" fill="#dab396"></ellipse>
+                        <path fill="#261204" d="
+                            M 346,104
+                            C 346,66 366,54 392,54
+                            C 418,54 438,68 438,104
+                            C 424,98 414,90 406,80
+                            C 392,96 370,106 346,104 Z"></path>
+
+                        <!-- Eyebrows, Eyes & Smile -->
+                        <path d="M 368,96 C 374,94 381,94 386,96" fill="none" stroke="#261204" stroke-width="3.5" stroke-linecap="round"></path>
+                        <path d="M 398,96 C 403,94 410,94 416,96" fill="none" stroke="#261204" stroke-width="3.5" stroke-linecap="round"></path>
+                        <circle cx="376" cy="108" r="4.5" fill="#0d0d0d"></circle>
+                        <circle cx="408" cy="108" r="4.5" fill="#0d0d0d"></circle>
+                        <path d="M 383,126 C 388,132 396,132 401,126" fill="none" stroke="#0d0d0d" stroke-width="4.2" stroke-linecap="round"></path>
+
+                        <!-- 4. Held Tablet & Gripping Fingers -->
+                        <g class="tablet-lift">
+                            <!-- Tablet Frame (#191919) & Blue Screen (#0066ff) -->
+                            <rect x="336" y="242" width="112" height="90" rx="10" fill="#191919"></rect>
+                            <rect x="343" y="249" width="98" height="76" rx="7" fill="#0066ff"></rect>
+
+                            <!-- Mini Bottle inside Tablet -->
+                            <rect x="355" y="256" width="12" height="7" rx="3" fill="#ff0000"></rect>
+                            <rect x="349" y="263" width="24" height="54" rx="7" fill="#4a2511"></rect>
+                            <rect x="349" y="276" width="24" height="26" fill="#ff3b30"></rect>
+
+                            <!-- 6 Sugar Cube Pyramid inside Tablet -->
+                            <g fill="#fafafa">
+                                <rect x="380" y="302" width="15" height="15"></rect>
+                                <rect x="398" y="302" width="15" height="15"></rect>
+                                <rect x="416" y="302" width="15" height="15"></rect>
+                                <rect x="389" y="285" width="15" height="15"></rect>
+                                <rect x="407" y="285" width="15" height="15"></rect>
+                                <rect x="398" y="268" width="15" height="15"></rect>
+                            </g>
+
+                            <!-- Diagonal White Screen Glare -->
+                            <path fill="#ffffff" opacity="0.2" d="M 343,249 L 441,325 L 343,325 Z"></path>
+
+                            <!-- Left & Right Hands Gripping Tablet Bottom Corners (4 Fingers Each) -->
+                            <g fill="#dab396">
+                                <rect x="334" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="342" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="350" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="358" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="419" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="427" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="435" y="320" width="7" height="16" rx="3.5"></rect>
+                                <rect x="443" y="320" width="7" height="16" rx="3.5"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+                </div>
+                <span class="op-badge-pill green">100% Open Data</span>
+                <h3>For everyone</h3>
+                <p>
+                    Price data is published under the Open Database License (ODbL 1.0) and receipt photos under CC-BY-SA 4.0. Free for journalists, researchers, and public watchdogs.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/api/docs" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Access Open Datasets
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <hr class="off-divider">
+
+    <!-- Section 2: Consumer Features & Insights -->
+    <section>
+        <div class="section-header">
+            <span class="op-badge-pill amber">🔍 Real-World Price Transparency</span>
+            <h2>Track inflation, compare baskets &amp; spot shrinkflation</h2>
+            <p>
+                Take control of your household budget with data-driven comparisons across supermarket chains and geographic areas.
+            </p>
+        </div>
+
+        <div class="off-card-grid-4">
+            <!-- Feature 1: Track inflation & shrinkflation -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-op-evolution" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Animated price evolution curve over time and inflation tracking">
+                    <style>
+                        .evo-line-draw {
+                            stroke-dasharray: 460;
+                            stroke-dashoffset: 460;
+                            animation: drawEvoCurve 4.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        }
+                        .evo-node-1 { animation: nodePop 4.4s ease-out infinite 0.2s; transform-origin: 110px 282px; }
+                        .evo-node-2 { animation: nodePop 4.4s ease-out infinite 0.7s; transform-origin: 215px 236px; }
+                        .evo-node-3 { animation: nodePop 4.4s ease-out infinite 1.2s; transform-origin: 325px 252px; }
+                        .evo-node-4 { animation: nodePop 4.4s ease-out infinite 1.7s; transform-origin: 445px 148px; }
+                        .evo-clock-hand {
+                            animation: evoClockSpin 4.4s linear infinite;
+                            transform-origin: 112px 96px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes drawEvoCurve {
+                            0%, 8% { stroke-dashoffset: 460; }
+                            50%, 85% { stroke-dashoffset: 0; }
+                            100% { stroke-dashoffset: 460; }
+                        }
+                        @keyframes nodePop {
+                            0%, 15%, 92%, 100% { transform: scale(0); opacity: 0; }
+                            30%, 82% { transform: scale(1); opacity: 1; }
+                        }
+                        @keyframes evoClockSpin {
+                            0% { transform: rotate(0deg); }
+                            100% { transform: rotate(360deg); }
+                        }
+                    </style>
+
+                    <!-- Chart Card Container -->
+                    <rect x="52" y="64" width="456" height="304" rx="26" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"></rect>
+
+                    <!-- Horizontal Grid Lines (science-icon.svg style) -->
+                    <line x1="86" y1="130" x2="474" y2="130" stroke="#e2e8f0" stroke-width="2.5"></line>
+                    <line x1="86" y1="190" x2="474" y2="190" stroke="#e2e8f0" stroke-width="2.5"></line>
+                    <line x1="86" y1="250" x2="474" y2="250" stroke="#e2e8f0" stroke-width="2.5"></line>
+                    <line x1="86" y1="310" x2="474" y2="310" stroke="#94a3b8" stroke-width="3.5" stroke-linecap="round"></line>
+
+                    <!-- Soft Area Fill Under Trend Curve -->
+                    <path fill="#dcf0f7" opacity="0.7" d="
+                        M 110,310
+                        L 110,282
+                        L 215,236
+                        L 325,252
+                        L 445,148
+                        L 445,310 Z"></path>
+
+                    <!-- Time Period Axis Pills -->
+                    <rect x="90" y="324" width="44" height="14" rx="7" fill="#cbd5e1"></rect>
+                    <rect x="193" y="324" width="44" height="14" rx="7" fill="#cbd5e1"></rect>
+                    <rect x="303" y="324" width="44" height="14" rx="7" fill="#cbd5e1"></rect>
+                    <rect x="423" y="324" width="44" height="14" rx="7" fill="#606362"></rect>
+
+                    <!-- Animated Price Evolution Polyline (#ff6b35) -->
+                    <polyline class="evo-line-draw" fill="none" stroke="#ff6b35" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" points="110,282 215,236 325,252 445,148"></polyline>
+
+                    <!-- Node 1: 1.90€ (Green) -->
+                    <g class="evo-node-1">
+                        <circle cx="110" cy="282" r="10" fill="#009a49" stroke="#ffffff" stroke-width="4"></circle>
+                        <rect x="78" y="236" width="64" height="28" rx="8" fill="#009a49"></rect>
+                        <text x="110" y="255" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="800">1.90 €</text>
+                    </g>
+
+                    <!-- Node 2: 2.20€ (Yellow) -->
+                    <g class="evo-node-2">
+                        <circle cx="215" cy="236" r="10" fill="#ffc412" stroke="#ffffff" stroke-width="4"></circle>
+                        <rect x="183" y="190" width="64" height="28" rx="8" fill="#ffc412"></rect>
+                        <text x="215" y="209" text-anchor="middle" fill="#181818" font-size="14" font-weight="800">2.20 €</text>
+                    </g>
+
+                    <!-- Node 3: 2.10€ (Cyan) -->
+                    <g class="evo-node-3">
+                        <circle cx="325" cy="252" r="10" fill="#00bdf2" stroke="#ffffff" stroke-width="4"></circle>
+                        <rect x="293" y="206" width="64" height="28" rx="8" fill="#00bdf2"></rect>
+                        <text x="325" y="225" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="800">2.10 €</text>
+                    </g>
+
+                    <!-- Node 4: 2.65€ (Red/Orange Peak + Attached coin-euro.svg) -->
+                    <g class="evo-node-4">
+                        <circle cx="445" cy="148" r="12" fill="#dc3522" stroke="#ffffff" stroke-width="4"></circle>
+                        <rect x="405" y="96" width="80" height="34" rx="10" fill="#dc3522"></rect>
+                        <text x="445" y="118" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="800">2.65 €</text>
+                    </g>
+
+                    <!-- Top-Left Attached History.svg Clock Badge -->
+                    <g>
+                        <circle cx="112" cy="96" r="46" fill="#ffffff"></circle>
+                        <circle cx="112" cy="96" r="38" fill="none" stroke="#7ce0ff" stroke-width="12"></circle>
+                        <line x1="112" y1="96" x2="130" y2="114" stroke="#7a7a7a" stroke-width="7" stroke-linecap="round"></line>
+                        <g class="evo-clock-hand">
+                            <line x1="112" y1="96" x2="112" y2="68" stroke="#7a7a7a" stroke-width="7" stroke-linecap="round"></line>
+                        </g>
+                    </g>
+
+                    <!-- Bottom-Right Mini Attached coin-euro.svg -->
+                    <g transform="translate(454, 245) scale(0.76)">
+                        <circle cx="42" cy="42" r="42" fill="#ffc412"></circle>
+                        <circle cx="42" cy="42" r="31" fill="#d49619"></circle>
+                        <path d="M 52,27 C 42,23 32,29 30,39 L 29,45 C 31,55 42,61 52,57" fill="none" stroke="#6c3c00" stroke-width="6.5" stroke-linecap="round"></path>
+                        <line x1="23" y1="39" x2="48" y2="39" stroke="#6c3c00" stroke-width="5"></line>
+                        <line x1="23" y1="46" x2="48" y2="46" stroke="#6c3c00" stroke-width="5"></line>
+                    </g>
+                </svg>
+                </div>
+                <span class="op-badge-pill green">Unit Economics</span>
+                <h3>Track real inflation</h3>
+                <p>
+                    Compare price per kilogram or liter over time. Expose shrinkflation when pack sizes decrease while prices remain steady or increase.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Track Price History
+                    </a>
+                </div>
+            </article>
+
+            <!-- Feature 2: Compare stores & local chains -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-op-store-comparison" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Animated supermarket store comparison across retailers showing best deal price bubbles">
+                    <style>
+                        .st-bubble-left {
+                            animation: storeBubbleFloat 4.2s ease-in-out infinite;
+                            transform-origin: 116px 82px;
+                        }
+                        .st-bubble-best {
+                            animation: bestDealPulse 4.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 280px 58px;
+                        }
+                        .st-bubble-right {
+                            animation: storeBubbleFloat 4.2s ease-in-out infinite 0.7s;
+                            transform-origin: 444px 82px;
+                        }
+                        .same-product-pulse {
+                            animation: prodCenterFloat 4.2s ease-in-out infinite;
+                            transform-origin: 280px 334px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes storeBubbleFloat {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                        @keyframes bestDealPulse {
+                            0%, 100% { transform: translateY(0px) scale(1); }
+                            50% { transform: translateY(-10px) scale(1.08); }
+                        }
+                        @keyframes prodCenterFloat {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-5px); }
+                        }
+                    </style>
+
+                    <!-- Soft Map Ground Oval (#dcf0f7) & Connecting Roads -->
+                    <ellipse cx="280" cy="245" rx="248" ry="135" fill="#dcf0f7"></ellipse>
+                    <path d="M 116,220 L 280,330 L 444,220 M 280,196 L 280,330" fill="none" stroke="#94a3b8" stroke-width="5" stroke-dasharray="9 7" stroke-linecap="round"></path>
+
+                    <!-- ========================================== -->
+                    <!-- STORE 1 (LEFT): MODERATE PRICE (2.49 €)    -->
+                    <!-- ========================================== -->
+                    <g transform="translate(56, 134)">
+                        <!-- Store Body -->
+                        <rect x="10" y="34" width="100" height="72" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"></rect>
+                        <!-- Door & Window -->
+                        <rect x="24" y="56" width="30" height="50" rx="4" fill="#7ce0ff"></rect>
+                        <rect x="64" y="56" width="32" height="28" rx="4" fill="#e1f3fe"></rect>
+                        <!-- Striped Awning (#ff6b35 & #ffffff) -->
+                        <path fill="#ff6b35" d="M 4,14 L 116,14 L 122,38 L -2,38 Z"></path>
+                        <rect x="20" y="14" width="16" height="24" fill="#ffffff"></rect>
+                        <rect x="52" y="14" width="16" height="24" fill="#ffffff"></rect>
+                        <rect x="84" y="14" width="16" height="24" fill="#ffffff"></rect>
+                    </g>
+                    <!-- Price Tag Pin Over Store 1 -->
+                    <g class="st-bubble-left">
+                        <rect x="64" y="54" width="104" height="44" rx="12" fill="#ffc412"></rect>
+                        <polygon points="106,98 126,98 116,112" fill="#ffc412"></polygon>
+                        <text x="116" y="82" text-anchor="middle" fill="#181818" font-size="20" font-weight="800">2.49 €</text>
+                    </g>
+
+                    <!-- ========================================== -->
+                    <!-- STORE 2 (CENTER): BEST PRICE (1.95 €)      -->
+                    <!-- ========================================== -->
+                    <g transform="translate(216, 108)">
+                        <rect x="8" y="36" width="112" height="78" rx="10" fill="#ffffff" stroke="#009a49" stroke-width="4"></rect>
+                        <rect x="24" y="60" width="34" height="54" rx="4" fill="#7ce0ff"></rect>
+                        <rect x="68" y="60" width="36" height="32" rx="4" fill="#e1f3fe"></rect>
+                        <!-- Green Awning (#009a49) -->
+                        <path fill="#009a49" d="M 0,12 L 128,12 L 134,38 L -6,38 Z"></path>
+                        <rect x="22" y="12" width="18" height="26" fill="#ffffff"></rect>
+                        <rect x="56" y="12" width="18" height="26" fill="#ffffff"></rect>
+                        <rect x="90" y="12" width="18" height="26" fill="#ffffff"></rect>
+                    </g>
+                    <!-- Best Price Tag Pin Over Store 2 + Attached Green Check -->
+                    <g class="st-bubble-best">
+                        <rect x="218" y="24" width="124" height="50" rx="14" fill="#009a49"></rect>
+                        <polygon points="268,74 292,74 280,90" fill="#009a49"></polygon>
+                        <text x="272" y="56" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="800">1.95 €</text>
+                        <!-- Mini Green check.svg -->
+                        <circle cx="334" cy="28" r="16" fill="#0b7a3e" stroke="#ffffff" stroke-width="3"></circle>
+                        <path d="M 327,28 L 332,33 L 342,23" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+
+                    <!-- ========================================== -->
+                    <!-- STORE 3 (RIGHT): HIGH PRICE (2.89 €)       -->
+                    <!-- ========================================== -->
+                    <g transform="translate(384, 134)">
+                        <rect x="10" y="34" width="100" height="72" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"></rect>
+                        <rect x="24" y="56" width="30" height="50" rx="4" fill="#7ce0ff"></rect>
+                        <rect x="64" y="56" width="32" height="28" rx="4" fill="#e1f3fe"></rect>
+                        <!-- Blue Awning (#00bdf2) -->
+                        <path fill="#00bdf2" d="M 4,14 L 116,14 L 122,38 L -2,38 Z"></path>
+                        <rect x="20" y="14" width="16" height="24" fill="#ffffff"></rect>
+                        <rect x="52" y="14" width="16" height="24" fill="#ffffff"></rect>
+                        <rect x="84" y="14" width="16" height="24" fill="#ffffff"></rect>
+                    </g>
+                    <!-- High Price Tag Pin Over Store 3 -->
+                    <g class="st-bubble-right">
+                        <rect x="392" y="54" width="104" height="44" rx="12" fill="#dc3522"></rect>
+                        <polygon points="434,98 454,98 444,112" fill="#dc3522"></polygon>
+                        <text x="444" y="82" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="800">2.89 €</text>
+                    </g>
+
+                    <!-- ========================================== -->
+                    <!-- FOREGROUND SAME PRODUCT BADGE (CEREAL PACK)-->
+                    <!-- ========================================== -->
+                    <g class="same-product-pulse">
+                        <circle cx="280" cy="332" r="64" fill="#ffffff" stroke="#181818" stroke-width="4"></circle>
+                        <!-- Attached Crispy Cereal Pack Inside Circle -->
+                        <g transform="translate(248, 284)">
+                            <rect x="0" y="0" width="64" height="88" rx="6" fill="#ff6b35"></rect>
+                            <text x="6" y="21" fill="#d95326" font-weight="800" font-size="14">CRISPY</text>
+                            <path fill="#bfc3c6" d="M 38,8 L 43,6 L 51,28 A 8,8 0 1,1 43,31 Z"></path>
+                            <path fill="#00bdf2" d="M 26,46 L 64,46 L 64,66 C 54,80 30,78 26,46 Z"></path>
+                            <ellipse cx="14" cy="38" rx="4.5" ry="2.2" fill="#f8c100"></ellipse>
+                            <ellipse cx="18" cy="58" rx="4.5" ry="2.2" fill="#f8c100"></ellipse>
+                            <ellipse cx="14" cy="74" rx="4.5" ry="2.2" fill="#f8c100"></ellipse>
+                        </g>
+                    </g>
+                </svg>
+                </div>
+                <span class="op-badge-pill amber">Dataviz in 3 Clicks</span>
+                <h3>Compare stores</h3>
+                <p>
+                    Which retailer offers the fairest price on butter, milk, or organic pasta? Compare local stores and find cheaper alternatives nearby.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org" class="off-btn off-btn-primary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Compare Store Baskets
+                    </a>
+                </div>
+            </article>
+
+            <!-- Feature 3: Geo-located on OpenStreetMap -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-op-stores-grid" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Animated supermarket chain store tiles with registered price counters">
+                    <style>
+                        .grid-store-1 { animation: storeTilePop 4.4s ease-in-out infinite 0.0s; transform-origin: 166px 128px; }
+                        .grid-store-2 { animation: storeTilePop 4.4s ease-in-out infinite 0.6s; transform-origin: 394px 128px; }
+                        .grid-store-3 { animation: storeTilePop 4.4s ease-in-out infinite 1.2s; transform-origin: 166px 292px; }
+                        .grid-store-4 { animation: storeTilePop 4.4s ease-in-out infinite 1.8s; transform-origin: 394px 292px; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes storeTilePop {
+                            0%, 35%, 100% { transform: translateY(0px) scale(1); }
+                            18% { transform: translateY(-6px) scale(1.03); }
+                        }
+                    </style>
+
+                    <!-- ========================================== -->
+                    <!-- TILE 1 (TOP-LEFT): GREEN STORE (1,420)     -->
+                    <!-- ========================================== -->
+                    <g class="grid-store-1">
+                        <rect x="64" y="54" width="204" height="148" rx="22" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"></rect>
+                        <!-- Mini Storefront Icon -->
+                        <rect x="86" y="92" width="66" height="50" rx="6" fill="#dcf0f7"></rect>
+                        <rect x="108" y="110" width="22" height="32" rx="3" fill="#0077c8"></rect>
+                        <path fill="#009a49" d="M 80,76 L 158,76 L 162,94 L 76,94 Z"></path>
+                        <rect x="94" y="76" width="12" height="18" fill="#ffffff"></rect>
+                        <rect x="118" y="76" width="12" height="18" fill="#ffffff"></rect>
+                        <rect x="142" y="76" width="12" height="18" fill="#ffffff"></rect>
+                        <!-- Registered Prices Counter Badge -->
+                        <rect x="168" y="82" width="84" height="60" rx="14" fill="#009a49"></rect>
+                        <text x="210" y="110" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="800">1,420</text>
+                        <text x="210" y="128" text-anchor="middle" fill="#e8f8ef" font-size="10" font-weight="800">PRICES €</text>
+                        <!-- Bottom Store Bar -->
+                        <rect x="86" y="160" width="166" height="14" rx="7" fill="#e2e8f0"></rect>
+                        <rect x="86" y="160" width="128" height="14" rx="7" fill="#009a49"></rect>
+                    </g>
+
+                    <!-- ========================================== -->
+                    <!-- TILE 2 (TOP-RIGHT): ORANGE STORE (865)     -->
+                    <!-- ========================================== -->
+                    <g class="grid-store-2">
+                        <rect x="292" y="54" width="204" height="148" rx="22" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"></rect>
+                        <rect x="314" y="92" width="66" height="50" rx="6" fill="#dcf0f7"></rect>
+                        <rect x="336" y="110" width="22" height="32" rx="3" fill="#0077c8"></rect>
+                        <path fill="#ff6b35" d="M 308,76 L 386,76 L 390,94 L 304,94 Z"></path>
+                        <rect x="322" y="76" width="12" height="18" fill="#ffffff"></rect>
+                        <rect x="346" y="76" width="12" height="18" fill="#ffffff"></rect>
+                        <rect x="370" y="76" width="12" height="18" fill="#ffffff"></rect>
+                        <!-- Counter Badge -->
+                        <rect x="396" y="82" width="84" height="60" rx="14" fill="#ff6b35"></rect>
+                        <text x="438" y="110" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="800">865</text>
+                        <text x="438" y="128" text-anchor="middle" fill="#fff3ed" font-size="10" font-weight="800">PRICES €</text>
+                        <rect x="314" y="160" width="166" height="14" rx="7" fill="#e2e8f0"></rect>
+                        <rect x="314" y="160" width="92" height="14" rx="7" fill="#ff6b35"></rect>
+                    </g>
+
+                    <!-- ========================================== -->
+                    <!-- TILE 3 (BOTTOM-LEFT): CYAN STORE (2,190)   -->
+                    <!-- ========================================== -->
+                    <g class="grid-store-3">
+                        <rect x="64" y="218" width="204" height="148" rx="22" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"></rect>
+                        <rect x="86" y="256" width="66" height="50" rx="6" fill="#dcf0f7"></rect>
+                        <rect x="108" y="274" width="22" height="32" rx="3" fill="#0077c8"></rect>
+                        <path fill="#00bdf2" d="M 80,240 L 158,240 L 162,258 L 76,258 Z"></path>
+                        <rect x="94" y="240" width="12" height="18" fill="#ffffff"></rect>
+                        <rect x="118" y="240" width="12" height="18" fill="#ffffff"></rect>
+                        <rect x="142" y="240" width="12" height="18" fill="#ffffff"></rect>
+                        <!-- Counter Badge -->
+                        <rect x="168" y="246" width="84" height="60" rx="14" fill="#00bdf2"></rect>
+                        <text x="210" y="274" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="800">2,190</text>
+                        <text x="210" y="292" text-anchor="middle" fill="#e1f3fe" font-size="10" font-weight="800">PRICES €</text>
+                        <rect x="86" y="324" width="166" height="14" rx="7" fill="#e2e8f0"></rect>
+                        <rect x="86" y="324" width="152" height="14" rx="7" fill="#00bdf2"></rect>
+                    </g>
+
+                    <!-- ========================================== -->
+                    <!-- TILE 4 (BOTTOM-RIGHT): YELLOW STORE (540)  -->
+                    <!-- ========================================== -->
+                    <g class="grid-store-4">
+                        <rect x="292" y="218" width="204" height="148" rx="22" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"></rect>
+                        <rect x="314" y="256" width="66" height="50" rx="6" fill="#dcf0f7"></rect>
+                        <rect x="336" y="274" width="22" height="32" rx="3" fill="#0077c8"></rect>
+                        <path fill="#ffc412" d="M 308,240 L 386,240 L 390,258 L 304,258 Z"></path>
+                        <rect x="322" y="240" width="12" height="18" fill="#ffffff"></rect>
+                        <rect x="346" y="240" width="12" height="18" fill="#ffffff"></rect>
+                        <rect x="370" y="240" width="12" height="18" fill="#ffffff"></rect>
+                        <!-- Counter Badge -->
+                        <rect x="396" y="246" width="84" height="60" rx="14" fill="#ffc412"></rect>
+                        <text x="438" y="274" text-anchor="middle" fill="#181818" font-size="18" font-weight="800">540</text>
+                        <text x="438" y="292" text-anchor="middle" fill="#6c3c00" font-size="10" font-weight="800">PRICES €</text>
+                        <rect x="314" y="324" width="166" height="14" rx="7" fill="#e2e8f0"></rect>
+                        <rect x="314" y="324" width="66" height="14" rx="7" fill="#ffc412"></rect>
+                    </g>
+                </svg>
+                </div>
+                <span class="op-badge-pill blue">OpenStreetMap</span>
+                <h3>Geo-located data</h3>
+                <p>
+                    Every price point is tied to OpenStreetMap verified store locations, showing geographical price variations across neighborhoods and rural regions.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Explore Store Map
+                    </a>
+                </div>
+            </article>
+
+            <!-- Feature 4: Community Challenges -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-op-piggy-bank" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Animated coin dropping into piggy bank for household savings and price challenges">
+                    <style>
+                        .piggy-coin-drop {
+                            animation: coinDropIn 3.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                            transform-origin: 280px 92px;
+                        }
+                        .piggy-body-bounce {
+                            animation: piggyBounce 3.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 280px 340px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes coinDropIn {
+                            0% { transform: translateY(-48px) scale(0.95); opacity: 0; }
+                            20% { transform: translateY(0px) scale(1); opacity: 1; }
+                            52%, 100% { transform: translateY(72px) scale(0.85); opacity: 0; }
+                        }
+                        @keyframes piggyBounce {
+                            0%, 42%, 85%, 100% { transform: scale(1, 1); }
+                            52% { transform: scale(1.05, 0.94); }
+                            64% { transform: scale(0.98, 1.03); }
+                        }
+                    </style>
+
+                    <defs>
+                        <!-- Clip Path Above Coin Slot So Coin Disappears Inside the Piggy Bank -->
+                        <clipPath id="piggy-slot-clip">
+                            <rect x="140" y="0" width="280" height="162"></rect>
+                        </clipPath>
+                    </defs>
+
+                    <circle cx="280" cy="225" r="162" fill="#dcf0f7"></circle>
+
+                    <!-- Dropping Attached coin-euro.svg (Clipped at Slot Line y=162) -->
+                    <g clip-path="url(#piggy-slot-clip)">
+                        <g class="piggy-coin-drop" transform="translate(236, 48)">
+                            <circle cx="44" cy="44" r="44" fill="#ffc412"></circle>
+                            <circle cx="44" cy="44" r="32" fill="#d49619"></circle>
+                            <path d="M 54,28 C 44,24 33,30 31,41 L 30,47 C 32,57 44,63 54,59" fill="none" stroke="#6c3c00" stroke-width="7" stroke-linecap="round"></path>
+                            <line x1="24" y1="41" x2="50" y2="41" stroke="#6c3c00" stroke-width="5.5"></line>
+                            <line x1="24" y1="48" x2="50" y2="48" stroke="#6c3c00" stroke-width="5.5"></line>
+                            <path d="M 54,10 A 35,35 0 0,1 60,12" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"></path>
+                        </g>
+                    </g>
+
+                    <!-- Piggy Bank Body Group (#ff6270 from contact-us.svg / hero-openprices.svg) -->
+                    <g class="piggy-body-bounce">
+                        <!-- Curly Pink Tail (Right) -->
+                        <path d="M 412,235 C 446,218 452,254 426,260 C 414,262 426,282 448,272" fill="none" stroke="#ff6270" stroke-width="10" stroke-linecap="round"></path>
+
+                        <!-- Back Legs -->
+                        <rect x="198" y="314" width="32" height="52" rx="12" fill="#e04856"></rect>
+                        <rect x="332" y="314" width="32" height="52" rx="12" fill="#e04856"></rect>
+
+                        <!-- Back Ear -->
+                        <path fill="#e04856" d="M 192,168 C 178,130 212,124 232,154 Z"></path>
+
+                        <!-- Main Plump Piggy Body -->
+                        <ellipse cx="282" cy="248" rx="134" ry="96" fill="#ff6270"></ellipse>
+
+                        <!-- Front Snout (Left) -->
+                        <rect x="116" y="218" width="48" height="58" rx="22" fill="#ff8590"></rect>
+                        <ellipse cx="130" cy="238" rx="4" ry="7" fill="#b82e3b"></ellipse>
+                        <ellipse cx="144" cy="238" rx="4" ry="7" fill="#b82e3b"></ellipse>
+
+                        <!-- Front Ear -->
+                        <path fill="#ff8590" d="M 222,166 C 210,124 248,120 264,154 Z"></path>
+
+                        <!-- Front Legs -->
+                        <rect x="176" y="320" width="34" height="52" rx="12" fill="#ff6270"></rect>
+                        <rect x="310" y="320" width="34" height="52" rx="12" fill="#ff6270"></rect>
+
+                        <!-- Top Coin Slot -->
+                        <rect x="236" y="156" width="88" height="12" rx="6" fill="#8f1d28"></rect>
+
+                        <!-- Friendly Eye & Smile -->
+                        <circle cx="182" cy="218" r="8" fill="#181818"></circle>
+                        <circle cx="180" cy="215" r="2.5" fill="#ffffff"></circle>
+                        <path d="M 164,268 C 174,278 190,278 198,268" fill="none" stroke="#8f1d28" stroke-width="5" stroke-linecap="round"></path>
+
+                        <!-- Attached Green check.svg Badge on Side -->
+                        <circle cx="315" cy="252" r="28" fill="#0b7a3e"></circle>
+                        <path d="M 302,252 L 311,261 L 329,243" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="op-badge-pill purple">Gamified Missions</span>
+                <h3>Price challenges</h3>
+                <p>
+                    Join monthly community scan drives—from hazelnut spread price vs. ingredient ratios to organic egg benchmarks and seasonal price tracking.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/challenges" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Join Challenges
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <hr class="off-divider">
+
+    <!-- Section 3: Open Data Ecosystem & Reuses -->
+    <section>
+        <div class="section-header">
+            <span class="op-badge-pill green">🚀 Open Data Ecosystem</span>
+            <h2>Price data for research, consumer defense &amp; civic tech</h2>
+            <p>
+                Our open database enables economists, investigative journalists, and developers to audit purchasing power and build public-interest budgeting tools.
+            </p>
+        </div>
+
+        <div class="off-card-grid-3">
+            <!-- Reuse 1: Margins & Price Composition -->
+            <article class="off-feature-card reuse-card">
+                <div class="off-card-art">
+                    <svg id="svg-op-margins" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Animated product price breakdown by ingredients, manufacturing, packaging, and retail margins">
+                    <style>
+                        .comp-tier-1 { animation: tierExplode1 4.6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+                        .comp-tier-2 { animation: tierExplode2 4.6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+                        .comp-tier-3 { animation: tierExplode3 4.6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+                        .comp-tier-4 { animation: tierExplode4 4.6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+                        .comp-tier-5 { animation: tierExplode5 4.6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+                        .bottle-comp-float {
+                            animation: bottleCompBob 4.6s ease-in-out infinite;
+                            transform-origin: 112px 215px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes tierExplode1 {
+                            0%, 15%, 90%, 100% { transform: translateY(16px); }
+                            40%, 75% { transform: translateY(0px); }
+                        }
+                        @keyframes tierExplode2 {
+                            0%, 15%, 90%, 100% { transform: translateY(8px); }
+                            40%, 75% { transform: translateY(0px); }
+                        }
+                        @keyframes tierExplode3 {
+                            0%, 100% { transform: translateY(0px); }
+                        }
+                        @keyframes tierExplode4 {
+                            0%, 15%, 90%, 100% { transform: translateY(-8px); }
+                            40%, 75% { transform: translateY(0px); }
+                        }
+                        @keyframes tierExplode5 {
+                            0%, 15%, 90%, 100% { transform: translateY(-16px); }
+                            40%, 75% { transform: translateY(0px); }
+                        }
+                        @keyframes bottleCompBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-6px); }
+                        }
+                    </style>
+
+                    <!-- Left: Attached Illustration - Bottle.svg + Total Euro Tag -->
+                    <g class="bottle-comp-float">
+                        <circle cx="112" cy="225" r="88" fill="#dcf0f7"></circle>
+                        <!-- Grey Cap (#aeaeae) -->
+                        <rect x="92" y="54" width="40" height="18" rx="5" fill="#aeaeae"></rect>
+                        <!-- Green Bottle Body (#009a49) -->
+                        <path fill="#009a49" d="
+                            M 96,72 L 128,72 L 128,118
+                            C 156,128 170,154 170,188
+                            L 170,332 A 16,16 0 0,1 154,348
+                            L 70,348 A 16,16 0 0,1 54,332
+                            L 54,188 C 54,154 68,128 96,118 Z"></path>
+                        <!-- White Bottle Label with 3 Grey Lines -->
+                        <rect x="74" y="182" width="76" height="110" rx="8" fill="#ffffff"></rect>
+                        <line x1="86" y1="206" x2="138" y2="206" stroke="#999999" stroke-width="4.5" stroke-linecap="round"></line>
+                        <line x1="86" y1="222" x2="138" y2="222" stroke="#999999" stroke-width="4.5" stroke-linecap="round"></line>
+                        <line x1="86" y1="238" x2="138" y2="238" stroke="#999999" stroke-width="4.5" stroke-linecap="round"></line>
+
+                        <!-- Attached coin-euro.svg Badge on Bottle Base -->
+                        <g transform="translate(126, 294) scale(0.75)">
+                            <circle cx="42" cy="42" r="42" fill="#ffc412"></circle>
+                            <circle cx="42" cy="42" r="31" fill="#d49619"></circle>
+                            <path d="M 52,27 C 42,23 32,29 30,39 L 29,45 C 31,55 42,61 52,57" fill="none" stroke="#6c3c00" stroke-width="6.5" stroke-linecap="round"></path>
+                            <line x1="23" y1="39" x2="48" y2="39" stroke="#6c3c00" stroke-width="5"></line>
+                            <line x1="23" y1="46" x2="48" y2="46" stroke="#6c3c00" stroke-width="5"></line>
+                        </g>
+                    </g>
+
+                    <!-- Bracket Connecting Bottle to Price Composition Stack -->
+                    <path d="M 192,82 L 210,82 L 210,346 L 192,346" fill="none" stroke="#94a3b8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+
+                    <!-- ========================================================= -->
+                    <!-- RIGHT: 5-TIER STACKED PRICE COMPOSITION & MARGINS BAR     -->
+                    <!-- ========================================================= -->
+                    <!-- Tier 1 (Top): VAT / Taxes (#dc3522) -->
+                    <g class="comp-tier-1">
+                        <rect x="234" y="66" width="96" height="38" rx="10" fill="#dc3522"></rect>
+                        <line x1="336" y1="85" x2="362" y2="85" stroke="#dc3522" stroke-width="3.5" stroke-dasharray="5 4" stroke-linecap="round"></line>
+                        <rect x="368" y="66" width="152" height="38" rx="10" fill="#fee2e2"></rect>
+                        <circle cx="390" cy="85" r="10" fill="#dc3522"></circle>
+                        <text x="390" y="89" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="800">%</text>
+                        <rect x="410" y="79" width="54" height="12" rx="6" fill="#dc3522"></rect>
+                        <text x="506" y="90" text-anchor="end" fill="#dc3522" font-size="14" font-weight="800">10%</text>
+                    </g>
+
+                    <!-- Tier 2: Retailer / Store Margin (#ff6b35) -->
+                    <g class="comp-tier-2">
+                        <rect x="234" y="112" width="96" height="54" rx="10" fill="#ff6b35"></rect>
+                        <line x1="336" y1="139" x2="362" y2="139" stroke="#ff6b35" stroke-width="3.5" stroke-dasharray="5 4" stroke-linecap="round"></line>
+                        <rect x="368" y="116" width="152" height="46" rx="12" fill="#fff3ed"></rect>
+                        <circle cx="390" cy="139" r="10" fill="#ff6b35"></circle>
+                        <text x="390" y="143" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="800">€</text>
+                        <rect x="410" y="133" width="54" height="12" rx="6" fill="#ff6b35"></rect>
+                        <text x="506" y="144" text-anchor="end" fill="#d95326" font-size="14" font-weight="800">22%</text>
+                    </g>
+
+                    <!-- Tier 3: Transport & Logistics (#00bdf2) -->
+                    <g class="comp-tier-3">
+                        <rect x="234" y="174" width="96" height="48" rx="10" fill="#00bdf2"></rect>
+                        <line x1="336" y1="198" x2="362" y2="198" stroke="#00bdf2" stroke-width="3.5" stroke-dasharray="5 4" stroke-linecap="round"></line>
+                        <rect x="368" y="176" width="152" height="44" rx="12" fill="#e1f3fe"></rect>
+                        <circle cx="390" cy="198" r="10" fill="#00bdf2"></circle>
+                        <rect x="410" y="192" width="54" height="12" rx="6" fill="#0077c8"></rect>
+                        <text x="506" y="203" text-anchor="end" fill="#0077c8" font-size="14" font-weight="800">15%</text>
+                    </g>
+
+                    <!-- Tier 4: Processing, Packaging & Brand Margin (#ffc412) -->
+                    <g class="comp-tier-4">
+                        <rect x="234" y="230" width="96" height="58" rx="10" fill="#ffc412"></rect>
+                        <line x1="336" y1="259" x2="362" y2="259" stroke="#d49619" stroke-width="3.5" stroke-dasharray="5 4" stroke-linecap="round"></line>
+                        <rect x="368" y="236" width="152" height="46" rx="12" fill="#fffbeb"></rect>
+                        <circle cx="390" cy="259" r="10" fill="#ffc412"></circle>
+                        <rect x="410" y="253" width="54" height="12" rx="6" fill="#d49619"></rect>
+                        <text x="506" y="264" text-anchor="end" fill="#6c3c00" font-size="14" font-weight="800">25%</text>
+                    </g>
+
+                    <!-- Tier 5 (Bottom): Producer & Raw Agricultural Ingredients (#009a49) -->
+                    <g class="comp-tier-5">
+                        <rect x="234" y="296" width="96" height="66" rx="10" fill="#009a49"></rect>
+                        <line x1="336" y1="329" x2="362" y2="329" stroke="#009a49" stroke-width="3.5" stroke-dasharray="5 4" stroke-linecap="round"></line>
+                        <rect x="368" y="304" width="152" height="50" rx="12" fill="#e8f8ef"></rect>
+                        <circle cx="390" cy="329" r="10" fill="#009a49"></circle>
+                        <rect x="410" y="323" width="54" height="12" rx="6" fill="#009a49"></rect>
+                        <text x="506" y="334" text-anchor="end" fill="#009a49" font-size="14" font-weight="800">28%</text>
+                    </g>
+                </svg>
+                </div>
+                <span class="op-badge-pill green">Margins &amp; Composition</span>
+                <h3>Margins &amp; Watchdogs</h3>
+                <p>
+                    Consumer associations and investigative watchdogs decompose retail food prices into ingredient costs, manufacturing, logistics, retail margins, and taxes to spot unjustified markups.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Project:Open-Prices" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Read Project Wiki
+                    </a>
+                </div>
+            </article>
+
+            <!-- Reuse 2: Economic Research -->
+            <article class="off-feature-card reuse-card amber-top">
+                <div class="off-card-art">
+                    <a href="https://prices.openfoodfacts.org/api/docs" target="_blank" rel="noopener noreferrer">
+                        <svg id="svg-science-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 280" class="max-w-[420px]" role="img" aria-label="Economic research flask analyzing retail pricing elasticity">
+                    <style>
+                        .sci-bar {
+                            transform-box: fill-box;
+                            transform-origin: bottom center;
+                            animation: barWave 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        }
+                        .b1  { animation-delay: 0.00s; } .b2  { animation-delay: 0.06s; }
+                        .b3  { animation-delay: 0.12s; } .b4  { animation-delay: 0.18s; }
+                        .b5  { animation-delay: 0.24s; } .b6  { animation-delay: 0.30s; }
+                        .b7  { animation-delay: 0.36s; } .b8  { animation-delay: 0.42s; }
+                        .b9  { animation-delay: 0.48s; } .b10 { animation-delay: 0.54s; }
+                        .b11 { animation-delay: 0.60s; } .b12 { animation-delay: 0.66s; }
+                        .b13 { animation-delay: 0.72s; } .b14 { animation-delay: 0.78s; }
+                        .b15 { animation-delay: 0.84s; } .b16 { animation-delay: 0.90s; }
+                        .b17 { animation-delay: 0.96s; } .b18 { animation-delay: 1.02s; }
+                        .b19 { animation-delay: 1.08s; } .b20 { animation-delay: 1.14s; }
+                        .b21 { animation-delay: 1.20s; } .b22 { animation-delay: 1.26s; }
+                        .b23 { animation-delay: 1.32s; } .b24 { animation-delay: 1.38s; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes barWave {
+                            0%, 100% { transform: scaleY(1); }
+                            30% { transform: scaleY(0.18); }
+                            65% { transform: scaleY(1.06); }
+                        }
+                    </style>
+
+                    <!-- 4 Horizontal Reference Grid Lines -->
+                    <line x1="12" y1="32" x2="368" y2="32" stroke="#cccccc" stroke-width="1"></line>
+                    <line x1="12" y1="112" x2="368" y2="112" stroke="#cccccc" stroke-width="1"></line>
+                    <line x1="12" y1="192" x2="368" y2="192" stroke="#cccccc" stroke-width="1"></line>
+                    <line x1="12" y1="272" x2="368" y2="272" stroke="#cccccc" stroke-width="1"></line>
+
+                    <!-- 4 Green Bars (#00a600) -->
+                    <rect class="sci-bar b1" x="14" y="261" width="12" height="11" fill="#00a600"></rect>
+                    <rect class="sci-bar b2" x="28" y="236" width="12" height="36" fill="#00a600"></rect>
+                    <rect class="sci-bar b3" x="42" y="214" width="12" height="58" fill="#00a600"></rect>
+                    <rect class="sci-bar b4" x="57" y="214" width="12" height="58" fill="#00a600"></rect>
+
+                    <!-- 6 Yellow Bars (#ffe500) -->
+                    <rect class="sci-bar b5" x="71" y="264" width="12" height="8" fill="#ffe500"></rect>
+                    <rect class="sci-bar b6" x="85" y="216" width="12" height="56" fill="#ffe500"></rect>
+                    <rect class="sci-bar b7" x="100" y="233" width="12" height="39" fill="#ffe500"></rect>
+                    <rect class="sci-bar b8" x="114" y="240" width="12" height="32" fill="#ffe500"></rect>
+                    <rect class="sci-bar b9" x="128" y="240" width="12" height="32" fill="#ffe500"></rect>
+                    <rect class="sci-bar b10" x="143" y="247" width="12" height="25" fill="#ffe500"></rect>
+
+                    <!-- 7 Orange Bars (#ff7b00) -->
+                    <rect class="sci-bar b11" x="157" y="253" width="12" height="19" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b12" x="171" y="261" width="12" height="11" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b13" x="185" y="266" width="12" height="6" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b14" x="200" y="257" width="12" height="15" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b15" x="214" y="231" width="12" height="41" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b16" x="228" y="192" width="12" height="80" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b17" x="242" y="118" width="12" height="154" fill="#ff7b00"></rect>
+
+                    <!-- 5 Magenta Bars (#ff00d4) -->
+                    <rect class="sci-bar b18" x="257" y="128" width="12" height="144" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b19" x="271" y="90" width="12" height="182" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b20" x="285" y="58" width="12" height="214" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b21" x="299" y="44" width="12" height="228" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b22" x="314" y="112" width="12" height="160" fill="#ff00d4"></rect>
+
+                    <!-- 3 Red Bars (#ff0000) -->
+                    <rect class="sci-bar b23" x="328" y="192" width="12" height="80" fill="#ff0000"></rect>
+                    <rect class="sci-bar b24" x="342" y="216" width="12" height="56" fill="#ff0000"></rect>
+                    <rect class="sci-bar b24" x="356" y="204" width="12" height="68" fill="#ff0000"></rect>
+                </svg>
+                    </a>
+                </div>
+                <span class="op-badge-pill amber">Economics &amp; Science</span>
+                <h3>Academic Research</h3>
+                <p>
+                    Economists and university researchers study real-time inflation dynamics, geographical retail price dispersion, and price elasticity across product categories.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/api/docs" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Research API &amp; Data
+                    </a>
+                </div>
+            </article>
+
+            <!-- Reuse 3: Civic Tech & Apps -->
+            <article class="off-feature-card reuse-card blue-top">
+                <div class="off-card-art">
+                    <a href="https://github.com/openfoodfacts/open-prices" target="_blank" rel="noopener noreferrer">
+                        <svg id="svg-expert-help" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Civic tech developers building price comparison apps">
+                    <style>
+                        .code-line-1 { animation: typeWidth1 3.6s steps(12) infinite; }
+                        .code-line-2 { animation: typeWidth2 3.6s steps(12) infinite; }
+                        .robot-bob {
+                            animation: robotFloat 3.6s ease-in-out infinite;
+                            transform-origin: 425px 125px;
+                        }
+                        .hand-left-type {
+                            animation: leftType 0.9s ease-in-out infinite;
+                            transform-origin: 185px 380px;
+                        }
+                        .hand-right-type {
+                            animation: rightType 0.9s ease-in-out infinite 0.45s;
+                            transform-origin: 375px 380px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes typeWidth1 {
+                            0%, 10% { width: 20px; }
+                            50%, 90% { width: 145px; }
+                            100% { width: 20px; }
+                        }
+                        @keyframes typeWidth2 {
+                            0%, 25% { width: 10px; }
+                            65%, 90% { width: 115px; }
+                            100% { width: 10px; }
+                        }
+                        @keyframes robotFloat {
+                            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+                            50% { transform: translateY(-10px) rotate(4deg); }
+                        }
+                        @keyframes leftType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                        @keyframes rightType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                    </style>
+
+                    <!-- Central Laptop / Code & Design Window -->
+                    <rect x="110" y="76" width="310" height="205" rx="18" fill="#181818"></rect>
+                    <rect x="124" y="92" width="282" height="173" rx="10" fill="#26292e"></rect>
+
+                    <!-- Top Window Dots -->
+                    <circle cx="142" cy="108" r="5.5" fill="#dc3522"></circle>
+                    <circle cx="160" cy="108" r="5.5" fill="#f8c100"></circle>
+                    <circle cx="178" cy="108" r="5.5" fill="#009a49"></circle>
+
+                    <!-- Code Bracket & Animated Code Bars -->
+                    <text x="142" y="152" fill="#00bdf2" font-family="monospace" font-weight="800" font-size="26">&lt;/&gt;</text>
+                    <rect class="code-line-1" x="198" y="134" width="145" height="12" rx="6" fill="#7fbc2b"></rect>
+                    <rect class="code-line-2" x="198" y="156" width="115" height="12" rx="6" fill="#f8c100"></rect>
+                    <rect x="142" y="182" width="170" height="12" rx="6" fill="#ff6b35"></rect>
+                    <rect x="142" y="204" width="128" height="12" rx="6" fill="#00bdf2"></rect>
+                    <rect x="142" y="226" width="90" height="12" rx="6" fill="#d9dada"></rect>
+
+                    <!-- Laptop Base -->
+                    <path fill="#aeaeae" d="M 82,281 L 448,281 L 432,304 L 98,304 Z"></path>
+
+                    <!-- Floating Robotoff AI Badge (Top Right) -->
+                    <g class="robot-bob">
+                        <!-- Antenna -->
+                        <rect x="421" y="54" width="8" height="22" rx="4" fill="#606362"></rect>
+                        <circle cx="425" cy="50" r="9" fill="#ff6b35"></circle>
+                        <!-- Robot Head -->
+                        <rect x="375" y="72" width="100" height="78" rx="22" fill="#00bdf2"></rect>
+                        <rect x="390" y="90" width="70" height="32" rx="10" fill="#181818"></rect>
+                        <!-- Glowing Eyes -->
+                        <circle cx="408" cy="106" r="7" fill="#f8c100"></circle>
+                        <circle cx="442" cy="106" r="7" fill="#f8c100"></circle>
+                        <!-- Smile Bar -->
+                        <rect x="408" y="132" width="34" height="6" rx="3" fill="#ffffff"></rect>
+                    </g>
+
+                    <!-- Left Typing Hand (Peach Tone #ffc68a, Seamless Finger Slits) -->
+                    <g class="hand-left-type">
+                        <path fill="#ffc68a" d="
+                            M 118,415
+                            L 138,342
+                            L 138,292 A 7.5,7.5 0 0,1 153,292 L 153,330 L 156,330
+                            L 156,286 A 7.5,7.5 0 0,1 171,286 L 171,330 L 174,330
+                            L 174,286 A 7.5,7.5 0 0,1 189,286 L 189,330 L 192,330
+                            L 192,292 A 7.5,7.5 0 0,1 207,292 L 207,340
+                            L 222,324 C 229,317 238,325 231,334
+                            L 207,365 L 195,415 Z"></path>
+                    </g>
+
+                    <!-- Right Typing Hand (Brown Tone #955830, Seamless Finger Slits) -->
+                    <g class="hand-right-type">
+                        <path fill="#955830" d="
+                            M 342,415
+                            L 330,365
+                            L 306,334 C 299,325 308,317 315,324
+                            L 330,340
+                            L 330,292 A 7.5,7.5 0 0,1 345,292 L 345,330 L 348,330
+                            L 348,286 A 7.5,7.5 0 0,1 363,286 L 363,330 L 366,330
+                            L 366,286 A 7.5,7.5 0 0,1 381,286 L 381,330 L 384,330
+                            L 384,292 A 7.5,7.5 0 0,1 399,292 L 399,342
+                            L 419,415 Z"></path>
+                    </g>
+                </svg>
+                    </a>
+                </div>
+                <span class="op-badge-pill blue">Civic Tech &amp; APIs</span>
+                <h3>Build Price Tools</h3>
+                <p>
+                    Developers create personal finance trackers, grocery list price optimizers, and automated receipt splitters using our open REST API and bulk JSON/CSV dumps.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts/open-prices" class="off-btn off-btn-primary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Explore GitHub Code
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="bottom-projects-cta">
+        <h2>Ready to shed light on grocery prices?</h2>
+        <p>
+            Connect with volunteers, economists, and open data contributors in our dedicated Slack channel.
+        </p>
+        <a href="https://slack.openfoodfacts.org" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer" style="font-size: 1.05rem; padding: 0.85rem 1.85rem; background: #10b981;">
+            Join #prices on Slack &rarr;
+        </a>
+    </div>
+
+</div>
+
+<script>
+    function onMount(fn) {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+        } else {
+            fn();
+        }
+    }
+
+    onMount(() => {
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            if (typeof parent !== 'undefined' && parent !== window) {
+                parent.postMessage({ frameHeight: height }, '*');
+            }
+        }
+        sendHeight();
+        window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
+                    }
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
+
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
+        });
+    });
+</script>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg-op-piggy-bank" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" width="560" height="420" class="">
+                    <style>
+                        .piggy-coin-drop {
+                            animation: coinDropIn 3.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                            transform-origin: 280px 92px;
+                        }
+                        .piggy-body-bounce {
+                            animation: piggyBounce 3.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 280px 340px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes coinDropIn {
+                            0% { transform: translateY(-48px) scale(0.95); opacity: 0; }
+                            20% { transform: translateY(0px) scale(1); opacity: 1; }
+                            52%, 100% { transform: translateY(72px) scale(0.85); opacity: 0; }
+                        }
+                        @keyframes piggyBounce {
+                            0%, 42%, 85%, 100% { transform: scale(1, 1); }
+                            52% { transform: scale(1.05, 0.94); }
+                            64% { transform: scale(0.98, 1.03); }
+                        }
+                    </style>
+
+                    <defs>
+                        <!-- Clip Path Above Coin Slot So Coin Disappears Inside the Piggy Bank -->
+                        <clipPath id="piggy-slot-clip">
+                            <rect x="140" y="0" width="280" height="162"></rect>
+                        </clipPath>
+                    </defs>
+
+                    <circle cx="280" cy="225" r="162" fill="#dcf0f7"></circle>
+
+                    <!-- Dropping Attached coin-euro.svg (Clipped at Slot Line y=162) -->
+                    <g clip-path="url(#piggy-slot-clip)">
+                        <g class="piggy-coin-drop" transform="translate(236, 48)">
+                            <circle cx="44" cy="44" r="44" fill="#ffc412"></circle>
+                            <circle cx="44" cy="44" r="32" fill="#d49619"></circle>
+                            <path d="M 54,28 C 44,24 33,30 31,41 L 30,47 C 32,57 44,63 54,59" fill="none" stroke="#6c3c00" stroke-width="7" stroke-linecap="round"></path>
+                            <line x1="24" y1="41" x2="50" y2="41" stroke="#6c3c00" stroke-width="5.5"></line>
+                            <line x1="24" y1="48" x2="50" y2="48" stroke="#6c3c00" stroke-width="5.5"></line>
+                            <path d="M 54,10 A 35,35 0 0,1 60,12" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"></path>
+                        </g>
+                    </g>
+
+                    <!-- Piggy Bank Body Group (#ff6270 from contact-us.svg / hero-openprices.svg) -->
+                    <g class="piggy-body-bounce">
+                        <!-- Curly Pink Tail (Right) -->
+                        <path d="M 412,235 C 446,218 452,254 426,260 C 414,262 426,282 448,272" fill="none" stroke="#ff6270" stroke-width="10" stroke-linecap="round"></path>
+
+                        <!-- Back Legs -->
+                        <rect x="198" y="314" width="32" height="52" rx="12" fill="#e04856"></rect>
+                        <rect x="332" y="314" width="32" height="52" rx="12" fill="#e04856"></rect>
+
+                        <!-- Back Ear -->
+                        <path fill="#e04856" d="M 192,168 C 178,130 212,124 232,154 Z"></path>
+
+                        <!-- Main Plump Piggy Body -->
+                        <ellipse cx="282" cy="248" rx="134" ry="96" fill="#ff6270"></ellipse>
+
+                        <!-- Front Snout (Left) -->
+                        <rect x="116" y="218" width="48" height="58" rx="22" fill="#ff8590"></rect>
+                        <ellipse cx="130" cy="238" rx="4" ry="7" fill="#b82e3b"></ellipse>
+                        <ellipse cx="144" cy="238" rx="4" ry="7" fill="#b82e3b"></ellipse>
+
+                        <!-- Front Ear -->
+                        <path fill="#ff8590" d="M 222,166 C 210,124 248,120 264,154 Z"></path>
+
+                        <!-- Front Legs -->
+                        <rect x="176" y="320" width="34" height="52" rx="12" fill="#ff6270"></rect>
+                        <rect x="310" y="320" width="34" height="52" rx="12" fill="#ff6270"></rect>
+
+                        <!-- Top Coin Slot -->
+                        <rect x="236" y="156" width="88" height="12" rx="6" fill="#8f1d28"></rect>
+
+                        <!-- Friendly Eye & Smile -->
+                        <circle cx="182" cy="218" r="8" fill="#181818"></circle>
+                        <circle cx="180" cy="215" r="2.5" fill="#ffffff"></circle>
+                        <path d="M 164,268 C 174,278 190,278 198,268" fill="none" stroke="#8f1d28" stroke-width="5" stroke-linecap="round"></path>
+
+                        <!-- Attached Green check.svg Badge on Side -->
+                        <circle cx="315" cy="252" r="28" fill="#0b7a3e"></circle>
+                        <path d="M 302,252 L 311,261 L 329,243" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                </svg>

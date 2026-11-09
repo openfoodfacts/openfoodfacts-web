@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Prices — Contribute Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1f2937;
+        }
+        /* Global animation play-state rule: ALL SVGs PAUSED by default, RUN ONLY on hover */
+        svg, svg * {
+            animation-play-state: paused !important;
+        }
+        .off-feature-card:hover svg, .off-feature-card:hover svg *,
+        .expert-banner:hover svg, .expert-banner:hover svg *,
+        .contribute-hero:hover svg, .contribute-hero:hover svg *,
+        .discover-hero:hover svg, .discover-hero:hover svg *,
+        .contact-hero:hover svg, .contact-hero:hover svg *,
+        .contact-card:hover svg, .contact-card:hover svg *,
+        .hero-media:hover svg, .hero-media:hover svg *,
+        .opff-hero:hover svg, .opff-hero:hover svg *,
+        .obf-hero:hover svg, .obf-hero:hover svg *,
+        .opf-hero:hover svg, .opf-hero:hover svg *,
+        .op-hero:hover svg, .op-hero:hover svg *,
+        svg:hover, svg:hover * {
+            animation-play-state: running !important;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            svg, svg * {
+                animation: none !important;
+            }
+        }
+        /* Strictly constrain card art and prevent any SVG/image overflow */
+        .off-card-art {
+            height: 160px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+            position: relative !important;
+            margin-bottom: 1.25rem !important;
+        }
+        .off-card-art img,
+        .off-card-art svg {
+            max-width: 100% !important;
+            max-height: 140px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+            display: block !important;
+            margin: 0 auto !important;
+            transition: transform 0.3s ease !important;
+        }
+        .off-feature-card:hover .off-card-art img,
+        .off-feature-card:hover .off-card-art svg {
+            transform: scale(1.05) !important;
+        }
+        .expert-banner-art img,
+        .expert-banner-art svg {
+            max-width: 280px !important;
+            max-height: 200px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        .hero-media img,
+        .hero-media svg {
+            max-width: 440px !important;
+            max-height: 340px !important;
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        /* Simulated Site Header */
+        .site-header-preview {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.85rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .site-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+        .site-header-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .preview-badge {
+            background: #ea580c;
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .site-header-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .nav-switch-link {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #64748b;
+            text-decoration: none;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+        .nav-switch-link:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+        .nav-switch-link.active {
+            background: #e2e8f0;
+            color: #0f172a;
+            font-weight: 700;
+        }
+        .main-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header-preview">
+        <div class="site-header-left">
+            <div class="site-header-title">
+                <span>🌐 Open Prices — Contribute Preview</span>
+                <span class="preview-badge">Revamped</span>
+            </div>
+        </div>
+        <div class="site-header-right">
+            <a href="preview-discover.html" class="nav-switch-link ">OFF Discover</a>
+            <a href="preview-contribute.html" class="nav-switch-link ">OFF Contribute</a>
+            <a href="preview-contact.html" class="nav-switch-link ">Contact</a>
+            <a href="preview-obf-discover.html" class="nav-switch-link ">OBF Discover</a>
+            <a href="preview-obf-contribute.html" class="nav-switch-link ">OBF Contribute</a>
+            <a href="preview-opff-discover.html" class="nav-switch-link ">OPFF Discover</a>
+            <a href="preview-opff-contribute.html" class="nav-switch-link ">OPFF Contribute</a>
+            <a href="preview-opf-discover.html" class="nav-switch-link ">OPF Discover</a>
+            <a href="preview-opf-contribute.html" class="nav-switch-link ">OPF Contribute</a>
+            <a href="preview-prices-discover.html" class="nav-switch-link ">Prices Discover</a>
+            <a href="preview-prices-contribute.html" class="nav-switch-link active">Prices Contribute</a>
+        </div>
+    </header>
+
+    <main class="main-container">
+<!-- no side column -->
+<style>
+/* ==========================================================================
+   Open Prices — Modern Contribute Page
+   ========================================================================== */
+
+#prices-contribute-page {
+    --op-primary: #059669;
+    --op-primary-hover: #047857;
+    --op-secondary: #d97706;
+    --op-secondary-hover: #b45309;
+    --op-accent-gold: #f59e0b;
+    --op-dark: #0f172a;
+    --op-cream: #f8fafc;
+    --op-warm-bg: #f0fdf4;
+    --op-border: #a7f3d0;
+    --op-card-border: #cbd5e1;
+    --op-text-muted: #475569;
+    --op-blue: #0284c7;
+    --op-purple: #7c3aed;
+    --op-radius-card: 22px;
+    --op-radius-pill: 9999px;
+    --op-shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.04);
+    --op-shadow-md: 0 10px 24px rgba(5, 150, 105, 0.08);
+    --op-shadow-hover: 0 16px 36px rgba(5, 150, 105, 0.16);
+
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--op-dark);
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+}
+
+#prices-contribute-page * {
+    box-sizing: border-box;
+}
+
+/* Badge Pills */
+.op-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--op-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+    border: none;
+}
+.op-badge-pill.green { background: #dcfce7; color: #166534; }
+.op-badge-pill.amber { background: #fef3c7; color: #92400e; }
+.op-badge-pill.blue { background: #e0f2fe; color: #0369a1; }
+.op-badge-pill.purple { background: #f3e8ff; color: #6b21a8; }
+.op-badge-pill.emerald { background: #ecfdf5; color: #047857; }
+
+/* Hero Banner */
+.op-hero {
+    background: linear-gradient(145deg, #ffffff 0%, var(--op-warm-bg) 100%);
+    border: 1px solid var(--op-border);
+    border-radius: 28px;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 3.5rem;
+    box-shadow: var(--op-shadow-md);
+}
+
+.hero-content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.hero-brand-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.hero-logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--op-dark);
+    line-height: 1.15;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+}
+
+.hero-lead {
+    font-size: 1.15rem;
+    color: var(--op-text-muted);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+.hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-media img,
+.hero-media svg {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    filter: drop-shadow(0 14px 32px rgba(5, 150, 105, 0.12));
+    border-radius: 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-media img:hover,
+.hero-media svg:hover {
+    transform: translateY(-4px) scale(1.015);
+}
+
+/* Call to Action Buttons */
+.off-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--op-radius-pill);
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    line-height: 1.2;
+    border: none;
+}
+.off-btn-primary {
+    background: var(--op-primary);
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-primary:hover {
+    background: var(--op-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+.off-btn-secondary {
+    background: #ffffff;
+    color: var(--op-dark) !important;
+    border: 1px solid var(--op-border);
+    box-shadow: none;
+}
+.off-btn-secondary:hover {
+    background: var(--op-warm-bg);
+    border-color: var(--op-primary);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: var(--op-primary) !important;
+}
+.off-btn-green {
+    background: #16a34a;
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-green:hover {
+    background: #15803d;
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+.off-btn-block {
+    width: 100%;
+}
+
+/* Section Header */
+.section-header {
+    text-align: left;
+    margin-bottom: 2.25rem;
+}
+.section-header h2 {
+    font-size: clamp(1.8rem, 3vw, 2.35rem);
+    font-weight: 800;
+    color: var(--op-dark);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.015em;
+}
+.section-header p {
+    font-size: 1.08rem;
+    color: var(--op-text-muted);
+    margin: 0;
+    max-width: 760px;
+}
+
+/* Grids */
+.off-card-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+.off-card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+
+/* Feature Cards */
+.off-feature-card {
+    background: #ffffff;
+    border: 1px solid var(--op-card-border);
+    border-radius: var(--op-radius-card);
+    padding: 1.85rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--op-shadow-sm);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+.off-feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--op-shadow-hover);
+    border-color: var(--op-primary);
+}
+
+.off-card-art {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+.off-card-art img,
+.off-card-art svg {
+    max-height: 140px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.off-feature-card:hover .off-card-art img,
+.off-feature-card:hover .off-card-art svg {
+    transform: scale(1.05);
+}
+
+/* Animations: on hover only */
+#prices-contribute-page svg,
+#prices-contribute-page svg * {
+    animation-play-state: paused !important;
+}
+
+#prices-contribute-page .op-hero:hover svg,
+#prices-contribute-page .op-hero:hover svg *,
+#prices-contribute-page .off-feature-card:hover svg,
+#prices-contribute-page .off-feature-card:hover svg *,
+#prices-contribute-page .expert-banner:hover svg,
+#prices-contribute-page .expert-banner:hover svg *,
+#prices-contribute-page .hero-media:hover svg,
+#prices-contribute-page .hero-media:hover svg *,
+#prices-contribute-page svg:hover,
+#prices-contribute-page svg:hover * {
+    animation-play-state: running !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #prices-contribute-page svg,
+    #prices-contribute-page svg * {
+        animation: none !important;
+    }
+}
+
+.off-feature-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--op-dark);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+}
+
+.off-feature-card p {
+    font-size: 0.95rem;
+    color: var(--op-text-muted);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.55;
+    flex-grow: 1;
+}
+
+.card-footer-action {
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
+/* Expert Banner */
+.expert-banner {
+    background: linear-gradient(135deg, var(--op-warm-bg) 0%, #ffffff 100%);
+    border: 1px solid var(--op-border);
+    border-radius: 24px;
+    padding: clamp(1.8rem, 3.5vw, 2.5rem);
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 3.5rem;
+    box-shadow: var(--op-shadow-sm);
+}
+.expert-banner-art {
+    display: flex;
+    justify-content: center;
+}
+.expert-banner-art img,
+.expert-banner-art svg {
+    max-width: 280px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+.expert-banner-text h2 {
+    font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+    font-weight: 800;
+    color: var(--op-dark);
+    margin: 0 0 0.75rem 0;
+}
+.expert-banner-text p {
+    color: var(--op-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 1.25rem 0;
+}
+
+/* Bottom CTA */
+.bottom-projects-cta {
+    background: linear-gradient(135deg, var(--op-dark) 0%, #064e3b 100%);
+    border-radius: 24px;
+    padding: clamp(2rem, 4vw, 3.25rem);
+    text-align: center;
+    color: #ffffff;
+    margin-top: 3.5rem;
+    box-shadow: 0 20px 40px rgba(6, 78, 59, 0.25);
+}
+.bottom-projects-cta h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    margin: 0 0 0.85rem 0;
+    color: #ffffff;
+}
+.bottom-projects-cta p {
+    font-size: 1.1rem;
+    color: #a7f3d0;
+    max-width: 680px;
+    margin: 0 auto 1.75rem auto;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .hero-content-grid,
+    .expert-banner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-brand-header {
+        justify-content: center;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<div id="prices-contribute-page">
+
+    <!-- Hero Banner -->
+    <header class="op-hero">
+        <div class="hero-content-grid">
+            <div class="hero-text">
+                <div class="hero-brand-header">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjMzIiBoZWlnaHQ9IjEzOCIgdmlld0JveD0iMCAwIDYzMyAxMzgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0yNS4xNCAxMTEuODRMMTYuNDcgMTMyLjU0TDI3Ljg4IDEzNy4zMkwzNi42MiAxMTYuNDRDNDAuNTIgMTE3LjQ0IDQ0LjYgMTE3Ljk4IDQ4LjgxIDExNy45OEM3NS43MiAxMTcuOTggOTcuNjIgOTYuMDggOTcuNjIgNjkuMTdIODUuMjVDODUuMjUgODkuMjYgNjguOTEgMTA1LjYxIDQ4LjgxIDEwNS42MUMyOC43MSAxMDUuNjEgMTIuMzcgODkuMjcgMTIuMzcgNjkuMTdIMEMwIDg3LjUgMTAuMTYgMTAzLjQ5IDI1LjEzIDExMS44M0wyNS4xNCAxMTEuODRaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNMzAuMzEgMEg2Ny4zQzY5LjE2IDAgNzAuMzggMS45MyA2OS41OSAzLjYxTDYxLjUxIDIwLjc2QzYxLjA5IDIxLjY1IDYwLjIgMjIuMjEgNTkuMjIgMjIuMjFIMzguMzhDMzcuNCAyMi4yMSAzNi41MSAyMS42NCAzNi4wOSAyMC43NkwyOC4wMSAzLjYxQzI3LjIyIDEuOTMgMjguNDQgMCAzMC4zIDBMMzAuMzEgMFoiIGZpbGw9IiNGRkM4OEMiLz4KPHBhdGggZD0iTTM4Ljk4IDguNzM5OTlMNDMuOTEgMjIuMjIiIHN0cm9rZT0iI0RBQTE2RCIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNNTguOTc5OSA4LjA0MDA0TDU0LjAzOTkgMjEuNTIiIHN0cm9rZT0iI0RBQTE2RCIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNNjYuMzM5OSAyNi4wNjk5QzY2LjMzOTkgMjUuNjU5OSAzMS4yNjk5IDI1LjY1OTkgMzEuMjY5OSAyNi4wNjk5VjIwLjcxOTlDMzEuMjY5OSAxNC40Mjk5IDY2LjMzOTkgMTQuNDI5OSA2Ni4zMzk5IDIwLjcxOTlWMjYuMDY5OVoiIGZpbGw9IiM3ODQ2MDAiLz4KPHBhdGggZD0iTTAgNjkuMThDMCA0Mi4yMiAyMS44NSAyMC4zNyA0OC44MSAyMC4zN0M3NS43NyAyMC4zNyA5Ny42MiA0Mi4yMiA5Ny42MiA2OS4xOEgwWiIgZmlsbD0iI0ZGQzg4QyIvPgo8cGF0aCBkPSJNODUuMjQgNjkuMTdDODUuMjQgODkuMjkgNjguOTMgMTA1LjYxIDQ4LjggMTA1LjYxQzI4LjY3IDEwNS42MSAxMi4zNiA4OS4zIDEyLjM2IDY5LjE3SDg1LjIzSDg1LjI0WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTU5LjkyIDYwLjYyQzYwLjIgNjEuNzMgNTkuNjMgNjIuODcgNTguNTggNjMuMzFDNTYuOSA2NCA1NC43Mzk5IDY0LjUxIDUyLjMxOTkgNjQuNTFDNDcuMzk5OSA2NC41MSA0My4xMDk5IDYyLjU0IDQwLjM5OTkgNTkuMDdDMzguODk5OSA1Ny4zMyAzNy44Nzk5IDU1LjEgMzcuNDI5OSA1Mi41N0gzNS42ODk5QzM0Ljg2OTkgNTIuNTcgMzQuMiA1MS45IDM0LjIgNTEuMDhDMzQuMiA1MC4yNiAzNC44Njk5IDQ5LjU5IDM1LjY4OTkgNDkuNTlIMzcuMDA5OUMzNy4wMDk5IDQ5LjU5IDM3LjAyOTkgNDkuNTcgMzcuMDM5OSA0OS41NkMzNi45Njk5IDQ4Ljc0IDM3LjAzOTkgNDcuOSAzNy4wOTk5IDQ3LjFIMzUuNjg5OUMzNC44Njk5IDQ3LjEgMzQuMiA0Ni40MyAzNC4yIDQ1LjYxQzM0LjIgNDQuNzkgMzQuODY5OSA0NC4xMiAzNS42ODk5IDQ0LjEySDM3LjU5OTlDMzguMjE5OSA0MS4zOSAzOS41Mjk5IDM4Ljk3IDQxLjM2OTkgMzcuMDlDNDQuMTI5OSAzNC4yMSA0Ny45Mjk5IDMyLjQ2IDUyLjQ1OTkgMzIuNDZDNTQuNTQ5OSAzMi40NiA1Ni40Mzk5IDMyLjc5IDU3Ljk4OTkgMzMuMjZDNTkuMTg5OSAzMy42MiA1OS44Nzk5IDM0Ljg3IDU5LjUzOTkgMzYuMDhMNTkuNTE5OSAzNi4xNEM1OS4xNzk5IDM3LjM1IDU3LjkxOTkgMzguMDggNTYuNzA5OSAzNy43M0M1NS41NTk5IDM3LjQgNTQuMjMgMzcuMTcgNTIuODMgMzcuMTdDNTAuMTMgMzcuMTcgNDcuNzU5OSAzOC4xMyA0Ni4wMzk5IDM5Ljk5QzQ0Ljk3OTkgNDEuMDMgNDQuMjcgNDIuNTQgNDMuODYgNDQuMTFINTYuNDdDNTcuMjkgNDQuMTEgNTcuOTU5OSA0NC43OCA1Ny45NTk5IDQ1LjZDNTcuOTU5OSA0Ni40MiA1Ny4yOSA0Ny4wOSA1Ni40NyA0Ny4wOUg0My4xN0M0My4xIDQ3LjYzIDQzLjA4IDQ4LjIxIDQzLjA4IDQ4Ljc4VjQ5LjU5SDU2LjQ3QzU3LjI5IDQ5LjU5IDU3Ljk1OTkgNTAuMjYgNTcuOTU5OSA1MS4wOEM1Ny45NTk5IDUxLjkgNTcuMjkgNTIuNTcgNTYuNDcgNTIuNTdINDMuNzA5OUM0NC4wNzk5IDU0LjM4IDQ0Ljg0OTkgNTUuODUgNDUuODk5OSA1Ni45QzQ3LjY5OTkgNTguNzMgNTAuMjIgNTkuNjIgNTMuMDMgNTkuNjJDNTQuNDkgNTkuNjIgNTUuODggNTkuMzUgNTcuMDMgNTguOTlDNTguMjggNTguNjEgNTkuNTg5OSA1OS4zNSA1OS45MDk5IDYwLjYxTDU5LjkyIDYwLjYyWiIgZmlsbD0iIzc4NDYwMCIvPgo8cGF0aCBkPSJNMTU2LjU3IDQ4LjI5QzE1Mi43MiA0Ni4xIDE0OC4zOSA0NSAxNDMuNiA0NUMxMzguODEgNDUgMTM0LjU2IDQ2LjEgMTMwLjcxIDQ4LjI5QzEyNi44NiA1MC40OCAxMjMuNzggNTMuNDggMTIxLjQ3IDU3LjI3QzExOS4xNiA2MS4wNiAxMTggNjUuMzkgMTE4IDcwLjI0QzExOCA3NS4wOSAxMTkuMTYgNzkuNDIgMTIxLjQ3IDgzLjIxQzEyMy43OCA4NyAxMjYuODggODkuOTkgMTMwLjc2IDkyLjE5QzEzNC42NCA5NC4zOCAxMzguOTIgOTUuNDggMTQzLjYgOTUuNDhDMTQ4LjI4IDk1LjQ4IDE1Mi42MyA5NC4zOCAxNTYuNDkgOTIuMTlDMTYwLjM0IDkwIDE2My40MiA4Ny4wMSAxNjUuNzMgODMuMjFDMTY4LjA0IDc5LjQyIDE2OS4yIDc1LjA5IDE2OS4yIDcwLjI0QzE2OS4yIDY1LjM5IDE2OC4wNiA2MC45OCAxNjUuNzggNTcuMjJDMTYzLjUgNTMuNDYgMTYwLjQzIDUwLjQ4IDE1Ni41OCA0OC4yOUgxNTYuNTdaTTE1NS4yOCA3Ny43NUMxNTQuMTIgNzkuOTcgMTUyLjU1IDgxLjcgMTUwLjU3IDgyLjk1QzE0OC41OCA4NC4xOSAxNDYuMjYgODQuODIgMTQzLjU5IDg0LjgyQzE0MC45MiA4NC44MiAxMzguNjcgODQuMiAxMzYuNjYgODIuOTVDMTM0LjY0IDgxLjcxIDEzMy4wNiA3OS45NyAxMzEuOTEgNzcuNzVDMTMwLjc1IDc1LjUzIDEzMC4xOCA3My4wMyAxMzAuMTggNzAuMjRDMTMwLjE4IDY3LjQ1IDEzMC43NiA2NC45NyAxMzEuOTEgNjIuNzdDMTMzLjA3IDYwLjU4IDEzNC42NSA1OC44NiAxMzYuNjYgNTcuNjJDMTM4LjY3IDU2LjM4IDE0MC45OCA1NS43NSAxNDMuNTkgNTUuNzVDMTQ2LjIgNTUuNzUgMTQ4LjU4IDU2LjM3IDE1MC41NyA1Ny42MkMxNTIuNTUgNTguODYgMTU0LjEyIDYwLjU4IDE1NS4yOCA2Mi43N0MxNTYuNDQgNjQuOTYgMTU3LjAxIDY3LjQ1IDE1Ny4wMSA3MC4yNEMxNTcuMDEgNzMuMDMgMTU2LjQzIDc1LjUzIDE1NS4yOCA3Ny43NVoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik0yMTMuMzkgNDguMzhDMjA5LjcyIDQ2LjEzIDIwNS42IDQ1IDIwMS4wNCA0NUMxOTcuMzEgNDUgMTk0LjAyIDQ1LjczIDE5MS4xOCA0Ny4xOEMxODguOSA0OC4zNCAxODcuMDEgNDkuODggMTg1LjQ5IDUxLjc5VjQ2LjA3SDE3NC40N1YxMTIuMTlIMTg2LjJWODkuNzdDMTg3LjYzIDkxLjI5IDE4OS4zMyA5Mi41MSAxOTEuMzEgOTMuNDRDMTk0LjI0IDk0LjggMTk3LjQ2IDk1LjQ4IDIwMC45NSA5NS40OEMyMDUuNjMgOTUuNDggMjA5LjgxIDk0LjM3IDIxMy40OCA5Mi4xNUMyMTcuMTUgODkuOTMgMjIwLjA2IDg2Ljg5IDIyMi4xOSA4My4wNEMyMjQuMzIgNzkuMTkgMjI1LjM5IDc0LjkyIDIyNS4zOSA3MC4yNEMyMjUuMzkgNjUuNTYgMjI0LjMxIDYxLjIzIDIyMi4xNSA1Ny40NEMyMTkuOTkgNTMuNjUgMjE3LjA3IDUwLjYzIDIxMy40IDQ4LjM4SDIxMy4zOVpNMjExLjUyIDc3LjhDMjEwLjMzIDc5Ljk5IDIwOC43MiA4MS43MSAyMDYuNjggODIuOTVDMjA0LjY0IDg0LjE5IDIwMi4yOCA4NC44MiAxOTkuNjEgODQuODJDMTk2Ljk0IDg0LjgyIDE5NC43NyA4NC4yIDE5Mi43MiA4Mi45NUMxOTAuNjggODEuNzEgMTg5LjA4IDc5Ljk5IDE4Ny45MiA3Ny44QzE4Ni43NiA3NS42MSAxODYuMTkgNzMuMDkgMTg2LjE5IDcwLjI1QzE4Ni4xOSA2Ny40MSAxODYuNzcgNjQuOTggMTg3LjkyIDYyLjc4QzE4OS4wOCA2MC41OSAxOTAuNjcgNTguODcgMTkyLjcyIDU3LjYzQzE5NC43NiA1Ni4zOSAxOTcuMDYgNTUuNzYgMTk5LjYxIDU1Ljc2QzIwMi4xNiA1NS43NiAyMDQuNjMgNTYuMzggMjA2LjY4IDU3LjYzQzIwOC43MiA1OC44NyAyMTAuMzQgNjAuNTkgMjExLjUyIDYyLjc4QzIxMi43IDY0Ljk3IDIxMy4zIDY3LjQ2IDIxMy4zIDcwLjI1QzIxMy4zIDczLjA0IDIxMi43MSA3NS42MSAyMTEuNTIgNzcuOFoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik0yNjYuOTggNTIuMDJDMjY0Ljk3IDQ5LjgzIDI2Mi41MiA0OC4xMSAyNTkuNjUgNDYuODdDMjU2Ljc4IDQ1LjYzIDI1My40NCA0NSAyNDkuNjUgNDVDMjQ1LjA5IDQ1IDI0MSA0Ni4xIDIzNy4zOSA0OC4yOUMyMzMuNzggNTAuNDggMjMwLjkgNTMuNDYgMjI4Ljc3IDU3LjIyQzIyNi42NCA2MC45OCAyMjUuNTcgNjUuMjkgMjI1LjU3IDcwLjE1QzIyNS41NyA3NS4wMSAyMjYuNjEgNzkuMSAyMjguNjggODIuOTVDMjMwLjc1IDg2LjggMjMzLjY3IDg5Ljg1IDIzNy40MyA5Mi4xQzI0MS4xOSA5NC4zNSAyNDUuNTYgOTUuNDggMjUwLjU0IDk1LjQ4QzI1My44IDk1LjQ4IDI1Ni44MiA5NC45OCAyNTkuNiA5My45N0MyNjIuMzggOTIuOTYgMjY0Ljc4IDkxLjU3IDI2Ni44IDg5Ljc5QzI2OC44MSA4OC4wMSAyNzAuMyA4NS45NyAyNzEuMjQgODMuNjZMMjYxLjgyIDc5LjA0QzI2MC43NSA4MC45NCAyNTkuMjkgODIuNDUgMjU3LjQyIDgzLjU3QzI1NS41NSA4NC43IDI1My4yOSA4NS4yNiAyNTAuNjIgODUuMjZDMjQ3Ljk1IDg1LjI2IDI0NS42IDg0LjY0IDI0My41NSA4My4zOUMyNDEuNTEgODIuMTUgMjM5Ljk2IDgwLjM4IDIzOC45MyA3OC4xQzIzOC4zMSA3Ni43MyAyMzcuOTIgNzUuMjMgMjM3Ljc1IDczLjYxSDI3Mi41NkMyNzIuOCA3Mi45IDI3Mi45NiA3Mi4xMSAyNzMuMDUgNzEuMjZDMjczLjE0IDcwLjQgMjczLjE4IDY5LjUzIDI3My4xOCA2OC42NEMyNzMuMTggNjUuMzggMjcyLjY1IDYyLjM1IDI3MS41OCA1OS41M0MyNzAuNTEgNTYuNzIgMjY4Ljk3IDU0LjIxIDI2Ni45NiA1Mi4wMkgyNjYuOThaTTIzOCA2NC42NEMyMzguMiA2My42MiAyMzguNDggNjIuNjcgMjM4Ljg1IDYxLjhDMjM5LjgzIDU5LjQ5IDI0MS4yNiA1Ny43MSAyNDMuMTYgNTYuNDdDMjQ1LjA2IDU1LjIzIDI0Ny4yMiA1NC42IDI0OS42NSA1NC42QzI1Mi4wOCA1NC42IDI1NC4zNyA1NS4yMiAyNTYuMTggNTYuNDdDMjU3Ljk5IDU3LjcxIDI1OS4yOSA1OS40IDI2MC4wOSA2MS41NEMyNjAuNDYgNjIuNTEgMjYwLjY3IDYzLjU1IDI2MC43NCA2NC42NUgyMzhWNjQuNjRaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNMzExLjggNDcuMzFDMzA5LjA0IDQ1Ljc3IDMwNS44OSA0NSAzMDIuMzQgNDVDMjk4Ljc5IDQ1IDI5NS45IDQ1Ljc2IDI5My4zMiA0Ny4yN0MyOTEuMzMgNDguNDQgMjg5Ljc4IDUwLjAyIDI4OC42NSA1Mi4wMlY0Ni4wN0gyNzcuNjNWOTQuNDJIMjg5LjM2VjY2LjA3QzI4OS4zNiA2My45NCAyODkuNzcgNjIuMSAyOTAuNiA2MC41NkMyOTEuNDMgNTkuMDIgMjkyLjU4IDU3Ljg0IDI5NC4wNyA1Ny4wMUMyOTUuNTUgNTYuMTggMjk3LjI0IDU1Ljc3IDI5OS4xNCA1NS43N0MzMDEuMDQgNTUuNzcgMzAyLjcyIDU2LjE5IDMwNC4yMSA1Ny4wMUMzMDUuNjkgNTcuODQgMzA2Ljg1IDU5LjAyIDMwNy42OCA2MC41NkMzMDguNTEgNjIuMSAzMDguOTIgNjMuOTQgMzA4LjkyIDY2LjA3Vjk0LjQySDMyMC41NlY2My4zMkMzMjAuNTYgNTkuNzEgMzE5Ljc5IDU2LjUyIDMxOC4yNSA1My43N0MzMTYuNzEgNTEuMDIgMzE0LjU2IDQ4Ljg3IDMxMS44MSA0Ny4zM1Y0Ny4zMUgzMTEuOFoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik02MDkuMDYgOS4yNzI3NkwzNDQuODg5IDMyLjM4NDdDMzM2LjA5NyAzMy4xNTM5IDMyOS41OTQgNDAuOTA0NyAzMzAuMzYzIDQ5LjY5NjdMMzM1LjMzNiAxMDYuNTRDMzM2LjEwNSAxMTUuMzMxIDM0My44NTYgMTIxLjgzNSAzNTIuNjQ4IDEyMS4wNjZMNjE2LjgxOSA5Ny45NTRDNjI1LjYxMSA5Ny4xODQ4IDYzMi4xMTQgODkuNDM0IDYzMS4zNDUgODAuNjQyMUw2MjYuMzcyIDIzLjc5OTJDNjI1LjYwMyAxNS4wMDczIDYxNy44NTIgOC41MDM1NiA2MDkuMDYgOS4yNzI3NloiIGZpbGw9IiMwMEEwNUEiLz4KPHBhdGggZD0iTTM1Mi4zMyAxMDQuNzEzTDM0Ny40NCA0OC43OTI5TDM2OC45IDQ2LjkxMjlDMzcyLjc1IDQ2LjU3MjkgMzc2LjIzIDQ2Ljk1MjkgMzc5LjMyIDQ4LjA0MjlDMzgyLjQxIDQ5LjEzMjkgMzg0LjkzIDUwLjkzMjkgMzg2Ljg2IDUzLjQzMjlDMzg4Ljc5IDU1LjkzMjkgMzg5LjkzIDU5LjE0MjkgMzkwLjI3IDYzLjA0MjlDMzkwLjYgNjYuODQyOSAzOTAuMDIgNzAuMTQyOSAzODguNTMgNzIuOTUyOUMzODcuMDQgNzUuNzUyOSAzODQuODYgNzcuOTcyOSAzODIgNzkuNjEyOUMzNzkuMTQgODEuMjUyOSAzNzUuODEgODIuMjMyOSAzNzIuMDEgODIuNTYyOUwzNjIuMTggODMuNDIyOUwzNjMuOTUgMTAzLjY4M0wzNTIuMzIgMTA0LjcwM0wzNTIuMzMgMTA0LjcxM1pNMzYxLjMxIDczLjI5MjlMMzcxLjIyIDcyLjQyMjlDMzcyLjg3IDcyLjI4MjkgMzc0LjI3IDcxLjgzMjkgMzc1LjQxIDcxLjA3MjlDMzc2LjU1IDcwLjMyMjkgMzc3LjQxIDY5LjMzMjkgMzc3Ljk5IDY4LjEyMjlDMzc4LjU3IDY2LjkxMjkgMzc4Ljc5IDY1LjU1MjkgMzc4LjY2IDY0LjA1MjlDMzc4LjUyIDYyLjUwMjkgMzc4LjA3IDYxLjE4MjkgMzc3LjI5IDYwLjA5MjlDMzc2LjUxIDU5LjAwMjkgMzc1LjUgNTguMTgyOSAzNzQuMjQgNTcuNjMyOUMzNzIuOTggNTcuMDkyOSAzNzEuNTMgNTYuODgyOSAzNjkuODggNTcuMDMyOUwzNTkuOTcgNTcuOTAyOUwzNjEuMzIgNzMuMjkyOUgzNjEuMzFaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNDE5LjE2IDc4LjQ0MjlMNDEwLjkgNzkuMTYyOUw0MTIuNjcgOTkuNDIyOUw0MDEuMDQgMTAwLjQ0M0wzOTYuMTUgNDQuNTIyOUw0MTcuNTQgNDIuNjUyOUM0MjEuMzkgNDIuMzEyOSA0MjQuODcgNDIuNjkyOSA0MjcuOTYgNDMuNzgyOUM0MzEuMDUgNDQuODcyOSA0MzMuNTcgNDYuNjcyOSA0MzUuNSA0OS4xNzI5QzQzNy40MyA1MS42NzI5IDQzOC41NyA1NC44ODI5IDQzOC45MSA1OC43ODI5QzQzOS4yNCA2Mi41ODI5IDQzOC42NSA2NS45MDI5IDQzNy4xMyA2OC43MzI5QzQzNS42MSA3MS41NjI5IDQzMy40NCA3My43ODI5IDQzMC42IDc1LjM5MjlMNDQ1LjMxIDk2LjU2MjlMNDMyLjI1IDk3LjcwMjlMNDE5LjE0IDc4LjQzMjlMNDE5LjE2IDc4LjQ0MjlaTTQxMC4wMiA2OS4wMzI5TDQxOS44NSA2OC4xNzI5QzQyMS41IDY4LjAzMjkgNDIyLjkgNjcuNTgyOSA0MjQuMDQgNjYuODIyOUM0MjUuMTggNjYuMDcyOSA0MjYuMDQgNjUuMDgyOSA0MjYuNjIgNjMuODcyOUM0MjcuMiA2Mi42NjI5IDQyNy40MiA2MS4zMDI5IDQyNy4yOSA1OS44MDI5QzQyNy4xNSA1OC4yNTI5IDQyNi43IDU2LjkzMjkgNDI1LjkyIDU1Ljg0MjlDNDI1LjE0IDU0Ljc1MjkgNDI0LjEzIDUzLjkzMjkgNDIyLjg3IDUzLjM4MjlDNDIxLjYxIDUyLjg0MjkgNDIwLjE2IDUyLjYzMjkgNDE4LjUxIDUyLjc4MjlMNDA4LjY4IDUzLjY0MjlMNDEwLjAzIDY5LjAzMjlINDEwLjAyWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTQ1MS4xIDk2LjA3MjlMNDQ2LjIxIDQwLjE2MjlMNDU3Ljg0IDM5LjE0MjlMNDYyLjczIDk1LjA2M0w0NTEuMSA5Ni4wODI5Vjk2LjA3MjlaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNDk5LjI5IDkyLjc2MjlDNDk1LjI5IDkzLjExMjkgNDkxLjUxIDkyLjcxMjkgNDg3Ljk1IDkxLjU2MjlDNDg0LjM5IDkwLjQxMjkgNDgxLjIzIDg4LjY0MjkgNDc4LjQ1IDg2LjI3MjlDNDc1LjY3IDgzLjkwMjkgNDczLjQxIDgxLjAxMjkgNDcxLjY4IDc3LjYzMjlDNDY5Ljk1IDc0LjI1MjkgNDY4LjkgNzAuNDkyOSA0NjguNTQgNjYuMzQyOUM0NjguMTggNjIuMTkyOSA0NjguNTQgNTguMjkyOSA0NjkuNjMgNTQuNjMyOUM0NzAuNzIgNTAuOTgyOSA0NzIuNDMgNDcuNzYyOSA0NzQuNzYgNDQuOTUyOUM0NzcuMDkgNDIuMTUyOSA0NzkuOSAzOS44OTI5IDQ4My4yIDM4LjE2MjlDNDg2LjUgMzYuNDMyOSA0OTAuMTggMzUuMzkyOSA0OTQuMjMgMzUuMDQyOUM0OTguMjggMzQuNjgyOSA1MDEuOTggMzUuMDQyOSA1MDUuMzMgMzYuMTEyOUM1MDguNjggMzcuMTgyOSA1MTEuNTcgMzguNzQyOSA1MTQuMDIgNDAuNzkyOUM1MTYuNDcgNDIuODQyOSA1MTguMjkgNDUuMjEyOSA1MTkuNDggNDcuODgyOUw1MDkuNjMgNTMuNzMyOUM1MDguNDQgNTEuMTEyOSA1MDYuNTggNDkuMDIyOSA1MDQuMDUgNDcuNDUyOUM1MDEuNTIgNDUuODgyOSA0OTguNTUgNDUuMjUyOSA0OTUuMTUgNDUuNTUyOUM0OTEuODUgNDUuODQyOSA0ODkuMDEgNDYuODcyOSA0ODYuNjUgNDguNjQyOUM0ODQuMjggNTAuNDEyOSA0ODIuNTMgNTIuNzIyOSA0ODEuMzkgNTUuNTcyOUM0ODAuMjUgNTguNDIyOSA0NzkuODQgNjEuNjcyOSA0ODAuMTYgNjUuMzIyOUM0ODAuNDggNjguOTcyOSA0ODEuNDUgNzIuMTEyOSA0ODMuMDYgNzQuNzUyOUM0ODQuNjggNzcuMzgyOSA0ODYuOCA3OS4zNjI5IDQ4OS40NCA4MC42OTI5QzQ5Mi4wOCA4Mi4wMjI5IDQ5NS4wNSA4Mi41NDI5IDQ5OC4zNSA4Mi4yNjI5QzUwMS43NSA4MS45NjI5IDUwNC41NiA4MC44MjI5IDUwNi43OSA3OC44NDI5QzUwOS4wMSA3Ni44NjI5IDUxMC40OCA3NC40NzI5IDUxMS4xOSA3MS42OTI5TDUyMS45MSA3NS43NDI5QzUyMS4yIDc4LjU3MjkgNTE5LjgyIDgxLjIyMjkgNTE3Ljc2IDgzLjY2MjlDNTE1LjcxIDg2LjExMjkgNTEzLjEyIDg4LjE1MjkgNTEwLjAxIDg5Ljc4MjlDNTA2LjkgOTEuNDEyOSA1MDMuMzIgOTIuNDEyOSA0OTkuMjcgOTIuNzYyOUg0OTkuMjlaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNTMwLjU4IDg5LjExMjlMNTI1LjY5IDMzLjE5MjlMNTYzLjI5IDI5LjkwM0w1NjQuMTggNDAuMDMyOUw1MzguMjEgNDIuMzAyOUw1MzkuMzIgNTQuOTgzTDU2My43OSA1Mi44NDNMNTY0LjY4IDYyLjk3M0w1NDAuMjEgNjUuMTEyOUw1NDEuMzMgNzcuOTQzTDU2Ny4zIDc1LjY3MjlMNTY4LjE5IDg1LjgwMjlMNTMwLjU5IDg5LjA5M0w1MzAuNTggODkuMTEyOVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik01OTUuMjEgODQuMzcyOUM1OTEuNzEgODQuNjgyOSA1ODguMzYgODQuMzMyOSA1ODUuMTcgODMuMzIyOUM1ODEuOTggODIuMzEyOSA1NzkuMTcgODAuNzMyOSA1NzYuNzQgNzguNTcyOUM1NzQuMzEgNzYuNDEyOSA1NzIuNCA3My43ODI5IDU3MS4wMiA3MC42ODI5TDU4MC4xOCA2NS41NzI5QzU4MS44NSA2OC41MDI5IDU4NCA3MC43MzI5IDU4Ni42MyA3Mi4yNzI5QzU4OS4yNiA3My44MTI5IDU5Mi4wOCA3NC40NDI5IDU5NS4wOCA3NC4xODI5QzU5Ni42OCA3NC4wNDI5IDU5OC4wNCA3My42NzI5IDU5OS4xNCA3My4wNzI5QzYwMC4yNSA3Mi40NzI5IDYwMS4wOSA3MS43MDI5IDYwMS42NiA3MC43NzI5QzYwMi4yMyA2OS44NDI5IDYwMi40NyA2OC43NzI5IDYwMi4zNiA2Ny41NzI5QzYwMi4yNSA2Ni4yNzI5IDYwMS43NSA2NS4xOTI5IDYwMC44NyA2NC4zNDI5QzU5OS45OSA2My40ODI5IDU5OC42NyA2Mi44NjI5IDU5Ni45MiA2Mi40NTI5TDU4NS42NSA1OS44MTI5QzU4MS4wNyA1OC43NTI5IDU3Ny41NCA1Ni45ODI5IDU3NS4wNSA1NC41MDI5QzU3Mi41NiA1Mi4wMjI5IDU3MS4xNiA0OC45MDI5IDU3MC44MyA0NS4xNTI5QzU3MC41NCA0MS44NTI5IDU3MS4xIDM4Ljg3MjkgNTcyLjUxIDM2LjIzMjlDNTczLjkyIDMzLjU5MjkgNTc2LjAyIDMxLjQ0MjkgNTc4LjgzIDI5Ljc4MjlDNTgxLjYzIDI4LjEyMjkgNTg0Ljk0IDI3LjEzMjkgNTg4Ljc0IDI2Ljc5MjlDNTkyLjA5IDI2LjUwMjkgNTk1LjI1IDI2LjgwMjkgNTk4LjIgMjcuNzAyOUM2MDEuMTUgMjguNjAyOSA2MDMuNzYgMzAuMDEyOSA2MDYuMDIgMzEuOTMyOUM2MDguMjggMzMuODUyOSA2MTAuMDYgMzYuMjQyOSA2MTEuMzcgMzkuMTAyOUw2MDIuMjkgNDQuMjAyOUM2MDEuMDEgNDEuNjkyOSA1OTkuMjYgMzkuNzkyOSA1OTcuMDMgMzguNTAyOUM1OTQuOCAzNy4yMTI5IDU5Mi4zMyAzNi42ODI5IDU4OS42MyAzNi45MjI5QzU4OC4wOCAzNy4wNjI5IDU4Ni43MiAzNy40MzI5IDU4NS41NyAzOC4wMzI5QzU4NC40MSAzOC42NDI5IDU4My41NSAzOS40MzI5IDU4Mi45OCA0MC40MTI5QzU4Mi40MSA0MS4zOTI5IDU4Mi4xOCA0Mi40ODI5IDU4Mi4yOCA0My42OTI5QzU4Mi4zOSA0NC45OTI5IDU4Mi45MiA0Ni4wOTI5IDU4My44NSA0Ni45OTI5QzU4NC43OSA0Ny44OTI5IDU4Ni4xMyA0OC41NDI5IDU4Ny44OCA0OC45NDI5TDU5OC45MiA1MS40NTI5QzYwMy41NSA1Mi41MTI5IDYwNy4wOSA1NC4yNDI5IDYwOS41NSA1Ni42NTI5QzYxMiA1OS4wNjI5IDYxMy40IDYyLjE0MjkgNjEzLjcyIDY1Ljg5MjlDNjE0LjAxIDY5LjE0MjkgNjEzLjQxIDcyLjExMjkgNjExLjkzIDc0Ljc4MjlDNjEwLjQ1IDc3LjQ2MjkgNjA4LjI4IDc5LjY0MjkgNjA1LjQzIDgxLjMyMjlDNjAyLjU4IDgzLjAxMjkgNTk5LjE3IDg0LjAyMjkgNTk1LjIyIDg0LjM3MjlINTk1LjIxWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==" alt="Open Prices Logo" class="hero-logo-img">
+                </div>
+                <span class="op-badge-pill green">🤝 Collective Citizen Action</span>
+                <h1>Contribute prices, shed light on food costs</h1>
+                <p class="hero-lead">
+                    Prices are the missing piece of grocery transparency. Whether you photograph a shelf label, upload a grocery receipt, or export your annual store loyalty history under GDPR, your contributions power global price openness.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://prices.openfoodfacts.org/contribute" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer">
+                        Add a Price Tag or Receipt &rarr;
+                    </a>
+                    <a href="https://wiki.openfoodfacts.org/GDPR_request" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        Supermarket GDPR Request
+                    </a>
+                    <a href="https://prices.openfoodfacts.org/challenges" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        Price Challenges
+                    </a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTkxIiBoZWlnaHQ9IjYwNiIgdmlld0JveD0iMCAwIDU5MSA2MDYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHk9IjI0IiB3aWR0aD0iNTkxIiBoZWlnaHQ9IjU4MiIgcng9IjkxIiBmaWxsPSIjRDdFREYzIiBmaWxsLW9wYWNpdHk9IjAuOTciLz4KPHBhdGggZD0iTTQ1Ny44NDQgMjA1LjQ2QzQ2My44MzggMTk3Ljc2MSA0ODAuNzAxIDIwNi4yNSA0NzMuOTQ3IDE4OC45NDlDNDY3LjE5NCAxNzEuNjQ3IDQ5MC41ODkgMTY5Ljg5NSA0OTcuNzk1IDE3My4yMDVDNDk5LjkyOCAxNzQuMTg2IDUwMi4wMjEgMTc1LjcxIDUwNC4wMDMgMTc3LjYyQzUwNC4yMzEgMTc1LjcyNSA1MDQuMzQ5IDE3My43OTIgNTA0LjM0OSAxNzEuODM1QzUwNC4zNDkgMTY4Ljk1NSA1MDQuMDk1IDE2Ni4xMzcgNTAzLjYwOSAxNjMuMzk3QzQ4OS4wODIgMTU4Ljg5MyA0ODYuMzI2IDE0Ny4xODMgNDc4Ljc3IDE1MS45MDdDNDcxLjA0NCAxNTYuNzM3IDQ2MC40ODkgMTQ2Ljg0MSA0NjEuMzg4IDEzOS43ODhDNDYyLjA3IDEzNC40MzYgNDY1LjM0NSAxMjcuNDQ2IDQ2My43MzUgMTI0LjIyMUM0NjEuMjA4IDEyMy44MTMgNDU4LjYxNCAxMjMuNiA0NTUuOTcyIDEyMy42QzQ0OS42OTUgMTIzLjYgNDQzLjY5NyAxMjQuNzk0IDQzOC4xOTMgMTI2Ljk2MUM0NDEuMzYxIDEzNi43MjUgNDQzLjk0NCAxNDEuNzgzIDQzNi4wMzQgMTQ3LjczQzQyNi4zIDE1NS4wNDcgNDE4LjU3NCAxNTAuMTUxIDQxOC41NzQgMTYxLjI2M0M0MTguNTc0IDE3Mi4zNzUgNDI1LjkxMyAxNzYuOTk5IDQxOC41NzQgMTgzLjkzMUM0MTYuNDk2IDE4NS44OTYgNDEzLjUxNiAxODcuMDg2IDQxMC4yNyAxODcuNjg5QzQxMS43OTUgMTkyLjA1MyA0MTMuOTI1IDE5Ni4xMzQgNDE2LjU3IDE5OS44MjlDNDI3LjE4MSAxOTEuNjQ5IDQzOS41NzggMjAzLjc2NyA0NDIuOTU2IDIwOS44NDZDNDQ0LjQyMyAyMTIuNDg3IDQ0NC4xMzUgMjE1LjQ0NCA0NDMuMTE1IDIxOC4zNDNDNDQ3LjIwOCAyMTkuNDYzIDQ1MS41MTggMjIwLjA2NSA0NTUuOTY5IDIyMC4wNjVDNDU2Ljk2MyAyMjAuMDY1IDQ1Ny45NDcgMjIwLjAzMiA0NTguOTI3IDIxOS45NzRDNDU2LjA4MyAyMTQuMSA0NTUuMjI1IDIwOC44MTggNDU3LjgzNyAyMDUuNDU3TDQ1Ny44NDQgMjA1LjQ2Wk00NDcuODA1IDE5OC40NjNDNDQyLjE5NCAxOTkuNjY3IDQ0MC45NzggMTg0LjEzMyA0MzcuNTU1IDE3Ny4xNzlDNDM0LjEzMyAxNzAuMjI2IDQyOS40MTMgMTY1LjEzNCA0MzMuNDQ3IDE2MC44NTVDNDM3LjQ4MiAxNTYuNTc2IDQ0MS41NzUgMTYwLjg1NSA0NDguNDY0IDE1NS40MTVDNDU1LjgyOSAxNDkuNTk2IDQ2Mi4zNSAxNTUuNjE3IDQ2My41NjkgMTYxLjE2QzQ2NC43ODkgMTY2LjcwMyA0NjAuMTMyIDE3Mi43MTYgNDU5LjExOSAxNzUuNjczQzQ1OC40NDYgMTc3LjY0MiA0NTguMzMxIDE4MC44NjcgNDU4Ljc3NiAxODUuMzQ5QzQ1OS40NDMgMTkyLjA2NyA0NTMuNDE2IDE5Ny4yNjUgNDQ3LjgwNSAxOTguNDdWMTk4LjQ2M1oiIGZpbGw9IiM3OEU2RkYiLz4KPHBhdGggZD0iTTQ2MS4zOTYgMTM5Ljc4OEM0NjAuNDk3IDE0Ni44NDEgNDcxLjA1MiAxNTYuNzMzIDQ3OC43NzggMTUxLjkwNkM0ODYuMzM0IDE0Ny4xODIgNDg5LjA4NiAxNTguODkzIDUwMy42MTcgMTYzLjM5NkM1MDAuMDU4IDE0My4yODkgNDg0LjAwNiAxMjcuNDgyIDQ2My43NDMgMTI0LjIyQzQ2NS4zNTYgMTI3LjQ0NSA0NjIuMDc4IDEzNC40MzYgNDYxLjM5NiAxMzkuNzg4WiIgZmlsbD0iIzAwOTY2NCIvPgo8cGF0aCBkPSJNNDU4Ljc4MSAxODUuMzQyQzQ1OC4zMzcgMTgwLjg2MyA0NTguNDUxIDE3Ny42MzggNDU5LjEyNCAxNzUuNjY2QzQ2MC4xMzQgMTcyLjcxMyA0NjQuNzk0IDE2Ni42OTYgNDYzLjU3NSAxNjEuMTUzQzQ2Mi4zNTUgMTU1LjYxIDQ1NS44MzQgMTQ5LjU4OSA0NDguNDY5IDE1NS40MDhDNDQxLjU4NCAxNjAuODQ4IDQzNy40ODcgMTU2LjU2OSA0MzMuNDUzIDE2MC44NDhDNDI5LjQxOSAxNjUuMTI4IDQzNC4xMzggMTcwLjIxOSA0MzcuNTYxIDE3Ny4xNzJDNDQwLjk4MyAxODQuMTI2IDQ0Mi4xOTkgMTk5LjY2MSA0NDcuODEgMTk4LjQ1NkM0NTMuNDIxIDE5Ny4yNTEgNDU5LjQ0OCAxOTIuMDUzIDQ1OC43ODEgMTg1LjMzNVYxODUuMzQyWiIgZmlsbD0iIzAwOTY2NCIvPgo8cGF0aCBkPSJNNDQyLjk2MyAyMDkuODQ2QzQzOS41ODUgMjAzLjc2NyA0MjcuMTg3IDE5MS42NDkgNDE2LjU3NyAxOTkuODI5QzQyMi45NDcgMjA4LjcyNiA0MzIuMjcyIDIxNS4zNzEgNDQzLjEyMiAyMTguMzQzQzQ0NC4xNDIgMjE1LjQ0NSA0NDQuNDI5IDIxMi40ODQgNDQyLjk2MyAyMDkuODQ2WiIgZmlsbD0iIzAwOTY2NCIvPgo8cGF0aCBkPSJNNDE4LjU4MyAxNjEuMjY2QzQxOC41ODMgMTUwLjE1MSA0MjYuMzA4IDE1NS4wNTEgNDM2LjA0MiAxNDcuNzM0QzQ0My45NTIgMTQxLjc4NiA0NDEuMzY5IDEzNi43MjggNDM4LjIwMSAxMjYuOTY1QzQyMC4yNzcgMTM0LjAyOCA0MDcuNiAxNTEuNDU4IDQwNy42IDE3MS44MzhDNDA3LjYgMTc3LjM5MiA0MDguNTQ3IDE4Mi43MjkgNDEwLjI3OCAxODcuNjk2QzQxMy41MjQgMTg3LjA5MyA0MTYuNTA1IDE4NS45MDMgNDE4LjU4MyAxODMuOTM4QzQyNS45MjEgMTc3LjAwNiA0MTguNTgzIDE3Mi4zODUgNDE4LjU4MyAxNjEuMjdWMTYxLjI2NloiIGZpbGw9IiMwMDk2NjQiLz4KPHBhdGggZD0iTTQ3My45NTIgMTg4Ljk0OUM0ODAuNzAxIDIwNi4yNDcgNDYzLjgzOSAxOTcuNzYxIDQ1Ny44NDggMjA1LjQ2MUM0NTUuMjMzIDIwOC44MTggNDU2LjA5NSAyMTQuMTA0IDQ1OC45MzkgMjE5Ljk3OEM0ODIuMzQ1IDIxOC41NzEgNTAxLjI1OSAyMDAuNTcyIDUwNC4wMTEgMTc3LjYyMUM1MDIuMDI1IDE3NS43MTQgNDk5LjkzMyAxNzQuMTg2IDQ5Ny44MDMgMTczLjIwNUM0OTAuNTk3IDE2OS44OTYgNDY3LjIwNiAxNzEuNjUxIDQ3My45NTYgMTg4Ljk0OUg0NzMuOTUyWiIgZmlsbD0iIzAwOTY2NCIvPgo8cGF0aCBkPSJNMTY4LjExOSAxNDUuMjg1QzE2Mi40NTEgMTQxLjk5OSAxNTUuODIxIDE0MS4wOTkgMTQ5LjQ0OSAxNDIuNzYxQzE0My4wNzcgMTQ0LjQyNCAxMzcuNzMyIDE0OC40NDYgMTM0LjM5MSAxNTQuMDgzTDEzMi41ODQgMTU3LjEzMkwxMjkuNTE4IDE1NS4zNTVDMTIzLjg0OSAxNTIuMDY4IDExNy4yMTIgMTUxLjE3IDExMC44NDggMTUyLjgzQzEwNC40ODQgMTU0LjQ5MSA5OS4xMzAzIDE1OC41MTYgOTUuNzg5NiAxNjQuMTUyQzkyLjQ0ODkgMTY5Ljc4OSA5MS41MTMyIDE3Ni4zNzYgOTMuMTU3NiAxODIuNjhDOTQuODAxOSAxODguOTgzIDk4LjgzNTcgMTk0LjI3NCAxMDQuNTA0IDE5Ny41NjFMMTQ4LjY3MSAyMjMuMTcxQzE0OS4wNDUgMjIzLjM4NyAxNDkuNDY3IDIyMy40MyAxNDkuODU5IDIyMy4zMjdDMTUwLjI1MiAyMjMuMjI1IDE1MC42IDIyMi45ODIgMTUwLjgxOSAyMjIuNjExTDE3Ni44NSAxNzguNjg5QzE4MC4xOSAxNzMuMDUzIDE4MS4xMjYgMTY2LjQ2NiAxNzkuNDgyIDE2MC4xNjJDMTc3LjgzNyAxNTMuODU4IDE3My44MDMgMTQ4LjU2OCAxNjguMTM1IDE0NS4yODFMMTY4LjExOSAxNDUuMjg1WiIgZmlsbD0iI0ZGNkU3OCIvPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcDBfNTEwXzQ3MjQpIj4KPHBhdGggZD0iTTI3MS44OCAyMTcuODRMMjYzLjIxIDIzOC41NEwyNzQuNjIgMjQzLjMyTDI4My4zNiAyMjIuNDRDMjg3LjI2IDIyMy40NCAyOTEuMzQgMjIzLjk4IDI5NS41NSAyMjMuOThDMzIyLjQ2IDIyMy45OCAzNDQuMzYgMjAyLjA4IDM0NC4zNiAxNzUuMTdIMzMxLjk5QzMzMS45OSAxOTUuMjYgMzE1LjY1IDIxMS42MSAyOTUuNTUgMjExLjYxQzI3NS40NSAyMTEuNjEgMjU5LjExIDE5NS4yNyAyNTkuMTEgMTc1LjE3SDI0Ni43NEMyNDYuNzQgMTkzLjUgMjU2LjkgMjA5LjQ5IDI3MS44NyAyMTcuODNMMjcxLjg4IDIxNy44NFoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik0yNzcuMDUgMTA2SDMxNC4wNEMzMTUuOSAxMDYgMzE3LjEyIDEwNy45MyAzMTYuMzMgMTA5LjYxTDMwOC4yNSAxMjYuNzZDMzA3LjgzIDEyNy42NSAzMDYuOTQgMTI4LjIxIDMwNS45NiAxMjguMjFIMjg1LjEyQzI4NC4xNCAxMjguMjEgMjgzLjI1IDEyNy42NCAyODIuODMgMTI2Ljc2TDI3NC43NSAxMDkuNjFDMjczLjk2IDEwNy45MyAyNzUuMTggMTA2IDI3Ny4wNCAxMDZIMjc3LjA1WiIgZmlsbD0iI0ZGQzg4QyIvPgo8cGF0aCBkPSJNMjg1LjcyIDExNC43NEwyOTAuNjUgMTI4LjIyIiBzdHJva2U9IiNEQUExNkQiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTMwNS43MiAxMTQuMDRMMzAwLjc4IDEyNy41MiIgc3Ryb2tlPSIjREFBMTZEIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik0zMTMuMDggMTMyLjA3QzMxMy4wOCAxMzEuNjYgMjc4LjAxIDEzMS42NiAyNzguMDEgMTMyLjA3VjEyNi43MkMyNzguMDEgMTIwLjQzIDMxMy4wOCAxMjAuNDMgMzEzLjA4IDEyNi43MlYxMzIuMDdaIiBmaWxsPSIjNzg0NjAwIi8+CjxwYXRoIGQ9Ik0yNDYuNzQgMTc1LjE4QzI0Ni43NCAxNDguMjIgMjY4LjU5IDEyNi4zNyAyOTUuNTUgMTI2LjM3QzMyMi41MSAxMjYuMzcgMzQ0LjM2IDE0OC4yMiAzNDQuMzYgMTc1LjE4SDI0Ni43NFoiIGZpbGw9IiNGRkM4OEMiLz4KPHBhdGggZD0iTTMzMS45OCAxNzUuMTdDMzMxLjk4IDE5NS4yOSAzMTUuNjcgMjExLjYxIDI5NS41NCAyMTEuNjFDMjc1LjQxIDIxMS42MSAyNTkuMSAxOTUuMyAyNTkuMSAxNzUuMTdIMzMxLjk3SDMzMS45OFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0zMDYuNjYgMTY2LjYyQzMwNi45NCAxNjcuNzMgMzA2LjM3IDE2OC44NyAzMDUuMzIgMTY5LjMxQzMwMy42NCAxNzAgMzAxLjQ4IDE3MC41MSAyOTkuMDYgMTcwLjUxQzI5NC4xNCAxNzAuNTEgMjg5Ljg1IDE2OC41NCAyODcuMTQgMTY1LjA3QzI4NS42NCAxNjMuMzMgMjg0LjYyIDE2MS4xIDI4NC4xNyAxNTguNTdIMjgyLjQzQzI4MS42MSAxNTguNTcgMjgwLjk0IDE1Ny45IDI4MC45NCAxNTcuMDhDMjgwLjk0IDE1Ni4yNiAyODEuNjEgMTU1LjU5IDI4Mi40MyAxNTUuNTlIMjgzLjc1QzI4My43NSAxNTUuNTkgMjgzLjc3IDE1NS41NyAyODMuNzggMTU1LjU2QzI4My43MSAxNTQuNzQgMjgzLjc4IDE1My45IDI4My44NCAxNTMuMUgyODIuNDNDMjgxLjYxIDE1My4xIDI4MC45NCAxNTIuNDMgMjgwLjk0IDE1MS42MUMyODAuOTQgMTUwLjc5IDI4MS42MSAxNTAuMTIgMjgyLjQzIDE1MC4xMkgyODQuMzRDMjg0Ljk2IDE0Ny4zOSAyODYuMjcgMTQ0Ljk3IDI4OC4xMSAxNDMuMDlDMjkwLjg3IDE0MC4yMSAyOTQuNjcgMTM4LjQ2IDI5OS4yIDEzOC40NkMzMDEuMjkgMTM4LjQ2IDMwMy4xOCAxMzguNzkgMzA0LjczIDEzOS4yNkMzMDUuOTMgMTM5LjYyIDMwNi42MiAxNDAuODcgMzA2LjI4IDE0Mi4wOEwzMDYuMjYgMTQyLjE0QzMwNS45MiAxNDMuMzUgMzA0LjY2IDE0NC4wOCAzMDMuNDUgMTQzLjczQzMwMi4zIDE0My40IDMwMC45NyAxNDMuMTcgMjk5LjU3IDE0My4xN0MyOTYuODcgMTQzLjE3IDI5NC41IDE0NC4xMyAyOTIuNzggMTQ1Ljk5QzI5MS43MiAxNDcuMDMgMjkxLjAxIDE0OC41NCAyOTAuNiAxNTAuMTFIMzAzLjIxQzMwNC4wMyAxNTAuMTEgMzA0LjcgMTUwLjc4IDMwNC43IDE1MS42QzMwNC43IDE1Mi40MiAzMDQuMDMgMTUzLjA5IDMwMy4yMSAxNTMuMDlIMjg5LjkxQzI4OS44NCAxNTMuNjMgMjg5LjgyIDE1NC4yMSAyODkuODIgMTU0Ljc4VjE1NS41OUgzMDMuMjFDMzA0LjAzIDE1NS41OSAzMDQuNyAxNTYuMjYgMzA0LjcgMTU3LjA4QzMwNC43IDE1Ny45IDMwNC4wMyAxNTguNTcgMzAzLjIxIDE1OC41N0gyOTAuNDVDMjkwLjgyIDE2MC4zOCAyOTEuNTkgMTYxLjg1IDI5Mi42NCAxNjIuOUMyOTQuNDQgMTY0LjczIDI5Ni45NiAxNjUuNjIgMjk5Ljc3IDE2NS42MkMzMDEuMjMgMTY1LjYyIDMwMi42MiAxNjUuMzUgMzAzLjc3IDE2NC45OUMzMDUuMDIgMTY0LjYxIDMwNi4zMyAxNjUuMzUgMzA2LjY1IDE2Ni42MUwzMDYuNjYgMTY2LjYyWiIgZmlsbD0iIzc4NDYwMCIvPgo8cGF0aCBkPSJNMjI4LjYgMjU5LjQxQzIyNC43NSAyNTcuMjIgMjIwLjQyIDI1Ni4xMiAyMTUuNjMgMjU2LjEyQzIxMC44NCAyNTYuMTIgMjA2LjU5IDI1Ny4yMiAyMDIuNzQgMjU5LjQxQzE5OC44OSAyNjEuNiAxOTUuODEgMjY0LjYgMTkzLjUgMjY4LjM5QzE5MS4xOSAyNzIuMTggMTkwLjAzIDI3Ni41MSAxOTAuMDMgMjgxLjM2QzE5MC4wMyAyODYuMjEgMTkxLjE5IDI5MC41NCAxOTMuNSAyOTQuMzNDMTk1LjgxIDI5OC4xMiAxOTguOTEgMzAxLjExIDIwMi43OSAzMDMuMzFDMjA2LjY3IDMwNS41IDIxMC45NSAzMDYuNiAyMTUuNjMgMzA2LjZDMjIwLjMxIDMwNi42IDIyNC42NiAzMDUuNSAyMjguNTIgMzAzLjMxQzIzMi4zNyAzMDEuMTIgMjM1LjQ1IDI5OC4xMyAyMzcuNzYgMjk0LjMzQzI0MC4wNyAyOTAuNTQgMjQxLjIzIDI4Ni4yMSAyNDEuMjMgMjgxLjM2QzI0MS4yMyAyNzYuNTEgMjQwLjA5IDI3Mi4xIDIzNy44MSAyNjguMzRDMjM1LjUzIDI2NC41OCAyMzIuNDYgMjYxLjYgMjI4LjYxIDI1OS40MUgyMjguNlpNMjI3LjMxIDI4OC44N0MyMjYuMTUgMjkxLjA5IDIyNC41OCAyOTIuODIgMjIyLjYgMjk0LjA3QzIyMC42MSAyOTUuMzEgMjE4LjI5IDI5NS45NCAyMTUuNjIgMjk1Ljk0QzIxMi45NSAyOTUuOTQgMjEwLjcgMjk1LjMyIDIwOC42OSAyOTQuMDdDMjA2LjY3IDI5Mi44MyAyMDUuMDkgMjkxLjA5IDIwMy45NCAyODguODdDMjAyLjc4IDI4Ni42NSAyMDIuMjEgMjg0LjE1IDIwMi4yMSAyODEuMzZDMjAyLjIxIDI3OC41NyAyMDIuNzkgMjc2LjA5IDIwMy45NCAyNzMuODlDMjA1LjEgMjcxLjcgMjA2LjY4IDI2OS45OCAyMDguNjkgMjY4Ljc0QzIxMC43IDI2Ny41IDIxMy4wMSAyNjYuODcgMjE1LjYyIDI2Ni44N0MyMTguMjMgMjY2Ljg3IDIyMC42MSAyNjcuNDkgMjIyLjYgMjY4Ljc0QzIyNC41OCAyNjkuOTggMjI2LjE1IDI3MS43IDIyNy4zMSAyNzMuODlDMjI4LjQ3IDI3Ni4wOCAyMjkuMDQgMjc4LjU3IDIyOS4wNCAyODEuMzZDMjI5LjA0IDI4NC4xNSAyMjguNDYgMjg2LjY1IDIyNy4zMSAyODguODdaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNMjg2LjQyIDI1OS41QzI4Mi43NSAyNTcuMjUgMjc4LjYzIDI1Ni4xMiAyNzQuMDcgMjU2LjEyQzI3MC4zNCAyNTYuMTIgMjY3LjA1IDI1Ni44NSAyNjQuMjEgMjU4LjNDMjYxLjkzIDI1OS40NiAyNjAuMDQgMjYxIDI1OC41MiAyNjIuOTFWMjU3LjE5SDI0Ny41VjMyMy4zMUgyNTkuMjNWMzAwLjg5QzI2MC42NiAzMDIuNDEgMjYyLjM2IDMwMy42MyAyNjQuMzQgMzA0LjU2QzI2Ny4yNyAzMDUuOTIgMjcwLjQ5IDMwNi42IDI3My45OCAzMDYuNkMyNzguNjYgMzA2LjYgMjgyLjg0IDMwNS40OSAyODYuNTEgMzAzLjI3QzI5MC4xOCAzMDEuMDUgMjkzLjA5IDI5OC4wMSAyOTUuMjIgMjk0LjE2QzI5Ny4zNSAyOTAuMzEgMjk4LjQyIDI4Ni4wNCAyOTguNDIgMjgxLjM2QzI5OC40MiAyNzYuNjggMjk3LjM0IDI3Mi4zNSAyOTUuMTggMjY4LjU2QzI5My4wMiAyNjQuNzcgMjkwLjEgMjYxLjc1IDI4Ni40MyAyNTkuNUgyODYuNDJaTTI4NC41NSAyODguOTJDMjgzLjM2IDI5MS4xMSAyODEuNzUgMjkyLjgzIDI3OS43MSAyOTQuMDdDMjc3LjY3IDI5NS4zMSAyNzUuMzEgMjk1Ljk0IDI3Mi42NCAyOTUuOTRDMjY5Ljk3IDI5NS45NCAyNjcuOCAyOTUuMzIgMjY1Ljc1IDI5NC4wN0MyNjMuNzEgMjkyLjgzIDI2Mi4xMSAyOTEuMTEgMjYwLjk1IDI4OC45MkMyNTkuNzkgMjg2LjczIDI1OS4yMiAyODQuMjEgMjU5LjIyIDI4MS4zN0MyNTkuMjIgMjc4LjUzIDI1OS44IDI3Ni4xIDI2MC45NSAyNzMuOUMyNjIuMTEgMjcxLjcxIDI2My43IDI2OS45OSAyNjUuNzUgMjY4Ljc1QzI2Ny43OSAyNjcuNTEgMjcwLjA5IDI2Ni44OCAyNzIuNjQgMjY2Ljg4QzI3NS4xOSAyNjYuODggMjc3LjY2IDI2Ny41IDI3OS43MSAyNjguNzVDMjgxLjc1IDI2OS45OSAyODMuMzcgMjcxLjcxIDI4NC41NSAyNzMuOUMyODUuNzMgMjc2LjA5IDI4Ni4zMyAyNzguNTggMjg2LjMzIDI4MS4zN0MyODYuMzMgMjg0LjE2IDI4NS43NCAyODYuNzMgMjg0LjU1IDI4OC45MloiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik0zNDQuMDEgMjYzLjE0QzM0MiAyNjAuOTUgMzM5LjU1IDI1OS4yMyAzMzYuNjggMjU3Ljk5QzMzMy44MSAyNTYuNzUgMzMwLjQ3IDI1Ni4xMiAzMjYuNjggMjU2LjEyQzMyMi4xMiAyNTYuMTIgMzE4LjAzIDI1Ny4yMiAzMTQuNDIgMjU5LjQxQzMxMC44MSAyNjEuNiAzMDcuOTMgMjY0LjU4IDMwNS44IDI2OC4zNEMzMDMuNjcgMjcyLjEgMzAyLjYgMjc2LjQxIDMwMi42IDI4MS4yN0MzMDIuNiAyODYuMTMgMzAzLjY0IDI5MC4yMiAzMDUuNzEgMjk0LjA3QzMwNy43OCAyOTcuOTIgMzEwLjcgMzAwLjk3IDMxNC40NiAzMDMuMjJDMzE4LjIyIDMwNS40NyAzMjIuNTkgMzA2LjYgMzI3LjU3IDMwNi42QzMzMC44MyAzMDYuNiAzMzMuODUgMzA2LjEgMzM2LjYzIDMwNS4wOUMzMzkuNDEgMzA0LjA4IDM0MS44MSAzMDIuNjkgMzQzLjgzIDMwMC45MUMzNDUuODQgMjk5LjEzIDM0Ny4zMyAyOTcuMDkgMzQ4LjI3IDI5NC43OEwzMzguODUgMjkwLjE2QzMzNy43OCAyOTIuMDYgMzM2LjMyIDI5My41NyAzMzQuNDUgMjk0LjY5QzMzMi41OCAyOTUuODIgMzMwLjMyIDI5Ni4zOCAzMjcuNjUgMjk2LjM4QzMyNC45OCAyOTYuMzggMzIyLjYzIDI5NS43NiAzMjAuNTggMjk0LjUxQzMxOC41NCAyOTMuMjcgMzE2Ljk5IDI5MS41IDMxNS45NiAyODkuMjJDMzE1LjM0IDI4Ny44NSAzMTQuOTUgMjg2LjM1IDMxNC43OCAyODQuNzNIMzQ5LjU5QzM0OS44MyAyODQuMDIgMzQ5Ljk5IDI4My4yMyAzNTAuMDggMjgyLjM4QzM1MC4xNyAyODEuNTIgMzUwLjIxIDI4MC42NSAzNTAuMjEgMjc5Ljc2QzM1MC4yMSAyNzYuNSAzNDkuNjggMjczLjQ3IDM0OC42MSAyNzAuNjVDMzQ3LjU0IDI2Ny44NCAzNDYgMjY1LjMzIDM0My45OSAyNjMuMTRIMzQ0LjAxWk0zMTUuMDMgMjc1Ljc2QzMxNS4yMyAyNzQuNzQgMzE1LjUxIDI3My43OSAzMTUuODggMjcyLjkyQzMxNi44NiAyNzAuNjEgMzE4LjI5IDI2OC44MyAzMjAuMTkgMjY3LjU5QzMyMi4wOSAyNjYuMzUgMzI0LjI1IDI2NS43MiAzMjYuNjggMjY1LjcyQzMyOS4xMSAyNjUuNzIgMzMxLjQgMjY2LjM0IDMzMy4yMSAyNjcuNTlDMzM1LjAyIDI2OC44MyAzMzYuMzIgMjcwLjUyIDMzNy4xMiAyNzIuNjZDMzM3LjQ5IDI3My42MyAzMzcuNyAyNzQuNjcgMzM3Ljc3IDI3NS43N0gzMTUuMDNWMjc1Ljc2WiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTM5MC44MyAyNTguNDNDMzg4LjA3IDI1Ni44OSAzODQuOTIgMjU2LjEyIDM4MS4zNyAyNTYuMTJDMzc3LjgyIDI1Ni4xMiAzNzQuOTMgMjU2Ljg4IDM3Mi4zNSAyNTguMzlDMzcwLjM2IDI1OS41NiAzNjguODEgMjYxLjE0IDM2Ny42OCAyNjMuMTRWMjU3LjE5SDM1Ni42NlYzMDUuNTRIMzY4LjM5VjI3Ny4xOUMzNjguMzkgMjc1LjA2IDM2OC44IDI3My4yMiAzNjkuNjMgMjcxLjY4QzM3MC40NiAyNzAuMTQgMzcxLjYxIDI2OC45NiAzNzMuMSAyNjguMTNDMzc0LjU4IDI2Ny4zIDM3Ni4yNyAyNjYuODkgMzc4LjE3IDI2Ni44OUMzODAuMDcgMjY2Ljg5IDM4MS43NSAyNjcuMzEgMzgzLjI0IDI2OC4xM0MzODQuNzIgMjY4Ljk2IDM4NS44OCAyNzAuMTQgMzg2LjcxIDI3MS42OEMzODcuNTQgMjczLjIyIDM4Ny45NSAyNzUuMDYgMzg3Ljk1IDI3Ny4xOVYzMDUuNTRIMzk5LjU5VjI3NC40NEMzOTkuNTkgMjcwLjgzIDM5OC44MiAyNjcuNjQgMzk3LjI4IDI2NC44OUMzOTUuNzQgMjYyLjE0IDM5My41OSAyNTkuOTkgMzkwLjg0IDI1OC40NVYyNTguNDNIMzkwLjgzWiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTQyMy43NiAzMTMuNUwxNTkuNTg5IDMzNi42MTJDMTUwLjc5NyAzMzcuMzgxIDE0NC4yOTQgMzQ1LjEzMiAxNDUuMDYzIDM1My45MjRMMTUwLjAzNiA0MTAuNzY3QzE1MC44MDUgNDE5LjU1OCAxNTguNTU2IDQyNi4wNjIgMTY3LjM0OCA0MjUuMjkzTDQzMS41MTkgNDAyLjE4MUM0NDAuMzExIDQwMS40MTIgNDQ2LjgxNCAzOTMuNjYxIDQ0Ni4wNDUgMzg0Ljg2OUw0NDEuMDcyIDMyOC4wMjZDNDQwLjMwMyAzMTkuMjM0IDQzMi41NTIgMzEyLjczMSA0MjMuNzYgMzEzLjVaIiBmaWxsPSIjMDBBMDVBIi8+CjxwYXRoIGQ9Ik0xNjcuMDMgNDA4Ljk0TDE2Mi4xNCAzNTMuMDJMMTgzLjYgMzUxLjE0QzE4Ny40NSAzNTAuOCAxOTAuOTMgMzUxLjE4IDE5NC4wMiAzNTIuMjdDMTk3LjExIDM1My4zNiAxOTkuNjMgMzU1LjE2IDIwMS41NiAzNTcuNjZDMjAzLjQ5IDM2MC4xNiAyMDQuNjMgMzYzLjM3IDIwNC45NyAzNjcuMjdDMjA1LjMgMzcxLjA3IDIwNC43MiAzNzQuMzcgMjAzLjIzIDM3Ny4xOEMyMDEuNzQgMzc5Ljk4IDE5OS41NiAzODIuMiAxOTYuNyAzODMuODRDMTkzLjg0IDM4NS40OCAxOTAuNTEgMzg2LjQ2IDE4Ni43MSAzODYuNzlMMTc2Ljg4IDM4Ny42NUwxNzguNjUgNDA3LjkxTDE2Ny4wMiA0MDguOTNMMTY3LjAzIDQwOC45NFpNMTc2LjAxIDM3Ny41MkwxODUuOTIgMzc2LjY1QzE4Ny41NyAzNzYuNTEgMTg4Ljk3IDM3Ni4wNiAxOTAuMTEgMzc1LjNDMTkxLjI1IDM3NC41NSAxOTIuMTEgMzczLjU2IDE5Mi42OSAzNzIuMzVDMTkzLjI3IDM3MS4xNCAxOTMuNDkgMzY5Ljc4IDE5My4zNiAzNjguMjhDMTkzLjIyIDM2Ni43MyAxOTIuNzcgMzY1LjQxIDE5MS45OSAzNjQuMzJDMTkxLjIxIDM2My4yMyAxOTAuMiAzNjIuNDEgMTg4Ljk0IDM2MS44NkMxODcuNjggMzYxLjMyIDE4Ni4yMyAzNjEuMTEgMTg0LjU4IDM2MS4yNkwxNzQuNjcgMzYyLjEzTDE3Ni4wMiAzNzcuNTJIMTc2LjAxWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTIzMy44NiAzODIuNjdMMjI1LjYgMzgzLjM5TDIyNy4zNyA0MDMuNjVMMjE1Ljc0IDQwNC42N0wyMTAuODUgMzQ4Ljc1TDIzMi4yNCAzNDYuODhDMjM2LjA5IDM0Ni41NCAyMzkuNTcgMzQ2LjkyIDI0Mi42NiAzNDguMDFDMjQ1Ljc1IDM0OS4xIDI0OC4yNyAzNTAuOSAyNTAuMiAzNTMuNEMyNTIuMTMgMzU1LjkgMjUzLjI3IDM1OS4xMSAyNTMuNjEgMzYzLjAxQzI1My45NCAzNjYuODEgMjUzLjM1IDM3MC4xMyAyNTEuODMgMzcyLjk2QzI1MC4zMSAzNzUuNzkgMjQ4LjE0IDM3OC4wMSAyNDUuMyAzNzkuNjJMMjYwLjAxIDQwMC43OUwyNDYuOTUgNDAxLjkzTDIzMy44NCAzODIuNjZMMjMzLjg2IDM4Mi42N1pNMjI0LjcyIDM3My4yNkwyMzQuNTUgMzcyLjRDMjM2LjIgMzcyLjI2IDIzNy42IDM3MS44MSAyMzguNzQgMzcxLjA1QzIzOS44OCAzNzAuMyAyNDAuNzQgMzY5LjMxIDI0MS4zMiAzNjguMUMyNDEuOSAzNjYuODkgMjQyLjEyIDM2NS41MyAyNDEuOTkgMzY0LjAzQzI0MS44NSAzNjIuNDggMjQxLjQgMzYxLjE2IDI0MC42MiAzNjAuMDdDMjM5Ljg0IDM1OC45OCAyMzguODMgMzU4LjE2IDIzNy41NyAzNTcuNjFDMjM2LjMxIDM1Ny4wNyAyMzQuODYgMzU2Ljg2IDIzMy4yMSAzNTcuMDFMMjIzLjM4IDM1Ny44N0wyMjQuNzMgMzczLjI2SDIyNC43MloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yNjUuOCA0MDAuM0wyNjAuOTEgMzQ0LjM5TDI3Mi41NCAzNDMuMzdMMjc3LjQzIDM5OS4yOUwyNjUuOCA0MDAuMzFWNDAwLjNaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMzEzLjk5IDM5Ni45OUMzMDkuOTkgMzk3LjM0IDMwNi4yMSAzOTYuOTQgMzAyLjY1IDM5NS43OUMyOTkuMDkgMzk0LjY0IDI5NS45MyAzOTIuODcgMjkzLjE1IDM5MC41QzI5MC4zNyAzODguMTMgMjg4LjExIDM4NS4yNCAyODYuMzggMzgxLjg2QzI4NC42NSAzNzguNDggMjgzLjYgMzc0LjcyIDI4My4yNCAzNzAuNTdDMjgyLjg4IDM2Ni40MiAyODMuMjQgMzYyLjUyIDI4NC4zMyAzNTguODZDMjg1LjQyIDM1NS4yMSAyODcuMTMgMzUxLjk5IDI4OS40NiAzNDkuMThDMjkxLjc5IDM0Ni4zOCAyOTQuNiAzNDQuMTIgMjk3LjkgMzQyLjM5QzMwMS4yIDM0MC42NiAzMDQuODggMzM5LjYyIDMwOC45MyAzMzkuMjdDMzEyLjk4IDMzOC45MSAzMTYuNjggMzM5LjI3IDMyMC4wMyAzNDAuMzRDMzIzLjM4IDM0MS40MSAzMjYuMjcgMzQyLjk3IDMyOC43MiAzNDUuMDJDMzMxLjE3IDM0Ny4wNyAzMzIuOTkgMzQ5LjQ0IDMzNC4xOCAzNTIuMTFMMzI0LjMzIDM1Ny45NkMzMjMuMTQgMzU1LjM0IDMyMS4yOCAzNTMuMjUgMzE4Ljc1IDM1MS42OEMzMTYuMjIgMzUwLjExIDMxMy4yNSAzNDkuNDggMzA5Ljg1IDM0OS43OEMzMDYuNTUgMzUwLjA3IDMwMy43MSAzNTEuMSAzMDEuMzUgMzUyLjg3QzI5OC45OCAzNTQuNjQgMjk3LjIzIDM1Ni45NSAyOTYuMDkgMzU5LjhDMjk0Ljk1IDM2Mi42NSAyOTQuNTQgMzY1LjkgMjk0Ljg2IDM2OS41NUMyOTUuMTggMzczLjIgMjk2LjE1IDM3Ni4zNCAyOTcuNzYgMzc4Ljk4QzI5OS4zOCAzODEuNjEgMzAxLjUgMzgzLjU5IDMwNC4xNCAzODQuOTJDMzA2Ljc4IDM4Ni4yNSAzMDkuNzUgMzg2Ljc3IDMxMy4wNSAzODYuNDlDMzE2LjQ1IDM4Ni4xOSAzMTkuMjYgMzg1LjA1IDMyMS40OSAzODMuMDdDMzIzLjcxIDM4MS4wOSAzMjUuMTggMzc4LjcgMzI1Ljg5IDM3NS45MkwzMzYuNjEgMzc5Ljk3QzMzNS45IDM4Mi44IDMzNC41MiAzODUuNDUgMzMyLjQ2IDM4Ny44OUMzMzAuNDEgMzkwLjM0IDMyNy44MiAzOTIuMzggMzI0LjcxIDM5NC4wMUMzMjEuNiAzOTUuNjQgMzE4LjAyIDM5Ni42NCAzMTMuOTcgMzk2Ljk5SDMxMy45OVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0zNDUuMjggMzkzLjM0TDM0MC4zOSAzMzcuNDJMMzc3Ljk5IDMzNC4xM0wzNzguODggMzQ0LjI2TDM1Mi45MSAzNDYuNTNMMzU0LjAyIDM1OS4yMUwzNzguNDkgMzU3LjA3TDM3OS4zOCAzNjcuMkwzNTQuOTEgMzY5LjM0TDM1Ni4wMyAzODIuMTdMMzgyIDM3OS45TDM4Mi44OSAzOTAuMDNMMzQ1LjI5IDM5My4zMkwzNDUuMjggMzkzLjM0WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTQwOS45MSAzODguNkM0MDYuNDEgMzg4LjkxIDQwMy4wNiAzODguNTYgMzk5Ljg3IDM4Ny41NUMzOTYuNjggMzg2LjU0IDM5My44NyAzODQuOTYgMzkxLjQ0IDM4Mi44QzM4OS4wMSAzODAuNjQgMzg3LjEgMzc4LjAxIDM4NS43MiAzNzQuOTFMMzk0Ljg4IDM2OS44QzM5Ni41NSAzNzIuNzMgMzk4LjcgMzc0Ljk2IDQwMS4zMyAzNzYuNUM0MDMuOTYgMzc4LjA0IDQwNi43OCAzNzguNjcgNDA5Ljc4IDM3OC40MUM0MTEuMzggMzc4LjI3IDQxMi43NCAzNzcuOSA0MTMuODQgMzc3LjNDNDE0Ljk1IDM3Ni43IDQxNS43OSAzNzUuOTMgNDE2LjM2IDM3NUM0MTYuOTMgMzc0LjA3IDQxNy4xNyAzNzMgNDE3LjA2IDM3MS44QzQxNi45NSAzNzAuNSA0MTYuNDUgMzY5LjQyIDQxNS41NyAzNjguNTdDNDE0LjY5IDM2Ny43MSA0MTMuMzcgMzY3LjA5IDQxMS42MiAzNjYuNjhMNDAwLjM1IDM2NC4wNEMzOTUuNzcgMzYyLjk4IDM5Mi4yNCAzNjEuMjEgMzg5Ljc1IDM1OC43M0MzODcuMjYgMzU2LjI1IDM4NS44NiAzNTMuMTMgMzg1LjUzIDM0OS4zOEMzODUuMjQgMzQ2LjA4IDM4NS44IDM0My4xIDM4Ny4yMSAzNDAuNDZDMzg4LjYyIDMzNy44MiAzOTAuNzIgMzM1LjY3IDM5My41MyAzMzQuMDFDMzk2LjMzIDMzMi4zNSAzOTkuNjQgMzMxLjM2IDQwMy40NCAzMzEuMDJDNDA2Ljc5IDMzMC43MyA0MDkuOTUgMzMxLjAzIDQxMi45IDMzMS45M0M0MTUuODUgMzMyLjgzIDQxOC40NiAzMzQuMjQgNDIwLjcyIDMzNi4xNkM0MjIuOTggMzM4LjA4IDQyNC43NiAzNDAuNDcgNDI2LjA3IDM0My4zM0w0MTYuOTkgMzQ4LjQzQzQxNS43MSAzNDUuOTIgNDEzLjk2IDM0NC4wMiA0MTEuNzMgMzQyLjczQzQwOS41IDM0MS40NCA0MDcuMDMgMzQwLjkxIDQwNC4zMyAzNDEuMTVDNDAyLjc4IDM0MS4yOSA0MDEuNDIgMzQxLjY2IDQwMC4yNyAzNDIuMjZDMzk5LjExIDM0Mi44NyAzOTguMjUgMzQzLjY2IDM5Ny42OCAzNDQuNjRDMzk3LjExIDM0NS42MiAzOTYuODggMzQ2LjcxIDM5Ni45OCAzNDcuOTJDMzk3LjA5IDM0OS4yMiAzOTcuNjIgMzUwLjMyIDM5OC41NSAzNTEuMjJDMzk5LjQ5IDM1Mi4xMiA0MDAuODMgMzUyLjc3IDQwMi41OCAzNTMuMTdMNDEzLjYyIDM1NS42OEM0MTguMjUgMzU2Ljc0IDQyMS43OSAzNTguNDcgNDI0LjI1IDM2MC44OEM0MjYuNyAzNjMuMjkgNDI4LjEgMzY2LjM3IDQyOC40MiAzNzAuMTJDNDI4LjcxIDM3My4zNyA0MjguMTEgMzc2LjM0IDQyNi42MyAzNzkuMDFDNDI1LjE1IDM4MS42OSA0MjIuOTggMzgzLjg3IDQyMC4xMyAzODUuNTVDNDE3LjI4IDM4Ny4yNCA0MTMuODcgMzg4LjI1IDQwOS45MiAzODguNkg0MDkuOTFaIiBmaWxsPSJ3aGl0ZSIvPgo8L2c+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMV81MTBfNDcyNCkiPgo8cGF0aCBkPSJNNTAzLjY1MSA1MTUuNTQ5QzQ4NC4xNTMgNTM1LjA0NiA0NTMuMzAyIDUzNS44MTIgNDM0Ljc0NSA1MTcuMjU5QzQxNi4xODggNDk4LjcwNiA0MTYuOTU0IDQ2Ny44NTEgNDM2LjQ1MSA0NDguMzUzQzQ1NS45NTMgNDI4Ljg1MSA1MDguMTQgNDA2Ljc1IDUyNi42OTcgNDI1LjMwM0M1NDUuMjU0IDQ0My44NTYgNTIzLjE0OSA0OTYuMDQ3IDUwMy42NTEgNTE1LjU0OVoiIGZpbGw9IiNGRkY1NkUiLz4KPHBhdGggZD0iTTUwNi4wMjkgNDE4LjMxNlY0MjYuMjg5QzUxMi45MTQgNDI2LjI4OSA1MTcuOTczIDQyNy44NTYgNTIxLjA2MiA0MzAuOTQ1QzUyNi45NyA0MzYuODUzIDUyNy4yNjEgNDUwLjU3OCA1MjEuODQ4IDQ2Ny42NjhDNTE2LjczNyA0ODMuNzk3IDUwNy4xNTggNTAwLjc3MiA0OTguMDE3IDUwOS45MTdDNDkzLjg0MyA1MTQuMDkgNDg5LjAxNSA1MTcuMzI0IDQ4My42NTcgNTE5LjUyOEM0NzguNTA3IDUyMS42NDkgNDczLjExMyA1MjIuNzIxIDQ2Ny42MzIgNTIyLjcyMUM0NTcuMjE5IDUyMi43MjEgNDQ3LjU0IDUxOC43NzkgNDQwLjM4NCA1MTEuNjIzQzQyNC45NjkgNDk2LjIwMyA0MjUuNzM0IDQ3MC4zNTEgNDQyLjA5NSA0NTMuOTk1QzQ0OC41NDkgNDQ3LjU0MSA0NTkuNDA4IDQ0MC41MjggNDcxLjE0NCA0MzUuMjM4QzQ4My45NCA0MjkuNDcgNDk2LjMzIDQyNi4yOTMgNTA2LjAyNSA0MjYuMjkzVjQxOC4zMTZNNTA2LjAyNSA0MTguMzE2QzQ4Mi43MTcgNDE4LjMxNiA0NTAuNzczIDQzNC4wMzkgNDM2LjQ1OCA0NDguMzU0QzQxNi45NiA0NjcuODUyIDQxNi4xOTUgNDk4LjcwMyA0MzQuNzQ4IDUxNy4yNkM0NDMuNzI1IDUyNi4yMzcgNDU1LjU3NyA1MzAuNjkgNDY3LjYzMiA1MzAuNjlDNDgwLjQ5NiA1MzAuNjkgNDkzLjU4OCA1MjUuNjE1IDUwMy42NTMgNTE1LjU1QzUyMy4xNTEgNDk2LjA1MiA1NDUuMjU2IDQ0My44NjEgNTI2LjY5OSA0MjUuMzA0QzUyMS43NjggNDIwLjM3MyA1MTQuNDY1IDQxOC4zMTIgNTA2LjAyNSA0MTguMzE2WiIgZmlsbD0iI0EwQ0Q1QSIvPgo8cGF0aCBkPSJNNDg1LjI5IDQ5OS4xNTRDNDk1LjU4MiA0ODguODYyIDQ5Ni42NjIgNDczLjI1NiA0ODcuNzAzIDQ2NC4yOTZDNDc4Ljc0MyA0NTUuMzM3IDQ2My4xMzcgNDU2LjQxNyA0NTIuODQ1IDQ2Ni43MDlDNDQyLjU1MyA0NzcuMDAxIDQ0MS40NzIgNDkyLjYwOCA0NTAuNDMyIDUwMS41NjdDNDU5LjM5MSA1MTAuNTI2IDQ3NC45OTggNTA5LjQ0NiA0ODUuMjkgNDk5LjE1NFoiIGZpbGw9IiM3ODQ2MTQiLz4KPHBhdGggZD0iTTQ2MC41MyA0NzAuNzkzQzQ2MC4wMjcgNDcwLjc5MyA0NTkuNTMzIDQ3MC41NTcgNDU5LjIyMiA0NzAuMTE1QzQ1OC43MTYgNDY5LjM5MyA0NTguODkxIDQ2OC40MDEgNDU5LjYxMyA0NjcuODk0QzQ2Mi43NSA0NjUuNjk0IDQ2Ni4zMyA0NjQuMzgyIDQ2OS45NjYgNDY0LjA5NUM0NzAuODQzIDQ2NC4wMjQgNDcxLjYxMiA0NjQuNjgxIDQ3MS42OCA0NjUuNTU4QzQ3MS43NDggNDY2LjQzNSA0NzEuMDk0IDQ2Ny4yMDUgNDcwLjIxNyA0NjcuMjczQzQ2Ny4xNDcgNDY3LjUxNiA0NjQuMTEzIDQ2OC42MzIgNDYxLjQ0MyA0NzAuNTA2QzQ2MS4xNjQgNDcwLjcwMSA0NjAuODQ1IDQ3MC43OTcgNDYwLjUzIDQ3MC43OTdWNDcwLjc5M1oiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik00ODEuMDk2IDQ3MC41NDFDNDgwLjc0MSA0NzAuNTQxIDQ4MC4zODIgNDcwLjQyMiA0ODAuMDgzIDQ3MC4xNzlDNDc5LjM0NiA0NjkuNTczIDQ3OC41MzYgNDY5LjA1MSA0NzcuNjc1IDQ2OC42MjRDNDc2Ljg4NiA0NjguMjMzIDQ3Ni41NjMgNDY3LjI3NyA0NzYuOTU0IDQ2Ni40ODdDNDc3LjM0NSA0NjUuNjk4IDQ3OC4zMDEgNDY1LjM3NSA0NzkuMDkxIDQ2NS43NjZDNDgwLjE3MSA0NjYuMyA0ODEuMTgzIDQ2Ni45NTQgNDgyLjEwOCA0NjcuNzE1QzQ4Mi43OSA0NjguMjczIDQ4Mi44ODYgNDY5LjI3OCA0ODIuMzI4IDQ2OS45NTlDNDgyLjAxMyA0NzAuMzQyIDQ4MS41NTQgNDcwLjU0MSA0ODEuMDk2IDQ3MC41NDFaIiBmaWxsPSJ3aGl0ZSIvPgo8L2c+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMl81MTBfNDcyNCkiPgo8cGF0aCBkPSJNNDU2Ljg4OSAyNjguOTYyTDQyNS4xOTggMjY1LjMxNUM0MjMuNDc5IDI2NS4xMTcgNDIxLjkxNyAyNjYuMzU3IDQyMS43MTkgMjY4LjA3NkM0MjEuNTIyIDI2OS43OTQgNDIyLjc2MSAyNzEuMzU2IDQyNC40OCAyNzEuNTU0TDQ1Ni4xNzEgMjc1LjJMNDU2Ljg5IDI2OC45NTJMNDU2Ljg4OSAyNjguOTYyWiIgZmlsbD0iI0I1QjVCNSIvPgo8cGF0aCBkPSJNNDcxLjE4NCAyNjQuNjU3TDQ1My41OSAyNjIuNjMzQzQ1Mi4wMjEgMjYyLjQ1MiA0NTAuNjAzIDI2My41NzggNDUwLjQyMiAyNjUuMTQ3TDQ0OS4wMDcgMjc3LjQ0NkM0NDguODI2IDI3OS4wMTYgNDQ5Ljk1MiAyODAuNDM0IDQ1MS41MjEgMjgwLjYxNEw0NjkuMTE1IDI4Mi42MzlMNDcxLjE4NCAyNjQuNjU3WiIgZmlsbD0iI0I1QjVCNSIvPgo8cGF0aCBkPSJNNDg4Ljg5NCAyNTkuMDI1TDQ3MS4xNTEgMjU2Ljk4M0M0NjguODU2IDI1Ni43MTkgNDY2Ljc3NCAyNTguMzcyIDQ2Ni41MSAyNjAuNjY3TDQ2My42NTggMjg1LjQ1M0M0NjMuMzk0IDI4Ny43NDggNDY1LjA0NyAyODkuODMxIDQ2Ny4zNDEgMjkwLjA5NUw0ODUuMDg0IDI5Mi4xMzZMNDg4Ljg5NCAyNTkuMDI1WiIgZmlsbD0iIzY0NjQ2NCIvPgo8cGF0aCBkPSJNNDg5LjI2IDM2OC42MTVMNTM3LjY0MiAzNzQuNjk1TDUzOS41MTQgMzU4LjQyMkw1MzcuNDUgMzU1LjM2NkM1MzUuODk0IDM1My4wNTMgNTM1LjIwOSAzNTAuMjU3IDUzNS41MyAzNDcuNDc1TDU0MS4wMTUgMjk5LjhMNDkxLjI0MyAyOTQuMDczTDUwMy4wNSAzMzcuMjk2QzUwNC4zMTcgMzQxLjk0MSA1MDIuMjYxIDM0Ni44NjggNDk4LjA1NCAzNDkuMjIzTDQ5MS40OCAzNTIuOTA2TDQ4OS4yNDkgMzY4LjYyNEw0ODkuMjYgMzY4LjYxNVoiIGZpbGw9IiNGRkM1MUMiLz4KPHBhdGggZD0iTTQ4OS44NzQgMjUwLjUxMUw1NDguMTU5IDI1Ny4yMTdDNTU0Ljc0MyAyNTcuOTc1IDU1OS40NjYgMjYzLjkyNiA1NTguNzA5IDI3MC41MUw1NTUuNjgyIDI5Ni44MTdDNTU0LjkyNSAzMDMuNDAxIDU0OC45NzMgMzA4LjEyNCA1NDIuMzg5IDMwNy4zNjZMNDg0LjEwNCAzMDAuNjZDNDc3LjUyIDI5OS45MDMgNDcyLjc5NiAyOTMuOTUxIDQ3My41NTQgMjg3LjM2N0w0NzYuNTgxIDI2MS4wNjFDNDc3LjMzOCAyNTQuNDc3IDQ4My4yOSAyNDkuNzUzIDQ4OS44NzQgMjUwLjUxMVoiIGZpbGw9IiNGRkM1MUMiLz4KPHBhdGggZD0iTTQ4OS45MDkgMzE1LjM4TDQ5Ny4wODIgMzE2LjIwNUw0OTYuNjMyIDMwMi4wOTJMNDgzLjgyNyAzMDAuNjE4TDQ4Ny42MTQgMzEzLjQ1NUM0ODcuOTI3IDMxNC40OTggNDg4LjgyNiAzMTUuMjU2IDQ4OS44OTkgMzE1LjM3OUw0ODkuOTA5IDMxNS4zOFoiIGZpbGw9IiM2NDY0NjQiLz4KPHBhdGggZD0iTTUzOS4xODggMzU4LjM3NUw0NzcuOTYyIDM1MS4zM0M0NzUuODM2IDM1MS4wODYgNDczLjkxOCAzNTIuNjE2IDQ3My42NzUgMzU0LjczMkw0NzEuNTcgMzczLjAyMkM0NzEuMzI2IDM3NS4xNDggNDcyLjg1NiAzNzcuMDY1IDQ3NC45NzIgMzc3LjMwOUw1MzYuNjU2IDM4NC40MDZDNTM4Ljc4MiAzODQuNjUgNTQwLjY5OSAzODMuMTIgNTQwLjk0MyAzODEuMDA0TDU0Mi45OTQgMzYzLjE3MUM1NDMuMjY3IDM2MC43OTcgNTQxLjU2MiAzNTguNjQ4IDUzOS4xODggMzU4LjM3NVoiIGZpbGw9IiM2NDY0NjQiLz4KPHBhdGggZD0iTTUyMy43NSAyNjYuMTM2TDU0Ny45NiAyNjguOTIxQzU0OS4zMjEgMjY5LjA3OCA1NTAuMjk3IDI3MC4zMDUgNTUwLjE0MSAyNzEuNjYzQzU0OS45ODUgMjczLjAyMSA1NDguNzU1IDI3My45OTUgNTQ3LjM5NCAyNzMuODM5TDUyMy4xODQgMjcxLjA1M0M1MjEuODIzIDI3MC44OTcgNTIwLjg0NyAyNjkuNjY5IDUyMS4wMDMgMjY4LjMxMUM1MjEuMTU5IDI2Ni45NTMgNTIyLjM4OSAyNjUuOTc5IDUyMy43NSAyNjYuMTM2WiIgZmlsbD0iIzY0NjQ2NCIvPgo8cGF0aCBkPSJNNTIyLjM3MSAyNzguMTE3TDU0Ni41ODIgMjgwLjkwMkM1NDcuOTQyIDI4MS4wNTkgNTQ4LjkxOSAyODIuMjg2IDU0OC43NjIgMjgzLjY0NEM1NDguNjA2IDI4NS4wMDIgNTQ3LjM3NiAyODUuOTc2IDU0Ni4wMTYgMjg1LjgyTDUyMS44MDUgMjgzLjAzNEM1MjAuNDQ1IDI4Mi44NzggNTE5LjQ2OCAyODEuNjUgNTE5LjYyNSAyODAuMjkyQzUxOS43ODEgMjc4LjkzNCA1MjEuMDExIDI3Ny45NiA1MjIuMzcxIDI3OC4xMTdaIiBmaWxsPSIjNjQ2NDY0Ii8+CjwvZz4KPHBhdGggZD0iTTEyOC4xMTggMjYyLjI3NkwxMzIuMTU4IDM1Mi4wMTRDMTMyLjI2MyAzNTQuMzM4IDEzMC40NzEgMzU2LjMwMSAxMjguMTUgMzU2LjQwNUw0Ni42MzYyIDM2MC4wNzVDNDQuMzIyIDM2MC4xNzkgNDIuMzU0IDM1OC4zODYgNDIuMjQ5NCAzNTYuMDYxTDM4LjIwOTUgMjY2LjMyNEMzOC4wOTM0IDI2My43NDMgMzguNjU4MSAyNjEuMTc3IDM5Ljg1NzIgMjU4Ljg4OUw1MC41ODM3IDIzOC4zMTVMMTEzLjI3OCAyMzUuNDkzTDEyNS44MDkgMjU1LjAxOUMxMjcuMjAyIDI1Ny4xOSAxMjguMDAyIDI1OS42OTYgMTI4LjExOCAyNjIuMjc2WiIgZmlsbD0iI0Y5QkI1QSIvPgo8cGF0aCBkPSJNNTIuMjIwNiAyMjguNjkxTDExMC43OSAyMjYuMDU0QzExMS45MjkgMjI2LjAwMyAxMTIuODk4IDIyNi44OSAxMTIuOTQ5IDIyOC4wM0wxMTMuMjg1IDIzNS41TDUwLjU4NCAyMzguMzIzTDUwLjI0NzcgMjMwLjg1M0M1MC4xOTY0IDIyOS43MTIgNTEuMDgxNyAyMjguNzQyIDUyLjIyMDYgMjI4LjY5MVoiIGZpbGw9IiNENjkyMzgiLz4KPHBhdGggZD0iTTg2LjIzMDIgMzMyLjQwOUMxMDUuMzUzIDMzMS41NDggMTIwLjE1NiAzMTUuMzI4IDExOS4yOTQgMjk2LjE4MkMxMTguNDMyIDI3Ny4wMzUgMTAyLjIzMSAyNjIuMjExIDgzLjEwODcgMjYzLjA3MkM2My45ODYgMjYzLjkzMyA0OS4xODI3IDI4MC4xNTIgNTAuMDQ0NyAyOTkuMjk5QzUwLjkwNjcgMzE4LjQ0NiA2Ny4xMDc1IDMzMy4yNyA4Ni4yMzAyIDMzMi40MDlaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOTUuNDEwNCAzMTQuNjk2Qzg4LjgzOTMgMzE3LjQwOSA4Mi4xNTk2IDMxNy43MDkgNzUuMzc4NyAzMTUuNTk4QzcyLjczNzcgMzE0Ljc3OSA3MC45MDI3IDMxMi4zNjQgNzAuNzc4MyAzMDkuNjAxQzcwLjYxNDQgMzA1Ljk2MSA3My40MjM4IDMwMi44ODMgNzcuMDU5MiAzMDIuNzE5Qzc2LjU1OTEgMjkxLjYwOSA5Mi4wNTgyIDI5MC40NDIgOTIuNTc5NCAzMDIuMDIxQzk2LjIxNDkgMzAxLjg1NyA5OS4yODk1IDMwNC42NyA5OS40NTM0IDMwOC4zMUM5OS41Nzc3IDMxMS4wNzMgOTcuOTY3MSAzMTMuNjQzIDk1LjQxMDQgMzE0LjY5NloiIGZpbGw9IiM1RTU5NTMiLz4KPHBhdGggZD0iTTY5Ljg0MjcgMjk5LjgzM0M3MS44MjU3IDI5OC4wNTkgNzEuNTMyIDI5NC40OSA2OS4xODY3IDI5MS44NjNDNjYuODQxNCAyODkuMjM1IDYzLjMzMjcgMjg4LjU0NCA2MS4zNDk3IDI5MC4zMThDNTkuMzY2NyAyOTIuMDkzIDU5LjY2MDQgMjk1LjY2MSA2Mi4wMDU3IDI5OC4yODhDNjQuMzUxIDMwMC45MTYgNjcuODU5OCAzMDEuNjA3IDY5Ljg0MjcgMjk5LjgzM1oiIGZpbGw9IiM1RTU5NTMiLz4KPHBhdGggZD0iTTc4LjAwNTIgMjkwLjM4NEM4MC41MjU1IDI4OS41MzQgODEuNjU3MSAyODYuMTM3IDgwLjUzMjggMjgyLjc5OEM3OS40MDg1IDI3OS40NTkgNzYuNDU0IDI3Ny40NDIgNzMuOTMzNyAyNzguMjkyQzcxLjQxMzUgMjc5LjE0MiA3MC4yODE4IDI4Mi41MzkgNzEuNDA2MSAyODUuODc4QzcyLjUzMDQgMjg5LjIxNyA3NS40ODQ5IDI5MS4yMzUgNzguMDA1MiAyOTAuMzg0WiIgZmlsbD0iIzVFNTk1MyIvPgo8cGF0aCBkPSJNMTA3LjI4NyAyOTYuMjM3QzEwOS4zODcgMjkzLjQwOSAxMDkuMzU5IDI4OS44MjkgMTA3LjIyNSAyODguMjRDMTA1LjA5IDI4Ni42NTEgMTAxLjY1OCAyODcuNjU1IDk5LjU1ODIgMjkwLjQ4MkM5Ny40NTg0IDI5My4zMSA5Ny40ODY2IDI5Ni44OSA5OS42MjEgMjk4LjQ3OUMxMDEuNzU1IDMwMC4wNjggMTA1LjE4OCAyOTkuMDY0IDEwNy4yODcgMjk2LjIzN1oiIGZpbGw9IiM1RTU5NTMiLz4KPHBhdGggZD0iTTk2LjgxNDYgMjg0LjczOEM5Ny42MzQzIDI4MS4zMTIgOTYuMjAyIDI3OC4wMzEgOTMuNjE1NiAyNzcuNDFDOTEuMDI5MSAyNzYuNzkgODguMjY3OCAyNzkuMDY1IDg3LjQ0ODEgMjgyLjQ5MUM4Ni42Mjg0IDI4NS45MTggODguMDYwNiAyODkuMTk5IDkwLjY0NzEgMjg5LjgxOUM5My4yMzM2IDI5MC40NCA5NS45OTQ5IDI4OC4xNjUgOTYuODE0NiAyODQuNzM4WiIgZmlsbD0iIzVFNTk1MyIvPgo8cGF0aCBkPSJNMTEyLjQyMSAzMzguOTg2TDYwLjYxMTkgMzQxLjMxOEM2MC4wMTEyIDM0MS4zNDYgNTkuNTQ2MSAzNDEuODUzIDU5LjU3MzEgMzQyLjQ1M0M1OS42MDAxIDM0My4wNTIgNjAuMTA4OSAzNDMuNTE2IDYwLjcwOTcgMzQzLjQ4OUwxMTIuNTE5IDM0MS4xNTdDMTEzLjEyIDM0MS4xMyAxMTMuNTg1IDM0MC42MjIgMTEzLjU1OCAzNDAuMDIzQzExMy41MzEgMzM5LjQyMyAxMTMuMDIyIDMzOC45NTkgMTEyLjQyMSAzMzguOTg2WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTExMi43MTcgMzQ1LjU2NUw2MC45MDgxIDM0Ny44OTdDNjAuMzA3MyAzNDcuOTI0IDU5Ljg0MjIgMzQ4LjQzMiA1OS44NjkyIDM0OS4wMzFDNTkuODk2MiAzNDkuNjMxIDYwLjQwNTEgMzUwLjA5NSA2MS4wMDU4IDM1MC4wNjhMMTEyLjgxNSAzNDcuNzM1QzExMy40MTYgMzQ3LjcwOCAxMTMuODgxIDM0Ny4yMDEgMTEzLjg1NCAzNDYuNjAxQzExMy44MjcgMzQ2LjAwMiAxMTMuMzE4IDM0NS41MzggMTEyLjcxNyAzNDUuNTY1WiIgZmlsbD0id2hpdGUiLz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAzXzUxMF80NzI0KSI+CjxwYXRoIGQ9Ik0xMjcuMTI3IDQ0NC40MDFMOTMuODYxMSA0NTguNjAxQzkxLjg3MjQgNDU5LjQ1IDkwLjk0MjUgNDYxLjczNiA5MS43ODQxIDQ2My43MDhMMTE4Ljc5MyA1MjYuOTgyQzExOS42MzQgNTI4Ljk1NCAxMjEuOTI5IDUyOS44NjQgMTIzLjkxNyA1MjkuMDE1TDE1Ny4xODMgNTE0LjgxNkMxNTkuMTcyIDUxMy45NjcgMTYwLjEwMiA1MTEuNjgxIDE1OS4yNiA1MDkuNzA5TDEzMi4yNTIgNDQ2LjQzNEMxMzEuNDEgNDQ0LjQ2MyAxMjkuMTE2IDQ0My41NTIgMTI3LjEyNyA0NDQuNDAxWiIgZmlsbD0iIzY0NjQ2NCIvPgo8cGF0aCBkPSJNMTE0LjkwMyA0MjAuNjU4TDEyNS4zNiA0NDUuMTU2TDk1LjYyODUgNDU3Ljg0Nkw4NS4xNzE3IDQzMy4zNDlDODQuNTc3NSA0MzEuOTU3IDg1LjIzNDkgNDMwLjM0IDg2LjYzODkgNDI5Ljc0MUwxMTEuMjgzIDQxOS4yMjJDMTEyLjY4NyA0MTguNjIzIDExNC4zMDkgNDE5LjI2NiAxMTQuOTAzIDQyMC42NThaIiBmaWxsPSIjRkZDMDA2Ii8+CjxwYXRoIGQ9Ik05OC45OTU4IDM5NC44MjhMMTA5LjY5NyA0MTkuODk5TDg4LjIyNDYgNDI5LjA2NEw3My45Mzc0IDM5NS41OTNDNzIuODMzIDM5My4wMDYgNzQuOTczNyAzOTAuMTc1IDc3Ljc4ODggMzkwLjUwM0w5Ni4wNDY4IDM5Mi42MzFDOTcuMzYyNSAzOTIuNzg2IDk4LjQ4MiAzOTMuNjI0IDk4Ljk5NTggMzk0LjgyOFoiIGZpbGw9IiNGMDMyMTQiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF81MTBfNDcyNCI+CjxyZWN0IHdpZHRoPSIzMDEuMSIgaGVpZ2h0PSIzMTkuMzciIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNDUgMTA2KSIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXAxXzUxMF80NzI0Ij4KPHJlY3Qgd2lkdGg9IjExMyIgaGVpZ2h0PSIxMTMiIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MjEgNDE4KSIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXAyXzUxMF80NzI0Ij4KPHJlY3Qgd2lkdGg9IjEzNi4zOCIgaGVpZ2h0PSIxMjcuNjgiIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09Im1hdHJpeCgtMC45OTM0NDYgLTAuMTE0MzA0IC0wLjExNDMwNCAwLjk5MzQ0NiA1NjAuMDgxIDI1OC41ODkpIi8+CjwvY2xpcFBhdGg+CjxjbGlwUGF0aCBpZD0iY2xpcDNfNTEwXzQ3MjQiPgo8cmVjdCB3aWR0aD0iNDQiIGhlaWdodD0iMTQ2IiBmaWxsPSJ3aGl0ZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjMgMzk2LjI3Mykgcm90YXRlKC0yMy4xMTUxKSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=" alt="Community members scanning and contributing retail prices" width="591" height="606">
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: 4 Ways Everyone Can Contribute -->
+    <section>
+        <div class="section-header">
+            <span class="op-badge-pill emerald">⏱️ 2 Minutes While Shopping</span>
+            <h2>Simple ways anyone can add price transparency</h2>
+            <p>
+                From snapping a quick photo in the aisle to bulk receipt exports, every price point empowers consumers worldwide.
+            </p>
+        </div>
+
+        <div class="off-card-grid-4">
+            <!-- Card 1: Snap Price Tags -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-op-scan-aisle-pricetag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Animated smartphone camera scanning supermarket aisle shelf price tag with laser sweep">
+                    <style>
+                        .aisle-tag-focus {
+                            animation: aisleTagHighlight 4.2s ease-in-out infinite;
+                            transform-origin: 204px 238px;
+                        }
+                        .aisle-scanner-hand {
+                            animation: aislePhoneMove 4.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+                            transform-origin: 520px 360px;
+                        }
+                        .aisle-laser-line {
+                            animation: aisleLaserSweep 2.1s ease-in-out infinite;
+                        }
+                        .aisle-scan-badge {
+                            animation: aisleBadgePop 4.2s ease-out infinite;
+                            transform-origin: 355px 250px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes aisleTagHighlight {
+                            0%, 100% { transform: scale(1); }
+                            45%, 60% { transform: scale(1.12); }
+                        }
+                        @keyframes aislePhoneMove {
+                            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+                            45%, 60% { transform: translate(-22px, -8px) rotate(-3deg); }
+                        }
+                        @keyframes aisleLaserSweep {
+                            0%, 100% { transform: translateY(-34px); opacity: 0.35; }
+                            50% { transform: translateY(38px); opacity: 1; }
+                        }
+                        @keyframes aisleBadgePop {
+                            0%, 38%, 90%, 100% { transform: scale(0); opacity: 0; }
+                            48%, 78% { transform: scale(1); opacity: 1; }
+                        }
+                    </style>
+
+                    <!-- ========================================================= -->
+                    <!-- BACKGROUND: OPEN-PRICES-AISLE-PRICETAGS.SVG               -->
+                    <!-- ========================================================= -->
+                    <g transform="translate(-14, 12)">
+                        <rect x="34" y="28" width="380" height="310" rx="26" fill="#dcf0f7"></rect>
+
+                        <!-- Shelf Product 1 (Left): Crispy Cereal Pack -->
+                        <g transform="translate(62, 56)">
+                            <rect x="0" y="0" width="82" height="116" rx="8" fill="#ff6b35"></rect>
+                            <text x="9" y="26" fill="#d95326" font-weight="800" font-size="17">CRISPY</text>
+                            <path fill="#bfc3c6" d="M 48,10 L 54,8 L 63,36 A 9,9 0 1,1 54,40 Z"></path>
+                            <path fill="#00bdf2" d="M 34,60 L 82,60 L 82,88 C 68,106 38,102 34,60 Z"></path>
+                            <ellipse cx="16" cy="48" rx="5.5" ry="2.8" fill="#f8c100"></ellipse>
+                            <ellipse cx="22" cy="74" rx="5.5" ry="2.8" fill="#f8c100"></ellipse>
+                            <ellipse cx="16" cy="96" rx="5.5" ry="2.8" fill="#f8c100"></ellipse>
+                        </g>
+
+                        <!-- Shelf Product 2 (Center): Green Bottle -->
+                        <g transform="translate(178, 42)">
+                            <rect x="16" y="0" width="22" height="10" rx="3" fill="#aeaeae"></rect>
+                            <path fill="#009a49" d="M 19,10 L 35,10 L 35,34 C 48,40 54,54 54,72 L 54,120 A 10,10 0 0,1 44,130 L 10,130 A 10,10 0 0,1 0,120 L 0,72 C 0,54 6,40 19,34 Z"></path>
+                            <rect x="9" y="60" width="36" height="46" rx="4" fill="#ffffff"></rect>
+                            <line x1="14" y1="74" x2="40" y2="74" stroke="#999999" stroke-width="3"></line>
+                            <line x1="14" y1="84" x2="40" y2="84" stroke="#999999" stroke-width="3"></line>
+                        </g>
+
+                        <!-- Shelf Product 3 (Right): Pet Food Kibble Bag -->
+                        <g transform="translate(268, 52)">
+                            <rect x="12" y="0" width="56" height="11" rx="3" fill="#d68b28"></rect>
+                            <path fill="#f5b041" d="M 12,11 L 68,11 L 80,34 L 80,112 A 8,8 0 0,1 72,120 L 8,120 A 8,8 0 0,1 0,112 L 0,34 Z"></path>
+                            <circle cx="40" cy="64" r="27" fill="#ffffff"></circle>
+                            <ellipse cx="40" cy="70" rx="10" ry="7" fill="#595048"></ellipse>
+                            <circle cx="28" cy="58" r="4" fill="#595048"></circle>
+                            <circle cx="36" cy="52" r="4" fill="#595048"></circle>
+                            <circle cx="44" cy="52" r="4" fill="#595048"></circle>
+                            <circle cx="52" cy="58" r="4" fill="#595048"></circle>
+                        </g>
+
+                        <!-- Shelf Metal Rail -->
+                        <rect x="44" y="172" width="356" height="20" rx="6" fill="#606362"></rect>
+                        <rect x="44" y="172" width="356" height="7" rx="3.5" fill="#999999"></rect>
+
+                        <!-- Left Shelf Pricetag (2.49 €) -->
+                        <g>
+                            <rect x="60" y="182" width="86" height="50" rx="8" fill="#ffffff" stroke="#181818" stroke-width="3"></rect>
+                            <rect x="66" y="188" width="74" height="20" rx="4" fill="#ffc412"></rect>
+                            <text x="103" y="203" text-anchor="middle" fill="#181818" font-size="13" font-weight="800">2.49 €</text>
+                            <g fill="#181818" transform="translate(72, 213)">
+                                <rect x="0" y="0" width="3" height="12"></rect><rect x="6" y="0" width="5" height="12"></rect>
+                                <rect x="14" y="0" width="2" height="12"></rect><rect x="19" y="0" width="6" height="12"></rect>
+                                <rect x="28" y="0" width="3" height="12"></rect><rect x="34" y="0" width="7" height="12"></rect>
+                                <rect x="44" y="0" width="2" height="12"></rect><rect x="49" y="0" width="5" height="12"></rect>
+                            </g>
+                        </g>
+
+                        <!-- Center Highlighted Shelf Pricetag Being Scanned (1.85 €) -->
+                        <g class="aisle-tag-focus">
+                            <rect x="160" y="182" width="92" height="54" rx="8" fill="#ffffff" stroke="#009a49" stroke-width="3.5"></rect>
+                            <rect x="166" y="188" width="80" height="22" rx="4" fill="#ffc412"></rect>
+                            <text x="206" y="204" text-anchor="middle" fill="#181818" font-size="14" font-weight="800">1.85 €</text>
+                            <g fill="#181818" transform="translate(172, 215)">
+                                <rect x="0" y="0" width="4" height="13"></rect><rect x="7" y="0" width="3" height="13"></rect>
+                                <rect x="13" y="0" width="6" height="13"></rect><rect x="22" y="0" width="2" height="13"></rect>
+                                <rect x="27" y="0" width="7" height="13"></rect><rect x="37" y="0" width="3" height="13"></rect>
+                                <rect x="43" y="0" width="5" height="13"></rect><rect x="51" y="0" width="4" height="13"></rect>
+                                <rect x="58" y="0" width="6" height="13"></rect>
+                            </g>
+                        </g>
+                    </g>
+
+                    <!-- ========================================================= -->
+                    <!-- FOREGROUND: SMARTPHONE HAND SCANNING SHELF PRICETAG       -->
+                    <!-- ========================================================= -->
+                    <g class="aisle-scanner-hand">
+                        <g fill="#955830">
+                            <rect x="292" y="142" width="45" height="22" rx="11" transform="rotate(35 314 153)"></rect>
+                            <rect x="275" y="164" width="58" height="22" rx="11" transform="rotate(35 304 175)"></rect>
+                            <rect x="260" y="186" width="66" height="22" rx="11" transform="rotate(35 293 197)"></rect>
+                        </g>
+                        <path fill="#955830" d="M 380,210 L 432,216 C 470,252 508,270 555,280 L 555,375 C 488,365 436,336 385,292 Z"></path>
+                        <g transform="rotate(5 355 200)">
+                            <rect x="294" y="88" width="122" height="214" rx="14" fill="#606362"></rect>
+                            <rect x="300" y="95" width="110" height="200" rx="11" fill="#e1f3fe"></rect>
+
+                            <!-- Mini Shelf Rail + Shelf Pricetag Inside the Smartphone Camera Viewfinder! -->
+                            <rect x="306" y="122" width="98" height="12" rx="3" fill="#606362"></rect>
+                            <rect x="312" y="130" width="86" height="84" rx="8" fill="#ffffff" stroke="#181818" stroke-width="2.5"></rect>
+                            <!-- Yellow Price Box on Tag -->
+                            <rect x="320" y="138" width="70" height="30" rx="5" fill="#ffc412"></rect>
+                            <text x="355" y="159" text-anchor="middle" fill="#181818" font-size="16" font-weight="800">1.85 €</text>
+                            <!-- Mini Barcode Under Price on the Shelf Tag -->
+                            <g fill="#222222" transform="translate(323, 176)">
+                                <rect x="0" y="0" width="3" height="24"></rect><rect x="6" y="0" width="6" height="24"></rect>
+                                <rect x="15" y="0" width="2" height="24"></rect><rect x="20" y="0" width="5" height="24"></rect>
+                                <rect x="28" y="0" width="7" height="24"></rect><rect x="38" y="0" width="3" height="24"></rect>
+                                <rect x="44" y="0" width="6" height="24"></rect><rect x="53" y="0" width="4" height="24"></rect>
+                                <rect x="60" y="0" width="4" height="24"></rect>
+                            </g>
+
+                            <!-- Red Laser Scan Line Sweeping Across the Shelf Pricetag -->
+                            <rect class="aisle-laser-line" x="304" y="166" width="102" height="3.5" rx="1.5" fill="#dc3522"></rect>
+
+                            <!-- Green Confirmation Pill -->
+                            <g class="aisle-scan-badge">
+                                <rect x="320" y="236" width="70" height="26" rx="13" fill="#009a49"></rect>
+                                <path d="M 346,249 L 352,255 L 365,243" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                            <path fill="#606362" d="M 332,93 L 378,93 L 375,102 L 335,102 Z"></path>
+                        </g>
+                        <path fill="#955830" d="M 404,268 L 410,162 A 12,12 0 0,1 434,162 L 440,220 L 430,274 Z"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="op-badge-pill green">📸 Shelf Labels</span>
+                <h3>Snap price tags</h3>
+                <p>
+                    While grocery shopping, photograph the shelf label and barcode. Our OCR tool extracts the product price, currency, and unit price per kg or liter.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/contribute" class="off-btn off-btn-primary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Add Price Tag
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 2: Upload Receipts -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-op-receipt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Animated paper receipt scanning and itemized line extraction">
+                    <style>
+                        .op-rec-paper {
+                            animation: recPaperBob 4.2s ease-in-out infinite;
+                            transform-origin: 265px 210px;
+                        }
+                        .op-rec-row-1 { animation: recRowHighlight 4.2s ease-in-out infinite 0.2s; }
+                        .op-rec-row-2 { animation: recRowHighlight 4.2s ease-in-out infinite 0.7s; }
+                        .op-rec-row-3 { animation: recRowHighlight 4.2s ease-in-out infinite 1.2s; }
+                        .op-rec-coin {
+                            animation: recCoinFloat 4.2s ease-in-out infinite;
+                            transform-origin: 425px 115px;
+                        }
+                        .op-rec-check {
+                            animation: recCheckPop 4.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 120px 305px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes recPaperBob {
+                            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+                            50% { transform: translateY(-8px) rotate(1deg); }
+                        }
+                        @keyframes recRowHighlight {
+                            0%, 100% { opacity: 0.45; }
+                            50% { opacity: 1; }
+                        }
+                        @keyframes recCoinFloat {
+                            0%, 100% { transform: translateY(0px) rotate(0deg); }
+                            50% { transform: translateY(-12px) rotate(8deg); }
+                        }
+                        @keyframes recCheckPop {
+                            0%, 25%, 90%, 100% { transform: scale(0.85); }
+                            50%, 75% { transform: scale(1.08); }
+                        }
+                    </style>
+
+                    <!-- Soft Circular Backdrop (#dcf0f7 from hero-openprices.svg) -->
+                    <circle cx="275" cy="215" r="165" fill="#dcf0f7"></circle>
+
+                    <!-- Main Zigzag Paper Receipt -->
+                    <g class="op-rec-paper">
+                        <!-- Subtle Flat Drop Shadow -->
+                        <path fill="#b8dce8" d="
+                            M 168,54
+                            L 186,42 L 204,54 L 222,42 L 240,54 L 258,42 L 276,54 L 294,42 L 312,54 L 330,42 L 348,54 L 366,42 L 384,54
+                            L 384,374
+                            L 366,386 L 348,374 L 330,386 L 312,374 L 294,386 L 276,374 L 258,386 L 240,374 L 222,386 L 204,374 L 186,386 L 168,374
+                            Z" transform="translate(8, 8)"></path>
+
+                        <!-- White Paper Body with Top & Bottom Sawtooth Zigzag -->
+                        <path fill="#ffffff" d="
+                            M 168,54
+                            L 186,42 L 204,54 L 222,42 L 240,54 L 258,42 L 276,54 L 294,42 L 312,54 L 330,42 L 348,54 L 366,42 L 384,54
+                            L 384,374
+                            L 366,386 L 348,374 L 330,386 L 312,374 L 294,386 L 276,374 L 258,386 L 240,374 L 222,386 L 204,374 L 186,386 L 168,374
+                            Z"></path>
+
+                        <!-- Top Store Banner Pill (#009a49) -->
+                        <rect x="206" y="74" width="140" height="28" rx="14" fill="#009a49"></rect>
+                        <text x="276" y="93" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="14" font-weight="800" letter-spacing="1.5">OPEN PRICES</text>
+
+                        <!-- Dashed Separator -->
+                        <line x1="192" y1="120" x2="360" y2="120" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="6 6" stroke-linecap="round"></line>
+
+                        <!-- Line Item 1 (Orange Dot + Product Bar + Euro Price Pill) -->
+                        <g class="op-rec-row-1">
+                            <circle cx="202" cy="148" r="8" fill="#ff6b35"></circle>
+                            <rect x="220" y="142" width="76" height="12" rx="6" fill="#606362"></rect>
+                            <rect x="312" y="137" width="48" height="22" rx="7" fill="#fff3ed"></rect>
+                            <text x="336" y="153" text-anchor="middle" fill="#ff6b35" font-size="13" font-weight="800">2.49€</text>
+                        </g>
+
+                        <!-- Line Item 2 (Green Dot + Product Bar + Euro Price Pill) -->
+                        <g class="op-rec-row-2">
+                            <circle cx="202" cy="186" r="8" fill="#009a49"></circle>
+                            <rect x="220" y="180" width="62" height="12" rx="6" fill="#606362"></rect>
+                            <rect x="312" y="175" width="48" height="22" rx="7" fill="#e8f8ef"></rect>
+                            <text x="336" y="191" text-anchor="middle" fill="#009a49" font-size="13" font-weight="800">1.85€</text>
+                        </g>
+
+                        <!-- Line Item 3 (Cyan Dot + Product Bar + Euro Price Pill) -->
+                        <g class="op-rec-row-3">
+                            <circle cx="202" cy="224" r="8" fill="#00bdf2"></circle>
+                            <rect x="220" y="218" width="82" height="12" rx="6" fill="#606362"></rect>
+                            <rect x="312" y="213" width="48" height="22" rx="7" fill="#e1f3fe"></rect>
+                            <text x="336" y="229" text-anchor="middle" fill="#0077c8" font-size="13" font-weight="800">3.20€</text>
+                        </g>
+
+                        <!-- Dashed Separator -->
+                        <line x1="192" y1="254" x2="360" y2="254" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="6 6" stroke-linecap="round"></line>
+
+                        <!-- Total Highlight Bar (#ffc412) -->
+                        <rect x="192" y="268" width="168" height="36" rx="10" fill="#ffc412"></rect>
+                        <text x="208" y="291" fill="#181818" font-size="14" font-weight="800">TOTAL</text>
+                        <text x="346" y="291" text-anchor="end" fill="#181818" font-size="16" font-weight="800">7.54 €</text>
+
+                        <!-- Receipt Bottom Barcode -->
+                        <g fill="#181818" transform="translate(212, 318)">
+                            <rect x="0" y="0" width="5" height="34"></rect>
+                            <rect x="9" y="0" width="3" height="34"></rect>
+                            <rect x="16" y="0" width="8" height="34"></rect>
+                            <rect x="28" y="0" width="4" height="34"></rect>
+                            <rect x="36" y="0" width="9" height="34"></rect>
+                            <rect x="49" y="0" width="3" height="34"></rect>
+                            <rect x="56" y="0" width="6" height="34"></rect>
+                            <rect x="66" y="0" width="10" height="34"></rect>
+                            <rect x="80" y="0" width="4" height="34"></rect>
+                            <rect x="88" y="0" width="7" height="34"></rect>
+                            <rect x="99" y="0" width="3" height="34"></rect>
+                            <rect x="106" y="0" width="8" height="34"></rect>
+                            <rect x="118" y="0" width="5" height="34"></rect>
+                        </g>
+                    </g>
+
+                    <!-- Floating Attached coin-euro.svg (Top Right) -->
+                    <g class="op-rec-coin" transform="translate(382, 72)">
+                        <circle cx="44" cy="44" r="44" fill="#ffc412"></circle>
+                        <circle cx="44" cy="44" r="32" fill="#d49619"></circle>
+                        <path d="M 54,28 C 44,24 33,30 31,41 L 30,47 C 32,57 44,63 54,59" fill="none" stroke="#6c3c00" stroke-width="7" stroke-linecap="round"></path>
+                        <line x1="24" y1="41" x2="50" y2="41" stroke="#6c3c00" stroke-width="5.5"></line>
+                        <line x1="24" y1="48" x2="50" y2="48" stroke="#6c3c00" stroke-width="5.5"></line>
+                        <path d="M 54,10 A 35,35 0 0,1 60,12" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"></path>
+                        <path d="M 67,17 A 35,35 0 0,1 76,29" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"></path>
+                    </g>
+
+                    <!-- Floating Attached Green check.svg (Bottom Left) -->
+                    <g class="op-rec-check">
+                        <circle cx="118" cy="308" r="38" fill="#000000" opacity="0.1"></circle>
+                        <circle cx="120" cy="305" r="36" fill="#0b7a3e"></circle>
+                        <path d="M 103,306 L 115,318 L 139,294" fill="none" stroke="#ffffff" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="op-badge-pill amber">🧾 Receipts</span>
+                <h3>Upload receipts</h3>
+                <p>
+                    Take a picture of your paper grocery receipt or upload PDF e-receipts. Prices, store location, date, and discounts are parsed automatically.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/contribute" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Upload Receipt
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 3: GDPR Loyalty Card Exports -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-op-loyalty-gdpr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Animated GDPR loyalty card data portability export stream with EU shield and price itemization">
+                    <style>
+                        .gdpr-shield-pulse {
+                            animation: shieldFloat 4.2s ease-in-out infinite;
+                            transform-origin: 280px 185px;
+                        }
+                        .gdpr-arrow-flow {
+                            stroke-dashoffset: 60;
+                            animation: dataFlowDash 2.1s linear infinite;
+                        }
+                        .gdpr-export-board {
+                            animation: boardSlideIn 4.2s ease-in-out infinite;
+                            transform-origin: 445px 215px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes shieldFloat {
+                            0%, 100% { transform: translateY(0px) scale(1); }
+                            50% { transform: translateY(-8px) scale(1.05); }
+                        }
+                        @keyframes dataFlowDash {
+                            to { stroke-dashoffset: 0; }
+                        }
+                        @keyframes boardSlideIn {
+                            0%, 100% { transform: translateY(0px) rotate(3deg); }
+                            50% { transform: translateY(-7px) rotate(0deg); }
+                        }
+                    </style>
+
+                    <!-- Left: Fanned Loyalty Cards Stack -->
+                    <g transform="translate(-22, 10)">
+                        <!-- Back Orange Card -->
+                        <g transform="rotate(-12 145 195)">
+                            <rect x="52" y="102" width="185" height="116" rx="14" fill="#ff6b35" stroke="#ffffff" stroke-width="3"></rect>
+                            <circle cx="84" cy="134" r="14" fill="#ffc412"></circle>
+                            <rect x="108" y="128" width="90" height="10" rx="5" fill="#ffffff"></rect>
+                        </g>
+                        <!-- Middle Cyan Card -->
+                        <g transform="rotate(-4 155 205)">
+                            <rect x="62" y="124" width="185" height="116" rx="14" fill="#00bdf2" stroke="#ffffff" stroke-width="3"></rect>
+                            <circle cx="94" cy="156" r="14" fill="#ffffff"></circle>
+                            <rect x="118" y="150" width="90" height="10" rx="5" fill="#ffffff"></rect>
+                        </g>
+                        <!-- Front Green Loyalty Card -->
+                        <g transform="rotate(4 165 225)">
+                            <rect x="72" y="148" width="185" height="116" rx="14" fill="#009a49" stroke="#ffffff" stroke-width="3"></rect>
+                            <circle cx="104" cy="180" r="15" fill="#ffc412"></circle>
+                            <rect x="128" y="174" width="95" height="10" rx="5" fill="#ffffff"></rect>
+                            <rect x="90" y="210" width="150" height="36" rx="6" fill="#ffffff"></rect>
+                            <g fill="#181818" transform="translate(102, 216)">
+                                <rect x="0" y="0" width="4" height="24"></rect><rect x="8" y="0" width="7" height="24"></rect>
+                                <rect x="19" y="0" width="3" height="24"></rect><rect x="26" y="0" width="8" height="24"></rect>
+                                <rect x="38" y="0" width="5" height="24"></rect><rect x="47" y="0" width="9" height="24"></rect>
+                                <rect x="60" y="0" width="3" height="24"></rect><rect x="67" y="0" width="7" height="24"></rect>
+                                <rect x="78" y="0" width="6" height="24"></rect><rect x="88" y="0" width="8" height="24"></rect>
+                                <rect x="100" y="0" width="4" height="24"></rect><rect x="108" y="0" width="7" height="24"></rect>
+                                <rect x="119" y="0" width="5" height="24"></rect>
+                            </g>
+                        </g>
+                    </g>
+
+                    <!-- Animated Data Portability Stream Connecting Cards -> GDPR -> Checklist -->
+                    <line class="gdpr-arrow-flow" x1="220" y1="205" x2="375" y2="205" stroke="#0062cc" stroke-width="6" stroke-dasharray="10 10" stroke-linecap="round"></line>
+
+                    <!-- Center: EU / GDPR Shield Badge (#0052b4 + Golden Stars #ffc412) -->
+                    <g class="gdpr-shield-pulse">
+                        <path fill="#0052b4" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" d="
+                            M 285,108
+                            L 345,128
+                            L 345,190
+                            C 345,234 316,264 285,278
+                            C 254,264 225,234 225,190
+                            L 225,128 Z"></path>
+                        <!-- Ring of 8 Golden Stars Around "GDPR" -->
+                        <g fill="#ffc412">
+                            <circle cx="285" cy="136" r="4"></circle>
+                            <circle cx="315" cy="148" r="4"></circle>
+                            <circle cx="325" cy="178" r="4"></circle>
+                            <circle cx="315" cy="208" r="4"></circle>
+                            <circle cx="285" cy="222" r="4"></circle>
+                            <circle cx="255" cy="208" r="4"></circle>
+                            <circle cx="245" cy="178" r="4"></circle>
+                            <circle cx="255" cy="148" r="4"></circle>
+                        </g>
+                        <text x="285" y="182" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="800" letter-spacing="1">GDPR</text>
+                        <!-- Data Export Arrow Inside Shield -->
+                        <rect x="263" y="192" width="44" height="18" rx="9" fill="#ffc412"></rect>
+                        <text x="285" y="205" text-anchor="middle" fill="#181818" font-size="11" font-weight="800">EXPORT →</text>
+                    </g>
+
+                    <!-- Right: Extracted Open Prices Data on Attached Checklist.svg + Green Check -->
+                    <g class="gdpr-export-board">
+                        <rect x="372" y="88" width="152" height="214" rx="22" fill="#00bdf2"></rect>
+                        <rect x="386" y="106" width="124" height="180" rx="12" fill="#ffffff"></rect>
+                        <rect x="420" y="74" width="56" height="36" rx="8" fill="#aeaeae"></rect>
+
+                        <!-- Extracted Price Rows -->
+                        <circle cx="408" cy="142" r="7" fill="#009a49"></circle>
+                        <rect x="424" y="137" width="42" height="10" rx="5" fill="#606362"></rect>
+                        <text x="498" y="146" text-anchor="end" fill="#009a49" font-size="12" font-weight="800">2.49€</text>
+
+                        <circle cx="408" cy="176" r="7" fill="#ff6b35"></circle>
+                        <rect x="424" y="171" width="36" height="10" rx="5" fill="#606362"></rect>
+                        <text x="498" y="180" text-anchor="end" fill="#ff6b35" font-size="12" font-weight="800">1.85€</text>
+
+                        <circle cx="408" cy="210" r="7" fill="#00bdf2"></circle>
+                        <rect x="424" y="205" width="44" height="10" rx="5" fill="#606362"></rect>
+                        <text x="498" y="214" text-anchor="end" fill="#0077c8" font-size="12" font-weight="800">3.10€</text>
+
+                        <circle cx="408" cy="244" r="7" fill="#ffc412"></circle>
+                        <rect x="424" y="239" width="38" height="10" rx="5" fill="#606362"></rect>
+                        <text x="498" y="248" text-anchor="end" fill="#d49619" font-size="12" font-weight="800">4.20€</text>
+
+                        <!-- Attached Green check.svg Badge -->
+                        <circle cx="512" cy="288" r="26" fill="#0b7a3e"></circle>
+                        <path d="M 500,288 L 508,296 L 525,279" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="op-badge-pill blue">⚖️ GDPR Power</span>
+                <h3>GDPR store exports</h3>
+                <p>
+                    Request your purchase history from supermarket loyalty card schemes under European GDPR or right-to-access laws, and import bulk historical receipts.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/GDPR_request" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        GDPR Guide
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 4: Verify Proofs -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-op-extraction" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Animated OCR laser scanning a grocery receipt and extracting price metadata cards">
+                    <style>
+                        .ocr-laser-beam {
+                            animation: ocrLaserScan 4.2s ease-in-out infinite;
+                        }
+                        .extract-card-1 {
+                            animation: cardExtractSlide 4.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite 0.3s;
+                        }
+                        .extract-card-2 {
+                            animation: cardExtractSlide 4.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite 0.9s;
+                        }
+                        .extract-card-3 {
+                            animation: cardExtractSlide 4.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite 1.5s;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes ocrLaserScan {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(195px); }
+                        }
+                        @keyframes cardExtractSlide {
+                            0%, 15%, 92%, 100% { transform: translateX(-36px) scale(0.9); opacity: 0.25; }
+                            35%, 80% { transform: translateX(0px) scale(1); opacity: 1; }
+                        }
+                    </style>
+
+                    <!-- ========================================== -->
+                    <!-- LEFT: PAPER RECEIPT BEING SCANNED          -->
+                    <!-- ========================================== -->
+                    <g>
+                        <!-- Receipt Paper Body -->
+                        <path fill="#ffffff" stroke="#cbd5e1" stroke-width="3" d="
+                            M 46,66
+                            L 62,54 L 78,66 L 94,54 L 110,66 L 126,54 L 142,66 L 158,54 L 174,66 L 190,54 L 206,66 L 222,54 L 238,66
+                            L 238,354
+                            L 222,366 L 206,354 L 190,366 L 174,354 L 158,366 L 142,354 L 126,366 L 110,354 L 94,366 L 78,354 L 62,366 L 46,354
+                            Z"></path>
+
+                        <!-- Receipt Header -->
+                        <rect x="86" y="84" width="112" height="20" rx="10" fill="#dcf0f7"></rect>
+
+                        <!-- Dashed OCR Bounding Boxes Around Receipt Rows -->
+                        <!-- Row 1 Box -->
+                        <rect x="62" y="124" width="160" height="40" rx="8" fill="#fff3ed" stroke="#ff6b35" stroke-width="2.5" stroke-dasharray="6 4"></rect>
+                        <rect x="74" y="139" width="78" height="10" rx="5" fill="#606362"></rect>
+                        <rect x="172" y="139" width="38" height="10" rx="5" fill="#ff6b35"></rect>
+
+                        <!-- Row 2 Box -->
+                        <rect x="62" y="182" width="160" height="40" rx="8" fill="#e8f8ef" stroke="#009a49" stroke-width="2.5" stroke-dasharray="6 4"></rect>
+                        <rect x="74" y="197" width="66" height="10" rx="5" fill="#606362"></rect>
+                        <rect x="172" y="197" width="38" height="10" rx="5" fill="#009a49"></rect>
+
+                        <!-- Row 3 Box -->
+                        <rect x="62" y="240" width="160" height="40" rx="8" fill="#fffbeb" stroke="#d68b28" stroke-width="2.5" stroke-dasharray="6 4"></rect>
+                        <rect x="74" y="255" width="84" height="10" rx="5" fill="#606362"></rect>
+                        <rect x="172" y="255" width="38" height="10" rx="5" fill="#d68b28"></rect>
+
+                        <!-- Receipt Barcode -->
+                        <g fill="#aeaeae" transform="translate(88, 304)">
+                            <rect x="0" y="0" width="5" height="28"></rect><rect x="10" y="0" width="8" height="28"></rect>
+                            <rect x="23" y="0" width="4" height="28"></rect><rect x="32" y="0" width="9" height="28"></rect>
+                            <rect x="46" y="0" width="3" height="28"></rect><rect x="54" y="0" width="8" height="28"></rect>
+                            <rect x="67" y="0" width="5" height="28"></rect><rect x="77" y="0" width="7" height="28"></rect>
+                            <rect x="89" y="0" width="4" height="28"></rect><rect x="98" y="0" width="8" height="28"></rect>
+                        </g>
+
+                        <!-- Sweeping Cyan/Green OCR Laser Line -->
+                        <g class="ocr-laser-beam">
+                            <rect x="36" y="110" width="212" height="18" rx="9" fill="#00bdf2" opacity="0.22"></rect>
+                            <rect x="34" y="117" width="216" height="5" rx="2.5" fill="#00bdf2"></rect>
+                        </g>
+                    </g>
+
+                    <!-- Connecting Dashed Extraction Arrows -->
+                    <g stroke="#00bdf2" stroke-width="4" stroke-dasharray="7 6" stroke-linecap="round">
+                        <line x1="244" y1="144" x2="294" y2="108"></line>
+                        <line x1="244" y1="202" x2="294" y2="210"></line>
+                        <line x1="244" y1="260" x2="294" y2="312"></line>
+                    </g>
+
+                    <!-- ========================================== -->
+                    <!-- RIGHT: 3 EXTRACTED PRODUCT + PRICE CARDS   -->
+                    <!-- ========================================== -->
+                    <!-- Extracted Card 1: Crispy Cereal + 2.49€ + Green Check -->
+                    <g class="extract-card-1" transform="translate(298, 66)">
+                        <rect x="0" y="0" width="222" height="82" rx="18" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"></rect>
+                        <!-- Mini Cereal Icon -->
+                        <rect x="16" y="14" width="40" height="54" rx="5" fill="#ff6b35"></rect>
+                        <path fill="#00bdf2" d="M 28,44 L 56,44 C 52,58 32,58 28,44 Z"></path>
+                        <!-- Extracted Price Pill -->
+                        <rect x="70" y="18" width="86" height="28" rx="8" fill="#ffc412"></rect>
+                        <text x="113" y="37" text-anchor="middle" fill="#181818" font-size="16" font-weight="800">2.49 €</text>
+                        <rect x="70" y="54" width="72" height="10" rx="5" fill="#cbd5e1"></rect>
+                        <!-- Attached Green check.svg -->
+                        <circle cx="188" cy="41" r="20" fill="#0b7a3e"></circle>
+                        <path d="M 179,41 L 185,47 L 198,34" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+
+                    <!-- Extracted Card 2: Green Bottle + 1.85€ + Green Check -->
+                    <g class="extract-card-2" transform="translate(298, 168)">
+                        <rect x="0" y="0" width="222" height="82" rx="18" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"></rect>
+                        <!-- Mini Green Bottle Icon -->
+                        <rect x="30" y="12" width="12" height="6" rx="2" fill="#aeaeae"></rect>
+                        <path fill="#009a49" d="M 31,18 L 41,18 L 41,28 C 49,32 52,40 52,48 L 52,66 A 4,4 0 0,1 48,70 L 24,70 A 4,4 0 0,1 20,66 L 20,48 C 20,40 23,32 31,28 Z"></path>
+                        <rect x="26" y="42" width="20" height="20" rx="2" fill="#ffffff"></rect>
+                        <!-- Extracted Price Pill -->
+                        <rect x="70" y="18" width="86" height="28" rx="8" fill="#ffc412"></rect>
+                        <text x="113" y="37" text-anchor="middle" fill="#181818" font-size="16" font-weight="800">1.85 €</text>
+                        <rect x="70" y="54" width="64" height="10" rx="5" fill="#cbd5e1"></rect>
+                        <!-- Attached Green check.svg -->
+                        <circle cx="188" cy="41" r="20" fill="#0b7a3e"></circle>
+                        <path d="M 179,41 L 185,47 L 198,34" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+
+                    <!-- Extracted Card 3: Pet Food Bag + 4.90€ + Green Check -->
+                    <g class="extract-card-3" transform="translate(298, 270)">
+                        <rect x="0" y="0" width="222" height="82" rx="18" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"></rect>
+                        <!-- Mini Kibble Bag Icon -->
+                        <rect x="22" y="14" width="28" height="6" rx="2" fill="#d68b28"></rect>
+                        <path fill="#f5b041" d="M 22,20 L 50,20 L 56,30 L 56,66 A 4,4 0 0,1 52,70 L 20,70 A 4,4 0 0,1 16,66 L 16,30 Z"></path>
+                        <circle cx="36" cy="45" r="12" fill="#ffffff"></circle>
+                        <circle cx="36" cy="46" r="5" fill="#595048"></circle>
+                        <!-- Extracted Price Pill -->
+                        <rect x="70" y="18" width="86" height="28" rx="8" fill="#ffc412"></rect>
+                        <text x="113" y="37" text-anchor="middle" fill="#181818" font-size="16" font-weight="800">4.90 €</text>
+                        <rect x="70" y="54" width="80" height="10" rx="5" fill="#cbd5e1"></rect>
+                        <!-- Attached Green check.svg -->
+                        <circle cx="188" cy="41" r="20" fill="#0b7a3e"></circle>
+                        <path d="M 179,41 L 185,47 L 198,34" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="op-badge-pill purple">🔍 Verification</span>
+                <h3>Verify price proofs</h3>
+                <p>
+                    Help check OCR extracts, confirm prices match the photographed proofs, and align store locations with OpenStreetMap records.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Verification/Open_Prices" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Verify Proofs
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Section 2: Expert Help Needed Banner -->
+    <section>
+        <div class="expert-banner">
+            <div class="expert-banner-art">
+                <svg id="svg-expert-help" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Developers and open data volunteers working on Open Prices">
+                    <style>
+                        .code-line-1 { animation: typeWidth1 3.6s steps(12) infinite; }
+                        .code-line-2 { animation: typeWidth2 3.6s steps(12) infinite; }
+                        .robot-bob {
+                            animation: robotFloat 3.6s ease-in-out infinite;
+                            transform-origin: 425px 125px;
+                        }
+                        .hand-left-type {
+                            animation: leftType 0.9s ease-in-out infinite;
+                            transform-origin: 185px 380px;
+                        }
+                        .hand-right-type {
+                            animation: rightType 0.9s ease-in-out infinite 0.45s;
+                            transform-origin: 375px 380px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes typeWidth1 {
+                            0%, 10% { width: 20px; }
+                            50%, 90% { width: 145px; }
+                            100% { width: 20px; }
+                        }
+                        @keyframes typeWidth2 {
+                            0%, 25% { width: 10px; }
+                            65%, 90% { width: 115px; }
+                            100% { width: 10px; }
+                        }
+                        @keyframes robotFloat {
+                            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+                            50% { transform: translateY(-10px) rotate(4deg); }
+                        }
+                        @keyframes leftType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                        @keyframes rightType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                    </style>
+
+                    <!-- Central Laptop / Code & Design Window -->
+                    <rect x="110" y="76" width="310" height="205" rx="18" fill="#181818"></rect>
+                    <rect x="124" y="92" width="282" height="173" rx="10" fill="#26292e"></rect>
+
+                    <!-- Top Window Dots -->
+                    <circle cx="142" cy="108" r="5.5" fill="#dc3522"></circle>
+                    <circle cx="160" cy="108" r="5.5" fill="#f8c100"></circle>
+                    <circle cx="178" cy="108" r="5.5" fill="#009a49"></circle>
+
+                    <!-- Code Bracket & Animated Code Bars -->
+                    <text x="142" y="152" fill="#00bdf2" font-family="monospace" font-weight="800" font-size="26">&lt;/&gt;</text>
+                    <rect class="code-line-1" x="198" y="134" width="145" height="12" rx="6" fill="#7fbc2b"></rect>
+                    <rect class="code-line-2" x="198" y="156" width="115" height="12" rx="6" fill="#f8c100"></rect>
+                    <rect x="142" y="182" width="170" height="12" rx="6" fill="#ff6b35"></rect>
+                    <rect x="142" y="204" width="128" height="12" rx="6" fill="#00bdf2"></rect>
+                    <rect x="142" y="226" width="90" height="12" rx="6" fill="#d9dada"></rect>
+
+                    <!-- Laptop Base -->
+                    <path fill="#aeaeae" d="M 82,281 L 448,281 L 432,304 L 98,304 Z"></path>
+
+                    <!-- Floating Robotoff AI Badge (Top Right) -->
+                    <g class="robot-bob">
+                        <!-- Antenna -->
+                        <rect x="421" y="54" width="8" height="22" rx="4" fill="#606362"></rect>
+                        <circle cx="425" cy="50" r="9" fill="#ff6b35"></circle>
+                        <!-- Robot Head -->
+                        <rect x="375" y="72" width="100" height="78" rx="22" fill="#00bdf2"></rect>
+                        <rect x="390" y="90" width="70" height="32" rx="10" fill="#181818"></rect>
+                        <!-- Glowing Eyes -->
+                        <circle cx="408" cy="106" r="7" fill="#f8c100"></circle>
+                        <circle cx="442" cy="106" r="7" fill="#f8c100"></circle>
+                        <!-- Smile Bar -->
+                        <rect x="408" y="132" width="34" height="6" rx="3" fill="#ffffff"></rect>
+                    </g>
+
+                    <!-- Left Typing Hand (Peach Tone #ffc68a, Seamless Finger Slits) -->
+                    <g class="hand-left-type">
+                        <path fill="#ffc68a" d="
+                            M 118,415
+                            L 138,342
+                            L 138,292 A 7.5,7.5 0 0,1 153,292 L 153,330 L 156,330
+                            L 156,286 A 7.5,7.5 0 0,1 171,286 L 171,330 L 174,330
+                            L 174,286 A 7.5,7.5 0 0,1 189,286 L 189,330 L 192,330
+                            L 192,292 A 7.5,7.5 0 0,1 207,292 L 207,340
+                            L 222,324 C 229,317 238,325 231,334
+                            L 207,365 L 195,415 Z"></path>
+                    </g>
+
+                    <!-- Right Typing Hand (Brown Tone #955830, Seamless Finger Slits) -->
+                    <g class="hand-right-type">
+                        <path fill="#955830" d="
+                            M 342,415
+                            L 330,365
+                            L 306,334 C 299,325 308,317 315,324
+                            L 330,340
+                            L 330,292 A 7.5,7.5 0 0,1 345,292 L 345,330 L 348,330
+                            L 348,286 A 7.5,7.5 0 0,1 363,286 L 363,330 L 366,330
+                            L 366,286 A 7.5,7.5 0 0,1 381,286 L 381,330 L 384,330
+                            L 384,292 A 7.5,7.5 0 0,1 399,292 L 399,342
+                            L 419,415 Z"></path>
+                    </g>
+                </svg>
+            </div>
+            <div class="expert-banner-text">
+                <span class="op-badge-pill green">🛠️ Specialized Skills</span>
+                <h2>Expert help needed</h2>
+                <p>
+                    We welcome machine learning engineers (receipt &amp; price tag OCR), Python FastAPI developers, Vue.js contributors, OpenStreetMap mappers, and data scientists to scale the Open Prices platform.
+                </p>
+                <a href="https://connect.openfoodfacts.org/join-the-contributor-skill-pool-open-food-facts" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer">
+                    Join the Contributor Skill Pool &rarr;
+                </a>
+            </div>
+        </div>
+
+        <!-- Section 3: Specialized Skills Grid -->
+        <div class="off-card-grid-3">
+            <!-- Development & AI -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-expert-help" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Code editor and machine learning receipt parsing">
+                    <style>
+                        .code-line-1 { animation: typeWidth1 3.6s steps(12) infinite; }
+                        .code-line-2 { animation: typeWidth2 3.6s steps(12) infinite; }
+                        .robot-bob {
+                            animation: robotFloat 3.6s ease-in-out infinite;
+                            transform-origin: 425px 125px;
+                        }
+                        .hand-left-type {
+                            animation: leftType 0.9s ease-in-out infinite;
+                            transform-origin: 185px 380px;
+                        }
+                        .hand-right-type {
+                            animation: rightType 0.9s ease-in-out infinite 0.45s;
+                            transform-origin: 375px 380px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes typeWidth1 {
+                            0%, 10% { width: 20px; }
+                            50%, 90% { width: 145px; }
+                            100% { width: 20px; }
+                        }
+                        @keyframes typeWidth2 {
+                            0%, 25% { width: 10px; }
+                            65%, 90% { width: 115px; }
+                            100% { width: 10px; }
+                        }
+                        @keyframes robotFloat {
+                            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+                            50% { transform: translateY(-10px) rotate(4deg); }
+                        }
+                        @keyframes leftType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                        @keyframes rightType {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-7px); }
+                        }
+                    </style>
+
+                    <!-- Central Laptop / Code & Design Window -->
+                    <rect x="110" y="76" width="310" height="205" rx="18" fill="#181818"></rect>
+                    <rect x="124" y="92" width="282" height="173" rx="10" fill="#26292e"></rect>
+
+                    <!-- Top Window Dots -->
+                    <circle cx="142" cy="108" r="5.5" fill="#dc3522"></circle>
+                    <circle cx="160" cy="108" r="5.5" fill="#f8c100"></circle>
+                    <circle cx="178" cy="108" r="5.5" fill="#009a49"></circle>
+
+                    <!-- Code Bracket & Animated Code Bars -->
+                    <text x="142" y="152" fill="#00bdf2" font-family="monospace" font-weight="800" font-size="26">&lt;/&gt;</text>
+                    <rect class="code-line-1" x="198" y="134" width="145" height="12" rx="6" fill="#7fbc2b"></rect>
+                    <rect class="code-line-2" x="198" y="156" width="115" height="12" rx="6" fill="#f8c100"></rect>
+                    <rect x="142" y="182" width="170" height="12" rx="6" fill="#ff6b35"></rect>
+                    <rect x="142" y="204" width="128" height="12" rx="6" fill="#00bdf2"></rect>
+                    <rect x="142" y="226" width="90" height="12" rx="6" fill="#d9dada"></rect>
+
+                    <!-- Laptop Base -->
+                    <path fill="#aeaeae" d="M 82,281 L 448,281 L 432,304 L 98,304 Z"></path>
+
+                    <!-- Floating Robotoff AI Badge (Top Right) -->
+                    <g class="robot-bob">
+                        <!-- Antenna -->
+                        <rect x="421" y="54" width="8" height="22" rx="4" fill="#606362"></rect>
+                        <circle cx="425" cy="50" r="9" fill="#ff6b35"></circle>
+                        <!-- Robot Head -->
+                        <rect x="375" y="72" width="100" height="78" rx="22" fill="#00bdf2"></rect>
+                        <rect x="390" y="90" width="70" height="32" rx="10" fill="#181818"></rect>
+                        <!-- Glowing Eyes -->
+                        <circle cx="408" cy="106" r="7" fill="#f8c100"></circle>
+                        <circle cx="442" cy="106" r="7" fill="#f8c100"></circle>
+                        <!-- Smile Bar -->
+                        <rect x="408" y="132" width="34" height="6" rx="3" fill="#ffffff"></rect>
+                    </g>
+
+                    <!-- Left Typing Hand (Peach Tone #ffc68a, Seamless Finger Slits) -->
+                    <g class="hand-left-type">
+                        <path fill="#ffc68a" d="
+                            M 118,415
+                            L 138,342
+                            L 138,292 A 7.5,7.5 0 0,1 153,292 L 153,330 L 156,330
+                            L 156,286 A 7.5,7.5 0 0,1 171,286 L 171,330 L 174,330
+                            L 174,286 A 7.5,7.5 0 0,1 189,286 L 189,330 L 192,330
+                            L 192,292 A 7.5,7.5 0 0,1 207,292 L 207,340
+                            L 222,324 C 229,317 238,325 231,334
+                            L 207,365 L 195,415 Z"></path>
+                    </g>
+
+                    <!-- Right Typing Hand (Brown Tone #955830, Seamless Finger Slits) -->
+                    <g class="hand-right-type">
+                        <path fill="#955830" d="
+                            M 342,415
+                            L 330,365
+                            L 306,334 C 299,325 308,317 315,324
+                            L 330,340
+                            L 330,292 A 7.5,7.5 0 0,1 345,292 L 345,330 L 348,330
+                            L 348,286 A 7.5,7.5 0 0,1 363,286 L 363,330 L 366,330
+                            L 366,286 A 7.5,7.5 0 0,1 381,286 L 381,330 L 384,330
+                            L 384,292 A 7.5,7.5 0 0,1 399,292 L 399,342
+                            L 419,415 Z"></path>
+                    </g>
+                </svg>
+                </div>
+                <span class="op-badge-pill blue">Python &amp; Vue.js</span>
+                <h3>Development &amp; AI</h3>
+                <p>
+                    Contribute to the FastAPI backend, receipt OCR extraction pipeline, OpenStreetMap store tagging, and responsive Vue.js web app.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts/open-prices" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        GitHub Repositories
+                    </a>
+                </div>
+            </article>
+
+            <!-- Community & Challenges -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-community-building" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" class="" role="img" aria-label="Community scan parties and price challenges">
+                    <style>
+                        .highfive-left {
+                            animation: clapLeft 3.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 210px 330px;
+                        }
+                        .highfive-right {
+                            animation: clapRight 3.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+                            transform-origin: 350px 330px;
+                        }
+                        .clap-rays {
+                            animation: raysBurst 3.4s ease-out infinite;
+                            transform-origin: 280px 88px;
+                        }
+                        .badge-orbit-1 { animation: orbitBob 3.4s ease-in-out infinite; }
+                        .badge-orbit-2 { animation: orbitBob 3.4s ease-in-out infinite 0.5s; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes clapLeft {
+                            0%, 15%, 90%, 100% { transform: translate(-34px, 12px) rotate(-14deg); }
+                            40%, 68% { transform: translate(0px, 0px) rotate(0deg); }
+                        }
+                        @keyframes clapRight {
+                            0%, 15%, 90%, 100% { transform: translate(34px, 12px) rotate(14deg); }
+                            40%, 68% { transform: translate(0px, 0px) rotate(0deg); }
+                        }
+                        @keyframes raysBurst {
+                            0%, 34%, 78%, 100% { transform: scale(0.4); opacity: 0; }
+                            44%, 62% { transform: scale(1.12); opacity: 1; }
+                        }
+                        @keyframes orbitBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-9px); }
+                        }
+                    </style>
+
+                    <!-- Soft Circular Community Backdrop -->
+                    <circle cx="280" cy="225" r="145" fill="#e1f3fe" opacity="0.7"></circle>
+
+                    <!-- Floating Community Avatars / Badges -->
+                    <g class="badge-orbit-1">
+                        <circle cx="102" cy="145" r="32" fill="#009a49"></circle>
+                        <path d="M 90,146 L 98,154 L 115,137" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <circle cx="458" cy="285" r="28" fill="#ff6b35"></circle>
+                        <path fill="#ffffff" d="M 458,298 C 458,298 442,286 442,276 A 8,8 0 0,1 458,272 A 8,8 0 0,1 474,276 C 474,286 458,298 458,298 Z"></path>
+                    </g>
+                    <g class="badge-orbit-2">
+                        <circle cx="452" cy="135" r="30" fill="#f8c100"></circle>
+                        <text x="452" y="144" text-anchor="middle" fill="#181818" font-size="24" font-weight="800">★</text>
+                        <circle cx="106" cy="295" r="26" fill="#00bdf2"></circle>
+                        <circle cx="106" cy="288" r="7" fill="#ffffff"></circle>
+                        <path fill="#ffffff" d="M 92,308 C 92,298 120,298 120,308 Z"></path>
+                    </g>
+
+                    <!-- ATTACHED HIGH-FIVE.SVG RECONSTRUCTION -->
+                    <!-- Top 3 Impact Rays inside White Sticker Halo -->
+                    <g class="clap-rays">
+                        <line x1="236" y1="92" x2="218" y2="68" stroke="#ffffff" stroke-width="22" stroke-linecap="round"></line>
+                        <line x1="280" y1="82" x2="280" y2="52" stroke="#ffffff" stroke-width="22" stroke-linecap="round"></line>
+                        <line x1="324" y1="92" x2="342" y2="68" stroke="#ffffff" stroke-width="22" stroke-linecap="round"></line>
+
+                        <line x1="236" y1="92" x2="218" y2="68" stroke="#181818" stroke-width="8" stroke-linecap="round"></line>
+                        <line x1="280" y1="82" x2="280" y2="52" stroke="#181818" stroke-width="8" stroke-linecap="round"></line>
+                        <line x1="324" y1="92" x2="342" y2="68" stroke="#181818" stroke-width="8" stroke-linecap="round"></line>
+                    </g>
+
+                    <!-- Right Brown Hand (#955830) — 4 Fingers + Right Thumb -->
+                    <g class="highfive-right">
+                        <g transform="rotate(16 322 248)">
+                            <!-- White Sticker Border -->
+                            <path fill="#ffffff" stroke="#ffffff" stroke-width="18" stroke-linejoin="round" d="
+                                M 262,142 A 13,13 0 0,1 288,142 L 288,218 L 293,218
+                                L 293,134 A 13,13 0 0,1 319,134 L 319,218 L 324,218
+                                L 324,138 A 13,13 0 0,1 350,138 L 350,218 L 355,218
+                                L 355,148 A 13,13 0 0,1 381,148 L 381,252
+                                L 408,228 A 13,13 0 0,1 426,247 L 384,302
+                                C 362,334 316,348 278,334
+                                C 254,325 256,285 262,252 Z"></path>
+                            <!-- Brown Hand Fill -->
+                            <path fill="#955830" d="
+                                M 262,142 A 13,13 0 0,1 288,142 L 288,218 L 293,218
+                                L 293,134 A 13,13 0 0,1 319,134 L 319,218 L 324,218
+                                L 324,138 A 13,13 0 0,1 350,138 L 350,218 L 355,218
+                                L 355,148 A 13,13 0 0,1 381,148 L 381,252
+                                L 408,228 A 13,13 0 0,1 426,247 L 384,302
+                                C 362,334 316,348 278,334
+                                C 254,325 256,285 262,252 Z"></path>
+                        </g>
+                    </g>
+
+                    <!-- Left Peach Hand (#ffc68a) — 4 Fingers + Left Thumb (Overlaps in Front) -->
+                    <g class="highfive-left">
+                        <g transform="rotate(-14 238 248)">
+                            <!-- White Sticker Border -->
+                            <path fill="#ffffff" stroke="#ffffff" stroke-width="18" stroke-linejoin="round" d="
+                                M 298,142 A 13,13 0 0,0 272,142 L 272,218 L 267,218
+                                L 267,134 A 13,13 0 0,0 241,134 L 241,218 L 236,218
+                                L 236,138 A 13,13 0 0,0 210,138 L 210,218 L 205,218
+                                L 205,148 A 13,13 0 0,0 179,148 L 179,252
+                                L 152,228 A 13,13 0 0,0 134,247 L 176,302
+                                C 198,334 244,348 282,334
+                                C 306,325 304,285 298,252 Z"></path>
+                            <!-- Peach Hand Fill -->
+                            <path fill="#ffc68a" d="
+                                M 298,142 A 13,13 0 0,0 272,142 L 272,218 L 267,218
+                                L 267,134 A 13,13 0 0,0 241,134 L 241,218 L 236,218
+                                L 236,138 A 13,13 0 0,0 210,138 L 210,218 L 205,218
+                                L 205,148 A 13,13 0 0,0 179,148 L 179,252
+                                L 152,228 A 13,13 0 0,0 134,247 L 176,302
+                                C 198,334 244,348 282,334
+                                C 306,325 304,285 298,252 Z"></path>
+                        </g>
+                    </g>
+                </svg>
+                </div>
+                <span class="op-badge-pill amber">Missions &amp; Outreach</span>
+                <h3>Challenges &amp; Outreach</h3>
+                <p>
+                    Organize neighborhood scan drives, launch thematic price challenges, coordinate volunteer translation, and advocate for open grocery data.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/challenges" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Explore Challenges
+                    </a>
+                </div>
+            </article>
+
+            <!-- Economics & Data Science -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <svg id="svg-science-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 280" class="max-w-[420px]" role="img" aria-label="Scientific research flask analyzing purchasing power">
+                    <style>
+                        .sci-bar {
+                            transform-box: fill-box;
+                            transform-origin: bottom center;
+                            animation: barWave 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        }
+                        .b1  { animation-delay: 0.00s; } .b2  { animation-delay: 0.06s; }
+                        .b3  { animation-delay: 0.12s; } .b4  { animation-delay: 0.18s; }
+                        .b5  { animation-delay: 0.24s; } .b6  { animation-delay: 0.30s; }
+                        .b7  { animation-delay: 0.36s; } .b8  { animation-delay: 0.42s; }
+                        .b9  { animation-delay: 0.48s; } .b10 { animation-delay: 0.54s; }
+                        .b11 { animation-delay: 0.60s; } .b12 { animation-delay: 0.66s; }
+                        .b13 { animation-delay: 0.72s; } .b14 { animation-delay: 0.78s; }
+                        .b15 { animation-delay: 0.84s; } .b16 { animation-delay: 0.90s; }
+                        .b17 { animation-delay: 0.96s; } .b18 { animation-delay: 1.02s; }
+                        .b19 { animation-delay: 1.08s; } .b20 { animation-delay: 1.14s; }
+                        .b21 { animation-delay: 1.20s; } .b22 { animation-delay: 1.26s; }
+                        .b23 { animation-delay: 1.32s; } .b24 { animation-delay: 1.38s; }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes barWave {
+                            0%, 100% { transform: scaleY(1); }
+                            30% { transform: scaleY(0.18); }
+                            65% { transform: scaleY(1.06); }
+                        }
+                    </style>
+
+                    <!-- 4 Horizontal Reference Grid Lines -->
+                    <line x1="12" y1="32" x2="368" y2="32" stroke="#cccccc" stroke-width="1"></line>
+                    <line x1="12" y1="112" x2="368" y2="112" stroke="#cccccc" stroke-width="1"></line>
+                    <line x1="12" y1="192" x2="368" y2="192" stroke="#cccccc" stroke-width="1"></line>
+                    <line x1="12" y1="272" x2="368" y2="272" stroke="#cccccc" stroke-width="1"></line>
+
+                    <!-- 4 Green Bars (#00a600) -->
+                    <rect class="sci-bar b1" x="14" y="261" width="12" height="11" fill="#00a600"></rect>
+                    <rect class="sci-bar b2" x="28" y="236" width="12" height="36" fill="#00a600"></rect>
+                    <rect class="sci-bar b3" x="42" y="214" width="12" height="58" fill="#00a600"></rect>
+                    <rect class="sci-bar b4" x="57" y="214" width="12" height="58" fill="#00a600"></rect>
+
+                    <!-- 6 Yellow Bars (#ffe500) -->
+                    <rect class="sci-bar b5" x="71" y="264" width="12" height="8" fill="#ffe500"></rect>
+                    <rect class="sci-bar b6" x="85" y="216" width="12" height="56" fill="#ffe500"></rect>
+                    <rect class="sci-bar b7" x="100" y="233" width="12" height="39" fill="#ffe500"></rect>
+                    <rect class="sci-bar b8" x="114" y="240" width="12" height="32" fill="#ffe500"></rect>
+                    <rect class="sci-bar b9" x="128" y="240" width="12" height="32" fill="#ffe500"></rect>
+                    <rect class="sci-bar b10" x="143" y="247" width="12" height="25" fill="#ffe500"></rect>
+
+                    <!-- 7 Orange Bars (#ff7b00) -->
+                    <rect class="sci-bar b11" x="157" y="253" width="12" height="19" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b12" x="171" y="261" width="12" height="11" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b13" x="185" y="266" width="12" height="6" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b14" x="200" y="257" width="12" height="15" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b15" x="214" y="231" width="12" height="41" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b16" x="228" y="192" width="12" height="80" fill="#ff7b00"></rect>
+                    <rect class="sci-bar b17" x="242" y="118" width="12" height="154" fill="#ff7b00"></rect>
+
+                    <!-- 5 Magenta Bars (#ff00d4) -->
+                    <rect class="sci-bar b18" x="257" y="128" width="12" height="144" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b19" x="271" y="90" width="12" height="182" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b20" x="285" y="58" width="12" height="214" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b21" x="299" y="44" width="12" height="228" fill="#ff00d4"></rect>
+                    <rect class="sci-bar b22" x="314" y="112" width="12" height="160" fill="#ff00d4"></rect>
+
+                    <!-- 3 Red Bars (#ff0000) -->
+                    <rect class="sci-bar b23" x="328" y="192" width="12" height="80" fill="#ff0000"></rect>
+                    <rect class="sci-bar b24" x="342" y="216" width="12" height="56" fill="#ff0000"></rect>
+                    <rect class="sci-bar b24" x="356" y="204" width="12" height="68" fill="#ff0000"></rect>
+                </svg>
+                </div>
+                <span class="op-badge-pill green">Analytics &amp; Research</span>
+                <h3>Data Science &amp; Economics</h3>
+                <p>
+                    Analyze price elasticity, study inflation transmission across product lines, build price indexes, and document methodology on our open wiki.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Project:Open-Prices" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Open Prices Wiki
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="bottom-projects-cta">
+        <h2>Ready to make grocery prices open to everyone?</h2>
+        <p>
+            Connect with volunteers, economists, and open data contributors in our dedicated Slack channel.
+        </p>
+        <a href="https://slack.openfoodfacts.org" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer" style="font-size: 1.05rem; padding: 0.85rem 1.85rem; background: #10b981;">
+            Join #prices on Slack &rarr;
+        </a>
+    </div>
+
+</div>
+
+<script>
+    function onMount(fn) {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+        } else {
+            fn();
+        }
+    }
+
+    onMount(() => {
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            if (typeof parent !== 'undefined' && parent !== window) {
+                parent.postMessage({ frameHeight: height }, '*');
+            }
+        }
+        sendHeight();
+        window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
+                    }
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
+
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
+        });
+    });
+</script>
+
+    </main>
+
+</body>
+</html>

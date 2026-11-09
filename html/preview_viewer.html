@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    .viewport-desktop {
+      width: 100%;
+      height: 780px;
+      transition: all 0.3s ease;
+    }
+    .viewport-mobile {
+      width: 390px;
+      height: 780px;
+      margin: 0 auto;
+      border: 8px solid #2d1808;
+      border-radius: 36px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-transparent text-[var(--foreground)] antialiased p-4">
+
+  <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
+    <!-- Header Controls -->
+    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border)] pb-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🥗</span>
+          <h2 class="text-lg font-bold text-[var(--foreground)]">Open Food Facts &amp; Sister Projects Previews</h2>
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-orange-100 text-orange-700 dark:bg-orange-950 dark:text-orange-300">Revamped</span>
+        </div>
+        <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Featuring new animated assets, normalized SVGs, and responsive design across OFF, OBF, OPFF, and OPF</p>
+      </div>
+
+      <!-- Controls -->
+      <div class="flex flex-wrap items-center gap-2">
+        <!-- Viewport Toggle -->
+        <div class="inline-flex rounded-lg border border-[var(--border)] p-1 bg-[var(--background)]">
+          <button id="btn-desktop" onclick="setViewport('desktop')" class="px-2.5 py-1.5 text-xs font-medium rounded-md bg-[var(--card)] text-[var(--foreground)] shadow-xs">
+            💻 Desktop
+          </button>
+          <button id="btn-mobile" onclick="setViewport('mobile')" class="px-2.5 py-1.5 text-xs font-medium rounded-md text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
+            📱 Mobile
+          </button>
+        </div>
+
+        <!-- External Link -->
+        <a id="ext-link" href="preview-discover.html" target="_blank" class="px-3 py-1.5 text-xs font-medium rounded-lg border border-[var(--border)] hover:bg-[var(--background)] transition flex items-center gap-1.5">
+          <span>Open in New Tab</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Page Switcher Tabs -->
+    <div class="flex flex-wrap gap-1.5 p-1 bg-[var(--background)] border border-[var(--border)] rounded-xl">
+      <button onclick="setPage('discover')" id="tab-discover" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-orange-500 text-white shadow-xs transition">
+        🥗 OFF Discover
+      </button>
+      <button onclick="setPage('contribute')" id="tab-contribute" class="px-3 py-1.5 text-xs font-medium rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition">
+        🤝 OFF Contribute
+      </button>
+      <button onclick="setPage('contact')" id="tab-contact" class="px-3 py-1.5 text-xs font-medium rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition">
+        📬 OFF Contact
+      </button>
+      <button onclick="setPage('obf-discover')" id="tab-obf-discover" class="px-3 py-1.5 text-xs font-medium rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition">
+        🧴 OBF Discover
+      </button>
+      <button onclick="setPage('obf-contribute')" id="tab-obf-contribute" class="px-3 py-1.5 text-xs font-medium rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition">
+        💄 OBF Contribute
+      </button>
+      <button onclick="setPage('opff-discover')" id="tab-opff-discover" class="px-3 py-1.5 text-xs font-medium rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition">
+        🐾 OPFF Discover
+      </button>
+      <button onclick="setPage('opff-contribute')" id="tab-opff-contribute" class="px-3 py-1.5 text-xs font-medium rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition">
+        🐶 OPFF Contribute
+      </button>
+      <button onclick="setPage('opf-discover')" id="tab-opf-discover" class="px-3 py-1.5 text-xs font-medium rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition">
+        📦 OPF Discover
+      </button>
+      <button onclick="setPage('opf-contribute')" id="tab-opf-contribute" class="px-3 py-1.5 text-xs font-medium rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition">
+        🔧 OPF Contribute
+      </button>
+      <button onclick="setPage('prices-discover')" id="tab-prices-discover" class="px-3 py-1.5 text-xs font-medium rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition">
+        🏷️ Prices Discover
+      </button>
+      <button onclick="setPage('prices-contribute')" id="tab-prices-contribute" class="px-3 py-1.5 text-xs font-medium rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition">
+        🪙 Prices Contribute
+      </button>
+    </div>
+
+    <!-- Preview IFrame Container -->
+    <div class="relative bg-slate-50 dark:bg-slate-900 border border-[var(--border)] rounded-xl overflow-hidden p-2 flex justify-center">
+      <iframe
+        id="preview-frame"
+        src="preview-discover.html"
+        class="viewport-desktop border-0 rounded-lg bg-white shadow-xs"
+        title="Page Preview"
+      ></iframe>
+    </div>
+  </div>
+
+  <script>
+    let currentPage = 'discover';
+    let currentViewport = 'desktop';
+
+    const allTabs = [
+      'discover', 'contribute', 'contact',
+      'obf-discover', 'obf-contribute',
+      'opff-discover', 'opff-contribute',
+      'opf-discover', 'opf-contribute',
+      'prices-discover', 'prices-contribute'
+    ];
+
+    function setPage(page) {
+      currentPage = page;
+      const frame = document.getElementById('preview-frame');
+      const extLink = document.getElementById('ext-link');
+      const filename = 'preview-' + page + '.html';
+
+      frame.src = filename;
+      extLink.href = filename;
+
+      allTabs.forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        if (btn) {
+          if (t === page) {
+            btn.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-orange-500 text-white shadow-xs transition";
+          } else {
+            btn.className = "px-3 py-1.5 text-xs font-medium rounded-lg text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition";
+          }
+        }
+      });
+    }
+
+    function setViewport(vp) {
+      currentViewport = vp;
+      const frame = document.getElementById('preview-frame');
+      const btnDesk = document.getElementById('btn-desktop');
+      const btnMob = document.getElementById('btn-mobile');
+
+      if (vp === 'desktop') {
+        frame.className = "viewport-desktop border-0 rounded-lg bg-white shadow-xs";
+        btnDesk.className = "px-2.5 py-1.5 text-xs font-medium rounded-md bg-[var(--card)] text-[var(--foreground)] shadow-xs";
+        btnMob.className = "px-2.5 py-1.5 text-xs font-medium rounded-md text-[var(--muted-foreground)] hover:text-[var(--foreground)]";
+      } else {
+        frame.className = "viewport-mobile border-0 bg-white";
+        btnMob.className = "px-2.5 py-1.5 text-xs font-medium rounded-md bg-[var(--card)] text-[var(--foreground)] shadow-xs";
+        btnDesk.className = "px-2.5 py-1.5 text-xs font-medium rounded-md text-[var(--muted-foreground)] hover:text-[var(--foreground)]";
+      }
+    }
+  </script>
+</body>
+</html>
