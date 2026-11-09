@@ -9,7 +9,13 @@ import os
 import sys
 
 DEFAULT_LANG = "en"
-SUPPORTED_LANGUAGES = ["en", "fr", "es", "de", "it"]
+SUPPORTED_LANGUAGES = [
+    "en", "fr", "es", "de", "it",
+    "nl", "pt", "pl", "ru", "ca",
+    "ro", "cs", "sv", "da", "fi",
+    "el", "hu", "ja", "zh", "ar",
+    "uk", "tr", "id", "ko", "no", "he"
+]
 
 def get_localized_field(item, field, lang="en", default_lang=DEFAULT_LANG):
     """
