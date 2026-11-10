@@ -1,6 +1,6 @@
 ---
 id: eco-score
-title: Eco-Score
+title: Green-Score (Eco-Score)
 icon: 🌿
 icon_name: user-plus
 order: 5
