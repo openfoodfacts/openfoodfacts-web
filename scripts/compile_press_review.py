@@ -175,8 +175,11 @@ def compile_press_review(check_only=False, verbose=True):
     import generate_country_presskits
     generate_country_presskits.generate_all()
 
-    import generate_press_hub
-    generate_press_hub.main()
+    try:
+        import generate_press_hub
+        generate_press_hub.main()
+    except ImportError:
+        pass
 
     return True
 

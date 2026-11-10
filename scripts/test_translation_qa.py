@@ -376,6 +376,33 @@ class TestTranslationQA(unittest.TestCase):
                 violations.append(f"{path}: looped substring '{matches[0]}'")
         self.assertEqual(len(violations), 0, f"Found repeated substring loops in translations:\n" + "\n".join(violations[:10]))
 
+    def test_no_pseudo_xml_tags(self):
+        """Ensure no pseudo-XML placeholder tags (<0>, </0>, <1/>, etc.) exist in translation files."""
+        tag_re = re.compile(r"</?[0-9]+(?:/[0-9]*)?>|<[0-9]+/>")
+        violations = []
+        for path, content in self.file_contents.items():
+            if not tag_re.search(content):
+                continue
+            matches = tag_re.findall(content)
+            violations.append(f"{path}: found {matches[:5]}")
+        self.assertEqual(len(violations), 0, f"Found {len(violations)} files with pseudo-XML tags:\n" + "\n".join(violations[:10]))
+
+    def test_no_corrupted_css_js_entities(self):
+        """Ensure no &nbsp; entities corrupt CSS or JS syntax inside <style> and <script> blocks."""
+        style_script_re = re.compile(r"(<(style|script)\b[^>]*>)(.*?)(</\2>)", re.DOTALL | re.IGNORECASE)
+        corrupt_re = re.compile(r"&nbsp;(!important|!==|!=|===|==|!\s*!|!\w)")
+        violations = []
+        for path, content in self.file_contents.items():
+            if '&nbsp;' not in content:
+                continue
+            for m in style_script_re.finditer(content):
+                body = m.group(3)
+                cm = corrupt_re.findall(body)
+                if cm:
+                    violations.append(f"{path}: found {cm[:5]}")
+                    break
+        self.assertEqual(len(violations), 0, f"Found {len(violations)} files with corrupted CSS/JS operators in style/script:\n" + "\n".join(violations[:10]))
+
 if __name__ == '__main__':
     unittest.main()
 

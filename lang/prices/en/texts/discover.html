@@ -1,0 +1,690 @@
+<!-- no side column -->
+<style>
+/* ==========================================================================
+   Open Prices — Modern Discover Page
+   ========================================================================== */
+
+#prices-discover-page {
+    --op-primary: #059669;
+    --op-primary-hover: #047857;
+    --op-secondary: #d97706;
+    --op-secondary-hover: #b45309;
+    --op-accent-gold: #f59e0b;
+    --op-dark: #0f172a;
+    --op-cream: #f8fafc;
+    --op-warm-bg: #f0fdf4;
+    --op-border: #a7f3d0;
+    --op-card-border: #cbd5e1;
+    --op-text-muted: #475569;
+    --op-blue: #0284c7;
+    --op-purple: #7c3aed;
+    --op-radius-card: 22px;
+    --op-radius-pill: 9999px;
+    --op-shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.04);
+    --op-shadow-md: 0 10px 24px rgba(5, 150, 105, 0.08);
+    --op-shadow-hover: 0 16px 36px rgba(5, 150, 105, 0.16);
+
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--op-dark);
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+}
+
+#prices-discover-page * {
+    box-sizing: border-box;
+}
+
+/* Badge Pills */
+.op-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--op-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+    border: none;
+}
+.op-badge-pill.green { background: #dcfce7; color: #166534; }
+.op-badge-pill.amber { background: #fef3c7; color: #92400e; }
+.op-badge-pill.blue { background: #e0f2fe; color: #0369a1; }
+.op-badge-pill.purple { background: #f3e8ff; color: #6b21a8; }
+.op-badge-pill.emerald { background: #ecfdf5; color: #047857; }
+
+/* Hero Banner */
+.op-hero {
+    background: linear-gradient(145deg, #ffffff 0%, var(--op-warm-bg) 100%);
+    border: 1px solid var(--op-border);
+    border-radius: 28px;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 3.5rem;
+    box-shadow: var(--op-shadow-md);
+}
+
+.hero-content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.hero-brand-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.hero-logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--op-dark);
+    line-height: 1.15;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+}
+
+.hero-lead {
+    font-size: 1.15rem;
+    color: var(--op-text-muted);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+.hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-media img,
+.hero-media svg {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    filter: drop-shadow(0 14px 32px rgba(5, 150, 105, 0.12));
+    border-radius: 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-media img:hover,
+.hero-media svg:hover {
+    transform: translateY(-4px) scale(1.015);
+}
+
+/* Call to Action Buttons */
+.off-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--op-radius-pill);
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    line-height: 1.2;
+    border: none;
+}
+.off-btn-primary {
+    background: var(--op-primary);
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-primary:hover {
+    background: var(--op-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+.off-btn-secondary {
+    background: #ffffff;
+    color: var(--op-dark) !important;
+    border: 1px solid var(--op-border);
+    box-shadow: none;
+}
+.off-btn-secondary:hover {
+    background: var(--op-warm-bg);
+    border-color: var(--op-primary);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: var(--op-primary) !important;
+}
+.off-btn-green {
+    background: #16a34a;
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-green:hover {
+    background: #15803d;
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+.off-btn-block {
+    width: 100%;
+}
+
+/* Section Header */
+.section-header {
+    text-align: left;
+    margin-bottom: 2.25rem;
+}
+.section-header h2 {
+    font-size: clamp(1.8rem, 3vw, 2.35rem);
+    font-weight: 800;
+    color: var(--op-dark);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.015em;
+}
+.section-header p {
+    font-size: 1.08rem;
+    color: var(--op-text-muted);
+    margin: 0;
+    max-width: 760px;
+}
+
+/* Grids */
+.off-card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+.off-card-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+
+/* Feature Cards */
+.off-feature-card {
+    background: #ffffff;
+    border: 1px solid var(--op-card-border);
+    border-radius: var(--op-radius-card);
+    padding: 1.85rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--op-shadow-sm);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+.off-feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--op-shadow-hover);
+    border-color: var(--op-primary);
+}
+
+.off-card-art {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+.off-card-art img,
+.off-card-art svg {
+    max-height: 140px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.off-feature-card:hover .off-card-art img,
+.off-feature-card:hover .off-card-art svg {
+    transform: scale(1.05);
+}
+
+/* Animations: on hover only */
+#prices-discover-page svg,
+#prices-discover-page svg * {
+    animation-play-state: paused !important;
+}
+
+#prices-discover-page .op-hero:hover svg,
+#prices-discover-page .op-hero:hover svg *,
+#prices-discover-page .off-feature-card:hover svg,
+#prices-discover-page .off-feature-card:hover svg *,
+#prices-discover-page .hero-media:hover svg,
+#prices-discover-page .hero-media:hover svg *,
+#prices-discover-page svg:hover,
+#prices-discover-page svg:hover * {
+    animation-play-state: running !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #prices-discover-page svg,
+    #prices-discover-page svg * {
+        animation: none !important;
+    }
+}
+
+.off-feature-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--op-dark);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+}
+
+.off-feature-card p {
+    font-size: 0.95rem;
+    color: var(--op-text-muted);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.55;
+    flex-grow: 1;
+}
+
+.card-footer-action {
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
+/* Rounded Corner Utility for Screenshots / Dataviz */
+.off-img-rounded {
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+/* Reuse Cards Accent Bar */
+
+
+
+
+/* Divider */
+#prices-discover-page hr.off-divider {
+    border: none;
+    border-top: 1px solid var(--op-border);
+    margin: 3.5rem 0;
+}
+
+/* Bottom CTA */
+.bottom-projects-cta {
+    background: linear-gradient(135deg, var(--op-dark) 0%, #064e3b 100%);
+    border-radius: 24px;
+    padding: clamp(2rem, 4vw, 3.25rem);
+    text-align: center;
+    color: #ffffff;
+    margin-top: 3.5rem;
+    box-shadow: 0 20px 40px rgba(6, 78, 59, 0.25);
+}
+.bottom-projects-cta h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    margin: 0 0 0.85rem 0;
+    color: #ffffff;
+}
+.bottom-projects-cta p {
+    font-size: 1.1rem;
+    color: #a7f3d0;
+    max-width: 680px;
+    margin: 0 auto 1.75rem auto;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .hero-content-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-brand-header {
+        justify-content: center;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<div id="prices-discover-page">
+
+    <!-- Hero Banner -->
+    <header class="op-hero">
+        <div class="hero-content-grid">
+            <div class="hero-text">
+                <div class="hero-brand-header">
+                    <img src="/images/logos/openprices/logo-horizontal-openprices.svg" alt="Open Prices Logo" class="hero-logo-img">
+                </div>
+                <span class="op-badge-pill green">🏷️ Global Price Transparency</span>
+                <h1>Make grocery prices transparent, fight greedflation</h1>
+                <p class="hero-lead">
+                    Open Prices is a free, crowdsourced database of retail prices powered by citizens and Open Food Facts. Track inflation, compare store prices, and uncover shrinkflation with open data.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://prices.openfoodfacts.org" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer">
+                        Explore Price Data &rarr;
+                    </a>
+                    <a href="https://prices.openfoodfacts.org/contribute" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        Add Prices
+                    </a>
+                    <a href="https://prices.openfoodfacts.org/api/docs" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        REST API &amp; Datasets
+                    </a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img src="/images/illustrations/prices/hero-openprices.svg" alt="Open Prices illustration representing supermarket receipts, price tags, and food price transparency" width="591" height="606">
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: Core Pillars -->
+    <section>
+        <div class="section-header">
+            <span class="op-badge-pill emerald">🪙 Our Core Pillars</span>
+            <h2>Fair prices built on open collaboration</h2>
+            <p>
+                Every price entry in Open Prices is backed by visual proof, anchored to OpenStreetMap store locations, and published under open licenses.
+            </p>
+        </div>
+
+        <div class="off-card-grid-3">
+            <!-- Pillar 1: A public price database -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/prices/open-prices-product-stats-card.svg" alt="Animated product price statistics card with price count and min-avg-max spectrum gauge" width="560" height="420" loading="lazy">
+                </div>
+                <span class="op-badge-pill green">Open Database</span>
+                <h3>A public price database</h3>
+                <p>
+                    Open Prices gathers barcode-level price points from supermarkets, discount stores, and corner shops globally, seamlessly linked to Open Food Facts product records.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org" class="off-btn off-btn-primary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Search Product Prices
+                    </a>
+                </div>
+            </article>
+
+            <!-- Pillar 2: Made by everyone -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/puzzle-animated.svg" alt="Collaborative community puzzle pieces fitting together" width="340" height="260" loading="lazy">
+                </div>
+                <span class="op-badge-pill amber">Citizen Community</span>
+                <h3>Made by everyone</h3>
+                <p>
+                    Every receipt uploaded, shelf price tag photographed, and GDPR supermarket export submitted helps consumers make informed purchasing decisions.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/community" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Join our Community
+                    </a>
+                </div>
+            </article>
+
+            <!-- Pillar 3: For everyone - Open data -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/opendata-crowd-icon-animated.svg" alt="Citizen community contributing open price data" width="160" height="130" loading="lazy">
+                </div>
+                <span class="op-badge-pill green">100% Open Data</span>
+                <h3>For everyone</h3>
+                <p>
+                    Price data is published under the Open Database License (ODbL 1.0) and receipt photos under CC-BY-SA 4.0. Free for journalists, researchers, and public watchdogs.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/api/docs" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Access Open Datasets
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <hr class="off-divider">
+
+    <!-- Section 2: Consumer Features & Insights -->
+    <section>
+        <div class="section-header">
+            <span class="op-badge-pill amber">🔍 Real-World Price Transparency</span>
+            <h2>Track inflation, compare baskets &amp; spot shrinkflation</h2>
+            <p>
+                Take control of your household budget with data-driven comparisons across supermarket chains and geographic areas.
+            </p>
+        </div>
+
+        <div class="off-card-grid-4">
+            <!-- Feature 1: Track inflation & shrinkflation -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/prices/open-prices-evolution.svg" alt="Animated price evolution curve over time and inflation tracking" width="560" height="420" loading="lazy">
+                </div>
+                <span class="op-badge-pill green">Unit Economics</span>
+                <h3>Track real inflation</h3>
+                <p>
+                    Compare price per kilogram or liter over time. Expose shrinkflation when pack sizes decrease while prices remain steady or increase.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Track Price History
+                    </a>
+                </div>
+            </article>
+
+            <!-- Feature 2: Compare stores & local chains -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/prices/open-prices-store-comparison.svg" alt="Animated supermarket store comparison across retailers showing best deal price bubbles" width="560" height="420" loading="lazy">
+                </div>
+                <span class="op-badge-pill amber">Dataviz in 3 Clicks</span>
+                <h3>Compare stores</h3>
+                <p>
+                    Which retailer offers the fairest price on butter, milk, or organic pasta? Compare local stores and find cheaper alternatives nearby.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org" class="off-btn off-btn-primary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Compare Store Baskets
+                    </a>
+                </div>
+            </article>
+
+            <!-- Feature 3: Geo-located on OpenStreetMap -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/prices/open-prices-stores-grid.svg" alt="Animated supermarket chain store tiles with registered price counters" width="560" height="420" loading="lazy">
+                </div>
+                <span class="op-badge-pill blue">OpenStreetMap</span>
+                <h3>Geo-located data</h3>
+                <p>
+                    Every price point is tied to OpenStreetMap verified store locations, showing geographical price variations across neighborhoods and rural regions.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Explore Store Map
+                    </a>
+                </div>
+            </article>
+
+            <!-- Feature 4: Community Challenges -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/prices/open-prices-piggy-bank.svg" alt="Animated coin dropping into piggy bank for household savings and price challenges" width="560" height="420" loading="lazy">
+                </div>
+                <span class="op-badge-pill purple">Gamified Missions</span>
+                <h3>Price challenges</h3>
+                <p>
+                    Join monthly community scan drives—from hazelnut spread price vs. ingredient ratios to organic egg benchmarks and seasonal price tracking.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/challenges" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Join Challenges
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <hr class="off-divider">
+
+    <!-- Section 3: Open Data Ecosystem & Reuses -->
+    <section>
+        <div class="section-header">
+            <span class="op-badge-pill green">🚀 Open Data Ecosystem</span>
+            <h2>Price data for research, consumer defense &amp; civic tech</h2>
+            <p>
+                Our open database enables economists, investigative journalists, and developers to audit purchasing power and build public-interest budgeting tools.
+            </p>
+        </div>
+
+        <div class="off-card-grid-3">
+            <!-- Reuse 1: Margins & Price Composition -->
+            <article class="off-feature-card reuse-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/prices/open-prices-margins-composition.svg" alt="Animated product price breakdown by ingredients, manufacturing, packaging, and retail margins" width="560" height="420" loading="lazy">
+                </div>
+                <span class="op-badge-pill green">Margins &amp; Composition</span>
+                <h3>Margins &amp; Watchdogs</h3>
+                <p>
+                    Consumer associations and investigative watchdogs decompose retail food prices into ingredient costs, manufacturing, logistics, retail margins, and taxes to spot unjustified markups.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Project:Open-Prices" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Read Project Wiki
+                    </a>
+                </div>
+            </article>
+
+            <!-- Reuse 2: Economic Research -->
+            <article class="off-feature-card reuse-card amber-top">
+                <div class="off-card-art">
+                    <a href="https://prices.openfoodfacts.org/api/docs" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/illustrations/shared/science-icon-animated.svg" alt="Economic research flask analyzing retail pricing elasticity" width="160" height="130" loading="lazy">
+                    </a>
+                </div>
+                <span class="op-badge-pill amber">Economics &amp; Science</span>
+                <h3>Academic Research</h3>
+                <p>
+                    Economists and university researchers study real-time inflation dynamics, geographical retail price dispersion, and price elasticity across product categories.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/api/docs" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Research API &amp; Data
+                    </a>
+                </div>
+            </article>
+
+            <!-- Reuse 3: Civic Tech & Apps -->
+            <article class="off-feature-card reuse-card blue-top">
+                <div class="off-card-art">
+                    <a href="https://github.com/openfoodfacts/open-prices" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/illustrations/shared/off-developers-ai-animated.svg" alt="Civic tech developers building price comparison apps" width="560" height="420" loading="lazy">
+                    </a>
+                </div>
+                <span class="op-badge-pill blue">Civic Tech &amp; APIs</span>
+                <h3>Build Price Tools</h3>
+                <p>
+                    Developers create personal finance trackers, grocery list price optimizers, and automated receipt splitters using our open REST API and bulk JSON/CSV dumps.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts/open-prices" class="off-btn off-btn-primary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Explore GitHub Code
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="bottom-projects-cta">
+        <h2>Ready to shed light on grocery prices?</h2>
+        <p>
+            Connect with volunteers, economists, and open data contributors in our dedicated Slack channel.
+        </p>
+        <a href="https://slack.openfoodfacts.org" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer" style="font-size: 1.05rem; padding: 0.85rem 1.85rem; background: #10b981;">
+            Join #prices on Slack &rarr;
+        </a>
+    </div>
+
+</div>
+
+<script>
+    function onMount(fn) {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+        } else {
+            fn();
+        }
+    }
+
+    onMount(() => {
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            if (typeof parent !== 'undefined' && parent !== window) {
+                parent.postMessage({ frameHeight: height }, '*');
+            }
+        }
+        sendHeight();
+        window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
+                    }
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
+
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
+        });
+    });
+</script>

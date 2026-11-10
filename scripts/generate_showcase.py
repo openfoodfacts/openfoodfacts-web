@@ -1258,7 +1258,7 @@ def generate_html(lang="en"):
 
     <div class="multi-filter-col">
       <h4>{t_cat_contribs}</h4>
-      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="donation" onchange="applyFilters()"> 💝 {'Soutient l\'association (Dons)' if is_fr else 'Supports OFF NGO (Donations)'}</label>
+      <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="donation" onchange="applyFilters()"> 💝 {"Soutient l'association (Dons)" if is_fr else "Supports OFF NGO (Donations)"}</label>
       <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="data" onchange="applyFilters()"> 🤝 {'Données contribuées' if is_fr else 'Contributes Data Back'}</label>
       <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="photos" onchange="applyFilters()"> 📸 {'Photos contribuées' if is_fr else 'Contributes Photos'}</label>
       <label class="filter-checkbox-label"><input type="checkbox" name="filter_contrib" value="odbl" onchange="applyFilters()"> ⚖️ {'Licence ODbL' if is_fr else 'ODbL Compliant'}</label>

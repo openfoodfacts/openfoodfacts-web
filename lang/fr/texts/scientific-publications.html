@@ -643,7 +643,7 @@
   <div class="sci-drawer-grid">
     <div class="sci-drawer-card">
       <h4>Citation du jeu de données (Format APA)</h4>
-      <p style="background: #f1f5f9; padding: 0.75rem; border-radius: 8px; font-family: monospace; font-size: 0.82rem;">Informations nutritionnelles ouvertes. (2025). Base de données Open Food Facts [Ensemble de données]. Données extraites de https://world.openfoodfacts.org/data</p>
+      <p style="background: #f1f5f9; padding: 0.75rem; border-radius: 8px; font-family: monospace; font-size: 0.82rem;">Open Food Facts. (2025). Base de données Open Food Facts [Ensemble de données]. Données extraites de https://world.openfoodfacts.org/data</p>
     </div>
     <div class="sci-drawer-card">
       <h4>Citation BibTeX</h4>
@@ -1041,17 +1041,11 @@ function applySciFilters(syncUrl = true) {
 
 function renderSciCard(p) {
   const yearBadge = p.year ? '<span class="sci-card-year">' + p.year + '</span>' : '';
-  const citBadge = (p.num_citations !== null && p.num_citations !== undefined && p.num_citations > 0)
-    ? '<span class="sci-card-citations" title="' + p.num_citations + ' ' + (IS_FR ? "citations académiques" : "citations") + '">⭐ ' + p.num_citations + ' ' + (IS_FR ? "cit." : "cit.") + '</span>'
-    : '';
+  const citBadge = (p.num_citations !== null && p.num_citations !== undefined && p.num_citations > 0) ? '<span class="sci-card-citations" title="' + p.num_citations + ' ' + (IS_FR ? "citations académiques" : "citations") + '">⭐ ' + p.num_citations + ' ' + (IS_FR ? "cit." : "cit.") + '</span>' : '';
 
-  const authorsStr = (p.authors && p.authors.length > 3)
-    ? p.authors.slice(0, 3).join(", ") + " et al."
-    : (p.authors || []).join(", ");
+  const authorsStr = (p.authors && p.authors.length > 3) ? p.authors.slice(0, 3).join(", ") + " et al." : (p.authors || []).join(", ");
 
-  const excerptHtml = p.excerpt
-    ? '<div class="sci-card-excerpt" title="' + (IS_FR ? "Extrait mentionnant Open Food Facts" : "Excerpt mentioning Open Food Facts") + '">' + p.excerpt + '</div>'
-    : '';
+  const excerptHtml = p.excerpt ? '<div class="sci-card-excerpt" title="' + (IS_FR ? "Extrait mentionnant Open Food Facts" : "Excerpt mentioning Open Food Facts") + '">' + p.excerpt + '</div>' : '';
 
   const tags = [];
   if (p.themes) {
@@ -1282,7 +1276,7 @@ function readStateFromUrl() {
       return true;
     }
 
-    // 2. Structured query or hash parameters (e.g. #theme=ultra_processed or ?theme=ultra_processed)
+    // 2. Structured query or hash parameters (e.g. #theme=ultra_processed or&nbsp;?theme=ultra_processed)
     let params = null;
     if (hashRaw.includes("=") || hashRaw.includes("&")) {
       params = new URLSearchParams(hashRaw);
@@ -1374,14 +1368,14 @@ function onSciModalBackdropClick(event) {
 function copyBibtex() {
   if (!activePubForModal) return;
   navigator.clipboard.writeText(activePubForModal.bibtex || "").then(() => {
-    alert(IS_FR ? "Notice BibTeX copiée !" : "BibTeX entry copied to clipboard!");
+    alert(IS_FR ? "Notice BibTeX copiée&nbsp;!" : "BibTeX entry copied to clipboard!");
   });
 }
 
 function copyApa() {
   if (!activePubForModal) return;
   navigator.clipboard.writeText(activePubForModal.apa || "").then(() => {
-    alert(IS_FR ? "Citation APA copiée !" : "APA citation copied to clipboard!");
+    alert(IS_FR ? "Citation APA copiée&nbsp;!" : "APA citation copied to clipboard!");
   });
 }
 
@@ -1389,12 +1383,12 @@ function copyShareLink() {
   const url = window.location.href;
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(url).then(() => {
-      alert(IS_FR ? "Lien direct vers cette sélection copié !" : "Direct link to this view copied to clipboard!");
+      alert(IS_FR ? "Lien direct vers cette sélection copié&nbsp;!" : "Direct link to this view copied to clipboard!");
     }).catch(() => {
-      prompt(IS_FR ? "Copiez ce lien :" : "Copy this link:", url);
+      prompt(IS_FR ? "Copiez ce lien&nbsp;:" : "Copy this link:", url);
     });
   } else {
-    prompt(IS_FR ? "Copiez ce lien :" : "Copy this link:", url);
+    prompt(IS_FR ? "Copiez ce lien&nbsp;:" : "Copy this link:", url);
   }
 }
 

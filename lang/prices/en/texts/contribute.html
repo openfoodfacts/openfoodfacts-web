@@ -1,0 +1,650 @@
+<!-- no side column -->
+<style>
+/* ==========================================================================
+   Open Prices — Modern Contribute Page
+   ========================================================================== */
+
+#prices-contribute-page {
+    --op-primary: #059669;
+    --op-primary-hover: #047857;
+    --op-secondary: #d97706;
+    --op-secondary-hover: #b45309;
+    --op-accent-gold: #f59e0b;
+    --op-dark: #0f172a;
+    --op-cream: #f8fafc;
+    --op-warm-bg: #f0fdf4;
+    --op-border: #a7f3d0;
+    --op-card-border: #cbd5e1;
+    --op-text-muted: #475569;
+    --op-blue: #0284c7;
+    --op-purple: #7c3aed;
+    --op-radius-card: 22px;
+    --op-radius-pill: 9999px;
+    --op-shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.04);
+    --op-shadow-md: 0 10px 24px rgba(5, 150, 105, 0.08);
+    --op-shadow-hover: 0 16px 36px rgba(5, 150, 105, 0.16);
+
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--op-dark);
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+}
+
+#prices-contribute-page * {
+    box-sizing: border-box;
+}
+
+/* Badge Pills */
+.op-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--op-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+    border: none;
+}
+.op-badge-pill.green { background: #dcfce7; color: #166534; }
+.op-badge-pill.amber { background: #fef3c7; color: #92400e; }
+.op-badge-pill.blue { background: #e0f2fe; color: #0369a1; }
+.op-badge-pill.purple { background: #f3e8ff; color: #6b21a8; }
+.op-badge-pill.emerald { background: #ecfdf5; color: #047857; }
+
+/* Hero Banner */
+.op-hero {
+    background: linear-gradient(145deg, #ffffff 0%, var(--op-warm-bg) 100%);
+    border: 1px solid var(--op-border);
+    border-radius: 28px;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 3.5rem;
+    box-shadow: var(--op-shadow-md);
+}
+
+.hero-content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.hero-brand-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.hero-logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--op-dark);
+    line-height: 1.15;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+}
+
+.hero-lead {
+    font-size: 1.15rem;
+    color: var(--op-text-muted);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+.hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-media img,
+.hero-media svg {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    filter: drop-shadow(0 14px 32px rgba(5, 150, 105, 0.12));
+    border-radius: 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-media img:hover,
+.hero-media svg:hover {
+    transform: translateY(-4px) scale(1.015);
+}
+
+/* Call to Action Buttons */
+.off-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--op-radius-pill);
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    line-height: 1.2;
+    border: none;
+}
+.off-btn-primary {
+    background: var(--op-primary);
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-primary:hover {
+    background: var(--op-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+.off-btn-secondary {
+    background: #ffffff;
+    color: var(--op-dark) !important;
+    border: 1px solid var(--op-border);
+    box-shadow: none;
+}
+.off-btn-secondary:hover {
+    background: var(--op-warm-bg);
+    border-color: var(--op-primary);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: var(--op-primary) !important;
+}
+.off-btn-green {
+    background: #16a34a;
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-green:hover {
+    background: #15803d;
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+.off-btn-block {
+    width: 100%;
+}
+
+/* Section Header */
+.section-header {
+    text-align: left;
+    margin-bottom: 2.25rem;
+}
+.section-header h2 {
+    font-size: clamp(1.8rem, 3vw, 2.35rem);
+    font-weight: 800;
+    color: var(--op-dark);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.015em;
+}
+.section-header p {
+    font-size: 1.08rem;
+    color: var(--op-text-muted);
+    margin: 0;
+    max-width: 760px;
+}
+
+/* Grids */
+.off-card-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+.off-card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+
+/* Feature Cards */
+.off-feature-card {
+    background: #ffffff;
+    border: 1px solid var(--op-card-border);
+    border-radius: var(--op-radius-card);
+    padding: 1.85rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--op-shadow-sm);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+.off-feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--op-shadow-hover);
+    border-color: var(--op-primary);
+}
+
+.off-card-art {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+.off-card-art img,
+.off-card-art svg {
+    max-height: 140px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.off-feature-card:hover .off-card-art img,
+.off-feature-card:hover .off-card-art svg {
+    transform: scale(1.05);
+}
+
+/* Animations: on hover only */
+#prices-contribute-page svg,
+#prices-contribute-page svg * {
+    animation-play-state: paused !important;
+}
+
+#prices-contribute-page .op-hero:hover svg,
+#prices-contribute-page .op-hero:hover svg *,
+#prices-contribute-page .off-feature-card:hover svg,
+#prices-contribute-page .off-feature-card:hover svg *,
+#prices-contribute-page .expert-banner:hover svg,
+#prices-contribute-page .expert-banner:hover svg *,
+#prices-contribute-page .hero-media:hover svg,
+#prices-contribute-page .hero-media:hover svg *,
+#prices-contribute-page svg:hover,
+#prices-contribute-page svg:hover * {
+    animation-play-state: running !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #prices-contribute-page svg,
+    #prices-contribute-page svg * {
+        animation: none !important;
+    }
+}
+
+.off-feature-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--op-dark);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+}
+
+.off-feature-card p {
+    font-size: 0.95rem;
+    color: var(--op-text-muted);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.55;
+    flex-grow: 1;
+}
+
+.card-footer-action {
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
+/* Expert Banner */
+.expert-banner {
+    background: linear-gradient(135deg, var(--op-warm-bg) 0%, #ffffff 100%);
+    border: 1px solid var(--op-border);
+    border-radius: 24px;
+    padding: clamp(1.8rem, 3.5vw, 2.5rem);
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 3.5rem;
+    box-shadow: var(--op-shadow-sm);
+}
+.expert-banner-art {
+    display: flex;
+    justify-content: center;
+}
+.expert-banner-art img,
+.expert-banner-art svg {
+    max-width: 280px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+.expert-banner-text h2 {
+    font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+    font-weight: 800;
+    color: var(--op-dark);
+    margin: 0 0 0.75rem 0;
+}
+.expert-banner-text p {
+    color: var(--op-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 1.25rem 0;
+}
+
+/* Bottom CTA */
+.bottom-projects-cta {
+    background: linear-gradient(135deg, var(--op-dark) 0%, #064e3b 100%);
+    border-radius: 24px;
+    padding: clamp(2rem, 4vw, 3.25rem);
+    text-align: center;
+    color: #ffffff;
+    margin-top: 3.5rem;
+    box-shadow: 0 20px 40px rgba(6, 78, 59, 0.25);
+}
+.bottom-projects-cta h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    margin: 0 0 0.85rem 0;
+    color: #ffffff;
+}
+.bottom-projects-cta p {
+    font-size: 1.1rem;
+    color: #a7f3d0;
+    max-width: 680px;
+    margin: 0 auto 1.75rem auto;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .hero-content-grid,
+    .expert-banner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-brand-header {
+        justify-content: center;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<div id="prices-contribute-page">
+
+    <!-- Hero Banner -->
+    <header class="op-hero">
+        <div class="hero-content-grid">
+            <div class="hero-text">
+                <div class="hero-brand-header">
+                    <img src="/images/logos/openprices/logo-horizontal-openprices.svg" alt="Open Prices Logo" class="hero-logo-img">
+                </div>
+                <span class="op-badge-pill green">🤝 Collective Citizen Action</span>
+                <h1>Contribute prices, shed light on food costs</h1>
+                <p class="hero-lead">
+                    Prices are the missing piece of grocery transparency. Whether you photograph a shelf label, upload a grocery receipt, or export your annual store loyalty history under GDPR, your contributions power global price openness.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://prices.openfoodfacts.org/contribute" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer">
+                        Add a Price Tag or Receipt &rarr;
+                    </a>
+                    <a href="https://wiki.openfoodfacts.org/GDPR_request" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        Supermarket GDPR Request
+                    </a>
+                    <a href="https://prices.openfoodfacts.org/challenges" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        Price Challenges
+                    </a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img src="/images/illustrations/prices/hero-openprices.svg" alt="Community members scanning and contributing retail prices" width="591" height="606">
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: 4 Ways Everyone Can Contribute -->
+    <section>
+        <div class="section-header">
+            <span class="op-badge-pill emerald">⏱️ 2 Minutes While Shopping</span>
+            <h2>Simple ways anyone can add price transparency</h2>
+            <p>
+                From snapping a quick photo in the aisle to bulk receipt exports, every price point empowers consumers worldwide.
+            </p>
+        </div>
+
+        <div class="off-card-grid-4">
+            <!-- Card 1: Snap Price Tags -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/prices/open-prices-scan-aisle-pricetag.svg" alt="Animated smartphone camera scanning supermarket aisle shelf price tag with laser sweep" width="560" height="420" loading="lazy">
+                </div>
+                <span class="op-badge-pill green">📸 Shelf Labels</span>
+                <h3>Snap price tags</h3>
+                <p>
+                    While grocery shopping, photograph the shelf label and barcode. Our OCR tool extracts the product price, currency, and unit price per kg or liter.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/contribute" class="off-btn off-btn-primary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Add Price Tag
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 2: Upload Receipts -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/prices/open-prices-receipt.svg" alt="Animated paper receipt scanning and itemized line extraction" width="560" height="420" loading="lazy">
+                </div>
+                <span class="op-badge-pill amber">🧾 Receipts</span>
+                <h3>Upload receipts</h3>
+                <p>
+                    Take a picture of your paper grocery receipt or upload PDF e-receipts. Prices, store location, date, and discounts are parsed automatically.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/contribute" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Upload Receipt
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 3: GDPR Loyalty Card Exports -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/prices/open-prices-loyalty-gdpr.svg" alt="Animated GDPR loyalty card data portability export stream with EU shield and price itemization" width="560" height="420" loading="lazy">
+                </div>
+                <span class="op-badge-pill blue">⚖️ GDPR Power</span>
+                <h3>GDPR store exports</h3>
+                <p>
+                    Request your purchase history from supermarket loyalty card schemes under European GDPR or right-to-access laws, and import bulk historical receipts.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/GDPR_request" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        GDPR Guide
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 4: Verify Proofs -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/prices/open-prices-receipt-extraction.svg" alt="Animated OCR laser scanning a grocery receipt and extracting price metadata cards" width="560" height="420" loading="lazy">
+                </div>
+                <span class="op-badge-pill purple">🔍 Verification</span>
+                <h3>Verify price proofs</h3>
+                <p>
+                    Help check OCR extracts, confirm prices match the photographed proofs, and align store locations with OpenStreetMap records.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Verification/Open_Prices" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Verify Proofs
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Section 2: Expert Help Needed Banner -->
+    <section>
+        <div class="expert-banner">
+            <div class="expert-banner-art">
+                <img src="/images/illustrations/shared/off-expert-help-needed-animated.svg" alt="Developers and open data volunteers working on Open Prices" width="560" height="420" loading="lazy">
+            </div>
+            <div class="expert-banner-text">
+                <span class="op-badge-pill green">🛠️ Specialized Skills</span>
+                <h2>Expert help needed</h2>
+                <p>
+                    We welcome machine learning engineers (receipt &amp; price tag OCR), Python FastAPI developers, Vue.js contributors, OpenStreetMap mappers, and data scientists to scale the Open Prices platform.
+                </p>
+                <a href="https://connect.openfoodfacts.org/join-the-contributor-skill-pool-open-food-facts" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer">
+                    Join the Contributor Skill Pool &rarr;
+                </a>
+            </div>
+        </div>
+
+        <!-- Section 3: Specialized Skills Grid -->
+        <div class="off-card-grid-3">
+            <!-- Development & AI -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-developers-ai-animated.svg" alt="Code editor and machine learning receipt parsing" width="560" height="420" loading="lazy">
+                </div>
+                <span class="op-badge-pill blue">Python &amp; Vue.js</span>
+                <h3>Development &amp; AI</h3>
+                <p>
+                    Contribute to the FastAPI backend, receipt OCR extraction pipeline, OpenStreetMap store tagging, and responsive Vue.js web app.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts/open-prices" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        GitHub Repositories
+                    </a>
+                </div>
+            </article>
+
+            <!-- Community & Challenges -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-community-building-animated.svg" alt="Community scan parties and price challenges" width="560" height="420" loading="lazy">
+                </div>
+                <span class="op-badge-pill amber">Missions &amp; Outreach</span>
+                <h3>Challenges &amp; Outreach</h3>
+                <p>
+                    Organize neighborhood scan drives, launch thematic price challenges, coordinate volunteer translation, and advocate for open grocery data.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://prices.openfoodfacts.org/challenges" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Explore Challenges
+                    </a>
+                </div>
+            </article>
+
+            <!-- Economics & Data Science -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/science-icon-animated.svg" alt="Scientific research flask analyzing purchasing power" width="160" height="130" loading="lazy">
+                </div>
+                <span class="op-badge-pill green">Analytics &amp; Research</span>
+                <h3>Data Science &amp; Economics</h3>
+                <p>
+                    Analyze price elasticity, study inflation transmission across product lines, build price indexes, and document methodology on our open wiki.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Project:Open-Prices" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Open Prices Wiki
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="bottom-projects-cta">
+        <h2>Ready to make grocery prices open to everyone?</h2>
+        <p>
+            Connect with volunteers, economists, and open data contributors in our dedicated Slack channel.
+        </p>
+        <a href="https://slack.openfoodfacts.org" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer" style="font-size: 1.05rem; padding: 0.85rem 1.85rem; background: #10b981;">
+            Join #prices on Slack &rarr;
+        </a>
+    </div>
+
+</div>
+
+<script>
+    function onMount(fn) {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+        } else {
+            fn();
+        }
+    }
+
+    onMount(() => {
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            if (typeof parent !== 'undefined' && parent !== window) {
+                parent.postMessage({ frameHeight: height }, '*');
+            }
+        }
+        sendHeight();
+        window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
+                    }
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
+
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
+        });
+    });
+</script>

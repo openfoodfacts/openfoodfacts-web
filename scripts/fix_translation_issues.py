@@ -746,16 +746,276 @@ def fix_facet_links(content):
     return content, fixes
 
 
+def clean_css(css_text):
+    """Clean corrupted non-breaking spaces from CSS inside style tags."""
+    return css_text.replace("&nbsp;", " ")
+
+
+def clean_js(js_text):
+    """Scanner for JS that replaces corrupted &nbsp; with a space when not inside string literals."""
+    res = []
+    i = 0
+    n = len(js_text)
+    state_stack = ["CODE"]
+    template_brace_depth = []
+
+    while i < n:
+        state = state_stack[-1]
+        c = js_text[i]
+        c2 = js_text[i:i+2]
+
+        if state == "CODE":
+            if c2 == "//":
+                res.append(c2)
+                i += 2
+                state_stack.append("COMMENT_LINE")
+                continue
+            elif c2 == "/*":
+                res.append(c2)
+                i += 2
+                state_stack.append("COMMENT_BLOCK")
+                continue
+            elif c == "'":
+                res.append(c)
+                i += 1
+                state_stack.append("SINGLE")
+                continue
+            elif c == '"':
+                res.append(c)
+                i += 1
+                state_stack.append("DOUBLE")
+                continue
+            elif c == '`':
+                res.append(c)
+                i += 1
+                state_stack.append("TEMPLATE")
+                template_brace_depth.append(0)
+                continue
+            elif js_text[i:i+6] == "&nbsp;":
+                res.append(" ")
+                i += 6
+                continue
+            else:
+                res.append(c)
+                i += 1
+                continue
+
+        elif state == "COMMENT_LINE":
+            res.append(c)
+            i += 1
+            if c == "\n":
+                state_stack.pop()
+            continue
+
+        elif state == "COMMENT_BLOCK":
+            if c2 == "*/":
+                res.append(c2)
+                i += 2
+                state_stack.pop()
+            else:
+                res.append(c)
+                i += 1
+            continue
+
+        elif state == "SINGLE":
+            if c == "\n":
+                state_stack.pop()
+                res.append(c)
+                i += 1
+                continue
+            if c == "\\":
+                res.append(js_text[i:i+2])
+                i += 2
+                continue
+            res.append(c)
+            i += 1
+            if c == "'":
+                state_stack.pop()
+            continue
+
+        elif state == "DOUBLE":
+            if c == "\n":
+                state_stack.pop()
+                res.append(c)
+                i += 1
+                continue
+            if c == "\\":
+                res.append(js_text[i:i+2])
+                i += 2
+                continue
+            res.append(c)
+            i += 1
+            if c == '"':
+                state_stack.pop()
+            continue
+
+        elif state == "TEMPLATE":
+            if c == "\\":
+                res.append(js_text[i:i+2])
+                i += 2
+                continue
+            if c2 == "${":
+                res.append(c2)
+                i += 2
+                state_stack.append("TEMPLATE_EXPR")
+                template_brace_depth[-1] = 1
+                continue
+            res.append(c)
+            i += 1
+            if c == '`':
+                state_stack.pop()
+                template_brace_depth.pop()
+            continue
+
+        elif state == "TEMPLATE_EXPR":
+            if c2 == "//":
+                res.append(c2)
+                i += 2
+                state_stack.append("COMMENT_LINE")
+                continue
+            elif c2 == "/*":
+                res.append(c2)
+                i += 2
+                state_stack.append("COMMENT_BLOCK")
+                continue
+            elif c == "'":
+                res.append(c)
+                i += 1
+                state_stack.append("SINGLE")
+                continue
+            elif c == '"':
+                res.append(c)
+                i += 1
+                state_stack.append("DOUBLE")
+                continue
+            elif c == '`':
+                res.append(c)
+                i += 1
+                state_stack.append("TEMPLATE")
+                template_brace_depth.append(0)
+                continue
+            elif c == "{":
+                res.append(c)
+                i += 1
+                template_brace_depth[-1] += 1
+                continue
+            elif c == "}":
+                res.append(c)
+                i += 1
+                template_brace_depth[-1] -= 1
+                if template_brace_depth[-1] == 0:
+                    state_stack.pop()
+                continue
+            elif js_text[i:i+6] == "&nbsp;":
+                res.append(" ")
+                i += 6
+                continue
+            else:
+                res.append(c)
+                i += 1
+                continue
+
+    return "".join(res)
+
+
+def fix_corrupted_css_js(content):
+    """
+    Repair corrupted CSS and JS entities (e.g. &nbsp;!important, &nbsp;!==, &nbsp;?)
+    inside <style> and <script> blocks.
+    """
+    fixes = 0
+
+    def replace_style(m):
+        nonlocal fixes
+        open_tag, body, close_tag = m.group(1), m.group(2), m.group(3)
+        cleaned = clean_css(body)
+        if cleaned != body:
+            fixes += 1
+            return f"{open_tag}{cleaned}{close_tag}"
+        return m.group(0)
+
+    content = re.sub(r'(<style\b[^>]*>)(.*?)(</style>)', replace_style, content, flags=re.DOTALL | re.IGNORECASE)
+
+    def replace_script(m):
+        nonlocal fixes
+        open_tag, body, close_tag = m.group(1), m.group(2), m.group(3)
+        cleaned = clean_js(body)
+        if cleaned != body:
+            fixes += 1
+            return f"{open_tag}{cleaned}{close_tag}"
+        return m.group(0)
+
+    content = re.sub(r'(<script\b[^>]*>)(.*?)(</script>)', replace_script, content, flags=re.DOTALL | re.IGNORECASE)
+
+    return content, fixes
+
+
+def fix_pseudo_xml_tags(content):
+    """
+    Remove or fix pseudo-XML tags (<0>, </0>, <1/>, etc.) that leaked from translation systems.
+    """
+    fixes = 0
+
+    replacements = [
+        # Material Icons: <0>add_task</0> -> <span class="material-icons" translate="no">add_task</span>
+        (r'<0>add_task</0>', '<span class="material-icons" translate="no">add_task</span>'),
+        # SDK filter label in data.html: <0>Фильтр по имени:</0> -> <label for="sdkFilter">Фильтр по имени:</label>
+        (r'<0>(Фильтр по имени:)</0>', r'<label for="sdkFilter">\1</label>'),
+        # Wiki links in data.html: у <0>Wiki</0> -> у <a href="https://wiki.openfoodfacts.org/">Wiki</a>
+        (r'<0>Wiki</0>', '<a href="https://wiki.openfoodfacts.org/">Wiki</a>'),
+        # Search form in opf data.html: geavanceerde zoekformulier <0>. -> geavanceerde zoekformulier</a>.
+        (r'geavanceerde zoekformulier\s*<0>\.', 'geavanceerde zoekformulier</a>.'),
+        # Mobile app highlight spans:
+        (r'hele beeld<0>', 'hele beeld</span>'),
+        (r'<0>economia circular</0>', '<span class="highlight-label green rotate-left">economia circular</span>'),
+        (r'<0>повну картину</0>', '<span class="highlight-label orange rotate-left">повну картину</span>'),
+        (r'<0>планету</0>', '<span class="highlight-label green rotate-left">планету</span>'),
+        # Green-score Wikipedia link:
+        (r'A análise do ciclo de vida<0>', 'A análise do ciclo de vida</a>'),
+        # Press release:
+        (r'に変身します<0>。', 'に変身します</strong>。'),
+        (r'</0></0></0>\.', '.'),
+        (r'참가하신다면</0>\(', '참가하신다면('),
+        (r'எப்படி என்பதைப் பற்றி மேலும் அறிய</a>\s*</0>பார்க்கவும்', 'எப்படி என்பதைப் பற்றி மேலும் அறிய</a> பார்க்கவும்'),
+        (r'<a href="https://slack\.openfoodfacts\.org"></0></a>', '<a href="https://slack.openfoodfacts.org">Slack</a>'),
+        (r'или <0>о калориях</strong>', 'или <strong>о калориях</strong>'),
+        (r'увеличивается значимость <0>более отзывчивого</strong>', 'увеличивается значимость <strong>более отзывчивого</strong>'),
+        (r'\s*По случаю празднования десятой годовщины, эта <0>новая версия позволит нам в дальнейшем увеличить наше влияние по всему миру\.', ''),
+        (r'отримати<0> Nutri-Score і визначити<0>,', 'отримати <strong>Nutri-Score</strong> і визначити,'),
+    ]
+
+    for pattern, replacement in replacements:
+        matches = len(re.findall(pattern, content))
+        if matches:
+            content = re.sub(pattern, replacement, content)
+            fixes += matches
+
+    return content, fixes
+
+
 def fix_french_typography(content, lang_code):
     """
     Respect locale-specific typography for French (Directive 4):
     Non-breaking spaces (&nbsp;) before : ; ? ! and within « ».
-    Applied only to text outside of HTML tags.
+    Applied only to text outside of HTML tags and protected code/style blocks.
     """
     if lang_code != 'fr':
         return content, 0
 
-    parts = re.split(r'(<[^>]+>)', content)
+    # Mask protected blocks: <script>...</script>, <style>...</style>,
+    # <code>...</code>, <pre>...</pre>, <!--...-->, and [[...]] includes
+    protected_blocks = []
+    def mask_block(m):
+        protected_blocks.append(m.group(0))
+        return f"___OFF_PROTECTED_BLOCK_{len(protected_blocks) - 1}___"
+
+    pattern = re.compile(
+        r'(<script\b[^>]*>.*?</script>|<style\b[^>]*>.*?</style>|<code\b[^>]*>.*?</code>|<pre\b[^>]*>.*?</pre>|<!--.*?-->|\[\[.*?\]\])',
+        re.DOTALL | re.IGNORECASE
+    )
+    masked_content = pattern.sub(mask_block, content)
+
+    parts = re.split(r'(<[^>]+>)', masked_content)
     fixes = 0
     for i in range(len(parts)):
         # Even indices are text outside HTML tags
@@ -769,7 +1029,12 @@ def fix_french_typography(content, lang_code):
             if parts[i] != orig:
                 fixes += 1
 
-    return "".join(parts), fixes
+    result = "".join(parts)
+    # Unmask protected blocks
+    for idx, block in enumerate(protected_blocks):
+        result = result.replace(f"___OFF_PROTECTED_BLOCK_{idx}___", block)
+
+    return result, fixes
 
 
 def fix_known_repetitions(content):
@@ -1452,6 +1717,16 @@ def process_file(filepath, fix_repetitions=True, fix_utm=True, fix_urls=True, fi
         if fixes > 0:
             fix_details.append(f"{fixes} typography spacing")
         total_fixes += fixes
+
+    content, fixes = fix_corrupted_css_js(content)
+    if fixes > 0:
+        fix_details.append(f"{fixes} corrupted CSS/JS entities")
+    total_fixes += fixes
+
+    content, fixes = fix_pseudo_xml_tags(content)
+    if fixes > 0:
+        fix_details.append(f"{fixes} pseudo-XML tags")
+    total_fixes += fixes
 
     if filepath.endswith('/texts/press.html') and not is_en:
         try:
