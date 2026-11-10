@@ -29,11 +29,8 @@ from compile_faq import compile_faq
 from compile_queries import compile_queries, load_queries
 from compile_scan_parties import compile_scan_parties
 from compile_campaign_pages import compile_campaign_pages
-<<<<<<< Updated upstream
-=======
 from build_scientific_publications import compile_publications
 from compile_releases import compile_releases
->>>>>>> Stashed changes
 
 def main():
     parser = argparse.ArgumentParser(
