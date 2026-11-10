@@ -1145,11 +1145,28 @@ def main(items=None):
             f.write(lang_html.strip() + "\n")
         print(f"Wrote {out_path}")
 
-        # Also write revue-de-presse-fr.html for backward compatibility
-        legacy_path = f"lang/{lang}/texts/revue-de-presse-fr.html"
-        with open(legacy_path, "w", encoding="utf-8") as f:
-            f.write(lang_html.strip() + "\n")
-        print(f"Wrote {legacy_path}")
+        # Clean up obsolete legacy revue-de-presse-fr.html from non-French locales
+        if lang != "fr":
+            legacy_non_fr = f"lang/{lang}/texts/revue-de-presse-fr.html"
+            if os.path.exists(legacy_non_fr) or os.path.islink(legacy_non_fr):
+                try:
+                    os.remove(legacy_non_fr)
+                    print(f"Removed obsolete {legacy_non_fr}")
+                except OSError:
+                    pass
+
+    # Ensure French symlinks exist for /revue-de-presse and legacy /revue-de-presse-fr
+    fr_dir = os.path.join(REPO_ROOT, "lang", "fr", "texts")
+    for link_name in ["revue-de-presse.html", "revue-de-presse-fr.html"]:
+        link_path = os.path.join(fr_dir, link_name)
+        if os.path.islink(link_path):
+            if os.readlink(link_path) == "press-review.html":
+                continue
+            os.remove(link_path)
+        elif os.path.exists(link_path):
+            os.remove(link_path)
+        os.symlink("press-review.html", link_path)
+        print(f"Symlinked {link_path} -> press-review.html")
 
 if __name__ == "__main__":
     main()
