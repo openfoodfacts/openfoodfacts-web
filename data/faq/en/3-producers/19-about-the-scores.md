@@ -9,25 +9,23 @@ lang: en
 
 ## Who is responsible for calculating the footprint and/or score?
 
-The Nutri-Score, NOVA group and Eco-Score are calculated based on the data present in Open Food Facts. Our algorithms strictly follow the official methodologies of these scores.
+The Nutri-Score, NOVA group and Green-Score (formerly Eco-Score) are calculated based on the data present in Open Food Facts. Our algorithms strictly follow the official methodologies of these scores.
 
 ---
 
-## What is the difference between the Eco-Score, the Nutri-Score and the NOVA group?
+## What is the difference between the Green-Score, the Nutri-Score and the NOVA group?
 
 The purpose of these indicators is to provide easy-to-understand information for the consumer.  
 
-  
+The [NOVA group](https://world.openfoodfacts.org/nova) deals with the degree of food processing, the [Green-Score](https://world.openfoodfacts.org/green-score) (formerly Eco-Score) with environmental footprint, and the [Nutri-Score](https://world.openfoodfacts.org/nutriscore) with nutritional quality.
 
-The [NOVA group](https://fr.openfoodfacts.org/nova) deals with the transformation of the product, the[Eco-Score](https://fr.openfoodfacts.org/ecoscore) with its environmental impact and the [Nutri-Score](https://fr.openfoodfacts.org/nutriscore) with the nutritional elements, knowing that the more a product has scores close to A, the more qualitative it is.  
-
-The 3 scores do not deal with the same elements. It is therefore not possible to compare them with each other.
+The 3 scores evaluate different dimensions. It is therefore not possible to compare them directly with each other.
 
 ---
 
-## Is it possible to simulate the Eco-Score or Nutri-Score of my products?
+## Is it possible to simulate the Green-Score or Nutri-Score of my products?
 
-By registering on the producers' platform and upload your products' data, you can compute the Nutri-Score and Eco-Score associated with your products. 
+By registering on the producers' platform and uploading your products' data, you can compute the Nutri-Score and Green-Score associated with your products. 
 
  
 

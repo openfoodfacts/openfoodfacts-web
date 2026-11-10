@@ -384,11 +384,11 @@ L'ancienne application mobile Open Pet Food Facts, toujours disponible pour Andr
                 // Check current sort direction or default to 'asc' if none
                 const currentSortDir = header.dataset.sortDir;
                 // Toggle direction: if 'asc', change to 'desc', otherwise change to 'asc'
-                const newSortDir = currentSortDir === 'asc'&nbsp;? 'desc'&nbsp;: 'asc';
+                const newSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
 
                 // Remove sort direction attributes from all other headers
                 headers.forEach(h => {
-                    if (h&nbsp;!== header) {
+                    if (h !== header) {
                         delete h.dataset.sortDir; // Remove attribute to reset arrow style via CSS
                     }
                 });
@@ -418,7 +418,7 @@ L'ancienne application mobile Open Pet Food Facts, toujours disponible pour Andr
                     return direction === 'asc' ? -1 : 1; // If 'asc', A comes first (-1), else B comes first (1)
                 }
                 if (cellA > cellB) {
-                    return direction === 'asc'&nbsp;? 1&nbsp;: -1; // If 'asc', B comes first (1), else A comes first (-1)
+                    return direction === 'asc' ? 1 : -1; // If 'asc', B comes first (1), else A comes first (-1)
                 }
                 return 0; // If equal, order doesn't matter
             });

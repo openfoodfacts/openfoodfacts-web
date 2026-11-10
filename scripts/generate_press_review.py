@@ -19,6 +19,17 @@ import glob
 import json
 import os
 import re
+import sys
+
+# Ensure vendor path for yaml
+try:
+    from i18n_utils import ensure_vendor_path, get_localized_field, SUPPORTED_LANGUAGES
+    ensure_vendor_path()
+except ImportError:
+    sys.path.insert(0, os.path.dirname(__file__))
+    from i18n_utils import ensure_vendor_path, get_localized_field, SUPPORTED_LANGUAGES
+    ensure_vendor_path()
+
 import yaml
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -34,11 +45,13 @@ def load_press_items():
                 data = yaml.safe_load(f)
                 if isinstance(data, dict):
                     items.append(data)
-        items.sort(key=lambda x: (str(x.get("date", "2000-01-01")), str(x.get("title", ""))), reverse=True)
+        items.sort(key=lambda x: (str(x.get("date", "2000-01-01")), get_localized_field(x, "title", "en").lower()), reverse=True)
         return items
     elif os.path.exists(MERGED_JSON):
         with open(MERGED_JSON, "r", encoding="utf-8") as f:
-            return json.load(f)
+            items = json.load(f)
+            items.sort(key=lambda x: (str(x.get("date", "2000-01-01")), get_localized_field(x, "title", "en").lower()), reverse=True)
+            return items
     return []
 
 merged = load_press_items()
@@ -50,16 +63,50 @@ def build_html(lang="fr", items=None):
         items = merged
 
     # Clean items: ensure internal editorial notes are never leaked to client JSON
+    # and pre-resolve localized fields for this target language
     clean_items = []
     for it in items:
         clean = dict(it)
         clean.pop("editorial_note", None)
+        clean["title"] = get_localized_field(it, "title", lang)
+        if "verbatim" in it:
+            clean["verbatim"] = get_localized_field(it, "verbatim", lang)
         clean_items.append(clean)
 
     # Translations
-    t_title = "📰 Revue de presse Open Food Facts" if is_fr else "📰 Open Food Facts in the Press"
-    t_subtitle = "Toutes les mentions dans les médias, radios, télés et publications de 2012 à aujourd'hui." if is_fr else "All press, radio, TV, and media coverage of Open Food Facts from 2012 to today."
-    t_submit_btn = "➕ Signaler une mention" if is_fr else "➕ Submit a Press Mention"
+    t_title = {
+        "fr": "📰 Revue de presse Open Food Facts",
+        "en": "📰 Open Food Facts in the Press",
+        "es": "📰 Open Food Facts en la prensa",
+        "de": "📰 Open Food Facts in der Presse",
+        "it": "📰 Open Food Facts nella stampa",
+        "nl": "📰 Open Food Facts in de pers",
+        "pt": "📰 Open Food Facts na imprensa",
+        "pl": "📰 Open Food Facts w prasie",
+        "ca": "📰 Open Food Facts a la premsa",
+        "ru": "📰 Open Food Facts в прессе",
+    }.get(lang, "📰 Open Food Facts in the Press")
+
+    t_subtitle = {
+        "fr": "Toutes les mentions dans les médias, radios, télés et publications de 2012 à aujourd'hui.",
+        "en": "All press, radio, TV, and media coverage of Open Food Facts from 2012 to today.",
+        "es": "Todas las menciones en medios, radio, televisión y publicaciones de 2012 a hoy.",
+        "de": "Alle Erwähnungen in Presse, Radio, TV und Veröffentlichungen von 2012 bis heute.",
+        "it": "Tutte le citazioni su stampa, radio, TV e pubblicazioni dal 2012 ad oggi.",
+        "nl": "Alle vermeldingen in pers, radio, tv en publicaties van 2012 tot heden.",
+        "pt": "Todas as menções nos media, rádio, televisão e publicações desde 2012 até hoje.",
+        "pl": "Wszystkie wzmianki w prasie, radiu, telewizji i publikacjach od 2012 roku do dziś.",
+        "ca": "Totes les mencions als mitjans, ràdio, televisió i publicacions des del 2012 fins avui.",
+        "ru": "Все упоминания в прессе, на радио, ТВ и в публикациях с 2012 года по настоящее время.",
+    }.get(lang, "All press, radio, TV, and media coverage of Open Food Facts from 2012 to today.")
+
+    t_submit_btn = {
+        "fr": "➕ Signaler une mention", "en": "➕ Submit a Press Mention", "es": "➕ Enviar una mención",
+        "de": "➕ Erwähnung melden", "it": "➕ Segnala una citazione", "nl": "➕ Vermelding melden",
+        "pt": "➕ Sinalizar uma menção", "pl": "➕ Zgłoś wzmiankę prasową", "ca": "➕ Informar d'una menció",
+        "ru": "➕ Сообщить об упоминании"
+    }.get(lang, "➕ Submit a Press Mention")
+
     t_btn_mail = "✉️ Envoyer par email" if is_fr else "✉️ Send by Email"
     t_assets_btn = "📁 Bibliothèque de logos & assets" if is_fr else "📁 Media Assets Library"
     t_presskit_btn = "← Espace presse" if is_fr else "← Press Page"
@@ -1090,21 +1137,36 @@ def main(items=None):
     if items is not None:
         merged = items
 
-    # Write French version
-    fr_html = build_html("fr", items=merged)
-    with open("lang/fr/texts/revue-de-presse-fr.html", "w", encoding="utf-8") as f:
-        f.write(fr_html.strip() + "\n")
-    print("Wrote lang/fr/texts/revue-de-presse-fr.html")
+    for lang in SUPPORTED_LANGUAGES:
+        lang_html = build_html(lang, items=merged)
+        out_path = f"lang/{lang}/texts/press-review.html"
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        with open(out_path, "w", encoding="utf-8") as f:
+            f.write(lang_html.strip() + "\n")
+        print(f"Wrote {out_path}")
 
-    # Write English version (both as revue-de-presse-fr.html for direct access and press-review.html)
-    en_html = build_html("en", items=merged)
-    with open("lang/en/texts/revue-de-presse-fr.html", "w", encoding="utf-8") as f:
-        f.write(en_html.strip() + "\n")
-    print("Wrote lang/en/texts/revue-de-presse-fr.html")
+        # Clean up obsolete legacy revue-de-presse-fr.html from non-French locales
+        if lang != "fr":
+            legacy_non_fr = f"lang/{lang}/texts/revue-de-presse-fr.html"
+            if os.path.exists(legacy_non_fr) or os.path.islink(legacy_non_fr):
+                try:
+                    os.remove(legacy_non_fr)
+                    print(f"Removed obsolete {legacy_non_fr}")
+                except OSError:
+                    pass
 
-    with open("lang/en/texts/press-review.html", "w", encoding="utf-8") as f:
-        f.write(en_html.strip() + "\n")
-    print("Wrote lang/en/texts/press-review.html")
+    # Ensure French symlinks exist for /revue-de-presse and legacy /revue-de-presse-fr
+    fr_dir = os.path.join(REPO_ROOT, "lang", "fr", "texts")
+    for link_name in ["revue-de-presse.html", "revue-de-presse-fr.html"]:
+        link_path = os.path.join(fr_dir, link_name)
+        if os.path.islink(link_path):
+            if os.readlink(link_path) == "press-review.html":
+                continue
+            os.remove(link_path)
+        elif os.path.exists(link_path):
+            os.remove(link_path)
+        os.symlink("press-review.html", link_path)
+        print(f"Symlinked {link_path} -> press-review.html")
 
 if __name__ == "__main__":
     main()
