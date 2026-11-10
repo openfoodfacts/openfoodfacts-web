@@ -1,17 +1,766 @@
-<h1 class="emphasized-title">Contactez l'équipe Open Food Facts</h1>
+<!-- no side column -->
+<style>
+/* ==========================================================================
+   Open Food Facts — Modern Contact Page
+   ========================================================================== */
 
-<p>Si vous avez une question, un commentaire ou une suggestion sur Open Food Facts, vous pouvez nous envoyer un courriel à <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a>.</p>
+#off-contact-page {
+    --off-orange: #ed8857;
+    --off-orange-hover: #d96f3b;
+    --off-espresso: #341100;
+    --off-cream: #fbf8f5;
+    --off-warm-bg: #fffaf5;
+    --off-border: #f0e6df;
+    --off-card-border: #e8ded7;
+    --off-text-muted: #6b584d;
+    --off-green: #209552;
+    --off-blue: #2563eb;
+    --off-purple: #7c3aed;
+    --off-radius-card: 20px;
+    --off-radius-pill: 9999px;
+    --off-shadow-sm: 0 2px 8px rgba(52, 17, 0, 0.04);
+    --off-shadow-md: 0 10px 24px rgba(52, 17, 0, 0.07);
+    --off-shadow-hover: 0 14px 32px rgba(52, 17, 0, 0.12);
 
-<p>Nous avons déjà répondu à de nombreuses questions courantes dans notre FAQ</p>
-<a href="https://support.openfoodfacts.org/help/en-gb" class="button">FAQ (Questions fréquemment posées)</a>, ou dans <a href="https://wiki.openfoodfacts.org/Main_Page">notre wiki</a>.
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--off-espresso);
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+}
 
-<p>Pour les journalistes, nous avons un dossier de presse (accessible au niveau du pied de page du site). Si vous êtes un producteur, merci d'entrer en contact avec nous via notre email <a href="mailto:producers@openfoodfacts.org">producers@openfoodfacts.org</a>.</p>
-<p>Pour les producteurs, un guide de démarrage rapide sur la page d'accueil de la plateforme pro. Si vous êtes un journaliste, merci d'entrer en contact avec nous via notre email <a href="mailto:presse@openfoodfacts.org">presse@openfoodfacts.org</a>.</p>
-<p>Pour les réutilisateurs, nous avons une page Données (en pied de page du site web). Si vous êtes un réutilisateur (application mobile...), merci d'entrer en contact avec nous via notre adresse email <a href="mailto:reuse@openfoodfacts.org">reuse@openfoodfacts.org</a>.</p>
+#off-contact-page * {
+    box-sizing: border-box;
+}
 
-<p>Note&nbsp;: <a href="/discover">Open Food Facts est une base de données collaborative pour les produits alimentaires</a>, nous ne vendons aucun produit et nous n'avons aucun lien avec leurs producteurs. 
-Pour toute question ou réclamation concernant un produit, vous devez remplir un formulaire au près de votre autorité locale ou écrivez directement au producteur (adresse sur l'étiquette du produit).</p>
+/* Badge Pills */
+.off-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--off-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+    border: none;
+}
+.off-badge-pill.orange { background: #ffe8dc; color: #b44210; }
+.off-badge-pill.green { background: #ddf6e6; color: #156937; }
+.off-badge-pill.blue { background: #dbeafe; color: #1e40af; }
+.off-badge-pill.purple { background: #ede9fe; color: #5b21b6; }
+.off-badge-pill.amber { background: #fef3c7; color: #92400e; }
 
-<p>Vous pouvez également nous contacter/nous taguer sur les réseaux sociaux&nbsp;: <a href="/follow-open-food-facts">liste des comptes</a></p>
+/* Hero Banner */
+.contact-hero {
+    background: linear-gradient(145deg, #fffcf9 0%, var(--off-cream) 100%);
+    border: 1px solid var(--off-border);
+    border-radius: 28px;
+    padding: clamp(2rem, 4vw, 3.25rem);
+    margin-bottom: 3rem;
+    box-shadow: var(--off-shadow-md);
+}
 
-<p>Et discuter avec les membres et les contributeurs d'Open Food Facts sur <a href="https://slack.openfoodfacts.org">Slack</a>.</p>
+.contact-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.contact-hero h1 {
+    font-size: clamp(2.1rem, 3.8vw, 3rem);
+    font-weight: 900;
+    color: var(--off-espresso);
+    line-height: 1.15;
+    margin: 0 0 0.85rem;
+    letter-spacing: -0.02em;
+}
+
+.contact-hero p.hero-lead {
+    font-size: 1.15rem;
+    color: var(--off-text-muted);
+    line-height: 1.6;
+    margin: 0 0 1.5rem;
+}
+
+.contact-faq-callout {
+    background: #ffffff;
+    border: 1px solid var(--off-border);
+    border-left: 4px solid var(--off-orange);
+    border-radius: 14px;
+    padding: 1.15rem 1.4rem;
+    margin-bottom: 1.75rem;
+    box-shadow: var(--off-shadow-sm);
+}
+
+.contact-faq-callout p {
+    font-size: 0.95rem;
+    margin: 0 0 0.75rem;
+    color: var(--off-espresso);
+}
+
+.contact-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+}
+
+.contact-hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-hero-media img,
+.contact-hero-media svg {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    filter: drop-shadow(0 14px 28px rgba(52, 17, 0, 0.08));
+    transition: transform 0.3s ease;
+}
+.contact-hero-media:hover img,
+.contact-hero-media:hover svg {
+    transform: scale(1.02);
+}
+
+/* Animations: on hover only */
+#off-contact-page svg,
+#off-contact-page svg * {
+    animation-play-state: paused !important;
+}
+
+#off-contact-page .contact-hero:hover svg,
+#off-contact-page .contact-hero:hover svg *,
+#off-contact-page .contact-card:hover svg,
+#off-contact-page .contact-card:hover svg *,
+#off-contact-page svg:hover,
+#off-contact-page svg:hover * {
+    animation-play-state: running !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #off-contact-page svg,
+    #off-contact-page svg * {
+        animation: none !important;
+    }
+}
+
+/* Deflection Grid */
+.deflection-section {
+    margin-bottom: 3.5rem;
+}
+
+.deflection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.deflection-card {
+    background: #ffffff;
+    border: 1px solid var(--off-border);
+    border-radius: 16px;
+    padding: 1.15rem 1.1rem;
+    text-decoration: none !important;
+    color: var(--off-espresso);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: var(--off-shadow-sm);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.deflection-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--off-orange);
+    box-shadow: var(--off-shadow-hover);
+    color: var(--off-orange-hover) !important;
+}
+
+.deflection-card .deflect-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+.deflection-card .deflect-title {
+    font-size: 0.98rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 0.25rem;
+}
+.deflection-card .deflect-desc {
+    font-size: 0.82rem;
+    color: var(--off-text-muted);
+    line-height: 1.4;
+}
+
+/* Buttons */
+.off-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 1.35rem;
+    border-radius: var(--off-radius-pill);
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    line-height: 1.2;
+    border: none;
+}
+.off-btn-primary {
+    background: var(--off-orange);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(237, 136, 87, 0.35);
+}
+.off-btn-primary:hover {
+    background: var(--off-orange-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(237, 136, 87, 0.45);
+    color: #ffffff !important;
+}
+.off-btn-secondary {
+    background: #ffffff;
+    color: var(--off-espresso) !important;
+    border: 1px solid var(--off-border);
+    box-shadow: var(--off-shadow-sm);
+}
+.off-btn-secondary:hover {
+    background: var(--off-cream);
+    border-color: var(--off-orange);
+    transform: translateY(-2px);
+    color: var(--off-orange-hover) !important;
+}
+.off-btn-sm {
+    font-size: 0.85rem;
+    padding: 0.55rem 1rem;
+}
+.off-btn-block {
+    width: 100%;
+}
+
+/* Section Header */
+.section-header {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+.section-header h2 {
+    font-size: clamp(1.8rem, 2.8vw, 2.2rem);
+    font-weight: 800;
+    color: var(--off-espresso);
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.015em;
+}
+.section-header p {
+    font-size: 1.05rem;
+    color: var(--off-text-muted);
+    margin: 0;
+    max-width: 720px;
+}
+
+/* Contact Cards Grid */
+.contact-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.contact-card {
+    background: #ffffff;
+    border: 1px solid var(--off-card-border);
+    border-radius: var(--off-radius-card);
+    padding: 1.6rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--off-shadow-sm);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border-top: 4px solid var(--off-orange);
+}
+.contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--off-shadow-hover);
+    border-color: var(--off-border);
+}
+.contact-card.green-top { border-top-color: var(--off-green); }
+.contact-card.blue-top { border-top-color: var(--off-blue); }
+.contact-card.purple-top { border-top-color: var(--off-purple); }
+.contact-card.amber-top { border-top-color: #f59e0b; }
+
+.contact-card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.85rem;
+    display: inline-block;
+}
+
+.contact-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--off-espresso);
+    margin: 0 0 0.5rem;
+    line-height: 1.3;
+}
+
+.contact-card p {
+    font-size: 0.92rem;
+    color: var(--off-text-muted);
+    margin: 0 0 0.85rem;
+    line-height: 1.55;
+    flex-grow: 1;
+}
+
+.contact-card .deflect-hint {
+    font-size: 0.82rem;
+    background: var(--off-cream);
+    border: 1px solid var(--off-border);
+    border-radius: 8px;
+    padding: 0.45rem 0.65rem;
+    margin-bottom: 1rem;
+    color: var(--off-text-muted);
+}
+.contact-card .deflect-hint a {
+    color: var(--off-orange-hover);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.contact-card .email-action {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--off-border);
+}
+
+.contact-card .email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--off-orange);
+    text-decoration: none;
+    word-break: break-all;
+    transition: color 0.2s ease;
+}
+.contact-card .email-link:hover {
+    color: var(--off-orange-hover);
+    text-decoration: underline;
+}
+
+/* Channels Box */
+.community-channels-box {
+    background: var(--off-warm-bg);
+    border: 1px solid var(--off-border);
+    border-radius: 22px;
+    padding: clamp(1.8rem, 3.5vw, 2.5rem);
+    margin-bottom: 3.5rem;
+}
+
+.channels-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.channel-item {
+    background: #ffffff;
+    border: 1px solid var(--off-card-border);
+    border-radius: 16px;
+    padding: 1.4rem;
+    box-shadow: var(--off-shadow-sm);
+}
+
+.channel-item h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--off-espresso);
+    margin: 0 0 0.5rem;
+}
+
+.channel-item p {
+    font-size: 0.9rem;
+    color: var(--off-text-muted);
+    margin: 0 0 1rem;
+}
+
+/* Consumer Notice Callout */
+.consumer-notice {
+    background: #fef2f2;
+    border: 1px solid #fee2e2;
+    border-left: 5px solid #ef4444;
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    margin-top: 2.5rem;
+}
+
+.consumer-notice h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #991b1b;
+    margin: 0 0 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.consumer-notice p {
+    font-size: 0.92rem;
+    color: #7f1d1d;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .contact-hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .contact-hero-actions {
+        justify-content: center;
+    }
+    .channels-grid {
+        grid-template-columns: 1fr;
+    }
+    .section-header {
+        text-align: center;
+    }
+    .section-header p {
+        margin: 0 auto;
+    }
+}
+</style>
+
+<div id="off-contact-page">
+
+    <!-- Hero Banner -->
+    <header class="contact-hero">
+        <div class="contact-hero-grid">
+            <div class="contact-hero-text">
+                <span class="off-badge-pill orange">📬 Nous contacter</span>
+                <h1>Contactez Open Food Facts</h1>
+                <p class="hero-lead">
+                    Une question, une proposition, une demande presse ou un retour technique&nbsp;? Notre communauté bénévole internationale et notre équipe associative sont là pour vous aider.
+                </p>
+
+                <div class="contact-faq-callout">
+                    <p><strong>💡 Vous avez une question&nbsp;?</strong> De nombreuses demandes fréquentes sont déjà documentées en détail&nbsp;:</p>
+                    <div class="contact-hero-actions">
+                        <a href="/faq" class="off-btn off-btn-primary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            Foire Aux Questions (FAQ)
+                        </a>
+                        <a href="https://wiki.openfoodfacts.org/Main_Page" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                            Visiter le Wiki collaboratif &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-hero-media">
+                <img src="/images/illustrations/shared/contact-us-animated.svg" alt="Illustration d'une enveloppe, d'un carnet et d'un crayon pour nous contacter" width="360" height="290">
+            </div>
+        </div>
+    </header>
+
+    <!-- Deflection Section: Fast Answers & Dedicated Portals -->
+    <section class="deflection-section">
+        <div class="section-header">
+            <span class="off-badge-pill green">⚡ Des réponses immédiates avant d'écrire</span>
+            <h2>Trouvez ce que vous cherchez en quelques secondes</h2>
+            <p>
+                Pour obtenir la réponse la plus rapide, consultez nos espaces dédiés et portails d'aide&nbsp;:
+            </p>
+        </div>
+
+        <div class="deflection-grid">
+            <a href="/faq" class="deflection-card">
+                <span class="deflect-icon">❓</span>
+                <span class="deflect-title">Base de connaissances</span>
+                <span class="deflect-desc">Consultez plus de 50 réponses sur le Nutri-Score, l'application mobile et les comptes.</span>
+            </a>
+
+            <a href="/science" class="deflection-card">
+                <span class="deflect-icon">🔬</span>
+                <span class="deflect-title">Science &amp; Recherche</span>
+                <span class="deflect-desc">Publications scientifiques, partenariats de recherche et études épidémiologiques.</span>
+            </a>
+
+            <a href="/donors" class="deflection-card">
+                <span class="deflect-icon">💛</span>
+                <span class="deflect-title">Dons &amp; Soutien</span>
+                <span class="deflect-desc">Reçus fiscaux, cotisations d'adhésion et dons des bienfaiteurs.</span>
+            </a>
+
+            <a href="/data" class="deflection-card">
+                <span class="deflect-icon">💾</span>
+                <span class="deflect-title">Données &amp; Téléchargements</span>
+                <span class="deflect-desc">Exports complets de la base, fichiers JSON, CSV et documentation API.</span>
+            </a>
+
+            <a href="/reuses" class="deflection-card">
+                <span class="deflect-icon">🚀</span>
+                <span class="deflect-title">Vitrine des réutilisations</span>
+                <span class="deflect-desc">Découvrez plus de 200 applications mobiles, services web et outils connectés.</span>
+            </a>
+
+            <a href="/press" class="deflection-card">
+                <span class="deflect-icon">📰</span>
+                <span class="deflect-title">Espace Presse</span>
+                <span class="deflect-desc">Téléchargez les logos officiels, communiqués, dossiers de presse et biographies des fondateurs.</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Section: Team Email Directory -->
+    <section>
+        <div class="section-header">
+            <span class="off-badge-pill orange">👥 Contacts dédiés par thématique</span>
+            <h2>Annuaire des adresses électroniques</h2>
+            <p>
+                Vous avez besoin de joindre un pôle en particulier&nbsp;? Choisissez la boîte de réception la plus adaptée ci-dessous&nbsp;:
+            </p>
+        </div>
+
+        <div class="contact-cards-grid">
+            <!-- General Contact -->
+            <article class="contact-card">
+                <span class="contact-card-icon">💌</span>
+                <span class="off-badge-pill orange">Général</span>
+                <h3>Demandes générales</h3>
+                <p>
+                    Questions sur Open Food Facts, suggestions générales, retours sur le site et vie de la communauté.
+                </p>
+                <div class="deflect-hint">
+                    Consultez d'abord notre <a href="/faq">FAQ</a> pour une réponse rapide.
+                </div>
+                <div class="email-action">
+                    <a href="mailto:contact@openfoodfacts.org" class="email-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        contact@openfoodfacts.org
+                    </a>
+                </div>
+            </article>
+
+            <!-- Mobile App Team -->
+            <article class="contact-card blue-top">
+                <span class="contact-card-icon">📱</span>
+                <span class="off-badge-pill blue">Application mobile</span>
+                <h3>Application mobile</h3>
+                <p>
+                    Signalement de bugs, dysfonctionnements du scanner ou suggestions de fonctionnalités pour notre application iOS &amp; Android.
+                </p>
+                <div class="deflect-hint">
+                    Consultez la <a href="/open-food-facts-mobile-app">page de l'application mobile</a> pour les liens de téléchargement directs.
+                </div>
+                <div class="email-action">
+                    <a href="mailto:mobile@openfoodfacts.org" class="email-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        mobile@openfoodfacts.org
+                    </a>
+                </div>
+            </article>
+
+            <!-- Science & Research Team -->
+            <article class="contact-card green-top">
+                <span class="contact-card-icon">🔬</span>
+                <span class="off-badge-pill green">Recherche</span>
+                <h3>Science &amp; Recherche</h3>
+                <p>
+                    Collaborations universitaires, études de santé publique, épidémiologie nutritionnelle et questions sur les jeux de données scientifiques.
+                </p>
+                <div class="deflect-hint">
+                    Explorez nos publications sur le <a href="/science">Portail Science</a>.
+                </div>
+                <div class="email-action">
+                    <a href="mailto:science@openfoodfacts.org" class="email-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        science@openfoodfacts.org
+                    </a>
+                </div>
+            </article>
+
+            <!-- Fundraising & Philanthropy -->
+            <article class="contact-card purple-top">
+                <span class="contact-card-icon">❤️</span>
+                <span class="off-badge-pill purple">Dons</span>
+                <h3>Mécénat &amp; Financement</h3>
+                <p>
+                    Dons individuels, subventions de fondations, mécénat d'entreprise, adhésions de soutien et partenariats non lucratifs.
+                </p>
+                <div class="deflect-hint">
+                    Informations sur la déduction fiscale sur la <a href="/donors">page des donateurs</a>.
+                </div>
+                <div class="email-action">
+                    <a href="mailto:fundraising@openfoodfacts.org" class="email-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        fundraising@openfoodfacts.org
+                    </a>
+                </div>
+            </article>
+
+            <!-- Producers & Brands -->
+            <article class="contact-card amber-top">
+                <span class="contact-card-icon">🏭</span>
+                <span class="off-badge-pill amber">Producteurs</span>
+                <h3>Producteurs &amp; Marques</h3>
+                <p>
+                    Transmission directe des données produit via la Plateforme Producteurs, synchronisation automatisée et accompagnement des fabricants.
+                </p>
+                <div class="deflect-hint">
+                    Importez votre catalogue directement sur <a href="https://pro.openfoodfacts.org" target="_blank" rel="noopener noreferrer">pro.openfoodfacts.org &rarr;</a>
+                </div>
+                <div class="email-action">
+                    <a href="mailto:producers@openfoodfacts.org" class="email-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        producers@openfoodfacts.org
+                    </a>
+                </div>
+            </article>
+
+            <!-- Press & Media -->
+            <article class="contact-card">
+                <span class="contact-card-icon">📰</span>
+                <span class="off-badge-pill orange">Médias</span>
+                <h3>Presse &amp; Journalistes</h3>
+                <p>
+                    Demandes d'interviews, renseignements pour les médias, dossiers de presse, déclarations officielles et aide aux enquêtes sur les données.
+                </p>
+                <div class="deflect-hint">
+                    Téléchargez le kit visuel dans la <a href="/press">salle de presse</a>.
+                </div>
+                <div class="email-action">
+                    <a href="mailto:presse@openfoodfacts.org" class="email-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        presse@openfoodfacts.org
+                    </a>
+                </div>
+            </article>
+
+            <!-- Data Reusers -->
+            <article class="contact-card blue-top">
+                <span class="contact-card-icon">🔄</span>
+                <span class="off-badge-pill blue">Réutilisateurs</span>
+                <h3>Réutilisateurs de données &amp; API</h3>
+                <p>
+                    Développeurs intégrant notre API ouverte, réutilisateurs commerciaux ou associatifs, et questions sur la base de données ouverte.
+                </p>
+                <div class="deflect-hint">
+                    Documentation sur la page <a href="/data">Open Data</a> et la vitrine des <a href="/reuses">réutilisations</a>.
+                </div>
+                <div class="email-action">
+                    <a href="mailto:reuse@openfoodfacts.org" class="email-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        reuse@openfoodfacts.org
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Community & Social Channels -->
+    <section class="community-channels-box">
+        <div class="section-header" style="margin-bottom: 1rem;">
+            <span class="off-badge-pill purple">💬 Discussion en direct &amp; Communauté</span>
+            <h2>Rejoignez-nous en ligne</h2>
+            <p>
+                Vous préférez échanger en direct ou suivre nos actualités et campagnes publiques&nbsp;? Rejoignez nos espaces communautaires&nbsp;:
+            </p>
+        </div>
+
+        <div class="channels-grid">
+            <div class="channel-item">
+                <h4>💬 Espace communautaire Slack</h4>
+                <p>
+                    Discutez en direct avec des centaines de bénévoles, mainteneurs de projets, développeurs et designers qui collaborent chaque jour.
+                </p>
+                <a href="https://slack.openfoodfacts.org" class="off-btn off-btn-primary off-btn-sm" target="_blank" rel="noopener noreferrer">
+                    Rejoindre notre Slack &rarr;
+                </a>
+            </div>
+
+            <div class="channel-item">
+                <h4>🌐 Réseaux sociaux</h4>
+                <p>
+                    Suivez Open Food Facts sur Mastodon, Bluesky, LinkedIn, Instagram et YouTube pour suivre les actualités et nouvelles versions.
+                </p>
+                <a href="/follow-open-food-facts" class="off-btn off-btn-secondary off-btn-sm">
+                    Voir tous les réseaux sociaux &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consumer Notice Callout -->
+    <div class="consumer-notice">
+        <h3>⚠️ Avertissement important concernant les produits et les fabricants</h3>
+        <p>
+            <strong>Open Food Facts est une base de données participative, citoyenne et indépendante.</strong> Nous ne fabriquons, ne vendons, ne distribuons et ne commercialisons aucun produit alimentaire ni de consommation, et nous n'entretenons aucun lien commercial avec les fabricants de produits. Si vous avez une réclamation, un problème de qualité ou une préoccupation sanitaire concernant un produit en particulier, veuillez contacter directement le fabricant (en utilisant le service consommateur ou l'adresse postale indiquée sur l'emballage) ou signaler le problème aux autorités nationales de protection des consommateurs.
+        </p>
+    </div>
+
+</div>
+
+<script>
+    function onMount(fn) {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+        } else {
+            fn();
+        }
+    }
+
+    onMount(() => {
+        // Send height to parent frame if embedded
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            if (typeof parent !== 'undefined' && parent !== window) {
+                parent.postMessage({ frameHeight: height }, '*');
+            }
+        }
+        sendHeight();
+        window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
+                    }
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
+
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
+        });
+    });
+</script>

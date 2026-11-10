@@ -16,7 +16,6 @@
     --off-purple: #7c3aed;
     --off-purple-light: #f5f3ff;
     --off-amber: #d97706;
-    --off-amber-hover: #b45309;
     --off-amber-light: #fef3c7;
     --off-text-main: #1f2937;
     --off-text-muted: #4b5563;
@@ -29,131 +28,123 @@
     --off-shadow-md: 0 8px 26px rgba(52, 17, 0, 0.07);
     --off-shadow-hover: 0 16px 36px rgba(52, 17, 0, 0.12);
 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: var(--off-text-main);
+    max-width: 1200px;
+    margin: 0 auto 3.5rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
     line-height: 1.6;
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 1.5rem 1rem 4rem 1rem;
 }
 
-#off-discover-page * {
+#off-discover-page *,
+#off-discover-page *::before,
+#off-discover-page *::after {
     box-sizing: border-box;
 }
 
-/* Badge Pills */
+/* Badges & Pills */
 .off-badge-pill {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     padding: 0.35rem 0.85rem;
     border-radius: var(--off-radius-pill);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     margin-bottom: 0.85rem;
     width: fit-content;
+    border: none;
 }
-
-.off-badge-pill.orange {
-    background: var(--off-peach-tint);
-    color: var(--off-espresso);
-}
-.off-badge-pill.green {
-    background: var(--off-green-light);
-    color: var(--off-green);
-}
-.off-badge-pill.blue {
-    background: var(--off-blue-light);
-    color: var(--off-blue);
-}
-.off-badge-pill.purple {
-    background: var(--off-purple-light);
-    color: var(--off-purple);
-}
-.off-badge-pill.amber {
-    background: var(--off-amber-light);
-    color: var(--off-amber);
-}
+.off-badge-pill.orange { background: var(--off-peach-light); color: var(--off-orange-hover); }
+.off-badge-pill.green  { background: var(--off-green-light); color: #166534; }
+.off-badge-pill.blue   { background: var(--off-blue-light); color: #0369a1; }
+.off-badge-pill.purple { background: var(--off-purple-light); color: #6d28d9; }
+.off-badge-pill.amber  { background: var(--off-amber-light); color: #b45309; }
 
 /* Hero Section */
-.discover-hero {
-    background: linear-gradient(135deg, var(--off-cream) 0%, #fff1e6 100%);
-    border: 1px solid var(--off-border);
+#off-discover-page .discover-hero {
+    background: linear-gradient(145deg, #ffffff 0%, var(--off-cream) 100%);
+    border: 1px solid var(--off-peach-tint);
     border-radius: 28px;
-    padding: clamp(2.2rem, 4.5vw, 4rem);
+    padding: clamp(2rem, 4vw, 3.5rem);
     margin-bottom: 3.5rem;
+    box-shadow: var(--off-shadow-md);
     position: relative;
     overflow: hidden;
-    box-shadow: var(--off-shadow-sm);
 }
 
-.discover-hero::before {
+#off-discover-page .discover-hero::after {
     content: "";
     position: absolute;
-    top: -40%;
-    right: -10%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(237, 136, 87, 0.12) 0%, rgba(255, 250, 245, 0) 70%);
+    top: -80px;
+    right: -80px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(237, 136, 87, 0.15) 0%, rgba(237, 136, 87, 0) 70%);
     border-radius: 50%;
     pointer-events: none;
 }
 
 #off-discover-page .hero-content-grid {
     display: grid;
-    grid-template-columns: 1.25fr 0.95fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: 2.5rem;
     align-items: center;
-    position: relative;
-    z-index: 1;
+}
+
+#off-discover-page .hero-logo-wrap {
+    margin-bottom: 1rem;
+}
+
+#off-discover-page .off-logo-compact {
+    max-width: 280px;
+    height: auto;
+    display: block;
 }
 
 #off-discover-page .hero-text h1 {
-    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
     font-weight: 900;
     color: var(--off-espresso);
     line-height: 1.15;
-    margin: 0.25rem 0 0.75rem 0;
+    margin: 0 0 0.5rem 0;
     letter-spacing: -0.02em;
 }
 
 #off-discover-page .hero-lead {
-    font-size: clamp(1.15rem, 2vw, 1.35rem);
-    font-weight: 500;
-    color: var(--off-espresso);
-    margin: 0 0 1.5rem 0;
-    line-height: 1.45;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--off-orange-hover);
+    margin: 0 0 1.25rem 0;
 }
 
 #off-discover-page .hero-quote {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: #ffffff;
     border-left: 4px solid var(--off-orange);
     border-radius: 0 14px 14px 0;
-    padding: 1.1rem 1.4rem;
-    margin: 1.5rem 0;
-    box-shadow: 0 2px 10px rgba(52, 17, 0, 0.03);
+    padding: 1rem 1.25rem;
+    margin: 0 0 1.5rem 0;
+    box-shadow: 0 2px 10px rgba(52, 17, 0, 0.04);
 }
 
 #off-discover-page .hero-quote blockquote {
     font-style: italic;
     font-size: 1.05rem;
     color: var(--off-espresso);
-    margin: 0 0 0.35rem 0;
-    padding: 0;
+    margin: 0 0 0.4rem 0;
     border: none;
-    line-height: 1.5;
+    padding: 0;
 }
 
 #off-discover-page .hero-quote cite {
     display: block;
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: var(--off-orange);
+    font-size: 0.85rem;
     font-style: normal;
+    font-weight: 700;
+    color: var(--off-text-muted);
 }
 
 #off-discover-page .hero-actions {
@@ -223,18 +214,6 @@
     transform: translateY(-2px);
     box-shadow: none;
     color: var(--off-orange-hover) !important;
-}
-
-.off-btn-amber {
-    background: var(--off-amber);
-    color: #ffffff !important;
-    box-shadow: none;
-}
-.off-btn-amber:hover {
-    background: #b45309;
-    transform: translateY(-2px);
-    box-shadow: none;
-    color: #ffffff !important;
 }
 
 .off-btn-green {
@@ -499,32 +478,33 @@
 
 <div id="off-discover-page">
 
-    <!-- Hero Banner with Vertical Logo (Light mode) -->
+    <!-- Hero Banner with Vertical Logo (Light & Dark mode) -->
     <header class="discover-hero">
         <div class="hero-content-grid">
             <div class="hero-text">
-                <span class="off-badge-pill orange">✨ Ανοιχτή • Συνεργατική • Μη κερδοσκοπική</span>
+                <span class="off-badge-pill orange">✨ Open • Collaborative • Non-Profit</span>
                 <h1>Open Food Facts</h1>
-                <p class="hero-lead">Η συνεργατική βάση δεδομένων τροφίμων για όλους.</p>
+                <p class="hero-lead">The collaborative food products database for everyone.</p>
 
                 <div class="hero-quote">
-                    <blockquote>&laquo;Είσαι ό,τι τρως.&raquo;</blockquote>
+                    <blockquote>&ldquo;Tell me what you eat and I will tell you what you are.&rdquo;</blockquote>
                     <cite>Jean Anthelme Brillat-Savarin &mdash; 1825</cite>
                 </div>
 
                 <div class="hero-actions">
-                    <a href="/open-food-facts-mobile-app?utm_source=off&amp;utm_medium=web&amp;utm_campaign=discover_hero_el" class="off-btn off-btn-primary">
+                    <a href="/open-food-facts-mobile-app?utm_source=off&amp;utm_medium=web&amp;utm_campaign=discover_hero" class="off-btn off-btn-primary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-                        Κατεβάστε τη δωρεάν εφαρμογή
+                        Get the Free Mobile App
                     </a>
                     <a href="/cgi/search.pl" class="off-btn off-btn-secondary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                        Αναζήτηση προϊόντων
+                        Search Products
                     </a>
                 </div>
             </div>
             <div class="hero-media">
                 <picture class="off-hero-vertical-logo">
+                    <source srcset="/images/logos/off-logo-vertical-dark.svg" media="(prefers-color-scheme: dark)">
                     <img src="/images/logos/off-logo-vertical-light.svg" alt="Open Food Facts Logo" width="320" height="320" class="hero-vertical-logo">
                 </picture>
             </div>
@@ -534,43 +514,43 @@
     <!-- Section 1: The Three Pillars -->
     <section>
         <div class="section-header">
-            <span class="off-badge-pill green">🌍 Οι βασικοί μας πυλώνες</span>
-            <h2>Ανοίξτε τα τρόφιμά σας και μάθετε τι τρώτε</h2>
+            <span class="off-badge-pill green">🌍 Our Core Pillars</span>
+            <h2>Ανοίξτε το φαγητό σας και μάθετε τι τρώτε</h2>
             <p>
-                Γίνετε μέρος της συνεργατικής, δωρεάν και ανοιχτής βάσης δεδομένων μας για προϊόντα διατροφής όλου του κόσμου!
+                Be part of our collaborative, free, and open database of food products from across the globe!
             </p>
         </div>
 
         <div class="off-card-grid-3">
             <!-- Pillar 1: A food products database -->
             <article class="off-feature-card">
-                <span class="off-badge-pill blue">4,8 εκ. Προϊόντα</span>
+                <span class="off-badge-pill blue">4,8M Products</span>
                 <div class="off-card-art">
-                    <img src="/images/svg/food-database-icon.svg" alt="Βάση δεδομένων προϊόντων διατροφής" width="160" height="130" loading="lazy">
+                    <img src="/images/svg/food-database-icon.svg" alt="Μια βάση δεδομένων τροφίμων" width="160" height="130" loading="lazy">
                 </div>
                 <h3>Μια βάση δεδομένων τροφίμων</h3>
                 <p>
-                    Το Open Food Facts είναι μια πλήρης βάση δεδομένων προϊόντων διατροφής με συστατικά, αλλεργιογόνα, διατροφικά στοιχεία, λεπτομέρειες συσκευασίας και όλες τις πληροφορίες των ετικετών.
+                    Open Food Facts is a comprehensive database of food products with ingredients, allergens, nutrition facts, packaging details, and every piece of information found on labels.
                 </p>
                 <div class="card-footer-action">
-                    <a href="/open-food-facts-mobile-app?utm_source=off&amp;utm_medium=web&amp;utm_campaign=discover_pillars_el" class="off-btn off-btn-primary off-btn-block">
-                        Κατεβάστε την εφαρμογή για σάρωση
+                    <a href="/open-food-facts-mobile-app?utm_source=off&amp;utm_medium=web&amp;utm_campaign=discover_pillars" class="off-btn off-btn-primary off-btn-block">
+                        Get the App to Scan
                     </a>
                 </div>
             </article>
 
             <!-- Pillar 2: Made by everyone -->
             <article class="off-feature-card">
-                <span class="off-badge-pill amber">+100.000 Εθελοντές</span>
+                <span class="off-badge-pill amber">100,000+ Volunteers</span>
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/puzzle-animated.svg" alt="Κομμάτια παζλ συνεργασίας κοινότητας" width="340" height="260" loading="lazy">
+                    <img src="/images/illustrations/shared/puzzle-animated.svg" alt="Collaborative community puzzle pieces uniting together" width="340" height="260" loading="lazy">
                 </div>
                 <h3>Φτιαγμένο από όλους</h3>
                 <p>
-                    Το Open Food Facts είναι ένας μη κερδοσκοπικός οργανισμός εθελοντών. Περισσότεροι από 100.000 συνεισφέροντες από 150+ χώρες έχουν καταγράψει εκατομμύρια προϊόντα μέσω των εφαρμογών μας για Android και iOS.
+                    Το Open Food Facts είναι μια μη κερδοσκοπική ένωση εθελοντών. Over 100,000 contributors from 150+ countries have cataloged millions of products using our Android and iOS apps.
                 </p>
                 <div class="card-footer-action">
-                    <a href="https://wiki.openfoodfacts.org/Contributor?utm_source=off&amp;utm_medium=web&amp;utm_campaign=discover_pillars_el" class="off-btn off-btn-amber off-btn-block" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wiki.openfoodfacts.org/Contributor?utm_source=off&amp;utm_medium=web&amp;utm_campaign=discover_pillars" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
                         Γίνετε μέλος της κοινότητάς μας
                     </a>
                 </div>
@@ -578,17 +558,17 @@
 
             <!-- Pillar 3: For everyone - Open data -->
             <article class="off-feature-card">
-                <span class="off-badge-pill green">100% Ανοιχτά Δεδομένα</span>
+                <span class="off-badge-pill green">100% Open Data</span>
                 <div class="off-card-art">
-                    <img src="/images/illustrations/shared/off-discover-open-science-animated.svg" alt="Ανοιχτά δεδομένα και δίκτυο επιστημονικής έρευνας" width="560" height="420" loading="lazy">
+                    <img src="/images/illustrations/shared/off-discover-open-science-animated.svg" alt="Open data metrics and global scientific research network" width="560" height="420" loading="lazy">
                 </div>
                 <h3>Για όλους</h3>
                 <p>
-                    Τα δεδομένα για τα τρόφιμα είναι δημοσίου συμφέροντος και πρέπει να παραμένουν ανοιχτά. Ολόκληρη η βάση δεδομένων δημοσιεύεται με άδεια Open Database License (ODbL) και μπορεί να επαναχρησιμοποιηθεί ελεύθερα.
+                    Data about food is a matter of public interest and must remain open. The complete database is published under the Open Database License (ODbL) and can be reused by anyone for any purpose.
                 </p>
                 <div class="card-footer-action">
-                    <a href="/data?utm_source=off&amp;utm_medium=web&amp;utm_campaign=discover_pillars_el" class="off-btn off-btn-green off-btn-block">
-                        Πρόσβαση στα ανοιχτά δεδομένα
+                    <a href="/data?utm_source=off&amp;utm_medium=web&amp;utm_campaign=discover_pillars" class="off-btn off-btn-green off-btn-block">
+                        Access Open Data
                     </a>
                 </div>
             </article>
@@ -600,84 +580,85 @@
     <!-- Section 2: Make better food choices -->
     <section>
         <div class="section-header">
-            <span class="off-badge-pill orange">🔍 Διαφάνεια &amp; Διατροφική Πληροφόρηση</span>
+            <span class="off-badge-pill orange">🔍 Food Intelligence &amp; Transparency</span>
             <h2>Κάντε καλύτερες διατροφικές επιλογές</h2>
             <p>
-                Η γνώση είναι δύναμη. Η γνώση των τροφίμων σάς δίνει τη δύναμη να τρώτε πιο υγιεινά, να προστατεύετε το περιβάλλον και να ενθαρρύνετε τη βελτίωση των προϊόντων!
+                Η γνώση είναι δύναμη. Food knowledge gives you the power to eat healthier, protect our environment, and drive market reform!
             </p>
         </div>
 
         <div class="off-card-grid-4">
-            <!-- Decode labels -->
+            <!-- Decode labels / Decode products with non-yellow magnifying glass & dark mode provision -->
             <article class="off-feature-card">
                 <span class="off-badge-pill orange">Nutri-Score &amp; NOVA</span>
                 <div class="off-card-art">
                     <picture>
-                        <img src="/images/illustrations/food/magnifying-glass-ingredients-light-mode.svg" alt="Αποκωδικοποίηση ετικετών με μεγεθυντικό φακό" width="284" height="241" loading="lazy" class="off-img-rounded">
+                        <source srcset="/images/illustrations/food/magnifying-glass-ingredients-dark-mode.svg" media="(prefers-color-scheme: dark)">
+                        <img src="/images/illustrations/food/magnifying-glass-ingredients-light-mode.svg" alt="Decode labels with magnifying glass" width="284" height="241" loading="lazy" class="off-img-rounded">
                     </picture>
                 </div>
-                <h3>Αποκωδικοποιήστε τις ετικέτες</h3>
+                <h3>Αποκωδικοποίηση ετικετών</h3>
                 <p>
-                    Πρόσθετα τροφίμων (αριθμοί Ε), αλλεργιογόνα, βαθμός επεξεργασίας (NOVA) και κωδικοί ιχνηλασιμότητας. Το Open Food Facts αποκρυπτογραφεί τα ψιλά γράμματα και υπολογίζει τις βαθμολογίες Nutri-Score και Eco-Score.
+                    Food additive E-numbers, allergens, ultra-processing (NOVA), and traceability codes. Open Food Facts deciphers the fine print and calculates Nutri-Score and Eco-Score ratings.
                 </p>
                 <div class="card-footer-action">
                     <a href="/scores-and-methodologies" class="off-btn off-btn-secondary off-btn-block">
-                        Μάθετε για τις βαθμολογίες
+                        Learn About Scores
                     </a>
                 </div>
             </article>
 
             <!-- Find products -->
             <article class="off-feature-card">
-                <span class="off-badge-pill blue">Έξυπνα φίλτρα</span>
+                <span class="off-badge-pill blue">Smart Filters</span>
                 <div class="off-card-art">
-                    <img src="/images/svg/find-products-icon.svg" alt="Εικονίδιο αναζήτησης προϊόντων" width="160" height="130" loading="lazy">
+                    <img src="/images/svg/find-products-icon.svg" alt="Find products icon" width="160" height="130" loading="lazy">
                 </div>
-                <h3>Βρείτε προϊόντα</h3>
+                <h3>Εύρεση προϊόντων</h3>
                 <p>
-                    Η προηγμένη μηχανή αναζήτησης περιλαμβάνει δεκάδες κριτήρια για να εντοπίσετε προϊόντα που ταιριάζουν ακριβώς στις διατροφικές σας προτιμήσεις: vegan, βιολογικά, χωρίς φοινικέλαιο ή με χαμηλό αλάτι.
+                    Our advanced search engine includes dozens of granular criteria to locate products matching your exact dietary preferences: vegan, organic, low salt, or palm oil-free.
                 </p>
                 <div class="card-footer-action">
                     <a href="/cgi/search.pl" class="off-btn off-btn-secondary off-btn-block">
-                        Δοκιμάστε την αναζήτηση
+                        Try Search Form
                     </a>
                 </div>
             </article>
 
             <!-- Compare and change (Rounded Corners) -->
             <article class="off-feature-card">
-                <span class="off-badge-pill amber">Οπτικοποίηση σε 3 κλικ</span>
+                <span class="off-badge-pill amber">Dataviz in 3 Clicks</span>
                 <div class="off-card-art">
                     <a href="/cgi/search.pl?action=process&amp;tagtype_0=categories&amp;tag_contains_0=contains&amp;tag_0=Breakfast%20cereals&amp;sort_by=unique_scans_n&amp;page_size=20&amp;axis_x=sugars&amp;axis_y=fat&amp;series_nutrition_grades=on&amp;graph=1">
-                        <img src="/images/svg/compare-graph-icon.320x240.png" alt="Διαδραστικό γράφημα σύγκρισης ζάχαρης και λιπαρών στα δημητριακά" width="320" height="240" loading="lazy" class="off-img-rounded">
+                        <img src="/images/svg/compare-graph-icon.320x240.png" alt="Interactive scatter plot comparing sugar and fat across breakfast cereals" width="320" height="240" loading="lazy" class="off-img-rounded">
                     </a>
                 </div>
                 <h3>Συγκρίνετε και αλλάξτε</h3>
                 <p>
-                    Γνωρίζετε ποια δημητριακά πρωινού έχουν τη λιγότερη ζάχαρη και κορεσμένα λιπαρά; Σε 3 κλικ, δημιουργήστε διαδραστικά γραφήματα για να συγκρίνετε μάρκες και να επιλέξετε πιο υγιεινές εναλλακτικές.
+                    Do you know which breakfast cereals have the lowest sugar and saturated fat? In 3 clicks, generate interactive charts to compare brands and choose healthier alternatives.
                 </p>
                 <div class="card-footer-action">
                     <a href="/graphs-in-3-clicks?utm_source=off&amp;utm_medium=web&amp;utm_campaign=discover_buttons_el" class="off-btn off-btn-primary off-btn-block">
-                        Δημιουργήστε γράφημα σε 2 λεπτά
+                        Create Dataviz in 2 Min
                     </a>
                 </div>
             </article>
 
             <!-- Explore and discover (Rounded Corners) -->
             <article class="off-feature-card">
-                <span class="off-badge-pill green">Προέλευση &amp; Δίκαιο Εμπόριο</span>
+                <span class="off-badge-pill green">Origins &amp; Fair Trade</span>
                 <div class="off-card-art">
                     <a href="/facets/labels/fair-trade/origins">
-                        <img src="/images/svg/fairtrade-origins-min.svg" alt="Προέλευση συστατικών προϊόντων δίκαιου εμπορίου" width="260" height="180" loading="lazy" class="off-img-rounded">
+                        <img src="/images/svg/fairtrade-origins-min.svg" alt="Προέλευση συστατικών προϊόντων Δικαίου Εμπορίου" width="260" height="180" loading="lazy" class="off-img-rounded">
                     </a>
                 </div>
-                <h3>Εξερευνήστε &amp; ανακαλύψτε</h3>
+                <h3>Explore &amp; discover</h3>
                 <p>
-                    Ενδιαφέρεστε για την προέλευση των τροφίμων; Εξερευνήστε μάρκες, υλικά συσκευασίας και προέλευση συστατικών, καθώς και τη χαρτογράφηση προϊόντων δίκαιου εμπορίου ή βιολογικών.
+                    Curious about where food comes from? Explore facets like brands, packaging materials, and ingredient provenance. Map origins of ingredients bearing fair trade or organic labels.
                 </p>
                 <div class="card-footer-action">
                     <a href="/facets/labels/fair-trade/origins" class="off-btn off-btn-secondary off-btn-block">
-                        Εξερευνήστε την προέλευση
+                        Explore Origins
                     </a>
                 </div>
             </article>
@@ -689,10 +670,10 @@
     <!-- Section 3: Food for thought, innovation and science -->
     <section id="reuses">
         <div class="section-header">
-            <span class="off-badge-pill blue">🚀 Οικοσύστημα Ανοιχτών Δεδομένων</span>
-            <h2>Έμπνευση, καινοτομία και επιστήμη</h2>
+            <span class="off-badge-pill blue">🚀 Open Data Ecosystem</span>
+            <h2>Τροφή για σκέψη, καινοτομία και επιστήμη</h2>
             <p>
-                Η ανοιχτή βάση δεδομένων μας δημοσιεύεται υπό την άδεια Open Database License (ODbL). Οποιοσδήποτε μπορεί να τη χρησιμοποιήσει για εμπορικούς ή μη σκοπούς, με αναφορά πηγής και κοινοποίηση των βελτιώσεων.
+                Our open database is published under the Open Database License (ODbL). Anyone can use it for commercial or non-commercial purposes, provided attribution is given and improvements are shared back.
             </p>
         </div>
 
@@ -702,54 +683,54 @@
                 <span class="off-badge-pill orange">Εκπαίδευση</span>
                 <div class="off-card-art">
                     <a href="https://howmuchsugar.in?utm_source=off&amp;utm_medium=web&amp;utm_campaign=discover_buttons_el" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/svg/howmuchsugar-icon.svg" alt="Εικονογράφηση παιχνιδιού Πόση ζάχαρη" width="160" height="120" loading="lazy" class="off-img-rounded">
+                        <img src="/images/svg/howmuchsugar-icon.svg" alt="How much sugar game illustration" width="160" height="120" loading="lazy" class="off-img-rounded">
                     </a>
                 </div>
                 <h3>Πόση ζάχαρη;</h3>
                 <p>
-                    Πόσες διαφημίσεις τροφίμων έχετε δει στη ζωή σας; Τα ανοιχτά δεδομένα αποκαλύπτουν τα γεγονότα πίσω από το μάρκετινγκ. Μπορείτε να μαντέψετε πόσα κυβάκια ζάχαρης κρύβονται στα τρόφιμά σας;
+                    Πόσες διαφημίσεις τροφίμων έχετε δει στη ζωή σας; Open data helps uncover the facts beneath advertising claims. Can you guess the number of sugar cubes hidden in your food?
                 </p>
                 <div class="card-footer-action">
                     <a href="https://howmuchsugar.in?utm_source=off&amp;utm_medium=web&amp;utm_campaign=discover_buttons_el" class="off-btn off-btn-primary off-btn-block" target="_blank" rel="noopener noreferrer">
-                        Δοκιμάστε το &laquo;Πόση ζάχαρη;&raquo;
+                        Try &ldquo;How much sugar?&rdquo;
                     </a>
                 </div>
             </article>
 
-            <!-- Reuse 2: Products & services (Made Near Me) -->
+            <!-- Reuse 2: Products & services (Made Near Me with Rounded Corners) -->
             <article class="off-feature-card reuse-card green-top">
-                <span class="off-badge-pill green">Προϊόντα &amp; Εφαρμογές</span>
+                <span class="off-badge-pill green">Products &amp; Apps</span>
                 <div class="off-card-art">
                     <a href="https://madenear.me" target="_blank" rel="noopener noreferrer">
-                        <img src="/images/svg/madenearme-icon.png" alt="Εφαρμογή τοπικών τροφίμων Made Near Me" width="240" height="180" loading="lazy" class="off-img-rounded">
+                        <img src="/images/svg/madenearme-icon.png" alt="Made Near Me local food app" width="240" height="180" loading="lazy" class="off-img-rounded">
                     </a>
                 </div>
-                <h3>Made Near Me</h3>
+                <h3>Φτιαγμένο Κοντά Μου</h3>
                 <p>
-                    Τα δεδομένα του Open Food Facts επαναχρησιμοποιούνται σε εκατοντάδες εφαρμογές για κινητά, επεκτάσεις και έξυπνες συσκευές. Μάθετε πού παράγονται τα τρόφιμά σας και καταναλώστε τοπικά!
+                    Open Food Facts data is reused in hundreds of mobile apps, digital supermarket extensions, and smart kitchen devices. Know where your food was grown and Eat Local with Made Near Me!
                 </p>
                 <div class="card-footer-action">
                     <a href="https://madenear.me" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
-                        Επισκεφθείτε το MadeNear.me
+                        Visit MadeNear.me
                     </a>
                 </div>
             </article>
 
             <!-- Reuse 3: Science & Research -->
             <article class="off-feature-card reuse-card blue-top">
-                <span class="off-badge-pill blue">Επιστήμη των Πολιτών &amp; Υγεία</span>
+                <span class="off-badge-pill blue">Citizen Science &amp; Health</span>
                 <div class="off-card-art">
                     <a href="/science">
-                        <img src="/images/illustrations/shared/science-icon-animated.svg" alt="Εργαστηριακή φιάλη ανάλυσης διατροφής" width="160" height="130" loading="lazy">
+                        <img src="/images/illustrations/shared/science-icon-animated.svg" alt="Laboratory flask analyzing nutritional chemistry" width="160" height="130" loading="lazy">
                     </a>
                 </div>
-                <h3>Επιστήμη &amp; Έρευνα</h3>
+                <h3>Science &amp; Research</h3>
                 <p>
-                    Επιδημιολόγοι και ερευνητικά ινστιτούτα (Santé publique France, Inserm, INRAE) χρησιμοποιούν τα δεδομένα του Open Food Facts για να επικυρώσουν τον αλγόριθμο του Nutri-Score και να μελετήσουν τις επιπτώσεις των υπερεπεξεργασμένων τροφίμων.
+                    Epidemiologists and research institutions (Santé publique France, Inserm, Inrae) use Open Food Facts data to validate the Nutri-Score formula and study the health impacts of ultra-processed food.
                 </p>
                 <div class="card-footer-action">
                     <a href="/science" class="off-btn off-btn-blue off-btn-block">
-                        Εξερευνήστε τις επιστημονικές δημοσιεύσεις
+                        Explore Scientific Papers
                     </a>
                 </div>
             </article>
@@ -758,12 +739,12 @@
 
     <!-- Bottom Data Callout Banner -->
     <div class="bottom-explore-banner">
-        <h2>Είστε έτοιμοι να δημιουργήσετε με το Open Food Facts;</h2>
+        <h2>Ready to build with Open Food Facts?</h2>
         <p>
-            Κατεβάστε τα καθημερινά αρχεία δεδομένων σε μορφή JSON, CSV ή Parquet, ή ενσωματώστε το API JSON σε πραγματικό χρόνο στις εφαρμογές σας.
+            Download our daily database dumps in JSON, CSV, or Parquet format, or integrate our real-time JSON API into your web or mobile app.
         </p>
         <a href="/data?utm_source=off&amp;utm_medium=web&amp;utm_campaign=discover_buttons_el" class="off-btn off-btn-primary" style="font-size: 1.05rem; padding: 0.85rem 1.85rem;">
-            Δείτε τα δεδομένα μας για να δημιουργήσετε τα δικά σας &rarr;
+            Check out our data to create yours &rarr;
         </a>
     </div>
 
@@ -790,5 +771,41 @@
         sendHeight();
         // Send the height whenever the window is resized
         window.addEventListener("resize", sendHeight);
+
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
+                    }
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
+
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
+        });
     });
 </script>

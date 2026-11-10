@@ -1,142 +1,628 @@
 <!-- no side column -->
+<style>
+/* ==========================================================================
+   Open Products Facts — Modern Contribute Page
+   ========================================================================== */
 
-<div class="row">
+#opf-contribute-page {
+    --opf-primary: #4338ca;
+    --opf-primary-hover: #3730a3;
+    --opf-secondary: #059669;
+    --opf-secondary-hover: #047857;
+    --opf-indigo: #6366f1;
+    --opf-dark: #1e1b4b;
+    --opf-cream: #fbfbfe;
+    --opf-warm-bg: #f5f3ff;
+    --opf-border: #ddd6fe;
+    --opf-card-border: #d4ccfc;
+    --opf-text-muted: #5b557d;
+    --opf-blue: #2563eb;
+    --opf-radius-card: 22px;
+    --opf-radius-pill: 9999px;
+    --opf-shadow-sm: 0 2px 10px rgba(30, 27, 75, 0.04);
+    --opf-shadow-md: 0 10px 24px rgba(30, 27, 75, 0.07);
+    --opf-shadow-hover: 0 16px 36px rgba(67, 56, 202, 0.14);
 
-    <div class="small-12 medium-8 columns">
-        <h1>为开放产品事实做出贡献</h1>
-        <h2 class="subheader">你需要的只是“扫描-做”的态度！ :-)</h2>
-        <!-- note to translators: you can replace "All you need is a scan-do attitude!" by a sentence that works better
-        for your language. Something that says that it's easy to contribute and that all that is needed is good will and a positive / can-do attitude -->
-        <blockquote>我们能否让产品信息更加透明和可持续？是的，我们 扫  描！
-        <!-- note to translators: please translate "Can we make product information more transparent and sustainable" but keep "Yes we scan!" in English -->
-        </blockquote>
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--opf-dark);
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+}
+
+#opf-contribute-page * {
+    box-sizing: border-box;
+}
+
+/* Badge Pills */
+.opf-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--opf-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+    border: none;
+}
+.opf-badge-pill.indigo { background: #ede9fe; color: #4338ca; }
+.opf-badge-pill.green { background: #dcfce7; color: #15803d; }
+.opf-badge-pill.amber { background: #fef3c7; color: #92400e; }
+.opf-badge-pill.blue { background: #e0f2fe; color: #0369a1; }
+.opf-badge-pill.purple { background: #fae8ff; color: #86198f; }
+
+/* Hero Banner */
+.opf-hero {
+    background: linear-gradient(145deg, #ffffff 0%, var(--opf-warm-bg) 100%);
+    border: 1px solid var(--opf-border);
+    border-radius: 28px;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 3.5rem;
+    box-shadow: var(--opf-shadow-md);
+}
+
+.hero-content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--opf-dark);
+    line-height: 1.15;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+}
+
+.hero-lead {
+    font-size: 1.15rem;
+    color: var(--opf-text-muted);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+.hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-media img {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    filter: drop-shadow(0 14px 32px rgba(30, 27, 75, 0.12));
+    border-radius: 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-media img:hover {
+    transform: translateY(-4px) scale(1.015);
+}
+
+/* Call to Action Buttons */
+.off-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--opf-radius-pill);
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    line-height: 1.2;
+    border: none;
+}
+.off-btn-primary {
+    background: var(--opf-primary);
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-primary:hover {
+    background: var(--opf-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+.off-btn-secondary {
+    background: #ffffff;
+    color: var(--opf-dark) !important;
+    border: 1px solid var(--opf-border);
+    box-shadow: var(--opf-shadow-sm);
+}
+.off-btn-secondary:hover {
+    background: var(--opf-cream);
+    border-color: var(--opf-primary);
+    transform: translateY(-2px);
+    color: var(--opf-primary) !important;
+}
+.off-btn-green {
+    background: var(--opf-secondary);
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-green:hover {
+    background: var(--opf-secondary-hover);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+.off-btn-block {
+    width: 100%;
+}
+
+/* Section Header */
+.section-header {
+    text-align: left;
+    margin-bottom: 2.25rem;
+}
+.section-header h2 {
+    font-size: clamp(1.8rem, 3vw, 2.35rem);
+    font-weight: 800;
+    color: var(--opf-dark);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.015em;
+}
+.section-header p {
+    font-size: 1.08rem;
+    color: var(--opf-text-muted);
+    margin: 0;
+    max-width: 760px;
+}
+
+/* Grids */
+.off-card-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+.off-card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+
+/* Feature Cards */
+.off-feature-card {
+    background: #ffffff;
+    border: 1px solid var(--opf-card-border);
+    border-radius: var(--opf-radius-card);
+    padding: 1.85rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--opf-shadow-sm);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+.off-feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--opf-shadow-hover);
+    border-color: var(--opf-primary);
+}
+
+.off-card-art {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+.off-card-art img,
+.off-card-art svg {
+    max-height: 140px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.off-feature-card:hover .off-card-art img,
+.off-feature-card:hover .off-card-art svg {
+    transform: scale(1.05);
+}
+
+/* Animations: on hover only */
+#opf-contribute-page svg,
+#opf-contribute-page svg * {
+    animation-play-state: paused !important;
+}
+
+#opf-contribute-page .opf-hero:hover svg,
+#opf-contribute-page .opf-hero:hover svg *,
+#opf-contribute-page .off-feature-card:hover svg,
+#opf-contribute-page .off-feature-card:hover svg *,
+#opf-contribute-page .expert-banner:hover svg,
+#opf-contribute-page .expert-banner:hover svg *,
+#opf-contribute-page .hero-media:hover svg,
+#opf-contribute-page .hero-media:hover svg *,
+#opf-contribute-page svg:hover,
+#opf-contribute-page svg:hover * {
+    animation-play-state: running !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #opf-contribute-page svg,
+    #opf-contribute-page svg * {
+        animation: none !important;
+    }
+}
+
+.off-feature-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--opf-dark);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+}
+.off-feature-card p {
+    font-size: 0.95rem;
+    color: var(--opf-text-muted);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.off-feature-card .card-footer-action {
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
+/* Divider */
+#opf-contribute-page hr.off-divider {
+    border: none;
+    border-top: 1px solid var(--opf-border);
+    margin: 3.5rem 0;
+}
+
+/* Expert Banner */
+.expert-banner {
+    background: linear-gradient(135deg, var(--opf-warm-bg) 0%, #ffffff 100%);
+    border: 1px solid var(--opf-border);
+    border-radius: 24px;
+    padding: clamp(1.8rem, 3.5vw, 2.5rem);
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--opf-shadow-sm);
+}
+.expert-banner-art {
+    display: flex;
+    justify-content: center;
+}
+.expert-banner-art img {
+    max-width: 280px;
+    height: auto;
+}
+.expert-banner-text h2 {
+    font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+    font-weight: 800;
+    color: var(--opf-dark);
+    margin: 0 0 0.75rem 0;
+}
+.expert-banner-text p {
+    color: var(--opf-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 1.25rem 0;
+}
+
+/* Bottom CTA */
+.bottom-projects-cta {
+    background: linear-gradient(135deg, var(--opf-dark) 0%, #0d0c22 100%);
+    border-radius: 24px;
+    padding: clamp(2.2rem, 4vw, 3.2rem);
+    text-align: center;
+    color: #ffffff;
+    margin-top: 3.5rem;
+    box-shadow: var(--opf-shadow-md);
+}
+.bottom-projects-cta h2 {
+    color: #ffffff;
+    font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+    font-weight: 800;
+    margin: 0 0 0.85rem 0;
+}
+.bottom-projects-cta p {
+    color: #e0e7ff;
+    font-size: 1.1rem;
+    max-width: 680px;
+    margin: 0 auto 1.75rem auto;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .hero-content-grid,
+    .expert-banner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .off-card-grid-4,
+    .off-card-grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .section-header {
+        text-align: center;
+    }
+}
+</style>
+
+<div id="opf-contribute-page">
+
+    <!-- Hero Banner -->
+    <header class="opf-hero">
+        <div class="hero-content-grid">
+            <div class="hero-text">
+                <span class="opf-badge-pill indigo">✨ 100% Volunteer Driven • Open Hardware &amp; Goods</span>
+                <h1>为开放产品事实做出贡献</h1>
+                <p class="hero-lead">
+                    Join an international movement of citizens cataloging everyday products, tools, clothing, and electronics using the universal Open Food Facts app to promote durability, repairability, and waste reduction.
+                </p>
+                <div class="hero-actions">
+                    <a href="/open-products-facts-mobile-app?utm_source=opf&amp;utm_medium=web&amp;utm_campaign=contribute_hero" class="off-btn off-btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        Install Free Universal App
+                    </a>
+                    <a href="https://wiki.openfoodfacts.org/Contributor" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">
+                        Join our Community &rarr;
+                    </a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img src="/images/illustrations/products/products-hero.svg" alt="Everyday consumer products illustration" width="440" height="360">
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: Everyone can contribute -->
+    <section>
+        <div class="section-header">
+            <span class="opf-badge-pill green">🌟 Quick Micro-Contributions</span>
+            <h2>Everyone can contribute</h2>
+            <p>
+                Scan the barcode on home items, photograph user manual specs, or classify battery and repairability attributes.
+            </p>
+        </div>
+
+        <div class="off-card-grid-4">
+            <!-- Card 1: Add products -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/products/off-add-products-nonfood-animated.svg" alt="Barcode scanner scanning and uploading manufactured and household product labels" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opf-badge-pill indigo">📱 Mobile &amp; Web</span>
+                <h3>添加产品</h3>
+                <p>
+                    Scan barcodes of toys, home appliances, clothes, or lightbulbs using the free universal Open Food Facts app (which supports food, beauty, and products), and capture the nameplate or label.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/open-products-facts-mobile-app" class="off-btn off-btn-primary off-btn-block">
+                        Get Universal App
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 2: Document repairability -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/products/off-data-quality-nonfood-animated.svg" alt="Magnifying glass inspecting non-food product durability and repairability data quality" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opf-badge-pill amber">🔧 Repair Specs</span>
+                <h3>Document durability</h3>
+                <p>
+                    Extract repairability indices, disassemble ratings, battery capacities, and availability of replacement parts.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/cgi/search.pl" class="off-btn off-btn-secondary off-btn-block">
+                        浏览产品
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 3: Tell the world -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-community-building-animated.svg" alt="Community celebration and collaboration" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opf-badge-pill purple">📢 Spread the Word</span>
+                <h3>Tell repairers &amp; makers</h3>
+                <p>
+                    Share Open Products Facts at Repair Cafés, maker spaces, fablabs, and consumer protection workshops.
+                </p>
+                <div class="card-footer-action">
+                    <a href="/follow-open-food-facts" class="off-btn off-btn-secondary off-btn-block">
+                        Share on Social Media
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 4: Make it local -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-make-it-local-animated.svg" alt="Multilingual world globe representing global communities" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opf-badge-pill green">🌍 Local Communities</span>
+                <h3>本地化</h3>
+                <p>
+                    Help translate technical device terminology, index domestic appliance brands, and map national repairability standards.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://translate.openfoodfacts.org" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Help Translate
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Section 2: Expert Help Needed -->
+    <section>
+        <div class="expert-banner">
+            <div class="expert-banner-art">
+                <img src="/images/illustrations/shared/off-expert-help-needed-animated.svg" alt="Engineers and developers collaborating on open product data" width="560" height="420" loading="lazy">
+            </div>
+            <div class="expert-banner-text">
+                <span class="opf-badge-pill indigo">🛠️ Specialized Skills</span>
+                <h2>需要专家帮助</h2>
+                <p>
+                    We welcome hardware hackers, electrical engineers, material scientists, LCA experts, and software developers to help structure open product taxonomies.
+                </p>
+                <a href="https://connect.openfoodfacts.org/join-the-contributor-skill-pool-open-food-facts" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer">
+                    Join the Contributor Skill Pool &rarr;
+                </a>
+            </div>
+        </div>
+
+        <div class="off-card-grid-3">
+            <!-- Project management -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-project-management-animated.svg" alt="Project roadmap and milestone checklist" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opf-badge-pill blue">Strategy &amp; Roadmap</span>
+                <h3>项目管理</h3>
+                <p>
+                    Define taxonomies across electronics, textiles, tools, and toys, and coordinate open data standards with right-to-repair coalitions.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://wiki.openfoodfacts.org/Projects_homepage" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        View Projects Wiki
+                    </a>
+                </div>
+            </article>
+
+            <!-- Design & UX -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-design-ux-animated.svg" alt="Design wireframe and pen tool" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opf-badge-pill purple">UI / UX Design</span>
+                <h3>Design &amp; UX</h3>
+                <p>
+                    Design intuitive data entry flows for non-standard barcodes, technical labels, user manuals, and repair schematics.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts/openfoodfacts-design" class="off-btn off-btn-secondary off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Join Design Team
+                    </a>
+                </div>
+            </article>
+
+            <!-- Development & AI -->
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="/images/illustrations/shared/off-developers-ai-animated.svg" alt="Code editor and machine learning diagrams" width="560" height="420" loading="lazy">
+                </div>
+                <span class="opf-badge-pill green">Code &amp; AI</span>
+                <h3>Development &amp; AI</h3>
+                <p>
+                    Contribute to computer vision OCR models capable of parsing electrical nameplates, serial numbers, and complex regulatory marks.
+                </p>
+                <div class="card-footer-action">
+                    <a href="https://github.com/openfoodfacts" class="off-btn off-btn-green off-btn-block" target="_blank" rel="noopener noreferrer">
+                        Explore GitHub Repos
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="bottom-projects-cta">
+        <h2>Ready to power the right to repair?</h2>
+        <p>
+            Connect with volunteers and circular economy champions on our open Slack workspace.
+        </p>
+        <a href="https://slack.openfoodfacts.org" class="off-btn off-btn-primary" target="_blank" rel="noopener noreferrer" style="font-size: 1.05rem; padding: 0.85rem 1.85rem;">
+            Join Our Slack Workspace &rarr;
+        </a>
     </div>
-    
-    <div class="text-center small-12 medium-4 columns">
-        <img src="https://static.openproductsfacts.org/images/svg/crowdsourcing-icon.svg" width="100%" style="max-width:356px" alt="是的，我们 扫  描！" />
-    </div>  
 
 </div>
 
-<hr>
+<script>
+    function onMount(fn) {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+        } else {
+            fn();
+        }
+    }
 
-<div class="row text-center">
-    <div class="large-12 columns">
-        <h2>每个人都可以贡献</h2>
-        <h4 class="subheader">加入我们这个协作式、免费且开放的全球产品数据库！</h4>
-        <p>Open Products Facts 是一个完全由志愿者组成的非营利项目，我们需要您的支持。</p>
+    onMount(() => {
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            if (typeof parent !== 'undefined' && parent !== window) {
+                parent.postMessage({ frameHeight: height }, '*');
+            }
+        }
+        sendHeight();
+        window.addEventListener("resize", sendHeight);
 
-    </div>
-</div>
-<div class="row text-center">
-    <div class="medium-4 columns">
-        <h3>添加产品</h3>
-        <p>使用 <a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=zh-cn&utm_source=opf&utm_campaign=contribute-promo&utm_medium=website">Android</a> 或 <a href="https://apps.apple.com/app/open-food-facts/id588797948?l=zh-cn&amp;utm_source=opf&utm_campaign=contribute-promo&utm_medium=website">iPhone</a> 轻松扫描您家中或本地商店的产品条形码并上传其标签的照片。</p>
-        <p>移动应用程序已合并，因此您现在可以使用同一个 Open Food Facts 应用程序扫描产品、食品、化妆品和宠物食品！</p>
-        <p>没有智能手机？没问题：您也可以使用摄像头直接在网站上添加产品。</p>
-        <p><a href="/open-products-facts-mobile-app?utm_source=opf&utm_medium=web&utm_campaign=contribute-promo" class="button round" style="margin-bottom: 0">安装此应用，为产品透明度做出贡献。</a></p>
-    </div>
-    
-    <div class="medium-4 columns">
-        <h3>告诉世界</h3>
-        <p>你喜欢“开放产品信息”吗？告诉其他人！</p>
-        <p>您可以将项目展示给您的家人和朋友，向他们展示如何安装应用程序并做出贡献。 在社交媒体上写一个博客，分享打开产品信息...</p>
-        <p>现场直播吧！我们在非常不同的环境中向非常不同的受众介绍了打开产品的事实。 和
-当我们显示产品数据打开时我们总是会得到非常热情的响应。我们有很多<a href="/presentations">演示材料</a>（幻灯片等），你可以引用或原样呈现。</p>
-    
-    </div>
+        // Convert animated SVG img tags to inline SVGs so CSS card-hover can pause/play smoothly
+        function replaceWithSvg(img, svgText) {
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgText, 'image/svg+xml');
+                const svg = doc.querySelector('svg');
+                if (svg) {
+                    if (img.id) svg.id = img.id;
+                    if (img.className) svg.classList.add(...img.classList);
+                    if (img.getAttribute('width')) svg.setAttribute('width', img.getAttribute('width'));
+                    if (img.getAttribute('height')) svg.setAttribute('height', img.getAttribute('height'));
+                    if (img.getAttribute('alt')) {
+                        svg.setAttribute('role', 'img');
+                        svg.setAttribute('aria-label', img.getAttribute('alt'));
+                    }
+                    img.parentNode.replaceChild(svg, img);
+                }
+            } catch(e) {}
+        }
 
-    <div class="medium-4 columns">
-        <h3>本地化</h3>
-        <p>你可以帮忙用你的语言<a href="https://translate.openfoodfacts.org">翻译</a>网站和移动app，帮忙翻译展示，公告等</p>
-        <p>我们可以共同努力，支持和增加本地环境标签、可维修性评分和产品标准。</p>
-        <p>建立或者参加本地的志愿者社团：选择本地产品，召集朋友，在本地聚会或者各种会议等场合展示这个项目</p>
-    </div>
-</div>
-
-<hr>
-
-<div class="row text-center">
-    <div class="large-12 columns">
-        <h2>需要专家帮助</h2>
-        <p>开发开放产品事实也需要在许多不同领域拥有专门的知识和专业技能：</p>
-    </div>
-</div>
-
-<ul class="text-center small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-    <li>
-        <h3>项目管理</h3>
-        <p>我们有大量的想法，你可能还有更多的想法，但是要优先考虑它们，制定一个路线图，并在每个参与者通常都只是一个由有限时间的志愿者时管理项目，是一个相当大的挑战。</p>
-    </li>
-    
-    <li>
-        <h3>设计</h3>
-        <p>我们需要帮助，在打开产品的网站和移动应用上建立更好的用户体验， 改进
-他们的设计，创建影响强的演示材料等。</p>
-    </li>
-
-    <li>
-        <h3>开发</h3>
-        <p>我们有很多开发工作要做：开放产品事实后端（Perl 和 MongoDB）、API（JSON）、
-        网站（HTML5、JS、Foundation）和移动应用程序。我们的代码托管于 <a href="https://github.com/openfoodfacts">GitHub</a> 。</p>
-    </li>
-    
-    <li>
-        <h3>社区建设</h3>
-        <p>我们需要在所有国家建立当地社区，同时在全球范围内将它们联合起来。</p>
-        <p>对于一个不住在当地的人来说，要在一个国家建立本地社团是非常困难的，所以您帮助寻找积极的参与者是非常必要的你也是其中之一吗？</p>
-    </li>
-
-    <li>
-        <h3>通讯</h3>
-        <p>我们不知道该在这里写些什么，您能帮忙吗？</p>
-        <p>更严肃地说，用户、贡献者和重用者利用 Open Products Facts 做了很多很酷的事情，
-        如果能让更多人了解它，那就太好了。尤其是，我们需要在公众和<a href="/press">媒体</a>方面过的帮助</p>
-        
-    </li>   
-    
-    <li>
-        <h3>特别项目</h3>
-        <p>我们可以和
-        环境机构一起开发的产品公开数据有许多有趣的原始应用。也许你已经有想法了？
-        如果您愿意，请帮助我们推动它们前进。</p>
-    </li>   
-</ul>
-
-<hr>
-
-<div class="row text-center">
-    <div class="large-12 columns">
-        <h2>让我们来谈谈！</h2>
-        <h4 class="subheader">我们的贡献者社区分享了许多想法、精力和热情，加入我们！</h4>
-        <p>以下是一些可以与其他贡献者见面、交谈和合作的地方：</p>
-    </div>
-</div>
-
-<ul class="text-center small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-    <li>
-        <h3>Slack</h3>
-        <p>Slack 是与其他贡献者、开发人员和重用者互动和协作的最佳方式。这是一个论坛，你可以用浏览器或者手机访问它彻底改变了我们一起工作的方式。它彻底改变了我们一起工作的方式。 Please try it, click on the button
-        below to get invited to our Slack.</p>
-        <script async defer src="https://slack.openfoodfacts.org/slackin.js"></script>
-    </li>
-    
-    <li>
-        <h3>论坛</h3>
-        <p>您可以在我们的 <a href="https://forum.openfoodfacts.org/">论坛</a>上与社区进行讨论。这里是提问、分享想法和合作开展项目的绝佳场所。</p>
-    </li>
-
-    <li>
-        <h3>维基（Wiki）</h3>
-        <p>我们还有一个 <a href="https://wiki.openfoodfacts.org/">wiki</a> ，用于协作记录开放产品事实及其子项目。我们还使用 wiki
-        来管理 <a href="https://wiki.openfoodfacts.org/Translations">翻译</a> ，并处理 <a href="https://wiki.openfoodfacts.org/Global_taxonomies">类别、标签等的分类/层级</a> 。</p>
-    </li>   
-</ul>
-
-<hr>
-
-<div class="row text-center">
-    <div class="large-12 columns">
-        <p>为 Open Products Facts 做出贡献的方式还有很多，请 <a href="https://slack.openfoodfacts.org">加入我们的 Slack 频道</a> ，让我们开始讨论吧！</p>
-    </div>
-</div>
+        document.querySelectorAll('img[src*="animated"], img[data-animated="true"]').forEach(img => {
+            const src = img.getAttribute('src') || '';
+            if (src.startsWith('data:image/svg+xml;base64,')) {
+                try {
+                    const b64 = src.split(',')[1];
+                    const svgText = atob(b64);
+                    replaceWithSvg(img, svgText);
+                } catch(e) {}
+            } else if (src.includes('animated') && src.endsWith('.svg')) {
+                fetch(src)
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(svgText => replaceWithSvg(img, svgText))
+                    .catch(() => {});
+            }
+        });
+    });
+</script>
