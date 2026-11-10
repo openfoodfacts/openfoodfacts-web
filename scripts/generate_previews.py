@@ -22,6 +22,7 @@ PAGES = [
     ('contribute', 'lang/en/texts/contribute.html', 'Open Food Facts — Contribute Preview'),
     ('discover', 'lang/en/texts/discover.html', 'Open Food Facts — Discover Preview'),
     ('contact', 'lang/en/texts/contact.html', 'Open Food Facts — Contact Page Preview'),
+    ('index-pro', 'lang/en/texts/index-pro.html', 'Open Food Facts — Pro Platform Preview'),
     ('obf-discover', 'lang/obf/en/texts/discover.html', 'Open Beauty Facts — Discover Preview'),
     ('obf-contribute', 'lang/obf/en/texts/contribute.html', 'Open Beauty Facts — Contribute Preview'),
     ('opff-discover', 'lang/opff/en/texts/discover.html', 'Open Pet Food Facts — Discover Preview'),
@@ -132,6 +133,7 @@ def build_preview(page_key, src_file, title):
         .expert-banner:hover svg, .expert-banner:hover svg *,
         .contribute-hero:hover svg, .contribute-hero:hover svg *,
         .discover-hero:hover svg, .discover-hero:hover svg *,
+        .pro-hero:hover svg, .pro-hero:hover svg *,
         .contact-hero:hover svg, .contact-hero:hover svg *,
         .contact-card:hover svg, .contact-card:hover svg *,
         .hero-media:hover svg, .hero-media:hover svg *,
@@ -267,6 +269,7 @@ def build_preview(page_key, src_file, title):
             <a href="preview-discover.html" class="nav-switch-link {'active' if page_key == 'discover' else ''}">OFF Discover</a>
             <a href="preview-contribute.html" class="nav-switch-link {'active' if page_key == 'contribute' else ''}">OFF Contribute</a>
             <a href="preview-contact.html" class="nav-switch-link {'active' if page_key == 'contact' else ''}">Contact</a>
+            <a href="preview-index-pro.html" class="nav-switch-link {'active' if page_key == 'index-pro' else ''}">OFF Pro</a>
             <a href="preview-obf-discover.html" class="nav-switch-link {'active' if page_key == 'obf-discover' else ''}">OBF Discover</a>
             <a href="preview-obf-contribute.html" class="nav-switch-link {'active' if page_key == 'obf-contribute' else ''}">OBF Contribute</a>
             <a href="preview-opff-discover.html" class="nav-switch-link {'active' if page_key == 'opff-discover' else ''}">OPFF Discover</a>
