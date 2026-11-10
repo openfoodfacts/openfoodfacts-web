@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg-op-product-stats" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" width="560" height="420" class="">
+                    <style>
+                        .stat-card-float {
+                            animation: statCardBob 4.5s ease-in-out infinite;
+                        }
+                        .avg-marker-slide {
+                            animation: avgMarkerOscillate 4.5s ease-in-out infinite;
+                            transform-origin: 334px 218px;
+                        }
+                        .count-pill-pop {
+                            animation: countPop 4.5s ease-in-out infinite;
+                            transform-origin: 416px 104px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes statCardBob {
+                            0%, 100% { transform: translateY(0px); }
+                            50% { transform: translateY(-6px); }
+                        }
+                        @keyframes avgMarkerOscillate {
+                            0%, 100% { transform: translateX(0px); }
+                            50% { transform: translateX(8px); }
+                        }
+                        @keyframes countPop {
+                            0%, 100% { transform: scale(1); }
+                            50% { transform: scale(1.06); }
+                        }
+                    </style>
+
+                    <!-- Main Product Card Container -->
+                    <g class="stat-card-float">
+                        <rect x="44" y="48" width="472" height="324" rx="28" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"></rect>
+
+                        <!-- Left Panel: Product Preview (Attached Green Bottle) -->
+                        <rect x="68" y="72" width="136" height="276" rx="20" fill="#dcf0f7"></rect>
+                        <g transform="translate(96, 96)">
+                            <rect x="26" y="0" width="28" height="14" rx="4" fill="#aeaeae"></rect>
+                            <path fill="#009a49" d="M 30,14 L 50,14 L 50,48 C 70,56 80,76 80,104 L 80,208 A 12,12 0 0,1 68,220 L 12,220 A 12,12 0 0,1 0,208 L 0,104 C 0,76 10,56 30,48 Z"></path>
+                            <rect x="14" y="96" width="52" height="74" rx="6" fill="#ffffff"></rect>
+                            <line x1="22" y1="114" x2="58" y2="114" stroke="#999999" stroke-width="3.5" stroke-linecap="round"></line>
+                            <line x1="22" y1="126" x2="58" y2="126" stroke="#999999" stroke-width="3.5" stroke-linecap="round"></line>
+                            <line x1="22" y1="138" x2="58" y2="138" stroke="#999999" stroke-width="3.5" stroke-linecap="round"></line>
+                        </g>
+
+                        <!-- Right Top: Product Title Bars + Number of Registered Prices Badge -->
+                        <rect x="228" y="80" width="110" height="16" rx="8" fill="#181818"></rect>
+                        <rect x="228" y="106" width="76" height="12" rx="6" fill="#94a3b8"></rect>
+
+                        <!-- Number of Prices Badge ("42 PRICES") -->
+                        <g class="count-pill-pop">
+                            <rect x="352" y="76" width="140" height="48" rx="14" fill="#00bdf2"></rect>
+                            <circle cx="378" cy="100" r="14" fill="#ffc412"></circle>
+                            <text x="378" y="105" text-anchor="middle" fill="#6c3c00" font-size="14" font-weight="800">€</text>
+                            <text x="440" y="98" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="800">42</text>
+                            <text x="440" y="114" text-anchor="middle" fill="#e1f3fe" font-size="10" font-weight="800" letter-spacing="0.8">PRICES</text>
+                        </g>
+
+                        <!-- ========================================================= -->
+                        <!-- MIN — AVERAGE — MAX SPECTRUM GAUGE                        -->
+                        <!-- ========================================================= -->
+                        <rect x="228" y="150" width="264" height="86" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"></rect>
+                        <!-- 3-Segment Spectrum Track (Green -> Yellow -> Red) -->
+                        <rect x="248" y="200" width="74" height="12" rx="6" fill="#009a49"></rect>
+                        <rect x="323" y="200" width="74" height="12" rx="2" fill="#ffc412"></rect>
+                        <rect x="398" y="200" width="74" height="12" rx="6" fill="#dc3522"></rect>
+
+                        <!-- Min & Max Endpoint Dots -->
+                        <circle cx="256" cy="206" r="8" fill="#009a49" stroke="#ffffff" stroke-width="3"></circle>
+                        <circle cx="464" cy="206" r="8" fill="#dc3522" stroke="#ffffff" stroke-width="3"></circle>
+
+                        <!-- Animated Average Price Pointer Callout -->
+                        <g class="avg-marker-slide">
+                            <rect x="314" y="158" width="92" height="30" rx="8" fill="#ffc412"></rect>
+                            <polygon points="354,188 366,188 360,196" fill="#ffc412"></polygon>
+                            <text x="360" y="178" text-anchor="middle" fill="#181818" font-size="13" font-weight="800">AVG 1.95 €</text>
+                            <circle cx="360" cy="206" r="10" fill="#181818" stroke="#ffffff" stroke-width="3"></circle>
+                        </g>
+
+                        <!-- ========================================================= -->
+                        <!-- BOTTOM 3 STAT PILLS: MIN / AVG / MAX                      -->
+                        <!-- ========================================================= -->
+                        <!-- MIN Pill (Green) -->
+                        <rect x="228" y="254" width="82" height="88" rx="16" fill="#e8f8ef" stroke="#009a49" stroke-width="2.5"></rect>
+                        <text x="269" y="280" text-anchor="middle" fill="#009a49" font-size="12" font-weight="800">MIN</text>
+                        <text x="269" y="314" text-anchor="middle" fill="#009a49" font-size="19" font-weight="800">1.60€</text>
+
+                        <!-- AVG Pill (Yellow) -->
+                        <rect x="319" y="254" width="82" height="88" rx="16" fill="#fffbeb" stroke="#ffc412" stroke-width="2.5"></rect>
+                        <text x="360" y="280" text-anchor="middle" fill="#b45309" font-size="12" font-weight="800">AVG</text>
+                        <text x="360" y="314" text-anchor="middle" fill="#181818" font-size="19" font-weight="800">1.95€</text>
+
+                        <!-- MAX Pill (Red) -->
+                        <rect x="410" y="254" width="82" height="88" rx="16" fill="#fee2e2" stroke="#dc3522" stroke-width="2.5"></rect>
+                        <text x="451" y="280" text-anchor="middle" fill="#dc3522" font-size="12" font-weight="800">MAX</text>
+                        <text x="451" y="314" text-anchor="middle" fill="#dc3522" font-size="19" font-weight="800">2.45€</text>
+                    </g>
+                </svg>

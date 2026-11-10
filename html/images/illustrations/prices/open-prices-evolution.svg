@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg-op-evolution" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" width="560" height="420" class="">
+                    <style>
+                        .evo-line-draw {
+                            stroke-dasharray: 460;
+                            stroke-dashoffset: 460;
+                            animation: drawEvoCurve 4.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                        }
+                        .evo-node-1 { animation: nodePop 4.4s ease-out infinite 0.2s; transform-origin: 110px 282px; }
+                        .evo-node-2 { animation: nodePop 4.4s ease-out infinite 0.7s; transform-origin: 215px 236px; }
+                        .evo-node-3 { animation: nodePop 4.4s ease-out infinite 1.2s; transform-origin: 325px 252px; }
+                        .evo-node-4 { animation: nodePop 4.4s ease-out infinite 1.7s; transform-origin: 445px 148px; }
+                        .evo-clock-hand {
+                            animation: evoClockSpin 4.4s linear infinite;
+                            transform-origin: 112px 96px;
+                        }
+                        svg.paused * { animation-play-state: paused !important; }
+                        @keyframes drawEvoCurve {
+                            0%, 8% { stroke-dashoffset: 460; }
+                            50%, 85% { stroke-dashoffset: 0; }
+                            100% { stroke-dashoffset: 460; }
+                        }
+                        @keyframes nodePop {
+                            0%, 15%, 92%, 100% { transform: scale(0); opacity: 0; }
+                            30%, 82% { transform: scale(1); opacity: 1; }
+                        }
+                        @keyframes evoClockSpin {
+                            0% { transform: rotate(0deg); }
+                            100% { transform: rotate(360deg); }
+                        }
+                    </style>
+
+                    <!-- Chart Card Container -->
+                    <rect x="52" y="64" width="456" height="304" rx="26" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"></rect>
+
+                    <!-- Horizontal Grid Lines (science-icon.svg style) -->
+                    <line x1="86" y1="130" x2="474" y2="130" stroke="#e2e8f0" stroke-width="2.5"></line>
+                    <line x1="86" y1="190" x2="474" y2="190" stroke="#e2e8f0" stroke-width="2.5"></line>
+                    <line x1="86" y1="250" x2="474" y2="250" stroke="#e2e8f0" stroke-width="2.5"></line>
+                    <line x1="86" y1="310" x2="474" y2="310" stroke="#94a3b8" stroke-width="3.5" stroke-linecap="round"></line>
+
+                    <!-- Soft Area Fill Under Trend Curve -->
+                    <path fill="#dcf0f7" opacity="0.7" d="
+                        M 110,310
+                        L 110,282
+                        L 215,236
+                        L 325,252
+                        L 445,148
+                        L 445,310 Z"></path>
+
+                    <!-- Time Period Axis Pills -->
+                    <rect x="90" y="324" width="44" height="14" rx="7" fill="#cbd5e1"></rect>
+                    <rect x="193" y="324" width="44" height="14" rx="7" fill="#cbd5e1"></rect>
+                    <rect x="303" y="324" width="44" height="14" rx="7" fill="#cbd5e1"></rect>
+                    <rect x="423" y="324" width="44" height="14" rx="7" fill="#606362"></rect>
+
+                    <!-- Animated Price Evolution Polyline (#ff6b35) -->
+                    <polyline class="evo-line-draw" fill="none" stroke="#ff6b35" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" points="110,282 215,236 325,252 445,148"></polyline>
+
+                    <!-- Node 1: 1.90€ (Green) -->
+                    <g class="evo-node-1">
+                        <circle cx="110" cy="282" r="10" fill="#009a49" stroke="#ffffff" stroke-width="4"></circle>
+                        <rect x="78" y="236" width="64" height="28" rx="8" fill="#009a49"></rect>
+                        <text x="110" y="255" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="800">1.90 €</text>
+                    </g>
+
+                    <!-- Node 2: 2.20€ (Yellow) -->
+                    <g class="evo-node-2">
+                        <circle cx="215" cy="236" r="10" fill="#ffc412" stroke="#ffffff" stroke-width="4"></circle>
+                        <rect x="183" y="190" width="64" height="28" rx="8" fill="#ffc412"></rect>
+                        <text x="215" y="209" text-anchor="middle" fill="#181818" font-size="14" font-weight="800">2.20 €</text>
+                    </g>
+
+                    <!-- Node 3: 2.10€ (Cyan) -->
+                    <g class="evo-node-3">
+                        <circle cx="325" cy="252" r="10" fill="#00bdf2" stroke="#ffffff" stroke-width="4"></circle>
+                        <rect x="293" y="206" width="64" height="28" rx="8" fill="#00bdf2"></rect>
+                        <text x="325" y="225" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="800">2.10 €</text>
+                    </g>
+
+                    <!-- Node 4: 2.65€ (Red/Orange Peak + Attached coin-euro.svg) -->
+                    <g class="evo-node-4">
+                        <circle cx="445" cy="148" r="12" fill="#dc3522" stroke="#ffffff" stroke-width="4"></circle>
+                        <rect x="405" y="96" width="80" height="34" rx="10" fill="#dc3522"></rect>
+                        <text x="445" y="118" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="800">2.65 €</text>
+                    </g>
+
+                    <!-- Top-Left Attached History.svg Clock Badge -->
+                    <g>
+                        <circle cx="112" cy="96" r="46" fill="#ffffff"></circle>
+                        <circle cx="112" cy="96" r="38" fill="none" stroke="#7ce0ff" stroke-width="12"></circle>
+                        <line x1="112" y1="96" x2="130" y2="114" stroke="#7a7a7a" stroke-width="7" stroke-linecap="round"></line>
+                        <g class="evo-clock-hand">
+                            <line x1="112" y1="96" x2="112" y2="68" stroke="#7a7a7a" stroke-width="7" stroke-linecap="round"></line>
+                        </g>
+                    </g>
+
+                    <!-- Bottom-Right Mini Attached coin-euro.svg -->
+                    <g transform="translate(454, 245) scale(0.76)">
+                        <circle cx="42" cy="42" r="42" fill="#ffc412"></circle>
+                        <circle cx="42" cy="42" r="31" fill="#d49619"></circle>
+                        <path d="M 52,27 C 42,23 32,29 30,39 L 29,45 C 31,55 42,61 52,57" fill="none" stroke="#6c3c00" stroke-width="6.5" stroke-linecap="round"></path>
+                        <line x1="23" y1="39" x2="48" y2="39" stroke="#6c3c00" stroke-width="5"></line>
+                        <line x1="23" y1="46" x2="48" y2="46" stroke="#6c3c00" stroke-width="5"></line>
+                    </g>
+                </svg>

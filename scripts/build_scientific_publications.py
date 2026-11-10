@@ -11,6 +11,16 @@ import json
 import os
 import sys
 import urllib.parse
+
+# Ensure vendor path for yaml
+try:
+    from i18n_utils import ensure_vendor_path, get_localized_field, validate_localized_field, SUPPORTED_LANGUAGES
+    ensure_vendor_path()
+except ImportError:
+    sys.path.insert(0, os.path.dirname(__file__))
+    from i18n_utils import ensure_vendor_path, get_localized_field, validate_localized_field, SUPPORTED_LANGUAGES
+    ensure_vendor_path()
+
 import yaml
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -30,10 +40,13 @@ def validate_publication(p, filepath):
     elif str(p_id) != stem:
         errors.append(f"{filename}: id '{p_id}' does not match filename stem '{stem}'")
 
-    # Required: title
-    title = p.get("title")
-    if not title or not str(title).strip():
-        errors.append(f"{filename}: missing or empty required field 'title'")
+    # Required: title (supports string, dict, or title_{lang})
+    errs = validate_localized_field(p, "title", filename, required=True)
+    errors.extend(errs)
+
+    # Optional: excerpt (supports string, dict, or excerpt_{lang})
+    errs = validate_localized_field(p, "excerpt", filename, required=False)
+    errors.extend(errs)
 
     # Authors
     authors = p.get("authors")
@@ -88,15 +101,15 @@ def load_all_publications(directory=PUBLICATIONS_DIR, validate=False):
             all_errors.append(f"{os.path.basename(path)}: parsing error: {e}")
 
     # Sort by year descending by default
-    pubs.sort(key=lambda p: (-(p.get("year") or 0), -(p.get("num_citations") or 0), p.get("title", "")))
+    pubs.sort(key=lambda p: (-(p.get("year") or 0), -(p.get("num_citations") or 0), get_localized_field(p, "title", "en").lower()))
     if validate:
         return pubs, all_errors, all_warnings
     return pubs
 
-def generate_bibtex(p):
+def generate_bibtex(p, lang="en"):
     pid = p.get("id", "article")
     authors = " and ".join(p.get("authors") or ["Open Food Facts"])
-    title = p.get("title", "")
+    title = get_localized_field(p, "title", lang)
     journal = p.get("journal", "")
     year = p.get("year", "")
     volume = p.get("volume", "")
@@ -121,7 +134,7 @@ def generate_bibtex(p):
     lines.append("}")
     return "\n".join(lines)
 
-def generate_apa(p):
+def generate_apa(p, lang="en"):
     authors = p.get("authors") or []
     if len(authors) > 3:
         author_str = f"{authors[0]} et al."
@@ -131,7 +144,7 @@ def generate_apa(p):
         author_str = "Open Food Facts"
 
     year_str = f"({p.get('year', '')})" if p.get('year') else ""
-    title_str = p.get('title', '').rstrip('.') + "."
+    title_str = get_localized_field(p, "title", lang).rstrip('.') + "."
     journal_str = f"_{p.get('journal')}_" if p.get('journal') else ""
     vol_str = f", {p.get('volume')}" if p.get('volume') else ""
     pages_str = f", {p.get('pages')}" if p.get('pages') else ""
@@ -150,19 +163,67 @@ def generate_html(pubs, lang="en"):
         for t in p.get("themes", []):
             all_themes.add(t)
 
-    t_title = "🔬 Publications scientifiques citant Open Food Facts" if is_fr else "🔬 Scientific Publications Citing Open Food Facts"
-    t_subtitle = (
-        "Découvrez les recherches universitaires, études épidémiologiques et projets d'intelligence artificielle fondés sur les données ouvertes d'Open Food Facts."
-        if is_fr else
-        "Explore academic research, epidemiological studies, and machine learning breakthroughs powered by Open Food Facts open data."
-    )
+    t_title_dict = {
+        "fr": "🔬 Publications scientifiques citant Open Food Facts",
+        "en": "🔬 Scientific Publications Citing Open Food Facts",
+        "es": "🔬 Publicaciones científicas que citan a Open Food Facts",
+        "de": "🔬 Wissenschaftliche Publikationen, die Open Food Facts zitieren",
+        "it": "🔬 Pubblicazioni scientifiche che citano Open Food Facts",
+        "nl": "🔬 Wetenschappelijke publicaties die Open Food Facts citeren",
+        "pt": "🔬 Publicações científicas que citam o Open Food Facts",
+        "pl": "🔬 Publikacje naukowe cytujące Open Food Facts",
+        "ca": "🔬 Publicacions científiques que citen Open Food Facts",
+        "ru": "🔬 Научные публикации, цитирующие Open Food Facts",
+        "cs": "🔬 Vědecké publikace citující Open Food Facts",
+        "sv": "🔬 Vetenskapliga publikationer som citerar Open Food Facts",
+        "da": "🔬 Videnskabelige publikationer der citerer Open Food Facts",
+        "fi": "🔬 Tieteelliset julkaisut, jotka viittaavat Open Food Factsiin",
+        "el": "🔬 Επιστημονικές δημοσιεύσεις που παραπέμπουν στο Open Food Facts",
+        "hu": "🔬 Tudományos publikációk, amelyek az Open Food Facts-ra hivatkoznak",
+        "ja": "🔬 Open Food Factsを引用した学術論文",
+        "zh": "🔬 引用 Open Food Facts 的科学出版物",
+        "ar": "🔬 المنشورات العلمية التي تستشهد بـ Open Food Facts",
+        "uk": "🔬 Наукові публікації, що цитують Open Food Facts",
+        "tr": "🔬 Open Food Facts'e Atıfta Bulunan Bilimsel Yayınlar",
+        "id": "🔬 Publikasi Ilmiah yang Mengutip Open Food Facts",
+        "ko": "🔬 Open Food Facts를 인용한 학술 논문",
+        "no": "🔬 Vitenskapelige publikasjoner som siterer Open Food Facts",
+        "he": "🔬 פרסומים מדעיים המצטטים את Open Food Facts",
+    }
+    t_title = t_title_dict.get(lang, t_title_dict["en"])
+
+    t_subtitle_dict = {
+        "fr": "Découvrez les recherches universitaires, études épidémiologiques et projets d'intelligence artificielle fondés sur les données ouvertes d'Open Food Facts.",
+        "en": "Explore academic research, epidemiological studies, and machine learning breakthroughs powered by Open Food Facts open data.",
+        "es": "Explore investigaciones académicas, estudios epidemiológicos e innovaciones en aprendizaje automático impulsados por los datos abiertos de Open Food Facts.",
+        "de": "Entdecken Sie akademische Forschung, epidemiologische Studien und KI-Durchbrüche auf Basis der offenen Daten von Open Food Facts.",
+        "it": "Esplora ricerche accademiche, studi epidemiologici e innovazioni di machine learning basati sui dati aperti di Open Food Facts.",
+        "nl": "Ontdek academisch onderzoek, epidemiologische studies en AI-doorbraken op basis van open data van Open Food Facts.",
+        "pt": "Descubra investigações académicas, estudos epidemiológicos e avanços de inteligência artificial baseados nos dados abertos do Open Food Facts.",
+        "pl": "Odkrywaj badania akademickie, studia epidemiologiczne i przełomy w uczeniu maszynowym oparte na otwartych danych Open Food Facts.",
+        "ca": "Descobriu recerques universitàries, estudis epidemiològics i projectes d'IA basats en les dades obertes d'Open Food Facts.",
+        "ru": "Исследуйте академические исследования, эпидемиологические работы и прорывы в машинном обучении на базе открытых данных Open Food Facts.",
+    }
+    t_subtitle = t_subtitle_dict.get(lang, t_subtitle_dict["en"])
 
     t_stat_pubs_num = f"{total_pubs}+"
-    t_stat_pubs_label = "Articles référencés" if is_fr else "Indexed Publications"
+    t_stat_pubs_label_dict = {
+        "fr": "Articles référencés", "en": "Indexed Publications", "es": "Publicaciones indexadas",
+        "de": "Indexierte Publikationen", "it": "Pubblicazioni indicizzate", "nl": "Geïndexeerde publicaties",
+        "pt": "Publicações indexadas", "pl": "Zindeksowane publikacje", "ca": "Publicacions indexades",
+        "ru": "Индексированные статьи"
+    }
+    t_stat_pubs_label = t_stat_pubs_label_dict.get(lang, t_stat_pubs_label_dict["en"])
     t_stat_pubs_sub = "Dans cette vitrine" if is_fr else "Curated in this showcase"
 
     t_stat_cit_num = f"{total_citations:,}+"
-    t_stat_cit_label = "Citations cumulées" if is_fr else "Cumulative Citations"
+    t_stat_cit_label_dict = {
+        "fr": "Citations cumulées", "en": "Cumulative Citations", "es": "Citas acumuladas",
+        "de": "Gesamtzitate", "it": "Citazioni cumulative", "nl": "Cumulatieve citaties",
+        "pt": "Citações acumuladas", "pl": "Łączna liczba cytowań", "ca": "Cites acumulades",
+        "ru": "Суммарные цитирования"
+    }
+    t_stat_cit_label = t_stat_cit_label_dict.get(lang, t_stat_cit_label_dict["en"])
     t_stat_cit_sub = "Reconnaissance scientifique" if is_fr else "Academic impact & reach"
 
     t_stat_global_num = "600+"
@@ -173,9 +234,23 @@ def generate_html(pubs, lang="en"):
     t_stat_open_label = "Science ouverte & ODbL" if is_fr else "Open Science & ODbL"
     t_stat_open_sub = "Données accessibles à tous" if is_fr else "Freely accessible open data"
 
-    t_submit_gh_btn = "🚀 Déclarer une publication" if is_fr else "🚀 Submit a Publication"
-    t_edit_gh_btn = "✏️ Proposer une modif (PR)" if is_fr else "✏️ Propose an Edit (PR)"
-    t_scholar_btn = "🎓 Google Scholar" if is_fr else "🎓 Google Scholar"
+    t_submit_gh_btn_dict = {
+        "fr": "🚀 Déclarer une publication", "en": "🚀 Submit a Publication", "es": "🚀 Enviar una publicación",
+        "de": "🚀 Publikation einreichen", "it": "🚀 Segnala una pubblicazione", "nl": "🚀 Publicatie indienen",
+        "pt": "🚀 Submeter uma publicação", "pl": "🚀 Zgłoś publikację", "ca": "🚀 Declarar una publicació",
+        "ru": "🚀 Добавить публикацию"
+    }
+    t_submit_gh_btn = t_submit_gh_btn_dict.get(lang, t_submit_gh_btn_dict["en"])
+
+    t_edit_gh_btn_dict = {
+        "fr": "✏️ Proposer une modif (PR)", "en": "✏️ Propose an Edit (PR)", "es": "✏️ Proponer edición (PR)",
+        "de": "✏️ Änderung vorschlagen (PR)", "it": "✏️ Proponi una modifica (PR)", "nl": "✏️ Wijziging voorstellen (PR)",
+        "pt": "✏️ Propor uma alteração (PR)", "pl": "✏️ Zaproponuj zmianę (PR)", "ca": "✏️ Proposar una modificació (PR)",
+        "ru": "✏️ Предложить правку (PR)"
+    }
+    t_edit_gh_btn = t_edit_gh_btn_dict.get(lang, t_edit_gh_btn_dict["en"])
+
+    t_scholar_btn = "🎓 Google Scholar"
     t_resources_drawer_btn = "📚 Ressources & Données" if is_fr else "📚 Researcher Resources"
     t_cite_drawer_btn = "📖 Comment citer OFF" if is_fr else "📖 How to Cite OFF"
     t_webinars_btn = "🎥 Webinaire chercheurs" if is_fr else "🎥 Researcher Webinars"
@@ -184,8 +259,11 @@ def generate_html(pubs, lang="en"):
     pubs_client = []
     for p in pubs:
         item = dict(p)
-        item["bibtex"] = generate_bibtex(p)
-        item["apa"] = generate_apa(p)
+        item["title"] = get_localized_field(p, "title", lang)
+        if "excerpt" in p:
+            item["excerpt"] = get_localized_field(p, "excerpt", lang)
+        item["bibtex"] = generate_bibtex(p, lang=lang)
+        item["apa"] = generate_apa(p, lang=lang)
         pubs_client.append(item)
 
     json_data = json.dumps(pubs_client, ensure_ascii=False)
@@ -1644,20 +1722,16 @@ def compile_publications(check_only=False, verbose=True):
     if verbose:
         print(f"Wrote aggregate JSON: {OUTPUT_JSON}")
 
-    # Generate HTML for en and fr
-    en_html = generate_html(pubs, "en")
-    fr_html = generate_html(pubs, "fr")
-
+    # Generate HTML for all supported languages
     try:
-        with open("lang/en/texts/scientific-publications.html", "w", encoding="utf-8") as f:
-            f.write(en_html)
-        if verbose:
-            print("Wrote lang/en/texts/scientific-publications.html")
-
-        with open("lang/fr/texts/scientific-publications.html", "w", encoding="utf-8") as f:
-            f.write(fr_html)
-        if verbose:
-            print("Wrote lang/fr/texts/scientific-publications.html")
+        for lang in SUPPORTED_LANGUAGES:
+            out_html = generate_html(pubs, lang)
+            out_path = os.path.join("lang", lang, "texts", "scientific-publications.html")
+            os.makedirs(os.path.dirname(out_path), exist_ok=True)
+            with open(out_path, "w", encoding="utf-8") as f:
+                f.write(out_html)
+            if verbose:
+                print(f"Wrote {out_path}")
     except Exception as e:
         if verbose:
             print(f"[WARN] HTML export warning: {e}", file=sys.stderr)

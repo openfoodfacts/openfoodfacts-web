@@ -14,6 +14,16 @@ Generates:
 import json
 import os
 import sys
+
+# Ensure vendor path for yaml
+try:
+    from i18n_utils import ensure_vendor_path, get_localized_field, SUPPORTED_LANGUAGES
+    ensure_vendor_path()
+except ImportError:
+    sys.path.insert(0, os.path.dirname(__file__))
+    from i18n_utils import ensure_vendor_path, get_localized_field, SUPPORTED_LANGUAGES
+    ensure_vendor_path()
+
 import yaml
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -206,8 +216,8 @@ def generate_operation_sodas_html(data, lang="en"):
     
     questions_html = ""
     for q in questions:
-        q_text = q.get(f"question_{lang}", q.get("question_en"))
-        f_text = q.get(f"finding_{lang}", q.get("finding_en"))
+        q_text = get_localized_field(q, "question", lang, default_lang="en")
+        f_text = get_localized_field(q, "finding", lang, default_lang="en")
         questions_html += f"""
         <div class="off-card off-inq-card">
           <div class="off-inq-q">❓ {q_text}</div>
@@ -660,8 +670,8 @@ def generate_whats_in_my_yogurt_html(data, lang="en"):
     
     questions_html = ""
     for q in questions:
-        q_text = q.get(f"question_{lang}", q.get("question_en"))
-        f_text = q.get(f"finding_{lang}", q.get("finding_en"))
+        q_text = get_localized_field(q, "question", lang, default_lang="en")
+        f_text = get_localized_field(q, "finding", lang, default_lang="en")
         questions_html += f"""
         <div class="off-card off-inq-card">
           <div class="off-inq-q">🥛 {q_text}</div>
@@ -1028,8 +1038,8 @@ def generate_whats_in_my_shampoo_html(data, lang="en"):
     
     questions_html = ""
     for q in questions:
-        q_text = q.get(f"question_{lang}", q.get("question_en"))
-        f_text = q.get(f"finding_{lang}", q.get("finding_en"))
+        q_text = get_localized_field(q, "question", lang, default_lang="en")
+        f_text = get_localized_field(q, "finding", lang, default_lang="en")
         questions_html += f"""
         <div class="off-card off-inq-card">
           <div class="off-inq-q">🧴 {q_text}</div>
@@ -1039,7 +1049,7 @@ def generate_whats_in_my_shampoo_html(data, lang="en"):
         
     goals_html = ""
     for g in goals:
-        g_text = g.get(f"goal_{lang}", g.get("goal_en"))
+        g_text = get_localized_field(g, "goal", lang, default_lang="en")
         goals_html += f"""
         <div class="off-card" style="border-left: 4px solid var(--off-purple);">
           <div style="font-weight: 700; font-size: 1rem; color: #581c87;">🎯 {g_text}</div>
@@ -1327,53 +1337,48 @@ def compile_campaign_pages(verbose=True):
 
     # 1. Opération Sodas
     sodas_data = load_mission("operation-sodas")
-    en_sodas = generate_operation_sodas_html(sodas_data, lang="en")
+    for lang in SUPPORTED_LANGUAGES:
+        html = generate_operation_sodas_html(sodas_data, lang=lang)
+        out_path = os.path.join(REPO_ROOT, "lang", lang, "texts", "operation-sodas.html")
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        with open(out_path, "w", encoding="utf-8") as f:
+            f.write(html)
     fr_sodas = generate_operation_sodas_html(sodas_data, lang="fr")
     root_sodas = render_standalone_wrapper("Opération Sodas", "fr", fr_sodas)
-    
-    with open(os.path.join(REPO_ROOT, "lang", "en", "texts", "operation-sodas.html"), "w", encoding="utf-8") as f:
-        f.write(en_sodas)
-    with open(os.path.join(REPO_ROOT, "lang", "fr", "texts", "operation-sodas.html"), "w", encoding="utf-8") as f:
-        f.write(fr_sodas)
     with open(os.path.join(REPO_ROOT, "operation-sodas.html"), "w", encoding="utf-8") as f:
         f.write(root_sodas)
     if verbose:
-        print("  ✅ Opération Sodas compiled (lang/en, lang/fr, root)")
+        print(f"  ✅ Opération Sodas compiled ({', '.join(SUPPORTED_LANGUAGES)}, root)")
 
     # 2. What's in my yogurt?
     yogurt_data = load_mission("whats-in-my-yogurt")
+    for lang in SUPPORTED_LANGUAGES:
+        html = generate_whats_in_my_yogurt_html(yogurt_data, lang=lang)
+        out_path = os.path.join(REPO_ROOT, "lang", lang, "texts", "whats-in-my-yogurt.html")
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        with open(out_path, "w", encoding="utf-8") as f:
+            f.write(html)
     en_yogurt = generate_whats_in_my_yogurt_html(yogurt_data, lang="en")
-    fr_yogurt = generate_whats_in_my_yogurt_html(yogurt_data, lang="fr")
     root_yogurt = render_standalone_wrapper("What's in my yogurt?", "en", en_yogurt)
-    
-    with open(os.path.join(REPO_ROOT, "lang", "en", "texts", "whats-in-my-yogurt.html"), "w", encoding="utf-8") as f:
-        f.write(en_yogurt)
-    with open(os.path.join(REPO_ROOT, "lang", "fr", "texts", "whats-in-my-yogurt.html"), "w", encoding="utf-8") as f:
-        f.write(fr_yogurt)
     with open(os.path.join(REPO_ROOT, "whats-in-my-yogurt.html"), "w", encoding="utf-8") as f:
         f.write(root_yogurt)
     if verbose:
-        print("  ✅ What's in my yogurt? compiled (lang/en, lang/fr, root)")
+        print(f"  ✅ What's in my yogurt? compiled ({', '.join(SUPPORTED_LANGUAGES)}, root)")
 
     # 3. What's in my shampoo?
     shampoo_data = load_mission("whats-in-my-shampoo")
+    for lang in SUPPORTED_LANGUAGES:
+        html = generate_whats_in_my_shampoo_html(shampoo_data, lang=lang)
+        out_path = os.path.join(REPO_ROOT, "lang", "obf", lang, "texts", "whats-in-my-shampoo.html")
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        with open(out_path, "w", encoding="utf-8") as f:
+            f.write(html)
     en_shampoo = generate_whats_in_my_shampoo_html(shampoo_data, lang="en")
-    fr_shampoo = generate_whats_in_my_shampoo_html(shampoo_data, lang="fr")
     root_shampoo = render_standalone_wrapper("What's in my shampoo?", "en", en_shampoo)
-    
-    obf_en_dir = os.path.join(REPO_ROOT, "lang", "obf", "en", "texts")
-    obf_fr_dir = os.path.join(REPO_ROOT, "lang", "obf", "fr", "texts")
-    os.makedirs(obf_en_dir, exist_ok=True)
-    os.makedirs(obf_fr_dir, exist_ok=True)
-
-    with open(os.path.join(obf_en_dir, "whats-in-my-shampoo.html"), "w", encoding="utf-8") as f:
-        f.write(en_shampoo)
-    with open(os.path.join(obf_fr_dir, "whats-in-my-shampoo.html"), "w", encoding="utf-8") as f:
-        f.write(fr_shampoo)
     with open(os.path.join(REPO_ROOT, "whats-in-my-shampoo.html"), "w", encoding="utf-8") as f:
         f.write(root_shampoo)
     if verbose:
-        print("  ✅ What's in my shampoo? compiled (lang/obf/en, lang/obf/fr, root)")
+        print(f"  ✅ What's in my shampoo? compiled (obf: {', '.join(SUPPORTED_LANGUAGES)}, root)")
 
     return True
 

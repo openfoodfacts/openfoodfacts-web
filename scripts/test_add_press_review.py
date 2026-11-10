@@ -168,6 +168,34 @@ Diffusé à 10h sur France Inter.
         finally:
             shutil.rmtree(temp_dir)
 
+    def test_validate_localized_press_item(self):
+        item_dict = {
+            "id": "2026-09-30-multilingual-press-mention",
+            "title": {
+                "en": "English Press Mention",
+                "fr": "Mention dans la presse française"
+            },
+            "source": "Le Monde",
+            "date": "2026-09-30",
+            "type": "article",
+            "link": "https://lemonde.fr/article",
+        }
+        errs, warns = validate_press_item(item_dict, "2026-09-30-multilingual-press-mention.yaml")
+        self.assertEqual(errs, [])
+
+        # Suffixed title
+        item_suffix = {
+            "id": "2026-09-30-suffix-press-mention",
+            "title_en": "English Press Mention",
+            "title_fr": "Mention dans la presse française",
+            "source": "Le Monde",
+            "date": "2026-09-30",
+            "type": "article",
+            "link": "https://lemonde.fr/article",
+        }
+        errs, warns = validate_press_item(item_suffix, "2026-09-30-suffix-press-mention.yaml")
+        self.assertEqual(errs, [])
+
 
 if __name__ == "__main__":
     unittest.main()
