@@ -1,209 +1,680 @@
-<h1 class="if-empty-dnone emphasized-title text-center">Open Food Facts für Hersteller</h1>
-									
+<!-- no side column -->
+<style>
+/* Scoped Open Food Facts Producers (Pro) Page Styles */
+#off-pro-page {
+    --off-espresso: #341100;
+    --off-espresso-dark: #220b00;
+    --off-cream: #fffaf5;
+    --off-peach-light: #fff3ec;
+    --off-peach-tint: #ffedd5;
+    --off-orange: #ed8857;
+    --off-orange-hover: #d77243;
+    --off-green: #209552;
+    --off-green-light: #e8f5e9;
+    --off-blue: #0284c7;
+    --off-blue-light: #eff6ff;
+    --off-purple: #7c3aed;
+    --off-purple-light: #f5f3ff;
+    --off-amber: #d97706;
+    --off-amber-light: #fef3c7;
+    --off-text-main: #1f2937;
+    --off-text-muted: #4b5563;
+    --off-border: #fed7aa;
+    --off-border-subtle: #f3f4f6;
+    --off-surface: #ffffff;
+    --off-radius-card: 20px;
+    --off-radius-pill: 999px;
+    --off-shadow-sm: 0 4px 14px rgba(52, 17, 0, 0.04);
+    --off-shadow-md: 0 8px 26px rgba(52, 17, 0, 0.07);
+    --off-shadow-hover: 0 16px 36px rgba(52, 17, 0, 0.12);
 
-<div class="row text-center show-when-no-access-to-producers-platform">
-  <div class="medium-12 columns">
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--off-text-main);
+    max-width: 1200px;
+    margin: 0 auto 3.5rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    line-height: 1.6;
+}
 
-<p>Eine völlig kostenlose Plattform, die es Herstellern ermöglicht, die Daten und Fotos ihrer Produkte auf Open Food Facts einfach zu verwalten.</p>
+#off-pro-page *,
+#off-pro-page *::before,
+#off-pro-page *::after {
+    box-sizing: border-box;
+}
 
-<div class="medium-12 columns">
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/7usK67u2pM4" title="Willkommen! Einführung in die Open Food Facts' Pro-Plattform" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" style="max-width: 100%;margin-bottom: 1.4285714286rem;border-radius: 17px;border: solid;"></iframe>
+/* Badges & Pills */
+.off-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--off-radius-pill);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+    width: fit-content;
+    border: none;
+}
+.off-badge-pill.orange { background: var(--off-peach-light); color: var(--off-orange-hover); }
+.off-badge-pill.green  { background: var(--off-green-light); color: #166534; }
+.off-badge-pill.blue   { background: var(--off-blue-light); color: #0369a1; }
+.off-badge-pill.purple { background: var(--off-purple-light); color: #6d28d9; }
+.off-badge-pill.amber  { background: var(--off-amber-light); color: #b45309; }
+
+/* Hero Section */
+#off-pro-page .pro-hero {
+    background: linear-gradient(145deg, #ffffff 0%, var(--off-cream) 100%);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 28px;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 3.5rem;
+    box-shadow: var(--off-shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+#off-pro-page .pro-hero::after {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(237, 136, 87, 0.15) 0%, rgba(237, 136, 87, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+#off-pro-page .hero-content-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+#off-pro-page .hero-text h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--off-espresso);
+    line-height: 1.15;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.02em;
+}
+
+#off-pro-page .hero-lead {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--off-orange-hover);
+    margin: 0 0 1.25rem 0;
+}
+
+#off-pro-page .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+#off-pro-page .hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Video Wrapper */
+.hero-video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--off-shadow-md);
+    border: 1px solid var(--off-peach-tint);
+    background: #000000;
+}
+
+.hero-video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Call to Action Buttons */
+.off-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--off-radius-pill);
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    line-height: 1.2;
+    border: none;
+}
+
+.off-btn-primary {
+    background: var(--off-orange);
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-primary:hover {
+    background: var(--off-orange-hover);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+
+.off-btn-secondary {
+    background: #ffffff;
+    color: var(--off-espresso) !important;
+    border: 1px solid var(--off-border);
+    box-shadow: none;
+}
+.off-btn-secondary:hover {
+    background: var(--off-cream);
+    border-color: var(--off-orange);
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: var(--off-orange-hover) !important;
+}
+
+.off-btn-amber {
+    background: var(--off-amber);
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-amber:hover {
+    background: #b45309;
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+
+.off-btn-green {
+    background: var(--off-green);
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-green:hover {
+    background: #197c43;
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+
+.off-btn-blue {
+    background: var(--off-blue);
+    color: #ffffff !important;
+    box-shadow: none;
+}
+.off-btn-blue:hover {
+    background: #0369a1;
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #ffffff !important;
+}
+
+.off-btn-block {
+    width: 100%;
+}
+
+/* Section Headers */
+#off-pro-page .section-header {
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto 2.75rem auto;
+}
+
+#off-pro-page .section-header h2 {
+    font-size: clamp(1.85rem, 3vw, 2.45rem);
+    font-weight: 800;
+    color: var(--off-espresso);
+    margin: 0.25rem 0 0.85rem 0;
+    line-height: 1.25;
+}
+
+#off-pro-page .section-header h4.subheader {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--off-orange-hover);
+    margin: 0 0 0.5rem 0;
+}
+
+#off-pro-page .section-header p {
+    font-size: 1.1rem;
+    color: var(--off-text-muted);
+    margin: 0;
+}
+
+/* Responsive Grid Systems */
+.off-card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+
+.off-card-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+
+/* Feature & Action Cards */
+.off-feature-card {
+    background: var(--off-surface);
+    border: 1px solid var(--off-border-subtle);
+    border-radius: var(--off-radius-card);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--off-shadow-sm);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.off-feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--off-border);
+    box-shadow: var(--off-shadow-hover);
+}
+
+.off-card-art {
+    background: var(--off-cream);
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    min-height: 180px;
+    position: relative;
+    overflow: hidden;
+}
+
+.off-card-art img {
+    max-width: 100%;
+    max-height: 140px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.off-feature-card:hover .off-card-art img {
+    transform: scale(1.04);
+}
+
+.off-feature-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--off-espresso);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+}
+
+.off-feature-card p {
+    font-size: 0.95rem;
+    color: var(--off-text-muted);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.off-feature-card ul {
+    margin: 0 0 1.25rem 1.25rem;
+    padding: 0;
+    font-size: 0.95rem;
+    color: var(--off-text-muted);
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.off-feature-card ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Bottom Explore Banner */
+.bottom-explore-banner {
+    background: linear-gradient(135deg, var(--off-espresso) 0%, #1a0800 100%);
+    border-radius: 24px;
+    padding: clamp(2.2rem, 4vw, 3.2rem);
+    text-align: center;
+    color: #ffffff;
+    margin-top: 3.5rem;
+    box-shadow: var(--off-shadow-md);
+}
+
+.bottom-explore-banner h2 {
+    color: #ffffff;
+    font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+    font-weight: 800;
+    margin: 0 0 0.85rem 0;
+}
+
+.bottom-explore-banner h4.subheader {
+    color: var(--off-orange);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 0.85rem 0;
+}
+
+.bottom-explore-banner p {
+    color: #ffd8c2;
+    font-size: 1.1rem;
+    max-width: 760px;
+    margin: 0 auto 1.5rem auto;
+    line-height: 1.6;
+}
+
+.bottom-explore-banner p a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.bottom-banner-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Subtle Divider */
+#off-pro-page hr.off-divider {
+    border: none;
+    border-top: 1px solid #fed7aa;
+    margin: 3.5rem 0;
+    opacity: 0.6;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .off-card-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    #off-pro-page .hero-content-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    #off-pro-page .hero-actions {
+        justify-content: center;
+    }
+    .off-card-grid-3,
+    .off-card-grid-2 {
+        grid-template-columns: 1fr;
+    }
+    #off-pro-page .section-header {
+        text-align: center;
+    }
+    .bottom-banner-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+</style>
+
+<div id="off-pro-page" class="show-when-no-access-to-producers-platform">
+
+    <!-- Hero Section -->
+    <header class="pro-hero">
+        <div class="hero-content-grid">
+            <div class="hero-text">
+                <span class="off-badge-pill orange">Open Food Facts für Hersteller</span>
+                <h1 class="if-empty-dnone emphasized-title">Open Food Facts für Hersteller</h1>
+                <p class="hero-lead">Eine völlig kostenlose Plattform, die es Herstellern ermöglicht, die Daten und Fotos ihrer Produkte auf Open Food Facts einfach zu verwalten.</p>
+
+                <div class="hero-actions">
+                    <div class="hide-when-logged-in">
+                        <a href="/cgi/user.pl" class="off-btn off-btn-primary">Kostenloses Produzentenkonto erstellen</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-media">
+                <div class="hero-video-wrapper">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/7usK67u2pM4" title="Willkommen! Einführung in die Open Food Facts' Pro-Plattform" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Key Features Section -->
+    <section>
+        <div class="section-header">
+            <span class="off-badge-pill green">Hauptmerkmale</span>
+            <h2 class="emphasized-title">Hauptmerkmale</h2>
+        </div>
+
+        <div class="off-card-grid-3">
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://world.openfoodfacts.org/images/producers/validated-data.png" alt="Geprüfte Daten">
+                </div>
+                <h3 class="emphasized-title">Geprüfte Daten</h3>
+                <p>Stellen Sie sicher, dass Ihre Produktdaten vollständig und aktuell sind. Ihre Daten werden zur Referenzquelle, sobald diese veröffentlicht wurden. Und da wir wissen, dass kleine Fehler passieren können, melden wir Ihnen privat alle Datenqualitätsprobleme, die wir vor dem Import feststellen, so dass Sie diese korrigieren können.</p>
+            </article>
+
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://world.openfoodfacts.org/images/producers/improvements.png" alt="Verbesserungen">
+                </div>
+                <h3 class="emphasized-title">Sie erhalten Vorschläge zur einfachen Verbesserung Ihres Nutri-Scores</h3>
+                <ul>
+                    <li>Erhebliche Verbesserung des Nutri-Score durch eine angemessene Reduzierung von Zucker, Salz oder gesättigten Fettsäuren.</li>
+                    <li>Erkennen Sie Produkte mit einem geringeren Nährwertprofil als ähnliche Produkte auf dem Markt.</li>
+                </ul>
+            </article>
+
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://world.openfoodfacts.org/images/producers/broadcast.png" alt="Übertragen Sie Ihre Produktdaten dank Open Food Facts">
+                </div>
+                <h3 class="emphasized-title">Übertragen Sie Ihre Daten in viele Anwendungen und Dienste</h3>
+                <p>Open Food Facts ist ein wichtiger Kanal für die Bereitstellung von Daten. Rund 200 Apps und Dienste nutzen Open Food Facts. Einmal teilen, an vielen Stellen für Harmonisierung sorgen.</p>
+            </article>
+        </div>
+    </section>
+
+    <hr class="off-divider">
+
+    <!-- Many ways to import your product data Section -->
+    <section>
+        <div class="section-header">
+            <span class="off-badge-pill amber">Import Options</span>
+            <h2 class="emphasized-title">Viele Möglichkeiten, Ihre Produktdaten zu importieren</h2>
+            <h4 class="subheader">„Kommen Sie, wie Sie sind“ könnte fast das Motto der Plattform sein :-)</h4>
+        </div>
+
+        <div class="off-card-grid-3">
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://world.openfoodfacts.org/images/producers/xlsx.png" alt="Import von Daten in Open Food Facts unter Verwendung von XLSX (Excel)">
+                </div>
+                <h3 class="emphasized-title">Kompatibel mit jedem XLSX/ODT, das Sie möglicherweise haben</h3>
+                <p>Sobald Sie sich angemeldet haben, stellen wir Ihnen eine einfach zu verwendende Vorlage zur Verfügung, Sie können aber auch jede bereits vorhandene Datei in jedem beliebigen Format wiederverwenden. Die Plattform ermöglicht es Ihnen, Ihre Spaltennamen mit dem Open Food Facts-Format abzugleichen.</p>
+            </article>
+
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://world.openfoodfacts.org/images/producers/equadis.png" alt="EQUADIS">
+                </div>
+                <h3 class="emphasized-title">Kompatibel mit EQUADIS, AGENA3000 (und bald mehr)</h3>
+                <p>Wenn Sie EQUADIS- oder AGENA 3000-Kunde sind, können Sie Ihre Daten ohne zusätzliche Kosten automatisch an Open Food Facts senden. Bitte <a href="mailto:producers@openfoodfacts.org">Sie sich mit uns in Verbindung, wenn Sie ein anderes System verwenden</a>.</p>
+            </article>
+
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://world.openfoodfacts.org/images/producers/many-producers.png" alt="Schließen Sie sich den größten Herstellern und Händlern an">
+                </div>
+                <h3 class="emphasized-title">Schließen Sie sich den größten Herstellern und Händlern an</h3>
+                <p>Sie werden viele internationale Konzerne, Lebensmitteleinzelhändler und -verteiler, Zwischenmarken sowie aufstrebende Lebensmittel-Startups erkennen, die ihre Produktdaten bereits mit Open Food Facts an die Welt weitergeben.</p>
+            </article>
+        </div>
+    </section>
+
+    <hr class="off-divider">
+
+    <!-- Additional features Section -->
+    <section>
+        <div class="section-header">
+            <span class="off-badge-pill purple">Additional Features</span>
+            <h2 class="emphasized-title">Zusätzliche Funktionen</h2>
+        </div>
+
+        <div class="off-card-grid-2">
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://world.openfoodfacts.org/images/producers/archive.png" alt="Markieren Sie Ihre nicht fortgeführten Produkte">
+                </div>
+                <h3 class="emphasized-title">Markieren Sie Ihre nicht fortgeführten Produkte</h3>
+                <p>Senden Sie uns eine Liste Ihrer nicht weiter geführten Produkte, damit wir sie als archiviert markieren können.</p>
+            </article>
+
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://world.openfoodfacts.org/images/producers/consumer-service.png" alt="Fügen Sie Ihre Kundendienstinformationen hinzu">
+                </div>
+                <h3 class="emphasized-title">Fügen Sie Ihre Kundendienstinformationen hinzu</h3>
+                <p>Open Food Facts erhält täglich viele Kundenbeschwerden, die an Sie gerichtet werden sollten. Fügen Sie Ihre Kundendienstinformationen hinzu, um sicherzustellen, dass Sie diese erhalten.</p>
+            </article>
+        </div>
+    </section>
+
+    <hr class="off-divider">
+
+    <!-- Helping you with the Scores Section -->
+    <section>
+        <div class="section-header">
+            <span class="off-badge-pill orange">Scores</span>
+            <h2 class="emphasized-title">Hilf dir mit den Punkten</h2>
+            <p>Open Food Facts berechnet den Nutri-Score seit er 2015 noch die „5-Farben-Skala“ war, und berechnet nun auch den Green-Score.</p>
+        </div>
+
+        <div class="off-card-grid-3">
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://static.openfoodfacts.org/images/attributes/nutriscore-a.svg" alt="Nutri-Score">
+                </div>
+                <h3 class="emphasized-title">Einfache Einführung des Nutri-Score</h3>
+                <p>Der Nutri-Score wird automatisch aus den Nährwertangaben berechnet.</p>
+                <ul>
+                    <li>Verstehen Sie die Berechnung des Nutri-Score v2 mit all seinen Komponenten.</li>
+                    <li>Überprüfung des Nutri-Scores, wenn dieser bereits berechnet wurde.</li>
+                </ul>
+            </article>
+
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://static.openfoodfacts.org/images/icons/ecoscore-a.svg" alt="Green-Score">
+                </div>
+                <h3 class="emphasized-title">Berechnen Sie den Green-Score für Ihre Produkte genau</h3>
+                <p>Der Green-Score wird anhand einer präzisen Kategorie, Informationen zu Etiketten, Inhaltsstoffen und deren Herkunft sowie Verpackungskomponenten berechnet.</p>
+                <ul>
+                    <li>Stellen Sie sicher, dass Sie den bestmöglichen Green-Score erzielen, indem Sie Malusse aufgrund fehlender Informationen entfernen.</li>
+                    <li>Wenn Sie Ihre Produkte in die öffentliche Datenbank importieren, können Sie sie mit den besten Methoden vergleichen.</li>
+                </ul>
+            </article>
+
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://world.openfoodfacts.org/images/producers/nutriscore.png" alt="Nutri-Score and Green-Score">
+                </div>
+                <h3 class="emphasized-title">Erhalten Sie detaillierte Erläuterungen zur Bewertung von Nutri-Score und Green-Score (Eco-Score).</h3>
+                <p>Sobald Ihre Daten importiert wurden, erhalten Sie detaillierte Angaben, einschließlich Warnhinweisen zu den möglicherweise fehlenden Daten.</p>
+            </article>
+        </div>
+    </section>
+
+    <hr class="off-divider">
+
+    <!-- Share once, get harmonized data in many places Section -->
+    <section>
+        <div class="section-header">
+            <span class="off-badge-pill blue">Data Distribution</span>
+            <h2 class="emphasized-title">Einmal freigeben, erhalten Sie synchronisierte Daten an vielen Stellen</h2>
+            <p>Sobald Sie einen automatischen Import eingerichtet haben, werden Ihre Produkte jede Nacht automatisch synchronisiert. Andernfalls merkt sich die Plattform Ihr Dateiformat, um Aktualisierungen sehr einfach zu ermöglichen.</p>
+        </div>
+
+        <div class="off-card-grid-3">
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://world.openfoodfacts.org/images/producers/broadcast.png" alt="Übertragen Sie Ihre Daten in viele Anwendungen und Dienste">
+                </div>
+                <h3 class="emphasized-title">Übertragen Sie Ihre Daten in viele Anwendungen und Dienste</h3>
+                <p>Open Food Facts ist ein wichtiger Kanal für die Bereitstellung von Daten. Einmal teilen, an vielen Stellen für Harmonisierung sorgen.</p>
+            </article>
+
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://world.openfoodfacts.org/images/producers/consumer-orgs.png" alt="Viele Apps von Verbraucherorganisationen nutzen Open Food Facts">
+                </div>
+                <h3 class="emphasized-title">Viele Apps von Verbraucherorganisationen nutzen Open Food Facts</h3>
+            </article>
+
+            <article class="off-feature-card">
+                <div class="off-card-art">
+                    <img src="https://world.openfoodfacts.org/images/producers/many-apps.png" alt="Viele weitere Apps und Dienste nutzen Open Food Facts">
+                </div>
+                <h3 class="emphasized-title">Viele weitere Apps und Dienste nutzen Open Food Facts</h3>
+            </article>
+        </div>
+    </section>
+
+    <!-- We're here to help Banner -->
+    <div class="bottom-explore-banner">
+        <h2 class="emphasized-title">Wir sind für dich da</h2>
+        <h4 class="subheader">Für Fragen stehen wir Ihnen gerne zur Verfügung</h4>
+        <p>Wir werden unser Bestes tun, um Sie anzuleiten, damit Sie Ihren Teil dazu beitragen können, das Lebensmittelsystem für Ihre Verbraucher und den Planeten zu verändern.</p>
+        <p>Sie können <a href="https://blog.openfoodfacts.org/en/EN-Pro-Plateform-User-Guide.pdf">unsere Schnellstartanleitung lesen</a> und wir beantworten gerne Ihre Fragen unter <a href="mailto:producers@openfoodfacts.org">producers@openfoodfacts.org</a>.</p>
+        <div class="bottom-banner-actions">
+            <div>
+                <a href="mailto:producers@openfoodfacts.org" class="off-btn off-btn-primary">Kontaktieren Sie uns</a>
+            </div>
+            <div>
+                <a href="https://blog.openfoodfacts.org/en/EN-Pro-Plateform-User-Guide.pdf" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">Lesen Sie unsere Schnellstartanleitung</a>
+            </div>
+            <div>
+                <a href="https://world.pro.openfoodfacts.org/cgi/generate_sample_import_file.pl" class="off-btn off-btn-secondary" target="_blank" rel="noopener noreferrer">Holen Sie sich unsere vorgeschlagene XLS-Datei, wenn Sie ganz von vorne anfangen</a>
+            </div>
+        </div>
+    </div>
+
 </div>
 
-<div class="hide-when-logged-in">
-    <a href="/cgi/user.pl" class="button rounded">Kostenloses Produzentenkonto erstellen</a>
-</div>
+<script>
+    function onMount(fn) {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+        } else {
+            fn();
+        }
+    }
 
-<hr>
-
-<div class="row text-center">
-  <div class="large-12 columns">
-    <h2 class="emphasized-title">Hauptmerkmale</h2>
-    <h4 class="subheader"></h4>
-    <p class="text-left"></p>
-  </div>
-</div>
-
-<div class="row text-center">
-
-<div class="medium-4 columns">
-	<img src="https://world.openfoodfacts.org/images/producers/validated-data.png" alt="Geprüfte Daten" style="height: 140px;border-radius: 17px;border: solid;">
-	<h3 class="emphasized-title">Geprüfte Daten</h3>
-	<p>Stellen Sie sicher, dass Ihre Produktdaten vollständig und aktuell sind. Ihre Daten werden zur Referenzquelle, sobald diese veröffentlicht wurden. Und da wir wissen, dass kleine Fehler passieren können, melden wir Ihnen privat alle Datenqualitätsprobleme, die wir vor dem Import feststellen, so dass Sie diese korrigieren können.</p>
-</div>
-<div class="medium-4 columns">
-	<img src="https://world.openfoodfacts.org/images/producers/improvements.png" alt="Verbesserungen" style="height: 140px;border-radius: 17px;border: solid;">
-	<h3 class="emphasized-title">Sie erhalten Vorschläge zur einfachen Verbesserung Ihres Nutri-Scores</h3>
-	<p>	
-</p><ul>
-	<li>Erhebliche Verbesserung des Nutri-Score durch eine angemessene Reduzierung von Zucker, Salz oder gesättigten Fettsäuren.</li>
-	<li>Erkennen Sie Produkte mit einem geringeren Nährwertprofil als ähnliche Produkte auf dem Markt.</li>
-</ul>
-	<p></p>
-</div>
-<div class="medium-4 columns">
-	<img src="https://world.openfoodfacts.org/images/producers/broadcast.png" alt="Übertragen Sie Ihre Produktdaten dank Open Food Facts" style="height: 140px;border-radius: 17px;border: solid;">
-	<h3 class="emphasized-title">Übertragen Sie Ihre Daten in viele Anwendungen und Dienste</h3>
-	<p>Open Food Facts ist ein wichtiger Kanal für die Bereitstellung von Daten. Rund 200 Apps und Dienste nutzen Open Food Facts. Einmal teilen, an vielen Stellen für Harmonisierung sorgen.</p>
-</div>
-
-</div>
-
-<hr>
-
-<div class="row text-center">
-  <div class="large-12 columns">
-    <h2 class="emphasized-title">Viele Möglichkeiten, Ihre Produktdaten zu importieren</h2>
-    <h4 class="subheader">"Komm so wie du bist" könnte fast der Slogan der Plattform sein :-)</h4>
-    <p class="text-left"></p>
-  </div>
-</div>
-
-<div class="row text-center">
-
-<div class="medium-4 columns">
-	<img src="https://world.openfoodfacts.org/images/producers/xlsx.png" alt="Import von Daten in Open Food Facts unter Verwendung von XLSX (Excel)" style="height: 140px;border-radius: 17px;border: solid;">
-	<h3 class="emphasized-title">Kompatibel mit jedem XLSX/ODT, das Sie möglicherweise haben</h3>
-	<p>Sobald Sie sich angemeldet haben, stellen wir Ihnen eine einfach zu verwendende Vorlage zur Verfügung, Sie können aber auch jede bereits vorhandene Datei in jedem beliebigen Format wiederverwenden. Die Plattform ermöglicht es Ihnen, Ihre Spaltennamen mit dem Open Food Facts-Format abzugleichen.</p>
-</div>
-<div class="medium-4 columns">
-	<img src="https://world.openfoodfacts.org/images/producers/equadis.png" alt="EQUADIS" style="height: 140px;border-radius: 17px;border: solid;">
-	<h3 class="emphasized-title">Kompatibel mit EQUADIS, AGENA3000 (und bald mehr)</h3>
-	<p>Wenn Sie EQUADIS- oder AGENA 3000-Kunde sind, können Sie Ihre Daten ohne zusätzliche Kosten automatisch an Open Food Facts senden. Bitte <a href="mailto:producers@openfoodfacts.org">Sie sich mit uns in Verbindung, wenn Sie ein anderes System verwenden</a>.</p>
-</div>
-<div class="medium-4 columns">
-	<img src="https://world.openfoodfacts.org/images/producers/many-producers.png" alt="Schließen Sie sich den größten Herstellern und Händlern an" style="height: 140px;border-radius: 17px;border: solid;">
-	<h3 class="emphasized-title">Schließen Sie sich den größten Herstellern und Händlern an</h3>
-	<p>Sie werden viele internationale Konzerne, Lebensmitteleinzelhändler und -verteiler, Zwischenmarken sowie aufstrebende Lebensmittel-Startups erkennen, die ihre Produktdaten bereits mit Open Food Facts an die Welt weitergeben.</p>
-</div>
-
-</div>
-
-<hr>
-
-<div class="row text-center">
-  <div class="large-12 columns">
-    <h2 class="emphasized-title">Zusätzliche Funktionen</h2>
-    <h4 class="subheader"></h4>
-    <p class="text-left"></p>
-  </div>
-</div>
-
-<div class="row text-center">
-
-<div class="medium-4 columns">
-	<img src="https://world.openfoodfacts.org/images/producers/archive.png" alt="Markieren Sie Ihre nicht fortgeführten Produkte" style="height: 140px;border-radius: 17px;border: solid;">
-	<h3 class="emphasized-title">Markieren Sie Ihre nicht fortgeführten Produkte</h3>
-	<p>Senden Sie uns eine Liste Ihrer nicht weiter geführten Produkte, damit wir sie als archiviert markieren können.</p>
-</div>
-<div class="medium-4 columns">
-	<img src="https://world.openfoodfacts.org/images/producers/consumer-service.png" alt="Fügen Sie Ihre Kundendienstinformationen hinzu" style="height: 140px;border-radius: 17px;border: solid;">
-	<h3 class="emphasized-title">Fügen Sie Ihre Kundendienstinformationen hinzu</h3>
-	<p>Open Food Facts erhält täglich viele Kundenbeschwerden, die an Sie gerichtet werden sollten. Fügen Sie Ihre Kundendienstinformationen hinzu, um sicherzustellen, dass Sie diese erhalten.</p>
-</div>
-<div class="medium-4 columns"></div>
-
-</div>
-
-<hr>
-
-
-<div class="row text-center">
-  <div class="large-12 columns">
-    <h2 class="emphasized-title">Hilf dir mit den Punkten</h2>
-    <h4 class="subheader"></h4>
-    <p class="text-left">Open Food Facts berechnet den Nutri-Score seit seiner Einführung als „5-Farben-Score” im Jahr 2015 und berechnet nun den Green-Score. </p>
-  </div>
-</div>
-
-<div class="row text-center">
-
-<div class="medium-4 columns">
-	<img src="https://static.openfoodfacts.org/images/attributes/nutriscore-a.svg" alt="" style="height: 140px;">
-<h3 class="emphasized-title">Einfache Einführung des Nutri-Score</h3>
-
-<p>Der Nutri-Score wird automatisch aus den Nährwertangaben berechnet.</p>
-
-<ul>
-	<li>Verstehen Sie die Berechnung des Nutri-Score v2 mit all seinen Komponenten.</li>
-	<li>Überprüfung des Nutri-Scores, wenn dieser bereits berechnet wurde.</li>
-</ul>
-</div>
-
-<div class="medium-4 columns">
-	<img src="https://static.openfoodfacts.org/images/icons/ecoscore-a.svg" alt="" style="height: 140px;">
-	<h3 class="emphasized-title">Berechnen Sie den Green-Score für Ihre Produkte genau</h3>
-<p>Der Green-Score wird anhand einer präzisen Kategorie, Informationen zu Etiketten, Inhaltsstoffen und deren Herkunft sowie Verpackungskomponenten berechnet.</p>
-
-<ul>
-	<li>Stellen Sie sicher, dass Sie den bestmöglichen Green-Score erzielen, indem Sie Malusse aufgrund fehlender Informationen entfernen.</li>
-	<li>Wenn Sie Ihre Produkte in die öffentliche Datenbank importieren, können Sie sie mit den besten Methoden vergleichen.</li>
-</ul>
-
-</div>
-
-<div class="medium-4 columns">
-	<img src="https://world.openfoodfacts.org/images/producers/nutriscore.png" alt="" style="height: 140px;border-radius: 17px;border: solid;">
-	<h3 class="emphasized-title">Erhalten Sie detaillierte Erläuterungen zur Bewertung von Nutri-Score und Green-Score (Eco-Score).</h3>
-	<p>Sobald Ihre Daten importiert wurden, erhalten Sie detaillierte Angaben, einschließlich Warnhinweisen zu den möglicherweise fehlenden Daten.</p>
-</div>
-
-</div>
-
-<hr>
-
-<div class="row text-center">
-  <div class="large-12 columns">
-    <h2 class="emphasized-title">Einmal freigeben, erhalten Sie synchronisierte Daten an vielen Stellen</h2>
-    <h4 class="subheader"></h4>
-    <p class="text-left">Sobald Sie einen automatischen Import eingerichtet haben, werden Ihre Produkte jede Nacht automatisch synchronisiert. Andernfalls merkt sich die Plattform Ihr Dateiformat, um Aktualisierungen sehr einfach zu ermöglichen.</p>
-  </div>
-</div>
-
-<div class="medium-4 columns">
-	<img src="https://world.openfoodfacts.org/images/producers/broadcast.png" alt="" style="height: 140px;border-radius: 17px;border: solid;">
-	<h3 class="emphasized-title">Übertragen Sie Ihre Daten in viele Anwendungen und Dienste</h3>
-	<p>Open Food Facts ist ein wichtiger Kanal für die Bereitstellung von Daten. Einmal teilen, an vielen Stellen für Harmonisierung sorgen.</p>
-</div>
-
-<div class="row text-center">
-<div class="medium-4 columns">
-	<img src="https://world.openfoodfacts.org/images/producers/consumer-orgs.png" alt="" style="height: 140px;border-radius: 17px;border: solid;">
-	<h3 class="emphasized-title">Viele Apps von Verbraucherorganisationen nutzen Open Food Facts</h3>
-	<p></p>
-</div>
-
-<div class="row text-center">
-<div class="medium-4 columns">
-	<img src="https://world.openfoodfacts.org/images/producers/many-apps.png" alt="" style="height: 140px;border-radius: 17px;border: solid;">
-	<h3 class="emphasized-title">Viele weitere Apps und Dienste nutzen Open Food Facts</h3>
-	<p class="emphasized-title"></p>
-</div>
-
-</div>
-
-<hr>
-
-<div class="row text-center">
-  <div class="large-12 columns">
-    <h2 class="emphasized-title">Wir sind für dich da</h2>
-    <h4 class="subheader">Für Fragen stehen wir Ihnen gerne zur Verfügung</h4>
-    <p>Wir werden unser Bestes tun, um Sie anzuleiten, damit Sie Ihren Teil dazu beitragen können, das Lebensmittelsystem für Ihre Verbraucher und den Planeten zu verändern.</p>
-    <p>Sie können <a href="https://blog.openfoodfacts.org/de/DE-Pro-Plattform-Benutzerhandbuch.pdf">unsere Schnellstartanleitung</a> lesen und wir beantworten gerne Ihre Fragen auf <a href="mailto:producers@openfoodfacts.org">producers@openfoodfacts.org</a>.
-</p><div>
-    <a href="mailto:producers@openfoodfacts.org" class="rounded button">Kontaktieren Sie uns</a>
-</div><br>
-<div>
-    <a href="https://blog.openfoodfacts.org/en/EN-Pro-Plateform-User-Guide.pdf" class="rounded button">Lesen Sie unsere Schnellstartanleitung</a>
-</div><br>
-<div>
-    <a href="https://world.pro.openfoodfacts.org/cgi/generate_sample_import_file.pl" class="rounded button">Holen Sie sich unsere vorgeschlagene XLS-Datei, wenn Sie ganz von vorne anfangen</a>
-</div>
-<p></p>
-  </div>
-</div>
-
-</div>
-</div>
-
-</div>
+    onMount(() => {
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            console.debug("Calculated height: " + height);
+            if (typeof parent !== 'undefined' && parent !== window) {
+                parent.postMessage({ frameHeight: height }, '*');
+            }
+        }
+        sendHeight();
+        window.addEventListener("resize", sendHeight);
+    });
+</script>
