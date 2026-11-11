@@ -15,8 +15,9 @@ openfoodfacts-web/
 │   ├── press-review-merged.json    # Compiled unified JSON dataset (stripped of internal notes)
 │   └── press-review.csv            # Legacy tabular export
 ├── lang/
-│   ├── fr/texts/revue-de-presse-fr.html   # Compiled French Press Review interface
-│   ├── en/texts/press-review.html         # Compiled English Press Review interface
+│   ├── fr/texts/revue-de-presse.html      # French Press Review (symlink -> press-review.html)
+│   ├── fr/texts/revue-de-presse-fr.html   # Legacy French Press Review symlink (-> press-review.html)
+│   ├── */texts/press-review.html          # Compiled Multilingual Press Review interfaces
 │   └── */texts/presskit*.html             # Country-specific press kits and hub
 ├── scripts/
 │   ├── compile_press_review.py     # Schema validation and HTML/JSON compiler

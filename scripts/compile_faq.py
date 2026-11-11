@@ -34,7 +34,7 @@ DATA_DIR = os.path.join(REPO_ROOT, "data")
 FAQ_DIR = os.path.join(DATA_DIR, "faq")
 COMPILED_JSON = os.path.join(DATA_DIR, "faq.json")
 
-SUPPORTED_LANGS = ["en", "fr", "es", "de", "it"]
+SUPPORTED_LANGS = ["en", "fr", "es", "de", "it", "nl"]
 
 UI_STRINGS = {
     "en": {
@@ -181,6 +181,35 @@ UI_STRINGS = {
         "suggest_question": "Suggerisci una domanda",
         "suggest_question_sub": "Non trovi la risposta? Proponi una nuova domanda",
         "edit_question": "Modifica questa domanda",
+    },
+    "nl": {
+        "title": "Veelgestelde Vragen (FAQ)",
+        "subtitle": "Snelle antwoorden op al je vragen over Open Food Facts, de mobiele app, voedingsscores en het producentenplatform.",
+        "search_placeholder": "🔍 Zoek vragen of trefwoorden (bijv. Nutri-Score, account, scannen...)",
+        "search_tip": "Druk op / om te zoeken",
+        "all_questions": "Alle onderwerpen",
+        "questions_count": "{n} vragen",
+        "filter_label": "Onderwerpen:",
+        "expand_all": "Alles uitvouwen",
+        "collapse_all": "Alles inklappen",
+        "copy_link": "Kopieer link naar vraag",
+        "link_copied": "Link gekopieerd!",
+        "no_results": "Geen vragen gevonden die voldoen aan je zoekopdracht",
+        "clear_search": "Zoekopdracht wissen",
+        "still_questions": "Heb je nog vragen?",
+        "still_sub": "Kun je niet vinden wat je zoekt? Sluit je aan bij onze vriendelijke gemeenschap op Slack of neem rechtstreeks contact op met ons team.",
+        "btn_slack": "💬 Word lid van onze Slack",
+        "btn_forum": "🗣️ Communityforum",
+        "btn_email": "✉️ E-mail het team",
+        "results_stats": "{shown} van {total} vragen weergegeven",
+        "feedback_prompt": "Heeft dit je vraag beantwoord?",
+        "feedback_yes": "Ja",
+        "feedback_no": "Nee",
+        "feedback_thanks_up": "Bedankt voor je feedback! 🙌",
+        "feedback_thanks_down": "Bedankt voor je feedback. We gaan aan de slag om dit antwoord te verbeteren!",
+        "suggest_question": "Stel een vraag voor",
+        "suggest_question_sub": "Geen antwoord gevonden? Stel een nieuwe vraag voor",
+        "edit_question": "Bewerk deze vraag",
     }
 }
 

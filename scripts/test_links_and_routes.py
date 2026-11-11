@@ -125,6 +125,8 @@ class TestLinksAndRoutes(unittest.TestCase):
             "reutilisations.html",
             "scores.html",
             "scores-et-methodologies.html",
+            "revue-de-presse.html",
+            "revue-de-presse-fr.html",
         ]
         missing = [alias for alias in required_aliases if not os.path.exists(os.path.join(fr_texts, alias))]
         self.assertEqual(
@@ -132,6 +134,15 @@ class TestLinksAndRoutes(unittest.TestCase):
             [],
             f"Missing required French localized aliases: {missing}"
         )
+
+    def test_revue_de_presse_fr_only_in_french(self):
+        """Verify that revue-de-presse-fr.html only exists in French and is a symlink."""
+        import glob
+        existing = glob.glob(os.path.join(ROOT_DIR, "lang", "*", "texts", "revue-de-presse-fr.html"))
+        fr_expected = os.path.join(ROOT_DIR, "lang", "fr", "texts", "revue-de-presse-fr.html")
+        self.assertEqual(existing, [fr_expected], f"revue-de-presse-fr.html found in unexpected locales: {existing}")
+        self.assertTrue(os.path.islink(fr_expected), "lang/fr/texts/revue-de-presse-fr.html must be a symlink")
+        self.assertEqual(os.readlink(fr_expected), "press-review.html")
 
 
 if __name__ == "__main__":
