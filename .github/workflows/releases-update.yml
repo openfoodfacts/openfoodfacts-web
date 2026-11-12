@@ -1,0 +1,60 @@
+name: "Releases: Auto-Sync & Rebuild Timeline"
+
+on:
+  schedule:
+    # Run every Monday at 04:00 UTC to sync weekly releases across Open Food Facts
+    - cron: '0 4 * * 1'
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/release_highlights.yaml'
+      - 'scripts/fetch_releases.py'
+      - 'scripts/compile_releases.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: releases-rebuild-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sync-and-rebuild-releases:
+    name: Sync Releases and Recompile Timeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+
+      - name: Fetch latest releases across Open Food Facts repositories
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 scripts/fetch_releases.py
+
+      - name: Recompile releases timeline and static HTML pages
+        run: |
+          python3 scripts/compile_releases.py
+
+      - name: Run validation and unit tests
+        run: |
+          PYTHONPATH=scripts python3 scripts/test_compile_releases.py
+          python3 scripts/compile.py --check
+
+      - name: Commit and push changes if any
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore(releases): auto-sync releases feed and recompile timeline"
+          file_pattern: "data/releases.json data/release_highlights.yaml lang/en/texts/releases.html lang/fr/texts/releases.html releases.html"

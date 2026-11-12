@@ -1,0 +1,202 @@
+# ==============================================================================
+# Open Food Facts — Curated Game-Changing Release Highlights
+# ==============================================================================
+# Manual curated view of the most profound, ecosystem-wide breakthroughs and
+# milestones across Open Food Facts over the rolling year (Nov 2025 – Nov 2026).
+#
+# Each entry captures:
+# - id: Unique alphanumeric identifier
+# - title: Clear, impact-oriented headline (multilingual dict: en, fr)
+# - category: One of [core, mobile, prices, ai, sdks, explorer]
+# - date: Primary release date (YYYY-MM-DD)
+# - rolling_year: Boolean (true for the current rolling window 2025-2026)
+# - badge: Short pill text (e.g. "Environmental Impact", "Crowdsourced Data")
+# - impact_level: "transformative" | "major"
+# - repos: List of involved repositories
+# - summary: Executive summary of why this change is game-changing
+# - highlights: Key technical & user achievements
+# - links: Helpful references (PRs, releases, docs)
+# ==============================================================================
+
+highlights:
+  - id: ecobalyse-lifecycle-engine
+    title:
+      en: "Ecobalyse Automated Life-Cycle Environmental Impact Engine"
+      fr: "Intégration d'Ecobalyse : calcul automatisé de l'impact environnemental"
+    category: core
+    badge: "Ecological Assessment"
+    badge_fr: "Impact Écologique"
+    date: "2026-10-30"
+    rolling_year: true
+    impact_level: transformative
+    repos:
+      - openfoodfacts/openfoodfacts-server
+    summary:
+      en: "Open Food Facts now directly connects with the French government's Ecobalyse API to compute granular product life-cycle environmental scores on every update. By matching taxonomy categories, ingredient ratios, and packaging specs with Ecobalyse lifecycle data, Open Food Facts brings unprecedented scientific precision to environmental transparency."
+      fr: "Open Food Facts se connecte désormais directement à l'API publique Ecobalyse pour calculer l'empreinte environnementale des produits tout au long de leur cycle de vie. En croisant les taxonomies d'ingrédients, de catégories et d'emballages, cette intégration apporte une précision scientifique inédite à la transparence écologique."
+    highlights:
+      - en: "Automated real-time Ecobalyse API calculation triggered upon product edits, with smart stale caching to guarantee fault tolerance."
+        fr: "Calcul temps réel via l'API Ecobalyse déclenché lors des mises à jour produits, avec mise en cache résiliente en cas d'indisponibilité."
+      - en: "Life-cycle distribution, consumption, and processing factors mapped from taxonomy categories."
+        fr: "Facteurs de distribution, consommation et transformation déduits automatiquement des catégories taxonomiques."
+      - en: "Deep packaging mapping and Forest Footprint SVG integration for deforestation risk tracking."
+        fr: "Correspondance fine des emballages et intégration de l'Empreinte Forêt (Forest Footprint) pour évaluer la déforestation."
+    links:
+      - title: "Server v2.118.0 Release"
+        url: "https://github.com/openfoodfacts/openfoodfacts-server/releases/tag/v2.118.0"
+      - title: "Ecobalyse Mapping PR #14646"
+        url: "https://github.com/openfoodfacts/openfoodfacts-server/pull/14646"
+
+  - id: open-prices-receipt-anonymizer
+    title:
+      en: "Open Prices Receipt Anonymizer & Geospatial Search Ecosystem"
+      fr: "Open Prices : anonymisation des tickets de caisse et recherche géolocalisée"
+    category: prices
+    badge: "Food Inflation & Crowdsourcing"
+    badge_fr: "Pouvoir d'Achat & Données Ouvertes"
+    date: "2026-08-01"
+    rolling_year: true
+    impact_level: transformative
+    repos:
+      - openfoodfacts/open-prices
+      - openfoodfacts/open-prices-frontend
+    summary:
+      en: "Open Prices reached major maturity milestones with a privacy-preserving Receipt Anonymizer, nearby geospatial querying, concurrent ML receipt recognition, and the addition of non-food categories from Open Products Facts. Millions of crowdsourced prices are now shared while protecting contributor identity."
+      fr: "Open Prices franchit un cap décisif avec un outil d'anonymisation des tickets de caisse, la recherche géolocalisée par rayon kilométrique, l'analyse ML concurrente des preuves d'achat et l'ouverture aux catégories non-alimentaires d'Open Products Facts."
+    highlights:
+      - en: "Built-in Receipt Anonymizer tool allowing shoppers to blur or strip personal payment details, store loyalty numbers, and transaction IDs before proof submission."
+        fr: "Outil d'anonymisation intégré permettant de caviarder automatiquement ou manuellement les données bancaires et numéros de carte fidélité."
+      - en: "Geospatial radius filter (`lat`, `lon`, `radius_km`) allowing consumers and apps to compare grocery prices in their local vicinity."
+        fr: "Filtre géolocalisé par rayon kilométrique pour comparer les prix alimentaires au plus près de chez soi."
+      - en: "New products.jsonl.gz open data dump dedicated exclusively to products with recorded prices."
+        fr: "Nouvel export libre products.jsonl.gz dédié aux produits disposant de relevés de prix."
+      - en: "Expansion to Open Products Facts categories (fuels, tickets, non-food goods) and community reuse integrations."
+        fr: "Extension aux catégories d'Open Products Facts (carburants, articles ménagers) et nouvelles réutilisations citoyennes."
+    links:
+      - title: "Open Prices v1.116.0 Release"
+        url: "https://github.com/openfoodfacts/open-prices/releases/tag/v1.116.0"
+      - title: "Receipt Anonymizer PR #2255"
+        url: "https://github.com/openfoodfacts/open-prices-frontend/pull/2255"
+      - title: "Open Prices Platform"
+        url: "https://prices.openfoodfacts.org"
+
+  - id: openfoodfacts-explorer-launch
+    title:
+      en: "Launch of OpenFoodFacts Explorer & OFF Days 2026 Overhaul"
+      fr: "Lancement d'OpenFoodFacts Explorer & version majeure OFF Days 2026"
+    category: explorer
+    badge: "Next-Gen Web UI"
+    badge_fr: "Nouvelle Interface Web"
+    date: "2026-11-04"
+    rolling_year: true
+    impact_level: transformative
+    repos:
+      - openfoodfacts/openfoodfacts-explorer
+    summary:
+      en: "Born in early 2026 and propelled to v0.2.0 for OFF Days 2026, OpenFoodFacts Explorer represents the new modern web interface for Open Food Facts: instant multi-lingual search autocomplete, interactive faceted discovery, client-side camera barcode scanning, and rich product cards."
+      fr: "Inauguré début 2026 et propulsé en version 0.2.0 lors des OFF Days 2026, OpenFoodFacts Explorer incarne la nouvelle interface web moderne : autocomplétion instantanée, exploration par facettes, scan de code-barres par caméra dans le navigateur et fiches produit enrichies."
+    highlights:
+      - en: "Ultra-fast faceted browsing across categories, brands, labels (Bio, Fair Trade), Nutri-Score, and Eco-Score."
+        fr: "Navigation par facettes ultra-rapide par catégories, marques, labels (Bio, Commerce équitable), Nutri-Score et Eco-Score."
+      - en: "Browser-native BarcodeDetector integration with html5-qrcode fallback for seamless in-browser scanning on mobile and desktop."
+        fr: "Scan de codes-barres fluide dans le navigateur via l'API BarcodeDetector avec repli automatique sur html5-qrcode."
+      - en: "Direct inline editing workflow enabling contributors to improve product attributes without leaving the modern view."
+        fr: "Édition directe en ligne permettant aux contributeurs d'améliorer les fiches sans quitter l'interface moderne."
+    links:
+      - title: "Explorer v0.2.0 Release"
+        url: "https://github.com/openfoodfacts/openfoodfacts-explorer/releases/tag/v0.2.0"
+      - title: "OpenFoodFacts Explorer Repository"
+        url: "https://github.com/openfoodfacts/openfoodfacts-explorer"
+
+  - id: smooth-app-offline-folksonomy
+    title:
+      en: "Smooth App: Offline Background Sync & Folksonomy Properties"
+      fr: "Smooth App : synchronisation hors-ligne et édition Folksonomy"
+    category: mobile
+    badge: "Mobile Architecture"
+    badge_fr: "Expérience Mobile"
+    date: "2026-08-24"
+    rolling_year: true
+    impact_level: major
+    repos:
+      - openfoodfacts/smooth-app
+      - openfoodfacts/openfoodfacts-dart
+    summary:
+      en: "Smooth App (v4.23 – v4.24) transformed mobile contribution resilience with background task workers for folksonomy engine updates, robust stale background task recovery, allergen & trace customization, and pet food nutrition tracking in the underlying Dart SDK."
+      fr: "Smooth App (v4.23 – v4.24) renforce considérablement la fiabilité de la contribution mobile grâce aux tâches d'arrière-plan pour Folksonomy, à la récupération résiliente des synchronisations interrompues et à la gestion affinée des traces et allergènes."
+    highlights:
+      - en: "Asynchronous background task runner for Folksonomy tags, enabling contributors to tag custom properties (e.g., packaging materials, certifications) without waiting on network calls."
+        fr: "Moteur de tâches d'arrière-plan pour Folksonomy permettant d'annoter des propriétés libres sans bloquer l'interface."
+      - en: "Stale background task management ensuring edits survive intermittent connectivity and app restarts."
+        fr: "Gestion des tâches obsolètes garantissant que les modifications en magasin survivent aux pertes de réseau et aux redémarrages."
+      - en: "Advanced ingredient filtering ('unwanted ingredients' and 'ingredient filter') powered by openfoodfacts-dart v3.30.0."
+        fr: "Filtres d'ingrédients avancés (ingrédients indésirables, exclusions personnalisées) propulsés par openfoodfacts-dart v3.30.0."
+    links:
+      - title: "Smooth App v4.24.0 Release"
+        url: "https://github.com/openfoodfacts/smooth-app/releases/tag/v4.24.0"
+      - title: "Smooth App v4.23.0 Release"
+        url: "https://github.com/openfoodfacts/smooth-app/releases/tag/v4.23.0"
+
+  - id: robotoff-ai-data-quality
+    title:
+      en: "Robotoff AI OCR & NutriPatrol Automated Quality Patrol"
+      fr: "Robotoff IA : OCR tolérant aux erreurs & NutriPatrol"
+    category: ai
+    badge: "AI & Data Quality"
+    badge_fr: "IA & Qualité des Données"
+    date: "2026-10-20"
+    rolling_year: true
+    impact_level: major
+    repos:
+      - openfoodfacts/robotoff
+      - openfoodfacts/openfoodfacts-server
+      - openfoodfacts/openfoodfacts-webcomponents
+    summary:
+      en: "Major leaps in automated data quality: Robotoff expanded image-based questions and insight predictions, while Open Food Facts Server integrated spelling correction algorithms for OCR ingredient lists and NutriPatrol automated warning systems."
+      fr: "Bons en avant pour la qualité automatisée des données : Robotoff enrichit ses prédictions visuelles avec image, le serveur intègre un moteur de correction d'erreurs OCR sur les ingrédients et le composant NutriPatrol facilite le signalement communautaire d'anomalies."
+    highlights:
+      - en: "New `with_image` parameter and image classifier refinements in Robotoff and Python SDK."
+        fr: "Nouveau paramètre `with_image` et améliorations du classifieur d'images dans Robotoff et le SDK Python."
+      - en: "OCR spell-checking and ingredient parsing corrections for Scandinavian, German, and multilingual labels."
+        fr: "Correction automatique des coquilles OCR et parsing amélioré des listes d'ingrédients multilingues."
+      - en: "NutriPatrol web component allowing contributors to flag data quality inconsistencies directly on product views."
+        fr: "Composant NutriPatrol pour signaler instantanément les incohérences nutritionnelles directement sur le web."
+    links:
+      - title: "Robotoff v1.85.14 Release"
+        url: "https://github.com/openfoodfacts/robotoff/releases/tag/v1.85.14"
+      - title: "Webcomponents v1.17.0 NutriPatrol"
+        url: "https://github.com/openfoodfacts/openfoodfacts-webcomponents/releases/tag/v1.17.0"
+
+  - id: developer-sdk-ecosystem-evolution
+    title:
+      en: "SDK Modernization: Swift SDK 1.0, Python SDK 5.x & Modern Web Components"
+      fr: "Modernisation des SDK : Swift SDK 1.0, Python SDK 5.x & Web Components"
+    category: sdks
+    badge: "Developer Ecosystem"
+    badge_fr: "Écosystème Développeurs"
+    date: "2026-11-09"
+    rolling_year: true
+    impact_level: major
+    repos:
+      - openfoodfacts/openfoodfacts-swift
+      - openfoodfacts/openfoodfacts-python
+      - openfoodfacts/openfoodfacts-webcomponents
+      - openfoodfacts/openfoodfacts-dart
+      - openfoodfacts/openfoodfacts-js
+    summary:
+      en: "The developer ecosystem gained a massive boost: Open Food Facts Swift SDK celebrated its official 1.0.0 release for iOS and macOS, Python SDK rolled out version 5.x with modernized classifiers and async APIs, and Web Components introduced standalone image cropping."
+      fr: "L'écosystème pour développeurs s'enrichit : publication de la version 1.0.0 officielle du SDK Swift pour iOS et macOS, passage à la version 5.x du SDK Python avec modèles d'images révisés, et nouveaux composants web de recadrage d'image."
+    highlights:
+      - en: "Swift SDK 1.0.0: Native Swift concurrency, modern async/await networking, and strongly typed product representations for Apple platforms."
+        fr: "Swift SDK 1.0.0 : concurrence native Swift (async/await) et typage strict des fiches produits pour tout l'écosystème Apple."
+      - en: "Python SDK 5.x: Updated image classifiers, support for Python 3.13+, full taxonomy download caching, and modernized OpenAPI client."
+        fr: "Python SDK 5.x : classifieurs d'images mis à jour, support de Python 3.13+, cache des taxonomies et client OpenAPI."
+      - en: "Open Food Facts Web Components v1.19.0: Standalone interactive image cropper component for crowdsourced packaging uploads."
+        fr: "Web Components v1.19.0 : composant interactif autonome de recadrage d'images pour les emballages."
+    links:
+      - title: "Swift SDK v1.0.0 Release"
+        url: "https://github.com/openfoodfacts/openfoodfacts-swift/releases/tag/v1.0.0"
+      - title: "Python SDK v5.4.1 Release"
+        url: "https://github.com/openfoodfacts/openfoodfacts-python/releases/tag/v5.4.1"
+      - title: "Webcomponents v1.19.0 Release"
+        url: "https://github.com/openfoodfacts/openfoodfacts-webcomponents/releases/tag/v1.19.0"
