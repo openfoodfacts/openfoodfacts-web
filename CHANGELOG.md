@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.12.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.11.0...v1.12.0) (2026-11-12)
+
+
+### Features
+
+* release o matic ([#1060](https://github.com/openfoodfacts/openfoodfacts-web/issues/1060)) ([c917c57](https://github.com/openfoodfacts/openfoodfacts-web/commit/c917c57d61b9cc6cde0d4f3e0483f7e7ee5546ed))
+
+
+### Bug Fixes
+
+* cherry picked fixes ([#1069](https://github.com/openfoodfacts/openfoodfacts-web/issues/1069)) ([12ef43b](https://github.com/openfoodfacts/openfoodfacts-web/commit/12ef43b7242e5bb7627d477de0730d7b6751c4aa))
+* cherry picked fixes from a stale local branch ([#1067](https://github.com/openfoodfacts/openfoodfacts-web/issues/1067)) ([980a522](https://github.com/openfoodfacts/openfoodfacts-web/commit/980a5226fafa7d2fb8f2f4c8915884c4c8ed1ee3))
+* cherry picks for scan parties ([#1070](https://github.com/openfoodfacts/openfoodfacts-web/issues/1070)) ([a56e0b8](https://github.com/openfoodfacts/openfoodfacts-web/commit/a56e0b8378a02a06c925a69f102d494a37409b8f))
+
 ## [1.11.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.10.0...v1.11.0) (2026-11-10)
 
 
