@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Food Facts — Environment (Green-Score, Forest Footprint, Coût Environnemental)</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f6f8f5;
+    }
+    .off-env-page {
+      margin: 0 !important;
+    }
+  </style>
+</head>
+<body>
+<!-- no side column -->
+<!--
+  ============================================================================
+  Open Food Facts — Environmental Impact & Data Pipeline (lang/en/texts/environment.html)
+  ============================================================================
+  Protected brand names (never translate):
+  Open Food Facts, Open Prices, Nutri-Score, Eco-Score, Green-Score, NOVA.
+  ============================================================================
+-->
+<style>
+  .off-env-page {
+    --env-bg: #f6f8f5;
+    --env-surface: #ffffff;
+    --env-surface-alt: #eef3ec;
+    --env-surface-warm: #fbf8f3;
+    --env-forest: #124e33;
+    --env-forest-dark: #0a3522;
+    --env-green: #1e824c;
+    --env-green-soft: #dff2e7;
+    --env-teal: #0e6b66;
+    --env-teal-soft: #e4f4f3;
+    --env-amber: #b45309;
+    --env-amber-soft: #fef3c7;
+    --env-brown: #341100;
+    --env-orange: #d9531e;
+    --env-text: #18201c;
+    --env-text-muted: #46544d;
+    --env-border: #d5e0d8;
+    --env-radius-lg: 20px;
+    --env-radius-md: 14px;
+    --env-radius-sm: 10px;
+    --env-shadow: 0 10px 30px rgba(18, 78, 51, 0.08);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: var(--env-text);
+    background-color: var(--env-bg);
+    line-height: 1.65;
+    margin: 0 -15px;
+    padding-bottom: 4rem;
+    overflow-x: clip;
+  }
+
+  .off-env-page *,
+  .off-env-page *::before,
+  .off-env-page *::after {
+    box-sizing: border-box;
+  }
+
+  .off-env-page h1,
+  .off-env-page h2,
+  .off-env-page h3,
+  .off-env-page h4 {
+    color: var(--env-forest-dark);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-top: 0;
+    text-wrap: balance;
+  }
+
+  .off-env-page p,
+  .off-env-page li {
+    text-wrap: pretty;
+  }
+
+  .off-env-page a:focus-visible,
+  .off-env-page button:focus-visible {
+    outline: 3px solid var(--env-teal);
+    outline-offset: 3px;
+  }
+
+  .off-env-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Hero */
+  .off-env-hero {
+    background: linear-gradient(165deg, #e7f4ec 0%, #f6f8f5 60%, #fef9ef 100%);
+    padding: 4.5rem 0 3.5rem;
+    border-bottom: 1px solid var(--env-border);
+    text-align: center;
+  }
+
+  .off-env-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    background: var(--env-green-soft);
+    color: var(--env-forest-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .off-env-hero h1 {
+    font-size: clamp(2.1rem, 4vw, 3.2rem);
+    max-width: 18ch;
+    margin: 0 auto 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .off-env-hero h1 .env-accent {
+    color: var(--env-green);
+  }
+
+  .off-env-lead {
+    font-size: 1.18rem;
+    color: var(--env-text-muted);
+    max-width: 68ch;
+    margin: 0 auto 2rem;
+  }
+
+  .off-env-nav-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+    margin-top: 1.5rem;
+  }
+
+  .off-env-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    background: var(--env-surface);
+    border: 1px solid var(--env-border);
+    color: var(--env-forest-dark);
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .off-env-pill:hover {
+    background: var(--env-green-soft);
+    border-color: var(--env-green);
+    transform: translateY(-1px);
+  }
+
+  /* Section chrome */
+  .off-env-section {
+    padding: 4rem 0;
+  }
+
+  .off-env-section--alt {
+    background: var(--env-surface);
+    border-top: 1px solid var(--env-border);
+    border-bottom: 1px solid var(--env-border);
+  }
+
+  .off-env-section--dark {
+    background: linear-gradient(155deg, var(--env-forest-dark) 0%, #103c2c 100%);
+    color: #f0f7f3;
+  }
+
+  .off-env-section--dark h2,
+  .off-env-section--dark h3,
+  .off-env-section--dark h4 {
+    color: #ffffff;
+  }
+
+  .off-env-section--dark p,
+  .off-env-section--dark li {
+    color: #d6e7dd;
+  }
+
+  .off-env-section-head {
+    max-width: 760px;
+    margin: 0 auto 2.75rem;
+    text-align: center;
+  }
+
+  .off-env-kicker {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--env-green);
+    margin-bottom: 0.5rem;
+  }
+
+  .off-env-section--dark .off-env-kicker {
+    color: #7ee2ad;
+  }
+
+  .off-env-section-head h2 {
+    font-size: clamp(1.65rem, 3vw, 2.35rem);
+    margin-bottom: 0.85rem;
+  }
+
+  .off-env-section-head p {
+    font-size: 1.06rem;
+    color: var(--env-text-muted);
+    margin: 0 auto;
+  }
+
+  /* Grids & Cards */
+  .off-env-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .off-env-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .off-env-card {
+    background: var(--env-surface);
+    border: 1px solid var(--env-border);
+    border-radius: var(--env-radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--env-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .off-env-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .off-env-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: var(--env-green-soft);
+    color: var(--env-forest-dark);
+    flex-shrink: 0;
+  }
+
+  .off-env-tag {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    background: var(--env-surface-alt);
+    color: var(--env-forest);
+  }
+
+  .off-env-tag--amber {
+    background: var(--env-amber-soft);
+    color: var(--env-amber);
+  }
+
+  .off-env-tag--teal {
+    background: var(--env-teal-soft);
+    color: var(--env-teal);
+  }
+
+  .off-env-card h3 {
+    font-size: 1.3rem;
+    margin: 0;
+  }
+
+  .off-env-card p {
+    margin: 0;
+    color: var(--env-text-muted);
+    font-size: 0.98rem;
+  }
+
+  .off-env-list {
+    margin: 0.25rem 0 0;
+    padding-left: 1.2rem;
+    color: var(--env-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .off-env-list li + li {
+    margin-top: 0.45rem;
+  }
+
+  .off-env-card-link {
+    margin-top: auto;
+    padding-top: 0.5rem;
+    font-weight: 700;
+    color: var(--env-green);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .off-env-card-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Data Pipeline */
+  .off-env-pipeline {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  .off-env-stage {
+    background: var(--env-surface);
+    border: 1px solid var(--env-border);
+    border-top: 5px solid var(--env-green);
+    border-radius: var(--env-radius-md);
+    padding: 1.65rem;
+    box-shadow: var(--env-shadow);
+    position: relative;
+  }
+
+  .off-env-stage--2 {
+    border-top-color: var(--env-teal);
+  }
+
+  .off-env-stage--3 {
+    border-top-color: var(--env-orange);
+  }
+
+  .off-env-stage-num {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--env-text-muted);
+    margin-bottom: 0.65rem;
+  }
+
+  .off-env-stage h3 {
+    font-size: 1.22rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .off-env-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 1rem;
+  }
+
+  .off-env-chip {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    background: var(--env-surface-alt);
+    color: var(--env-forest-dark);
+    border: 1px solid var(--env-border);
+  }
+
+  /* Colruyt / Digital to Physical Showcase */
+  .off-env-showcase {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2rem;
+    align-items: center;
+    background: var(--env-surface-warm);
+    border: 1px solid #e7dccb;
+    border-radius: var(--env-radius-lg);
+    padding: 2.25rem;
+    box-shadow: var(--env-shadow);
+  }
+
+  .off-env-showcase-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .off-env-stat-box {
+    background: var(--env-surface);
+    border: 1px solid #e7dccb;
+    border-radius: var(--env-radius-md);
+    padding: 1.25rem;
+  }
+
+  .off-env-stat-value {
+    font-size: 1.55rem;
+    font-weight: 900;
+    color: var(--env-forest);
+    line-height: 1.15;
+    margin-bottom: 0.35rem;
+  }
+
+  .off-env-stat-label {
+    font-size: 0.9rem;
+    color: var(--env-text-muted);
+  }
+
+  /* Heavy Lifting Cards */
+  .off-env-lift-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--env-radius-lg);
+    padding: 1.75rem;
+  }
+
+  .off-env-lift-header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .off-env-lift-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(126, 226, 173, 0.16);
+    color: #7ee2ad;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    flex-shrink: 0;
+  }
+
+  .off-env-lift-card h3 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .off-env-code-sample {
+    margin-top: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--env-radius-sm);
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.84rem;
+    color: #b9f3d2;
+    overflow-x: auto;
+  }
+
+  /* Missing Data Out of Thin Air */
+  .off-env-callout {
+    background: linear-gradient(135deg, #fff8eb 0%, #ffffff 100%);
+    border: 1px solid #f2d7a7;
+    border-left: 6px solid var(--env-orange);
+    border-radius: var(--env-radius-md);
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .off-env-callout h3 {
+    color: var(--env-brown);
+    margin-bottom: 0.5rem;
+  }
+
+  .off-env-cta-band {
+    background: var(--env-surface);
+    border: 1px solid var(--env-border);
+    border-radius: var(--env-radius-lg);
+    padding: 2.25rem;
+    text-align: center;
+    box-shadow: var(--env-shadow);
+  }
+
+  .off-env-btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+  }
+
+  .off-env-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.78rem 1.35rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.96rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .off-env-btn--primary {
+    background: var(--env-green);
+    color: #ffffff;
+  }
+
+  .off-env-btn--primary:hover {
+    background: var(--env-forest);
+    transform: translateY(-1px);
+  }
+
+  .off-env-btn--secondary {
+    background: var(--env-surface-alt);
+    color: var(--env-forest-dark);
+    border: 1px solid var(--env-border);
+  }
+
+  .off-env-btn--secondary:hover {
+    background: var(--env-green-soft);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 960px) {
+    .off-env-grid-3,
+    .off-env-pipeline,
+    .off-env-showcase {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .off-env-grid-2,
+    .off-env-showcase-stats {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .off-env-pill,
+    .off-env-btn {
+      transition: none;
+    }
+    .off-env-pill:hover,
+    .off-env-btn:hover {
+      transform: none;
+    }
+  }
+</style>
+
+<div class="off-env-page" id="environment-page">
+  <!-- HERO -->
+  <header class="off-env-hero">
+    <div class="off-env-container">
+      <div class="off-env-badge">
+        <span aria-hidden="true">🌍</span>
+        <span>Open Food Facts &amp; The Environment</span>
+      </div>
+      <h1>Turning Raw Food Labels into <span class="env-accent">Environmental Clarity</span></h1>
+      <p class="off-env-lead">
+        Food systems account for a quarter to a third of global greenhouse gas emissions, biodiversity loss, and deforestation.
+        Open Food Facts reverse-engineers the global food chain—transforming crowdsourced packaging photos into structured data,
+        open scientific scores, and real-world impact on supermarket shelves.
+      </p>
+      <nav class="off-env-nav-pills" aria-label="Page sections">
+        <a class="off-env-pill" href="#scoring-frameworks">🌱 Scoring Frameworks</a>
+        <a class="off-env-pill" href="#data-pipeline">⚙️ Raw to Environmental Data</a>
+        <a class="off-env-pill" href="#digital-to-physical">🛒 Digital-to-Physical Impact</a>
+        <a class="off-env-pill" href="#heavy-lifting">🔬 The Heavy Lifting</a>
+        <a class="off-env-pill" href="#missing-data">✨ Creating Missing Data</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 1. SCORING FRAMEWORKS -->
+  <section id="scoring-frameworks" class="off-env-section">
+    <div class="off-env-container">
+      <div class="off-env-section-head">
+        <span class="off-env-kicker">Three Complementary Pillars</span>
+        <h2>Our Environmental Scoring Efforts</h2>
+        <p>
+          Rather than inventing proprietary black-box ratings, Open Food Facts operationalizes peer-reviewed public science
+          and open-source calculation engines across three complementary environmental indicators.
+        </p>
+      </div>
+
+      <div class="off-env-grid-3">
+        <!-- Green-Score -->
+        <article class="off-env-card">
+          <div class="off-env-card-top">
+            <img src="https://static.openfoodfacts.org/images/attributes/dist/green-score-a.svg" alt="Green-Score A logo" width="110" height="44">
+            <span class="off-env-tag">A+ to F Grade</span>
+          </div>
+          <h3>Green-Score</h3>
+          <p>
+            Co-founded in 2021 (originally as Eco-Score, renamed <strong>Green-Score</strong> at the end of 2024), this front-of-pack
+            grade summarizes 15+ Life Cycle Assessment (LCA) indicators from ADEME &amp; INRAE’s <strong>Agribalyse</strong> database.
+          </p>
+          <ul class="off-env-list">
+            <li><strong>Baseline LCA:</strong> Agriculture, processing, packaging, transport, distribution, and consumption.</li>
+            <li><strong>Bonus &amp; Malus Modulators:</strong> Official eco-labels (Organic, Fair Trade, MSC/ASC), ingredient origins, threatened species, and packaging circularity.</li>
+            <li><strong>European Scale:</strong> Partnering in the <strong>FOODTURE</strong> consortium to expand harmonized LCA coverage across 31 European countries.</li>
+          </ul>
+          <a class="off-env-card-link" href="/green-score">Explore Green-Score methodology →</a>
+        </article>
+
+        <!-- Forest Footprint -->
+        <article class="off-env-card">
+          <div class="off-env-card-top">
+            <div class="off-env-icon-box" aria-hidden="true">🌳</div>
+            <span class="off-env-tag off-env-tag--amber">Deforestation Risk</span>
+          </div>
+          <h3>Forest Footprint</h3>
+          <p>
+            Built in collaboration with the environmental NGO <strong>Envol Vert</strong>, the Forest Footprint quantifies the surface
+            area of tropical and temperate forest threatened with deforestation to produce a food item’s ingredients.
+          </p>
+          <ul class="off-env-list">
+            <li><strong>Embedded Soy in Feed:</strong> Estimates soy feed required for chicken, eggs, and livestock products—even when labeled “Packed in Europe”.</li>
+            <li><strong>Expanded Risk Commodities:</strong> Tracks palm oil, cocoa, coffee, beef, and risky ingredients with origin-aware risk factors.</li>
+            <li><strong>Certification Offsets:</strong> Credits verified deforestation-free, GMO-free, organic, and Label Rouge supply chains.</li>
+          </ul>
+          <a class="off-env-card-link" href="/forest-footprint-of-food-products">Read about Forest Footprint →</a>
+        </article>
+
+        <!-- Coût Environnemental -->
+        <article class="off-env-card">
+          <div class="off-env-card-top">
+            <div class="off-env-icon-box" aria-hidden="true">⚖️</div>
+            <span class="off-env-tag off-env-tag--teal">Ecobalyse Engine</span>
+          </div>
+          <h3>Coût Environnemental</h3>
+          <p>
+            Open Food Facts integrates directly with France’s official open-source <strong>Ecobalyse</strong> calculation engine
+            (developed under ADEME &amp; the Ministry for Ecological Transition) to compute granular <em>Coût Environnemental</em> impact points.
+          </p>
+          <ul class="off-env-list">
+            <li><strong>Automated API Pipeline:</strong> Real-time Ecobalyse computation triggered on product edits with smart caching.</li>
+            <li><strong>PEF-Aligned Multi-Criteria:</strong> Aggregates 16 environmental impact dimensions into a single comparable impact cost.</li>
+            <li><strong>Granular Inputs:</strong> Maps taxonomy categories, ingredient ratios, storage conditions, and packaging specs.</li>
+          </ul>
+          <a class="off-env-card-link" href="/scores-and-methodologies">See all scoring engines →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. RAW DATA -> STRUCTURED DATA -> ENVIRONMENTAL DATA -->
+  <section id="data-pipeline" class="off-env-section off-env-section--alt">
+    <div class="off-env-container">
+      <div class="off-env-section-head">
+        <span class="off-env-kicker">End-to-End Architecture</span>
+        <h2>From Raw Packaging Photos to Environmental Scores</h2>
+        <p>
+          Environmental labels cannot be computed from raw pixels or free-form marketing text. Open Food Facts runs a
+          three-stage open data pipeline that turns chaotic packaging data into actionable environmental intelligence.
+        </p>
+      </div>
+
+      <div class="off-env-pipeline">
+        <div class="off-env-stage">
+          <div class="off-env-stage-num">Stage 1 · Capture</div>
+          <h3>Raw Crowdsourced Data</h3>
+          <p>
+            Millions of citizens, producers, and researchers upload barcodes, front/back packaging photos, raw ingredient strings,
+            nutrition tables, and recycling symbols from supermarkets worldwide.
+          </p>
+          <div class="off-env-chips">
+            <span class="off-env-chip">Barcodes (EAN/UPC)</span>
+            <span class="off-env-chip">Packaging Photos</span>
+            <span class="off-env-chip">Raw Ingredient Text</span>
+            <span class="off-env-chip">Health &amp; Eco Marks</span>
+          </div>
+        </div>
+
+        <div class="off-env-stage off-env-stage--2">
+          <div class="off-env-stage-num">Stage 2 · Normalize</div>
+          <h3>Structured, Linked Data</h3>
+          <p>
+            OCR, computer vision, and multilingual taxonomies parse raw text into standardized entities: hierarchical categories,
+            ingredient trees with estimated percentages, normalized origins, certifications, and packaging materials.
+          </p>
+          <div class="off-env-chips">
+            <span class="off-env-chip">Categories Taxonomy</span>
+            <span class="off-env-chip">Ingredients Tree</span>
+            <span class="off-env-chip">Origins &amp; Labels</span>
+            <span class="off-env-chip">Packaging Components</span>
+          </div>
+        </div>
+
+        <div class="off-env-stage off-env-stage--3">
+          <div class="off-env-stage-num">Stage 3 · Compute &amp; Share</div>
+          <h3>Environmental Data &amp; Scores</h3>
+          <p>
+            Structured product records feed Agribalyse LCA lookups, Ecobalyse API calls, and Envol Vert deforestation models—producing
+            transparent Green-Score, Forest Footprint, and Coût Environnemental knowledge panels for everyone.
+          </p>
+          <div class="off-env-chips">
+            <span class="off-env-chip">Green-Score (A–E)</span>
+            <span class="off-env-chip">Forest Footprint</span>
+            <span class="off-env-chip">Coût Environnemental</span>
+            <span class="off-env-chip">Open API &amp; Bulk Exports</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DIGITAL TO PHYSICAL IMPACT: COLRUYT BELGIUM -->
+  <section id="digital-to-physical" class="off-env-section">
+    <div class="off-env-container">
+      <div class="off-env-section-head">
+        <span class="off-env-kicker">Digital-to-Physical Impact</span>
+        <h2>From Open Database to Supermarket Aisles: Colruyt Belgium</h2>
+        <p>
+          Open data achieves its highest impact when it leaves the screen and meets shoppers at the exact moment of choice.
+        </p>
+      </div>
+
+      <div class="off-env-showcase">
+        <div>
+          <h3>Pioneering In-Store Environmental Transparency</h3>
+          <p>
+            In 2021, Belgian retail leader <strong>Colruyt Group</strong> became the first major supermarket chain in Belgium to deploy
+            the Eco-Score (now <strong>Green-Score</strong>) across its physical stores and digital channels—bridging the gap between
+            open-source food science and everyday grocery shopping.
+          </p>
+          <ul class="off-env-list">
+            <li>
+              <strong>Electronic Shelf Labels &amp; Packaging:</strong> Shoppers see the color-coded Green-Score directly on store shelf tags,
+              aisle posters, and Colruyt private-label packaging (<em>Boni Selection, Boni Bio, Spar, Graindor, Everyday</em>) as well as partner brands.
+            </li>
+            <li>
+              <strong>Omnichannel Xtra Integration:</strong> Consumers can scan barcodes in-store with the Xtra app or filter online shopping lists
+              by environmental score, while cross-checking full breakdowns on Open Food Facts.
+            </li>
+            <li>
+              <strong>Incentivizing Reformulation:</strong> Putting an A–E grade on physical shelves creates immediate market pressure for
+              suppliers to switch to lower-impact ingredients, local sourcing, and recyclable packaging.
+            </li>
+          </ul>
+        </div>
+
+        <div class="off-env-showcase-stats">
+          <div class="off-env-stat-box">
+            <div class="off-env-stat-value">1st in Belgium</div>
+            <div class="off-env-stat-label">Major retailer to roll out Green-Score (2021) across physical stores</div>
+          </div>
+          <div class="off-env-stat-box">
+            <div class="off-env-stat-value">Shelf to App</div>
+            <div class="off-env-stat-label">Electronic price tags, private-label packs &amp; Xtra mobile integration</div>
+          </div>
+          <div class="off-env-stat-box">
+            <div class="off-env-stat-value">100+ Apps</div>
+            <div class="off-env-stat-label">Independent apps &amp; services powered by Open Food Facts open data</div>
+          </div>
+          <div class="off-env-stat-box">
+            <div class="off-env-stat-value">750k+ Products</div>
+            <div class="off-env-stat-label">Products evaluated with open, inspectable environmental breakdowns</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. THE HEAVY LIFTING -->
+  <section id="heavy-lifting" class="off-env-section off-env-section--dark">
+    <div class="off-env-container">
+      <div class="off-env-section-head">
+        <span class="off-env-kicker">Under the Hood</span>
+        <h2>The Heavy Lifting: Decoding Hidden Supply Chains</h2>
+        <p>
+          Accurate environmental scoring requires solving four notoriously messy data-engineering challenges that most
+          databases ignore.
+        </p>
+      </div>
+
+      <div class="off-env-grid-2">
+        <!-- 1. Factory Traceability -->
+        <article class="off-env-lift-card">
+          <div class="off-env-lift-header">
+            <div class="off-env-lift-icon" aria-hidden="true">🏭</div>
+            <h3>Mapping Factories via Traceability Codes</h3>
+          </div>
+          <p>
+            European and international packages carry cryptic oval health approval marks and packer codes (such as
+            <code>FR 56.251.001 CE</code> or <code>EMB 29150</code>), as well as <strong>MSC/ASC fishery codes</strong> and
+            <strong>FAO marine fishing zones</strong>. Open Food Facts decodes and links these identifiers to official veterinary
+            and fishery registries to pinpoint the exact processing plant, country, and catch area.
+          </p>
+          <div class="off-env-code-sample">
+            Barcode → Health Mark (FR 56.251.001 CE) → Exact Plant &amp; Region → Transport &amp; Grid Footprint
+          </div>
+        </article>
+
+        <!-- 2. Detecting Origins -->
+        <article class="off-env-lift-card">
+          <div class="off-env-lift-header">
+            <div class="off-env-lift-icon" aria-hidden="true">🧭</div>
+            <h3>Detecting Origins from Ingredients &amp; On-Pack Claims</h3>
+          </div>
+          <p>
+            Origin information is scattered across front-of-pack badges (“Made in Belgium”), legal origin lines (“Milk: EU / Non-EU”),
+            and parentheticals inside ingredient lists (“tomatoes (Italy)”, “cocoa (West Africa)”). Our parsers extract and normalize
+            these multilingual clues into structured country and region tags to compute transport impact and national environmental policy scores.
+          </p>
+          <div class="off-env-code-sample">
+            "Hazelnuts (13%, Turkey), Cocoa (Ivory Coast)" → origins: [tr, ci] → Country &amp; Transport Modulators
+          </div>
+        </article>
+
+        <!-- 3. Fine-Grained Categorisation -->
+        <article class="off-env-lift-card">
+          <div class="off-env-lift-header">
+            <div class="off-env-lift-icon" aria-hidden="true">🗂️</div>
+            <h3>Fine-Grained Categorisation for Specific LCA</h3>
+          </div>
+          <p>
+            A generic “dairy” or “snacks” bucket is useless for Life Cycle Assessment: beef lasagna has a vastly different footprint
+            from vegetable lasagna, and oat yogurt differs fundamentally from cow’s milk yogurt. Open Food Facts classifies products
+            into thousands of fine-grained taxonomy nodes—plus storage conditions (ambient, chilled, frozen)—so each product matches
+            its exact Agribalyse / Ecobalyse LCA archetype.
+          </p>
+          <div class="off-env-code-sample">
+            "Plant-based fermented oat dessert" → en:oat-yogurts → Specific Agribalyse / Ecobalyse LCA ID
+          </div>
+        </article>
+
+        <!-- 4. Detecting Palm Oil -->
+        <article class="off-env-lift-card">
+          <div class="off-env-lift-header">
+            <div class="off-env-lift-icon" aria-hidden="true">🦧</div>
+            <h3>Detecting Palm Oil Under All Its Variations</h3>
+          </div>
+          <p>
+            Pioneered by Open Food Facts in 2012, our ingredient analysis engine unmasks palm oil even when disguised behind
+            technical, fractional, or chemical names across dozens of languages—while also recognizing certified sustainable
+            palm oil labels (e.g., RSPO) to distinguish uncertified deforestation risk from verified supply chains.
+          </p>
+          <div class="off-env-code-sample">
+            Matches: "palm oil", "palm kernel oil", "palmitic acid", "sodium palmate", "fractionated palm fat", E471*
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CREATING THE MISSING DATA OUT OF THIN AIR -->
+  <section id="missing-data" class="off-env-section">
+    <div class="off-env-container">
+      <div class="off-env-section-head">
+        <span class="off-env-kicker">Reverse-Engineering the Food Chain</span>
+        <h2>Creating the Missing Data Out of Thin Air</h2>
+        <p>
+          Manufacturers rarely print exact ingredient percentages, packaging polymer weights, or full supply-chain logistics on the box.
+          Instead of waiting years for mandatory disclosure, we infer missing data transparently and scientifically.
+        </p>
+      </div>
+
+      <div class="off-env-callout">
+        <h3>Why Inference Matters: “Avoid Waiting for Industry or Government to Do the Work”</h3>
+        <p>
+          When exact data is absent, refusing to calculate a score leaves consumers in the dark. By combining legal labeling rules,
+          category baselines, citizen science, and conservative fallbacks, Open Food Facts turns incomplete packaging into actionable
+          environmental estimates—while clearly flagging where exact producer data would improve the score.
+        </p>
+      </div>
+
+      <div class="off-env-grid-3">
+        <article class="off-env-card">
+          <div class="off-env-icon-box" aria-hidden="true">📊</div>
+          <h3>Recipe &amp; Percentage Estimation</h3>
+          <p>
+            Ingredients are legally listed in descending order of weight. Using ingredient rank, known declared percentages,
+            nutrition facts constraints, and category recipe profiles, we estimate missing ingredient proportions to run LCA and
+            Forest Footprint calculations.
+          </p>
+        </article>
+
+        <article class="off-env-card">
+          <div class="off-env-icon-box" aria-hidden="true">📦</div>
+          <h3>Packaging &amp; Material Inference</h3>
+          <p>
+            Through citizen science campaigns like <em>Mission Emballages</em>, volunteers weighed and cataloged hundreds of thousands
+            of containers. When a product lacks packaging weight, category-level packaging ratios by format fill the gap cleanly.
+          </p>
+        </article>
+
+        <article class="off-env-card">
+          <div class="off-env-icon-box" aria-hidden="true">🌿</div>
+          <h3>Taxonomic &amp; Conservative Fallbacks</h3>
+          <p>
+            When a sub-ingredient or origin is unspecified, our engine inherits properties from parent ingredients or applies
+            conservative <code>en:unknown</code> origin footprints—rewarding brands that disclose verified origins and penalizing opacity.
+          </p>
+        </article>
+      </div>
+
+      <div class="off-env-cta-band" style="margin-top: 2.5rem;">
+        <h3>Radical Transparency Is a Collective Effort</h3>
+        <p style="max-width: 64ch; margin: 0.65rem auto 0; color: var(--env-text-muted);">
+          Whether you are a shopper scanning products, a food producer sharing exact recipes and packaging specs for free,
+          or a researcher building on our open datasets, you can help turn missing data into environmental action.
+        </p>
+        <div class="off-env-btn-row">
+          <a class="off-env-btn off-env-btn--primary" href="/contribute">Contribute as a Citizen →</a>
+          <a class="off-env-btn off-env-btn--secondary" href="https://world.pro.openfoodfacts.org" target="_blank" rel="noopener noreferrer">Producers: Share Product Data →</a>
+          <a class="off-env-btn off-env-btn--secondary" href="/data">Explore Open Datasets →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>
