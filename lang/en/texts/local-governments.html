@@ -1,0 +1,791 @@
+<!-- no side column -->
+<!--
+  ============================================================================
+  Open Food Facts — Local Governments & Territorial Transition (lang/en/texts/local-governments.html)
+  ============================================================================
+  Protected brand names (never translate):
+  Open Food Facts, Open Beauty Facts, Open Pet Food Facts, Open Prices,
+  Nutri-Score, Eco-Score, Green-Score, NOVA.
+  ============================================================================
+-->
+<style>
+  .off-lg-wrap {
+    --off-espresso: #341100;
+    --off-espresso-mid: #473526;
+    --off-cream: #f9f8f6;
+    --off-peach-tint: #ece0db;
+    --off-orange: #ed8857;
+    --off-orange-dark: #c2410c;
+    --off-green: #1e7e45;
+    --off-green-dark: #124e33;
+    --off-green-light: #e8f5e9;
+    --off-teal: #0e6b66;
+    --off-teal-light: #e4f4f3;
+    --off-blue: #1976d2;
+    --off-blue-light: #eff6ff;
+    --off-border: #e2e8f0;
+    --off-surface: #ffffff;
+    --off-text-muted: #52606d;
+    --off-radius-pill: 999px;
+    --off-radius-card: 18px;
+    --off-shadow-sm: 0 4px 14px rgba(52, 17, 0, 0.05);
+    --off-shadow-md: 0 10px 28px rgba(52, 17, 0, 0.08);
+    font-family: "Plus Jakarta Sans", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--off-espresso);
+    max-width: 1200px;
+    margin: 0 auto 3.5rem auto;
+    padding: 0 1rem;
+    line-height: 1.6;
+    box-sizing: border-box;
+  }
+
+  .off-lg-wrap *,
+  .off-lg-wrap *::before,
+  .off-lg-wrap *::after {
+    box-sizing: border-box;
+  }
+
+  .off-lg-wrap h1,
+  .off-lg-wrap h2,
+  .off-lg-wrap h3,
+  .off-lg-wrap h4 {
+    color: var(--off-espresso);
+    font-weight: 800;
+    line-height: 1.25;
+    margin-top: 0;
+  }
+
+  /* Hero */
+  .off-lg-hero {
+    background: linear-gradient(165deg, #ffffff 0%, var(--off-cream) 65%, var(--off-green-light) 100%);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 26px;
+    padding: clamp(2rem, 4.5vw, 3.5rem);
+    margin: 1.5rem 0 2.5rem 0;
+    box-shadow: var(--off-shadow-md);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .off-lg-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--off-green-dark);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.45rem 1.15rem;
+    border-radius: var(--off-radius-pill);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+  }
+
+  .off-lg-hero h1 {
+    font-size: clamp(2rem, 4.2vw, 3.15rem);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.9rem;
+  }
+
+  .off-lg-hero .off-lg-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.38rem);
+    font-weight: 600;
+    color: var(--off-green);
+    margin: 0 auto 1.15rem auto;
+    max-width: 820px;
+  }
+
+  .off-lg-hero p.off-lg-lead {
+    font-size: 1.04rem;
+    color: var(--off-espresso-mid);
+    max-width: 840px;
+    margin: 0 auto 1.85rem auto;
+  }
+
+  .off-lg-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    justify-content: center;
+  }
+
+  .off-lg-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.78rem 1.45rem;
+    border-radius: var(--off-radius-pill);
+    font-weight: 700;
+    font-size: 0.96rem;
+    text-decoration: none !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    cursor: pointer;
+  }
+
+  .off-lg-btn-primary {
+    background: var(--off-green-dark);
+    color: #ffffff !important;
+    border: 2px solid var(--off-green-dark);
+  }
+
+  .off-lg-btn-primary:hover {
+    background: var(--off-green);
+    border-color: var(--off-green);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(18, 78, 51, 0.25);
+  }
+
+  .off-lg-btn-secondary {
+    background: #ffffff;
+    color: var(--off-espresso) !important;
+    border: 2px solid var(--off-peach-tint);
+  }
+
+  .off-lg-btn-secondary:hover {
+    border-color: var(--off-orange);
+    background: var(--off-cream);
+  }
+
+  /* Stats strip */
+  .off-lg-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2.25rem 0 0 0;
+  }
+
+  .off-lg-stat {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 16px;
+    padding: 1.1rem 1rem;
+    text-align: center;
+    box-shadow: var(--off-shadow-sm);
+  }
+
+  .off-lg-stat-value {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--off-orange-dark);
+    line-height: 1.15;
+    margin-bottom: 0.25rem;
+  }
+
+  .off-lg-stat-label {
+    font-size: 0.88rem;
+    color: var(--off-text-muted);
+    font-weight: 600;
+  }
+
+  /* Sections */
+  .off-lg-section {
+    margin: 3.25rem 0;
+  }
+
+  .off-lg-section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+  }
+
+  .off-lg-section-kicker {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--off-green);
+    background: var(--off-green-light);
+    padding: 0.3rem 0.85rem;
+    border-radius: var(--off-radius-pill);
+    margin-bottom: 0.75rem;
+  }
+
+  .off-lg-section-header h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-bottom: 0.65rem;
+  }
+
+  .off-lg-section-header p {
+    color: var(--off-text-muted);
+    font-size: 1.02rem;
+    margin: 0;
+  }
+
+  /* Grids & Cards */
+  .off-lg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.35rem;
+  }
+
+  .off-lg-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .off-lg-card {
+    background: var(--off-surface);
+    border: 1px solid var(--off-border);
+    border-radius: var(--off-radius-card);
+    padding: 1.5rem;
+    box-shadow: var(--off-shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .off-lg-card-accent-green {
+    border-top: 4px solid var(--off-green);
+  }
+
+  .off-lg-card-accent-orange {
+    border-top: 4px solid var(--off-orange);
+  }
+
+  .off-lg-card-accent-teal {
+    border-top: 4px solid var(--off-teal);
+  }
+
+  .off-lg-card-accent-blue {
+    border-top: 4px solid var(--off-blue);
+  }
+
+  .off-lg-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    background: var(--off-cream);
+    border: 1px solid var(--off-peach-tint);
+  }
+
+  .off-lg-card h3 {
+    font-size: 1.18rem;
+    margin: 0.25rem 0 0 0;
+  }
+
+  .off-lg-card p {
+    margin: 0;
+    color: var(--off-espresso-mid);
+    font-size: 0.96rem;
+  }
+
+  .off-lg-card ul {
+    margin: 0.35rem 0 0 0;
+    padding-left: 1.2rem;
+    color: var(--off-espresso-mid);
+    font-size: 0.94rem;
+  }
+
+  .off-lg-card li {
+    margin-bottom: 0.35rem;
+  }
+
+  .off-lg-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  .off-lg-tag {
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--off-radius-pill);
+    background: var(--off-cream);
+    color: var(--off-espresso-mid);
+    border: 1px solid var(--off-peach-tint);
+  }
+
+  .off-lg-tag-green {
+    background: var(--off-green-light);
+    color: var(--off-green-dark);
+    border-color: #bbf7d0;
+  }
+
+  .off-lg-tag-teal {
+    background: var(--off-teal-light);
+    color: var(--off-teal);
+    border-color: #b2dedb;
+  }
+
+  /* Featured Territory Card (Paris) */
+  .off-lg-spotlight {
+    background: linear-gradient(135deg, #ffffff 0%, var(--off-cream) 100%);
+    border: 2px solid var(--off-green);
+    border-radius: 22px;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    margin-bottom: 1.75rem;
+    box-shadow: var(--off-shadow-md);
+  }
+
+  .off-lg-spotlight-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--off-green-dark);
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.3rem 0.85rem;
+    border-radius: var(--off-radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Dat'Alim 4-step strip */
+  .off-lg-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.15rem;
+    margin-top: 1.5rem;
+  }
+
+  .off-lg-step {
+    background: var(--off-cream);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 16px;
+    padding: 1.25rem;
+  }
+
+  .off-lg-step-num {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #ffffff;
+    background: var(--off-orange-dark);
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--off-radius-pill);
+    margin-bottom: 0.6rem;
+  }
+
+  .off-lg-step h4 {
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .off-lg-step p {
+    font-size: 0.92rem;
+    color: var(--off-espresso-mid);
+    margin: 0;
+  }
+
+  /* Club Banner */
+  .off-lg-club-box {
+    background: linear-gradient(135deg, var(--off-green-dark) 0%, #0b4945 100%);
+    color: #ffffff;
+    border-radius: 26px;
+    padding: clamp(2rem, 4vw, 3.25rem);
+    box-shadow: var(--off-shadow-md);
+  }
+
+  .off-lg-club-box h2,
+  .off-lg-club-box h3,
+  .off-lg-club-box h4 {
+    color: #ffffff;
+  }
+
+  .off-lg-club-box p {
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .off-lg-club-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.15rem;
+    margin: 1.75rem 0;
+  }
+
+  .off-lg-club-pillar {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
+    padding: 1.25rem;
+  }
+
+  .off-lg-club-pillar h3 {
+    font-size: 1.06rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .off-lg-club-pillar p {
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  /* Contact Callout */
+  .off-lg-contact-box {
+    background: var(--off-cream);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 24px;
+    padding: clamp(1.75rem, 4vw, 2.75rem);
+    text-align: center;
+  }
+
+  .off-lg-contact-box p {
+    max-width: 720px;
+    margin: 0 auto 1.5rem auto;
+    color: var(--off-espresso-mid);
+  }
+</style>
+
+<div class="off-lg-wrap">
+  <!-- HERO -->
+  <section class="off-lg-hero" aria-labelledby="lg-hero-title">
+    <div class="off-lg-eyebrow">
+      <span aria-hidden="true">🏛️</span> Local Governments &amp; Territories
+    </div>
+    <h1 id="lg-hero-title">Open Food Facts for Local Governments</h1>
+    <p class="off-lg-subtitle">
+      Joining forces to reduce the health and environmental impacts of food consumption across your territory
+    </p>
+    <p class="off-lg-lead">
+      Open Food Facts is the open, collaborative, and strictly independent food database — the "Wikipedia of food." Together with municipalities, metropolitan areas, and regions, we turn credible, shared product data into concrete levers for public health, sustainable catering, local producers, and ecological transition.
+    </p>
+    <div class="off-lg-cta-row">
+      <a class="off-lg-btn off-lg-btn-primary" href="#engaged-territories">
+        <span aria-hidden="true">📍</span> See Engaged Local Governments
+      </a>
+      <a class="off-lg-btn off-lg-btn-secondary" href="#collaborate">
+        <span aria-hidden="true">🤝</span> How to Collaborate &amp; Support
+      </a>
+      <a class="off-lg-btn off-lg-btn-secondary" href="#territorial-club">
+        <span aria-hidden="true">🌱</span> Territorial Transition Club
+      </a>
+    </div>
+
+    <div class="off-lg-stats">
+      <div class="off-lg-stat">
+        <span class="off-lg-stat-value">1M+</span>
+        <span class="off-lg-stat-label">Food products referenced in 180+ countries</span>
+      </div>
+      <div class="off-lg-stat">
+        <span class="off-lg-stat-value">20,000+</span>
+        <span class="off-lg-stat-label">Active citizen contributors</span>
+      </div>
+      <div class="off-lg-stat">
+        <span class="off-lg-stat-value">100+</span>
+        <span class="off-lg-stat-label">Apps &amp; services powered by our open data</span>
+      </div>
+      <div class="off-lg-stat">
+        <span class="off-lg-stat-value">100%</span>
+        <span class="off-lg-stat-label">Independent non-profit (French 1901 association)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY TERRITORIES -->
+  <section class="off-lg-section" aria-labelledby="lg-why-title">
+    <div class="off-lg-section-header">
+      <span class="off-lg-section-kicker">Territorial Stakes</span>
+      <h2 id="lg-why-title">Why Food Transparency Is a Central Lever for Territories</h2>
+      <p>
+        Diet-related diseases and environmental footprints weigh heavily on local communities (in France alone, 1 in 2 adults is overweight and diet-related costs reach €50B/year for public health insurance). Credible, systematic, and shared product information helps answer three core territorial questions:
+      </p>
+    </div>
+
+    <div class="off-lg-grid">
+      <article class="off-lg-card off-lg-card-accent-green">
+        <div class="off-lg-card-icon" aria-hidden="true">🥗</div>
+        <h3>1. Eat Better Everyday</h3>
+        <p>
+          Empower residents, families, and schools with transparent, science-backed indicators (Nutri-Score, NOVA, Eco-Score / Green-Score) so everyone can make healthier, lower-impact food choices.
+        </p>
+      </article>
+      <article class="off-lg-card off-lg-card-accent-orange">
+        <div class="off-lg-card-icon" aria-hidden="true">🌾</div>
+        <h3>2. Produce Better at Low Cost</h3>
+        <p>
+          Give local farmers, artisans, and SMEs free access to our Producer Platform to reference local products, calculate scores, and simulate recipe improvements without costly consulting.
+        </p>
+      </article>
+      <article class="off-lg-card off-lg-card-accent-teal">
+        <div class="off-lg-card-icon" aria-hidden="true">📊</div>
+        <h3>3. Steer Local Food Policies</h3>
+        <p>
+          Leverage fine-grained territorial food and price data for your Territorial Food Projects (PAT), climate plans, public procurement, and local open-data portals.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ENGAGED LOCAL GOVERNMENTS -->
+  <section id="engaged-territories" class="off-lg-section" aria-labelledby="lg-engaged-title">
+    <div class="off-lg-section-header">
+      <span class="off-lg-section-kicker">Pioneer Territories</span>
+      <h2 id="lg-engaged-title">Local Governments &amp; Cities Already Engaged</h2>
+      <p>
+        From presenting at Open Food Facts Days to hosting participatory Scan Parties and price collection pilots, municipalities and local communities are already putting open food data into action.
+      </p>
+    </div>
+
+    <!-- Paris Spotlight -->
+    <article class="off-lg-spotlight">
+      <div class="off-lg-spotlight-badge">
+        <span aria-hidden="true">⭐</span> Featured Partner City — Open Food Facts Days &amp; Pilots
+      </div>
+      <h3>City of Paris (Mairie de Paris) &amp; Académie du Climat</h3>
+      <p>
+        The <strong>City of Paris (Mairie de Paris)</strong> has actively collaborated with Open Food Facts across multiple flagship initiatives, including presenting its territorial feedback at the annual <strong>Open Food Facts Days</strong>:
+      </p>
+      <ul>
+        <li>
+          <strong>Open Food Facts Days Speaker:</strong> Mairie de Paris shared how municipal teams and local facilities mobilize open food data and citizen science for ecological and food transition.
+        </li>
+        <li>
+          <strong>Académie du Climat (Paris 4e) — Packaging &amp; Eco-Score Scan Party (November 2023):</strong> 22 participants scanned and documented <strong>240 products</strong> (packaging materials, recycling symbols, and weights) to improve environmental scoring.
+        </li>
+        <li>
+          <strong>Paris Price Collection Pilot:</strong> Pilot deployment of <a href="https://prices.openfoodfacts.org" target="_blank" rel="noopener">Open Prices</a> data collection across 3 Parisian stores to map food prices and support purchasing-power &amp; food-access transparency.
+        </li>
+        <li>
+          <strong>Ongoing Parisian Community Events:</strong> Including Paris Scan Party Night (2014), the 1st Open Food Facts General Assembly (2015), Franprix Paris Scan Party (2016), and Les 400 Coop (Paris Region, 2023 — 320 products scanned).
+        </li>
+      </ul>
+    </article>
+
+    <!-- Other Cities & Territories Grid -->
+    <div class="off-lg-grid">
+      <article class="off-lg-card off-lg-card-accent-green">
+        <div class="off-lg-card-icon" aria-hidden="true">🌴</div>
+        <h3>Cayenne (French Guiana)</h3>
+        <p>
+          <strong>Cayenne Scan Party (June 2024):</strong> 20 local contributors scanned <strong>280 products</strong> across Cayenne city center and local grocers to document Caribbean, Amazonian, and overseas regional foods.
+        </p>
+        <div class="off-lg-tag-row">
+          <span class="off-lg-tag off-lg-tag-green">Scan Party</span>
+          <span class="off-lg-tag">280 products</span>
+        </div>
+      </article>
+
+      <article class="off-lg-card off-lg-card-accent-orange">
+        <div class="off-lg-card-icon" aria-hidden="true">🥤</div>
+        <h3>Nantes (with liberTIC)</h3>
+        <p>
+          <strong>Opération Sodas (June 2012):</strong> Historic civic-tech &amp; open-data scan campaign co-hosted in Nantes with liberTIC (alongside Paris), mobilizing 60 participants to document <strong>150 soda products</strong>.
+        </p>
+        <div class="off-lg-tag-row">
+          <span class="off-lg-tag off-lg-tag-teal">Civic Tech &amp; Open Data</span>
+          <span class="off-lg-tag">60 participants</span>
+        </div>
+      </article>
+
+      <article class="off-lg-card off-lg-card-accent-teal">
+        <div class="off-lg-card-icon" aria-hidden="true">🏔️</div>
+        <h3>Grenoble</h3>
+        <p>
+          <strong>L'Eléfàn Cooperative Scan Party (March 2024):</strong> 14 local participants documented <strong>190 products</strong> at Grenoble's cooperative supermarket, enriching data on local and organic offerings.
+        </p>
+        <div class="off-lg-tag-row">
+          <span class="off-lg-tag off-lg-tag-green">Scan Party</span>
+          <span class="off-lg-tag">190 products</span>
+        </div>
+      </article>
+
+      <article class="off-lg-card off-lg-card-accent-blue">
+        <div class="off-lg-card-icon" aria-hidden="true">🦁</div>
+        <h3>Lyon</h3>
+        <p>
+          <strong>La Melting Coop Scan Party (November 2024)</strong> &amp; <strong>Asian Specialty Market Scan Party (June 2015):</strong> Mobilizing local volunteers to document neighborhood and cooperative grocery products.
+        </p>
+        <div class="off-lg-tag-row">
+          <span class="off-lg-tag off-lg-tag-green">Scan Party</span>
+          <span class="off-lg-tag">Local Chapter</span>
+        </div>
+      </article>
+
+      <article class="off-lg-card off-lg-card-accent-green">
+        <div class="off-lg-card-icon" aria-hidden="true">🌿</div>
+        <h3>Rennes</h3>
+        <p>
+          <strong>Biomonde Rennes Scan Party (November 2024):</strong> Breton food data enthusiasts gathering to add organic and regional products to the open database.
+        </p>
+        <div class="off-lg-tag-row">
+          <span class="off-lg-tag off-lg-tag-green">Scan Party</span>
+          <span class="off-lg-tag">Brittany</span>
+        </div>
+      </article>
+
+      <article class="off-lg-card off-lg-card-accent-orange">
+        <div class="off-lg-card-icon" aria-hidden="true">☎️</div>
+        <h3>London &amp; Rural UK</h3>
+        <p>
+          <strong>Operation Phonebox (June 2021):</strong> 30 volunteers documented <strong>210 products</strong> with community food larders and repurposed red telephone kiosks.
+        </p>
+        <div class="off-lg-tag-row">
+          <span class="off-lg-tag off-lg-tag-green">Scan Party</span>
+          <span class="off-lg-tag">210 products</span>
+        </div>
+      </article>
+    </div>
+
+    <div style="text-align: center; margin-top: 1.75rem;">
+      <a class="off-lg-btn off-lg-btn-secondary" href="/scan-parties">
+        <span aria-hidden="true">🗺️</span> Explore All Scan Parties &amp; Playbooks →
+      </a>
+    </div>
+  </section>
+
+  <!-- HOW TO SUPPORT & COLLABORATE -->
+  <section id="collaborate" class="off-lg-section" aria-labelledby="lg-collab-title">
+    <div class="off-lg-section-header">
+      <span class="off-lg-section-kicker">Action &amp; Support</span>
+      <h2 id="lg-collab-title">How Your Local Government Can Support &amp; Collaborate with Open Food Facts</h2>
+      <p>
+        Whether you are a small municipality, a metropolis, or a regional council, there are concrete, accessible ways to support the food data commons and deploy high-impact actions locally.
+      </p>
+    </div>
+
+    <div class="off-lg-grid-2">
+      <article class="off-lg-card off-lg-card-accent-orange">
+        <div class="off-lg-card-icon" aria-hidden="true">📸</div>
+        <h3>Host a Territorial Scan Party</h3>
+        <p>
+          Mobilize residents, schools, youth councils, climate centers, or associations to photograph and reference local food products, packaging, and recycling labels. We provide the methodology, mobile app, and campaign tracking.
+        </p>
+        <ul>
+          <li>Showcase local producers and short supply chains</li>
+          <li>Raise citizen awareness on nutrition, ultra-processing (NOVA), and packaging</li>
+          <li>Feed your local Open Data portal with verified product records</li>
+        </ul>
+      </article>
+
+      <article class="off-lg-card off-lg-card-accent-blue">
+        <div class="off-lg-card-icon" aria-hidden="true">🏷️</div>
+        <h3>Launch an Open Prices Collection Action</h3>
+        <p>
+          Support <a href="https://prices.openfoodfacts.org" target="_blank" rel="noopener">Open Prices</a> by organizing price-collection drives in local supermarkets and markets (following the Paris 3-store pilot model).
+        </p>
+        <ul>
+          <li>Monitor food inflation and price disparities across neighborhoods</li>
+          <li>Link price data with nutritional &amp; environmental quality</li>
+          <li>Identify coverage gaps using our territorial gap-map tools</li>
+        </ul>
+      </article>
+
+      <article class="off-lg-card off-lg-card-accent-green">
+        <div class="off-lg-card-icon" aria-hidden="true">🍽️</div>
+        <h3>Public Catering (Restauration collective) Tools</h3>
+        <p>
+          In public and private collective catering, recipes and ingredients change constantly, making Nutri-Score and Green-Score calculation complex. Collaborate with us on our free, open-source recipe calculator (API or white-label tool) to manage menus, recipes, and labeling.
+        </p>
+      </article>
+
+      <article class="off-lg-card off-lg-card-accent-teal">
+        <div class="off-lg-card-icon" aria-hidden="true">🤝</div>
+        <h3>Grants, Open Data &amp; Institutional Partnerships</h3>
+        <p>
+          Support Open Food Facts as a digital public infrastructure through project grants, municipal subsidies, co-hosting <a href="/partners">institutional events</a> like Open Food Facts Days, or commissioning a territorial Dat’Alim program.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- DAT'ALIM PROGRAM -->
+  <section class="off-lg-section" aria-labelledby="lg-datalim-title">
+    <div class="off-lg-section-header">
+      <span class="off-lg-section-kicker">Turnkey Territorial Program</span>
+      <h2 id="lg-datalim-title">Dat’Alim: Mobilizing Citizens, Local Producers &amp; Open Data</h2>
+      <p>
+        Our flagship territorial methodology connects citizens, local authorities, and food producers to map and improve local food supply chains in 4 structured steps:
+      </p>
+    </div>
+
+    <div class="off-lg-steps">
+      <div class="off-lg-step">
+        <span class="off-lg-step-num">STEP 01</span>
+        <h4>Pilot Stakeholder Mobilization</h4>
+        <p>Multi-actor workshops to map existing data and select priority territorial use cases (local sourcing, schools, open data).</p>
+      </div>
+      <div class="off-lg-step">
+        <span class="off-lg-step-num">STEP 02</span>
+        <h4>Collection Preparation</h4>
+        <p>Build a local volunteer group, adapt collection tools, and prepare training kits for local producers.</p>
+      </div>
+      <div class="off-lg-step">
+        <span class="off-lg-step-num">STEP 03</span>
+        <h4>Territorial Collection &amp; Training</h4>
+        <p>Producer outreach, training sessions on the free Producer Platform, and citizen Scan Parties across the territory.</p>
+      </div>
+      <div class="off-lg-step">
+        <span class="off-lg-step-num">STEP 04</span>
+        <h4>Analysis &amp; Territorial Showcase</h4>
+        <p>Dedicated local-origin filters &amp; PDO highlights in Open Food Facts apps, "Made near you" maps, Datacamps, and Open Data publication.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLUB DES COLLECTIVITES -->
+  <section id="territorial-club" class="off-lg-section" aria-labelledby="lg-club-title">
+    <div class="off-lg-club-box">
+      <span class="off-lg-section-kicker" style="background: rgba(255,255,255,0.18); color: #ffffff;">
+        New Initiative — Call for Founding Members
+      </span>
+      <h2 id="lg-club-title" style="font-size: clamp(1.65rem, 3vw, 2.3rem); margin-bottom: 0.75rem;">
+        The Club of Local Governments Committed to Territorial Environmental Transition
+      </h2>
+      <p style="font-size: 1.04rem; max-width: 860px;">
+        We are sketching a dedicated peer network bringing together municipalities, intercommunalities, departments, and regions that want to place open food and price data at the heart of their ecological, health, and agricultural transition.
+      </p>
+
+      <div class="off-lg-club-grid">
+        <div class="off-lg-club-pillar">
+          <h3><span aria-hidden="true">🔄</span> Peer Exchange &amp; Playbooks</h3>
+          <p>Share concrete feedback on Scan Parties, Open Prices drives, school catering calculators, and PAT indicators across member territories.</p>
+        </div>
+        <div class="off-lg-club-pillar">
+          <h3><span aria-hidden="true">🧭</span> Co-Design Territorial Tools</h3>
+          <p>Help shape open-source features: local product badges, geographic origin filters, and territorial environmental dashboards.</p>
+        </div>
+        <div class="off-lg-club-pillar">
+          <h3><span aria-hidden="true">🎤</span> Annual Showcase at OFF Days</h3>
+          <p>Present your territory's results alongside pioneer cities like Mairie de Paris at the annual Open Food Facts Days.</p>
+        </div>
+        <div class="off-lg-club-pillar">
+          <h3><span aria-hidden="true">🌍</span> Shared Digital Commons</h3>
+          <p>Pool resources so every territory — large or small — benefits from independent, non-profit food transparency infrastructure.</p>
+        </div>
+      </div>
+
+      <div class="off-lg-cta-row" style="justify-content: flex-start;">
+        <a class="off-lg-btn" href="mailto:contact@openfoodfacts.org?subject=Club%20des%20collectivit%C3%A9s%20-%20Open%20Food%20Facts" style="background: #ffffff; color: var(--off-green-dark) !important;">
+          <span aria-hidden="true">✉️</span> Express Interest in Joining the Club
+        </a>
+        <a class="off-lg-btn" href="/partners" style="background: transparent; color: #ffffff !important; border: 2px solid rgba(255,255,255,0.45);">
+          <span aria-hidden="true">🏛️</span> View Institutional Partners →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CALLOUT -->
+  <section class="off-lg-contact-box" aria-labelledby="lg-contact-title">
+    <h2 id="lg-contact-title" style="font-size: 1.65rem; margin-bottom: 0.75rem;">
+      Ready to Launch an Initiative in Your Territory?
+    </h2>
+    <p>
+      Whether you want to organize a Scan Party, launch an Open Prices pilot, deploy Dat’Alim, support Open Food Facts as a local authority, or join the founding circle of the Territorial Transition Club, our team would love to talk.
+    </p>
+    <div class="off-lg-cta-row">
+      <a class="off-lg-btn off-lg-btn-primary" href="mailto:contact@openfoodfacts.org?subject=Local%20Government%20Collaboration%20-%20Open%20Food%20Facts">
+        <span aria-hidden="true">📬</span> Contact Us (contact@openfoodfacts.org)
+      </a>
+      <a class="off-lg-btn off-lg-btn-secondary" href="mailto:fundraising@openfoodfacts.org?subject=Municipal%20Grant%20or%20Partnership%20-%20Open%20Food%20Facts">
+        <span aria-hidden="true">🤝</span> Grants &amp; Partnerships (fundraising@openfoodfacts.org)
+      </a>
+    </div>
+  </section>
+</div>
