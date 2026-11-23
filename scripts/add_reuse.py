@@ -25,16 +25,25 @@ Usage:
 
 import argparse
 import contextlib
+import io
 import json
 import os
 import re
+import subprocess
 import sys
 import urllib.parse
+import urllib.request
 import yaml
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DATA_DIR = os.path.join(REPO_ROOT, "data")
 REUSES_DIR = os.path.join(DATA_DIR, "reuses")
+ICONS_DIR = os.path.join(REPO_ROOT, "html", "images", "reuses", "icons")
+ICON_EXTENSIONS = (".png", ".svg", ".webp", ".jpg", ".ico", ".gif")
+MAX_ICON_BYTES = 5 * 1024 * 1024
+ICON_USER_AGENT = (
+    "Mozilla/5.0 (compatible; OpenFoodFacts-Reuses/1.0; +https://world.openfoodfacts.org)"
+)
 
 # Import compilation and validation logic
 try:
@@ -114,6 +123,133 @@ def extract_domain(url):
         return netloc or None
     except Exception:
         return None
+
+
+def find_cached_icon(reuse_id, icons_dir=None):
+    """Return the relative web path if a cached icon already exists for reuse_id."""
+    if not reuse_id:
+        return None
+    target_dir = icons_dir or ICONS_DIR
+    for ext in ICON_EXTENSIONS:
+        if os.path.exists(os.path.join(target_dir, f"{reuse_id}{ext}")):
+            return f"/images/reuses/icons/{reuse_id}{ext}"
+    return None
+
+
+def _detect_raster_extension(data):
+    """Detect raster image extension from magic bytes, or return None."""
+    if data.startswith(b"\x89PNG\r\n\x1a\n"):
+        return ".png"
+    if data.startswith(b"\xff\xd8\xff"):
+        return ".jpg"
+    if data.startswith((b"GIF87a", b"GIF89a")):
+        return ".gif"
+    if len(data) >= 12 and data.startswith(b"RIFF") and data[8:12] == b"WEBP":
+        return ".webp"
+    if data.startswith(b"\x00\x00\x01\x00"):
+        return ".ico"
+    return None
+
+
+def _is_svg_content(data, content_type="", url_path=""):
+    """Check whether downloaded bytes represent an SVG image (and not HTML)."""
+    head = data.lstrip()[:4096].lower()
+    if b"<html" in head or b"<!doctype html" in head:
+        return False
+    if content_type == "image/svg+xml" and b"<svg" in head:
+        return True
+    if url_path.lower().endswith(".svg") and b"<svg" in head:
+        return True
+    if head.startswith((b"<svg", b"<?xml")) and b"<svg" in head:
+        return True
+    return False
+
+
+def cache_reuse_icon(icon_url, reuse_id, icons_dir=None):
+    """
+    Download icon_url and save a local cached copy under html/images/reuses/icons/.
+    Converts raster images to <=128x128 PNG when Pillow or macOS sips is available.
+    Returns the relative web path (e.g. '/images/reuses/icons/<id>.png') or None.
+    """
+    clean = clean_url(icon_url)
+    if not clean or not reuse_id:
+        return None
+
+    target_dir = icons_dir or ICONS_DIR
+    os.makedirs(target_dir, exist_ok=True)
+
+    try:
+        req = urllib.request.Request(clean, headers={"User-Agent": ICON_USER_AGENT})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            content_type = (resp.headers.get("Content-Type") or "").split(";", 1)[0].strip().lower()
+            data = resp.read(MAX_ICON_BYTES + 1)
+        if not data or len(data) > MAX_ICON_BYTES:
+            return None
+    except Exception as e:
+        print(f"[WARN] Could not download icon from {clean}: {e}", file=sys.stderr)
+        return None
+
+    url_path = urllib.parse.urlparse(clean).path
+
+    # Handle SVG directly
+    if _is_svg_content(data, content_type=content_type, url_path=url_path):
+        target_svg = os.path.join(target_dir, f"{reuse_id}.svg")
+        with open(target_svg, "wb") as f:
+            f.write(data)
+        return f"/images/reuses/icons/{reuse_id}.svg"
+
+    # Reject obvious HTML/text responses
+    head = data.lstrip()[:512].lower()
+    if head.startswith((b"<!doctype", b"<html")):
+        print(f"[WARN] Icon URL {clean} returned HTML instead of an image.", file=sys.stderr)
+        return None
+
+    target_png = os.path.join(target_dir, f"{reuse_id}.png")
+
+    # Try Pillow first (cross-platform, used in CI)
+    try:
+        from PIL import Image
+        with Image.open(io.BytesIO(data)) as img:
+            img = img.convert("RGBA")
+            resampling = getattr(getattr(Image, "Resampling", Image), "LANCZOS", Image.LANCZOS)
+            img.thumbnail((128, 128), resampling)
+            img.save(target_png, format="PNG")
+        if os.path.exists(target_png) and os.path.getsize(target_png) > 0:
+            return f"/images/reuses/icons/{reuse_id}.png"
+    except ImportError:
+        pass
+    except Exception as e:
+        print(f"[WARN] Pillow failed to process icon from {clean}: {e}", file=sys.stderr)
+
+    # Fallback to macOS sips
+    if sys.platform == "darwin":
+        temp_file = target_png + ".tmp"
+        try:
+            with open(temp_file, "wb") as f:
+                f.write(data)
+            conv = subprocess.run(
+                ["sips", "-s", "format", "png", "-Z", "128", temp_file, "--out", target_png],
+                capture_output=True,
+                text=True,
+            )
+            if conv.returncode == 0 and os.path.exists(target_png) and os.path.getsize(target_png) > 0:
+                return f"/images/reuses/icons/{reuse_id}.png"
+        except Exception:
+            pass
+        finally:
+            if os.path.exists(temp_file):
+                os.remove(temp_file)
+
+    # Final fallback: save raw raster bytes if magic bytes are valid
+    ext = _detect_raster_extension(data)
+    if ext:
+        target_raw = os.path.join(target_dir, f"{reuse_id}{ext}")
+        with open(target_raw, "wb") as f:
+            f.write(data)
+        return f"/images/reuses/icons/{reuse_id}{ext}"
+
+    print(f"[WARN] Unsupported or invalid image format from {clean}", file=sys.stderr)
+    return None
 
 
 def parse_issue_markdown(text):
@@ -253,11 +389,7 @@ def format_reuse_dict(raw_data, reuse_id=None):
     keywords_str = " ".join(kw_tokens)
 
     # Cached icon check
-    cached_icon = None
-    icon_rel_path = f"/images/reuses/icons/{r_id}.png"
-    icon_abs_path = os.path.join(REPO_ROOT, "html", "images", "reuses", "icons", f"{r_id}.png")
-    if os.path.exists(icon_abs_path):
-        cached_icon = icon_rel_path
+    cached_icon = find_cached_icon(r_id)
 
     icon_url = clean_url(raw_data.get("icon_url"))
 
@@ -363,6 +495,14 @@ def add_reuse(raw_data, reuse_id=None, overwrite=False, dry_run=False, do_compil
             "warnings": warnings
         }
 
+    # Cache icon locally when icon_url is provided so generated PRs don't hotlink
+    if item.get("icon_url") and (not item.get("cached_icon") or overwrite):
+        cached_path = cache_reuse_icon(item["icon_url"], r_id)
+        if cached_path:
+            item["cached_icon"] = cached_path
+        else:
+            warnings.append(f"{r_id}.yaml: could not cache icon from {item['icon_url']}")
+
     # Write YAML file
     with open(target_filepath, "w", encoding="utf-8") as f:
         yaml.safe_dump(item, f, sort_keys=False, allow_unicode=True)
@@ -389,6 +529,7 @@ def add_reuse(raw_data, reuse_id=None, overwrite=False, dry_run=False, do_compil
         "theme": item["theme"],
         "project": item["project"],
         "website": item.get("website") or item.get("github") or item.get("play_store") or item.get("app_store"),
+        "cached_icon": item.get("cached_icon"),
         "file": rel_filepath,
         "is_update": already_exists,
         "warnings": warnings
