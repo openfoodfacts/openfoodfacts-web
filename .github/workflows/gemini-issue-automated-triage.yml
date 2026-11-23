@@ -44,19 +44,19 @@ jobs:
 
     steps:
       - name: 'Checkout repository'
-        uses: 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' # v7
+        uses: 'actions/checkout@v7.0.1'
 
       - name: 'Generate GitHub App Token'
         id: 'generate_token'
         if: |-
           ${{ vars.APP_ID }}
-        uses: 'actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510' # v3.3.0
+        uses: 'actions/create-github-app-token@v3.3.0'
         with:
           app-id: '${{ vars.APP_ID }}'
           private-key: '${{ secrets.APP_PRIVATE_KEY }}'
 
       - name: 'Run Gemini Issue Triage'
-        uses: 'google-github-actions/run-gemini-cli@f77273f4c914e4bf38440cf36a0369cb64a37489' # v0
+        uses: 'google-github-actions/run-gemini-cli@v0.1.22'
         id: 'gemini_issue_triage'
         env:
           GITHUB_TOKEN: '${{ steps.generate_token.outputs.token || secrets.GITHUB_TOKEN }}'
@@ -118,7 +118,7 @@ jobs:
       - name: 'Post Issue Triage Failure Comment'
         if: |-
           ${{ failure() && steps.gemini_issue_triage.outcome == 'failure' }}
-        uses: 'actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3' # v9
+        uses: 'actions/github-script@v9.0.0'
         with:
           github-token: '${{ steps.generate_token.outputs.token || secrets.GITHUB_TOKEN }}'
           script: |-
