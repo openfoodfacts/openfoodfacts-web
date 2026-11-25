@@ -4,10 +4,13 @@ Unit tests for scripts/add_reuse.py
 """
 
 import os
+import re
 import shutil
 import sys
 import tempfile
 import unittest
+import urllib.error
+from unittest.mock import patch
 
 SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 if SCRIPTS_DIR not in sys.path:
@@ -35,6 +38,7 @@ try:
         add_reuse,
     )
     from scripts.compile_reuses import validate_reuse, VALID_THEMES, VALID_PROJECTS
+    from scripts.generate_showcase import generate_html
 except ImportError:
     from add_reuse import (
         slugify,
@@ -47,6 +51,7 @@ except ImportError:
         add_reuse,
     )
     from compile_reuses import validate_reuse, VALID_THEMES, VALID_PROJECTS
+    from generate_showcase import generate_html
 
 
 class TestAddReuse(unittest.TestCase):
@@ -247,6 +252,138 @@ scanner, eco-score, carbon footprint, organic
             add_reuse_module.REUSES_DIR = original_reuses_dir
         finally:
             shutil.rmtree(temp_dir)
+
+    def test_add_reuse_caches_png_icon(self):
+        temp_reuses_dir = tempfile.mkdtemp()
+        temp_icons_dir = tempfile.mkdtemp()
+        try:
+            import scripts.add_reuse as add_reuse_module
+            original_reuses_dir = add_reuse_module.REUSES_DIR
+            original_icons_dir = add_reuse_module.ICONS_DIR
+            add_reuse_module.REUSES_DIR = temp_reuses_dir
+            add_reuse_module.ICONS_DIR = temp_icons_dir
+
+            # Minimal valid 1x1 PNG
+            png_bytes = (
+                b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01"
+                b"\x08\x06\x00\x00\x00\x1f\x15c4\x00\x00\x00\rIDATx\x9cc```\x00\x00"
+                b"\x00\x05\x00\x01\xa5\xf6E@\x00\x00\x00\x00IEND\xaeB`\x82"
+            )
+
+            class FakeResp:
+                headers = {"Content-Type": "image/png"}
+                def read(self, n=-1):
+                    return png_bytes
+                def __enter__(self):
+                    return self
+                def __exit__(self, *args):
+                    return False
+
+            raw = {
+                "name": "Icon Cache App",
+                "tagline": "Tests icon caching",
+                "description": "Caches PNG icon locally.",
+                "theme": "tools",
+                "website": "https://icon-cache.example.org",
+                "icon_url": "https://icon-cache.example.org/logo.png",
+            }
+            with patch.object(add_reuse_module.urllib.request, "urlopen", return_value=FakeResp()):
+                res = add_reuse(raw, reuse_id="icon-cache-app", dry_run=False, do_compile=False)
+
+            self.assertTrue(res["success"])
+            self.assertEqual(res["cached_icon"], "/images/reuses/icons/icon-cache-app.png")
+            self.assertTrue(os.path.exists(os.path.join(temp_icons_dir, "icon-cache-app.png")))
+
+            with open(os.path.join(temp_reuses_dir, "icon-cache-app.yaml"), "r", encoding="utf-8") as f:
+                loaded = yaml.safe_load(f)
+            self.assertEqual(loaded["cached_icon"], "/images/reuses/icons/icon-cache-app.png")
+            self.assertEqual(loaded["icon_url"], "https://icon-cache.example.org/logo.png")
+        finally:
+            add_reuse_module.REUSES_DIR = original_reuses_dir
+            add_reuse_module.ICONS_DIR = original_icons_dir
+            shutil.rmtree(temp_reuses_dir)
+            shutil.rmtree(temp_icons_dir)
+
+    def test_add_reuse_caches_svg_icon_and_handles_failure(self):
+        temp_reuses_dir = tempfile.mkdtemp()
+        temp_icons_dir = tempfile.mkdtemp()
+        try:
+            import scripts.add_reuse as add_reuse_module
+            original_reuses_dir = add_reuse_module.REUSES_DIR
+            original_icons_dir = add_reuse_module.ICONS_DIR
+            add_reuse_module.REUSES_DIR = temp_reuses_dir
+            add_reuse_module.ICONS_DIR = temp_icons_dir
+
+            svg_bytes = b'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>'
+
+            class FakeSvgResp:
+                headers = {"Content-Type": "image/svg+xml"}
+                def read(self, n=-1):
+                    return svg_bytes
+                def __enter__(self):
+                    return self
+                def __exit__(self, *args):
+                    return False
+
+            raw_svg = {
+                "name": "SVG App",
+                "tagline": "Tests SVG icon caching",
+                "description": "Caches SVG icon locally.",
+                "theme": "tools",
+                "website": "https://svg.example.org",
+                "icon_url": "https://svg.example.org/logo.svg",
+            }
+            with patch.object(add_reuse_module.urllib.request, "urlopen", return_value=FakeSvgResp()):
+                res = add_reuse(raw_svg, reuse_id="svg-app", dry_run=False, do_compile=False)
+
+            self.assertTrue(res["success"])
+            self.assertEqual(res["cached_icon"], "/images/reuses/icons/svg-app.svg")
+            self.assertTrue(os.path.exists(os.path.join(temp_icons_dir, "svg-app.svg")))
+
+            # Download failure should warn but still succeed without cached_icon
+            raw_fail = {
+                "name": "Fail Icon App",
+                "tagline": "Tests failed icon download",
+                "description": "Should not fail when icon download fails.",
+                "theme": "tools",
+                "website": "https://fail.example.org",
+                "icon_url": "https://fail.example.org/missing.png",
+            }
+            with patch.object(
+                add_reuse_module.urllib.request,
+                "urlopen",
+                side_effect=urllib.error.URLError("network error"),
+            ):
+                res_fail = add_reuse(raw_fail, reuse_id="fail-icon-app", dry_run=False, do_compile=False)
+
+            self.assertTrue(res_fail["success"])
+            self.assertIsNone(res_fail["cached_icon"])
+            self.assertTrue(any("could not cache icon" in w for w in res_fail["warnings"]))
+        finally:
+            add_reuse_module.REUSES_DIR = original_reuses_dir
+            add_reuse_module.ICONS_DIR = original_icons_dir
+            shutil.rmtree(temp_reuses_dir)
+            shutil.rmtree(temp_icons_dir)
+
+    def test_generated_showcase_links_are_nofollow(self):
+        """Ensure all navigable links on generated reuses pages include nofollow and no icon_url hotlinking."""
+        for lang in ("en", "fr"):
+            html = generate_html(lang)
+            self.assertNotIn('rel="noopener noreferrer"', html)
+            self.assertNotIn("if (item.icon_url) return item.icon_url;", html)
+
+            anchor_tags = re.findall(r"<a\b[^>]*>", html)
+            navigable_tags = [tag for tag in anchor_tags if 'href="javascript:void(0)"' not in tag]
+            self.assertEqual(len(navigable_tags), 45)
+
+            for tag in navigable_tags:
+                rel_match = re.search(r'\brel=["\']([^"\']*)["\']', tag)
+                self.assertIsNotNone(rel_match, f"Missing rel attribute in {lang} link: {tag}")
+                rel_tokens = set(rel_match.group(1).split())
+                self.assertTrue(
+                    {"nofollow", "noopener", "noreferrer"}.issubset(rel_tokens),
+                    f"Missing expected rel tokens in {lang} link: {tag}",
+                )
 
 
 if __name__ == "__main__":
