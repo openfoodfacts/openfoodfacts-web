@@ -191,32 +191,33 @@ def validate_query(item, filepath):
     topic = item.get("topic")
     if not topic:
         errors.append(f"{filename}: missing required field 'topic'")
-    elif topic not in VALID_TOPICS:
+    elif not isinstance(topic, str) or topic not in VALID_TOPICS:
         errors.append(f"{filename}: invalid topic '{topic}', must be one of {sorted(list(VALID_TOPICS.keys()))}")
 
     # Required: query_type
     q_type = item.get("query_type")
     if not q_type:
         errors.append(f"{filename}: missing required field 'query_type'")
-    elif q_type not in VALID_QUERY_TYPES:
+    elif not isinstance(q_type, str) or q_type not in VALID_QUERY_TYPES:
         errors.append(f"{filename}: invalid query_type '{q_type}', must be one of {sorted(list(VALID_QUERY_TYPES.keys()))}")
 
     # Required: geographies
     geos = item.get("geographies")
-    if not geos or not isinstance(geos, list):
+    if not isinstance(geos, list) or not geos or not all(isinstance(geo, str) for geo in geos):
         errors.append(f"{filename}: 'geographies' must be a non-empty list of country codes (e.g. ['world', 'fr'])")
 
     # Required: url
     url = item.get("url")
-    if not url or not str(url).strip():
-        errors.append(f"{filename}: missing required field 'url'")
-    elif not (url.startswith("http://") or url.startswith("https://") or url.startswith("/")):
+    if not isinstance(url, str) or not url.strip():
+        errors.append(f"{filename}: 'url' must be a non-empty string")
+    elif not url.startswith(("http://", "https://", "/")):
         errors.append(f"{filename}: url must start with http://, https://, or /")
 
-    # Optional: tags_combined
-    tags_combined = item.get("tags_combined")
-    if tags_combined is not None and not isinstance(tags_combined, list):
-        errors.append(f"{filename}: 'tags_combined' must be a list of strings")
+    # Optional list fields are used directly to build the card's search index.
+    for field in ("tags_combined", "keywords"):
+        values = item.get(field, [])
+        if not isinstance(values, list) or not all(isinstance(value, str) for value in values):
+            errors.append(f"{filename}: '{field}' must be a list of strings")
 
     # Optional: featured
     featured = item.get("featured")
