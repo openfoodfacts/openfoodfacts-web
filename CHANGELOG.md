@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.13.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.12.0...v1.13.0) (2026-11-25)
+
+
+### Features
+
+* add agentic workflow to check reuse ODbL compliance ([#1110](https://github.com/openfoodfacts/openfoodfacts-web/issues/1110)) ([a47aea5](https://github.com/openfoodfacts/openfoodfacts-web/commit/a47aea530dad668d61fafa694955db3ff5cfb5b6))
+* **green-score:** redesign Green-Score page with translatable HTML Knowledge Panel ([#1114](https://github.com/openfoodfacts/openfoodfacts-web/issues/1114)) ([35c18f6](https://github.com/openfoodfacts/openfoodfacts-web/commit/35c18f661fcb78c74113e91a52afee2840d837e0))
+* Icon cache + nofollow ([#1098](https://github.com/openfoodfacts/openfoodfacts-web/issues/1098)) ([91f364d](https://github.com/openfoodfacts/openfoodfacts-web/commit/91f364d2c7fc4fd7ce53a1ef0811a64241b474fc))
+
+
+### Bug Fixes
+
+* **ci:** prevent Crowdin concurrent operation limit in sync workflow ([#1112](https://github.com/openfoodfacts/openfoodfacts-web/issues/1112)) ([f1d035b](https://github.com/openfoodfacts/openfoodfacts-web/commit/f1d035b6340b9bf787e225c3b533e542f8e7e57c))
+* trust workspace in Gemini CLI GitHub Actions workflows ([#1111](https://github.com/openfoodfacts/openfoodfacts-web/issues/1111)) ([f973f2c](https://github.com/openfoodfacts/openfoodfacts-web/commit/f973f2cfaa774ea3e7f4a21ca686fe52a9caa518))
+
 ## [1.12.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.11.0...v1.12.0) (2026-11-12)
 
 
