@@ -59,6 +59,7 @@ jobs:
         uses: 'google-github-actions/run-gemini-cli@v0.1.22'
         id: 'gemini_issue_triage'
         env:
+          GEMINI_CLI_TRUST_WORKSPACE: 'true'
           GITHUB_TOKEN: '${{ steps.generate_token.outputs.token || secrets.GITHUB_TOKEN }}'
           ISSUE_TITLE: '${{ github.event.issue.title }}'
           ISSUE_BODY: '${{ github.event.issue.body }}'
