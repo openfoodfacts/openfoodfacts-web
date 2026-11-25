@@ -106,6 +106,7 @@ jobs:
         id: 'gemini_odbl_check'
         uses: 'google-github-actions/run-gemini-cli@f77273f4c914e4bf38440cf36a0369cb64a37489' # v0
         env:
+          GEMINI_CLI_TRUST_WORKSPACE: 'true'
           GITHUB_TOKEN: '${{ steps.generate_token.outputs.token || secrets.GITHUB_TOKEN }}'
           TARGET_NUMBER: '${{ steps.get_context.outputs.target_number }}'
           IS_PR: '${{ steps.get_context.outputs.is_pr }}'
