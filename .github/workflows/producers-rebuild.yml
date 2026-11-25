@@ -23,10 +23,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7.0.1
 
       - name: Set up Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@v7.1.0
         with:
           python-version: "3.11"
 
@@ -39,7 +39,7 @@ jobs:
           python3 scripts/compile_producers.py
 
       - name: Commit and push changes if any
-        uses: stefanzweifel/git-auto-commit-action@v7
+        uses: stefanzweifel/git-auto-commit-action@v7.2.1
         with:
           commit_message: "chore(producers): recompile producers.json and static HTML showcase"
           file_pattern: "data/producers.json lang/en/texts/producers-sharing-data.html lang/en/texts/producers.html lang/fr/texts/producers-sharing-data.html lang/fr/texts/producers.html lang/fr/texts/producteurs.html producers-sharing-data.html producers.html"
