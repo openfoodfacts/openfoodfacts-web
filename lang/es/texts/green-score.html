@@ -1,280 +1,1099 @@
-<h1>Green-Score: el impacto ambiental de los productos alimenticios</h1>
+<!-- no side column -->
+<style>
+  #off-green-score-page {
+    --off-espresso: #341100;
+    --off-espresso-mid: #473526;
+    --off-cream: #fffaf5;
+    --off-cream-alt: #f9f8f6;
+    --off-peach-light: #fff3ec;
+    --off-peach-tint: #ece0db;
+    --off-orange: #ed8857;
+    --off-orange-hover: #d77243;
+    --off-green: #209552;
+    --off-green-dark: #166534;
+    --off-green-light: #e8f5e9;
+    --off-green-border: #bbf7d0;
+    --off-blue: #0284c7;
+    --off-blue-light: #eff6ff;
+    --off-amber: #b45309;
+    --off-amber-light: #fffbeb;
+    --off-red: #b91c1c;
+    --off-red-light: #fef2f2;
+    --off-text-main: #1f2937;
+    --off-text-muted: #4b5563;
+    --off-border: #e5e7eb;
+    --off-surface: #ffffff;
+    --off-radius-card: 20px;
+    --off-radius-pill: 999px;
+    --off-shadow-sm: 0 4px 14px rgba(52, 17, 0, 0.04);
+    --off-shadow-md: 0 10px 28px rgba(52, 17, 0, 0.06);
 
-<img src="https://static.openfoodfacts.org/images/attributes/dist/green-score-a.svg" alt="Green-Score">
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--off-text-main);
+    max-inline-size: 1200px;
+    margin-inline: auto;
+    margin-block-end: 3.5rem;
+    padding-inline: 1rem;
+    line-height: 1.6;
+    box-sizing: border-box;
+  }
 
-<p><i>El Green-Score es una puntuación ambiental de la A a la E que facilita la comparación del impacto de los productos alimenticios en el medio ambiente.</i></p>
+  #off-green-score-page *,
+  #off-green-score-page *::before,
+  #off-green-score-page *::after {
+    box-sizing: border-box;
+  }
 
-<p>Nota: Green-Score es el nuevo nombre del Eco-Score desde finales de 2024.</p>
+  #off-green-score-page h1,
+  #off-green-score-page h2,
+  #off-green-score-page h3,
+  #off-green-score-page h4 {
+    color: var(--off-espresso);
+    font-weight: 800;
+    line-height: 1.25;
+    margin-block-start: 0;
+  }
 
-<div class="row">
-<div class="small-12 large-7 xlarge-8 columns">
-<div class="panel"><toc></div>
+  #off-green-score-page a {
+    color: var(--off-green-dark);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  #off-green-score-page a:hover {
+    color: var(--off-espresso);
+  }
+
+  /* Pill Badges */
+  #off-green-score-page .gs-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--off-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: var(--off-green-light);
+    color: var(--off-green-dark);
+    border: 1px solid var(--off-green-border);
+    margin-block-end: 1rem;
+  }
+
+  #off-green-score-page .gs-pill.orange {
+    background: var(--off-peach-light);
+    color: var(--off-orange-hover);
+    border-color: #fed7aa;
+  }
+
+  #off-green-score-page .gs-pill.red {
+    background: var(--off-red-light);
+    color: var(--off-red);
+    border-color: #fecaca;
+  }
+
+  #off-green-score-page .gs-pill.amber {
+    background: var(--off-amber-light);
+    color: var(--off-amber);
+    border-color: #fde68a;
+  }
+
+  /* Hero Section */
+  #off-green-score-page .gs-hero {
+    background: linear-gradient(145deg, #ffffff 0%, var(--off-cream) 100%);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 28px;
+    padding: clamp(1.75rem, 4vw, 3.25rem);
+    margin-block-end: 2.5rem;
+    box-shadow: var(--off-shadow-md);
+  }
+
+  #off-green-score-page .gs-hero-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 2.25rem;
+    align-items: center;
+  }
+
+  #off-green-score-page .gs-hero h1 {
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-block-end: 0.85rem;
+  }
+
+  #off-green-score-page .gs-hero-lead {
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    color: var(--off-espresso-mid);
+    margin-block-start: 0;
+    margin-block-end: 1rem;
+  }
+
+  #off-green-score-page .gs-hero-note {
+    background: var(--off-surface);
+    border: 1px solid var(--off-peach-tint);
+    border-inline-start: 4px solid var(--off-green);
+    border-radius: 12px;
+    padding: 0.85rem 1.1rem;
+    font-size: 0.94rem;
+    color: var(--off-text-muted);
+    margin-block-end: 1.5rem;
+  }
+
+  #off-green-score-page .gs-toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-block-start: 0.5rem;
+  }
+
+  #off-green-score-page .gs-toc a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 0.95rem;
+    border-radius: var(--off-radius-pill);
+    background: var(--off-surface);
+    border: 1px solid var(--off-border);
+    color: var(--off-espresso);
+    font-size: 0.86rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  #off-green-score-page .gs-toc a:hover {
+    background: var(--off-green-light);
+    border-color: var(--off-green-border);
+    color: var(--off-green-dark);
+  }
+
+  #off-green-score-page .gs-hero-media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  #off-green-score-page .gs-hero-video {
+    inline-size: 100%;
+    max-inline-size: 400px;
+    block-size: auto;
+    border-radius: 16px;
+    box-shadow: var(--off-shadow-md);
+    border: 1px solid var(--off-peach-tint);
+    display: block;
+    background: #000000;
+  }
+
+  /* Sections */
+  #off-green-score-page .gs-section {
+    background: var(--off-surface);
+    border: 1px solid var(--off-border);
+    border-radius: var(--off-radius-card);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    margin-block-end: 2rem;
+    box-shadow: var(--off-shadow-sm);
+    scroll-margin-top: 1.5rem;
+  }
+
+  #off-green-score-page .gs-section-header {
+    border-block-end: 2px solid var(--off-cream-alt);
+    padding-block-end: 1rem;
+    margin-block-end: 1.5rem;
+  }
+
+  #off-green-score-page .gs-section-header h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    margin-block-end: 0.35rem;
+  }
+
+  #off-green-score-page .gs-section-header p {
+    margin: 0;
+    color: var(--off-text-muted);
+    font-size: 1rem;
+  }
+
+  /* Callout Boxes */
+  #off-green-score-page .gs-callout {
+    background: var(--off-cream-alt);
+    border: 1px solid var(--off-peach-tint);
+    border-radius: 16px;
+    padding: 1.35rem 1.5rem;
+    margin-block: 1.5rem;
+  }
+
+  #off-green-score-page .gs-callout.green {
+    background: var(--off-green-light);
+    border-color: var(--off-green-border);
+  }
+
+  #off-green-score-page .gs-callout h3 {
+    font-size: 1.15rem;
+    margin-block-end: 0.65rem;
+  }
+
+  #off-green-score-page .gs-callout ul {
+    margin-block-end: 0;
+  }
+
+  /* Grades Strip */
+  #off-green-score-page .gs-grades-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    padding: 1.25rem;
+    background: var(--off-cream-alt);
+    border-radius: 16px;
+    border: 1px solid var(--off-border);
+    margin-block: 1.5rem;
+  }
+
+  #off-green-score-page .gs-grades-strip img {
+    block-size: 68px;
+    inline-size: auto;
+    display: block;
+  }
+
+  /* Responsive Data Table */
+  #off-green-score-page .gs-table-wrap {
+    overflow: auto;
+    max-inline-size: 100%;
+    container-type: inline-size;
+    border: 1px solid var(--off-border);
+    border-radius: 14px;
+    margin-block: 1.25rem 1.75rem;
+  }
+
+  #off-green-score-page .gs-table {
+    inline-size: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  #off-green-score-page .gs-table caption {
+    text-align: start;
+    font-weight: 700;
+    color: var(--off-espresso);
+    padding: 0.85rem 1rem 0.5rem;
+    font-size: 0.98rem;
+  }
+
+  #off-green-score-page .gs-table thead th {
+    background: var(--off-cream-alt);
+    color: var(--off-espresso);
+    font-weight: 700;
+    text-align: start;
+    padding: 0.75rem 1rem;
+    border-block-end: 1px solid var(--off-border);
+  }
+
+  #off-green-score-page .gs-table tbody th,
+  #off-green-score-page .gs-table tbody td {
+    padding: 0.7rem 1rem;
+    border-block-end: 1px solid var(--off-border);
+    text-align: start;
+    vertical-align: middle;
+  }
+
+  #off-green-score-page .gs-table tbody tr:last-child th,
+  #off-green-score-page .gs-table tbody tr:last-child td {
+    border-block-end: none;
+  }
+
+  #off-green-score-page .gs-grade-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: 2.2rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 8px;
+    font-weight: 800;
+    color: #ffffff;
+    font-size: 0.9rem;
+  }
+
+  #off-green-score-page .gs-grade-a-plus { background: #1e8f4e; }
+  #off-green-score-page .gs-grade-a { background: #2d9f54; }
+  #off-green-score-page .gs-grade-b { background: #60b844; }
+  #off-green-score-page .gs-grade-c { background: #e6b800; color: #1f2937; }
+  #off-green-score-page .gs-grade-d { background: #ee8100; }
+  #off-green-score-page .gs-grade-e { background: #e63e11; }
+  #off-green-score-page .gs-grade-f { background: #b91c1c; }
+
+  @container (width < 460px) {
+    #off-green-score-page .gs-table thead {
+      display: none;
+    }
+    #off-green-score-page .gs-table,
+    #off-green-score-page .gs-table tbody,
+    #off-green-score-page .gs-table tr,
+    #off-green-score-page .gs-table th,
+    #off-green-score-page .gs-table td {
+      display: block;
+      inline-size: 100%;
+    }
+    #off-green-score-page .gs-table tr {
+      border-block-end: 1px solid var(--off-border);
+      padding: 0.5rem 0.75rem;
+    }
+    #off-green-score-page .gs-table tbody th,
+    #off-green-score-page .gs-table tbody td {
+      border-block-end: none;
+      padding: 0.25rem 0;
+    }
+  }
+
+  /* Formula Banner */
+  #off-green-score-page .gs-formula-banner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: linear-gradient(135deg, var(--off-green-light) 0%, #f0fdf4 100%);
+    border: 1px solid var(--off-green-border);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    margin-block: 1.25rem 1.75rem;
+  }
+
+  #off-green-score-page .gs-formula-text {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--off-espresso);
+    margin: 0;
+  }
+
+  /* Calculation Cards Grid */
+  #off-green-score-page .gs-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-block: 1.25rem 1.5rem;
+  }
+
+  #off-green-score-page .gs-card {
+    background: var(--off-cream-alt);
+    border: 1px solid var(--off-border);
+    border-radius: 16px;
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  #off-green-score-page .gs-card-head {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  #off-green-score-page .gs-card-icon {
+    inline-size: 38px;
+    block-size: 38px;
+    border-radius: 10px;
+    background: var(--off-surface);
+    border: 1px solid var(--off-border);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--off-green-dark);
+  }
+
+  #off-green-score-page .gs-card h4 {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  #off-green-score-page .gs-card p {
+    margin: 0;
+    font-size: 0.94rem;
+    color: var(--off-text-muted);
+  }
+
+  #off-green-score-page .gs-card .gs-pill {
+    margin-block-end: 0;
+    align-self: flex-start;
+  }
+
+  /* Two-column split for distribution + KP */
+  #off-green-score-page .gs-split-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.75rem;
+    align-items: start;
+    margin-block-start: 1.25rem;
+  }
+
+  #off-green-score-page .gs-figure {
+    margin: 0;
+    background: var(--off-cream-alt);
+    border: 1px solid var(--off-border);
+    border-radius: 16px;
+    padding: 1rem;
+  }
+
+  #off-green-score-page .gs-figure img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    border-radius: 10px;
+    border: 1px solid var(--off-border);
+  }
+
+  #off-green-score-page .gs-figure figcaption {
+    margin-block-start: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--off-text-muted);
+  }
+
+  /* Knowledge Panel (KP) HTML Excerpt */
+  #off-green-score-page .gs-kp-box {
+    background: var(--off-surface);
+    border: 1px solid var(--off-border);
+    border-radius: 18px;
+    padding: 1.25rem;
+    box-shadow: var(--off-shadow-sm);
+    container-type: inline-size;
+  }
+
+  #off-green-score-page .gs-kp-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.1rem;
+    border-radius: 14px;
+    background: var(--off-green-light);
+    border: 1px solid var(--off-green-border);
+    margin-block-end: 1rem;
+  }
+
+  #off-green-score-page .gs-kp-header img {
+    block-size: 60px;
+    inline-size: auto;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  #off-green-score-page .gs-kp-title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--off-green-dark);
+  }
+
+  #off-green-score-page .gs-kp-subtitle {
+    margin: 0.15rem 0 0;
+    font-size: 0.92rem;
+    color: var(--off-text-main);
+  }
+
+  #off-green-score-page .gs-kp-meta {
+    font-size: 0.88rem;
+    color: var(--off-text-muted);
+    margin-block-end: 0.85rem;
+  }
+
+  #off-green-score-page .gs-kp-group-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--off-text-muted);
+    margin: 1rem 0 0.45rem;
+  }
+
+  #off-green-score-page .gs-kp-details {
+    border: 1px solid var(--off-border);
+    border-radius: 12px;
+    margin-block-end: 0.65rem;
+    background: var(--off-surface);
+    overflow: clip;
+  }
+
+  #off-green-score-page .gs-kp-details summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0.95rem;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.94rem;
+    color: var(--off-espresso);
+    background: var(--off-cream-alt);
+  }
+
+  #off-green-score-page .gs-kp-details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #off-green-score-page .gs-kp-details summary::before {
+    content: "▸";
+    font-size: 0.95rem;
+    color: var(--off-text-muted);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  #off-green-score-page .gs-kp-details[open] > summary::before {
+    transform: rotate(90deg);
+  }
+
+  #off-green-score-page .gs-kp-details summary img {
+    block-size: 28px;
+    inline-size: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  #off-green-score-page .gs-kp-summary-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-inline-size: 0;
+    flex: 1;
+  }
+
+  #off-green-score-page .gs-kp-summary-sub {
+    font-weight: 500;
+    font-size: 0.84rem;
+    color: var(--off-text-muted);
+  }
+
+  #off-green-score-page .gs-kp-badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--off-radius-pill);
+    font-size: 0.78rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  #off-green-score-page .gs-kp-badge.good {
+    background: var(--off-green-light);
+    color: var(--off-green-dark);
+  }
+
+  #off-green-score-page .gs-kp-badge.bad {
+    background: var(--off-red-light);
+    color: var(--off-red);
+  }
+
+  #off-green-score-page .gs-kp-badge.avg {
+    background: var(--off-amber-light);
+    color: var(--off-amber);
+  }
+
+  #off-green-score-page .gs-kp-body {
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
+    border-block-start: 1px solid var(--off-border);
+  }
+
+  #off-green-score-page .gs-kp-body p {
+    margin-block: 0 0.55rem;
+  }
+
+  #off-green-score-page .gs-kp-stages {
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+    margin-block-start: 0.5rem;
+  }
+
+  #off-green-score-page .gs-kp-stages th,
+  #off-green-score-page .gs-kp-stages td {
+    padding: 0.4rem 0.45rem;
+    border-block-end: 1px solid var(--off-border);
+    text-align: start;
+  }
+
+  #off-green-score-page .gs-kp-stage-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  #off-green-score-page .gs-kp-stage-name img {
+    block-size: 18px;
+    inline-size: 18px;
+  }
+
+  #off-green-score-page .gs-kp-bar-track {
+    inline-size: 110px;
+    block-size: 10px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    margin-inline-end: 0.5rem;
+  }
+
+  #off-green-score-page .gs-kp-bar-fill {
+    block-size: 100%;
+    background: var(--off-green);
+    border-radius: 999px;
+  }
+
+  @container (width < 420px) {
+    #off-green-score-page .gs-kp-bar-track {
+      display: none;
+    }
+  }
+
+  /* CTA / Donate */
+  #off-green-score-page .gs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--off-orange);
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: var(--off-radius-pill);
+    transition: background-color 0.2s ease;
+  }
+
+  #off-green-score-page .gs-btn:hover {
+    background: var(--off-orange-hover);
+    color: #ffffff;
+  }
+
+  #off-green-score-page .gs-btn.green {
+    background: var(--off-green);
+  }
+
+  #off-green-score-page .gs-btn.green:hover {
+    background: var(--off-green-dark);
+  }
+
+  #off-green-score-page .gs-actors-img {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+    margin-block-start: 1rem;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 860px) {
+    #off-green-score-page .gs-hero-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div id="off-green-score-page">
+  <header class="gs-hero">
+    <div class="gs-hero-grid">
+      <div>
+        <span class="gs-pill">Puntuación de impacto ambiental</span>
+        <h1>Green-Score: el impacto ambiental de los productos alimentarios</h1>
+        <p class="gs-hero-lead">El Green-Score es una puntuación ambiental de la A+ a la F que facilita la comparación del impacto de los productos alimentarios en el medio ambiente.</p>
+        <div class="gs-hero-note">
+          <strong>Nota:</strong> el Green-Score es el nuevo nombre del Eco-Score desde finales de 2024. Desde septiembre de 2024, las calificaciones van de la A+ a la F (7 niveles) en lugar de la A a la E (5 niveles).
+        </div>
+        <nav class="gs-toc" aria-label="Secciones de la página">
+          <a href="#why-environmental-score">¿Por qué una puntuación ambiental?</a>
+          <a href="#what-is-green-score">Niveles A+ a F</a>
+          <a href="#how-calculated">¿Cómo se calcula?</a>
+          <a href="#see-green-score">Ver en acción</a>
+          <a href="#improve-products">Mejora de productos</a>
+          <a href="#get-involved">Participa</a>
+        </nav>
+      </div>
+      <div class="gs-hero-media">
+        <video class="gs-hero-video" controls preload="metadata" aria-label="Green-Score en la aplicación Open Food Facts" src="https://blog.openfoodfacts.org/wp-content/uploads/2022/06/product-page-en-iphone-blue-flat-1.mp4"></video>
+      </div>
+    </div>
+  </header>
+
+  <section class="gs-section" id="why-environmental-score">
+    <div class="gs-section-header">
+      <h2>¿Por qué una puntuación ambiental?</h2>
+      <p>Hacer que la huella ambiental sea tan fácil de comparar como la calidad nutricional.</p>
+    </div>
+
+    <p>Cada vez más consumidores se preocupan por <strong>el impacto de sus alimentos no solo en su salud, sino también en la salud de nuestro planeta.</strong> Gracias al Nutri-Score, ahora es muy fácil tener en cuenta la calidad nutricional de los productos al comprar, pero es muy difícil, si no imposible, comparar su huella ambiental.</p>
+    <p>Es urgente proporcionar a los consumidores información clara sobre esta huella ambiental para que puedan compararla fácil y rápidamente entre varios productos. Esto es lo que permite la calificación ambiental Green-Score.</p>
+
+    <div class="gs-callout green">
+      <h3>El Green-Score, una herramienta para una alimentación más sostenible</h3>
+      <p>El Green-Score ayuda a los consumidores que desean avanzar hacia una dieta más sostenible, animándoles a:</p>
+      <ul>
+        <li>Comer menos carne pero de mejor calidad</li>
+        <li>Consumir más productos ecológicos y con sellos de calidad</li>
+        <li>Favorecer los productos locales y de temporada, con poco envase</li>
+        <li>Limitar los productos que contienen ingredientes problemáticos (pescado en peligro de extinción, aceite de palma no sostenible)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="gs-section" id="what-is-green-score">
+    <div class="gs-section-header">
+      <h2>¿Qué es el Green-Score?</h2>
+      <p>Una escala de 7 niveles desde A+ (impacto muy bajo) hasta F (impacto muy alto).</p>
+    </div>
+
+    <p>El Green-Score está diseñado según un modelo similar al Nutri-Score: es una calificación de la A+ a la F que resume 16 impactos ambientales. El Green-Score se materializa mediante un logotipo en forma de hoja de color con una letra de la A+ (impacto muy bajo) a la F (impacto muy alto).</p>
+
+    <div translate="no" class="notranslate gs-grades-strip" aria-label="Niveles Green-Score de A+ a F">
+      <img src="https://static.openfoodfacts.org/images/attributes/dist/green-score-a-plus.svg" alt="Green-Score A+" height="68">
+      <img src="https://static.openfoodfacts.org/images/attributes/dist/green-score-a.svg" alt="Green-Score A" height="68">
+      <img src="https://static.openfoodfacts.org/images/attributes/dist/green-score-b.svg" alt="Green-Score B" height="68">
+      <img src="https://static.openfoodfacts.org/images/attributes/dist/green-score-c.svg" alt="Green-Score C" height="68">
+      <img src="https://static.openfoodfacts.org/images/attributes/dist/green-score-d.svg" alt="Green-Score D" height="68">
+      <img src="https://static.openfoodfacts.org/images/attributes/dist/green-score-e.svg" alt="Green-Score E" height="68">
+      <img src="https://static.openfoodfacts.org/images/attributes/dist/green-score-f.svg" alt="Green-Score F" height="68">
+    </div>
+
+    <div tabindex="0" role="region" aria-labelledby="gs-scale-caption" class="gs-table-wrap">
+      <table class="gs-table">
+        <caption id="gs-scale-caption">La calificación se determina mediante una puntuación sobre 100:</caption>
+        <thead>
+          <tr>
+            <th scope="col">Nivel</th>
+            <th scope="col">Puntuación</th>
+            <th scope="col">Impacto ambiental</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><span class="gs-grade-chip gs-grade-a-plus">A+</span></th>
+            <td>90 o más</td>
+            <td>Muy bajo</td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="gs-grade-chip gs-grade-a">A</span></th>
+            <td>75 a 89</td>
+            <td>Muy bajo</td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="gs-grade-chip gs-grade-b">B</span></th>
+            <td>60 a 74</td>
+            <td>Bajo</td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="gs-grade-chip gs-grade-c">C</span></th>
+            <td>45 a 59</td>
+            <td>Moderado</td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="gs-grade-chip gs-grade-d">D</span></th>
+            <td>30 a 44</td>
+            <td>Alto</td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="gs-grade-chip gs-grade-e">E</span></th>
+            <td>15 a 29</td>
+            <td>Muy alto</td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="gs-grade-chip gs-grade-f">F</span></th>
+            <td>menos de 15</td>
+            <td>Muy alto</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>El Green-Score cuenta con el apoyo de un consorcio de numerosos actores comprometidos con una mejor alimentación.</p>
+    <img class="gs-actors-img" src="https://static.openfoodfacts.org/images/misc/ecoscore-acteurs.png" alt="Los actores del colectivo Green-Score" loading="lazy">
+  </section>
+
+  <section class="gs-section" id="how-calculated">
+    <div class="gs-section-header">
+      <h2>¿Cómo se calcula el Green-Score?</h2>
+      <p>La metodología completa se describe en la <a href="https://docs.score-environnemental.com/">documentación oficial del Green-Score</a> (en francés).</p>
+    </div>
+
+    <p>El Green-Score de un producto se calcula en 2 pasos:</p>
+    <ul>
+      <li>una puntuación de referencia sobre 100 para la categoría del producto, basada en su análisis del ciclo de vida (ACV),</li>
+      <li>bonificaciones y penalizaciones (de -30 a +25 puntos en total) para tener en cuenta las especificidades de cada producto.</li>
+    </ul>
+
+    <div class="gs-formula-banner">
+      <p class="gs-formula-text">Green-Score = puntuación ACV (0–100) + bonificaciones y penalizaciones (-30 a +25)</p>
+      <span class="gs-pill" style="margin-block-end: 0;">Bonificaciones limitadas a +25 pts</span>
+    </div>
+
+    <h3>1. La puntuación de referencia: análisis del ciclo de vida (ACV) con datos de Agribalyse</h3>
+    <p>Para cada categoría de producto, se establece una puntuación de referencia utilizando datos de la base de datos ambiental Agribalyse diseñada por ADEME e INRAE. Estos datos corresponden al análisis del ciclo de vida (ACV) de los productos.</p>
+    <p>Los 16 indicadores ambientales del ACV se combinan en una única puntuación mediante el método europeo PEF (Product Environmental Footprint), que luego se convierte en una puntuación de 0 a 100.</p>
+
+    <div class="gs-callout">
+      <h3>Análisis del ciclo de vida (ACV)</h3>
+      <p><a href="https://es.wikipedia.org/wiki/An%C3%A1lisis_de_ciclo_de_vida">El análisis del ciclo de vida</a> es un método de evaluación estandarizado para realizar una evaluación ambiental multietapa y multicriterio:</p>
+      <ul>
+        <li><strong>6 etapas de producción:</strong> agricultura, procesamiento, envasado, transporte, distribución y consumo.</li>
+        <li><strong>16 indicadores de impacto ambiental:</strong> cambio climático / huella de carbono, agotamiento de la capa de ozono, radiación ionizante, uso de suelo, agua y energía; contaminación del aire, suelo y aguas marinas y dulces (partículas, acidificación, eutrofización, ecotoxicidad); toxicidad humana; y agotamiento de recursos.</li>
+      </ul>
+    </div>
+
+    <h3>2. Bonificaciones y penalizaciones para afinar la calificación de cada producto</h3>
+    <p>Para tener en cuenta ciertos impactos en el medio ambiente que no están bien cubiertos por el análisis del ciclo de vida (como la biodiversidad) y las especificidades de cada producto dentro de la misma categoría, la puntuación de referencia se modula con bonificaciones y penalizaciones (con la suma de bonificaciones limitada a 25 puntos):</p>
+
+    <div class="gs-cards-grid">
+      <article class="gs-card">
+        <div class="gs-card-head">
+          <span class="gs-card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+          </span>
+          <h4>Modo de producción</h4>
+        </div>
+        <span class="gs-pill">+10 a +20 puntos</span>
+        <p>Se otorga una bonificación de 10 a 20 puntos a los productos que cuentan con un sello oficial o certificación que garantice beneficios ambientales (ecológico, comercio justo, HVE, Label Rouge, Bleu Blanc Cœur, MSC/ASC).</p>
+      </article>
+
+      <article class="gs-card">
+        <div class="gs-card-head">
+          <span class="gs-card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </span>
+          <h4>Origen de los ingredientes</h4>
+        </div>
+        <span class="gs-pill amber">Hasta +15 / -5 a +5 pts</span>
+        <p>Se calcula una bonificación o penalización según el origen de los ingredientes. Tiene en cuenta el impacto del transporte (bonificación de hasta 15 puntos) y la política ambiental de cada país productor (de -5 a +5 puntos).</p>
+      </article>
+
+      <article class="gs-card">
+        <div class="gs-card-head">
+          <span class="gs-card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V8h2v4z"/></svg>
+          </span>
+          <h4>Especies amenazadas</h4>
+        </div>
+        <span class="gs-pill red">-10 puntos</span>
+        <p>Se aplica una penalización de 10 puntos a los productos que contienen ingredientes con impactos negativos significativos en la biodiversidad y los ecosistemas, como el aceite de palma, cuya producción provoca deforestación masiva.</p>
+      </article>
+
+      <article class="gs-card">
+        <div class="gs-card-head">
+          <span class="gs-card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+          </span>
+          <h4>Envase</h4>
+        </div>
+        <span class="gs-pill red">Hasta -15 puntos</span>
+        <p>Se calcula una penalización de hasta 15 puntos para tener en cuenta la circularidad del envase (uso de material reciclado y reciclabilidad) y el exceso de embalaje.</p>
+      </article>
+    </div>
+
+    <div class="gs-callout">
+      <h3>Una mayor necesidad de transparencia para medir y reducir mejor los impactos ambientales</h3>
+      <p>Para calcular con precisión el Green-Score, es necesario contar con información que no siempre figura en el envase (como el origen y el porcentaje exacto de cada ingrediente) o que rara vez está disponible en un formato utilizable (como la lista de todos los componentes del envase con los tipos precisos de plásticos).</p>
+      <p>Cuando esta información aún no está disponible se utilizan valores medios, pero hacemos un llamamiento a todos para que nos ayuden a recopilar estos datos tan útiles para el Green-Score y muchos otros usos.</p>
+      <ul>
+        <li>Los fabricantes pueden enviarnos su información directamente a través de nuestra <a href="https://world.pro.openfoodfacts.org">plataforma gratuita para productores</a>.</li>
+        <li>Todos los ciudadanos pueden ayudarnos a recopilar y estructurar la información presente en los productos, como los datos sobre envases: <a href="https://fr.blog.openfoodfacts.org/news/mission-emballages-un-grand-recensement-collaboratif-des-emballages-de-tous-les-produits-alimentaires">Mission Emballages: un gran inventario colaborativo de envases (en francés)</a>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="gs-section" id="see-green-score">
+    <div class="gs-section-header">
+      <h2>¿Cómo ver el Green-Score de los productos alimentarios?</h2>
+      <p>Disponible en la aplicación móvil Open Food Facts, en la web y en más de 100 aplicaciones asociadas.</p>
+    </div>
+
+    <div translate="no" class="notranslate">[[greenscore/mobile-app-promo-greenscore.html]]</div>
+
+    <p>El Green-Score está disponible en la aplicación Open Food Facts y en las aplicaciones asociadas. Como Open Food Facts es una Wikipedia de los alimentos que cualquiera puede reutilizar libre y gratuitamente, las más de 100 aplicaciones que utilizan la base de datos también pueden mostrar el Green-Score calculado.</p>
+
+    <h3>Comparar y explorar productos en Open Food Facts</h3>
+    <p><a href="https://world-es.openfoodfacts.org">El sitio web de Open Food Facts</a> permite a todo el mundo ver y comparar el Green-Score de los productos alimentarios. Los resultados muestran la calidad nutricional con el Nutri-Score, los alimentos ultraprocesados con NOVA y el impacto ambiental con el Green-Score. También puede <a href="https://world-es.openfoodfacts.org/?sort_by=environmental_score_score">ordenar cualquier búsqueda o categoría por Green-Score</a> y ver de un vistazo la distribución de niveles.</p>
+
+    <h3>Distribución por categoría</h3>
+    <figure class="gs-figure" style="max-inline-size: 760px;">
+      <a href="https://world-es.openfoodfacts.org/facets/categories/meals/environmental-score">
+        <img src="/images/texts/green-score/green-score-distribution-prepared-meals-es.png" alt="Distribución del Green-Score de platos preparados en Open Food Facts" loading="lazy">
+      </a>
+      <figcaption>El Green-Score de platos preparados. Haz clic para explorar los productos de cada nivel en Open Food Facts.</figcaption>
+    </figure>
+
+    <h3 style="margin-block-start: 2rem;">Detalles completos del cálculo en cada página de producto</h3>
+    <p>Para cada producto, la sección «Medio ambiente» muestra el desglose completo del cálculo del Green-Score: la puntuación del análisis del ciclo de vida de la categoría, más cada bonificación y penalización. Si falta información, cualquiera puede añadirla.</p>
+
+    <div class="gs-kp-box" style="max-inline-size: 820px;" aria-label="Ejemplo de panel Green-Score para Lait demi-écrémé Stérilisé UHT – Carrefour BIO">
+      <div class="gs-kp-header">
+        <img src="https://static.openfoodfacts.org/images/attributes/dist/green-score-a.svg" alt="Green-Score A" height="60">
+        <div>
+          <p class="gs-kp-title">Green-Score A</p>
+          <p class="gs-kp-subtitle">Impacto ambiental muy bajo</p>
+        </div>
+      </div>
+
+      <p class="gs-kp-meta">Ejemplo de <a href="https://fr-es.openfoodfacts.org/product/3270190025337/lait-demi-ecreme-sterilise-uht-carrefour-bio">Lait demi-écrémé Stérilisé UHT – Carrefour BIO – 1 l</a>: El Green-Score es una puntuación experimental que resume el impacto ambiental de los productos alimentarios.</p>
+
+      <p class="gs-kp-group-label">Análisis del ciclo de vida</p>
+      <details class="gs-kp-details" open>
+        <summary>
+          <img src="https://static.openfoodfacts.org/images/icons/dist/lca.svg" alt="" aria-hidden="true">
+          <span class="gs-kp-summary-text">
+            <span>Media de impacto de los productos de la misma categoría: C (Score: 58/100)</span>
+            <span class="gs-kp-summary-sub">Categoría: Leche semidesnatada UHT</span>
+          </span>
+        </summary>
+        <div class="gs-kp-body">
+          <p>Puntuación ambiental PEF: <strong>0.12</strong> (cuanto menor sea la puntuación, menor será el impacto), incluido el impacto sobre el cambio climático: <strong>1.27 kg CO2 eq / kg</strong>.</p>
+          <table class="gs-kp-stages" aria-label="Detalles de los impactos por etapas del ciclo de vida">
+            <thead>
+              <tr>
+                <th scope="col">Etapa</th>
+                <th scope="col">Impacto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="gs-kp-stage-name"><img src="https://static.openfoodfacts.org/images/icons/dist/agriculture.svg" alt="" aria-hidden="true">Agricultura</span></td>
+                <td><span class="gs-kp-bar-track" aria-hidden="true"><span class="gs-kp-bar-fill" style="inline-size: 74.8%;"></span></span>74.8 %</td>
+              </tr>
+              <tr>
+                <td><span class="gs-kp-stage-name"><img src="https://static.openfoodfacts.org/images/icons/dist/processing.svg" alt="" aria-hidden="true">Procesado</span></td>
+                <td><span class="gs-kp-bar-track" aria-hidden="true"><span class="gs-kp-bar-fill" style="inline-size: 1.3%;"></span></span>1.3 %</td>
+              </tr>
+              <tr>
+                <td><span class="gs-kp-stage-name"><img src="https://static.openfoodfacts.org/images/icons/dist/packaging.svg" alt="" aria-hidden="true">Envase</span></td>
+                <td><span class="gs-kp-bar-track" aria-hidden="true"><span class="gs-kp-bar-fill" style="inline-size: 7.0%;"></span></span>7.0 %</td>
+              </tr>
+              <tr>
+                <td><span class="gs-kp-stage-name"><img src="https://static.openfoodfacts.org/images/icons/dist/transportation.svg" alt="" aria-hidden="true">Transporte</span></td>
+                <td><span class="gs-kp-bar-track" aria-hidden="true"><span class="gs-kp-bar-fill" style="inline-size: 13.4%;"></span></span>13.4 %</td>
+              </tr>
+              <tr>
+                <td><span class="gs-kp-stage-name"><img src="https://static.openfoodfacts.org/images/icons/dist/distribution.svg" alt="" aria-hidden="true">Distribución</span></td>
+                <td><span class="gs-kp-bar-track" aria-hidden="true"><span class="gs-kp-bar-fill" style="inline-size: 3.9%;"></span></span>3.9 %</td>
+              </tr>
+              <tr>
+                <td><span class="gs-kp-stage-name"><img src="https://static.openfoodfacts.org/images/icons/dist/consumption.svg" alt="" aria-hidden="true">Consumo</span></td>
+                <td><span class="gs-kp-bar-track" aria-hidden="true"><span class="gs-kp-bar-fill" style="inline-size: 0%;"></span></span>0.0 %</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <p class="gs-kp-group-label">Bonificaciones y penalizaciones</p>
+      <details class="gs-kp-details">
+        <summary>
+          <img src="https://static.openfoodfacts.org/images/icons/dist/agriculture.svg" alt="" aria-hidden="true">
+          <span class="gs-kp-summary-text">
+            <span>Etiquetado de beneficios medioambientales altos</span>
+            <span class="gs-kp-summary-sub">AB Agriculture Biologique, Ecológico UE</span>
+          </span>
+          <span class="gs-kp-badge good">Bonificación: +15</span>
+        </summary>
+        <div class="gs-kp-body">
+          <p>La agricultura ecológica contribuye a preservar la biodiversidad, el clima, la calidad del agua y la fertilidad del suelo.</p>
+        </div>
+      </details>
+
+      <details class="gs-kp-details">
+        <summary>
+          <img src="https://static.openfoodfacts.org/images/icons/dist/public.svg" alt="" aria-hidden="true">
+          <span class="gs-kp-summary-text">
+            <span>Origen de los ingredientes con impacto medio</span>
+            <span class="gs-kp-summary-sub">Política ambiental: 0 · Transporte: +15</span>
+          </span>
+          <span class="gs-kp-badge good">Bonificación: +15</span>
+        </summary>
+        <div class="gs-kp-body">
+          <p>Francia: 100 % de los ingredientes (Impacto bajo).</p>
+        </div>
+      </details>
+
+      <details class="gs-kp-details">
+        <summary>
+          <img src="https://static.openfoodfacts.org/images/icons/dist/packaging.svg" alt="" aria-hidden="true">
+          <span class="gs-kp-summary-text">
+            <span>Envase con impacto medio</span>
+            <span class="gs-kp-summary-sub">Botella HDPE 2, tapón de plástico, precinto de aluminio grueso</span>
+          </span>
+          <span class="gs-kp-badge avg">Penalización: -6</span>
+        </summary>
+        <div class="gs-kp-body">
+          <p>Todos los componentes del envase (botella HDPE 2, tapón de plástico, precinto de aluminio) son reciclables en el contenedor amarillo, lo que conlleva una penalización moderada.</p>
+        </div>
+      </details>
+
+      <p class="gs-kp-group-label">Green-Score para este producto</p>
+      <details class="gs-kp-details" open>
+        <summary>
+          <img src="https://static.openfoodfacts.org/images/attributes/dist/green-score-a.svg" alt="" aria-hidden="true">
+          <span class="gs-kp-summary-text">
+            <span>Impacto para este producto: A (Score: 82/100)</span>
+            <span class="gs-kp-summary-sub">Puntuación ACV: 58 · Bonificaciones y penalizaciones: +24</span>
+          </span>
+        </summary>
+        <div class="gs-kp-body">
+          <p>Puntuación final: <strong>58 + 24 = 82/100</strong> (Nivel A).</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="gs-section" id="improve-products">
+    <div class="gs-section-header">
+      <h2>Cómo el Green-Score fomenta la mejora de los productos</h2>
+      <p>Dos palancas de acción para consumidores y fabricantes.</p>
+    </div>
+
+    <p>El Green-Score tiene dos palancas de acción:</p>
+    <ul>
+      <li>Con el Green-Score, los consumidores pueden tomar decisiones más informadas teniendo en cuenta el impacto ambiental de los productos.</li>
+      <li>El Green-Score también anima a los fabricantes a mejorar sus productos para lograr una mejor calificación.</li>
+    </ul>
+
+    <p>Que los fabricantes mejoren el Green-Score de sus productos es el objetivo final, ya que beneficiará a todos los consumidores.</p>
+    <p>La etiqueta energética de los electrodomésticos transformó profundamente el mercado. Del mismo modo, la difusión del Nutri-Score ha animado a muchos fabricantes a mejorar la calidad nutricional de sus productos.</p>
+    <p>Para fomentar mejoras, nuestra <a href="https://world.pro.openfoodfacts.org">plataforma para productores</a> analiza automáticamente los datos proporcionados por los fabricantes para identificar vías de mejora, como usar envases más reciclables o sustituir el aceite de palma.</p>
+  </section>
+
+  <section class="gs-section" id="get-involved">
+    <div class="gs-section-header">
+      <h2>Cómo saber más y ayudar a desarrollar el Green-Score</h2>
+      <p>Todos son bienvenidos a contribuir a una mayor transparencia.</p>
+    </div>
+
+    <div class="gs-callout">
+      <p>El Green-Score sigue evolucionando y sin duda puede mejorarse. Sin embargo, ante la emergencia climática y ambiental, es importante ponerlo a disposición ahora. Trabajando juntos, podremos perfeccionar gradualmente su fórmula y recopilar los datos necesarios. Sus comentarios y sugerencias son muy valiosos.</p>
+    </div>
+
+    <ul>
+      <li><strong>Si eres periodista</strong> y quieres saber más, puedes contactar con Pierre Slamich — <a href="mailto:pierre@openfoodfacts.org">pierre@openfoodfacts.org</a> — +33 6 02 13 14 57</li>
+      <li><strong>Si eres fabricante</strong>, puedes enviarnos información sobre tus productos a través de nuestra <a href="https://world.pro.openfoodfacts.org">plataforma gratuita para productores</a> y obtener el cálculo detallado del Green-Score. Preguntas: <a href="mailto:producers@openfoodfacts.org">producers@openfoodfacts.org</a></li>
+      <li><strong>Si eres ciudadano</strong>, puedes <a href="https://world.openfoodfacts.org/open-food-facts-mobile-app">instalar la aplicación Open Food Facts</a>, crear una cuenta, unirte a nuestra comunidad y a <a href="https://slack.openfoodfacts.org">nuestro espacio de discusión en Slack</a>. Preguntas: <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a></li>
+    </ul>
+
+    <div class="gs-callout green">
+      <p>Open Food Facts es un proyecto colaborativo apoyado por decenas de miles de voluntarios y gestionado por una asociación sin ánimo de lucro. <strong>¡Gracias! ❤️</strong></p>
+      <a href="https://world.openfoodfacts.org/dar-a-open-food-facts?utm_source=off&amp;utm_medium=web&amp;utm_campaign=donate-2022&amp;utm_term=es-text-button-ecoscore-page" class="gs-btn green">Hacer una donación</a>
+    </div>
+
+    <h3>Agradecimientos</h3>
+    <p>Gracias a los equipos de <a href="https://www.ademe.fr/">ADEME</a>, <a href="https://www.inrae.fr/">INRAE</a> y a todos los socios de <a href="https://www.agribalyse.fr/">Agribalyse</a> por crear esta base de datos ambiental única y publicarla en datos abiertos.</p>
+    <p>Gracias a todos los implicados en crear un Green-Score común, a los organizadores y voluntarios de <a href="https://dataforgood.fr/">Data For Good</a>, a la <a href="https://www.fondation-afnic.fr/">Fundación AFNIC</a>, a <a href="https://www.santepubliquefrance.fr/">Santé publique France</a> y a todos los colaboradores de Open Food Facts.</p>
+
+    <h3>Referencias</h3>
+    <ul>
+      <li><a href="https://blog.openfoodfacts.org/es/noticias/lanzamiento-del-eco-score-el-puntaje-ambiental-para-productos-alimentarios">Anuncio del lanzamiento del Green-Score en el blog de Open Food Facts</a></li>
+      <li><a href="https://apps.apple.com/es/app/open-food-facts/id588797948?utm_source=off&amp;utm_campaign=ecoscore-promo&amp;utm_medium=website">Aplicación Open Food Facts para iPhone en el App Store</a></li>
+      <li><a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&amp;hl=es&amp;utm_source=off&amp;utm_campaign=ecoscore-promo&amp;utm_medium=website">Aplicación Open Food Facts para Android en Play Store</a></li>
+      <li><a href="https://world-es.openfoodfacts.org/facets/environmental-score">La distribución de las puntuaciones del Green-Score para productos en Open Food Facts</a></li>
+      <li><a href="https://docs.score-environnemental.com/">Documentación detallada de la metodología y fórmula de cálculo del Green-Score (en francés)</a></li>
+      <li><a href="https://www.agribalyse.fr/">Base ambiental Agribalyse de ADEME e INRAE (en francés)</a></li>
+    </ul>
+
+    <div class="gs-callout">
+      <p style="margin: 0;">Para saber más sobre el Green-Score, consulta la <a href="https://docs.score-environnemental.com/">documentación oficial del Green-Score</a> (en francés), que describe la metodología completa y la fórmula de cálculo.</p>
+    </div>
+  </section>
 </div>
-
-<div class="small-12 large-5 xlarge-4 columns">
-<video autoplay="" width="381px" controls="" alt="Green-Score on the Open Food Facts app" src="https://blog.openfoodfacts.org/wp-content/uploads/2022/06/pagina-de-producto-en-iphone-azul-plano-1.mp4"></video>
-</div>
-</div>
-
-
-<h2>¿Por qué una puntuación medioambiental?</h2>
-
-<p>Cada vez más consumidores están preocupados por <b>el impacto de sus alimentos no solo en su salud, si también en la salud de nuestro planeta.</b> Gracias al Nutri-Score, ahora es muy fácil tener en cuenta la calidad nutricional de los productos a la hora de comprarlos, pero es muy difícil, si no imposible, comparar su huella ambiental.</p>
-<p>Es prioritario proporcionar a los consumidores información clara en torno a la huella ambiental y así hacer más eficiente la comparativa entre varios productos. Esto es lo que permite la calificación ambiental Green-Score.</p>
-
-<div class="panel callout">
-<h3> El Green-Score, una herramienta para una alimentación más sostenible </h3>
-<p> El Green-Score ayuda a los consumidores que desean avanzar hacia una dieta más sostenible, animándolos a: </p>
-<ul>
-<li> Ingerir menos alimentos de origen animal, y de mejor calidad</li>
-<li> Incrementar el consumo de productos orgánicos o que contengan etiquetas de calidad </li>
-<li> Favorecer los productos locales y de temporada, con poco embalaje </li>
-<li> Limitar productos que contengan ingredientes problemáticos (pescado en peligro de extinción, producción de aceite de palma de manera no sustentable) </li>
-</ul>
-
-</div>
-
-<br>
-
-<h2>¿Qué es el Green Score?</h2>
-
-<p>El Green-Score está diseñado sobre un modelo similar al Nutri-Score:
-es una calificación de la A a la E que resume 15 impactos ambientales.
-La puntuación Green-Score se materializa mediante un logotipo en forma de hoja de color con una letra de la A (muy bajo impacto) a la E (muy alto impacto).</p>
-
-<img src="https://static.openfoodfacts.org/images/misc/ecoscore-impact-environnemental.png" alt="Green-Score (ecoscore)">
-
-<p>El Green-Score cuenta con el apoyo de un consorcio de numerosos actores comprometidos con una mejor nutrición.</p>
-
-<img src="https://static.openfoodfacts.org/images/misc/ecoscore-acteurs.png" alt="Los actores del colectivo Green-Score" style="max-width: 1000px">
-
-<br><br>
-
-<h2>¿Cómo se calcula el Green Score?</h2>
-
-<h3>La puntuación de referencia: análisis del ciclo de vida (LCA) con datos de la base de datos Agribalyse</h3>
-
-<p>Para cada categoría de producto, se establece un puntaje de referencia utilizando datos de la base de datos ambiental Agribalyse diseñada por ADEME e INRAE.
-Estos datos corresponden al análisis del ciclo de vida (LCA) de los productos.</p>
-
-
-<div class="row">
-<div class="small-12 columns">
-<div class="panel ecoscore_panel" id="ecoscore_panel_lca">
-
-<h4><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="icon" aria-hidden="true" focusable="false"><path d="M0 0h24v24H0z" fill="none" /><path d="M12 4a8 8 0 00-6.656 3.563l1.664 1.109A6 6 0 0112 6V4zm4.438 1.344l-1.11 1.664A6 6 0 0118 12h2a8 8 0 00 -3.563-6.656zM4 12a8 8 0 003.563 6.656l1.109-1.664A6 6 0 016 12H4zm12.992 3.328A6 6 0 0112 18v2a8 8 0 006.656-3.563l-1.664-1.109zM12 4V2l3 3-3 3zM12 18v-2l-3 3 3 3zM6 12h2L5 9l-3 3zM19.671 12h2l-3 3-3-3z "/></svg>Evaluación del ciclo de vida (LCA)</h4>
-
-<p><a href="https://en.wikipedia.org/wiki/Life-cycle_assessment">Anális del ciclo de vida</a> es un método de evaluación estandarizado para llevar a cabo una evaluación multi-etapa y multi-criterios:</p>
-
-<ul>
-<li>6 fases de producción: agricultura, procesamiento, embalaje, transporte, distribución y consumo</li>
-<li>14 indicadores de impacto ambiental: cambio climático/huella de carbono, agotamiento de capa de ozono, radiación ionizante, tierra, agua y uso de energía; contaminación del aire y del agua marina y dulce (partículas, acidificación, eutrofización); y agotamiento de los recursos.</li>
-</ul>
-
-
-</div>
-</div>
-</div>
-
-<h3>Bonos y penalizaciones para pulir la calificación de cada producto</h3>
-
-<p>Para tener en cuenta ciertos impactos en el medio ambiente que no están bien cubiertos por el análisis del ciclo de vida (como la biodiversidad) y las características específicas de cada producto dentro de la misma categoría, la puntuación de referencia se modula con bonificaciones y penalizaciones:</p>
-
-<div class="row" data-equalizer="ecoscore1">
-
-<div class="small-12 large-6 columns">
-<div class="panel ecoscore_panel" id="ecoscore_panel_production_system" data-equalizer-watch="ecoscore1">
-<h4><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="icon" aria-hidden="true" focusable="false"><path fill="none" d="M0 0h24v24H0z" /><path d="M19.5 12c.93 0 1.78.28 2.5.76V8c0-1.1-.9-2-2-2h-6.29l-1.06-1.06 1.41 -1.41-.71-.71-3.53 3.53.71.71 1.41-1.41L13 6.71V9c0 1.1-.9 2-2 2h-.54A5.98 5.98 0 0112 15c0 .34-.04.67-.09 1h3.14c.25- 2.25 2.14-4 4.45-4z "/><path d="M19.5 13c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5zm0 5c -.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM4 9h5c0-1.1-.9-2-2-2H4c-.55 0 -1 .45-1 1s.45 1 1 1zM9.83 13.82l-.18-.47.93-.35a4.92 4.92 0 00-2.31-2.43l-.4.89-.46-.21.4-.9C7.26 10.13 6.64 10 6 10c-.53 0-1.04.11-1.52.26l.34.91-.47.18-.35-.93a4.92 4.92 0 00-2.43 2.31l.89.4-.21.46-.9-.4C1.13 13.74 1 14.36 1 15c0 .53.11 1.04.26 1.52l.91-.34.18.47-.93.35a4.92 4.92 0 002.31 2.43l.4-.89.46.21-.4.9c.55.22 1.17.35 1.81.35.53 0 1.04 -.11 1.52-.26l-.34-.91.47-.18.35.93a4.92 4.92 0 002.43-2.31l-.89-.4.21-.46.9.4c.22-.5 5.35-1.17.35-1.81 0-.53-.11-1.04-.26-1.52l-.91.34zm-2.68 3.95c-1.53.63-3.29-.09-3.92-1.62-.63-1.53.09 -3.29 1.62-3.92 1.53-.63 3.29.09 3.92 1.62.64 1.53-.09 3.29-1.62 3.92z "/></svg>Modo de producción</h4>
-
-
-<p>Un bono se otorga a los productos que tienen una etiqueta oficial, una etiqueta o una certificación que garantiza beneficios ambientales (sean orgánicos, comercio justo, HVE, Label Rouge, Bleu Blanc Cœur, MSC/ASC).</p>
-
-
-</div>
-</div>
-
-<div class="small-12 large-6 columns">
-<div class="panel ecoscore_panel" id="ecoscore_panel_origins" data-equalizer-watch="ecoscore1">
-<h4><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="icon" aria-hidden="true" focusable="false"><path d="M0 0h24v24H0z" fill="none"></path><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path></svg>Origen de los ingredientes</h4>
-
-Una bonificación se otorga en función del origen de los ingredientes. Esta bonificación tiene en cuenta el impacto en el transporte y también la política medioambiental de cada país productor.</p>
-
-</div>
-</div>
-</div>
-
-<div class="row" data-equalizer="ecoscore2">
-
-<div class="small-12 large-6 columns">
-<div class="panel ecoscore_panel" id="ecoscore_panel_threatened_species" data-equalizer-watch="ecoscore2">
-<h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true" focusable="false"><path d="M0 0h24v24H0z" fill="none" /><path d="M11.889 3.84c-3.225 0-5.94 2.196-6.748 5.168A2 2 0 005 9a2 2 0 00-2 2 2 2 0 002 2 2 2 0 00.072-.004C5.772 17.124 8.46 20 11.89 20c3.434 0 6.126-2.885 6.82-7.023A2 2 0 0019 13a2 2 0 002-2 2 2 0 00-2-2 2 2 0 00-.355.033c-.8 -2.985-3.522-5.193-6.756-5.193zM9.5 8a3.5 3.5 0 012.447 1.002A5 5 0 0112 9a5 5 0 01.055.002A3.5 3.5 0 0114.5 8a3.5 3.5 0 013.5 3.5 3.5 3.5 0 01-1.002 2.447A5 5 0 0117 14a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 01.002-.049A3.5 3.5 0 016 11.5 3.5 3.5 0 019.5 8z "/><circle r="1 "><path d="M9 17.5a3.07 3.167 0 012.998-2.5A3.07 3.167 0 0115 17.5h-1a2.047 2.111 0 00-2-1.666 2.047 2.111 0 00-2 1.666z "/><circle cx="14.5 "></svg>Especies en peligro</h4>
-
-
-<p>Se castiga a los productos que contienen ingredientes que tienen significativas repercusiones negativas en la biodiversidad y los ecosistemas. como el aceite de palma, cuya producción es responsable de la deforestación masiva.</p>
-
-</div>
-</div>
-
-<div class="small-12 large-6 columns">
-<div class="panel ecoscore_panel" id="ecoscore_panel_packaging" data-equalizer-watch="ecoscore2">
-<h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true" focusable="false"><path fill="none" d="M0 0h24v24H0z" /><path d="M5 6l-2 4v11l1 1h6l1-1V10L8.941 6H5zm-1 6h6v5H4v-5zM5 3h4v2H5zM13 14h8v8h-8v-6.937zM13/sv8zg/"></svg>Envase</h4>
-
-
-
-<p>Se calcula una penalización teniendo en cuenta la circularidad del embalaje (uso de materia prima reciclada y reciclabilidad) y el sobreembalaje.</p>
-
-</div>
-</div>
-</div>
-
-<div class="panel callout">
-<h3>Una mayor necesidad de transparencia para medir mejor y reducir los impactos ambientales</h3>
-<p>Para calcular con precisión el Green-Score, es necesario disponer de información que no necesariamente está especificada en el envase (como el origen y el porcentaje exacto de cada ingrediente) o que rara vez está disponible en forma utilizable (como una lista de todos los componentes del envase con los tipos precisos de plásticos utilizados).</p>
-<p>Se utilizan valores medios cuando esta información aún no está disponible, pero ahora hacemos un llamamiento a todos para que nos ayuden a recopilar esta información que será muy útil para el Green-Score pero también para muchos otros usos.</p>
-<ul>
-<li>Los fabricantes pueden enviarnos su información directamente a través de nuestra <a href="https://world.pro.openfoodfacts.org">plataforma gratuita para productores.</a></li>
-<li>Todos los ciudadanos pueden ayudarnos a recopilar y estructurar la información que está presente en los productos o que se puede deducir de ellos, como la información sobre los envases: <a href="https://fr.blog.openfoodfacts.org/news/mission-emballages-un-grand-recensement-collaboratif-des-emballages-de-tous-les-produits-alimentaires">Misión Emballages: un inventario colaborativo a gran escala de envases para todos los productos alimenticios (en francés)
-</a>
-</div>
-
-<br><br>
-
-<h2>¿Cómo ver el Green-Score de los productos alimenticios?</h2>
-
-<div translate="no" class="notranslate">[[greenscore/mobile-app-promo-greenscore.html]]</div>
-
-<p>El Green-Score está, o estará pronto, disponible en las aplicaciones de los socios de lanzamiento. Y Open Food Facts es una Wikipedia de alimentos que cualquiera puede reutilizar libremente y de forma gratuita. Las más de 100 aplicaciones que utilizan la base de datos OFF también podrán mostrar el Green-Score calculado.</p>
-
-<h3>Escanea productos con la aplicación Open Food Facts</h3>
-
-<p><a href="https://world.openfoodfacts.org">El sitio web Open Food Facts</a> permite a todo el mundo ver y comparar el Green-Score de más de 750.000 productos alimenticios vendidos en Francia. Los resultados de cada búsqueda muestran la calidad nutricional con el Nutri-Score, los alimentos ultraprocesados con NOVA y el impacto ambiental con el Green-Score. El Green-Score se extenderá a otros países tan pronto como esté disponible un cálculo del Green-Score aplicable.</p>
-
-<a href="https://world.openfoodfacts.org/facets/categories/meals?sort_by=popularity">
-<img src="https://static.openfoodfacts.org/images/ecoscore/ecoscore-plats-prepares-les-plus-populaires.png" alt="El Green-Score de los platos preparados" style="max-height: 800px; border: 1px solid #333;"><br>
-<em>El Green-Score de las comidas preparadas en Open Food Facts</em>
-</a>
-
-<br><br>
-<h4>Clasifique y explore productos por Green-Score en Open Food Facts</h4>
-
-<div class="row">
-<div class="small-12 medium-6 columns">
-<p>También es posible ordenar y explorar los productos de cualquier categoría por Green-Score.</p>
-
-<a href="https://world.openfoodfacts.org/?sort_by=ecoscore_score"></a><img src="https://static.openfoodfacts.org/images/misc/ecoscore-produits-avec-le-meilleur-eco-score.png" alt="Productos con la mejor puntuación Green-Score"></a>
-
-<img src="https://static.openfoodfacts.org/images/misc/ecoscore-explorer-par-eco-score.png" alt="Explorar productos por Green-Score">
-
-</div>
-<div class="small-12 medium-6 columns">
-<p>Y vea de un vistazo el Green-Score de los productos de una categoría o una marca.</p>
-
-
-<a href="https://world.openfoodfacts.org/facets/categories/meals/puntuación-ambiental">
-<img src="https://static.openfoodfacts.org/images/misc/ecoscore-liste-des-eco-score-plats-prepares.png" alt="Green-Score de los platos preparados"><br>
-El Green-Score de las comidas preparadas. Haga clic para ver los productos de cada grado en Open Food Facts.
-</a>
-</div>
-</div>
-
-<br>
-<h4>Obtenga los detalles del cálculo del Green-Score para todos los productos</h4>
-
-<div class="row">
-<div class="small-12 medium-6 columns">
-<p>Para cada producto, un enlace le permite mostrar los detalles completos del cálculo del puntaje Green-Score.</p>
-
-<p>Y si falta información, cualquiera puede añadirla: sea el fabricante del producto como también todos los ciudadanos comprometidos con el clima, la protección del medio ambiente y la transparencia.</p>
-
-<img src="https://static.openfoodfacts.org/images/misc/ecoscore-avertissement.png" alt="Cualquier persona puede completar la información para calcular el Green-Score" style="max-height: 600px">
-
-</div>
-
-<div class="small-12 medium-6 columns">
-
-<a href="https://world.openfoodfacts.org/product/8019428008057/boisson-avoine-14-cacao-the-bridge">
-<img src="https://static.openfoodfacts.org/images/misc/ecoscore-detail-du-calcul.png" alt="Detalle del cálculo del Green-Score" style="max-height: 600px">
-</a>
-
-</div>
-</div>
-
-<br><br>
-
-<h2>Cómo el Green-Score puede fomentar la mejora de los productos y la reducción de sus impactos ambientales</h2>
-
-<p>El Green-Score tiene dos palancas de acción:</p>
-
-<ul>
-<li>Con Green-Score, los consumidores pueden tomar una decisión más informada al tener en cuenta el impacto ambiental de los productos como criterio de elección.</li>
-<li>El Green-Score también anima a los fabricantes a mejorar sus productos para que puedan conseguir una calificación Green-Score más alta.</li>
-</ul>
-
-<p>El objetivo final es que los fabricantes mejoren el Green-Score de sus productos, ya que beneficiará a todos los consumidores.</p>
-
-<p>La calificación energética de los electrodomésticos ha transformado profundamente el mercado (¡intenta encontrar un frigorífico con clasificación E, o incluso D o C!). Y la democratización de Nutri-Score también ha animado a muchos fabricantes a mejorar la calidad nutricional de sus productos para obtener una mejor valoración (hasta el punto de que algunos fabricantes franceses incluso presumen de ello en las paradas de autobús, como Brossard por su tarta Savane).</p>
-
-<p>Para fomentar la mejora de los productos, nuestra <a href="https://world.pro.openfoodfacts.org">plataforma para productores</a> analiza automáticamente los datos proporcionados por los fabricantes para identificar las vías de mejora. La plataforma identifica así todos los productos que obtendrían una mejor puntuación Nutri-Score con un ligero cambio en la composición (una reducción de la sal del 5%, por ejemplo).</p>
-<p>Próximamente, la plataforma permitirá sugerir soluciones para reducir el impacto ecológico y obtener un mejor Green-Score (por ejemplo, utilizando un plástico más reciclable para los envases o sustituyendo el aceite de palma por otro aceite).</p>
-
-<br><br>
-
-<h2>¿Cómo podemos obtener más información y cómo nos puede ayudar a desarrollar el Green-Score?</h2>
-
-<p>Todos son bienvenidos a ayudarnos a crear más transparencia, educar a los consumidores y fomentar la mejora de los productos a través de Green-Score.</p>
-
-<div class="panel">
-<p>El Green-Score es aún joven y sin duda puede mejorarse.
-Sin embargo, dada la emergencia climática y medioambiental, nos parece importante que esté disponible ahora.</p>
-<p>Trabajando juntos podremos ir mejorando gradualmente el Green-Score, perfeccionar su fórmula y recopilar los datos necesarios para su cálculo.</p>
-<p>Por tanto, tus comentarios, observaciones y sugerencias serán muy valiosos.</p>
-</div>
-
-<ul>
-
-<li><b>Si eres periodista</b> y quieres saber más, puedes contactar con Pierre Slamich
-- <a href="mailto:pierre@openfoodfacts.org">pierre@openfoodfacts.org</a>- +33 6 02 13 14 57</li>
-
-<li><b>Si eres fabricante,</b> puedes enviarnos información sobre tus productos a través de nuestra <a href="https://world.pro.openfoodfacts.org">plataforma gratuita para productores</a>y obtener el cálculo detallado del Green-Score para todos tus productos.
- Para cualquier pregunta: <a href="mailto:producers@openfoodfacts.org">producers@openfoodfacts.org</a></li>
-<li><b>Si eres un ciudadano</b>, puedes <a href="https://world.openfoodfacts.org/open-food-facts-mobile-app">instalar la aplicación Open Food Facts</a>, crear una cuenta en el sitio web de Open Food Facts, unirte a nuestra comunidad de ciudadanos comprometidos y a <a href="https://slack.openfoodfacts.org">nuestro espacio de debate en Slack</a>.
-Para cualquier pregunta: <a href="mailto:contact@openfoodfacts.org">contact@openfoodfacts.org</a></li>
-</ul>
-
-<div class="panel callout">
-<p>Open Food Facts es un proyecto de colaboración apoyado por decenas de miles de voluntarios
-y gestionado por una asociación sin ánimo de lucro con 3 empleados. <strong>¡Gracias! ❤️</strong> ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️</strong></p>
-
-<a href="https://world.openfoodfacts.org/dar-a-open-food-facts?utm_source=off&utm_medium=web&utm_campaign=donate-2022&utm_term=es-text-button-ecoscore-page" class="button round " style="margin-bottom: 0">Haz una donación</a>
-</div>
-
-
-<br><br>
-
-<h2>Reconocimientos</h2>
-
-<p>Gracias a los equipos de <a href="https://www.ademe.fr/">ADEME</a>, <a href="https://www.inrae.fr/">INRAE</a> y todos los socios de <a href="https://www.agribalyse.fr/">Agribalyse</a> por la constitución de esta base de datos medioambiental única y su publicación en datos abiertos.</p>
-
-<p>Gracias a todos aquellos que participaron en la creación de un Green-Score común.</p>
-
-<p>Gracias a los organizadores y voluntarios de <a href="https://dataforgood.fr/">Data For Good</a>
-que han mejorado mucho los algoritmos de inteligencia artificial de Open Food Facts.</p>
-
-
-<p>Gracias a la Fundación AFNIC <a href="https://www.fondation-afnic.fr/"></a> por su apoyo a la implementación del Green-Score en Open Food Facts.</p>
-
-<p>Gracias a <a href="https://www.santepubliquefrance.fr/">Santé publique France</a> (Salud Pública de Francia) por su apoyo crucial para el desarrollo de la plataforma de productores.</p>
-
-<p>¡Y gracias a todos los participantes en el proyecto Open Food Facts que desde hace más de 8 años promueven la transparencia alimentaria para mejorar la dieta de todos!</p>
-
-<br><br>
-
-<h2>Referencias</h2>
-
-<ul>
-<li><a href="https://blog.openfoodfacts.org/es/noticias/lanzamiento-del-eco-score-el-puntaje-ambiental-para-productos-alimentarios">Anuncio del lanzamiento del Green-Score en el blog Open Food Facts</a></li>
-<li><a href="https://apps.apple.com/es/app/open-food-facts/id588797948?utm_source=off&utm_campaign=ecoscore-promo&utm_medium=website">Open Food Facts App para iPhone en la App Store</a></li>
-<li><a href="https://play.google.com/store/apps/details?id=org.openfoodfacts.scanner&hl=es?utm_source=off&utm_campaign=ecoscore-promo&utm_medium=website">Open Food Facts App para Android en la Play Store</a></li>
-<li><a href="https://world.openfoodfacts.org/puntuación-ecológica">La distribución de las puntuaciones Green-Score para los productos en el sitio Open Food Facts</a></li>
-<li><a href="https://docs.score-environnemental.com/">Documentación detallada de la metodología y fórmula para el cálculo del Green-Score. (en francés)</a></li>
-<li><a href="https://www.agribalyse.fr/">Base ambiental Agribalyse de ADEME e INRAE (en francés)</a></li>
