@@ -1,0 +1,244 @@
+name: "Reuses: Rebase & Regenerate PR"
+
+on:
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "Pull Request number to rebase and regenerate"
+        required: true
+        type: number
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: reuse-pr-rebase-${{ github.event.issue.number || github.event.inputs.pr_number }}
+  cancel-in-progress: false
+
+jobs:
+  rebase-reuse-pr:
+    name: Rebase & Regenerate Reuse PR
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event_name == 'issue_comment' &&
+        github.event.issue.pull_request != null &&
+        contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association) &&
+        (
+          contains(github.event.comment.body, '/rebase-reuse') ||
+          contains(github.event.comment.body, '/regenerate-reuse') ||
+          contains(github.event.comment.body, '/rebase')
+        )
+      )
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate GitHub App Token
+        id: generate_token
+        if: ${{ vars.APP_ID }}
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # ratchet:actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Inspect Pull Request
+        id: pr
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{ steps.generate_token.outputs.token || secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = context.eventName === 'workflow_dispatch'
+              ? Number(context.payload.inputs.pr_number)
+              : context.issue.number;
+
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+
+            if (pr.state !== 'open') {
+              core.info(`PR #${prNumber} is ${pr.state}, skipping.`);
+              core.setOutput('should_run', 'false');
+              return;
+            }
+
+            const labels = (pr.labels || []).map(l => l.name);
+            const isReusePr =
+              labels.includes('reuse') ||
+              labels.includes('showcase') ||
+              (pr.head.ref && pr.head.ref.startsWith('reuse/'));
+
+            if (!isReusePr) {
+              core.info(`PR #${prNumber} is not a Reuse PR (labels: ${labels.join(', ')}, branch: ${pr.head.ref}). Skipping.`);
+              core.setOutput('should_run', 'false');
+              return;
+            }
+
+            if (!pr.head.repo || pr.head.repo.full_name !== `${context.repo.owner}/${context.repo.repo}`) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: '⚠️ Cannot automatically rebase/regenerate this PR because the source branch is on a fork.',
+              });
+              core.setOutput('should_run', 'false');
+              return;
+            }
+
+            if (context.eventName === 'issue_comment' && context.payload.comment) {
+              try {
+                await github.rest.reactions.createForIssueComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: context.payload.comment.id,
+                  content: 'eyes',
+                });
+              } catch (e) {
+                core.info(`Could not add reaction: ${e.message}`);
+              }
+            }
+
+            core.setOutput('should_run', 'true');
+            core.setOutput('number', String(prNumber));
+            core.setOutput('head_ref', pr.head.ref);
+            core.setOutput('base_ref', pr.base.ref);
+
+      - name: Checkout repository
+        if: steps.pr.outputs.should_run == 'true'
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          token: ${{ steps.generate_token.outputs.token || secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        if: steps.pr.outputs.should_run == 'true'
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        if: steps.pr.outputs.should_run == 'true'
+        run: |
+          pip install pyyaml pillow
+
+      - name: Rebase onto base branch and regenerate reuse catalog
+        if: steps.pr.outputs.should_run == 'true'
+        id: rebase
+        env:
+          HEAD_REF: ${{ steps.pr.outputs.head_ref }}
+          BASE_REF: ${{ steps.pr.outputs.base_ref }}
+          HEAD_SHA: ${{ steps.pr.outputs.head_sha }}
+          BASE_SHA: ${{ steps.pr.outputs.base_sha }}
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git fetch --no-tags origin "$BASE_SHA" "$HEAD_SHA"
+          MERGE_BASE=$(git merge-base "$BASE_SHA" "$HEAD_SHA")
+
+          # Check if already based on latest base branch and clean
+          if [ "$MERGE_BASE" = "$BASE_SHA" ]; then
+            echo "PR is already up to date with $BASE_REF; regenerating compiled outputs."
+          fi
+
+          # Exclude generated reuse artifacts so they are cleanly recompiled on top of base branch
+          is_generated() {
+            case "$1" in
+              data/reuses.json|lang/*/texts/reuse.html|lang/*/texts/reuses.html|lang/fr/texts/reutilisations.html)
+                return 0
+                ;;
+              *)
+                return 1
+                ;;
+            esac
+          }
+
+          MODIFIED_FILES=()
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            if ! is_generated "$f"; then
+              MODIFIED_FILES+=("$f")
+            fi
+          done < <(git diff --diff-filter=ACMR --name-only "$MERGE_BASE" "$HEAD_SHA")
+
+          DELETED_FILES=()
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            if ! is_generated "$f"; then
+              DELETED_FILES+=("$f")
+            fi
+          done < <(git diff --diff-filter=D --name-only "$MERGE_BASE" "$HEAD_SHA")
+
+          # Reset PR branch onto latest base branch
+          git checkout -B "$HEAD_REF" "$BASE_SHA"
+
+          # Reapply PR source changes (YAML, icons, etc.)
+          for f in "${MODIFIED_FILES[@]+"${MODIFIED_FILES[@]}"}"; do
+            git checkout "$HEAD_SHA" -- "$f"
+          done
+          for f in "${DELETED_FILES[@]+"${DELETED_FILES[@]}"}"; do
+            git rm -f --ignore-unmatch "$f"
+          done
+
+          # Recompile reuses.json and showcase HTML pages
+          python3 scripts/compile_reuses.py
+
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes after rebase and regeneration."
+            echo "updated=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git commit -m "chore(reuses): rebase onto ${BASE_REF} and regenerate showcase"
+          git push --force-with-lease origin "$HEAD_REF"
+          echo "updated=true" >> "$GITHUB_OUTPUT"
+
+      - name: Comment on PR and clean up conflict label
+        if: steps.pr.outputs.should_run == 'true' && always()
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{ steps.generate_token.outputs.token || secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = Number('${{ steps.pr.outputs.number }}');
+            const baseRef = '${{ steps.pr.outputs.base_ref }}';
+            const outcome = '${{ steps.rebase.outcome }}';
+            const updated = '${{ steps.rebase.outputs.updated }}';
+
+            if (outcome === 'success') {
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: prNumber,
+                  name: 'merge-conflict',
+                });
+              } catch (e) {
+                // Label may not exist
+              }
+
+              const msg = updated === 'true'
+                ? `✅ Rebased onto \`${baseRef}\` and regenerated \`data/reuses.json\` and the reuse showcase HTML pages.`
+                : `ℹ️ This PR is already up to date with \`${baseRef}\`.`;
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: msg,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: `❌ Failed to rebase and regenerate this Reuse PR onto \`${baseRef}\`. Please check the [workflow run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}) for details.`,
+              });
+            }
