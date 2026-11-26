@@ -503,6 +503,14 @@ def add_reuse(raw_data, reuse_id=None, overwrite=False, dry_run=False, do_compil
         else:
             warnings.append(f"{r_id}.yaml: could not cache icon from {item['icon_url']}")
 
+    # Fallback: fetch icon from Google Play / Apple App Store if still missing
+    if not item.get("cached_icon") and (item.get("play_store") or item.get("app_store")):
+        try:
+            from fetch_reuse_icons import ensure_reuse_icon
+            ensure_reuse_icon(item, icons_dir=ICONS_DIR, include_domain_favicon=False)
+        except Exception as e:
+            print(f"[WARN] Store icon fallback skipped or failed: {e}", file=sys.stderr)
+
     # Write YAML file
     with open(target_filepath, "w", encoding="utf-8") as f:
         yaml.safe_dump(item, f, sort_keys=False, allow_unicode=True)
