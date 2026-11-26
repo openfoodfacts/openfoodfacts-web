@@ -132,15 +132,15 @@ jobs:
         env:
           HEAD_REF: ${{ steps.pr.outputs.head_ref }}
           BASE_REF: ${{ steps.pr.outputs.base_ref }}
+          HEAD_SHA: ${{ steps.pr.outputs.head_sha }}
+          BASE_SHA: ${{ steps.pr.outputs.base_sha }}
         run: |
           set -euo pipefail
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git fetch origin "$BASE_REF" "$HEAD_REF"
-          HEAD_SHA=$(git rev-parse "origin/$HEAD_REF")
-          BASE_SHA=$(git rev-parse "origin/$BASE_REF")
+          git fetch --no-tags origin "$BASE_SHA" "$HEAD_SHA"
           MERGE_BASE=$(git merge-base "$BASE_SHA" "$HEAD_SHA")
 
           # Check if already based on latest base branch and clean
