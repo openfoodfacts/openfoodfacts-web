@@ -19,10 +19,15 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v7.0.1
 
+    - name: Set up Python
+      uses: actions/setup-python@v7.1.0
+      with:
+        python-version: "3.11"
+
     - name: Upgrade assets
       run: |
         cd knowledge_panels
-        python3 -m pip install -r requirements.txt --user
+        python3 -m pip install -r requirements.txt
         python3 build_html.py additives ingredients nutrients categories labels
 
     - name: Check for uncommitted changes
