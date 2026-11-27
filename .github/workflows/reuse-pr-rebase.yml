@@ -107,6 +107,8 @@ jobs:
             core.setOutput('number', String(prNumber));
             core.setOutput('head_ref', pr.head.ref);
             core.setOutput('base_ref', pr.base.ref);
+            core.setOutput('head_sha', pr.head.sha);
+            core.setOutput('base_sha', pr.base.sha);
 
       - name: Checkout repository
         if: steps.pr.outputs.should_run == 'true'
