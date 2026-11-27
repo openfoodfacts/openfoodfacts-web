@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.14.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.13.0...v1.14.0) (2026-11-27)
+
+
+### Features
+
+* Knowledge panels translations ([#951](https://github.com/openfoodfacts/openfoodfacts-web/issues/951)) ([a08831c](https://github.com/openfoodfacts/openfoodfacts-web/commit/a08831ce1fe39a2865fa1048bb3c83b2d9a0d10e))
+* **reuses:** retro-download reuse icons and add on-demand PR rebase workflow ([#1123](https://github.com/openfoodfacts/openfoodfacts-web/issues/1123)) ([ad42f21](https://github.com/openfoodfacts/openfoodfacts-web/commit/ad42f2107a4645f0ccf33469d142e14b3e823cb2))
+
+
+### Bug Fixes
+
+* **ci:** comment out stray ku/kmr keys in crowdin-html.yml ([#1124](https://github.com/openfoodfacts/openfoodfacts-web/issues/1124)) ([7349585](https://github.com/openfoodfacts/openfoodfacts-web/commit/73495852bc1c071124404cb7b9c95cf77ffc3989))
+* **ci:** output head_sha and base_sha in reuse-pr-rebase workflow ([#1128](https://github.com/openfoodfacts/openfoodfacts-web/issues/1128)) ([977560e](https://github.com/openfoodfacts/openfoodfacts-web/commit/977560ea4d557726573619aca4a5e86df377bf04))
+* **ci:** pin Python 3.11 in build-knowledge-panels workflow ([#1122](https://github.com/openfoodfacts/openfoodfacts-web/issues/1122)) ([6b08444](https://github.com/openfoodfacts/openfoodfacts-web/commit/6b0844429058c58fad44978f4ca8d4710cd831f0))
+
 ## [1.13.0](https://github.com/openfoodfacts/openfoodfacts-web/compare/v1.12.0...v1.13.0) (2026-11-25)
 
 
