@@ -33,7 +33,7 @@ from scripts.add_query import (
     build_query_dict,
     add_query,
 )
-from scripts.compile_queries import validate_query, VALID_TOPICS, VALID_QUERY_TYPES
+from scripts.compile_queries import load_queries, validate_query, VALID_TOPICS, VALID_QUERY_TYPES
 
 
 class TestAddQuery(unittest.TestCase):
@@ -114,6 +114,31 @@ cereals, breakfast, sugars, additives
         self.assertEqual(parsed["geography"], "fr")
         self.assertEqual(parsed["author"], "Pierre")
         self.assertEqual(parsed["keywords"], ["cereals", "breakfast", "sugars", "additives"])
+
+    def test_load_queries_reports_mistyped_fields(self):
+        query = {
+            "id": "example",
+            "title": "Example",
+            "description": "A saved example query",
+            "topic": ["nutrition"],
+            "query_type": {"type": "scatter_plot"},
+            "geographies": ["world", 42],
+            "url": 42,
+            "tags_combined": ["category:cereals", None],
+            "keywords": ["cereals", True],
+        }
+        path = os.path.join(self.test_dir, "example.yaml")
+        with open(path, "w", encoding="utf-8") as fixture:
+            yaml.safe_dump(query, fixture)
+
+        _, errors, _ = load_queries(self.test_dir)
+
+        for field in ("topic", "query_type", "geographies", "url", "tags_combined", "keywords"):
+            with self.subTest(field=field):
+                self.assertTrue(
+                    any(error.startswith("example.yaml:") and field in error for error in errors),
+                    errors,
+                )
 
     def test_build_query_dict_and_add_query(self):
         data = {
