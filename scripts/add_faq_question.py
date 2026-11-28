@@ -59,8 +59,13 @@ def parse_issue_markdown(text):
 
     text = text.replace("\r\n", "\n")
 
-    # Pattern for H3 sections: ### Section Title\n\nContent
-    sections = re.split(r"(?m)^###\s+", "\n" + text)
+    # Only the issue form's field labels start new sections. In particular, a
+    # contributor can use a level-three heading inside the proposed answer.
+    form_labels = (
+        r"language|category|question(?: title)?|(?:proposed )?answer(?: \(markdown\))?"
+        r"|sources?(?: / documentation links \(optional\))?|references?|contribution checklist"
+    )
+    sections = re.split(rf"(?im)^###[ \t]+(?=(?:{form_labels})[ \t]*$)", text)
     for sec in sections:
         sec = sec.strip()
         if not sec:
@@ -251,6 +256,10 @@ def add_faq_question(lang, category, question, answer, sources=None, dry_run=Fal
     answer = answer.strip()
     if not answer:
         return {"success": False, "error": "Answer cannot be empty."}
+
+    # Level-two headings delimit questions in category files. Nest answer
+    # headings below that boundary before writing the category.
+    answer = re.sub(r"(?m)^#{1,2}[ \t]+(?=\S)", "### ", answer)
 
     # Locate category file
     fpath, rel_path, fm = find_category_file(lang, category)

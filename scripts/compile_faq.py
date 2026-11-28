@@ -271,6 +271,15 @@ def md_to_html(md_text):
             flush_list()
             continue
 
+        answer_heading = re.fullmatch(r"(#{3,6})[ \t]+(.+)", stripped)
+        if answer_heading:
+            flush_para()
+            flush_list()
+            level = min(len(answer_heading[1]) + 1, 6)
+            title = format_inline(answer_heading[2])
+            html_out.append(f"<h{level}>{title}</h{level}>")
+            continue
+
         # Unordered list: - or *
         ul_match = re.match(r"^[-*•]\s+(.*)$", stripped)
         if ul_match:
